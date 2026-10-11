@@ -475,7 +475,10 @@ public class World implements Iterable<Player> {
         if (newScene == oldScene
                 && teleportProperties.getTeleportType() == TeleportType.COMMAND
                 && PhlogistonRegion.contains(newScene.getId(), teleportProperties.getTeleportTo())
-                        == player.isInNatlan()) {
+                        == player.isInNatlan()
+                && emu.grasscutter.game.player.SnezhnayaFrigid.contains(
+                                newScene.getId(), teleportProperties.getTeleportTo())
+                        == emu.grasscutter.game.player.SnezhnayaFrigid.isGranted(player)) {
             // Set player position and rotation
             if (teleportProperties.getTeleportTo() != null) {
                 player.getPosition().set(teleportProperties.getTeleportTo());

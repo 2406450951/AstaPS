@@ -89,6 +89,16 @@ public class PacketPlayerEnterSceneInfoNotify extends BasePacket {
                     .setFloatValue(player.getPhlogistonValue())
                     .build());
         }
+        if (emu.grasscutter.game.player.SnezhnayaFrigid.isGranted(player)) {
+            String frigid = emu.grasscutter.game.player.SnezhnayaFrigid.FRIGID_GV;
+            teamInfo.addSgvDynamicValueMap(AbilityScalarValueEntry.newBuilder()
+                    .setKey(AbilityString.newBuilder()
+                            .setHash(Utils.abilityHash(frigid))
+                            .setStr(frigid)
+                            .build())
+                    .setFloatValue(0f)
+                    .build());
+        }
 
         if (moonPhaseCount > 0) {
             teamInfo.addDynamicValueMap(AbilityScalarValueEntry.newBuilder()

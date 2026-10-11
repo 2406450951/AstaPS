@@ -517,6 +517,7 @@ public class EntityAvatar extends GameEntity {
 
         super.move(event.getDestination(), rotation);
         this.getPlayer().refreshPhlogistonRegion();
+        emu.grasscutter.game.player.SnezhnayaFrigid.refresh(this.getPlayer());
     }
 
     @Override
