@@ -376,6 +376,8 @@ public class EntityGadget extends EntityBaseGadget {
                 getScene().getScriptManager().getGroupInstanceById(this.getGroupId());
         if (groupInstance != null && metaGadget != null)
             groupInstance.getDeadEntities().add(metaGadget.config_id);
+
+        emu.grasscutter.game.entity.gadget.MeltableIceHelper.onShattered(this);
     }
 
     /**
@@ -575,11 +577,38 @@ public class EntityGadget extends EntityBaseGadget {
         return true;
     }
 
+    /**
+     * The server global values the gadget config declares under {@code globalValue.initServerGlobalValues}.
+     *
+     * <p>The gadget's abilities read these from the first frame - Snezhnaya's meltable ice takes its melt
+     * rate from {@code SGV_Meltable_Ratio} and its size from {@code SGV_InitialSize} - and without them
+     * every value reads 0, so Fire hits shrank the ice by nothing.
+     */
+    private AbilitySyncStateInfo.Builder initialAbilityInfo() {
+        var info = AbilitySyncStateInfo.newBuilder();
+        var globalValue = this.configGadget == null ? null : this.configGadget.getGlobalValue();
+        if (globalValue == null || globalValue.getInitServerGlobalValues() == null) return info;
+        globalValue
+                .getInitServerGlobalValues()
+                .forEach(
+                        (key, value) -> {
+                            if (key == null || value == null) return;
+                            info.addSgvDynamicValueMap(
+                                    AbilityScalarValueEntryOuterClass.AbilityScalarValueEntry.newBuilder()
+                                            .setKey(
+                                                    AbilityStringOuterClass.AbilityString.newBuilder()
+                                                            .setHash(emu.grasscutter.utils.Utils.abilityHash(key))
+                                                            .setStr(key))
+                                            .setFloatValue(value));
+                        });
+        return info;
+    }
+
     @Override
     public SceneEntityInfo toProto() {
         EntityAuthorityInfo authority =
                 EntityAuthorityInfo.newBuilder()
-                        .setAbilityInfo(AbilitySyncStateInfo.newBuilder())
+                        .setAbilityInfo(this.initialAbilityInfo())
                         .setRendererChangedInfo(EntityRendererChangedInfo.newBuilder())
                         .setAiInfo(
                                 SceneEntityAiInfo.newBuilder().setIsEnteredCombat(true))
