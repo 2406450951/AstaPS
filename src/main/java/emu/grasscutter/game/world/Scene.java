@@ -233,6 +233,12 @@ public class Scene {
             player.setSceneId(this.getId());
             player.setScene(this);
 
+            // Refresh the HUD gate on every scene entry, including teleport and relogin.
+            int phlogistonEnabled = player.isInNatlan() ? 1 : 0;
+            if (player.getProperty(PlayerProperty.PROP_PHLOGISTON_ENABLE) != phlogistonEnabled) {
+                player.setProperty(PlayerProperty.PROP_PHLOGISTON_ENABLE, phlogistonEnabled);
+            }
+
             this.setupPlayerAvatars(player);
         }
         this.playerEntryCallbacks.enter(player.getUid());

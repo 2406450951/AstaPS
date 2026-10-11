@@ -137,5 +137,15 @@ public final class GameConstants {
         """);
     public static final int[] DEFAULT_ABILITY_HASHES =
             Arrays.stream(DEFAULT_ABILITY_STRINGS).mapToInt(Utils::abilityHash).toArray();
+    private static final int PHLOGISTON_ABILITY_HASH = Utils.abilityHash("DynamicAbility_Phlogiston");
+
+    /**
+     * The avatar AbilityControlBlock and server-side instance list must use identical filtering:
+     * the client addresses abilities by the dense, scene-specific ability ID.
+     */
+    public static boolean shouldAttachDefaultAvatarAbility(int abilityHash, boolean inNatlan) {
+        return inNatlan || abilityHash != PHLOGISTON_ABILITY_HASH;
+    }
+
     public static final int DEFAULT_ABILITY_NAME = Utils.abilityHash("Default");
 }

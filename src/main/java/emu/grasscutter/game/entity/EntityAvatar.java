@@ -441,7 +441,10 @@ public class EntityAvatar extends GameEntity {
             }
         }
 
+        boolean inNatlan = this.getPlayer().isInNatlan();
         for (int id : GameConstants.DEFAULT_ABILITY_HASHES) {
+            // The client attaches this ability and draws the bar even without an SGV value.
+            if (!GameConstants.shouldAttachDefaultAvatarAbility(id, inNatlan)) continue;
             AbilityEmbryo emb =
                     AbilityEmbryo.newBuilder()
                             .setAbilityId(++embryoId)
@@ -513,6 +516,7 @@ public class EntityAvatar extends GameEntity {
         event.call();
 
         super.move(event.getDestination(), rotation);
+        this.getPlayer().refreshPhlogistonRegion();
     }
 
     @Override

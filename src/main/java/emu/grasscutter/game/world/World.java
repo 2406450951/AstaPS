@@ -10,6 +10,7 @@ import emu.grasscutter.game.ability.NatsaurusVehicleHelper;
 import emu.grasscutter.game.entity.EntityTeam;
 import emu.grasscutter.game.entity.EntityWorld;
 import emu.grasscutter.game.player.Player;
+import emu.grasscutter.game.player.PhlogistonRegion;
 import emu.grasscutter.game.player.Player.SceneLoadState;
 import emu.grasscutter.game.props.EnterReason;
 import emu.grasscutter.game.props.EntityIdType;
@@ -471,7 +472,10 @@ public class World implements Iterable<Player> {
         var newScene = this.getSceneById(teleportProperties.getSceneId());
 
         // Move directly in the same scene.
-        if (newScene == oldScene && teleportProperties.getTeleportType() == TeleportType.COMMAND) {
+        if (newScene == oldScene
+                && teleportProperties.getTeleportType() == TeleportType.COMMAND
+                && PhlogistonRegion.contains(newScene.getId(), teleportProperties.getTeleportTo())
+                        == player.isInNatlan()) {
             // Set player position and rotation
             if (teleportProperties.getTeleportTo() != null) {
                 player.getPosition().set(teleportProperties.getTeleportTo());
@@ -494,18 +498,9 @@ public class World implements Iterable<Player> {
             oldScene.removePlayer(player);
         }
 
+        // Resolve the destination before rebuilding avatars and their region-dependent abilities.
+        // Both Mondstadt and Natlan are in scene 3, so the old position must not decide the HUD.
         if (newScene != null) {
-            newScene.addPlayer(player);
-
-            player.getTeamManager().applyAbilities(newScene);
-
-            // Dungeon
-            // Dungeon system is handling this already
-            // if(dungeonData!=null){
-            //     var dungeonManager = new DungeonManager(newScene, dungeonData);
-            //     dungeonManager.startDungeon();
-            // }
-
             SceneConfig config = newScene.getScriptManager().getConfig();
             if (teleportProperties.getTeleportTo() == null && config != null) {
                 if (config.born_pos != null) {
@@ -516,13 +511,16 @@ public class World implements Iterable<Player> {
                 }
             }
         }
-
-        // Set player position and rotation
         if (teleportProperties.getTeleportTo() != null) {
             player.getPosition().set(teleportProperties.getTeleportTo());
         }
         if (teleportProperties.getTeleportRot() != null) {
             player.getRotation().set(teleportProperties.getTeleportRot());
+        }
+
+        if (newScene != null) {
+            newScene.addPlayer(player);
+            player.getTeamManager().applyAbilities(newScene);
         }
 
         if (oldScene != null && newScene != null && newScene != oldScene) {

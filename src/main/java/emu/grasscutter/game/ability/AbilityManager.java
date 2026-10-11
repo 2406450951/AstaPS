@@ -1406,16 +1406,39 @@ public final class AbilityManager extends BasePlayerManager {
         entity.getInstancedAbilities().add(data != null ? new Ability(data, entity, player) : null);
     }
 
+    /** Keep already-initialized server ability IDs in sync with changed avatar embryos. */
+    public void syncPhlogistonAvatarAbility(EntityAvatar avatar, boolean inNatlan) {
+        var abilities = avatar.getInstancedAbilities();
+        if (abilities.isEmpty()) return; // Lazy initialization will use the current region.
+        var base = avatar.getAvatar().getAvatarData().getAbilities();
+        int index = base == null ? 0 : base.size();
+        int phlogistonHash = Utils.abilityHash("DynamicAbility_Phlogiston");
+        for (int hash : GameConstants.DEFAULT_ABILITY_HASHES) {
+            if (hash == phlogistonHash) break;
+            index++;
+        }
+        if (index >= abilities.size()) return; // No fully initialized default-ability sequence.
+        var current = abilities.get(index);
+        boolean present = current != null && current.getData() != null
+                && "DynamicAbility_Phlogiston".equals(current.getData().abilityName);
+        if (inNatlan && !present) {
+            var name = GameData.getAbilityHashes().get(phlogistonHash);
+            var data = name == null ? null : GameData.getAbilityData(name);
+            abilities.add(index, data == null ? null : new Ability(data, avatar, player));
+        } else if (!inNatlan && present) {
+            abilities.remove(index);
+        }
+    }
+
     private void initializeEntityAbilities(EntityAvatar avatar) {
         var avatarData = avatar.getAvatar().getAvatarData();
         if (avatarData.getAbilities() != null) {
             for (int hash : avatarData.getAbilities()) addAbilityByHash(avatar, hash);
         }
-        // DynamicAbility_Phlogiston is what makes the client draw the phlogiston gauge at all,
-        // and it used to be attached only inside scene 101. That is why the party's global value
-        // was invisible everywhere else: the value was there, nothing was drawing it. It is a
-        // default ability like the rest of them now, so the gauge follows the party.
-        for (int hash : emu.grasscutter.GameConstants.DEFAULT_ABILITY_HASHES) {
+        // Match EntityAvatar.getAbilityControlBlock() exactly, including dense ability IDs.
+        boolean inNatlan = player.isInNatlan();
+        for (int hash : GameConstants.DEFAULT_ABILITY_HASHES) {
+            if (!GameConstants.shouldAttachDefaultAvatarAbility(hash, inNatlan)) continue;
             addAbilityByHash(avatar, hash);
         }
         for (int hash : player.getTeamManager().getTeamResonancesConfig()) {
