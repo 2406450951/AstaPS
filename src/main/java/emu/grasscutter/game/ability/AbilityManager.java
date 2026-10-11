@@ -506,15 +506,16 @@ public final class AbilityManager extends BasePlayerManager {
     private int snezhnayaFrigidInvokesLogged = 0;
 
     /**
-     * Logs ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR invokes raw. Their payload has no named message in
-     * the 7.1 protocol, and it is what the server must act on to move the Frigid meter.
+     * Logs ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR invokes raw at debug level (start the server with
+     * -debug). Their payload has no named message in the 7.1 protocol, and it is what the server must act
+     * on to move the Frigid meter.
      */
     private void logSnezhnayaFrigidInvoke(AbilityInvokeEntry invoke) {
-        if (this.snezhnayaFrigidInvokesLogged >= 200) return;
+        if (!Grasscutter.getLogger().isDebugEnabled() || this.snezhnayaFrigidInvokesLogged >= 200) return;
         this.snezhnayaFrigidInvokesLogged++;
         var head = invoke.getHead();
         Grasscutter.getLogger()
-                .info(
+                .debug(
                         "[SnezhnayaFrigid] invoke #{} entity={} ability={} modifier={} localId={} data={}",
                         this.snezhnayaFrigidInvokesLogged,
                         invoke.getEntityId(),
