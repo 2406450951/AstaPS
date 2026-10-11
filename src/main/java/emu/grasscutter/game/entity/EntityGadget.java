@@ -229,6 +229,26 @@ public class EntityGadget extends EntityBaseGadget {
 
     // TODO refactor
     public void buildContent() {
+        emu.grasscutter.game.quest.LiyueTeapotDungeonSupport.prepareCobweb(this);
+        if (emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell.matches(this)) {
+            if (!(this.content instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell))
+                this.content = new emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell(this);
+            return;
+        }
+        if (emu.grasscutter.game.entity.gadget.GadgetLiyueGuizhong.matches(this)) {
+            if (!(this.content instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueGuizhong))
+                this.content = new emu.grasscutter.game.entity.gadget.GadgetLiyueGuizhong(this);
+            return;
+        }
+        if (emu.grasscutter.game.entity.gadget.GadgetLiyueJadeMaterials.matches(this)) {
+            if (!(this.content instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueJadeMaterials))
+                this.content = new emu.grasscutter.game.entity.gadget.GadgetLiyueJadeMaterials(this);
+            return;
+        }
+        if (GadgetLiyueFoodOffering.matches(this)) {
+            this.content = new GadgetLiyueFoodOffering(this);
+            return;
+        }
         if (this.getContent() != null
                 || this.getGadgetData() == null
                 || this.getGadgetData().getType() == null) {
@@ -340,6 +360,7 @@ public class EntityGadget extends EntityBaseGadget {
 
     @Override
     public void onDeath(int killerId) {
+        emu.grasscutter.game.quest.LiyueAmberQuestSupport.onGadgetDeath(this);
         super.onDeath(killerId); // Invoke super class's onDeath() method.
 
         // Breakable gather ores (incl. Scarlet Quartz): spawn ground drop on death.
@@ -490,8 +511,13 @@ public class EntityGadget extends EntityBaseGadget {
                 }
 
                 double time = 0;
+                boolean liyuePlatform = emu.grasscutter.game.quest.LiyueCloudDungeonSupport.isPlatform(this);
+                int startedRoute = configRoute.getRouteId();
                 for (var i = currIndex; i < points.length; ++i) {
-                    time += points[i].getPos().computeDistance(prevpos) / points[i].getTargetVelocity();
+                    double distance = points[i].getPos().computeDistance(prevpos);
+                    time += liyuePlatform
+                            ? emu.grasscutter.game.quest.LiyueCloudDungeonSupport.pointSeconds(points[i], distance)
+                            : distance / points[i].getTargetVelocity();
                     prevpos = points[i].getPos();
                     val I = i;
                     configRoute
@@ -501,6 +527,8 @@ public class EntityGadget extends EntityBaseGadget {
                                             .getScheduler()
                                             .scheduleDelayedTask(
                                                     () -> {
+                                                        if (liyuePlatform && (!configRoute.isStarted()
+                                                                || configRoute.getRouteId() != startedRoute)) return;
                                                         if (points[I].isHasReachEvent() && I > currIndex) {
                                                             this.getScene()
                                                                     .getScriptManager()
@@ -515,11 +543,15 @@ public class EntityGadget extends EntityBaseGadget {
                                                         }
                                                         configRoute.setStartIndex(I);
                                                         this.position.set(points[I].getPos());
+                                                        if (liyuePlatform && points[I].getRotRoundLeaveDir() != null)
+                                                            this.getRotation().set(points[I].getRotRoundLeaveDir());
                                                         if (I == points.length - 1) {
                                                             configRoute.setStarted(false);
                                                         }
                                                     },
-                                                    (int) time));
+                                                    liyuePlatform
+                                                            ? emu.grasscutter.game.quest.LiyueCloudDungeonSupport.ticksForSeconds(time + 0.3)
+                                                            : (int) time));
                 }
             }
         }

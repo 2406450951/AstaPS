@@ -50,6 +50,7 @@ public class PacketPlayerEnterSceneNotify extends BasePacket {
                                         + "-"
                                         + 18402);
 
+        addSceneTags(proto, player, clientSceneId);
         this.setData(proto);
     }
 
@@ -116,6 +117,7 @@ public class PacketPlayerEnterSceneNotify extends BasePacket {
             proto.setDungeonId((teleportProperties.getDungeonId() ^ 27544) - 17829);
         }
 
+        addSceneTags(proto, target, clientSceneId);
         this.setData(proto);
     }
 
@@ -149,6 +151,16 @@ public class PacketPlayerEnterSceneNotify extends BasePacket {
                                         + "-"
                                         + 105092);
 
+        addSceneTags(proto, player, clientSceneId);
         this.setData(proto);
+    }
+
+    private static void addSceneTags(
+            PlayerEnterSceneNotify.Builder proto, Player owner, int clientSceneId) {
+        var world = owner.getWorld();
+        var host = world != null ? world.getHost() : null;
+        var tagOwner = host != null ? host : owner;
+        var tags = tagOwner.getSceneTags().getOrDefault(clientSceneId, java.util.Set.of());
+        proto.addAllSceneTagIdList(tags);
     }
 }

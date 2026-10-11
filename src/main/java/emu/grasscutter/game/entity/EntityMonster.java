@@ -62,6 +62,7 @@ public class EntityMonster extends GameEntity {
     @Nullable @Getter @Setter private SceneMonster metaMonster;
     /** Set when gather reward was already granted via interact (avoid double drop on killEntity). */
     @Getter @Setter private boolean envGatherRewarded;
+    @Getter @Setter private boolean goldenHousePhaseTransitionPending;
 
     public EntityMonster(
             Scene scene, MonsterData monsterData, Position pos, Position rot, int level) {
@@ -297,6 +298,9 @@ public class EntityMonster extends GameEntity {
 
         // Get HP after damage.
         float hpAfterDamage = this.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP);
+
+        emu.grasscutter.game.quest.LiyueGoldenHouseCombatSupport.afterDamage(
+                this, hpBeforeDamage, amount, killerId);
 
         // Invoke energy drop logic.
         for (Player player : this.getScene().getPlayers()) {

@@ -57,6 +57,8 @@ public class SceneScriptManager {
     private final Set<SceneTrigger> ongoingTriggers;
     private final Map<String, Set<SceneTrigger>> triggersByGroupScene;
     private final Map<Integer, Set<Pair<String, Integer>>> activeGroupTimers;
+    private final LiyueCloudDungeonTimers liyueDungeonTimers = new LiyueCloudDungeonTimers(this);
+    private CompletableFuture<Void> liyueFireEvents = CompletableFuture.completedFuture(null);
     private final Map<String, AtomicInteger> triggerInvocations;
     private final Map<Integer, EntityRegion> regions; // <EntityId-Region>
     private final Map<Integer, SceneGroup> sceneGroups;
@@ -255,6 +257,8 @@ public class SceneScriptManager {
             boolean excludePrevSuite,
             List<GameEntity> entitiesAdded) {
         SceneGroup group = groupInstance.getLuaGroup();
+        if (LiyueCloudDungeonSupport.isTimerGroup(getScene(), group.id))
+            liyueDungeonTimers.cancelGroup(group.id);
         if (suiteIndex == 0) {
             if (excludePrevSuite) {
                 suiteIndex = group.findInitSuiteIndex(groupInstance.getActiveSuiteId());
@@ -321,6 +325,7 @@ public class SceneScriptManager {
                 });
 
         groupInstance.setActiveSuiteId(suiteIndex);
+        emu.grasscutter.game.quest.LiyueSceneGroupRecovery.onSuiteChanged(getScene(), groupInstance);
         groupInstance.setLastTimeRefreshed(getScene().getWorld().getGameTime());
 
         // Call EVENT_GROUP_REFRESH for any action trigger waiting for it
@@ -800,6 +805,8 @@ public class SceneScriptManager {
     }
 
     public void unregisterGroup(SceneGroup group) {
+        if (LiyueCloudDungeonSupport.isTimerGroup(getScene(), group.id))
+            liyueDungeonTimers.cancelGroup(group.id);
         this.sceneGroups.remove(group.id);
         this.sceneGroupsInstances.values().removeIf(i -> i.getLuaGroup().equals(group));
         this.cachedSceneGroupsInstances.values().stream()
@@ -950,13 +957,28 @@ public class SceneScriptManager {
          * not get it. e.g. CallEvent -> set -> ScriptLib.xxx -> CallEvent -> set -> remove -> NPE ->
          * (remove) So we use thread pool to clean the stack to avoid this new issue.
          */
+        if (LiyueCloudDungeonSupport.isFireLinkGroup(getScene(), params.getGroupId())) {
+            return enqueueLiyueFireEvent(params);
+        }
         return eventExecutor.submit(() -> this.realCallEvent(params));
+    }
+
+    private synchronized Future<?> enqueueLiyueFireEvent(ScriptArgs params) {
+        // Lua changes enqueue further state/variable events. Keep their guard flags in FIFO order.
+        liyueFireEvents = liyueFireEvents.handleAsync((ignored, failure) -> {
+            realCallEvent(params);
+            return null;
+        }, eventExecutor);
+        return liyueFireEvents;
     }
 
     private void realCallEvent(@Nonnull ScriptArgs params) {
         if (this.destroyed) {
             return;
         }
+        if (params.type == EVENT_TIMER_EVENT
+                && LiyueCloudDungeonSupport.isTimerGroup(getScene(), params.getGroupId())
+                && !liyueDungeonTimers.consume(params)) return;
         if (params.type == EventType.EVENT_ANY_MONSTER_DIE) {
             this.sealBattleManager.onMonsterDeath(params.getGroupId(), params.param1);
         }
@@ -984,8 +1006,18 @@ public class SceneScriptManager {
                                 .collect(Collectors.toSet());
                     };
 
-            for (SceneTrigger trigger : relevantTriggers) {
-                handleEventForTrigger(params, trigger);
+            if (LiyueCloudDungeonSupport.isFireLinkGroup(getScene(), params.getGroupId())) {
+                // Select against the same state before any action can make its opposite condition true.
+                var selected = relevantTriggers.stream()
+                        .filter(trigger -> selectLiyueFireTrigger(params, trigger))
+                        .toList();
+                for (SceneTrigger trigger : selected) {
+                    runSelectedLiyueFireTrigger(params, trigger);
+                }
+            } else {
+                for (SceneTrigger trigger : relevantTriggers) {
+                    handleEventForTrigger(params, trigger);
+                }
             }
         } catch (Throwable throwable) {
             Grasscutter.getLogger()
@@ -993,6 +1025,33 @@ public class SceneScriptManager {
         } finally {
             // make sure it is removed
             ScriptLoader.getScriptLib().removeSceneScriptManager();
+        }
+    }
+
+    private boolean selectLiyueFireTrigger(ScriptArgs params, SceneTrigger trigger) {
+        try {
+            ScriptLoader.getScriptLib().setCurrentGroup(trigger.currentGroup);
+            ScriptLoader.getScriptLib().setCurrentCallParams(params);
+            return evaluateTriggerCondition(trigger, params);
+        } catch (Throwable ex) {
+            Grasscutter.getLogger()
+                    .error("Condition Trigger " + trigger.getName() + " triggered exception", ex);
+            return false;
+        } finally {
+            ScriptLoader.getScriptLib().removeCurrentGroup();
+        }
+    }
+
+    private void runSelectedLiyueFireTrigger(ScriptArgs params, SceneTrigger trigger) {
+        try {
+            ScriptLoader.getScriptLib().setCurrentGroup(trigger.currentGroup);
+            ScriptLoader.getScriptLib().setCurrentCallParams(params);
+            callTrigger(trigger, params);
+        } catch (Throwable ex) {
+            Grasscutter.getLogger()
+                    .error("Action Trigger " + trigger.getName() + " triggered exception", ex);
+        } finally {
+            ScriptLoader.getScriptLib().removeCurrentGroup();
         }
     }
 
@@ -1075,7 +1134,8 @@ public class SceneScriptManager {
                                 });
             }
 
-            if (event == EVENT_TIMER_EVENT) {
+            if (event == EVENT_TIMER_EVENT
+                    && !LiyueCloudDungeonSupport.isTimerGroup(getScene(), trigger.currentGroup.id)) {
                 cancelGroupTimerEvent(trigger.currentGroup.id, trigger.getSource());
             }
 
@@ -1323,6 +1383,8 @@ public class SceneScriptManager {
     }
 
     public int createGroupTimerEvent(int groupID, String source, double time) {
+        if (LiyueCloudDungeonSupport.isTimerGroup(getScene(), groupID))
+            return liyueDungeonTimers.create(groupID, source, time);
         // TODO also remove timers when refreshing and test
         var group = getGroupById(groupID);
         if (group == null || group.triggers == null) {
@@ -1365,6 +1427,8 @@ public class SceneScriptManager {
     }
 
     public int cancelGroupTimerEvent(int groupID, String source) {
+        if (LiyueCloudDungeonSupport.isTimerGroup(getScene(), groupID))
+            return liyueDungeonTimers.cancel(groupID, source);
         // TODO test
         var groupTimers = activeGroupTimers.get(groupID);
         if (groupTimers != null && !groupTimers.isEmpty()) {
@@ -1454,6 +1518,7 @@ public class SceneScriptManager {
             return;
         }
         this.destroyed = true;
+        this.liyueDungeonTimers.clear();
         this.initialization.complete(false);
         this.pendingCutsceneGroups.clear();
         this.sealBattleManager.clear();

@@ -109,7 +109,9 @@ public final class DungeonManager {
     }
 
     public boolean isFinishedSuccessfully() {
-        if (passConfigData.getConds() == null) return false;
+        // Missing pass conditions mean completion is controlled by quest/script actions.
+        // An empty quest-style AND must not settle the dungeon on its first unrelated event.
+        if (passConfigData.getConds() == null || passConfigData.getConds().isEmpty()) return false;
         return LogicType.calculate(passConfigData.getLogicType(), finishedConditions);
     }
 

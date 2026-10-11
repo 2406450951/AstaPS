@@ -24,6 +24,12 @@ public class HandlerSelectWorktopOptionReq extends PacketHandler {
                 return;
             }
 
+            if (entity instanceof EntityGadget jadeGadget
+                    && jadeGadget.getContent() instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueJadeMaterials jade) {
+                jade.openCage(session.getPlayer(), req.getOptionId());
+                return;
+            }
+
             // Andrius first: avoid lua suite-3 CreateMonster stacking a second boss.
             if (entity instanceof EntityGadget andriusGadget
                     && emu.grasscutter.game.world.AndriusTrialStartHelper.tryStart(

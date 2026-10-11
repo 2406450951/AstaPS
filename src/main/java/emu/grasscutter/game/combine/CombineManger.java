@@ -8,6 +8,7 @@ import emu.grasscutter.game.inventory.GameItem;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.ActionReason;
 import emu.grasscutter.game.props.PlayerProperty;
+import emu.grasscutter.game.quest.LiyuePerfumeQuestSupport;
 import emu.grasscutter.net.proto.RetcodeOuterClass.Retcode;
 import emu.grasscutter.server.game.*;
 import emu.grasscutter.server.packet.send.*;
@@ -48,6 +49,7 @@ public class CombineManger extends BaseGameSystem {
                         "Unlocked {} combine recipes for player {}.",
                         player.getUnlockedCombines().size(),
                         player.getUid());
+        LiyuePerfumeQuestSupport.sendFormulas(player);
     }
 
     public boolean unlockCombineDiagram(Player player, int combineId) {
