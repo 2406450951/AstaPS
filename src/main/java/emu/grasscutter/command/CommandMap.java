@@ -278,6 +278,8 @@ public final class CommandMap {
     private static CommandLine configureCommandLine(
             CommandLine cli, Player sender, CommandHandler handler) {
         cli.setExpandAtFiles(false);
+        // Old forms such as "teapot setLevel" and "trial toggleDungeon" were case-insensitive.
+        cli.setSubcommandsCaseInsensitive(true);
         cli.setParameterExceptionHandler(
                 (exception, argv) -> {
                     parameterErrorMessages(exception)
@@ -297,6 +299,11 @@ public final class CommandMap {
                     return commandLine.getCommandSpec().exitCodeOnExecutionException();
                 });
         return cli;
+    }
+
+    /** Legacy argument rewrites only target the built-in grammars, never a plugin's own. */
+    private static boolean isBuiltIn(CommandHandler handler) {
+        return handler.getClass().getName().startsWith("emu.grasscutter.command.commands.");
     }
 
     private static CommandLine createCompletionCommandLine(
@@ -643,9 +650,19 @@ public final class CommandMap {
             return;
         }
 
+        String typedLabel = label;
+        List<String> typedArgs = List.copyOf(args);
         String resolvedLabel = this.resolveCommandLabel(label);
         if (resolvedLabel == null) {
-            CommandOutput.sendTranslatedMessage(player, "commands.generic.unknown_command", label);
+            List<String> rewritten = LegacyCommandSyntax.rewriteRemovedLabel(label, args);
+            if (rewritten != null) {
+                label = rewritten.get(0);
+                args = new ArrayList<>(rewritten.subList(1, rewritten.size()));
+                resolvedLabel = this.resolveCommandLabel(label);
+            }
+        }
+        if (resolvedLabel == null) {
+            CommandOutput.sendTranslatedMessage(player, "commands.generic.unknown_command", typedLabel);
             return;
         }
 
@@ -656,8 +673,18 @@ public final class CommandMap {
             annotation = this.annotations.get(resolvedLabel);
         }
         if (handler == null || annotation == null) {
-            CommandOutput.sendTranslatedMessage(player, "commands.generic.unknown_command", label);
+            CommandOutput.sendTranslatedMessage(player, "commands.generic.unknown_command", typedLabel);
             return;
+        }
+
+        if (isBuiltIn(handler)) {
+            args = new ArrayList<>(LegacyCommandSyntax.rewriteArguments(resolvedLabel, args));
+        }
+        if (!label.equals(typedLabel) || !args.equals(typedArgs)) {
+            String current = label + (args.isEmpty() ? "" : " " + String.join(" ", args));
+            LOGGER.debug("Legacy command syntax '{} {}' routed as '{}'",
+                    typedLabel, String.join(" ", typedArgs), current);
+            CommandOutput.sendMessage(player, "Old syntax; current form: /" + current);
         }
 
         try {
