@@ -90,7 +90,7 @@ public final class TeamManager extends BasePlayerDataManager {
         int embryoId = 0;
 
         if (Arrays.stream(GameConstants.DEFAULT_TEAM_ABILITY_STRINGS).count() > 0) {
-            boolean inNatlan = player.getScene() != null && player.getScene().getId() == 101;
+            boolean inNatlan = player.isInNatlan();
             List<String> teamAbilties =
                 Arrays.stream(GameConstants.DEFAULT_TEAM_ABILITY_STRINGS).toList();
             for (String skill : teamAbilties) {

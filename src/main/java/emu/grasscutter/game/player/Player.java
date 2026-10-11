@@ -456,6 +456,35 @@ public class Player implements PlayerHook, FieldFetch {
         return scene;
     }
 
+    /** Check location, not only scene ID: Natlan shares Teyvat's scene 3. */
+    public boolean isInNatlan() {
+        return this.scene != null && PhlogistonRegion.contains(this.scene.getId(), this.position);
+    }
+
+    /** Update both client embryos and server ability IDs on a seamless regional crossing. */
+    public void refreshPhlogistonRegion() {
+        if (this.scene == null || this.session == null || this.teamManager == null) return;
+        boolean inNatlan = this.isInNatlan();
+        int enabled = inNatlan ? 1 : 0;
+        if (this.getProperty(PlayerProperty.PROP_PHLOGISTON_ENABLE) == enabled) return;
+
+        this.setProperty(PlayerProperty.PROP_PHLOGISTON_ENABLE, enabled);
+        for (var avatar : this.teamManager.getActiveTeam()) {
+            if (avatar == null) continue;
+            this.abilityManager.syncPhlogistonAvatarAbility(avatar, inNatlan);
+            this.sendPacket(new PacketAbilityChangeNotify(avatar));
+        }
+        var teamEntity = this.teamManager.getEntity();
+        if (teamEntity != null) {
+            this.sendPacket(new PacketAbilityChangeNotify(
+                    teamEntity.getId(), this.teamManager.getAbilityControlBlock()));
+            if (inNatlan) {
+                this.sendPacket(new PacketServerGlobalValueChangeNotify(
+                        teamEntity.getId(), "SGV_PlayerTeam_Phlogiston", this.getPhlogistonValue()));
+            }
+        }
+    }
+
     public void setScene(Scene scene) {
         this.scene = scene;
     }
@@ -664,7 +693,8 @@ public class Player implements PlayerHook, FieldFetch {
                 withQuesting ? 10000 : 0);
         this.setOrFetch(PlayerProperty.PROP_PLAYER_RESIN, 200);
         this.setOrFetch(PlayerProperty.PROP_PHLOGISTON_MAX_VALUE, 10000);
-        this.setProperty(PlayerProperty.PROP_PHLOGISTON_ENABLE, 1);
+        // The active scene enables phlogiston when the player actually enters Natlan.
+        this.setProperty(PlayerProperty.PROP_PHLOGISTON_ENABLE, 0, false);
 
         this.setProperty(PlayerProperty.PROP_CUR_PERSIST_STAMINA,
             this.getProperty(PlayerProperty.PROP_MAX_STAMINA));
