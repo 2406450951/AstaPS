@@ -6,6 +6,7 @@ import dev.morphia.annotations.*;
 import emu.grasscutter.Grasscutter;
 import emu.grasscutter.GameConstants;
 import emu.grasscutter.data.GameData;
+import emu.grasscutter.data.binout.ExtraTalents;
 import emu.grasscutter.data.binout.OpenConfigEntry;
 import emu.grasscutter.data.binout.OpenConfigEntry.SkillPointModifier;
 import emu.grasscutter.data.common.FightPropData;
@@ -730,6 +731,7 @@ public class Avatar {
         TpsWeaponSystem.applyAffixes(this);
 
         // Add proud skills and unlock them if needed
+        var talentOwners = new HashSet<String>();
         AvatarSkillDepotData skillDepot =
                 GameData.getAvatarSkillDepotDataMap().get(this.getSkillDepotId());
         this.getProudSkillList().clear();
@@ -767,6 +769,7 @@ public class Avatar {
 
             // Add any embryos from this proud skill
             this.addToExtraAbilityEmbryos(proudSkillData.getOpenConfig());
+            talentOwners.add(ExtraTalents.owner(proudSkillData.getOpenConfig()));
         }
 
         // Skill openConfigs (e.g. PlayerGirl_Ice_SkillUpgrade_1 AddAbility for
@@ -788,6 +791,7 @@ public class Avatar {
                                                 .get(skillCfg.getProudSkillGroupId() * 100 + level);
                                 if (skillProud != null) {
                                     this.addToExtraAbilityEmbryos(skillProud.getOpenConfig());
+                                    talentOwners.add(ExtraTalents.owner(skillProud.getOpenConfig()));
                                 }
                             });
         }
@@ -799,6 +803,13 @@ public class Avatar {
                 .filter(Objects::nonNull)
                 .map(AvatarTalentData::getOpenConfig)
                 .filter(Objects::nonNull)
+                .forEach(
+                        openConfig -> {
+                            this.addToExtraAbilityEmbryos(openConfig);
+                            talentOwners.add(ExtraTalents.owner(openConfig));
+                        });
+
+        ExtraTalents.forOwners(talentOwners, this.getAvatarData().getName())
                 .forEach(this::addToExtraAbilityEmbryos);
         // Add any skill strings from this constellation
 

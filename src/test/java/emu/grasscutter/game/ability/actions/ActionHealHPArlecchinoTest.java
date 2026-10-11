@@ -20,6 +20,7 @@ import emu.grasscutter.game.props.FightProperty;
 import emu.grasscutter.game.world.Scene;
 import emu.grasscutter.game.world.World;
 import emu.grasscutter.net.packet.BasePacket;
+import emu.grasscutter.net.proto.AttackResultOuterClass.AttackResult;
 import emu.grasscutter.net.proto.ChangHpReasonOuterClass.ChangHpReason;
 import emu.grasscutter.net.proto.CombatInvocationsNotifyOuterClass.CombatInvocationsNotify;
 import emu.grasscutter.net.proto.EntityFightPropChangeReasonNotifyOuterClass.EntityFightPropChangeReasonNotify;
@@ -35,6 +36,8 @@ import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import sun.misc.Unsafe;
 
@@ -100,6 +103,330 @@ public final class ActionHealHPArlecchinoTest {
             fixture.assertState(3_000f, 1_000f);
             assertEquals(0, fixture.entity.ordinaryHealCalls);
             fixture.assertHealNotification(1_000f, 1_000f);
+        }
+    }
+
+    @Test
+    void otherPlayersTickDoesNotRepinOrSettlePendingBurst() throws Exception {
+        try (var caster = fixture(10000096, 2_000f, 3_000f);
+                var other = fixture(10000032, 5_000f, 0f)) {
+            ArlecchinoBurstBoL.onBurstCast(caster.entity);
+            assertTrue(execute(caster, "Avatar_Arlecchino_Common", heal(BURST_HEAL_TAG, 1_000f)));
+            caster.packets.clear();
+
+            ArlecchinoBurstBoL.onTick(other.player);
+
+            caster.assertState(2_000f, 3_000f);
+            assertTrue(ArlecchinoBurstBoL.isPending(caster.entity.getId()));
+            assertTrue(hasDeferredHeal(caster.entity.getId()));
+            assertTrue(caster.packets.isEmpty(), "Another player's tick must not repin the caster");
+
+            expirePendingCast(caster.entity);
+            ArlecchinoBurstBoL.onTick(other.player);
+
+            caster.assertState(2_000f, 3_000f);
+            assertTrue(ArlecchinoBurstBoL.isPending(caster.entity.getId()));
+            assertTrue(hasDeferredHeal(caster.entity.getId()));
+            assertTrue(caster.packets.isEmpty(), "Another player's tick must not settle the caster");
+            assertTrue(other.packets.isEmpty());
+
+            ArlecchinoBurstBoL.onTick(caster.player);
+
+            caster.assertState(3_000f, 0f);
+            assertFalse(ArlecchinoBurstBoL.isPending(caster.entity.getId()));
+            assertFalse(hasDeferredHeal(caster.entity.getId()));
+            caster.assertHealNotification(1_000f, 1_000f);
+        }
+    }
+
+    @Test
+    void teammateBurstAbilityDoesNotPrearmArlecchinosBondSettlement() throws Exception {
+        try (var target = fixture(10000096, 2_000f, 3_000f);
+                var teammate = fixture(10000032, 5_000f, 0f)) {
+            ArlecchinoBurstBoL.tryPreArmFromAbility(
+                    ability(teammate.entity, "Avatar_Bennett_ElementalBurst"), target.entity);
+
+            assertFalse(ArlecchinoBurstBoL.isPending(target.entity.getId()));
+            target.assertState(2_000f, 3_000f);
+            assertTrue(target.packets.isEmpty());
+        }
+    }
+
+    @Test
+    void lateCastConfirmationKeepsThePrearmedSlashAndDeferredHeal() throws Exception {
+        try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
+            ArlecchinoBurstBoL.tryPreArmFromAbility(
+                    ability(fixture.entity, "Avatar_Arlecchino_ElementalBurst"), fixture.entity);
+            setPendingCast(
+                    fixture.entity, System.currentTimeMillis() - 2_000L, 0L, -1f, 3_000f, 0L);
+            assertTrue(execute(fixture, "Avatar_Arlecchino_Common", heal(BURST_HEAL_TAG, 1_000f)));
+            ArlecchinoBurstBoL.onAttack(
+                    fixture.entity,
+                    AttackResult.newBuilder()
+                            .setAttackerId(fixture.entity.getId())
+                            .setAnimEventId("Arlecchino_ElementalBurst_Attack")
+                            .setDamage(1_000f)
+                            .build());
+            var slash = pendingCast(fixture.entity);
+            fixture.entity.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS, 4_000f);
+
+            ArlecchinoBurstBoL.onBurstCast(fixture.entity);
+
+            assertSame(slash, pendingCast(fixture.entity), "Late confirmation must preserve settlement");
+            assertTrue(hasDeferredHeal(fixture.entity.getId()));
+            fixture.assertState(2_000f, 4_000f);
+            fixture.packets.clear();
+            setPendingCast(
+                    fixture.entity,
+                    System.currentTimeMillis() - 2_000L,
+                    System.currentTimeMillis() - 1L,
+                    3_000f,
+                    3_000f,
+                    System.currentTimeMillis() - 101L);
+
+            ArlecchinoBurstBoL.onTick(fixture.player);
+
+            fixture.assertState(3_000f, 1_000f);
+            assertFalse(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
+            assertFalse(hasDeferredHeal(fixture.entity.getId()));
+            fixture.assertHealNotification(1_000f, 1_000f);
+            fixture.packets.clear();
+            ArlecchinoBurstBoL.onTick(fixture.player);
+            assertTrue(fixture.packets.isEmpty(), "The confirmed cast must settle only once");
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void lateConfirmationAfterSettlementDoesNotLockOrClearNewBond(boolean settleOnTick)
+            throws Exception {
+        try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
+            ArlecchinoBurstBoL.onBurstCast(fixture.entity);
+            setPendingCast(
+                    fixture.entity, System.currentTimeMillis() - 2_000L, 0L, -1f, 3_000f, 0L);
+            assertTrue(execute(fixture, "Avatar_Arlecchino_Common", heal(BURST_HEAL_TAG, 1_000f)));
+            ArlecchinoBurstBoL.onAttack(
+                    fixture.entity,
+                    AttackResult.newBuilder()
+                            .setAttackerId(fixture.entity.getId())
+                            .setAnimEventId("Arlecchino_ElementalBurst_Attack")
+                            .setDamage(1_000f)
+                            .build());
+            setPendingCast(
+                    fixture.entity,
+                    System.currentTimeMillis() - 2_000L,
+                    System.currentTimeMillis() - 1L,
+                    3_000f,
+                    3_000f,
+                    System.currentTimeMillis() - 101L);
+
+            if (settleOnTick) {
+                ArlecchinoBurstBoL.onTick(fixture.player);
+            } else {
+                assertTrue(
+                        execute(fixture, "Avatar_Arlecchino_Common", heal(BURST_HEAL_TAG, 1_000f)));
+            }
+            fixture.assertState(3_000f, 0f);
+            fixture.assertHealNotification(1_000f, 1_000f);
+            fixture.packets.clear();
+            fixture.entity.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS, 1_500f);
+
+            ArlecchinoBurstBoL.onBurstCast(fixture.entity);
+            ArlecchinoBurstBoL.tryPreArmFromAbility(
+                    ability(fixture.entity, "Avatar_Arlecchino_ElementalBurst"), fixture.entity);
+            var lateWipe = new AbilityModifierAction();
+            lateWipe.ratio = new DynamicFloat(10_000f);
+            assertTrue(
+                    new ActionReduceHPDebts()
+                            .execute(
+                                    ability(fixture.entity, "Avatar_Arlecchino_ElementalBurst"),
+                                    lateWipe,
+                                    ByteString.EMPTY,
+                                    fixture.entity));
+            ArlecchinoBurstBoL.onTick(fixture.player);
+
+            assertFalse(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
+            assertFalse(ArlecchinoBurstBoL.isConsumeBlocked(fixture.entity));
+            assertFalse(hasDeferredHeal(fixture.entity.getId()));
+            fixture.assertState(3_000f, 1_500f);
+            assertTrue(fixture.packets.isEmpty(), "Late confirmation must not restart settlement");
+        }
+    }
+
+    @Test
+    void completedCastGuardDoesNotBlockAnAvatarThatReusesTheEntityId() throws Exception {
+        try (var original = fixture(10000096, 2_000f, 3_000f);
+                var replacement = fixture(10000096, 5_000f, 2_000f)) {
+            replacement.entity.setId(original.entity.getId());
+            ArlecchinoBurstBoL.onBurstCast(original.entity);
+            expirePendingCast(original.entity);
+            ArlecchinoBurstBoL.onTick(original.player);
+
+            ArlecchinoBurstBoL.tryPreArmFromAbility(
+                    ability(replacement.entity, "Avatar_Arlecchino_ElementalBurst"),
+                    replacement.entity);
+
+            assertTrue(ArlecchinoBurstBoL.isPending(replacement.entity.getId()));
+            assertTrue(ArlecchinoBurstBoL.isConsumeBlocked(replacement.entity));
+            replacement.assertState(5_000f, 2_000f);
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void nextBurstCanSettleAfterTheCompletedCastGuardExpires(boolean expireOnTick)
+            throws Exception {
+        try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
+            ArlecchinoBurstBoL.onBurstCast(fixture.entity);
+            expirePendingCast(fixture.entity);
+            ArlecchinoBurstBoL.onTick(fixture.player);
+            fixture.entity.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS, 1_500f);
+            var field = ArlecchinoBurstBoL.class.getDeclaredField("COMPLETED_BURSTS");
+            field.setAccessible(true);
+            @SuppressWarnings("unchecked")
+            var completed = (Map<Integer, Object>) field.get(null);
+            var constructor =
+                    completed.get(fixture.entity.getId()).getClass()
+                            .getDeclaredConstructor(EntityAvatar.class, long.class);
+            constructor.setAccessible(true);
+            completed.put(
+                    fixture.entity.getId(),
+                    constructor.newInstance(fixture.entity, System.currentTimeMillis() - 3_000L));
+            if (expireOnTick) {
+                ArlecchinoBurstBoL.onTick(fixture.player);
+            }
+
+            ArlecchinoBurstBoL.onBurstCast(fixture.entity);
+
+            assertTrue(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
+            expirePendingCast(fixture.entity);
+            ArlecchinoBurstBoL.onTick(fixture.player);
+            fixture.assertState(2_000f, 0f);
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void clearingStateAllowsANewCastAfterSettlement(boolean clearPlayer) throws Exception {
+        try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
+            ArlecchinoBurstBoL.onBurstCast(fixture.entity);
+            expirePendingCast(fixture.entity);
+            ArlecchinoBurstBoL.onTick(fixture.player);
+            if (clearPlayer) {
+                ArlecchinoBurstBoL.clearPlayerState(fixture.player);
+            } else {
+                ArlecchinoBurstBoL.clearEntityState(fixture.entity.getId());
+            }
+            fixture.entity.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS, 1_500f);
+
+            ArlecchinoBurstBoL.onBurstCast(fixture.entity);
+
+            assertTrue(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
+            fixture.assertState(2_000f, 1_500f);
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void cleanupWaitsForSettlementAndRemovesItsCompletedState(boolean clearPlayer) throws Exception {
+        try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
+            ArlecchinoBurstBoL.onBurstCast(fixture.entity);
+            assertTrue(execute(fixture, "Avatar_Arlecchino_Common", heal(BURST_HEAL_TAG, 1_000f)));
+            expirePendingCast(fixture.entity);
+            var settlementEntered = new CountDownLatch(1);
+            var releaseSettlement = new CountDownLatch(1);
+            var tickCompletion = new CompletableFuture<Void>();
+            var cleanupCompletion = new CompletableFuture<Void>();
+            fixture.scene.beforeBroadcast =
+                    () -> {
+                        settlementEntered.countDown();
+                        try {
+                            assertTrue(releaseSettlement.await(5, TimeUnit.SECONDS));
+                        } catch (InterruptedException interrupted) {
+                            Thread.currentThread().interrupt();
+                            throw new AssertionError(interrupted);
+                        }
+                    };
+            var tick =
+                    new Thread(
+                            () -> {
+                                try {
+                                    ArlecchinoBurstBoL.onTick(fixture.player);
+                                    tickCompletion.complete(null);
+                                } catch (Throwable failure) {
+                                    tickCompletion.completeExceptionally(failure);
+                                }
+                            },
+                            "arlecchino-cleanup-settlement-test");
+            var cleanup =
+                    new Thread(
+                            () -> {
+                                try {
+                                    if (clearPlayer) {
+                                        ArlecchinoBurstBoL.clearPlayerState(fixture.player);
+                                    } else {
+                                        ArlecchinoBurstBoL.clearEntityState(fixture.entity.getId());
+                                    }
+                                    cleanupCompletion.complete(null);
+                                } catch (Throwable failure) {
+                                    cleanupCompletion.completeExceptionally(failure);
+                                }
+                            },
+                            "arlecchino-cleanup-state-test");
+            tick.setDaemon(true);
+            cleanup.setDaemon(true);
+            try {
+                tick.start();
+                assertTrue(settlementEntered.await(5, TimeUnit.SECONDS));
+                cleanup.start();
+                awaitBlockedOn(cleanup, fixture.entity);
+                releaseSettlement.countDown();
+                tickCompletion.get(5, TimeUnit.SECONDS);
+                cleanupCompletion.get(5, TimeUnit.SECONDS);
+
+                fixture.assertState(3_000f, 0f);
+                assertFalse(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
+                assertFalse(hasDeferredHeal(fixture.entity.getId()));
+                assertFalse(ArlecchinoBurstBoL.hasRecentlyCompletedCast(fixture.entity));
+                fixture.assertHealNotification(1_000f, 1_000f);
+            } finally {
+                releaseSettlement.countDown();
+                tick.join(5_000L);
+                cleanup.join(5_000L);
+                assertFalse(tick.isAlive(), "The settlement thread must terminate");
+                assertFalse(cleanup.isAlive(), "The cleanup thread must terminate");
+            }
+        }
+    }
+
+    @Test
+    void reusedEntityIdDoesNotInheritAnotherAvatarsDeferredHeal() throws Exception {
+        try (var original = fixture(10000096, 2_000f, 3_000f);
+                var replacement = fixture(10000096, 5_000f, 2_000f)) {
+            replacement.entity.setId(original.entity.getId());
+            ArlecchinoBurstBoL.onBurstCast(original.entity);
+            assertTrue(execute(original, "Avatar_Arlecchino_Common", heal(BURST_HEAL_TAG, 1_000f)));
+
+            ArlecchinoBurstBoL.tryPreArmFromAbility(
+                    ability(replacement.entity, "Avatar_Arlecchino_ElementalBurst"),
+                    replacement.entity);
+
+            assertFalse(hasDeferredHeal(replacement.entity.getId()));
+            expirePendingCast(replacement.entity);
+            original.packets.clear();
+            replacement.packets.clear();
+            ArlecchinoBurstBoL.onTick(original.player);
+            assertTrue(ArlecchinoBurstBoL.isPending(replacement.entity.getId()));
+            assertTrue(original.packets.isEmpty());
+
+            ArlecchinoBurstBoL.onTick(replacement.player);
+
+            original.assertState(2_000f, 3_000f);
+            replacement.assertState(5_000f, 0f);
+            assertFalse(ArlecchinoBurstBoL.isPending(replacement.entity.getId()));
+            assertTrue(
+                    replacement.packets.stream()
+                            .noneMatch(PacketEvtBeingHealedNotify.class::isInstance));
         }
     }
 
@@ -339,11 +666,13 @@ public final class ActionHealHPArlecchinoTest {
         fixture.entity = allocate(RecordingEntityAvatar.class);
         fixture.player = allocate(RecordingPlayer.class);
         var scene = allocate(RecordingScene.class);
+        fixture.scene = scene;
         var world = allocate(RecordingWorld.class);
         var avatar = allocate(Avatar.class);
         fixture.entity.setId(ENTITY_IDS.incrementAndGet());
         scene.packets = world.packets = fixture.player.packets = fixture.packets;
         scene.world = world;
+        scene.entity = fixture.entity;
         set(avatar, Avatar.class, "avatarId", avatarId);
         set(avatar, Avatar.class, "guid", (long) fixture.entity.getId());
         set(avatar, Avatar.class, "fightProperties", new Int2FloatOpenHashMap());
@@ -364,15 +693,39 @@ public final class ActionHealHPArlecchinoTest {
 
     // Move the real pending cast past its miss timeout without sleeping or bypassing settlement.
     private static void expirePendingCast(EntityAvatar entity) throws Exception {
+        var original = pendingCast(entity);
+        var snapshot = original.getClass().getDeclaredMethod("castSnapshot");
+        snapshot.setAccessible(true);
+        setPendingCast(
+                entity,
+                System.currentTimeMillis() - 10_000L,
+                0L,
+                -1f,
+                (float) snapshot.invoke(original),
+                0L);
+    }
+
+    private static Object pendingCast(EntityAvatar entity) throws Exception {
+        var pendingField = ArlecchinoBurstBoL.class.getDeclaredField("PENDING");
+        pendingField.setAccessible(true);
+        var original = ((Map<?, ?>) pendingField.get(null)).get(entity.getId());
+        assertNotNull(original);
+        return original;
+    }
+
+    private static void setPendingCast(
+            EntityAvatar entity,
+            long castAt,
+            long clearAt,
+            float bolSnapshot,
+            float castSnapshot,
+            long slashAt)
+            throws Exception {
         var pendingField = ArlecchinoBurstBoL.class.getDeclaredField("PENDING");
         pendingField.setAccessible(true);
         @SuppressWarnings("unchecked")
         var pending = (Map<Integer, Object>) pendingField.get(null);
-        var original = pending.get(entity.getId());
-        assertNotNull(original);
-        var type = original.getClass();
-        var snapshot = type.getDeclaredMethod("castSnapshot");
-        snapshot.setAccessible(true);
+        var type = pendingCast(entity).getClass();
         var constructor =
                 type.getDeclaredConstructor(
                         EntityAvatar.class,
@@ -385,12 +738,7 @@ public final class ActionHealHPArlecchinoTest {
         pending.put(
                 entity.getId(),
                 constructor.newInstance(
-                        entity,
-                        System.currentTimeMillis() - 10_000L,
-                        0L,
-                        -1f,
-                        snapshot.invoke(original),
-                        0L));
+                        entity, castAt, clearAt, bolSnapshot, castSnapshot, slashAt));
     }
 
     private static void awaitBlockedOn(Thread thread, Object monitor) {
@@ -434,6 +782,7 @@ public final class ActionHealHPArlecchinoTest {
         private final ArrayList<BasePacket> packets = new ArrayList<>();
         private RecordingEntityAvatar entity;
         private RecordingPlayer player;
+        private RecordingScene scene;
 
         private void assertState(float hp, float debt) {
             assertEquals(hp, entity.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP));
@@ -512,6 +861,8 @@ public final class ActionHealHPArlecchinoTest {
     private static final class RecordingScene extends Scene {
         private ArrayList<BasePacket> packets;
         private World world;
+        private GameEntity entity;
+        private Runnable beforeBroadcast;
 
         private RecordingScene() {
             super(null, null);
@@ -523,7 +874,17 @@ public final class ActionHealHPArlecchinoTest {
         }
 
         @Override
+        public GameEntity getEntityById(int id) {
+            return entity != null && entity.getId() == id ? entity : null;
+        }
+
+        @Override
         public void broadcastPacket(BasePacket packet) {
+            Runnable callback = beforeBroadcast;
+            if (callback != null) {
+                beforeBroadcast = null;
+                callback.run();
+            }
             packets.add(packet);
         }
     }

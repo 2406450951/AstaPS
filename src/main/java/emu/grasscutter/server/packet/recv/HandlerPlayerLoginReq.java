@@ -32,17 +32,15 @@ public class HandlerPlayerLoginReq extends PacketHandler {
             // World/scene initialization therefore remains outside this login request.
             session.setState(SessionState.PICKING_CHARACTER);
 
-            int notifyCmdId =
+            BasePacket notify =
                     intro.doSetPlayerBornDataNotify > 0
-                            ? intro.doSetPlayerBornDataNotify
-                            : PacketOpcodes.DoSetPlayerBornDataNotify;
-            if (notifyCmdId > 0) {
-                session.send(new BasePacket(notifyCmdId));
-            }
+                            ? new BasePacket(intro.doSetPlayerBornDataNotify)
+                            : new PacketDoSetPlayerBornDataNotify();
+            session.send(notify);
             Grasscutter.getLogger()
                     .info(
                             "[intro] new account, waiting for character creation (notify cmdId={}).",
-                            notifyCmdId > 0 ? notifyCmdId : "unsent");
+                            notify.getOpcode());
 
             session.send(new PacketPlayerLoginRsp(session));
             return;

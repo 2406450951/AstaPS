@@ -4,6 +4,7 @@ import com.google.protobuf.ByteString;
 import emu.grasscutter.data.binout.AbilityModifier.AbilityModifierAction;
 import emu.grasscutter.game.ability.Ability;
 import emu.grasscutter.game.ability.AbilityManager;
+import emu.grasscutter.game.ability.ArlecchinoBoLSync;
 import emu.grasscutter.game.ability.ArlecchinoBurstBoL;
 import emu.grasscutter.game.ability.MavuikaSpiritHelper;
 import emu.grasscutter.game.ability.XilonenC6HealHelper;
@@ -54,7 +55,7 @@ public final class ActionSetGlobalValue extends AbilityActionHandler {
                         emu.grasscutter.game.ability.NightsoulStaminaExempt.markNyxCostActive(target);
                     }
                 }
-                // Highest priority: Arlecchino Q - pre-arm then refuse zeroing Cur_HPDebts.
+                // Preserve real Bond on resets; only her own burst can start a settlement.
                 if (("Cur_HPDebts".equals(valueKey)
                                 || "_HPDebts".equals(valueKey)
                                 || "_ABILITY_Cur_HPDebts".equals(valueKey))
@@ -62,22 +63,14 @@ public final class ActionSetGlobalValue extends AbilityActionHandler {
                         && target instanceof EntityAvatar av
                         && av.getAvatar() != null
                         && av.getAvatar().getAvatarId() == 10000096) {
-                    ArlecchinoBurstBoL.tryPreArmFromAbility(ability, av);
-                    // Any wipe of ability globals for Arlecchino BoL during or around Q - lock and repin.
-                    if (!ArlecchinoBurstBoL.isConsumeBlocked(av)) {
-                        float cur = av.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS);
-                        if (cur > 0.5f) {
-                            ArlecchinoBurstBoL.onBurstCast(av);
+                    synchronized (av) {
+                        ArlecchinoBurstBoL.tryPreArmFromAbility(ability, av);
+                        float debt = av.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS);
+                        if (debt > 0.5f || ArlecchinoBurstBoL.isConsumeBlocked(av)) {
+                            av.getGlobalAbilityValues().put(valueKey, debt);
+                            ArlecchinoBoLSync.repinUiBar(av);
+                            return true;
                         }
-                    }
-                    if (ArlecchinoBurstBoL.isConsumeBlocked(av)) {
-                        ArlecchinoBurstBoL.repinClientBoL(av);
-                        emu.grasscutter.Grasscutter.getLogger()
-                                .info(
-                                        "[BoL] skip SetGlobalValue {}={} (consume-lock)",
-                                        valueKey,
-                                        computedValue);
-                        return true;
                     }
                 }
                 target.getGlobalAbilityValues().put(valueKey, computedValue);

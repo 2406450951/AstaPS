@@ -7,6 +7,7 @@ import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.FightProperty;
 import emu.grasscutter.net.proto.AttackResultOuterClass.AttackResult;
 import emu.grasscutter.net.proto.ChangeHpDebtsReason._ChangeHpDebtsReason;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
@@ -38,8 +39,13 @@ public final class ArlecchinoBurstBoL {
     /** Absolute ceiling from cast if no slash is recognized. */
     private static final long MISS_TIMEOUT_MS = 4000L;
 
+    /** Late skill-success notifications can arrive after the pending burst has settled. */
+    private static final long COMPLETED_CAST_GUARD_MS = 2000L;
+
     private static final ConcurrentHashMap<Integer, PendingBurst> PENDING = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<Integer, DeferredHeal> DEFERRED_HEAL =
+            new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<Integer, CompletedBurst> COMPLETED_BURSTS =
             new ConcurrentHashMap<>();
 
     private ArlecchinoBurstBoL() {}
@@ -60,6 +66,8 @@ public final class ArlecchinoBurstBoL {
 
     private record DeferredHeal(float amount, boolean mute) {}
 
+    private record CompletedBurst(EntityAvatar avatar, long completedAtMs) {}
+
     public static void onBurstCast(EntityAvatar caster) {
         if (caster == null || caster.getAvatar() == null) {
             return;
@@ -68,29 +76,35 @@ public final class ArlecchinoBurstBoL {
             return;
         }
 
-        long now = System.currentTimeMillis();
-        float curDebt = caster.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS);
-        PendingBurst existing = PENDING.get(caster.getId());
-        if (existing != null && now - existing.castAtMs() < 1500L) {
-            repinClientBoL(caster);
-            return;
-        }
+        synchronized (caster) {
+            PendingBurst existing = PENDING.get(caster.getId());
+            if (existing != null && existing.avatar() == caster) {
+                repinClientBoL(caster);
+                return;
+            }
 
-        PENDING.put(caster.getId(), new PendingBurst(caster, now, 0L, -1f, curDebt, 0L));
-        Grasscutter.getLogger()
-                .info(
-                        "[BoL] Arlecchino burst: lock {} BoL for {}ms; then slash→+{}ms / miss→{}ms",
+            long now = System.currentTimeMillis();
+            if (hasRecentlyCompletedCast(caster, now)) {
+                return;
+            }
+            float curDebt = caster.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS);
+            DEFERRED_HEAL.remove(caster.getId());
+            PENDING.put(caster.getId(), new PendingBurst(caster, now, 0L, -1f, curDebt, 0L));
+            Grasscutter.getLogger()
+                    .info(
+                            "[BoL] Arlecchino burst: lock {} BoL for {}ms; then slash→+{}ms / miss→{}ms",
+                            curDebt,
+                            LOCK_MS,
+                            CLEAR_AFTER_HIT_MS,
+                            MISS_TIMEOUT_MS);
+            if (curDebt > 0f) {
+                // Non-zero change forces EntityFightPropChangeReasonNotify — client bar follows it.
+                ArlecchinoBoLSync.pushBoL(
+                        caster,
                         curDebt,
-                        LOCK_MS,
-                        CLEAR_AFTER_HIT_MS,
-                        MISS_TIMEOUT_MS);
-        if (curDebt > 0f) {
-            // Non-zero change forces EntityFightPropChangeReasonNotify — client bar follows it.
-            ArlecchinoBoLSync.pushBoL(
-                    caster,
-                    curDebt,
-                    Math.max(0.01f, curDebt * 0.0001f),
-                    _ChangeHpDebtsReason._ChangeHpDebtsReason_CHANGE_HP_DEBTS_ADD_ABILITY);
+                        Math.max(0.01f, curDebt * 0.0001f),
+                        _ChangeHpDebtsReason._ChangeHpDebtsReason_CHANGE_HP_DEBTS_ADD_ABILITY);
+            }
         }
     }
 
@@ -105,46 +119,38 @@ public final class ArlecchinoBurstBoL {
         if (avatar.getAvatar().getAvatarId() != ARLECCHINO_AVATAR_ID) {
             return;
         }
-        if (isPending(avatar.getId())) {
+        if (ability == null || ability.getData() == null || ability.getCasterEntity() != avatar) {
+            return;
+        }
+        PendingBurst existing = PENDING.get(avatar.getId());
+        if (existing != null && existing.avatar() == avatar) {
             return;
         }
         String name = "";
         if (ability != null && ability.getData() != null && ability.getData().abilityName != null) {
             name = ability.getData().abilityName;
         }
-        String lower = name.toLowerCase(Locale.ROOT);
-        boolean burst =
-                lower.contains("elementalburst")
-                        || lower.contains("elemental_burst")
-                        || name.contains("Arlecchino_ElementalBurst")
-                        || name.contains("ElementalBurst");
-        if (burst) {
+        if (isBurstAbilityName(name)) {
             Grasscutter.getLogger()
                     .info("[BoL] Arlecchino pre-arm lock from ability={}", name);
             onBurstCast(avatar);
         }
     }
 
-    /** True if this Reduce looks like Q wipe (not Masque 7.5% NA). */
-    public static boolean looksLikeBurstWipe(Ability ability, float curDebt, float newDebt) {
-        if (curDebt <= 0.5f) {
+    /** True only for a debt reduction from Arlecchino's own burst ability. */
+    public static boolean looksLikeBurstWipe(
+            Ability ability, EntityAvatar avatar, float curDebt, float newDebt) {
+        if (curDebt <= 0.5f
+                || ability == null
+                || ability.getData() == null
+                || ability.getCasterEntity() != avatar) {
             return false;
         }
         String name = "";
         if (ability != null && ability.getData() != null && ability.getData().abilityName != null) {
             name = ability.getData().abilityName;
         }
-        if (name.contains("FireAttack_Reduce") || name.contains("FireAttack_ReduceHPDebts")) {
-            return false;
-        }
-        if (name.contains("ElementalBurst")
-                || name.contains("Elemental_Burst")
-                || name.contains("HealToHpDebts")
-                        && name.toLowerCase(Locale.ROOT).contains("burst")) {
-            return true;
-        }
-        // Near-total wipe in one Reduce — Q cast clear, not NA sip.
-        return newDebt <= 0.5f || newDebt < curDebt * 0.15f;
+        return isBurstAbilityName(name);
     }
 
     /**
@@ -257,13 +263,22 @@ public final class ArlecchinoBurstBoL {
     }
 
     public static void onTick(Player player) {
-        if (player == null || PENDING.isEmpty()) {
+        if (player == null) {
             return;
         }
         long now = System.currentTimeMillis();
+        COMPLETED_BURSTS.entrySet()
+                .removeIf(
+                        entry ->
+                                entry.getValue().avatar().getPlayer() == player
+                                        && now - entry.getValue().completedAtMs()
+                                                >= COMPLETED_CAST_GUARD_MS);
+        if (PENDING.isEmpty()) {
+            return;
+        }
         for (var entry : List.copyOf(PENDING.entrySet())) {
             EntityAvatar avatar = entry.getValue().avatar();
-            if (avatar == null) continue;
+            if (avatar == null || avatar.getPlayer() != player) continue;
             synchronized (avatar) {
                 PendingBurst pending = PENDING.get(entry.getKey());
                 if (pending == null || pending.avatar() != avatar) continue;
@@ -290,10 +305,11 @@ public final class ArlecchinoBurstBoL {
                         pending.clearAtMs() > 0L && now >= pending.clearAtMs()
                                 ? "post-slash"
                                 : "miss-timeout";
-                if (PENDING.remove(entry.getKey(), pending)) {
-                    applyClear(
-                            pending.avatar(), pending.bolSnapshot(), pending.castSnapshot(), reason);
-                }
+                // Keep pending discoverable until completion so cleanup can acquire this monitor.
+                applyClear(pending.avatar(), pending.bolSnapshot(), pending.castSnapshot(), reason);
+                COMPLETED_BURSTS.put(
+                        entry.getKey(), new CompletedBurst(avatar, System.currentTimeMillis()));
+                PENDING.remove(entry.getKey(), pending);
             }
         }
     }
@@ -307,7 +323,7 @@ public final class ArlecchinoBurstBoL {
         }
         synchronized (avatar) {
             PendingBurst pending = PENDING.get(avatar.getId());
-            if (pending == null) {
+            if (pending == null || pending.avatar() != avatar) {
                 return false;
             }
             long now = System.currentTimeMillis();
@@ -343,10 +359,10 @@ public final class ArlecchinoBurstBoL {
                                 new DeferredHeal(
                                         Math.max(a.amount(), b.amount()), a.mute() && b.mute()));
             }
-            if (!PENDING.remove(avatar.getId(), pending)) {
-                return false;
-            }
             applyClear(pending.avatar(), pending.bolSnapshot(), pending.castSnapshot(), "burst-heal");
+            COMPLETED_BURSTS.put(
+                    avatar.getId(), new CompletedBurst(avatar, System.currentTimeMillis()));
+            PENDING.remove(avatar.getId(), pending);
             return true;
         }
     }
@@ -356,20 +372,76 @@ public final class ArlecchinoBurstBoL {
     }
 
     public static void clearEntityState(int entityId) {
-        PENDING.remove(entityId);
-        DEFERRED_HEAL.remove(entityId);
+        while (true) {
+            EntityAvatar avatar = stateAvatar(entityId);
+            if (avatar == null) {
+                DEFERRED_HEAL.remove(entityId);
+                return;
+            }
+            synchronized (avatar) {
+                if (stateAvatar(entityId) != avatar) continue;
+                clearAvatarState(avatar);
+                return;
+            }
+        }
     }
 
     public static void clearPlayerState(Player player) {
-        if (player == null || player.getTeamManager() == null) {
+        if (player == null) {
             return;
         }
-        for (EntityAvatar avatar : player.getTeamManager().getActiveTeam()) {
-            if (avatar != null) {
-                PENDING.remove(avatar.getId());
+        var avatars = new HashSet<EntityAvatar>();
+        if (player.getTeamManager() != null) {
+            avatars.addAll(player.getTeamManager().getActiveTeam());
+        }
+        for (PendingBurst pending : PENDING.values()) {
+            if (pending.avatar().getPlayer() == player) avatars.add(pending.avatar());
+        }
+        for (CompletedBurst completed : COMPLETED_BURSTS.values()) {
+            if (completed.avatar().getPlayer() == player) avatars.add(completed.avatar());
+        }
+        for (EntityAvatar avatar : avatars) {
+            if (avatar != null) clearAvatarState(avatar);
+        }
+    }
+
+    private static EntityAvatar stateAvatar(int entityId) {
+        PendingBurst pending = PENDING.get(entityId);
+        if (pending != null) return pending.avatar();
+        CompletedBurst completed = COMPLETED_BURSTS.get(entityId);
+        return completed == null ? null : completed.avatar();
+    }
+
+    private static void clearAvatarState(EntityAvatar avatar) {
+        synchronized (avatar) {
+            PendingBurst pending = PENDING.get(avatar.getId());
+            if (pending != null && pending.avatar() == avatar) {
+                PENDING.remove(avatar.getId(), pending);
                 DEFERRED_HEAL.remove(avatar.getId());
             }
+            CompletedBurst completed = COMPLETED_BURSTS.get(avatar.getId());
+            if (completed != null && completed.avatar() == avatar) {
+                COMPLETED_BURSTS.remove(avatar.getId(), completed);
+                if (pending == null) DEFERRED_HEAL.remove(avatar.getId());
+            }
         }
+    }
+
+    private static boolean hasRecentlyCompletedCast(EntityAvatar avatar, long now) {
+        CompletedBurst completed = COMPLETED_BURSTS.get(avatar.getId());
+        if (completed == null) {
+            return false;
+        }
+        if (completed.avatar() == avatar
+                && now - completed.completedAtMs() < COMPLETED_CAST_GUARD_MS) {
+            return true;
+        }
+        COMPLETED_BURSTS.remove(avatar.getId(), completed);
+        return false;
+    }
+
+    public static boolean hasRecentlyCompletedCast(EntityAvatar avatar) {
+        return avatar != null && hasRecentlyCompletedCast(avatar, System.currentTimeMillis());
     }
 
     private static boolean isBurstHit(

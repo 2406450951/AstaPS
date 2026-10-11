@@ -111,19 +111,19 @@ public final class UnlockAllCommand implements CommandHandler {
             var fetterEntries = GameData.getFetterDataEntries();
             for (var avatar : targetPlayer.getAvatars().getAvatars().values()) {
                 var dataFetters = fetterEntries.get(avatar.getAvatarId());
-                if (dataFetters == null) {
-                    continue;
-                }
-                List<Integer> current = avatar.getFetterList();
-                if (current == null) {
-                    avatar.setFetterList(new ArrayList<>(dataFetters));
-                } else {
-                    for (int fetterId : dataFetters) {
-                        if (!current.contains(fetterId)) {
-                            current.add(fetterId);
+                if (dataFetters != null) {
+                    List<Integer> current = avatar.getFetterList();
+                    if (current == null) {
+                        avatar.setFetterList(new ArrayList<>(dataFetters));
+                    } else {
+                        for (int fetterId : dataFetters) {
+                            if (!current.contains(fetterId)) {
+                                current.add(fetterId);
+                            }
                         }
                     }
                 }
+                avatar.recalcStats(true);
                 avatar.save();
             }
             targetPlayer.sendPacket(new PacketAvatarDataNotify(targetPlayer));

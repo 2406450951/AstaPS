@@ -1460,6 +1460,8 @@ public class Player implements PlayerHook, FieldFetch {
 
         this.setResinBuyCount(0);
 
+        BirthdayMailSystem.checkAndSend(this, currentDate);
+
         this.setLastDailyReset(currentTime);
     }
 

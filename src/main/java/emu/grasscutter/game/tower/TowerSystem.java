@@ -91,6 +91,7 @@ public class TowerSystem extends BaseGameSystem {
 
     /** True when every chamber of every floor leads somewhere with monsters in it. */
     private boolean isPlayable(TowerScheduleData schedule) {
+        if (schedule.getSchedules() == null || schedule.getSchedules().isEmpty()) return false;
         var floors = floorsOf(schedule);
         if (floors.isEmpty()) return false;
 
@@ -200,16 +201,34 @@ public class TowerSystem extends BaseGameSystem {
         return GAME_OPTIONS.tower.scheduleId <= 0 && GAME_OPTIONS.tower.rotate;
     }
 
+    public record ScheduleWindow(Date startTime, Date endTime) {}
+
+    public ScheduleWindow getScheduleWindow() {
+        return getScheduleWindow(new Date());
+    }
+
+    ScheduleWindow getScheduleWindow(Date now) {
+        if (!isRotating() && towerScheduleConfig != null) {
+            var start = towerScheduleConfig.getScheduleStartTime();
+            var end = towerScheduleConfig.getNextScheduleChangeTime();
+            if (start != null && end != null && start.before(end) && end.after(now)) {
+                return new ScheduleWindow(start, end);
+            }
+        }
+
+        // Older deployments may still hold an expired TowerSchedule.json after a jar update.
+        var start = periodStart(now);
+        return new ScheduleWindow(start.getTime(), periodEnd(start).getTime());
+    }
+
     /** When the rotation on offer began. */
     public Date getScheduleStartTime() {
-        if (!isRotating()) return towerScheduleConfig.getScheduleStartTime();
-        return periodStart(new Date()).getTime();
+        return getScheduleWindow().startTime();
     }
 
     /** When it gives way to the next one. The client counts down to this. */
     public Date getNextScheduleChangeTime() {
-        if (!isRotating()) return towerScheduleConfig.getNextScheduleChangeTime();
-        return periodEnd(periodStart(new Date())).getTime();
+        return getScheduleWindow().endTime();
     }
 
     // endregion

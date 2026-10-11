@@ -19,7 +19,8 @@ public class PacketTowerAllDataRsp extends BasePacket {
                         .map(PacketTowerAllDataRsp::toFloorProto)
                         .toList();
 
-        var scheduleStart = DateHelper.getUnixTime(towerScheduleManager.getScheduleStartTime());
+        var scheduleWindow = towerScheduleManager.getScheduleWindow();
+        var scheduleStart = DateHelper.getUnixTime(scheduleWindow.startTime());
 
         var openTimeMap =
                 towerScheduleManager.getScheduleFloors().stream()
@@ -52,7 +53,7 @@ public class PacketTowerAllDataRsp extends BasePacket {
                         .setSkipToFloorIndex(skipTo)
                         .setTowerSkipFloorState(skipState)
                         .setNextScheduleChangeTime(
-                                DateHelper.getUnixTime(towerScheduleManager.getNextScheduleChangeTime()))
+                                DateHelper.getUnixTime(scheduleWindow.endTime()))
                         .putAllFloorOpenTimeMap(openTimeMap)
                         .setIsFinishedEntranceFloor(towerManager.canEnterScheduleFloor());
 

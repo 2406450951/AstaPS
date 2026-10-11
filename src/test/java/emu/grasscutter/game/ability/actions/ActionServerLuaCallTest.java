@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.script.Bindings;
 import javax.script.SimpleBindings;
@@ -181,6 +182,7 @@ public final class ActionServerLuaCallTest {
         var ready = new CountDownLatch(50);
         var start = new CountDownLatch(1);
         var warnings = new AtomicInteger();
+        var reportedSuppressions = new AtomicLong();
         List<Future<?>> tasks = new ArrayList<>();
         try {
             for (int caller = 0; caller < 50; caller++) {
@@ -193,7 +195,11 @@ public final class ActionServerLuaCallTest {
                         throw new AssertionError(interrupted);
                     }
                     for (int call = 0; call < 2_000; call++) {
-                        if (limiter.acquireWarning(1_000) >= 0) warnings.incrementAndGet();
+                        long suppressed = limiter.acquireWarning(1_000);
+                        if (suppressed >= 0) {
+                            warnings.incrementAndGet();
+                            reportedSuppressions.addAndGet(suppressed);
+                        }
                     }
                 }));
             }
@@ -201,7 +207,8 @@ public final class ActionServerLuaCallTest {
             start.countDown();
             for (var task : tasks) task.get(10, TimeUnit.SECONDS);
             assertEquals(1, warnings.get());
-            assertEquals(99_999, limiter.acquireWarning(1_100));
+            // The first sample can already include misses racing with its counter reset.
+            assertEquals(99_999, reportedSuppressions.get() + limiter.acquireWarning(1_100));
         } finally {
             start.countDown();
             executor.shutdownNow();
