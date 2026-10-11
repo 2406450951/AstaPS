@@ -100,13 +100,15 @@ final class DomainDropSafetyTest {
         for (int family = 0; family < bases.length; family++) {
             for (int tier = 0; tier < 4; tier++) {
                 int dungeonId = bases[family] + tier;
+                final int firstMaterial = materials[family];
+                final int lastMaterial = firstMaterial + tier;
                 var pool = pools.get(dungeonId);
                 assertTrue(pool != null && !pool.isEmpty(), "Missing rewards: " + dungeonId);
                 DomainDropSafety.validatePool(
                         dungeonId, pool, DungeonSubType.DUNGEON_SUB_WEAPON);
                 var expectedIds = new HashSet<>(Set.of(102, 202, 105));
                 for (int grade = 0; grade <= tier; grade++) {
-                    expectedIds.add(materials[family] + grade);
+                    expectedIds.add(firstMaterial + grade);
                 }
                 var actualIds = new HashSet<Integer>();
                 pool.forEach(entry -> actualIds.addAll(entry.getItems()));
@@ -128,8 +130,8 @@ final class DomainDropSafetyTest {
                             .filter(item -> item.getId() == 105)
                             .mapToInt(item -> item.getCount()).sum());
                     assertTrue(rewards.stream().anyMatch(
-                            item -> item.getId() >= materials[family]
-                                    && item.getId() <= materials[family] + tier),
+                            item -> item.getId() >= firstMaterial
+                                    && item.getId() <= lastMaterial),
                             "Missing weapon material: " + dungeonId);
                 }
             }
