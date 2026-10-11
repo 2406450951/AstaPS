@@ -6,6 +6,7 @@ import static emu.grasscutter.scripts.constants.EventType.EVENT_TIMER_EVENT;
 import com.github.davidmoten.rtreemulti.RTree;
 import com.github.davidmoten.rtreemulti.geometry.Geometry;
 import emu.grasscutter.Grasscutter;
+import emu.grasscutter.config.Configuration;
 import emu.grasscutter.data.GameData;
 import emu.grasscutter.data.server.Grid;
 import emu.grasscutter.database.DatabaseHelper;
@@ -45,6 +46,7 @@ public class SceneScriptManager {
     private volatile boolean isInit;
     private volatile boolean initAttempted;
     private volatile boolean destroyed;
+    private int executingEvents;
     private final SceneScriptInitGate initialization = new SceneScriptInitGate();
     private boolean noCacheGroupGridsToDisk;
 
@@ -954,13 +956,14 @@ public class SceneScriptManager {
     }
 
     private void realCallEvent(@Nonnull ScriptArgs params) {
-        if (this.destroyed) {
-            return;
-        }
-        if (params.type == EventType.EVENT_ANY_MONSTER_DIE) {
-            this.sealBattleManager.onMonsterDeath(params.getGroupId(), params.param1);
+        synchronized (this) {
+            if (this.destroyed) return;
+            executingEvents++;
         }
         try {
+            if (params.type == EventType.EVENT_ANY_MONSTER_DIE) {
+                this.sealBattleManager.onMonsterDeath(params.getGroupId(), params.param1);
+            }
             ScriptLoader.getScriptLib().setSceneScriptManager(this);
 
             var eventType = params.type;
@@ -993,6 +996,10 @@ public class SceneScriptManager {
         } finally {
             // make sure it is removed
             ScriptLoader.getScriptLib().removeSceneScriptManager();
+            synchronized (this) {
+                // A destroy during this event left its final save to us.
+                if (--executingEvents == 0 && destroyed) clearDestroyedState();
+            }
         }
     }
 
@@ -1073,10 +1080,6 @@ public class SceneScriptManager {
                                                         }
                                                     });
                                 });
-            }
-
-            if (event == EVENT_TIMER_EVENT) {
-                cancelGroupTimerEvent(trigger.currentGroup.id, trigger.getSource());
             }
 
             // always deregister on error, otherwise only if the count is reached
@@ -1323,7 +1326,6 @@ public class SceneScriptManager {
     }
 
     public int createGroupTimerEvent(int groupID, String source, double time) {
-        // TODO also remove timers when refreshing and test
         var group = getGroupById(groupID);
         if (group == null || group.triggers == null) {
             Grasscutter.getLogger()
@@ -1333,52 +1335,45 @@ public class SceneScriptManager {
                             source);
             return 1;
         }
-        Grasscutter.getLogger()
-                .debug(
-                        "creating group timer event for group {} with source {} and time {}",
-                        groupID,
-                        source,
-                        time);
-        for (SceneTrigger trigger : group.triggers.values()) {
-            if (trigger.getEvent() == EVENT_TIMER_EVENT && trigger.getSource().equals(source)) {
-                Grasscutter.getLogger()
-                        .debug(
-                                "[LUA] Found timer trigger with source {} for group {} : {}",
-                                source,
-                                groupID,
-                                trigger.getName());
-                this.cancelGroupTimerEvent(groupID, source);
-                var taskIdentifier =
-                        Grasscutter.getGameServer()
-                                .getScheduler()
-                                .scheduleDelayedRepeatingTask(
-                                        () ->
-                                                callEvent(
-                                                        new ScriptArgs(groupID, EVENT_TIMER_EVENT).setEventSource(source)),
-                                        (int) time,
-                                        (int) time);
-                var groupTasks = activeGroupTimers.computeIfAbsent(groupID, k -> new HashSet<>());
-                groupTasks.add(new Pair<>(source, taskIdentifier));
-            }
+        boolean hasTrigger =
+                group.triggers.values().stream()
+                        .anyMatch(t -> t.getEvent() == EVENT_TIMER_EVENT && t.getSource().equals(source));
+        if (!hasTrigger) return 0;
+
+        // Lua passes seconds; the scene scheduler counts ticks and stops while the scene is paused.
+        int ticks =
+                Math.max(1, (int) Math.ceil(time * 1000d / Math.max(1, Configuration.GAME_INFO.tickRateMs)));
+        synchronized (this) {
+            cancelGroupTimerEvent(groupID, source);
+            var timers = activeGroupTimers.computeIfAbsent(groupID, k -> new HashSet<>());
+            var timer = new int[1];
+            timer[0] =
+                    getScene()
+                            .getScheduler()
+                            .scheduleDelayedTask(
+                                    () -> {
+                                        // One-shot: a cancelled or replaced timer has left the set.
+                                        synchronized (this) {
+                                            if (!timers.remove(new Pair<>(source, timer[0]))) return;
+                                        }
+                                        callEvent(new ScriptArgs(groupID, EVENT_TIMER_EVENT).setEventSource(source));
+                                    },
+                                    ticks);
+            timers.add(new Pair<>(source, timer[0]));
         }
         return 0;
     }
 
-    public int cancelGroupTimerEvent(int groupID, String source) {
-        // TODO test
+    public synchronized int cancelGroupTimerEvent(int groupID, String source) {
         var groupTimers = activeGroupTimers.get(groupID);
-        if (groupTimers != null && !groupTimers.isEmpty()) {
-            for (var timer : new HashSet<>(groupTimers)) {
-                if (timer.component1().equals(source)) {
-                    Grasscutter.getGameServer().getScheduler().cancelTask(timer.component2());
-                    groupTimers.remove(timer);
-                    return 0;
-                }
-            }
+        if (groupTimers != null) {
+            groupTimers.removeIf(
+                    timer -> {
+                        if (!timer.component1().equals(source)) return false;
+                        getScene().getScheduler().cancelTask(timer.component2());
+                        return true;
+                    });
         }
-
-        Grasscutter.getLogger()
-                .warn("trying to cancel a timer that's not active {} {}", groupID, source);
         return 0;
     }
 
@@ -1467,7 +1462,7 @@ public class SceneScriptManager {
                         times.forEach(
                                 (e) -> {
                                     try {
-                                        Grasscutter.getGameServer().getScheduler().cancelTask(e.getSecond());
+                                        getScene().getScheduler().cancelTask(e.getSecond());
                                     } catch (Throwable ignored) {
                                         // Server shutdown may already have disposed the scheduler.
                                     }
@@ -1499,6 +1494,12 @@ public class SceneScriptManager {
             scriptMonsterSpawnService = null;
         }
 
+        if (executingEvents == 0) clearDestroyedState();
+    }
+
+    /** Saves group progress, then drops the script state. */
+    private void clearDestroyedState() {
+        scene.saveGroups();
         currentTriggers.clear();
         ongoingTriggers.clear();
         triggersByGroupScene.clear();

@@ -578,6 +578,6 @@ public class GameMainQuest {
             return 0;
         }
 
-        return owner.getWorld().getTotalGameTimeDays() - ConversionUtils.gameTimeToDays(varTime);
+        return ConversionUtils.gameTimeToHours(owner.getWorld().getTotalGameTimeMinutes() - varTime);
     }
 }

@@ -1161,6 +1161,11 @@ public class Player implements PlayerHook, FieldFetch {
         target.onInteract(this, interactReq);
     }
 
+    /** Quest credit for a gadget interaction that went through. */
+    public void onGadgetInteracted(int gadgetId) {
+        this.getQuestManager().queueEvent(QuestContent.QUEST_CONTENT_INTERACT_GADGET, gadgetId);
+    }
+
     public void onPause() {
         getStaminaManager().stopSustainedStaminaHandler();
     }

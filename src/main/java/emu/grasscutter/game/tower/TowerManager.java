@@ -792,11 +792,23 @@ public class TowerManager extends BasePlayerManager {
         return floorData != null ? floorData.getOverrideMonsterLevel() : 1;
     }
 
-    public void enterLevel(int enterPointId) {
-        clearAwaitingTeamReconfigure();
+    /** Undoes a rejected enterLevel and tells the client it failed. */
+    private void restoreLevel(int floorId, int level, int levelId) {
+        var towerData = getTowerData();
+        towerData.currentFloorId = floorId;
+        towerData.currentLevel = level;
+        towerData.currentLevelId = levelId;
+        player.sendPacket(new PacketTowerEnterLevelRsp());
+    }
+
+    /** @return false when the enter was rejected and rolled back. */
+    public boolean enterLevel(int enterPointId) {
+        var towerData = getTowerData();
+        int previousFloorId = towerData.currentFloorId;
+        int previousLevel = towerData.currentLevel;
+        int previousLevelId = towerData.currentLevelId;
         if (forceChamberOneOnEnter) {
             applyFloorStart(getTowerData().currentFloorId);
-            forceChamberOneOnEnter = false;
         } else {
             ensureFloorStateForEnter();
         }
@@ -808,11 +820,18 @@ public class TowerManager extends BasePlayerManager {
                             "Tower enter level {} on floor {} has no level data",
                             getCurrentLevelId(),
                             getCurrentFloorId());
-            return;
+            restoreLevel(previousFloorId, previousLevel, previousLevelId);
+            return false;
         }
 
         var dungeonId = levelData.getDungeonId();
+        if (GameData.getDungeonDataMap().get(dungeonId) == null) {
+            restoreLevel(previousFloorId, previousLevel, previousLevelId);
+            return false;
+        }
 
+        clearAwaitingTeamReconfigure();
+        forceChamberOneOnEnter = false;
         notifyCurLevelRecordChange();
         // Resolve abyssal moon blessing / floor LevelEntity before handoff so enter-scene ability blocks include them.
         refreshLevelEntityConfigs();
@@ -823,10 +842,14 @@ public class TowerManager extends BasePlayerManager {
         }
         player.getTeamManager().useTemporaryTeam(0);
         TowerAbyssFix.prepareFirstChamber(player);
-        player
-                .getServer()
+        if (!player.getServer()
                 .getDungeonSystem()
-                .handoffDungeon(player, dungeonId, towerDungeonSettleListener);
+                .handoffDungeon(player, dungeonId, towerDungeonSettleListener)) {
+            restoreLevel(previousFloorId, previousLevel, previousLevelId);
+            player.getTeamManager().cleanTemporaryTeam();
+            notifyCurLevelRecordChange();
+            return false;
+        }
 
         // make sure user can exit dungeon correctly
         player.getScene().setPrevScene(getTowerData().entryScene);
@@ -850,6 +873,7 @@ public class TowerManager extends BasePlayerManager {
                 .send(
                         new PacketTowerLevelStarCondNotify(
                                 getTowerData().currentFloorId, getCurrentLevel(), currentPossibleStars + 1));
+        return true;
     }
 
     public void notifyCurLevelRecordChange() {

@@ -265,21 +265,6 @@ public class EntityGadget extends EntityBaseGadget {
 
     @Override
     public void onInteract(Player player, GadgetInteractReq interactReq) {
-        try {
-            if (emu.grasscutter.game.world.AndriusTrialStartHelper.tryStart(player, this, 0)) {
-                return;
-            }
-        } catch (Throwable ignored) {
-        }
-
-        // OfferingGadgets such as the Sacred Sakura must still open the offering page even when content is unset.
-        try {
-            if (emu.grasscutter.game.entity.gadget.OfferingHelper.tryInteract(player, this)) {
-                return;
-            }
-        } catch (Throwable ignored) {
-        }
-
         boolean interactOk = this.interactEnabled;
         try {
             interactOk =
@@ -289,11 +274,25 @@ public class EntityGadget extends EntityBaseGadget {
         }
         if (!interactOk) return;
 
-        if (this.getContent() == null) {
-            return;
+        try {
+            if (emu.grasscutter.game.world.AndriusTrialStartHelper.tryStart(player, this, 0)) {
+                player.onGadgetInteracted(getGadgetId());
+                return;
+            }
+        } catch (Throwable ignored) {
         }
 
-        boolean shouldDelete = this.getContent().onInteract(player, interactReq);
+        // OfferingGadgets such as the Sacred Sakura must still open the offering page even when content is unset.
+        try {
+            if (emu.grasscutter.game.entity.gadget.OfferingHelper.tryInteract(player, this)) {
+                player.onGadgetInteracted(getGadgetId());
+                return;
+            }
+        } catch (Throwable ignored) {
+        }
+
+        boolean shouldDelete = this.getContent() != null && this.getContent().onInteract(player, interactReq);
+        player.onGadgetInteracted(getGadgetId());
 
         if (shouldDelete) {
             this.getScene().killEntity(this);

@@ -45,6 +45,7 @@ import java.util.Map;
  */
 public class GadgetChest extends GadgetContent {
     private static final int CHEST_OPENED_STATE = 102;
+    private boolean ordinaryClaimed;
 
     public GadgetChest(EntityGadget gadget) {
         super(gadget);
@@ -122,10 +123,7 @@ public class GadgetChest extends GadgetContent {
                                 spent);
                 return false;
             }
-            if (player != player.getWorld().getHost()) {
-                return false;
-            }
-            if (getGadget().getState() == CHEST_OPENED_STATE) {
+            if (!canOpenOrdinary(player)) {
                 return false;
             }
             if (req.getOpType() == InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START) {
@@ -150,10 +148,7 @@ public class GadgetChest extends GadgetContent {
                         .getChestInteractHandlerMap()
                         .get(getGadget().getGadgetData().getJsonName());
         if (handler == null) {
-            if (player != player.getWorld().getHost()) {
-                return false;
-            }
-            if (getGadget().getState() == CHEST_OPENED_STATE) {
+            if (!canOpenOrdinary(player)) {
                 return false;
             }
             if (req.getOpType() == InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START) {
@@ -169,6 +164,9 @@ public class GadgetChest extends GadgetContent {
             return false;
         }
 
+        if (!(handler instanceof BossChestInteractHandler) && !canOpenOrdinary(player)) {
+            return false;
+        }
         if (req.getOpType() == InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START
                 && handler.isTwoStep()) {
             player.sendPacket(
@@ -203,7 +201,15 @@ public class GadgetChest extends GadgetContent {
         return false;
     }
 
+    /** Ordinary chests open once, for the world host. */
+    private boolean canOpenOrdinary(Player player) {
+        return player == player.getWorld().getHost()
+                && !ordinaryClaimed
+                && getGadget().getState() != CHEST_OPENED_STATE;
+    }
+
     private void grantOrdinaryChestLoot(Player player) {
+        ordinaryClaimed = true;
         EntityGadget gadget = getGadget();
         SceneGadget meta = resolveChestMeta();
         if (meta != null && meta.chest_drop_id > 0) {
