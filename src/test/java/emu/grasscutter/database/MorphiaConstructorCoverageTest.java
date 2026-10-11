@@ -12,12 +12,12 @@ final class MorphiaConstructorCoverageTest {
     @Test
     void persistedEntitiesHaveNoArgConstructors() {
         for (var type : new Class<?>[] {HomeSuiteItem.class, ActiveCookCompoundData.class, Location.class}) {
-            assertDoesNotThrow(type::getDeclaredConstructor, type.getName());
+            assertDoesNotThrow(() -> type.getDeclaredConstructor(), type.getName());
         }
     }
 
     @Test
-    void CompoundFieldsCanBeLoadedFromMongo() throws Exception {
+    void compoundFieldsCanBeLoadedFromMongo() throws Exception {
         assertFalse(Modifier.isFinal(ActiveCookCompoundData.class.getDeclaredField("costTime").getModifiers()));
         assertFalse(Modifier.isFinal(ActiveCookCompoundData.class.getDeclaredField("compoundId").getModifiers()));
     }
