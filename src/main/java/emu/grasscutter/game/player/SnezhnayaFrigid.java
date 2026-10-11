@@ -14,13 +14,22 @@ import java.util.List;
  * so only the Frigid part is granted here - the same set as the official
  * {@code DynamicAbility_SnezhnayaFrigid_Only_V7_0_Team} group.
  *
- * <p>The meter itself is the server global value {@code SGV_SnezhnayaFrigid} (0..100, the team loses HP
- * from 99.5 up). Accumulation is not simulated yet: the Frigid levels come from Snezhnaya's weather
- * areas, whose outlines only the client has, so the value is held at 0 and the client's
- * ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR invokes are logged to work out the rest.
+ * <p>Two server global values drive it. {@code SGV_SnezhnayaEnergy} is the Kresnik energy - the warmth
+ * the team spends in cold areas - and only once it runs out does {@code SGV_SnezhnayaFrigid} start to
+ * build (0..100, the team loses HP from 99.5 up). Neither is simulated yet: the Frigid levels come from
+ * Snezhnaya's weather areas, whose outlines only the client has. The server hands out full warmth and
+ * no Frigid, and logs the client's ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR invokes to work out the rest.
  */
 public final class SnezhnayaFrigid {
     public static final String FRIGID_GV = "SGV_SnezhnayaFrigid";
+    public static final String ENERGY_GV = "SGV_SnezhnayaEnergy";
+
+    /**
+     * Full Kresnik energy. No resource states the cap; 100 matches the Frigid meter's scale and the
+     * thresholds the abilities test the energy against (a camping stove needs at least 50, the warmth
+     * search tops it up at 40 or below).
+     */
+    public static final float MAX_ENERGY = 100f;
 
     /** DynamicAbility_SnezhnayaFrigid_Only_V7_0_Team. */
     static final List<String> TEAM_ABILITIES =
@@ -69,7 +78,7 @@ public final class SnezhnayaFrigid {
         if (in != isGranted(player)) TeamAbilityToggle.set(player, TEAM_ABILITIES, in, false);
     }
 
-    /** Applies a seamless border crossing: updates the team abilities and resets the meter on entry. */
+    /** Applies a seamless border crossing: updates the team abilities and, on entry, fills the warmth. */
     public static void refresh(Player player) {
         if (player.getTeamManager() == null || player.getSession() == null) return;
         boolean in = isIn(player);
@@ -78,6 +87,7 @@ public final class SnezhnayaFrigid {
         TeamAbilityToggle.set(player, TEAM_ABILITIES, in, true);
         var team = player.getTeamManager().getEntity();
         if (in && team != null) {
+            player.sendPacket(new PacketServerGlobalValueChangeNotify(team.getId(), ENERGY_GV, MAX_ENERGY));
             player.sendPacket(new PacketServerGlobalValueChangeNotify(team.getId(), FRIGID_GV, 0f));
         }
     }

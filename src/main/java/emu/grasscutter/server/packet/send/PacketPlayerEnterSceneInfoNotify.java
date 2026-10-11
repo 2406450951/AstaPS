@@ -90,7 +90,15 @@ public class PacketPlayerEnterSceneInfoNotify extends BasePacket {
                     .build());
         }
         if (emu.grasscutter.game.player.SnezhnayaFrigid.isGranted(player)) {
+            String energy = emu.grasscutter.game.player.SnezhnayaFrigid.ENERGY_GV;
             String frigid = emu.grasscutter.game.player.SnezhnayaFrigid.FRIGID_GV;
+            teamInfo.addSgvDynamicValueMap(AbilityScalarValueEntry.newBuilder()
+                    .setKey(AbilityString.newBuilder()
+                            .setHash(Utils.abilityHash(energy))
+                            .setStr(energy)
+                            .build())
+                    .setFloatValue(emu.grasscutter.game.player.SnezhnayaFrigid.MAX_ENERGY)
+                    .build());
             teamInfo.addSgvDynamicValueMap(AbilityScalarValueEntry.newBuilder()
                     .setKey(AbilityString.newBuilder()
                             .setHash(Utils.abilityHash(frigid))
