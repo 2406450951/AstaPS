@@ -1,5 +1,7 @@
 package emu.grasscutter.game.systems;
 
+import static emu.grasscutter.config.Configuration.GAME_OPTIONS;
+
 import emu.grasscutter.game.CoopRequest;
 import emu.grasscutter.Grasscutter;
 import emu.grasscutter.game.player.Player;
@@ -21,10 +23,16 @@ public class MultiplayerSystem extends BaseGameSystem {
         super(server);
     }
 
-    public void applyEnterMp(Player player, int targetUid) {
+    private static boolean isFull(World world) {
+        return world.getPlayerCount() >= GAME_OPTIONS.avatarLimits.multiplayerTeam;
+    }
+
+    public synchronized void applyEnterMp(Player player, int targetUid) {
         normalizeStaleMultiplayerWorld(player);
         Player target = getServer().getPlayerByUid(targetUid);
-        if (target == null) {
+        if (target == null || target == player || target.getWorld() == null
+                || target.getWorld() == player.getWorld() || target.getWorld().getHost() != target
+                || isFull(target.getWorld())) {
             player.sendPacket(new PacketPlayerApplyEnterMpResultNotify(targetUid, "", false, ReasonOuterClass.Reason.Reason_PLAYER_CANNOT_ENTER_MP));
             return;
         }
@@ -46,18 +54,18 @@ public class MultiplayerSystem extends BaseGameSystem {
         target.sendPacket(new PacketPlayerApplyEnterMpNotify(player));
     }
 
-    public void applyEnterMpReply(Player hostPlayer, int applyUid, boolean isAgreed) {
-
-        CoopRequest request = hostPlayer.getCoopRequests().get(applyUid);
+    public synchronized void applyEnterMpReply(Player hostPlayer, int applyUid, boolean isAgreed) {
+        CoopRequest request = hostPlayer.getCoopRequests().remove(applyUid);
         if (request == null || request.isExpired()) {
             return;
         }
 
         Player requester = request.getRequester();
-        hostPlayer.getCoopRequests().remove(applyUid);
         normalizeStaleMultiplayerWorld(requester);
 
-        if (requester.getWorld().isMultiplayer()) {
+        World hostWorld = hostPlayer.getWorld();
+        if (requester == hostPlayer || requester.getWorld().isMultiplayer() || hostWorld == null
+                || hostWorld.getHost() != hostPlayer || isFull(hostWorld)) {
             request.getRequester().sendPacket(new PacketPlayerApplyEnterMpResultNotify(hostPlayer, false, ReasonOuterClass.Reason.Reason_PLAYER_CANNOT_ENTER_MP));
             return;
         }
@@ -87,7 +95,7 @@ public class MultiplayerSystem extends BaseGameSystem {
         requester.sendPacket(new PacketPlayerEnterSceneNotify(requester, hostPlayer, EnterType.EnterType_ENTER_OTHER, EnterReason.TeamJoin, hostPlayer.getScene().getId(), hostPlayer.getPosition()));
     }
 
-    public boolean leaveCoop(Player player) {
+    public synchronized boolean leaveCoop(Player player) {
         guestHostUids.remove(player.getUid());
 
         if (player.getCurHomeWorld().isInHome(player)) {
@@ -113,22 +121,22 @@ public class MultiplayerSystem extends BaseGameSystem {
         return true;
     }
 
-    public boolean kickPlayer(Player player, int targetUid) {
-
-        if (!player.getWorld().isMultiplayer() || player.getWorld().getHost() != player) {
+    public synchronized boolean kickPlayer(Player player, int targetUid) {
+        World hostWorld = player.getWorld();
+        if (!hostWorld.isMultiplayer() || hostWorld.getHost() != player) {
             return false;
         }
 
         Player victim = player.getServer().getPlayerByUid(targetUid);
 
-        if (victim == null || victim == player) {
+        if (victim == null || victim == player || victim.getWorld() != hostWorld) {
             return false;
         }
-        guestHostUids.remove(victim.getUid());
 
         if (victim.getSceneLoadState() != SceneLoadState.LOADED) {
             return false;
         }
+        guestHostUids.remove(victim.getUid());
 
         World world = new World(victim);
         world.addPlayer(victim);

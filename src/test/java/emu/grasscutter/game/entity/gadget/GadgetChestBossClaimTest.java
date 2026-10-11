@@ -1,0 +1,139 @@
+package emu.grasscutter.game.entity.gadget;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import emu.grasscutter.Grasscutter;
+import emu.grasscutter.ServerResourceFixture;
+import emu.grasscutter.data.GameData;
+import emu.grasscutter.data.excels.GadgetData;
+import emu.grasscutter.data.excels.scene.SceneData;
+import emu.grasscutter.game.entity.EntityGadget;
+import emu.grasscutter.game.player.Player;
+import emu.grasscutter.game.systems.TestPlayers;
+import emu.grasscutter.game.systems.TestPlayers.TestPlayer;
+import emu.grasscutter.game.world.Position;
+import emu.grasscutter.game.world.Scene;
+import emu.grasscutter.game.world.World;
+import emu.grasscutter.net.proto.BossChestInfoOuterClass.BossChestInfo;
+import emu.grasscutter.net.proto.GadgetInteractReqOuterClass.GadgetInteractReq;
+import emu.grasscutter.net.proto.InterOpTypeOuterClass.InterOpType;
+import emu.grasscutter.net.proto.SceneGadgetInfoOuterClass.SceneGadgetInfo;
+import emu.grasscutter.scripts.data.SceneBossChest;
+import emu.grasscutter.scripts.data.SceneGadget;
+import emu.grasscutter.utils.JsonUtils;
+import java.util.*;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(ServerResourceFixture.class)
+final class GadgetChestBossClaimTest {
+    private static final int OPENED = 102;
+    private static final int FLOWER_ID = 99000001;
+    private TestPlayer a, b;
+    private Scene scene;
+    private EntityGadget flower;
+    private TestChest chest;
+    private boolean oldScriptMode;
+
+    @BeforeEach
+    void setup() {
+        oldScriptMode = Grasscutter.getConfig().server.game.enableScriptInBigWorld;
+        Grasscutter.getConfig().server.game.enableScriptInBigWorld = false;
+        var server = TestPlayers.server();
+        a = new TestPlayer(server, 100);
+        b = new TestPlayer(server, 200);
+        scene = new Scene(new World(a), JsonUtils.decode("{\"id\": 3}", SceneData.class));
+        scene.getPlayers().addAll(List.of(a, b));
+        GameData.getGadgetDataMap()
+                .put(FLOWER_ID, JsonUtils.decode("{\"id\": " + FLOWER_ID + "}", GadgetData.class));
+        flower = new EntityGadget(scene, FLOWER_ID, new Position());
+        var meta = new SceneGadget();
+        meta.boss_chest = new SceneBossChest();
+        meta.boss_chest.resin = 40;
+        flower.setMetaGadget(meta);
+        chest = new TestChest(flower);
+        // Off while building the entity (avoids script loading); on for onInteract's boss path.
+        Grasscutter.getConfig().server.game.enableScriptInBigWorld = true;
+        info(); // the flower appears to everyone in the scene
+    }
+
+    @AfterEach
+    void restore() {
+        Grasscutter.getConfig().server.game.enableScriptInBigWorld = oldScriptMode;
+        GameData.getGadgetDataMap().remove(FLOWER_ID);
+    }
+
+    @Test
+    void eachEligiblePlayerClaimsOnceAndTheFlowerOpensAfterTheLast() {
+        claim(a);
+        claim(a);
+        assertEquals(Map.of(100, 1), chest.grants);
+        assertNotEquals(OPENED, flower.getState());
+        assertEquals(List.of(100, 200), info().getQualifyUidListList());
+        assertEquals(List.of(200), info().getRemainUidListList());
+
+        claim(b);
+        assertEquals(Map.of(100, 1, 200, 1), chest.grants);
+        assertEquals(OPENED, flower.getState());
+    }
+
+    @Test
+    void lateArrivalCannotClaim() {
+        var late = new TestPlayer(TestPlayers.server(), 300);
+        scene.getPlayers().add(late);
+
+        claim(late);
+
+        assertTrue(chest.grants.isEmpty());
+        assertEquals(List.of(100, 200), info().getQualifyUidListList());
+    }
+
+    @Test
+    void eligiblePlayerWhoLeftDoesNotKeepTheFlowerOpen() {
+        scene.getPlayers().remove(b);
+
+        claim(a);
+
+        assertEquals(OPENED, flower.getState());
+    }
+
+    @Test
+    void claimedPlayerFinishesTheFlowerAfterTheOthersLeave() {
+        claim(a);
+        assertNotEquals(OPENED, flower.getState());
+
+        scene.getPlayers().remove(b);
+        assertEquals(1, a.getPlayerProgress().getHandbookChestOpenCount());
+        claim(a);
+
+        assertEquals(OPENED, flower.getState());
+        assertEquals(Map.of(100, 1), chest.grants);
+        assertEquals(1, a.getPlayerProgress().getHandbookChestOpenCount());
+    }
+
+    private BossChestInfo info() {
+        var builder = SceneGadgetInfo.newBuilder();
+        chest.onBuildProto(builder);
+        return builder.getBossChest();
+    }
+
+    private void claim(Player player) {
+        chest.onInteract(
+                player,
+                GadgetInteractReq.newBuilder().setOpType(InterOpType.InterOpType_INTER_OP_FINISH).build());
+    }
+
+    private static final class TestChest extends GadgetChest {
+        final Map<Integer, Integer> grants = new HashMap<>();
+
+        TestChest(EntityGadget gadget) {
+            super(gadget);
+        }
+
+        @Override
+        protected boolean grantBossChestFallback(Player player, SceneGadget meta) {
+            grants.merge(player.getUid(), 1, Integer::sum);
+            return true;
+        }
+    }
+}

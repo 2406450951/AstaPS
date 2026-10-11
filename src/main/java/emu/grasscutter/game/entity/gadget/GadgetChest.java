@@ -38,6 +38,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * World chests + world-boss trounce blossoms. When DropTable misses ChestDrop ids,
@@ -45,18 +47,25 @@ import java.util.Map;
  */
 public class GadgetChest extends GadgetContent {
     private static final int CHEST_OPENED_STATE = 102;
+    // Boss flowers: every player in the scene when the flower first appears claims once.
+    private volatile List<Integer> bossUids;
+    private final Set<Integer> claimedBossUids = ConcurrentHashMap.newKeySet();
 
     public GadgetChest(EntityGadget gadget) {
         super(gadget);
     }
 
     @Override
-    public boolean onInteract(Player player, GadgetInteractReqOuterClass.GadgetInteractReq req) {
+    public synchronized boolean onInteract(
+            Player player, GadgetInteractReqOuterClass.GadgetInteractReq req) {
         if (Grasscutter.getConfig().server.game.enableScriptInBigWorld) {
             SceneGadget meta = resolveChestMeta();
             DropSystem dropSystem = player.getServer().getDropSystem();
             if (meta != null && meta.boss_chest != null) {
-                if (getGadget().getState() == CHEST_OPENED_STATE) {
+                if (finishIfAbandoned(player, meta)) {
+                    return false;
+                }
+                if (!canClaimBossFlower(player)) {
                     return false;
                 }
                 if (req.getOpType() == InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START) {
@@ -100,8 +109,7 @@ public class GadgetChest extends GadgetContent {
                                         1);
                     } catch (Throwable ignored) {
                     }
-                    finishOpen(player, meta);
-                    WorldBossSpawnHelper.onBossChestClaimed(getGadget());
+                    finishBossClaim(player, meta);
                     Grasscutter.getLogger()
                             .info(
                                     "Trounce flower claimed uid={} group={} tag={}",
@@ -181,6 +189,14 @@ public class GadgetChest extends GadgetContent {
 
         boolean success;
         if (handler instanceof BossChestInteractHandler bossHandler) {
+            var gadgetMeta = getGadget().getMetaGadget();
+            boolean bossMeta = gadgetMeta != null && gadgetMeta.boss_chest != null;
+            if (bossMeta && finishIfAbandoned(player, gadgetMeta)) {
+                return false;
+            }
+            if (bossMeta && !canClaimBossFlower(player)) {
+                return false;
+            }
             success =
                     bossHandler.onInteract(
                             this,
@@ -195,12 +211,59 @@ public class GadgetChest extends GadgetContent {
             return false;
         }
         if (getGadget().getMetaGadget() != null && getGadget().getMetaGadget().boss_chest != null) {
-            finishOpen(player, getGadget().getMetaGadget());
-            WorldBossSpawnHelper.onBossChestClaimed(getGadget());
+            finishBossClaim(player, getGadget().getMetaGadget());
         } else {
             finishOpen(player, null);
         }
         return false;
+    }
+
+    private boolean canClaimBossFlower(Player player) {
+        List<Integer> uids = bossUids;
+        return getGadget().getState() != CHEST_OPENED_STATE
+                && uids != null
+                && uids.contains(player.getUid())
+                && !claimedBossUids.contains(player.getUid());
+    }
+
+    /** A player who already claimed re-checks whether the others have left, without new loot. */
+    private boolean finishIfAbandoned(Player player, SceneGadget meta) {
+        if (getGadget().getState() == CHEST_OPENED_STATE
+                || bossUids == null
+                || !bossUids.contains(player.getUid())
+                || !claimedBossUids.contains(player.getUid())) {
+            return false;
+        }
+        finishIfAllClaimed(player, meta, false);
+        return true;
+    }
+
+    private void finishBossClaim(Player player, SceneGadget meta) {
+        claimedBossUids.add(player.getUid());
+        if (finishIfAllClaimed(player, meta, true)) {
+            return;
+        }
+        player.sendPacket(
+                new PacketGadgetInteractRsp(
+                        getGadget(),
+                        InteractTypeOuterClass.InteractType.InteractType_INTERACT_OPEN_CHEST,
+                        InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_FINISH));
+        creditChestOpen(player);
+    }
+
+    /** Opens the flower for good once every eligible player still in the scene has claimed. */
+    private boolean finishIfAllClaimed(Player player, SceneGadget meta, boolean credit) {
+        boolean allClaimed =
+                getGadget().getScene().getPlayers().stream()
+                        .map(Player::getUid)
+                        .filter(bossUids::contains)
+                        .allMatch(claimedBossUids::contains);
+        if (allClaimed) {
+            getGadget().getScene().getBlossomManager().retireChest(getGadget());
+            finishOpen(player, meta, credit);
+            WorldBossSpawnHelper.onBossChestClaimed(getGadget());
+        }
+        return allClaimed;
     }
 
     private void grantOrdinaryChestLoot(Player player) {
@@ -220,12 +283,16 @@ public class GadgetChest extends GadgetContent {
         WorldChestLootHelper.grant(player, gadget);
     }
 
-    private boolean grantBossChestFallback(Player player, SceneGadget meta) {
+    protected boolean grantBossChestFallback(Player player, SceneGadget meta) {
         return emu.grasscutter.game.drop.WorldBossChestLootHelper.grant(
                 player, meta, getGadget().getGroupId());
     }
 
     private void finishOpen(Player player, SceneGadget sceneGadget) {
+        finishOpen(player, sceneGadget, true);
+    }
+
+    private void finishOpen(Player player, SceneGadget sceneGadget, boolean credit) {
         EntityGadget entityGadget = getGadget();
         entityGadget.updateState(CHEST_OPENED_STATE);
         player.sendPacket(
@@ -249,8 +316,14 @@ public class GadgetChest extends GadgetContent {
             emu.grasscutter.game.world.SnezhnayaExploreSpawnHelper.markClaimed(getGadget());
         } catch (Throwable ignored) {
         }
+        if (credit) {
+            creditChestOpen(player);
+        }
+    }
+
+    private void creditChestOpen(Player player) {
         try {
-            int gadgetId = entityGadget.getGadgetId();
+            int gadgetId = getGadget().getGadgetId();
             player.getPlayerProgress().addHandbookChestOpen(1);
             emu.grasscutter.game.player.InvestigationHandbookHelper.trigger(
                     player,
@@ -307,14 +380,21 @@ public class GadgetChest extends GadgetContent {
         }
         SceneBossChest bossChest = sceneGadget.boss_chest;
         if (bossChest != null) {
-            List<Integer> uids =
-                    getGadget().getScene().getPlayers().stream().map(Player::getUid).toList();
+            if (bossUids == null) {
+                List<Integer> present =
+                        getGadget().getScene().getPlayers().stream().map(Player::getUid).toList();
+                if (!present.isEmpty()) {
+                    bossUids = present;
+                }
+            }
+            List<Integer> uids = bossUids != null ? bossUids : List.of();
             builder.setBossChest(
                     BossChestInfoOuterClass.BossChestInfo.newBuilder()
                             .setMonsterConfigId(bossChest.monster_config_id)
                             .setResin(bossChest.resin)
                             .addAllQualifyUidList(uids)
-                            .addAllRemainUidList(uids)
+                            .addAllRemainUidList(
+                                    uids.stream().filter(uid -> !claimedBossUids.contains(uid)).toList())
                             .build());
         }
     }
