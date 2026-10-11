@@ -345,7 +345,9 @@ public class World implements Iterable<Player> {
     }
 
     public void save() {
-        this.getScenes().values().forEach(Scene::saveGroups);
+        // Scene callbacks may acquire a scene monitor; do not hold the collection monitor.
+        WorldSceneSnapshot.forEachOutsideMonitor(
+                this.scenes, this.scenes::values, Scene::saveGroups);
     }
 
     public void queueTransferPlayerToScene(Player player, int sceneId, Position pos, int delayMs) {
