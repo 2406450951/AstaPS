@@ -462,6 +462,8 @@ public final class AbilityManager extends BasePlayerManager {
         if (invoke.getArgumentType()
                 == AbilityInvokeArgument.AbilityInvokeArgument_ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR) {
             this.logSnezhnayaFrigidInvoke(invoke);
+            emu.grasscutter.game.player.SnezhnayaFrigid.onInvoke(this.player, invoke);
+            return;
         }
 
         if (invoke.getHead().getLocalId() != 0) {

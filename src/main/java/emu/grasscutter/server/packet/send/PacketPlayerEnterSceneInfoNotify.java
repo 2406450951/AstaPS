@@ -90,6 +90,7 @@ public class PacketPlayerEnterSceneInfoNotify extends BasePacket {
                     .build());
         }
         if (emu.grasscutter.game.player.SnezhnayaFrigid.isGranted(player)) {
+            var frigidState = emu.grasscutter.game.player.SnezhnayaFrigid.stateOf(player);
             String energy = emu.grasscutter.game.player.SnezhnayaFrigid.ENERGY_GV;
             String frigid = emu.grasscutter.game.player.SnezhnayaFrigid.FRIGID_GV;
             teamInfo.addSgvDynamicValueMap(AbilityScalarValueEntry.newBuilder()
@@ -97,14 +98,14 @@ public class PacketPlayerEnterSceneInfoNotify extends BasePacket {
                             .setHash(Utils.abilityHash(energy))
                             .setStr(energy)
                             .build())
-                    .setFloatValue(emu.grasscutter.game.player.SnezhnayaFrigid.MAX_ENERGY)
+                    .setFloatValue(frigidState.getEnergy())
                     .build());
             teamInfo.addSgvDynamicValueMap(AbilityScalarValueEntry.newBuilder()
                     .setKey(AbilityString.newBuilder()
                             .setHash(Utils.abilityHash(frigid))
                             .setStr(frigid)
                             .build())
-                    .setFloatValue(0f)
+                    .setFloatValue(frigidState.getFrigid())
                     .build());
         }
 

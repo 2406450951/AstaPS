@@ -181,6 +181,16 @@ public class AbilityMixinData implements Serializable {
 
 
     public DynamicFloat speed = DynamicFloat.ZERO;
+    /**
+     * Snezhnaya's change-Frigid mixin (KOANNHKDPII in the 7.1 data): "Set" or "Add"; absent, a positive
+     * speed spends warmth before it builds Frigid. See SnezhnayaFrigid.
+     */
+    public String costType;
+    /** The same mixin's "Level_1".."Level_5": while a higher level is ticking, lower ones are ignored. */
+    public String priority;
+    /** The same mixin's flag on its clears: the change goes straight to the Frigid meter. */
+    @SerializedName("LKALKDPBLJB")
+    public boolean frigidOnly;
     public DynamicFloat costStaminaDelta = DynamicFloat.ZERO;
     public DynamicFloat ratio = DynamicFloat.ONE;
     /** ChangeNyxValueMixin's Nightsoul delta. Other mixins reuse the key for state IDs and flags. */
