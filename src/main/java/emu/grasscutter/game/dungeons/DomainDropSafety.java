@@ -1,8 +1,11 @@
 package emu.grasscutter.game.dungeons;
 
 import emu.grasscutter.game.dungeons.enums.DungeonSubType;
+import java.util.ArrayDeque;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.IntFunction;
 import java.util.function.BiFunction;
 
 /** Validation and one-claim commit guard for configured dungeon rewards. */
@@ -12,15 +15,73 @@ final class DomainDropSafety {
 
     private DomainDropSafety() {}
 
-    enum RewardSource { NATIVE_ROOT, VALIDATED_PROXY, PREVIEW_ONLY, NONE }
+    enum RewardSource { NATIVE_ROOT, VALIDATED_PROXY, NONE }
 
-    /** Original 7.1 drop roots take precedence over reconstructed server proxies. */
-    static RewardSource chooseRewardSource(
-            boolean nativeReady, boolean hasProxy, boolean hasRootPointer, boolean hasPreview) {
-        if (nativeReady) return RewardSource.NATIVE_ROOT;
-        if (hasProxy) return RewardSource.VALIDATED_PROXY;
-        if (hasRootPointer) return RewardSource.NONE;
-        return hasPreview ? RewardSource.PREVIEW_ONLY : RewardSource.NONE;
+    /**
+     * Presence of positive weights is not proof that a legacy native root belongs to
+     * this dungeon. Compare every reachable reward-family leaf before selecting it.
+     * Preview data is corroborating metadata, never a payable reward source.
+     */
+    static RewardSource chooseRewardSource(boolean verifiedNative, boolean verifiedProxy) {
+        if (verifiedNative) return RewardSource.NATIVE_ROOT;
+        return verifiedProxy ? RewardSource.VALIDATED_PROXY : RewardSource.NONE;
+    }
+
+    /** Resolve all possible terminal item IDs, not one random roll. Fail closed on a broken graph. */
+    static Set<Integer> nativeLeafIds(int root, IntFunction<List<Integer>> children) {
+        if (root <= 0) return Set.of();
+        var pending = new ArrayDeque<Integer>();
+        var visited = new HashSet<Integer>();
+        var leaves = new HashSet<Integer>();
+        pending.add(root);
+        while (!pending.isEmpty()) {
+            int id = pending.removeFirst();
+            if (id <= 0) return Set.of();
+            if (!visited.add(id)) continue;
+            if (visited.size() > 10_000) return Set.of();
+            List<Integer> targets = children.apply(id);
+            if (targets == null) {
+                leaves.add(id);
+            } else {
+                if (targets.isEmpty() || targets.stream().anyMatch(x -> x == null || x <= 0)) {
+                    return Set.of();
+                }
+                pending.addAll(targets);
+            }
+        }
+        return leaves;
+    }
+
+    /** Artifact IDs use a three-digit set family; talent/weapon tiers use a five-digit family. */
+    static int rewardFamily(int itemId, DungeonSubType subType) {
+        return subType == DungeonSubType.DUNGEON_SUB_RELIQUARY
+                ? itemId / 100 : itemId / 10;
+    }
+
+    static boolean matchesNativeFamilies(
+            Set<Integer> nativeItems, Set<Integer> expectedItems, DungeonSubType type,
+            java.util.function.IntPredicate isCategoryReward) {
+        if (nativeItems == null || nativeItems.isEmpty()
+                || expectedItems == null || expectedItems.isEmpty()) return false;
+        var expected = new HashSet<Integer>();
+        for (int id : expectedItems) {
+            if (isCategoryReward.test(id)) expected.add(rewardFamily(id, type));
+        }
+        if (expected.isEmpty()) return false;
+        var actual = new HashSet<Integer>();
+        for (int id : nativeItems) {
+            if (isCategoryReward.test(id)) actual.add(rewardFamily(id, type));
+        }
+        return !actual.isEmpty() && expected.containsAll(actual);
+    }
+
+    /** Confirm the known 4706 compatibility pool points to the 475/485 artifact sets. */
+    static boolean isVerifiedCompatibilityPool(int dungeonId, Set<Integer> artifactIds) {
+        if (dungeonId != 4706) return true;
+        if (artifactIds == null || artifactIds.isEmpty()) return false;
+        var families = new HashSet<Integer>();
+        for (int id : artifactIds) families.add(id / 100);
+        return families.equals(Set.of(475, 485));
     }
 
     static void validatePool(int dungeonId, List<DungeonDropEntry> entries) {
