@@ -2624,7 +2624,7 @@ public final class PacketOpcodes {
     public static final int BargainTerminateNotify = 7831;
     public static final int HomeLimitedShopInfoRsp = 2652;
     public static final int ReunionBriefInfoReq = 0; // 7.1 CmdId unknown (7.0: 27913)
-    public static final int DungeonRestartReq = 0; // 7.1 CmdId unknown (7.0: 27917)
+    public static final int DungeonRestartReq = 9381; // 7.1: confirmed in Fontaine weapon domain 4471
     // public static final int OfferingPariSearchRsp = 25683;
     public static final int PushTipsChangeNotify = 4737;
     public static final int DragonSpineCoinChangeNotify = 24405;

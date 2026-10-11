@@ -35,6 +35,11 @@ public final class DungeonManager {
 
     @Getter private final int[] finishedConditions;
     private final IntSet rewardedPlayers = new IntOpenHashSet();
+
+    /** True only after a successful petrified-tree reward claim in this dungeon run. */
+    boolean hasClaimedDomainReward(int uid) {
+        return rewardedPlayers.contains(uid);
+    }
     private final Set<Integer> activeDungeonWayPoints = new HashSet<>();
     private boolean ended = false;
     private int newestWayPoint = 0;
