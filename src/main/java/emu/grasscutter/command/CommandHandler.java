@@ -3,6 +3,7 @@ package emu.grasscutter.command;
 import static emu.grasscutter.utils.lang.Language.translate;
 
 import emu.grasscutter.game.player.Player;
+import java.util.List;
 import picocli.CommandLine;
 
 /** A command whose complete argument grammar is described by picocli. */
@@ -33,8 +34,23 @@ public interface CommandHandler {
         }
     }
 
-    /** Build this command's picocli tree for one invocation or for completion when both players are null. */
-    CommandLine createCommandLine(Player sender, Player targetPlayer);
+    /**
+     * Build this command's picocli tree for one invocation or for completion when both players are null.
+     *
+     * <p>The default wraps {@link #execute}, so commands from plugins built before the picocli migration
+     * still register and run. Built-in commands override this.
+     */
+    default CommandLine createCommandLine(Player sender, Player targetPlayer) {
+        return LegacyCommandLine.create(this, sender, targetPlayer);
+    }
+
+    /**
+     * The pre-picocli entry point, kept for plugins. Called with every argument after the command label
+     * and target selector when the command does not override {@link #createCommandLine}.
+     */
+    default void execute(Player sender, Player targetPlayer, List<String> args) {
+        sendUsageMessage(sender);
+    }
 
     /** Build a context-free command tree used as parser/completion/help metadata. */
     default CommandLine createCompletionCommandLine() {
@@ -47,6 +63,15 @@ public interface CommandHandler {
 
     default void sendUsageMessage(Player player) {
         CommandOutput.sendMessage(player, getUsageString(player));
+    }
+
+    /** Pre-picocli signatures, which plugin binaries still call. */
+    default String getUsageString(Player player, String... args) {
+        return getUsageString(player);
+    }
+
+    default void sendUsageMessage(Player player, String... args) {
+        sendUsageMessage(player);
     }
 
     default String getLabel() {
