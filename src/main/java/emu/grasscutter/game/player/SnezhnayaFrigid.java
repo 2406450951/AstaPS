@@ -117,6 +117,10 @@ public final class SnezhnayaFrigid {
     /** Applies a seamless border crossing: updates the team abilities and, on entry, resends both values. */
     public static void refresh(Player player) {
         if (player.getTeamManager() == null || player.getSession() == null) return;
+        var pos = player.getPosition();
+        // A move can briefly report the origin before the real position arrives; that is not a border
+        // crossing, and treating it as one withdrew and regranted the abilities within a frame.
+        if (pos == null || (pos.getX() == 0f && pos.getY() == 0f && pos.getZ() == 0f)) return;
         boolean in = isIn(player);
         if (in == isGranted(player)) return;
 
