@@ -21,6 +21,7 @@ import emu.grasscutter.utils.WeaponSkinData;
 import it.unimi.dsi.fastutil.ints.*;
 import it.unimi.dsi.fastutil.longs.*;
 import java.util.*;
+import java.util.function.BooleanSupplier;
 import javax.annotation.Nullable;
 import lombok.val;
 
@@ -119,91 +120,44 @@ public class Inventory extends BasePlayerManager implements Iterable<GameItem> {
             return false;
         }
 
-        GameItem item = new GameItem(itemData, count);
-
-        return addItem(item, reason);
-    }
-
-    public boolean addItem(GameItem item) {
-        var data = item.getItemData();
-        if (data == null) {
+        if (count <= 0) {
             return false;
         }
-
-        // Consumables that apply on gain never enter the bag.
-        if (data.isUseOnGain()) {
+        ItemType type = itemData.getItemType();
+        if ((type == ItemType.ITEM_WEAPON || type == ItemType.ITEM_RELIQUARY
+                        || type == ItemType.ITEM_TPS_WEAPON)
+                && count > 1) {
             try {
-                this.player.getProgressManager().addItemObtainedHistory(item.getItemId(), item.getCount());
-            } catch (Exception e) {
-                Grasscutter.getLogger().debug("addItemObtainedHistory failed", e);
-            }
-            // Weapon skins carry ITEM_USE_ADD_WEAPON_SKIN and have no usable effect, so
-            // useItemDirect rejects them. addItem returns here, before putItem's own check,
-            // so unlock the skins at this point too.
-            var skinIds = WeaponSkinData.skinIdsForItem(item.getItemId());
-            if (!skinIds.isEmpty()) {
-                Grasscutter.getLogger()
-                        .info("WeaponSkin unlock: itemId={} -> skinIds={}", item.getItemId(), skinIds);
-                this.player.addWeaponSkins(skinIds);
-                new PlayerObtainItemEvent(this.getPlayer(), item).call();
-                return true;
-            }
-            var params = new UseItemParams(this.player, data.getUseTarget());
-            params.usedItemId = data.getId();
-            boolean used =
-                    this.player.getServer().getInventorySystem().useItemDirect(data, params);
-            if (!used) {
-                Grasscutter.getLogger()
-                        .warn("useOnGain failed for item {} (buff/use action rejected)", data.getId());
+                return addItems(
+                        InventoryGrantBuilder.create(itemData, count, 1),
+                        reason,
+                        InventoryAddPolicy.ALL_OR_NOTHING)
+                        .allAccepted();
+            } catch (IllegalArgumentException e) {
+                Grasscutter.getLogger().warn(
+                        "Rejected oversized equipment grant id={} count={}", itemId, count);
                 return false;
             }
-            new PlayerObtainItemEvent(this.getPlayer(), item).call();
-            return true;
         }
+        return addItem(new GameItem(itemData, count), reason);
+    }
 
-        GameItem result = putItem(item);
-
-        if (result != null) {
-            this.triggerAddItemEvents(result);
-            getPlayer().sendPacket(new PacketStoreItemChangeNotify(result));
-
-            // Call PlayerObtainItemEvent.
-            new PlayerObtainItemEvent(this.getPlayer(), item).call();
-            return true;
-        }
-
-        return false;
+    /** Add one item through the common insertion path. */
+    public boolean addItem(GameItem item) {
+        return addItemsInternal(Collections.singletonList(item), null, false, false).allAccepted();
     }
 
     public boolean addItem(GameItem item, ActionReason reason) {
         return addItem(item, reason, false);
     }
 
+    /**
+     * Keep the legacy forceNotify overload for drop, shop and cooking callers.
+     * The shared insertion path already sends hints for accepted grants with a
+     * reason. Never send a forced success hint for a rejected grant.
+     */
     public boolean addItem(GameItem item, ActionReason reason, boolean forceNotify) {
-        boolean result = addItem(item);
-
-        // putItem() bails out on a null itemData, so an unknown item id gets this far with none.
-        var itemData = item.getItemData();
-        if (itemData != null && itemData.getMaterialType() == MaterialType.MATERIAL_AVATAR) {
-            getPlayer()
-                    .sendPacket(
-                            new PacketAddNoGachaAvatarCardNotify(
-                                    (item.getItemId() % 1000) + 10000000, reason, item));
-        }
-
-        // useOnGain (elem balls) skip the obtain tip. Primogem(201)/Mora(202) are ADSORBATE in
-        // Excel but still show on the left tip list like normal items.
-        if ((forceNotify || result) && !shouldSkipItemAddHint(item)) {
-            ActionReason hintReason = reason;
-            if (hintReason == null && (item.getItemId() == 201 || item.getItemId() == 202)) {
-                hintReason = ActionReason.OpenChest;
-            }
-            if (hintReason != null) {
-                getPlayer().sendPacket(new PacketItemAddHintNotify(item, hintReason));
-            }
-        }
-
-        return result;
+        return addItemsInternal(Collections.singletonList(item), reason, true, true).allAccepted();
     }
 
     /** Skip elem-ball spam; keep Primogem/Mora tips. */
@@ -231,35 +185,154 @@ public class Inventory extends BasePlayerManager implements Iterable<GameItem> {
         return addItem(itemParam.getId(), itemParam.getCount(), reason);
     }
 
-    public void addItems(Collection<GameItem> items) {
-        this.addItems(items, null);
+    /** Default to complete delivery. Callers must explicitly request partial delivery. */
+    public InventoryAddResult addItems(Collection<GameItem> items) {
+        return addItems(items, null, InventoryAddPolicy.ALL_OR_NOTHING);
     }
 
-    public void addItems(Collection<GameItem> items, ActionReason reason) {
-        List<GameItem> changedItems = new ArrayList<>();
-        for (var item : items) {
-            if (item.getItemId() == 0) continue;
-            GameItem result = null;
+    public InventoryAddResult addItems(Collection<GameItem> items, ActionReason reason) {
+        return addItems(items, reason, InventoryAddPolicy.ALL_OR_NOTHING);
+    }
 
-            result = putItem(item);
+    public synchronized InventoryAddResult addItems(
+            Collection<GameItem> items, ActionReason reason, InventoryAddPolicy policy) {
+        if (policy == InventoryAddPolicy.BEST_EFFORT) {
+            return addItemsInternal(items, reason, false, false);
+        }
+        return addItems(items, reason, policy, () -> true, () -> {});
+    }
 
-            if (result != null) {
-                this.triggerAddItemEvents(result);
-                changedItems.add(result);
+    /**
+     * Run admission under the same inventory monitor as insertion.
+     * Authorization and confirmation coordinate the caller's separate cost/claim state.
+     * The method cannot roll back a database write or external side effect.
+     */
+    public synchronized InventoryAddResult addItems(
+            Collection<GameItem> items,
+            ActionReason reason,
+            InventoryAddPolicy policy,
+            BooleanSupplier authorize,
+            Runnable confirmed) {
+        if (policy != InventoryAddPolicy.ALL_OR_NOTHING) {
+            throw new IllegalArgumentException("Authorized grant requires ALL_OR_NOTHING");
+        }
+        Objects.requireNonNull(authorize, "authorize");
+        Objects.requireNonNull(confirmed, "confirmed");
+        return InventoryRewardAdmission.grantIfAccepted(
+                items, this::getInventoryTab, this::getVirtualItemCount, authorize, confirmed,
+                accepted -> addItemsInternal(accepted, reason, false, false));
+    }
+
+    /**
+     * Common insertion and notification path. Reports actual amounts and refusal reasons.
+     * ALL_OR_NOTHING runs a full preflight before calling this method.
+     */
+    private synchronized InventoryAddResult addItemsInternal(
+            Collection<GameItem> items,
+            ActionReason reason,
+            boolean notifyAvatarCard,
+            boolean allowCurrencyFallback) {
+        if (items == null || items.isEmpty()) {
+            return new InventoryAddResult(List.of());
+        }
+        Set<GameItem> changedItems = new LinkedHashSet<>();
+        Set<GameItem> seen = Collections.newSetFromMap(new IdentityHashMap<>());
+        List<GameItem> hintedItems = new ArrayList<>();
+        List<InventoryAddResult.Entry> outcome = new ArrayList<>();
+
+        for (GameItem item : items) {
+            InsertResult inserted =
+                    item != null && !seen.add(item)
+                            ? InsertResult.refused(InventoryAddResult.Status.INVALID_ITEM)
+                            : putItem(item);
+            int itemId = item == null ? 0 : item.getItemId();
+            int requested = item == null ? 0 : item.getCount();
+            if (!inserted.accepted()) {
+                outcome.add(new InventoryAddResult.Entry(
+                        itemId, requested, 0, inserted.status()));
+                continue;
+            }
+            outcome.add(new InventoryAddResult.Entry(
+                    itemId, requested, requested, inserted.status()));
+            try {
+                this.player.getProgressManager().addItemObtainedHistory(itemId, requested);
+            } catch (Exception e) {
+                Grasscutter.getLogger().debug("addItemObtainedHistory failed", e);
+            }
+            if (inserted.changedItem() != null) {
+                changedItems.add(inserted.changedItem());
+                // Use this grant's quantity, not the total of an existing stack.
+                triggerAddItemEvents(item);
+            }
+            // Plugin listeners are not part of inventory persistence. Their failure must not
+            // interrupt a grant after the payment/claim has already been confirmed.
+            try {
+                new PlayerObtainItemEvent(getPlayer(), item).call();
+            } catch (RuntimeException listenerFailure) {
+                Grasscutter.getLogger().error(
+                        "PlayerObtainItemEvent failed after granting item {} to uid={}",
+                        itemId, getPlayer().getUid(), listenerFailure);
+            }
+
+            if (notifyAvatarCard && reason != null
+                    && item.getItemData().getMaterialType() == MaterialType.MATERIAL_AVATAR) {
+                try {
+                    getPlayer().sendPacket(
+                            new PacketAddNoGachaAvatarCardNotify(
+                                    (itemId % 1000) + 10000000, reason, item));
+                } catch (RuntimeException notifyFailure) {
+                    Grasscutter.getLogger().error(
+                            "Avatar card notification failed after granting item {} to uid={}",
+                            itemId, getPlayer().getUid(), notifyFailure);
+                }
+            }
+            if (!shouldSkipItemAddHint(item)) {
+                hintedItems.add(item);
             }
         }
-        if (changedItems.size() == 0) {
-            return;
-        }
-        getPlayer().sendPacket(new PacketStoreItemChangeNotify(changedItems));
-        if (reason != null) {
-            var hintItems =
-                    items.stream()
-                            .filter(i -> i != null && i.getItemId() != 0 && !shouldSkipItemAddHint(i))
-                            .toList();
-            if (!hintItems.isEmpty()) {
-                getPlayer().sendPacket(new PacketItemAddHintNotify(hintItems, reason));
+
+        if (!changedItems.isEmpty()) {
+            try {
+                getPlayer().sendPacket(new PacketStoreItemChangeNotify(changedItems));
+            } catch (RuntimeException notifyFailure) {
+                Grasscutter.getLogger().error(
+                        "Inventory change notification failed for uid={}",
+                        getPlayer().getUid(), notifyFailure);
             }
+        }
+        if (!hintedItems.isEmpty()) {
+            ActionReason hintReason = reason;
+            if (allowCurrencyFallback && hintReason == null && hintedItems.size() == 1
+                    && (hintedItems.get(0).getItemId() == 201
+                            || hintedItems.get(0).getItemId() == 202)) {
+                hintReason = ActionReason.OpenChest;
+            }
+            if (hintReason != null) {
+                try {
+                    getPlayer().sendPacket(new PacketItemAddHintNotify(hintedItems, hintReason));
+                } catch (RuntimeException notifyFailure) {
+                    Grasscutter.getLogger().error(
+                            "Item hint notification failed for uid={}",
+                            getPlayer().getUid(), notifyFailure);
+                }
+            }
+        }
+        return new InventoryAddResult(outcome);
+    }
+
+    private record InsertResult(
+            InventoryAddResult.Status status, @Nullable GameItem changedItem) {
+        private boolean accepted() {
+            return status == InventoryAddResult.Status.ADDED
+                    || status == InventoryAddResult.Status.EFFECT_APPLIED;
+        }
+
+        private static InsertResult refused(InventoryAddResult.Status status) {
+            return new InsertResult(status, null);
+        }
+
+        private static InsertResult stored(GameItem item) {
+            return new InsertResult(InventoryAddResult.Status.ADDED, item);
         }
     }
 
@@ -353,7 +426,8 @@ public class Inventory extends BasePlayerManager implements Iterable<GameItem> {
     public void addItemParams(Collection<ItemParam> items) {
         addItems(
                 items.stream().map(param -> new GameItem(param.getItemId(), param.getCount())).toList(),
-                null);
+                null,
+                InventoryAddPolicy.BEST_EFFORT);
     }
 
     public void addItemParamDatas(Collection<ItemParamData> items) {
@@ -363,132 +437,138 @@ public class Inventory extends BasePlayerManager implements Iterable<GameItem> {
     public void addItemParamDatas(Collection<ItemParamData> items, ActionReason reason) {
         addItems(
                 items.stream().map(param -> new GameItem(param.getItemId(), param.getCount())).toList(),
-                reason);
+                reason,
+                InventoryAddPolicy.BEST_EFFORT);
     }
 
-    private synchronized GameItem putItem(GameItem item) {
-        // Dont add items that dont have a valid item definition.
-        var data = item.getItemData();
-        if (data == null) return null;
-        try {
-            this.player.getProgressManager().addItemObtainedHistory(item.getItemId(), item.getCount());
-        } catch (Exception e) {
-            Grasscutter.getLogger().debug("addItemObtainedHistory failed", e);
+    /**
+     * Sole insertion implementation. Persisted inventory loading uses registerStoredItem.
+     */
+    private synchronized InsertResult putItem(GameItem item) {
+        if (item == null || item.getCount() <= 0 || item.getItemId() <= 0) {
+            return InsertResult.refused(InventoryAddResult.Status.INVALID_ITEM);
         }
-
+        ItemData data = item.getItemData();
+        if (data == null || data.getItemType() == null || data.getId() != item.getItemId()) {
+            return InsertResult.refused(InventoryAddResult.Status.INVALID_ITEM);
+        }
         if (data.isUseOnGain()) {
-            // Weapon skins carry ITEM_USE_ADD_WEAPON_SKIN instead of a usable effect, and the
-            // enum constant does not exist in ItemUseOp (Gson -> null), so route them here
-            // instead of useItemDirect, which would silently drop them.
+            // 7.1 weapon skin grants use an operation unknown to ItemUseOp.
+            // Preserve the upstream unlock route rather than rejecting the item.
             var skinIds = WeaponSkinData.skinIdsForItem(item.getItemId());
             if (!skinIds.isEmpty()) {
-                Grasscutter.getLogger()
-                        .info("WeaponSkin unlock: itemId={} -> skinIds={}", item.getItemId(), skinIds);
+                if (item.getCount() != 1) {
+                    return InsertResult.refused(InventoryAddResult.Status.INVALID_ITEM);
+                }
                 this.player.addWeaponSkins(skinIds);
-                return null;
+                return new InsertResult(InventoryAddResult.Status.EFFECT_APPLIED, null);
             }
-            // Prefer addItem() for a proper success result; keep applying here so
-            // addItems() / other putItem callers still consume useOnGain materials.
             var params = new UseItemParams(this.player, data.getUseTarget());
             params.usedItemId = data.getId();
-            this.player.getServer().getInventorySystem().useItemDirect(data, params);
-            return null;
+            if (!this.player.getServer().getInventorySystem().useItemDirect(data, params)) {
+                Grasscutter.getLogger()
+                        .warn("useOnGain failed for item {} (buff/use action rejected)", data.getId());
+                return InsertResult.refused(InventoryAddResult.Status.EFFECT_FAILED);
+            }
+            return new InsertResult(InventoryAddResult.Status.EFFECT_APPLIED, null);
         }
 
-        // Add item to inventory store
-        ItemType type = item.getItemData().getItemType();
+        ItemType type = data.getItemType();
         InventoryTab tab = getInventoryTab(type);
-
-        // Add
         switch (type) {
             case ITEM_WEAPON:
             case ITEM_RELIQUARY:
-                if (tab.getSize() >= tab.getMaxCapacity()) {
-                    return null;
+                if (item.getCount() != 1) {
+                    return InsertResult.refused(InventoryAddResult.Status.INVALID_ITEM);
                 }
-                // Duplicates cause problems
-                item.setCount(Math.max(item.getCount(), 1));
-                // Adds to inventory
-                this.putItem(item, tab);
-                // Set ownership and save to db
+                if (tab == null || tab.getSize() >= tab.getMaxCapacity()) {
+                    return InsertResult.refused(InventoryAddResult.Status.CAPACITY_FULL);
+                }
+                registerStoredItem(item, tab);
                 item.save();
-                return item;
+                return InsertResult.stored(item);
             case ITEM_TPS_WEAPON:
-                // globalItemLimit is 1 for every TPS weapon: hand back the one already owned.
-                var owned = TpsWeaponSystem.findOwnedWeapon(this.player, item.getItemId());
-                if (owned != null) {
-                    return owned;
+                if (TpsWeaponSystem.findOwnedWeapon(this.player, item.getItemId()) != null) {
+                    return InsertResult.refused(InventoryAddResult.Status.ALREADY_OWNED);
                 }
-                if (tab.getSize() >= tab.getMaxCapacity()) {
-                    return null;
+                if (tab == null || tab.getSize() >= tab.getMaxCapacity()) {
+                    return InsertResult.refused(InventoryAddResult.Status.CAPACITY_FULL);
                 }
                 item.setCount(1);
-                this.putItem(item, tab);
+                registerStoredItem(item, tab);
                 item.save();
-                return item;
+                return InsertResult.stored(item);
             case ITEM_VIRTUAL:
-                // Handle
-                this.addVirtualItem(item.getItemId(), item.getCount());
-                return item;
+                if (!InventoryRewardAdmission.supportsVirtualItem(item.getItemId())) {
+                    return InsertResult.refused(InventoryAddResult.Status.UNSUPPORTED_TYPE);
+                }
+                if (InventoryRewardAdmission.isBoundedVirtualBalance(item.getItemId())) {
+                    long current = getVirtualItemCount(item.getItemId());
+                    if (current < 0 || current + item.getCount() > Integer.MAX_VALUE) {
+                        return InsertResult.refused(InventoryAddResult.Status.STACK_LIMIT);
+                    }
+                }
+                addVirtualItem(item.getItemId(), item.getCount());
+                return InsertResult.stored(item);
+            case ITEM_NONE:
+            case ITEM_DISPLAY:
+                return InsertResult.refused(InventoryAddResult.Status.UNSUPPORTED_TYPE);
             default:
-                switch (item.getItemData().getMaterialType()) {
+                if (data.getMaterialType() == null) {
+                    return InsertResult.refused(InventoryAddResult.Status.INVALID_ITEM);
+                }
+                switch (data.getMaterialType()) {
                     case MATERIAL_AVATAR:
                     case MATERIAL_FLYCLOAK:
                     case MATERIAL_COSTUME:
                     case MATERIAL_NAMECARD:
-                        // The resource pack does not change while the server runs, so this is the
-                        // same complaint every time an item of that type is handed out. Once per
-                        // material type is enough to go and fix the pack.
-                        if (MISSING_USE_ON_GAIN_REPORTED.add(item.getItemData().getMaterialType())) {
+                        if (MISSING_USE_ON_GAIN_REPORTED.add(data.getMaterialType())) {
                             Grasscutter.getLogger()
                                     .warn(
                                             "Attempted to add a {} to inventory, but item definition"
                                                 + " lacks isUseOnGain. This indicates a Resources"
                                                 + " error. Further {} items are logged at debug.",
-                                            item.getItemData().getMaterialType().name(),
-                                            item.getItemData().getMaterialType().name());
+                                            data.getMaterialType().name(),
+                                            data.getMaterialType().name());
                         } else {
                             Grasscutter.getLogger()
                                     .debug(
                                             "Attempted to add a {} to inventory, but item definition"
                                                 + " lacks isUseOnGain.",
-                                            item.getItemData().getMaterialType().name());
+                                            data.getMaterialType().name());
                         }
-                        return null;
+                        return InsertResult.refused(InventoryAddResult.Status.UNSUPPORTED_TYPE);
                     default:
                         if (tab == null) {
-                            return null;
+                            return InsertResult.refused(InventoryAddResult.Status.UNSUPPORTED_TYPE);
+                        }
+                        if (data.getStackLimit() <= 0 || item.getCount() > data.getStackLimit()) {
+                            return InsertResult.refused(InventoryAddResult.Status.STACK_LIMIT);
                         }
                         GameItem existingItem = tab.getItemById(item.getItemId());
                         if (existingItem == null) {
-                            // Item type didnt exist before, we will add it to main inventory map if there is
-                            // enough space
                             if (tab.getSize() >= tab.getMaxCapacity()) {
-                                return null;
+                                return InsertResult.refused(InventoryAddResult.Status.CAPACITY_FULL);
                             }
-                            this.putItem(item, tab);
-                            // Set ownership and save to db
+                            registerStoredItem(item, tab);
                             item.save();
-                            return item;
-                        } else {
-                            // Add count
-                            existingItem.setCount(
-                                    Math.min(
-                                            existingItem.getCount() + item.getCount(),
-                                            item.getItemData().getStackLimit()));
-                            existingItem.save();
-                            return existingItem;
+                            return InsertResult.stored(item);
                         }
+                        if ((long) existingItem.getCount() + item.getCount()
+                                > data.getStackLimit()) {
+                            return InsertResult.refused(InventoryAddResult.Status.STACK_LIMIT);
+                        }
+                        existingItem.setCount(existingItem.getCount() + item.getCount());
+                        existingItem.save();
+                        return InsertResult.stored(existingItem);
                 }
         }
     }
 
-    private synchronized void putItem(GameItem item, InventoryTab tab) {
+    private synchronized void registerStoredItem(GameItem item, InventoryTab tab) {
         this.player.getCodex().checkAddedItem(item);
-        // Set owner and guid FIRST!
         item.setOwner(this.player);
         item.checkIsNew(this);
-        // Put in item store
         getItems().put(item.getGuid(), item);
         if (tab != null) {
             tab.onAddItem(item);
@@ -582,13 +662,15 @@ public class Inventory extends BasePlayerManager implements Iterable<GameItem> {
     }
 
     public synchronized boolean payItem(int id, int count) {
+        if (id <= 0 || count < 0) return false;
+        if (count == 0) return true;
         if (this.getVirtualItemCount(id) < count) return false;
         this.payVirtualItem(id, count);
         return true;
     }
 
     public boolean payItem(ItemParamData costItem) {
-        return this.payItem(costItem.getId(), costItem.getCount());
+        return costItem != null && this.payItem(costItem.getId(), costItem.getCount());
     }
 
     public boolean payItems(ItemParamData[] costItems) {
@@ -601,19 +683,7 @@ public class Inventory extends BasePlayerManager implements Iterable<GameItem> {
 
     public synchronized boolean payItems(
             ItemParamData[] costItems, int quantity, ActionReason reason) {
-        // Make sure player has requisite items
-        for (ItemParamData cost : costItems)
-            if (this.getVirtualItemCount(cost.getId()) < (cost.getCount() * quantity)) return false;
-        // All costs are satisfied, now remove them all
-        for (ItemParamData cost : costItems) {
-            this.payVirtualItem(cost.getId(), cost.getCount() * quantity);
-        }
-
-        if (reason != null) { // Do we need these?
-            // getPlayer().sendPacket(new PacketItemAddHintNotify(changedItems, reason));
-        }
-        // getPlayer().sendPacket(new PacketStoreItemChangeNotify(changedItems));
-        return true;
+        return costItems != null && payItems(Arrays.asList(costItems), quantity, reason);
     }
 
     public boolean payItems(Iterable<ItemParamData> costItems) {
@@ -624,14 +694,34 @@ public class Inventory extends BasePlayerManager implements Iterable<GameItem> {
         return this.payItems(costItems, quantity, null);
     }
 
+    /** Check affordability under the inventory monitor without making a payment. */
+    public synchronized boolean canPayItems(Iterable<ItemParamData> costItems, int quantity) {
+        Map<Integer, Integer> totals = InventoryPaymentQuote.calculate(costItems, quantity);
+        return totals != null && canPayQuote(totals);
+    }
+
+    private boolean canPayQuote(Map<Integer, Integer> totals) {
+        for (var cost : totals.entrySet()) {
+            if (getVirtualItemCount(cost.getKey()) < cost.getValue()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Validate a whole payment, including repeated item IDs and arithmetic overflow,
+     * before consuming anything. All payment entry points share the same inventory lock.
+     */
     public synchronized boolean payItems(
             Iterable<ItemParamData> costItems, int quantity, ActionReason reason) {
-        // Make sure player has requisite items
-        for (ItemParamData cost : costItems)
-            if (getVirtualItemCount(cost.getId()) < (cost.getCount() * quantity)) return false;
-        // All costs are satisfied, now remove them all
-        costItems.forEach(cost -> this.payVirtualItem(cost.getId(), cost.getCount() * quantity));
-        // TODO:handle the reason(need to send certain package)
+        Map<Integer, Integer> totals = InventoryPaymentQuote.calculate(costItems, quantity);
+        if (totals == null || !canPayQuote(totals)) {
+            return false;
+        }
+        for (var cost : totals.entrySet()) {
+            payVirtualItem(cost.getKey(), cost.getValue());
+        }
         return true;
     }
 
@@ -800,7 +890,7 @@ public class Inventory extends BasePlayerManager implements Iterable<GameItem> {
                 tab = getInventoryTab(item.getItemData().getItemType());
             }
 
-            this.putItem(item, tab);
+            this.registerStoredItem(item, tab);
 
             // Equip to a character if possible
             if (item.isEquipped()) {
