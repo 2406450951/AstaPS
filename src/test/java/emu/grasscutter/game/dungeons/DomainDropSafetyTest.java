@@ -66,6 +66,77 @@ final class DomainDropSafetyTest {
     }
 
     @Test
+    void mixedCyclicNativeGraphIsRejectedEvenWithValidLeaves() {
+        var graph = Map.of(
+                1, List.of(2, 3),
+                2, List.of(1),
+                3, List.of(114049));
+        assertTrue(DomainDropSafety.nativeLeafIds(1, graph::get).isEmpty());
+    }
+
+    @Test
+    void sharedNativeSubtableIsNotMistakenForACycle() {
+        var graph = Map.of(
+                1, List.of(2, 3),
+                2, List.of(4),
+                3, List.of(4),
+                4, List.of(114049));
+        assertEquals(Set.of(114049), DomainDropSafety.nativeLeafIds(1, graph::get));
+    }
+
+    @Test
+    void fontaineWeaponDomainsHaveValidatedPayableCompatibilityPools() throws IOException {
+        var source = Files.readString(Path.of("data", "DungeonDrop.json"));
+        DungeonDrop[] drops = new Gson().fromJson(source, DungeonDrop[].class);
+        var pools = new HashMap<Integer, List<DungeonDropEntry>>();
+        for (var drop : drops) {
+            assertTrue(pools.putIfAbsent(drop.getDungeonId(), drop.getDrops()) == null,
+                    "Duplicate dungeon pool: " + drop.getDungeonId());
+        }
+        int[] bases = {4470, 4500, 4504};
+        int[] materials = {114049, 114053, 114057};
+        int[] mora = {1125, 1550, 1850, 2200};
+        int[] friendship = {10, 15, 15, 20};
+        for (int family = 0; family < bases.length; family++) {
+            for (int tier = 0; tier < 4; tier++) {
+                int dungeonId = bases[family] + tier;
+                var pool = pools.get(dungeonId);
+                assertTrue(pool != null && !pool.isEmpty(), "Missing rewards: " + dungeonId);
+                DomainDropSafety.validatePool(
+                        dungeonId, pool, DungeonSubType.DUNGEON_SUB_WEAPON);
+                var expectedIds = new HashSet<>(Set.of(102, 202, 105));
+                for (int grade = 0; grade <= tier; grade++) {
+                    expectedIds.add(materials[family] + grade);
+                }
+                var actualIds = new HashSet<Integer>();
+                pool.forEach(entry -> actualIds.addAll(entry.getItems()));
+                assertEquals(expectedIds, actualIds, "Wrong reward family: " + dungeonId);
+                for (int rolls : new int[] {1, 2, 3}) {
+                    var rewards = DomainDropRoller.roll(
+                            dungeonId, DungeonSubType.DUNGEON_SUB_WEAPON,
+                            pool, rolls, false);
+                    assertFalse(rewards.isEmpty(), "Empty rewards: " + dungeonId);
+                    assertTrue(rewards.stream().allMatch(item ->
+                            item.getCount() > 0 && expectedIds.contains(item.getId())));
+                    assertEquals(100 * rolls, rewards.stream()
+                            .filter(item -> item.getId() == 102)
+                            .mapToInt(item -> item.getCount()).sum());
+                    assertEquals(mora[tier] * rolls, rewards.stream()
+                            .filter(item -> item.getId() == 202)
+                            .mapToInt(item -> item.getCount()).sum());
+                    assertEquals(friendship[tier] * rolls, rewards.stream()
+                            .filter(item -> item.getId() == 105)
+                            .mapToInt(item -> item.getCount()).sum());
+                    assertTrue(rewards.stream().anyMatch(
+                            item -> item.getId() >= materials[family]
+                                    && item.getId() <= materials[family] + tier),
+                            "Missing weapon material: " + dungeonId);
+                }
+            }
+        }
+    }
+
+    @Test
     void actual4706CompatibilityPoolUsesOnlyExpectedArtifactFamilies() throws IOException {
         var source = Files.readString(Path.of("data", "DungeonDrop.json"));
         DungeonDrop[] drops = new Gson().fromJson(source, DungeonDrop[].class);

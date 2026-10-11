@@ -27,30 +27,44 @@ final class DomainDropSafety {
         return verifiedProxy ? RewardSource.VALIDATED_PROXY : RewardSource.NONE;
     }
 
-    /** Resolve all possible terminal item IDs, not one random roll. Fail closed on a broken graph. */
+    /** Resolve every positive-weight terminal; reject broken or cyclic graphs, including mixed cycles. */
     static Set<Integer> nativeLeafIds(int root, IntFunction<List<Integer>> children) {
         if (root <= 0) return Set.of();
-        var pending = new ArrayDeque<Integer>();
-        var visited = new HashSet<Integer>();
+        var pending = new ArrayDeque<NativeVisit>();
+        var active = new HashSet<Integer>();
+        var finished = new HashSet<Integer>();
         var leaves = new HashSet<Integer>();
-        pending.add(root);
+        pending.push(new NativeVisit(root, false));
         while (!pending.isEmpty()) {
-            int id = pending.removeFirst();
-            if (id <= 0) return Set.of();
-            if (!visited.add(id)) continue;
-            if (visited.size() > 10_000) return Set.of();
-            List<Integer> targets = children.apply(id);
+            var visit = pending.pop();
+            int id = visit.id();
+            if (visit.exiting()) {
+                active.remove(id);
+                finished.add(id);
+                continue;
+            }
+            if (id <= 0 || active.contains(id)) return Set.of();
+            if (finished.contains(id)) continue; // Shared descendant in an acyclic DAG.
+            if (finished.size() + active.size() >= 10_000) return Set.of();
+            var targets = children.apply(id);
             if (targets == null) {
                 leaves.add(id);
-            } else {
-                if (targets.isEmpty() || targets.stream().anyMatch(x -> x == null || x <= 0)) {
-                    return Set.of();
-                }
-                pending.addAll(targets);
+                finished.add(id);
+                continue;
+            }
+            if (targets.isEmpty() || targets.stream().anyMatch(x -> x == null || x <= 0)) {
+                return Set.of();
+            }
+            active.add(id);
+            pending.push(new NativeVisit(id, true));
+            for (int i = targets.size() - 1; i >= 0; i--) {
+                pending.push(new NativeVisit(targets.get(i), false));
             }
         }
         return leaves;
     }
+
+    private record NativeVisit(int id, boolean exiting) {}
 
     /** Artifact IDs use a three-digit set family; talent/weapon tiers use a five-digit family. */
     static int rewardFamily(int itemId, DungeonSubType subType) {
