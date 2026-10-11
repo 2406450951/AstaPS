@@ -1,5 +1,6 @@
 package emu.grasscutter.game.player;
 
+import emu.grasscutter.Grasscutter;
 import emu.grasscutter.game.world.Position;
 import emu.grasscutter.game.world.WorldAreaIndex;
 import emu.grasscutter.server.packet.send.PacketServerGlobalValueChangeNotify;
@@ -75,7 +76,9 @@ public final class SnezhnayaFrigid {
     public static void syncForSceneEntry(Player player) {
         if (player.getTeamManager() == null) return;
         boolean in = isIn(player);
-        if (in != isGranted(player)) TeamAbilityToggle.set(player, TEAM_ABILITIES, in, false);
+        if (in == isGranted(player)) return;
+        logChange(player, in, "scene entry");
+        TeamAbilityToggle.set(player, TEAM_ABILITIES, in, false);
     }
 
     /** Applies a seamless border crossing: updates the team abilities and, on entry, fills the warmth. */
@@ -84,11 +87,31 @@ public final class SnezhnayaFrigid {
         boolean in = isIn(player);
         if (in == isGranted(player)) return;
 
+        logChange(player, in, "crossing");
         TeamAbilityToggle.set(player, TEAM_ABILITIES, in, true);
         var team = player.getTeamManager().getEntity();
         if (in && team != null) {
             player.sendPacket(new PacketServerGlobalValueChangeNotify(team.getId(), ENERGY_GV, MAX_ENERGY));
             player.sendPacket(new PacketServerGlobalValueChangeNotify(team.getId(), FRIGID_GV, 0f));
         }
+    }
+
+    private static void logChange(Player player, boolean in, String reason) {
+        if (!Grasscutter.getLogger().isDebugEnabled()) return;
+        var scene = player.getScene();
+        var pos = player.getPosition();
+        int area =
+                scene == null || pos == null
+                        ? 0
+                        : WorldAreaIndex.forScene(scene.getId()).level1AreaAt(pos.getX(), pos.getZ());
+        Grasscutter.getLogger()
+                .debug(
+                        "[SnezhnayaFrigid] {} Frigid abilities on {}: uid={} scene={} pos={} area={}",
+                        in ? "grant" : "withdraw",
+                        reason,
+                        player.getUid(),
+                        scene == null ? 0 : scene.getId(),
+                        pos,
+                        area);
     }
 }

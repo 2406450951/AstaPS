@@ -63,9 +63,15 @@ public final class WorldAreaIndex {
 
     private static WorldAreaIndex load(int sceneId) {
         var path = FileUtils.getResourcePath("BinOutput/Scene/WorldArea/scene" + sceneId + "_worldArea.json");
-        if (!Files.isRegularFile(path)) return new WorldAreaIndex(List.of());
+        if (!Files.isRegularFile(path)) {
+            Grasscutter.getLogger().debug("[WorldArea] no outline data for scene {} at {}", sceneId, path);
+            return new WorldAreaIndex(List.of());
+        }
         try (Reader reader = Files.newBufferedReader(path)) {
-            return parse(JsonParser.parseReader(reader));
+            var index = parse(JsonParser.parseReader(reader));
+            Grasscutter.getLogger()
+                    .debug("[WorldArea] loaded {} level-1 areas for scene {}", index.areas.size(), sceneId);
+            return index;
         } catch (Exception e) {
             Grasscutter.getLogger().warn("Failed to read world areas for scene {}", sceneId, e);
             return new WorldAreaIndex(List.of());
