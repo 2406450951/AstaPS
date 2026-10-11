@@ -295,9 +295,11 @@ public final class AbilityManager extends BasePlayerManager {
             return;
         }
 
+        boolean ownerWasLive = isLive(ability.getOwner());
         eventExecutor.submit(
             () -> {
                 try {
+                    if (ownerWasLive && !isLive(ability.getOwner())) return;
                     if (!handler.execute(ability, action, abilityData, target)) {
                         Grasscutter.getLogger()
                             .debug("Ability execute action failed for {} at {}.", action.type, ability);
@@ -342,32 +344,27 @@ public final class AbilityManager extends BasePlayerManager {
 
     public void executeMixin(Ability ability, AbilityMixinData mixinData, ByteString abilityData) {
 
-        var invoke = AbilityInvokeEntry.newBuilder().setAbilityData(abilityData).build();
-        var head = invoke.getHead();
         var handler = mixinHandlers.get(mixinData.type);
         GameEntity target = ability.getOwner();
-        Player player = getPlayer();
 
-        if (handler == mixinHandlers.get(AbilityMixinData.Type.SwitchHealToHPDebtsMixin)) {
-
-            if (target instanceof EntityAvatar avatar) {
-
-                if (avatar.getAvatar().getAvatarId() == 10000098 || avatar.getAvatar().getAvatarId() == 10000096)
-                    target.setConvertToHpDebt(true);
-
-            }
-
+        // This mixin has no handler; it only marks Clorinde and Arlecchino as converting heals to HP debt.
+        if (mixinData.type == AbilityMixinData.Type.SwitchHealToHPDebtsMixin
+                && target instanceof EntityAvatar avatar
+                && (avatar.getAvatar().getAvatarId() == 10000098 || avatar.getAvatar().getAvatarId() == 10000096)) {
+            target.setConvertToHpDebt(true);
         }
 
-        if (handler == null || ability == null) {
+        if (handler == null) {
             Grasscutter.getLogger()
                 .trace("Could not execute ability mixin {} at {}", mixinData.type, ability);
             return;
         }
 
+        boolean ownerWasLive = isLive(target);
         eventExecutor.submit(
             () -> {
                 try {
+                    if (ownerWasLive && !isLive(target)) return;
                     if (!handler.execute(ability, mixinData, abilityData, target)) {
                         Grasscutter.getLogger()
                             .error("Ability execute action failed for {} at {}.", mixinData.type, ability);
@@ -377,6 +374,15 @@ public final class AbilityManager extends BasePlayerManager {
                         .error("Ability mixin {} threw at {}.", mixinData.type, ability, e);
                 }
             });
+    }
+
+    /** Queued work is dropped for an entity that has since left the player's scene or world. */
+    private boolean isLive(GameEntity entity) {
+        if (entity instanceof EntityAvatar a) {
+            return this.player.getWorld() != null && this.player.getTeamManager().getActiveTeam().contains(a);
+        }
+        var scene = this.player.getWorld() == null ? null : this.player.getScene();
+        return entity != null && scene != null && scene.getEntityById(entity.getId()) == entity;
     }
 
     /**

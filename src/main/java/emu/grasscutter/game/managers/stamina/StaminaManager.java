@@ -411,10 +411,6 @@ public class StaminaManager extends BasePlayerManager {
     }
 
     public void handleCombatInvocationsNotify(@NotNull GameSession session, @NotNull EntityMoveInfo moveInfo, @NotNull GameEntity entity) {
-        // cache info for later use in SustainedStaminaHandler tick
-        this.cachedSession = session;
-        this.cachedEntity = entity;
-
         // Get the motion data.
         var motionInfo = moveInfo.getMotionInfo();
         var motionState = motionInfo.getState();
@@ -423,6 +419,10 @@ public class StaminaManager extends BasePlayerManager {
         if (notifyEntityId != currentAvatarEntityId && notifyEntityId != vehicleId) {
             return;
         }
+
+        // cache info for later use in SustainedStaminaHandler tick
+        this.cachedSession = session;
+        this.cachedEntity = entity;
 
         // Update previous motion state
         this.previousState = currentState;
@@ -554,8 +554,10 @@ public class StaminaManager extends BasePlayerManager {
         if (stamina < 10) {
             logger.trace(getCurrentCharacterStamina() + "/" +
                 getMaxCharacterStamina() + "\t" + currentState);
-            if (currentState != MotionState.MotionState_MOTION_SWIM_IDLE) {
-                killAvatar(cachedSession, cachedEntity, PlayerDieType.PlayerDieType_PLAYER_DIE_DRAWN);
+            var avatar = player.getTeamManager().getCurrentAvatarEntity();
+            if (currentState != MotionState.MotionState_MOTION_SWIM_IDLE
+                    && avatar != null && avatar == cachedEntity && avatar.isAlive()) {
+                killAvatar(cachedSession, avatar, PlayerDieType.PlayerDieType_PLAYER_DIE_DRAWN);
             }
         }
     }

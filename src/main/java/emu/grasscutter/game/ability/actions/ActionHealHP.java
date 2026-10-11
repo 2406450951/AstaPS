@@ -19,31 +19,7 @@ public final class ActionHealHP extends AbilityActionHandler {
     public boolean execute(
             Ability ability, AbilityModifierAction action, ByteString abilityData, GameEntity target) {
         if (ClorindeBoLUtil.handleHealHp(ability, action, target)) return true;
-        var owner = ability.getOwner();
-
-        if (owner instanceof EntityClientGadget ownerGadget) {
-            owner =
-                    ownerGadget
-                            .getScene()
-                            .getEntityById(ownerGadget.getOwnerEntityId());
-            if (DebugConstants.LOG_ABILITIES) {
-                Grasscutter.getLogger()
-                        .debug(
-                                "Owner {} has top owner {}: {}",
-                                ability.getOwner(),
-                                ownerGadget.getOwnerEntityId(),
-                                owner);
-            }
-        }
-        if (owner instanceof EntityClientGadget ownerGadget) {
-                owner = ownerGadget.getScene().getEntityById(ownerGadget.getOwnerEntityId());
-
-                if (ownerGadget.gadgetId == 41089013 || ownerGadget.gadgetId == 41089012 || ownerGadget.gadgetId == 41089011) {
-                    if (owner == null) {
-                        owner = ability.getPlayerOwner().getTeamManager().getCurrentAvatarEntity();
-                    }
-                }
-            }
+        var owner = resolveHealCaster(ability);
 
         if (owner == null) return false;
 
@@ -74,16 +50,6 @@ public final class ActionHealHP extends AbilityActionHandler {
         var amountByTargetMaxHPRatio = action.amountByTargetMaxHPRatio.get(properties, 0);
         var amountToRegenerate = action.amount.get(properties, 0);
 
-        if (action.amount.get(ability) != 0 &&
-            (amountByCasterMaxHPRatio != 0 ||
-            amountByCasterAttackRatio != 0 ||
-            amountByCasterCurrentHPRatio != 0 ||
-            amountByCasterDefRatio != 0 ||
-            amountByTargetCurrentHPRatio != 0 ||
-            amountByTargetMaxHPRatio != 0)) {
-            amountToRegenerate += action.amount.get(ability);
-        }
-
         amountToRegenerate +=
                 amountByCasterMaxHPRatio * owner.getFightProperty(FightProperty.FIGHT_PROP_MAX_HP);
         amountToRegenerate +=
@@ -93,16 +59,20 @@ public final class ActionHealHP extends AbilityActionHandler {
         amountToRegenerate +=
                 amountByCasterDefRatio * owner.getFightProperty(FightProperty.FIGHT_PROP_CUR_DEFENSE);
 
+        // otherTargets may retarget (e.g. Lauma C1 SelectTargetsByShape + CurLocalAvatar).
+        GameEntity healTarget = resolveHealTarget(ability, action, target);
+        if (healTarget == null) return false;
+
         var abilityRatio = 1.0f;
         if (!action.ignoreAbilityProperty)
             abilityRatio +=
-                    target.getFightProperty(FightProperty.FIGHT_PROP_HEAL_ADD)
-                            + target.getFightProperty(FightProperty.FIGHT_PROP_HEALED_ADD);
+                    owner.getFightProperty(FightProperty.FIGHT_PROP_HEAL_ADD)
+                            + healTarget.getFightProperty(FightProperty.FIGHT_PROP_HEALED_ADD);
 
         amountToRegenerate +=
-                amountByTargetCurrentHPRatio * target.getFightProperty(FightProperty.FIGHT_PROP_MAX_HP);
+                amountByTargetCurrentHPRatio * healTarget.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP);
         amountToRegenerate +=
-                amountByTargetMaxHPRatio * target.getFightProperty(FightProperty.FIGHT_PROP_MAX_HP);
+                amountByTargetMaxHPRatio * healTarget.getFightProperty(FightProperty.FIGHT_PROP_MAX_HP);
 
         String healTag = action.healTag;
         // Do NOT set Dodge_HealFlag=1 here: the enhanced full-BoL Impale requires HealFlag==0 at the start.
@@ -133,18 +103,6 @@ public final class ActionHealHP extends AbilityActionHandler {
         }
 
         float finalAmount = amountToRegenerate * abilityRatio * action.healRatio.get(ability, 1f);
-
-        // otherTargets may retarget (e.g. Lauma C1 SelectTargetsByShape + CurLocalAvatar).
-        GameEntity healTarget = resolveHealTarget(ability, action, target);
-        if (healTarget == null) {
-            healTarget = target;
-        }
-        // Recalculate heal/healed bonuses against the actual recipient when retargeted.
-        if (healTarget != target && !action.ignoreAbilityProperty) {
-            float healAdd = owner.getFightProperty(FightProperty.FIGHT_PROP_HEAL_ADD);
-            float healedAdd = healTarget.getFightProperty(FightProperty.FIGHT_PROP_HEALED_ADD);
-            finalAmount = amountToRegenerate * (1.0f + healAdd + healedAdd) * action.healRatio.get(ability, 1f);
-        }
 
         if (healTarget instanceof EntityAvatar burstHealer
                 && burstHealer.getAvatar() != null
@@ -194,7 +152,7 @@ public final class ActionHealHP extends AbilityActionHandler {
                     if (member.isConvertToHpDebt()) continue;
                     float memberRatio = 1.0f;
                     if (!action.ignoreAbilityProperty)
-                        memberRatio += member.getFightProperty(FightProperty.FIGHT_PROP_HEAL_ADD)
+                        memberRatio += owner.getFightProperty(FightProperty.FIGHT_PROP_HEAL_ADD)
                             + member.getFightProperty(FightProperty.FIGHT_PROP_HEALED_ADD);
                     float spreadAmount = baseAmount * memberRatio;
                     float spreadReal = member.heal(spreadAmount, action.muteHealEffect);
@@ -206,6 +164,27 @@ public final class ActionHealHP extends AbilityActionHandler {
         }
 
         return true;
+    }
+
+    /** The entity whose healing bonus applies: a gadget's owner, else the named caster. */
+    private static GameEntity resolveHealCaster(Ability ability) {
+        var owner = ability.getOwner();
+        // Gadgets may be spawned by gadgets (Furina's salon members); follow a few levels.
+        for (int depth = 0; depth < 4 && owner instanceof EntityClientGadget gadget; depth++) {
+            var scene = gadget.getScene();
+            if (scene == null) return null;
+            owner = scene.getEntityById(gadget.getOwnerEntityId());
+            if (owner == null) owner = scene.getEntityById(gadget.getOriginalOwnerEntityId());
+            if (owner == null
+                    && (gadget.gadgetId == 41089011 || gadget.gadgetId == 41089012 || gadget.gadgetId == 41089013)
+                    && ability.getPlayerOwner() != null) {
+                owner = ability.getPlayerOwner().getTeamManager().getCurrentAvatarEntity();
+            }
+            if (!(owner instanceof EntityClientGadget)) return owner;
+        }
+        if (!(owner instanceof EntityAvatar)) return owner;
+        var caster = ability.getCasterEntity();
+        return caster != null ? caster : owner;
     }
 
     /**

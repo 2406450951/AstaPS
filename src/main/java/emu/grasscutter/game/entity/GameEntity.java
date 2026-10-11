@@ -608,8 +608,7 @@ public abstract class GameEntity {
 
                 effectiveDamage = curHp - 1;
             }
-        } else if (curHp != Float.POSITIVE_INFINITY && (!isLockHP() || !respectLockHp)
-                || isLockHP() && curHp <= event.getDamage()) {
+        } else if (curHp != Float.POSITIVE_INFINITY && (!isLockHP() || !respectLockHp)) {
             effectiveDamage = event.getDamage();
         }
 

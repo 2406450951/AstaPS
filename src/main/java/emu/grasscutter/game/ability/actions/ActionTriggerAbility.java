@@ -25,7 +25,9 @@ public final class ActionTriggerAbility extends AbilityActionHandler {
             return false;
         }
 
-        AbilityManager manager = player.getWorld().getHost().getAbilityManager();
+        var world = player.getWorld();
+        if (world == null || world.getHost() == null) return false;
+        AbilityManager manager = world.getHost().getAbilityManager();
         // Re-triggering an already-instanced ability (e.g. Skirk Pickable_Handler on absorb) must
         // run onAbilityStart. Blindly stacking another copy only fires onAdded and skips energy.
         Ability existing = findAbility(target, action.abilityName);
