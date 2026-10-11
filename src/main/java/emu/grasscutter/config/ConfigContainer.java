@@ -38,9 +38,10 @@ public class ConfigContainer {
      * Version 14 - 'server.threadPools' was added for managed thread-pool sizing.
      * Version 15 - 'server.watchdog' was added for the database monitor and timed restart.
      * Version 16 - 'server.http.webConsole' was added for the password-protected web console.
+     * Version 17 - 'gameOptions.unlockAllOpenStatesOnLogin' controls optional login feature unlock.
      */
     private static int version() {
-        return 16;
+        return 17;
     }
 
     /**
@@ -417,6 +418,9 @@ public class ConfigContainer {
 
         public boolean watchGachaConfig = false;
         public boolean enableShopItems = false;
+
+        /** Sandbox-only: unlock all supported OpenStates on login. Disabled by default. */
+        public boolean unlockAllOpenStatesOnLogin = false;
         public ArtifactShopOptions artifactShop = new ArtifactShopOptions();
         public boolean staminaUsage = true;
         public boolean energyUsage = true;
