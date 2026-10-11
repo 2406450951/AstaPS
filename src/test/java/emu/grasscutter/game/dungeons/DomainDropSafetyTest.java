@@ -31,17 +31,54 @@ final class DomainDropSafetyTest {
     }
 
     @Test
-    void nativeRootHasPriorityAndMissingSourceDoesNotUsePreviewPlaceholder() {
+    void sourceSelectionRequiresVerifiedNativeOrVerifiedProxy() {
         assertEquals(DomainDropSafety.RewardSource.NATIVE_ROOT,
-                DomainDropSafety.chooseRewardSource(true, true, true, true));
+                DomainDropSafety.chooseRewardSource(true, true));
         assertEquals(DomainDropSafety.RewardSource.VALIDATED_PROXY,
-                DomainDropSafety.chooseRewardSource(false, true, true, true));
+                DomainDropSafety.chooseRewardSource(false, true));
         assertEquals(DomainDropSafety.RewardSource.NONE,
-                DomainDropSafety.chooseRewardSource(false, false, true, true));
-        assertEquals(DomainDropSafety.RewardSource.PREVIEW_ONLY,
-                DomainDropSafety.chooseRewardSource(false, false, false, true));
-        assertEquals(DomainDropSafety.RewardSource.NONE,
-                DomainDropSafety.chooseRewardSource(false, false, false, false));
+                DomainDropSafety.chooseRewardSource(false, false));
+    }
+
+    @Test
+    void nativeGraphDoesNotTrustLegacyArtifactsFor4706() {
+        var graph = Map.of(85315500, List.of(85315501),
+                85315501, List.of(202, 71513, 72523));
+        var nativeItems = DomainDropSafety.nativeLeafIds(85315500, graph::get);
+        var proxyItems = Set.of(202, 47513, 47523, 48513, 48523);
+        assertFalse(DomainDropSafety.matchesNativeFamilies(nativeItems, proxyItems,
+                DungeonSubType.DUNGEON_SUB_RELIQUARY, id -> id >= 20000));
+        assertEquals(DomainDropSafety.RewardSource.VALIDATED_PROXY,
+                DomainDropSafety.chooseRewardSource(false, true));
+        assertTrue(DomainDropSafety.matchesNativeFamilies(
+                Set.of(202, 47513, 48513), proxyItems,
+                DungeonSubType.DUNGEON_SUB_RELIQUARY, id -> id >= 20000));
+    }
+
+    @Test
+    void brokenAndCyclicNativeGraphsFailClosed() {
+        assertTrue(DomainDropSafety.nativeLeafIds(1,
+                Map.of(1, List.<Integer>of())::get).isEmpty());
+        assertTrue(DomainDropSafety.nativeLeafIds(1,
+                Map.of(1, List.of(2), 2, List.of(1))::get).isEmpty());
+        assertTrue(DomainDropSafety.nativeLeafIds(1,
+                Map.of(1, List.of(0))::get).isEmpty());
+    }
+
+    @Test
+    void actual4706CompatibilityPoolUsesOnlyExpectedArtifactFamilies() throws IOException {
+        var source = Files.readString(Path.of("data", "DungeonDrop.json"));
+        DungeonDrop[] drops = new Gson().fromJson(source, DungeonDrop[].class);
+        var pool = Arrays.stream(drops).filter(drop -> drop.getDungeonId() == 4706)
+                .findFirst().orElseThrow();
+        DomainDropSafety.validatePool(4706, pool.getDrops(),
+                DungeonSubType.DUNGEON_SUB_RELIQUARY);
+        var ids = new HashSet<Integer>();
+        pool.getDrops().forEach(entry -> ids.addAll(entry.getItems()));
+        ids.removeIf(id -> id < 20000);
+        assertTrue(DomainDropSafety.isVerifiedCompatibilityPool(4706, ids));
+        assertFalse(DomainDropSafety.isVerifiedCompatibilityPool(
+                4706, Set.of(71513, 72523)));
     }
 
     @Test
@@ -98,7 +135,7 @@ final class DomainDropSafetyTest {
         DungeonDrop[] drops = new Gson().fromJson(source, DungeonDrop[].class);
         assertTrue(Arrays.stream(drops).anyMatch(drop -> drop.getDungeonId() == dungeonId));
         assertEquals(DomainDropSafety.RewardSource.NATIVE_ROOT,
-                DomainDropSafety.chooseRewardSource(true, true, true, true));
+                DomainDropSafety.chooseRewardSource(true, true));
     }
 
     @ParameterizedTest
@@ -208,4 +245,83 @@ final class DomainDropSafetyTest {
                 }));
         assertEquals(1, charged.get());
     }
+    @Test
+    void concurrentClaimAndResetShareMonitorAndPreventDuplicateCharge() throws Exception {
+        Object monitor = new Object();
+        var rewarded = new HashSet<Integer>();
+        var run = new DomainClaimRunIdentity();
+        String firstRunId = run.operationId(4471);
+        var paid = new AtomicInteger();
+        var granted = new AtomicInteger();
+        var inClaim = new java.util.concurrent.CountDownLatch(1);
+        var mayFinish = new java.util.concurrent.CountDownLatch(1);
+        var resetDone = new java.util.concurrent.CountDownLatch(1);
+
+        var claiming = new Thread(() -> DomainDropSafety.commitOnce(
+                monitor, rewarded, 70632, List.of(47513), (items, confirmed) -> {
+                    paid.incrementAndGet();
+                    confirmed.run();
+                    inClaim.countDown();
+                    try {
+                        if (!mayFinish.await(3, java.util.concurrent.TimeUnit.SECONDS)) {
+                            throw new IllegalStateException("claim blocked");
+                        }
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        throw new RuntimeException(e);
+                    }
+                    granted.incrementAndGet();
+                    return true;
+                }));
+        var restarting = new Thread(() -> {
+            synchronized (monitor) {
+                rewarded.clear();
+                run.restart();
+            }
+            resetDone.countDown();
+        });
+        claiming.start();
+        try {
+            assertTrue(inClaim.await(3, java.util.concurrent.TimeUnit.SECONDS));
+            restarting.start();
+            assertFalse(resetDone.await(150, java.util.concurrent.TimeUnit.MILLISECONDS),
+                    "Reset must wait while paid claim is completing");
+        } finally {
+            mayFinish.countDown();
+            claiming.join(3000);
+            restarting.join(3000);
+        }
+        assertFalse(claiming.isAlive());
+        assertFalse(restarting.isAlive());
+        assertEquals(1, paid.get());
+        assertEquals(1, granted.get());
+        assertEquals(0L, resetDone.getCount());
+        assertFalse(firstRunId.equals(run.operationId(4471)));
+
+        // A delayed request from the previous run cannot authorize another charge.
+        assertFalse(DomainDropSafety.commitOnce(
+                monitor, rewarded, 70632, List.of(47513), (items, confirmed) -> {
+                    if (!firstRunId.equals(run.operationId(4471))) return false;
+                    paid.incrementAndGet();
+                    confirmed.run();
+                    return true;
+                }));
+        assertEquals(1, paid.get());
+        assertTrue(DomainDropSafety.commitOnce(
+                monitor, rewarded, 70632, List.of(47513), (items, confirmed) -> {
+                    paid.incrementAndGet();
+                    confirmed.run();
+                    granted.incrementAndGet();
+                    return true;
+                }));
+        assertEquals(2, paid.get());
+        assertEquals(2, granted.get());
+    }
+
+    @Test
+    void dungeonManagerResetUsesSynchronizedMethod() throws Exception {
+        var reset = DungeonManager.class.getDeclaredMethod("restartDungeon");
+        assertTrue(java.lang.reflect.Modifier.isSynchronized(reset.getModifiers()));
+    }
+
 }
