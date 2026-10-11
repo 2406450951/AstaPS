@@ -32,7 +32,7 @@ import picocli.CommandLine.Parameters;
 
 @Command(
         label = "spawn",
-        aliases = {"drop", "s"},
+        aliases = {"s"},
         permission = "server.spawn",
         permissionTargeted = "server.spawn.others")
 public final class SpawnCommand implements CommandHandler {

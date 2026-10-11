@@ -232,7 +232,7 @@
     },
     "player": {
       "success": "目前總線上人數：%s",
-      "description": "查看所有線上玩家"
+      "description": "查看在線玩家清單及玩家詳情"
     },
     "permission": {
       "add": "已指派權限。",
@@ -253,11 +253,6 @@
       "not_found": "找不到 NPC %s。",
       "none_near": "附近 %s 公尺內沒有 NPC。",
       "group_sent": "已讓客戶端載入場景組 %s 的第 %s 組內容；NPC 會出現在腳本裡寫的位置（需要在該組所在的場景裡）。"
-    },
-    "pierro": {
-      "description": "切換若娜瓦戰中皮耶羅的支援按鈕",
-      "on": "已開啟皮耶羅支援按鈕，隊伍欄會出現他的頭像，點擊可攻擊若娜瓦。下線後失效。",
-      "off": "已關閉皮耶羅支援按鈕。"
     },
     "support": {
       "description": "切換隊伍欄的支援按鈕：皮耶羅(pierro)、瓦列里(valeriy)、支援爆破(blast)",
@@ -295,7 +290,10 @@
       "description": "播放過場動畫"
     },
     "sound": {
-      "description": "播放音效"
+      "description": "播放音效；sound list [filter] [--page N] 可查看已觀察到的音效名。"
+    },
+    "lookup": {
+      "description": "依名稱搜尋物品、角色與實體；支援 --page N 分頁。"
     },
     "reload": {
       "reload_start": "正在重新載入設定檔。",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "訊息已傳送。",
-      "description": "向指定玩家傳送訊息。"
+      "description": "向所有線上玩家廣播伺服器訊息。"
+    },
+    "sayto": {
+      "success": "訊息已傳送。",
+      "description": "向指定線上玩家傳送伺服器訊息。"
     },
     "setConst": {
       "range_error": "命之座必須在 0 到 6 之間。",
@@ -353,8 +355,11 @@
       "level_error": "無效的好感度。",
       "description": "設定目前角色的好感度等級。"
     },
-    "setProp": {
-      "description": "設定帳號屬性。比如可以通過此命令啟用無敵，也可以解鎖深淵或更改紀行等級。\n\t可更改的屬性列表： godmode(無敵)|nostamina(無限體力)|unlimitedenergy(無限元素能量)|abyss(深淵螺旋)|worldlevel(世界等級)|bplevel(紀行等級)\n\t(cont.) `有關其他可能的數值，請參閱 PlayerProperty 列舉。 (範例 PROP_MAX_SPRING_VOLUME -> max_spring_volume)`"
+    "openstate": {
+      "description": "依名稱查詢或修改開放狀態：openstate <name|id> [true|false]；openstate list [filter] 可查名稱。"
+    },
+    "prop": {
+      "description": "查詢或修改世界等級、無敵模式、體力、元素能量和紀行等級等玩家屬性。省略 [value] 查詢，提供數值則修改。地圖解鎖用 unlock map，開放狀態用 openstate。"
     },
     "setSceneTag": {
       "description": "設置帳戶特定的場景標籤。 這可以控制諸如擋住門的岩石、可見的建築物以及影響世界中可見內容的其他（通常與任務相關）的事物。"
@@ -425,7 +430,7 @@
       "success": "傳送 %s 到座標 %s,%s,%s，場景為 %s。",
       "description": "將玩家的位置傳送到你所指定的座標。"
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "操縱試用角色活動的功能。這包括切換秘境和獎勵的狀態。",
       "not_found": "未找到試用角色活動玩家數據。也許該活動未被啟用。",
       "invalid_param": "無效的參數。",

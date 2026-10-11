@@ -5,6 +5,7 @@ import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.player.TeamAbilityToggle;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import picocli.CommandLine;
 import picocli.CommandLine.Parameters;
@@ -22,6 +23,14 @@ public final class SupportCommand implements CommandHandler {
         BUTTONS.put("pierro", "Level_Ronova_SupportSkillHandler");
         BUTTONS.put("valeriy", "SkillObj_SupportSkill_Valeriy_TeamListener");
         BUTTONS.put("blast", "SkillObj_SupportSkill_Laodai_TeamListener");
+    }
+
+    /** Resolve all team support choices through one command, including the former Pierro route. */
+    static List<String> selectAbilities(String which) {
+        String key = which.toLowerCase(Locale.ROOT);
+        if ("all".equals(key)) return List.copyOf(BUTTONS.values());
+        String ability = BUTTONS.get(key);
+        return ability == null ? List.of() : List.of(ability);
     }
 
     @Override
@@ -47,13 +56,9 @@ public final class SupportCommand implements CommandHandler {
 
         @Override
         public void run() {
-            String key = which.toLowerCase();
-            List<String> abilities;
-            if (key.equals("all")) {
-                abilities = List.copyOf(BUTTONS.values());
-            } else if (BUTTONS.containsKey(key)) {
-                abilities = List.of(BUTTONS.get(key));
-            } else {
+            String key = which.toLowerCase(Locale.ROOT);
+            List<String> abilities = selectAbilities(key);
+            if (abilities.isEmpty()) {
                 CommandOutput.sendMessage(sender, "Unknown support button: " + which);
                 return;
             }

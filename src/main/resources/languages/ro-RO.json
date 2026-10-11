@@ -254,11 +254,6 @@
       "none_near": "No NPC within %s m.",
       "group_sent": "Asked the client to load group %s suite %s; its NPCs appear where the script places them (you must be in that group's scene)."
     },
-    "pierro": {
-      "description": "Toggle Il Pierro's support button from the Ronova fight",
-      "on": "Pierro's support button is on: his portrait appears on the team bar and strikes Ronova when pressed. It lasts until logout.",
-      "off": "Pierro's support button is off."
-    },
     "support": {
       "description": "Toggle team-bar support buttons: Il Pierro (pierro), Valeriy (valeriy), support blast (blast)",
       "on": "Support button on: %s. It lasts until logout.",
@@ -295,7 +290,10 @@
       "description": "🇺🇸Plays a cutscene"
     },
     "sound": {
-      "description": "🇺🇸Plays a sound"
+      "description": "Play a scene sound. sound list [filter] [--page N] searches observed sound names."
+    },
+    "lookup": {
+      "description": "Search game content names and IDs; paginate with --page N."
     },
     "reload": {
       "reload_start": "Se reîncarcă configurația.",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "Mesaj trimis.",
-      "description": "Trimite un mesaj unui jucător în calitate de server. Dacă este utilizat fără țintă, trimite mesajul către toți jucătorii de pe server."
+      "description": "Trimite un mesaj de la server tuturor jucătorilor conectați."
+    },
+    "sayto": {
+      "success": "Mesaj trimis.",
+      "description": "Trimite un mesaj de la server unui jucător conectat."
     },
     "setConst": {
       "range_error": "🇺🇸Constellation level must be between 0 and 6.",
@@ -353,8 +355,11 @@
       "level_error": "Nivel Fetter nevalabil.",
       "description": "Stabilește nivelul Fetter pentru personajul tău activ curent."
     },
-    "setProp": {
-      "description": "Stabilește proprietățile la nivel de cont. Lucruri precum godmode pot fi activate în acest fel, precum și schimbarea unor lucuri precum etajul abisului deblocat și progresul battle pass.\n\tValori pentru <prop>: godmode | nostamina | unlimitedenergy | abyss | worldlevel | bplevel\n\t(cont.) see PlayerProperty enum for other possible values, of form PROP_MAX_SPRING_VOLUME -> max_spring_volume"
+    "openstate": {
+      "description": "Query or set OpenStates by name: openstate <name|id> [true|false]. Find names with openstate list [filter]."
+    },
+    "prop": {
+      "description": "Stabilește proprietățile la nivel de cont. Lucruri precum godmode pot fi activate în acest fel, precum și schimbarea unor lucuri precum etajul abisului deblocat și progresul battle pass. Use `unlock map` for map unlocks and `openstate` for OpenStates."
     },
     "setSceneTag": {
       "description": "Stabilește etichetele de scenă specifice contului. Aceasta controlează lucruri precum rocile care blochează ușile, clădirile care sunt vizibile și alte lucruri (de obicei legate de misiuni) care afectează ceea ce este vizibil în lumea ta."
@@ -425,7 +430,7 @@
       "success": "Teleportat %s la %s, %s, %s în scena %s.",
       "description": "Schimbă poziția jucătorului."
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "Manipulați funcționalitățile activității de probă avatarului. Aceasta include comutarea stărilor de temniță și recompensă.",
       "not_found": "Nie znaleziono danych gracza o aktywności awatara w wersji próbnej. Być może aktywność nie jest włączona.",
       "invalid_param": "Niewłaściwy parametr.",

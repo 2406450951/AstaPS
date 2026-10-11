@@ -254,11 +254,6 @@
       "none_near": "No NPC within %s m.",
       "group_sent": "Asked the client to load group %s suite %s; its NPCs appear where the script places them (you must be in that group's scene)."
     },
-    "pierro": {
-      "description": "Toggle Il Pierro's support button from the Ronova fight",
-      "on": "Pierro's support button is on: his portrait appears on the team bar and strikes Ronova when pressed. It lasts until logout.",
-      "off": "Pierro's support button is off."
-    },
     "support": {
       "description": "Toggle team-bar support buttons: Il Pierro (pierro), Valeriy (valeriy), support blast (blast)",
       "on": "Support button on: %s. It lasts until logout.",
@@ -295,7 +290,10 @@
       "description": "Odtwarza przerywnik filmowy"
     },
     "sound": {
-      "description": "🇺🇸Plays a sound"
+      "description": "Play a scene sound. sound list [filter] [--page N] searches observed sound names."
+    },
+    "lookup": {
+      "description": "Search game content names and IDs; paginate with --page N."
     },
     "reload": {
       "reload_start": "Ponowne ładowanie konfiguracji...",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "Wiadomość wysłana.",
-      "description": "Wyślij wiadomość do gracza jako serwer. Jeśli nie określono celu, wysyła do wszystkich graczy na serwerze."
+      "description": "Wyślij wiadomość serwera do wszystkich graczy online."
+    },
+    "sayto": {
+      "success": "Wiadomość wysłana.",
+      "description": "Wyślij wiadomość serwera do wybranego gracza online."
     },
     "setConst": {
       "range_error": "Poziom konstelacji musi wynosić pomiędzy 0 a 6.",
@@ -353,8 +355,11 @@
       "level_error": "Błędny poziom przyjaźni.",
       "description": "Ustaw poziom przyjaźni obecnej postaci."
     },
-    "setProp": {
-      "description": "Ustaw pewne własności konta, takie jak tryb nieśmiertelności (godmode) czy też zmiana postępu Battle Pass.\n\tMożliwe nazwy własności: godmode | nostamina | unlimitedenergy | abyss | worldlevel | bplevel | ...\n\tTa komenda ma więcej nazw własności, które może otrzymać. Możesz je wszystkie zobaczyć w pliku \"game/props/PlayerProperty.java\".\n\tW tym pliku, przyjmują one formę \"PROP_XXX_YYY_ZZZ\", ale powinieneś je zapisywać jako \"xxx_yyy_zzz\" jeśli chcesz je użyć w tej komendzie."
+    "openstate": {
+      "description": "Query or set OpenStates by name: openstate <name|id> [true|false]. Find names with openstate list [filter]."
+    },
+    "prop": {
+      "description": "Ustaw pewne własności konta, takie jak tryb nieśmiertelności (godmode) czy też zmiana postępu Battle Pass. Use `unlock map` for map unlocks and `openstate` for OpenStates."
     },
     "setSceneTag": {
       "description": "Ustawia znaczniki sceny specyficzne dla konta. Kontroluje to takie rzeczy jak skały blokujące drzwi, widoczne budynki i inne (zwykle związane z zadaniami) rzeczy, które wpływają na to, co jest widoczne w twoim świecie."
@@ -425,7 +430,7 @@
       "success": "Gracz %s został przeniesiony do pozycji (%s, %s, %s) w scenie o ID %s.",
       "description": "Przemieść wybranego gracza do podanej pozycji w podanej scenie."
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "Manipuluj funkcjami Trial Avatar Activity. Obejmuje to przełączanie stanów lochów i nagród.",
       "not_found": "Nie znaleziono danych gracza o aktywności awatara w wersji próbnej. Być może aktywność nie jest włączona.",
       "invalid_param": "Niewłaściwy parametr.",

@@ -207,11 +207,35 @@ public class Account {
     }
 
     public boolean isBanned() {
-        if (banEndTime > 0 && banEndTime < System.currentTimeMillis() / 1000) {
+        long now = System.currentTimeMillis() / 1000;
+        if (isBanned && bannedByIp != null) {
+            // A former IP ban cannot keep an account banned after the address ban expires,
+            // is lifted, or is replaced by a shorter/longer end time.
+            var ipBan = DatabaseHelper.getBannedIp(bannedByIp);
+            if (ipBan == null || !ipBan.isActiveAt(now)) {
+                isBanned = false;
+                banEndTime = 0;
+                banStartTime = 0;
+                banReason = null;
+                bannedByIp = null;
+                save();
+                return false;
+            }
+            int linkedEndTime = ipBan.accountBanEndTime();
+            if (banEndTime != linkedEndTime) {
+                banEndTime = linkedEndTime;
+                save();
+            }
+            // IP ban records are authoritative even beyond the signed 2038 account field.
+            return true;
+        }
+
+        if (banEndTime > 0 && banEndTime <= now) {
             this.isBanned = false;
             this.banEndTime = 0;
             this.banStartTime = 0;
             this.banReason = null;
+            this.bannedByIp = null;
             save();
         }
 

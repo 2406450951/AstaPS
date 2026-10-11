@@ -12,16 +12,36 @@ public class BannedIp {
 
     private String reason;
 
-    /** Seconds since the epoch, for the record only - an IP ban does not expire on its own. */
+    /** Epoch seconds. Zero means no expiration, including legacy IP bans. */
+    private int endTime;
     private long banTime;
 
     @Deprecated // Morphia only. Do not use.
     public BannedIp() {}
 
     public BannedIp(String ip, String reason) {
+        this(ip, reason, 0);
+    }
+
+    public BannedIp(String ip, String reason, int endTime) {
         this.ip = ip;
         this.reason = reason;
+        this.endTime = endTime;
         this.banTime = System.currentTimeMillis() / 1000;
+    }
+
+    /** Evaluate expiration without mutating the record; legacy records have endTime=0. */
+    public boolean isActiveAt(long now) {
+        return endTime == 0 || endTime > now;
+    }
+
+    /** The existing account-ban protocol uses a signed int; MAX_VALUE represents no expiry. */
+    public int accountBanEndTime() {
+        return endTime == 0 ? Integer.MAX_VALUE : endTime;
+    }
+
+    public int getEndTime() {
+        return endTime;
     }
 
     public String getIp() {

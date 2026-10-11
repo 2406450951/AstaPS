@@ -143,17 +143,23 @@ public final class NameIndex {
         return name == null || name.isBlank() ? String.valueOf(id) : name + " (" + id + ")";
     }
 
-    /**
-     * Everything whose name contains the given text, as "Name (id)".
-     *
-     * <p>For finding an id without leaving the game - the handbook this server would otherwise send
-     * you to is not built into the jar.
-     */
+    /** A search page plus the total number of deduplicated matching IDs. */
+    public record SearchPage(List<String> results, int total) {}
+
+    /** Legacy one-page search, kept for callers that need only the first N results. */
     public static List<String> search(String query, int limit) {
+        return searchPage(query, 1, limit).results();
+    }
+
+    /** Search the same ranked index with stable, one-based pagination. */
+    public static SearchPage searchPage(String query, int page, int pageSize) {
+        if (page < 1 || pageSize < 1) {
+            throw new IllegalArgumentException("Page and page size must be positive.");
+        }
         build();
 
         var needle = normalise(query);
-        if (needle.isEmpty()) return List.of();
+        if (needle.isEmpty()) return new SearchPage(List.of(), 0);
 
         var matches = new ArrayList<Map.Entry<String, Integer>>();
         var seen = new HashSet<Integer>();
@@ -164,17 +170,26 @@ public final class NameIndex {
             }
         }
 
-        // Names the game would print come first - the rest are internal names, which are only worth
-        // reading once nothing real matches. Then whole-name matches over fragments buried in
-        // something longer, since alphabetical order alone puts "Anemo Slime-Swallowed Bamboo Shoots"
-        // above "Pyro Slime".
+        // Preserve the existing result ranking and unique-ID semantics on every page.
         matches.sort(
                 java.util.Comparator.comparingInt((Map.Entry<String, Integer> e) -> internal(e.getValue()))
                         .thenComparingInt(e -> rank(e.getKey(), needle))
                         .thenComparingInt(e -> e.getKey().length())
                         .thenComparing(Map.Entry::getKey));
 
-        return matches.stream().limit(limit).map(e -> describe(e.getValue())).toList();
+        return new SearchPage(selectPage(matches, page, pageSize).stream()
+                .map(e -> describe(e.getValue())).toList(), matches.size());
+    }
+
+    /** Package-visible to test pagination without loading an entire game resource pack. */
+    static <T> List<T> selectPage(List<T> matches, int page, int pageSize) {
+        if (page < 1 || pageSize < 1) {
+            throw new IllegalArgumentException("Page and page size must be positive.");
+        }
+        long offset = (long) (page - 1) * pageSize;
+        if (offset >= matches.size()) return List.of();
+        int start = (int) offset;
+        return matches.subList(start, (int) Math.min(matches.size(), offset + pageSize));
     }
 
     /** Internal names carry underscores; nothing the game prints does. */

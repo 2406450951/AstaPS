@@ -168,6 +168,14 @@ public final class AvatarCommand implements CommandHandler {
             return selectOwnedAvatar(sender, target, avatarId);
         }
 
+        protected AvatarSkillDepotData skillDepot(Avatar avatar) {
+            AvatarSkillDepotData depot = avatar.getSkillDepot();
+            if (depot == null) {
+                CommandOutput.sendTranslatedMessage(sender, "commands.talent.invalid_skill_id");
+            }
+            return depot;
+        }
+
         protected java.util.List<Avatar> selectMany(Selection selection) {
             if (selection != null && selection.all) {
                 var all = new ArrayList<Avatar>();
@@ -293,13 +301,11 @@ public final class AvatarCommand implements CommandHandler {
         private TalentAction(Player sender, Player target) {
             super(sender, target);
         }
+    }
 
-        protected AvatarSkillDepotData skillDepot(Avatar avatar) {
-            AvatarSkillDepotData depot = avatar.getSkillDepot();
-            if (depot == null) {
-                CommandOutput.sendTranslatedMessage(sender, "commands.talent.invalid_skill_id");
-            }
-            return depot;
+    private abstract static class BatchTalentAction extends MultiAction {
+        private BatchTalentAction(Player sender, Player target) {
+            super(sender, target);
         }
     }
 
@@ -327,7 +333,7 @@ public final class AvatarCommand implements CommandHandler {
     private enum Slot { NORMAL, SKILL, BURST }
 
     @CommandLine.Command(name = "normal")
-    private static final class TalentSlot extends TalentAction {
+    private static final class TalentSlot extends BatchTalentAction {
         @Parameters(index = "0", paramLabel = "<level>")
         private int level;
         private final Slot slot;
@@ -340,26 +346,27 @@ public final class AvatarCommand implements CommandHandler {
         @Override
         public void run() {
             if (!permitted("player.settalent")) return;
-            Avatar avatar = select(avatarId);
-            if (avatar == null) return;
-            AvatarSkillDepotData depot = skillDepot(avatar);
-            if (depot == null) return;
-            var skills = depot.getSkills();
-            if (slot != Slot.BURST && skills.size() < 2) {
-                CommandOutput.sendTranslatedMessage(sender, "commands.talent.invalid_skill_id");
-                return;
+            List<Avatar> avatars = selectMany(selection);
+            for (Avatar avatar : avatars) {
+                AvatarSkillDepotData depot = skillDepot(avatar);
+                if (depot == null) continue;
+                var skills = depot.getSkills();
+                if (slot != Slot.BURST && (skills == null || skills.size() < 2)) {
+                    CommandOutput.sendTranslatedMessage(sender, "commands.talent.invalid_skill_id");
+                    continue;
+                }
+                int skillId = switch (slot) {
+                    case NORMAL -> skills.get(0);
+                    case SKILL -> skills.get(1);
+                    case BURST -> depot.getEnergySkill();
+                };
+                setTalentLevel(sender, avatar, skillId, level);
             }
-            int skillId = switch (slot) {
-                case NORMAL -> skills.get(0);
-                case SKILL -> skills.get(1);
-                case BURST -> depot.getEnergySkill();
-            };
-            setTalentLevel(sender, avatar, skillId, level);
         }
     }
 
     @CommandLine.Command(name = "all")
-    private static final class TalentAll extends TalentAction {
+    private static final class TalentAll extends BatchTalentAction {
         @Parameters(index = "0", paramLabel = "<level>")
         private int level;
 
@@ -374,11 +381,12 @@ public final class AvatarCommand implements CommandHandler {
                 CommandOutput.sendTranslatedMessage(sender, "commands.talent.out_of_range");
                 return;
             }
-            Avatar avatar = select(avatarId);
-            if (avatar == null) return;
-            AvatarSkillDepotData depot = skillDepot(avatar);
-            if (depot == null) return;
-            depot.getSkillsAndEnergySkill().forEach(id -> setTalentLevel(sender, avatar, id, level));
+            List<Avatar> avatars = selectMany(selection);
+            for (Avatar avatar : avatars) {
+                AvatarSkillDepotData depot = skillDepot(avatar);
+                if (depot == null) continue;
+                depot.getSkillsAndEnergySkill().forEach(id -> setTalentLevel(sender, avatar, id, level));
+            }
         }
     }
 
@@ -420,7 +428,7 @@ public final class AvatarCommand implements CommandHandler {
     }
 
     @CommandLine.Command(name = "set")
-    private static final class FriendshipSet extends SingleAction {
+    private static final class FriendshipSet extends MultiAction {
         @Parameters(index = "0", paramLabel = "<level>")
         private int level;
 
@@ -435,15 +443,20 @@ public final class AvatarCommand implements CommandHandler {
                 CommandOutput.sendMessage(sender, translate(sender, "commands.setFetterLevel.range_error"));
                 return;
             }
-            Avatar avatar = select(avatarId);
-            if (avatar == null) return;
-            avatar.setFetterLevel(level);
-            if (level != 10) {
-                avatar.setFetterExp(GameData.getAvatarFetterLevelDataMap().get(level).getExp());
+            List<Avatar> avatars = selectMany(selection);
+            for (Avatar avatar : avatars) {
+                avatar.setFetterLevel(level);
+                var levelData = GameData.getAvatarFetterLevelDataMap().get(level);
+                if (level != 10 && levelData != null) {
+                    avatar.setFetterExp(levelData.getExp());
+                }
+                avatar.save();
+                target.sendPacket(new PacketAvatarFetterDataNotify(avatar));
             }
-            avatar.save();
-            target.sendPacket(new PacketAvatarFetterDataNotify(avatar));
-            CommandOutput.sendMessage(sender, translate(sender, "commands.setFetterLevel.success", level));
+            if (!avatars.isEmpty()) {
+                CommandOutput.sendMessage(sender,
+                        "Set friendship level " + level + " for " + avatars.size() + " character(s).");
+            }
         }
     }
 

@@ -66,9 +66,15 @@ public final class BanCommand implements CommandHandler {
             }
             offset = 1;
         }
-        if (parsed.type() == TargetType.IPV4 && offset != 0) {
-            throw new IllegalArgumentException(
-                    "For an IPv4 address, use ban <IPv4> [reason...].");
+        if (parsed.type() == TargetType.IPV4) {
+            // Preserve the previous indefinite IP-ban default when endTime is omitted.
+            if (offset == 0) {
+                endTime = 0;
+            } else if (endTime < 0
+                    || (endTime != 0 && endTime <= System.currentTimeMillis() / 1000)) {
+                throw new IllegalArgumentException(
+                        "IP ban endTime must be 0 (permanent) or a future Unix timestamp.");
+            }
         }
         String reason = trailing.size() == offset
                 ? "Reason not specified."
@@ -102,9 +108,14 @@ public final class BanCommand implements CommandHandler {
 
             if (args.target().type() == TargetType.IPV4) {
                 if (!hasPermission(sender, "server.banip", null)) return;
-                new BannedIp(args.target().value(), args.reason()).save();
+                new BannedIp(args.target().value(), args.reason(), args.endTime()).save();
                 CommandOutput.sendMessage(
-                        sender, "Banned IP " + args.target().value() + ". Reason: " + args.reason());
+                        sender,
+                        "Banned IP " + args.target().value()
+                                + (args.endTime() == 0
+                                        ? " permanently."
+                                        : " until " + args.endTime() + ".")
+                                + " Reason: " + args.reason());
                 return;
             }
 

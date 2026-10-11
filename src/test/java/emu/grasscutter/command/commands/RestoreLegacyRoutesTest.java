@@ -1,29 +1,37 @@
 package emu.grasscutter.command.commands;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
+import emu.grasscutter.command.CommandMap;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
 public final class RestoreLegacyRoutesTest {
     @Test
-    void healRetainsNoArgumentAndAllGrammar() {
-        var handler = new HealCommand();
-        assertDoesNotThrow(() -> handler.createCommandLine(null, null).parseArgs());
-        assertDoesNotThrow(() -> handler.createCommandLine(null, null).parseArgs("all"));
-        assertThrows(
-                CommandLine.ParameterException.class,
-                () -> handler.createCommandLine(null, null).parseArgs("all", "extra"));
+    void standaloneHealAndHAreRemovedButHpRetainsBulkOption() {
+        var map = new CommandMap(false);
+        map.registerCommand("restore", new RestoreCommand());
+        assertNull(map.getHandler("heal"));
+        assertNull(map.getHandler("h"));
+
+        var handler = new RestoreCommand();
+        assertDoesNotThrow(() -> handler.createCommandLine(null, null).parseArgs("hp"));
+        assertDoesNotThrow(() -> handler.createCommandLine(null, null).parseArgs("hp", "--all"));
+        assertThrows(CommandLine.ParameterException.class,
+                () -> handler.createCommandLine(null, null).parseArgs("hp", "all"));
+        assertThrows(CommandLine.ParameterException.class,
+                () -> handler.createCommandLine(null, null).parseArgs("hp", "--all", "--bad"));
     }
 
     @Test
-    void restoreEnergyRemainsTheSupportedRoute() {
+    void energyAndCombinedRestorationRetainTheSupportedRoutes() {
         var handler = new RestoreCommand();
-        var commandLine = handler.createCommandLine(null, null);
-        assertDoesNotThrow(() -> commandLine.parseArgs("energy"));
-        assertThrows(
-                CommandLine.ParameterException.class,
-                () -> commandLine.parseArgs("energy", "extra"));
+        for (String[] args : new String[][] {{"energy"}, {"all"}}) {
+            assertDoesNotThrow(() -> handler.createCommandLine(null, null).parseArgs(args));
+        }
+        assertThrows(CommandLine.ParameterException.class,
+                () -> handler.createCommandLine(null, null).parseArgs("energy", "--all"));
+        assertThrows(CommandLine.ParameterException.class,
+                () -> handler.createCommandLine(null, null).parseArgs("all", "--all"));
     }
 }

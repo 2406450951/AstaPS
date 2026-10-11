@@ -274,7 +274,7 @@ public final class StatueCommand implements CommandHandler {
     private static final Set<Integer> STATUE_GADGET_IDS =
             Set.of(70130009, 70130010, 70130011, 73176017);
 
-    private static boolean isStatuePoint(PointData data) {
+    static boolean isStatuePoint(PointData data) {
         if (data == null) return false;
         if (data.getMaxSpringVolume() > 0) return true;
         if (STATUE_GADGET_IDS.contains(data.getGadgetId())) return true;

@@ -254,11 +254,6 @@
       "none_near": "No NPC within %s m.",
       "group_sent": "Asked the client to load group %s suite %s; its NPCs appear where the script places them (you must be in that group's scene)."
     },
-    "pierro": {
-      "description": "Toggle Il Pierro's support button from the Ronova fight",
-      "on": "Pierro's support button is on: his portrait appears on the team bar and strikes Ronova when pressed. It lasts until logout.",
-      "off": "Pierro's support button is off."
-    },
     "support": {
       "description": "Toggle team-bar support buttons: Il Pierro (pierro), Valeriy (valeriy), support blast (blast)",
       "on": "Support button on: %s. It lasts until logout.",
@@ -295,7 +290,10 @@
       "description": "Riproduce una cutscene"
     },
     "sound": {
-      "description": "Riproduce un suono"
+      "description": "Play a scene sound. sound list [filter] [--page N] searches observed sound names."
+    },
+    "lookup": {
+      "description": "Search game content names and IDs; paginate with --page N."
     },
     "reload": {
       "reload_start": "Ricarica in configurazione.",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "Messaggio inviato.",
-      "description": "Invia un messaggio a un giocatore come server. Se usato senza bersaglio, invia a tutti i giocatori sul server."
+      "description": "Invia un messaggio del server a tutti i giocatori online."
+    },
+    "sayto": {
+      "success": "Messaggio inviato.",
+      "description": "Invia un messaggio del server a un giocatore online."
     },
     "setConst": {
       "range_error": "Il livello della costellazione deve essere compreso tra 0 e 6.",
@@ -353,8 +355,11 @@
       "level_error": "Livello di amicizia non valido.",
       "description": "Imposta il tuo livello di amicizia per il tuo attuale personaggio attivo"
     },
-    "setProp": {
-      "description": "Imposta le proprietà dell'intero account. Cose come godmode possono essere abilitate in questo modo, oltre a cambiare cose come il pavimento dell'abisso sbloccato e il progresso del pass battaglia.\n\tValori per <prop> (senza distinzione tra maiuscole e minuscole): GodMode | UnlimitedStamina | UnlimitedEnergy | TowerLevel | WorldLevel | BPLevel | SetOpenState | UnsetOpenState | UnlockMap\n\t(cont.) vedi PlayerProperty enum per altri possibili valori, nella forma PROP_MAX_SPRING_VOLUME -> max_spring_volume"
+    "openstate": {
+      "description": "Query or set OpenStates by name: openstate <name|id> [true|false]. Find names with openstate list [filter]."
+    },
+    "prop": {
+      "description": "Imposta le proprietà dell'intero account. Cose come godmode possono essere abilitate in questo modo, oltre a cambiare cose come il pavimento dell'abisso sbloccato e il progresso del pass battaglia. Use `unlock map` for map unlocks and `openstate` for OpenStates."
     },
     "setSceneTag": {
       "description": "Imposta i tag di scena specifici dell'account. Questo controlla cose come le rocce che bloccano le porte, gli edifici visibili e altre cose (di solito legate alle missioni) che influenzano ciò che è visibile nel mondo."
@@ -411,7 +416,7 @@
       "success": "Teletrasportato %s a %s, %s, %s nella scena %s.",
       "description": "Cambia la posizione del giocatore"
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "Manipola le funzionalità dell'attività Trial del personaggio. Ciò include la commutazione degli stati dei dungeon e delle ricompense.",
       "not_found": "Dati giocatore attività personaggi di prova non trovati. Forse l'attività non è abilitata.",
       "invalid_param": "Parametro non valido.",

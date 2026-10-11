@@ -232,7 +232,7 @@
     },
     "player": {
       "success": "There are %s player(s) online:",
-      "description": "List online players"
+      "description": "List online players and inspect player details"
     },
     "permission": {
       "add": "Permission added.",
@@ -253,11 +253,6 @@
       "not_found": "NPC %s not found.",
       "none_near": "No NPC within %s m.",
       "group_sent": "Asked the client to load group %s suite %s; its NPCs appear where the script places them (you must be in that group's scene)."
-    },
-    "pierro": {
-      "description": "Toggle Il Pierro's support button from the Ronova fight",
-      "on": "Pierro's support button is on: his portrait appears on the team bar and strikes Ronova when pressed. It lasts until logout.",
-      "off": "Pierro's support button is off."
     },
     "support": {
       "description": "Toggle team-bar support buttons: Il Pierro (pierro), Valeriy (valeriy), support blast (blast)",
@@ -295,7 +290,10 @@
       "description": "Plays a cutscene"
     },
     "sound": {
-      "description": "Plays a sound"
+      "description": "Play a scene sound. sound list [filter] [--page N] searches observed sound names."
+    },
+    "lookup": {
+      "description": "Search game content names and IDs; paginate with --page N."
     },
     "reload": {
       "reload_start": "Reloading config.",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "Message sent.",
-      "description": "Sends a message to a player as the server. If used with no target, sends to all players on the server."
+      "description": "Broadcast a server message to all online players."
+    },
+    "sayto": {
+      "success": "Message sent.",
+      "description": "Send a server message to one online player."
     },
     "setConst": {
       "range_error": "Constellation level must be between 0 and 6.",
@@ -353,8 +355,11 @@
       "level_error": "Invalid fetter level.",
       "description": "Sets your fetter level for your current active character"
     },
-    "setProp": {
-      "description": "Sets accountwide properties. Things like godmode can be enabled this way, as well as changing things like unlocked abyss floor and battle pass progress.\n\tValues for <prop> (case-insensitive): GodMode | UnlimitedStamina | UnlimitedEnergy | TowerLevel | WorldLevel | BPLevel | SetOpenState | UnsetOpenState | UnlockMap\n\t(cont.) see PlayerProperty enum for other possible values, of the form PROP_MAX_SPRING_VOLUME -> max_spring_volume"
+    "openstate": {
+      "description": "Query or set OpenStates by name: openstate <name|id> [true|false]. Find names with openstate list [filter]."
+    },
+    "prop": {
+      "description": "Query or modify player properties such as worldlevel, godmode, stamina, energy and battle-pass level. Omit [value] to query; supply it to set. Map unlocks use `unlock map`; OpenStates use `openstate`."
     },
     "setSceneTag": {
       "description": "Sets account-specific scene tags. This controls things like rocks blocking doors, buildings being visible, and other (usually quest-related) things that affect what is visible in your world."
@@ -426,7 +431,7 @@
       "success": "Teleported %s to %s, %s, %s in scene %s.",
       "description": "Change the player's position"
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "Manipulate functionalities of Trial Avatar Activity. This includes toggling dungeon and reward states.",
       "not_found": "Trial avatar activity player data not found. Maybe the activity is not enabled.",
       "invalid_param": "Invalid parameter.",

@@ -288,7 +288,8 @@ public final class DatabaseHelper {
     }
 
     public static boolean isIpBanned(String ip) {
-        return DatabaseHelper.getBannedIp(ip) != null;
+        var ban = DatabaseHelper.getBannedIp(ip);
+        return ban != null && ban.isActiveAt(System.currentTimeMillis() / 1000);
     }
 
     public static boolean removeBannedIp(String ip) {

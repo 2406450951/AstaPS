@@ -254,11 +254,6 @@
       "none_near": "No NPC within %s m.",
       "group_sent": "Asked the client to load group %s suite %s; its NPCs appear where the script places them (you must be in that group's scene)."
     },
-    "pierro": {
-      "description": "Toggle Il Pierro's support button from the Ronova fight",
-      "on": "Pierro's support button is on: his portrait appears on the team bar and strikes Ronova when pressed. It lasts until logout.",
-      "off": "Pierro's support button is off."
-    },
     "support": {
       "description": "Toggle team-bar support buttons: Il Pierro (pierro), Valeriy (valeriy), support blast (blast)",
       "on": "Support button on: %s. It lasts until logout.",
@@ -295,7 +290,10 @@
       "description": "Проигрывает кат-сцену"
     },
     "sound": {
-      "description": "Проигрывает звук"
+      "description": "Play a scene sound. sound list [filter] [--page N] searches observed sound names."
+    },
+    "lookup": {
+      "description": "Search game content names and IDs; paginate with --page N."
     },
     "reload": {
       "reload_start": "Перезагружаем файл конфигурации.",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "Сообщение было отправлено.",
-      "description": "Отправляет сообщение выбранному игроку от имени сервера. При отсутствии конкретной цели, отправляет сообщение всем игрокам на сервере."
+      "description": "Отправляет сообщение сервера всем игрокам в сети."
+    },
+    "sayto": {
+      "success": "Сообщение было отправлено.",
+      "description": "Отправляет сообщение сервера выбранному игроку в сети."
     },
     "setConst": {
       "range_error": "Уровень созвездия должен быть в диапазоне от 0 до 6.",
@@ -353,8 +355,11 @@
       "level_error": "Некорректный уровень дружбы.",
       "description": "Задаёт уровень дружбы для активного персонажа"
     },
-    "setProp": {
-      "description": "Задаёт свойства аккаунта. С помощью данной команды может быть включен godmode, а также разблокированы этажи Коридора Бездны и изменён прогресс боевого пропуска.\n\tВозможные значения <св-во>: godmode | nostamina | unlimitedenergy | abyss | worldlevel | bplevel\n\t(прод.) см. перечисление (enum) PlayerProperty для остальных возможных значений, of form PROP_MAX_SPRING_VOLUME -> max_spring_volume"
+    "openstate": {
+      "description": "Query or set OpenStates by name: openstate <name|id> [true|false]. Find names with openstate list [filter]."
+    },
+    "prop": {
+      "description": "Задаёт свойства аккаунта. С помощью данной команды может быть включен godmode, а также разблокированы этажи Коридора Бездны и изменён прогресс боевого пропуска. Используйте `unlock map` для карты, а `openstate` для состояний."
     },
     "setSceneTag": {
       "description": "Устанавливает специфические для учетной записи теги сцены. Это позволяет управлять такими вещами, как камни, блокирующие двери, видимость зданий и другими (обычно связанными с квестами) вещами, которые влияют на видимость в вашем мире."
@@ -425,7 +430,7 @@
       "success": "Игрок %s был телепортирован по координатам %s, %s, %s в сцене %s.",
       "description": "Изменяет местоположение игрока"
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "Управление функциями пробного аватара. Это включает в себя переключение состояний подземелий и наград.",
       "not_found": "Данные об активности пробного аватара игрока не найдены. Возможно, активность не включена.",
       "invalid_param": "Неверный параметр.",

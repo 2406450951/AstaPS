@@ -16,8 +16,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Parameters;
 
 @Command(
-        label = "trialAvatarActivity",
-        aliases = {"taa"},
+        label = "trial",
         permission = "player.trialavataractivity",
         permissionTargeted = "player.trialavataractivity.others")
 public final class TrialAvatarActivityCommand implements CommandHandler {
@@ -35,7 +34,11 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
     @Override
     public CommandLine createCommandLine(Player sender, Player targetPlayer) {
         var commandLine = new CommandLine(new Root(sender));
-        commandLine.registerConverter(
+        commandLine.addSubcommand("change", new Change(sender, targetPlayer));
+        commandLine.addSubcommand("toggledungeon", new ToggleDungeon(sender, targetPlayer));
+        commandLine.addSubcommand("togglereward", new ToggleReward(sender, targetPlayer));
+        CommandHandler.registerConverterTree(
+                commandLine,
                 Selection.class,
                 value -> {
                     if (value.equalsIgnoreCase("all")) {
@@ -47,13 +50,10 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
                         throw new CommandLine.TypeConversionException("Expected an index or 'all'");
                     }
                 });
-        commandLine.addSubcommand("change", new Change(sender, targetPlayer));
-        commandLine.addSubcommand("toggledungeon", new ToggleDungeon(sender, targetPlayer));
-        commandLine.addSubcommand("togglereward", new ToggleReward(sender, targetPlayer));
         return commandLine;
     }
 
-    @CommandLine.Command(name = "trialAvatarActivity")
+    @CommandLine.Command(name = "trial")
     private final class Root implements Runnable {
         private final Player sender;
 
@@ -84,7 +84,7 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
                                     ActivityType.NEW_ACTIVITY_TRIAL_AVATAR);
             if (playerDataOption.isEmpty()) {
                 CommandOutput.sendMessage(
-                        sender, translate(sender, "commands.trialAvatarActivity.not_found"));
+                        sender, translate(sender, "commands.trial.not_found"));
                 return null;
             }
 
@@ -93,7 +93,7 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
             var detail = JsonUtils.decode(playerData.getDetail(), TrialAvatarPlayerData.class);
             if (handler == null || detail == null) {
                 CommandOutput.sendMessage(
-                        sender, translate(sender, "commands.trialAvatarActivity.not_found"));
+                        sender, translate(sender, "commands.trial.not_found"));
                 return null;
             }
             return new Context(playerData, handler, detail);
@@ -132,7 +132,7 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
                         sender,
                         translate(
                                 sender,
-                                "commands.trialAvatarActivity.schedule_not_found",
+                                "commands.trial.schedule_not_found",
                                 scheduleId));
                 return;
             }
@@ -141,7 +141,7 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
             context.playerData().save();
             CommandOutput.sendMessage(
                     sender,
-                    translate(sender, "commands.trialAvatarActivity.success_schedule", scheduleId));
+                    translate(sender, "commands.trial.success_schedule", scheduleId));
             targetPlayer.sendPacket(
                     new PacketActivityInfoNotify(
                             context.handler()
@@ -173,14 +173,14 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
                 saveAndNotify(context);
                 CommandOutput.sendMessage(
                         sender,
-                        translate(sender, "commands.trialAvatarActivity.success_dungeon_all"));
+                        translate(sender, "commands.trial.success_dungeon_all"));
                 return;
             }
 
             int offset = selection.index() - 1;
             if (offset < 0 || offset >= context.detail().getRewardInfoList().size()) {
                 CommandOutput.sendMessage(
-                        sender, translate(sender, "commands.trialAvatarActivity.invalid_param"));
+                        sender, translate(sender, "commands.trial.invalid_param"));
                 return;
             }
             var reward = context.detail().getRewardInfoList().get(offset);
@@ -190,7 +190,7 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
                     sender,
                     translate(
                             sender,
-                            "commands.trialAvatarActivity.success_dungeon",
+                            "commands.trial.success_dungeon",
                             selection.index()));
         }
     }
@@ -215,14 +215,14 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
                 saveAndNotify(context);
                 CommandOutput.sendMessage(
                         sender,
-                        translate(sender, "commands.trialAvatarActivity.success_reward_all"));
+                        translate(sender, "commands.trial.success_reward_all"));
                 return;
             }
 
             int offset = selection.index() - 1;
             if (offset < 0 || offset >= context.detail().getRewardInfoList().size()) {
                 CommandOutput.sendMessage(
-                        sender, translate(sender, "commands.trialAvatarActivity.invalid_param"));
+                        sender, translate(sender, "commands.trial.invalid_param"));
                 return;
             }
             var reward = context.detail().getRewardInfoList().get(offset);
@@ -232,7 +232,7 @@ public final class TrialAvatarActivityCommand implements CommandHandler {
                     sender,
                     translate(
                             sender,
-                            "commands.trialAvatarActivity.success_reward",
+                            "commands.trial.success_reward",
                             selection.index()));
         }
     }

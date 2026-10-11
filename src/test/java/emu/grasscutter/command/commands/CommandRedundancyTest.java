@@ -17,7 +17,7 @@ public final class CommandRedundancyTest {
         map.registerCommand("kill", new KillCommand());
         map.registerCommand("restore", new RestoreCommand());
 
-        for (String removed : new String[] {"killall", "er", "e", "energy"}) {
+        for (String removed : new String[] {"killall", "er", "e", "energy", "heal", "h"}) {
             assertNull(map.getHandler(removed), removed);
         }
         assertNull(map.getHandler("killCharacter"));
@@ -35,20 +35,22 @@ public final class CommandRedundancyTest {
         map.registerCommand("kill", new KillCommand());
         map.registerCommand("trackmat", new TrackMatCommand());
         map.registerCommand("waypoints", new WaypointsCommand());
+        map.registerCommand("spawn", new SpawnCommand());
 
         for (String removed : new String[] {
                 "pb", "enter_dungeon", "enterdungeon", "levelbreak",
                 "killCharacter", "mattrack", "unlockwp", "suicide",
                 "extralevel", "el", "constellation", "talent",
                 "setfetterlevel", "setfetterlvl", "setfriendship",
-                "max", "maxavatar", "maxchar"
+                "max", "maxavatar", "maxchar", "drop"
         }) {
             assertNull(map.getHandler(removed), removed);
             assertFalse(map.getCommandLine().getSubcommands().containsKey(removed), removed);
         }
         for (String retained : new String[] {
                 "barrier", "br", "dungeon", "avatar",
-                "kill", "trackmat", "trackmaterial", "waypoints", "wp"
+                "kill", "trackmat", "trackmaterial", "waypoints", "wp",
+                "spawn", "s"
         }) {
             assertNotNull(map.getHandler(retained), retained);
             assertTrue(map.getCommandLine().getSubcommands().containsKey(retained), retained);
@@ -157,6 +159,20 @@ public final class CommandRedundancyTest {
                 CommandLine.ParameterException.class, () -> cli.parseArgs("unlock"));
         org.junit.jupiter.api.Assertions.assertThrows(
                 CommandLine.ParameterException.class, () -> cli.parseArgs("unlockall"));
+    }
+
+    @Test
+    void mapUnlockIsUnderExistingUnlockCommand() {
+        var cli = new UnlockAllCommand().createCommandLine(null, null);
+        assertTrue(cli.getSubcommands().containsKey("map"));
+        assertTrue(cli.getSubcommands().containsKey("all"));
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(
+                () -> new UnlockAllCommand().createCommandLine(null, null).parseArgs("map"));
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(
+                () -> new UnlockAllCommand().createCommandLine(null, null).parseArgs("map", "--force"));
+        org.junit.jupiter.api.Assertions.assertThrows(
+                CommandLine.ParameterException.class,
+                () -> new UnlockAllCommand().createCommandLine(null, null).parseArgs("map", "all"));
     }
 
     @Test

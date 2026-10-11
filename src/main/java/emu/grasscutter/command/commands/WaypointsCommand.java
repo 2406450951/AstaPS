@@ -10,6 +10,7 @@ import emu.grasscutter.server.packet.send.PacketScenePointUnlockNotify;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import picocli.CommandLine;
@@ -26,6 +27,27 @@ public final class WaypointsCommand implements CommandHandler {
         return "SceneTransPoint".equals(type)
                 || "TransPointNormal".equals(type)
                 || "TransPoint".equals(type);
+    }
+
+    record UnlockSelection(List<Integer> points, Set<Integer> areas) {}
+
+    /** A requested area must never unlock unrelated areas. No filter retains the broad legacy unlock. */
+    static UnlockSelection selectWaypoints(Map<Integer, Integer> waypoints, List<Integer> requestedAreas) {
+        Set<Integer> wanted = requestedAreas == null || requestedAreas.isEmpty()
+                ? null
+                : new HashSet<>(requestedAreas);
+        var points = new ArrayList<Integer>();
+        var areas = new HashSet<Integer>();
+        for (var entry : waypoints.entrySet()) {
+            if (wanted != null && !wanted.contains(entry.getValue())) continue;
+            points.add(entry.getKey());
+            if (entry.getValue() > 0) areas.add(entry.getValue());
+        }
+        if (wanted == null && !points.isEmpty()) {
+            // Preserve no-argument behavior: open the entire scene alongside all its waypoints.
+            for (int area = 1; area < 1000; area++) areas.add(area);
+        }
+        return new UnlockSelection(points, areas);
     }
 
     @Override
@@ -57,18 +79,9 @@ public final class WaypointsCommand implements CommandHandler {
                 return;
             }
 
-            Set<Integer> wanted = areaIds == null || areaIds.isEmpty() ? null : new HashSet<>(areaIds);
-            var points = new ArrayList<Integer>();
-            var areas = new HashSet<Integer>();
-            for (var entry : waypoints.entrySet()) {
-                if (wanted != null && !wanted.contains(entry.getValue())) {
-                    continue;
-                }
-                points.add(entry.getKey());
-                if (entry.getValue() != 0) {
-                    areas.add(entry.getValue());
-                }
-            }
+            var selected = selectWaypoints(waypoints, areaIds);
+            var points = selected.points();
+            var areas = selected.areas();
 
             if (points.isEmpty()) {
                 CommandOutput.sendMessage(sender, "No waypoints matched those areas. Try /waypoints list");
@@ -79,10 +92,9 @@ public final class WaypointsCommand implements CommandHandler {
             int fresh = (int) points.stream().filter(point -> !alreadyUnlocked.contains(point)).count();
             alreadyUnlocked.addAll(points);
 
-            for (int area = 1; area < 1000; area++) {
-                areas.add(area);
-            }
-            targetPlayer.getUnlockedSceneAreas(sceneId).addAll(areas);
+            var unlockedAreas = targetPlayer.getUnlockedSceneAreas(sceneId);
+            int newAreas = (int) areas.stream().filter(area -> !unlockedAreas.contains(area)).count();
+            unlockedAreas.addAll(areas);
             targetPlayer.save();
 
             targetPlayer.sendPacket(
@@ -98,9 +110,11 @@ public final class WaypointsCommand implements CommandHandler {
                             + sceneId
                             + " ("
                             + fresh
-                            + " new), and opened every area of the scene."
-                            + " If a region is still walled off, try /tag unlock all - the barrier at a"
-                            + " region boundary is usually a scene tag rather than an area lock.");
+                            + " new), opened " + newAreas + " new area flag(s)"
+                            + (areaIds == null || areaIds.isEmpty()
+                                    ? " across the scene."
+                                    : " in the selected areas.")
+                            + " If a region is still blocked, inspect its scene tags with /tag list.");
         }
     }
 
@@ -159,7 +173,7 @@ public final class WaypointsCommand implements CommandHandler {
                 continue;
             }
             var data = entry.getPointData();
-            if (data.isForbidSimpleUnlock() || !"TransPointNormal".equals(data.getType())) {
+            if (data.isForbidSimpleUnlock() || !isWaypointType(data.getType())) {
                 continue;
             }
             waypoints.put(pointId, data.getAreaId());

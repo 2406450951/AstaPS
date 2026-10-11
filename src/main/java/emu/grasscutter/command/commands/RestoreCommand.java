@@ -15,6 +15,7 @@ import emu.grasscutter.server.packet.send.PacketAvatarLifeStateChangeNotify;
 import emu.grasscutter.server.packet.send.PacketEntityFightPropChangeReasonNotify;
 import emu.grasscutter.server.packet.send.PacketEntityFightPropUpdateNotify;
 import picocli.CommandLine;
+import picocli.CommandLine.Option;
 
 @Command(label = "restore")
 public final class RestoreCommand implements CommandHandler {
@@ -56,6 +57,9 @@ public final class RestoreCommand implements CommandHandler {
         private final Player sender;
         private final Player targetPlayer;
 
+        @Option(names = "--all", description = "Restore HP for all owned characters, not only the active team")
+        private boolean all;
+
         private Hp(Player sender, Player targetPlayer) {
             this.sender = sender;
             this.targetPlayer = targetPlayer;
@@ -65,7 +69,13 @@ public final class RestoreCommand implements CommandHandler {
         public void run() {
             if (!hasPermission(sender, targetPlayer, "player.heal", "player.heal.others")) return;
             restoreHp(targetPlayer);
-            CommandOutput.sendMessage(sender, translate(sender, "commands.heal.success"));
+            if (all) {
+                int offTeam = targetPlayer.getTeamManager().healAllAvatars();
+                CommandOutput.sendMessage(sender,
+                        "Restored active-team HP and " + offTeam + " off-team character(s).");
+            } else {
+                CommandOutput.sendMessage(sender, translate(sender, "commands.heal.success"));
+            }
         }
     }
 

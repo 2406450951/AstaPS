@@ -254,11 +254,6 @@
       "none_near": "No NPC within %s m.",
       "group_sent": "Asked the client to load group %s suite %s; its NPCs appear where the script places them (you must be in that group's scene)."
     },
-    "pierro": {
-      "description": "Toggle Il Pierro's support button from the Ronova fight",
-      "on": "Pierro's support button is on: his portrait appears on the team bar and strikes Ronova when pressed. It lasts until logout.",
-      "off": "Pierro's support button is off."
-    },
     "support": {
       "description": "Toggle team-bar support buttons: Il Pierro (pierro), Valeriy (valeriy), support blast (blast)",
       "on": "Support button on: %s. It lasts until logout.",
@@ -295,7 +290,10 @@
       "description": "カットシーンを再生します"
     },
     "sound": {
-      "description": "🇺🇸Plays a sound"
+      "description": "Play a scene sound. sound list [filter] [--page N] searches observed sound names."
+    },
+    "lookup": {
+      "description": "Search game content names and IDs; paginate with --page N."
     },
     "reload": {
       "reload_start": "設定を再読み込みしています。",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "メッセージを送信しました。",
-      "description": "サーバーとしてプレイヤーにメッセージを送信します。 ターゲットなしで使用すると、サーバー上のすべてのプレイヤーに送信されます。"
+      "description": "オンラインの全プレイヤーにサーバーメッセージを送信します。"
+    },
+    "sayto": {
+      "success": "メッセージを送信しました。",
+      "description": "指定したオンラインプレイヤーにサーバーメッセージを送信します。"
     },
     "setConst": {
       "range_error": "キャラの凸数は 0 から 6 までです。",
@@ -353,8 +355,11 @@
       "level_error": "好感度レベルが無効です。",
       "description": "現在アクティブなキャラの好感度レベルを設定します｡"
     },
-    "setProp": {
-      "description": "アカウント全体のプロパティを設定します。 godmodeのようなものはこの方法で有効にすることができ、アンロックされた深淵の床やバトル パスの進行状況などを変更することもできます。\n\t<prop> の値: godmode | nostamina | unlimitedenergy | abyss | worldlevel | bplevel\n\tmax_spring_volume の形式の他の設定可能な値についてはPlayerPropertyを参照してください｡"
+    "openstate": {
+      "description": "Query or set OpenStates by name: openstate <name|id> [true|false]. Find names with openstate list [filter]."
+    },
+    "prop": {
+      "description": "アカウント全体のプロパティを設定します。 godmodeのようなものはこの方法で有効にすることができ、アンロックされた深淵の床やバトル パスの進行状況などを変更することもできます。 Use `unlock map` for map unlocks and `openstate` for OpenStates."
     },
     "setSceneTag": {
       "description": "アカウント固有のシーンタグを設定します。これは岩がドアを塞いだり、建物が見えたり、その他（大抵はクエストに関連した）あなたのワールドで見えるものに影響を与えるものをコントロールします。"
@@ -425,7 +430,7 @@
       "success": "%1$s を シーン %5$s の %2$s, %3$s, %4$s にテレポートさせました。",
       "description": "プレイヤーの位置を変更します。"
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "トライアル アバター アクティビティの機能を操作します。これには、ダンジョンと報酬の状態の切り替えが含まれます。",
       "not_found": "試用アバター アクティビティ プレーヤー データが見つかりません。アクティビティが有効になっていない可能性があります。",
       "invalid_param": "無効なパラメーター。",

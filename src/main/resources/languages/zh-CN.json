@@ -232,7 +232,7 @@
     },
     "player": {
       "success": "目前在线人数：%s",
-      "description": "查看所有玩家"
+      "description": "查看在线玩家列表和玩家详情"
     },
     "permission": {
       "add": "权限已添加。",
@@ -253,11 +253,6 @@
       "not_found": "找不到 NPC %s。",
       "none_near": "附近 %s 米内没有 NPC。",
       "group_sent": "已让客户端加载场景组 %s 的第 %s 组内容；NPC 会出现在脚本里写的位置（需要在该组所在的场景里）。"
-    },
-    "pierro": {
-      "description": "切换若娜瓦战中皮耶罗的支援按钮",
-      "on": "已开启皮耶罗支援按钮，队伍栏会出现他的头像，点击可攻击若娜瓦。下线后失效。",
-      "off": "已关闭皮耶罗支援按钮。"
     },
     "support": {
       "description": "切换队伍栏的支援按钮：皮耶罗(pierro)、瓦列里(valeriy)、支援爆破(blast)",
@@ -295,7 +290,10 @@
       "description": "播放过场动画"
     },
     "sound": {
-      "description": "播放声音"
+      "description": "播放音效；sound list [filter] [--page N] 可查看已观察到的音效名。"
+    },
+    "lookup": {
+      "description": "按名称搜索物品、角色和实体；支持 --page N 分页。"
     },
     "reload": {
       "reload_start": "正在重载配置文件和数据...",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "消息已发送。",
-      "description": "向玩家以服务器的身份发送消息。如果没有指定目标，则向服务器的全部玩家发送"
+      "description": "向所有在线玩家广播服务器消息。"
+    },
+    "sayto": {
+      "success": "消息已发送。",
+      "description": "向指定在线玩家发送服务器消息。"
     },
     "setConst": {
       "range_error": "命之座等级必须在 0-6 之间。",
@@ -353,8 +355,11 @@
       "level_error": "无效的好感度等级。",
       "description": "设置当前角色的好感度等级"
     },
-    "setProp": {
-      "description": "设置账号的状态。比如可以通过此命令启用 GodMode，也可以解锁深渊或更改纪行等级\n\t可更改的状态列表(不区分大小写)：GodMode(上帝模式)|UnlimitedStamina(无限体力)|UnlimitedEnergy(无限能量)|TowerLevel(深渊)|WorldLevel(世界等级)|BPLevel(纪行等级)|SetOpenState(设置开放状态)|UnsetOpenState(取消开放状态)|UnlockMap(解锁地图)\n\t查看 PlayerProperty enum 以获得其他数值，格式为 PROP_MAX_SPRING_VOLUME -> max_spring_volume"
+    "openstate": {
+      "description": "按名称查询或修改开放状态：openstate <name|id> [true|false]；openstate list [filter] 可查名称。"
+    },
+    "prop": {
+      "description": "查询或修改世界等级、无敌模式、体力、元素能量和纪行等级等玩家属性。省略 [value] 查询，提供值则修改。地图解锁用 unlock map，开放状态用 openstate。"
     },
     "setSceneTag": {
       "description": "设置特定于账户的场景标签。这可以控制诸如石头挡住门、建筑物可见以及其他（通常与任务相关）影响世界可见度的事物。"
@@ -425,7 +430,7 @@
       "success": "传送 %s 到坐标 %s, %s, %s，场景为 %s。",
       "description": "改变指定玩家的位置"
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "控制试用角色的活动。可以切换秘境和奖励的状态",
       "not_found": "未找到试用角色活动的玩家数据。也许该活动未被启用。",
       "invalid_param": "无效的参数。",

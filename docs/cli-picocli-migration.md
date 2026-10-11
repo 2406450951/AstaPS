@@ -49,23 +49,40 @@ The clone inherits the source account password and permissions.
 
 ## Canonical command routes
 
+- `waypoints [areaId...]` (`wp`) preserves full-scene unlocking when no area IDs are supplied; supplying IDs only unlocks matching teleport points and their respective areas, not the entire scene. The 7.1-supported teleport point types use the same filter as the `waypoints` tests. Use `waypoints list` to inspect area IDs.
+- `spawn <entityId|name> [options]` retains the short alias `s` but drops the misleading `drop` alias; there is no standalone `drop` command.
+
+- `reload [all|config|language|gacha|shop|combine]` reloads the existing hot-reload components. Bare `reload` and `reload all` keep the previous order: config, language selection, gacha banners, shops, and reliquary decomposition. Each named subcommand reloads only that component. This does **not** reload Excel resources, active Quest JSON, scene scripts, or existing player/world state; restart for those changes. Language resources are bundled and cached, so `reload language` reselects the configured language rather than re-reading modified JSON from disk.
+- `stop` (alias `shutdown`) exits with success status 0, invoking Grasscutter's shutdown hook: disable plugins, disconnect players/save worlds, terminate the game thread, then drain database writers within a bounded timeout. The existing 1-second fixed game-shutdown wait and 5-second writer deadline are still present; neither guarantees every pending write will finish if the database stalls. A nonzero exit code is reserved for failures.
+- `info` now displays only runtime-derived version/player/server information, with no embedded legacy project attributions or fixed Discord invite. The existing permission-based detailed-information visibility is unchanged.
+
+
 The Picocli command tree keeps one route for each operation:
 
-- `kill` kills the active character; `kill all <key> [sceneId]` kills monsters. The standalone `killall`, `kill character`, and `suicide` routes are removed.
-- `restore energy` replaces `er` / `e` / `energy`; `heal` and `heal all` remain because the latter covers off-team avatars.
+- `kill` kills the active character; `kill all [sceneId]` kills monsters. The `server.killall` / `server.killall.others` permissions still protect bulk monster removal; no HTTPS keystore password is required. The standalone `killall`, `kill character`, and `suicide` routes are removed.
+- `support <pierro|valeriy|blast|all> [on|off]` controls all team-bar support buttons, including Pierro's Ronova-fight support. The former standalone `pierro` and `ronova` commands are removed; all support buttons now use the existing `player.support` / `player.support.others` permissions (not the retired `player.pierro` permissions). The `assist` alias for `support` is retained.
+- `restore hp` restores the active team's HP; `restore hp --all` also heals every owned character outside the team (replaces `heal all`). `restore energy` restores active-team energy, and `restore all` restores active-team HP and energy. The old `heal` / `h` entrypoints and `er` / `e` / `energy` aliases are removed.
+- `unlock map` unlocks map points and areas without unlocking unrelated features or equipment. `unlock map --force` also includes quest-protected points (use cautiously). Both require `player.unlockall` / `player.unlockall.others`, rather than the retired `prop unlockmap` route under `player.setprop`. `unlock map` now reports newly unlocked waypoints, statues (using the existing statue identification heuristic), other points and region-area flags separately. The full-scene area flag range remains unchanged. `unlock all` retains its broader existing behavior.
+- `openstate <name|id> [true|false]` queries or sets an OpenState using a descriptive name, e.g. `openstate gacha`, `openstate multiplayer true`, or `openstate resin false`. `1` and `0` remain accepted. `openstate list [filter] [--page N]` shows up to 20 loaded states per page. Tab completion offers known names actually present in the loaded resources. The legacy name registry is incomplete for newer 7.1 states; these are listed and accessible by numeric ID without inventing names. The former `prop setopenstate` and `prop unsetopenstate` routes/aliases are removed. Writes retain the `player.setprop` permissions and existing save/notify behavior. Some server-enforced states such as resin/45 are reset upon login.
+- `sound <sound> [x y z]` plays a scene sound at the current player position or at exactly three coordinates. Incomplete coordinates fail at Picocli parse time. `sound list [filter] [--page N]` shows up to 20 names per page and Tab completion suggests the names observed from scene Lua sound notifications in the current server process. The game resources have no complete sound-name catalog, so the observed list may start empty and must not be presented as exhaustive. Existing `audio` alias is kept.
+- `lookup <name...> [--page N]` searches item, avatar, monster and gadget names using the existing relevance ranking and distinct-ID behavior, showing 15 entries per page. `find` and `search` remain aliases.
+- `windy` now reports a missing or empty packaged Lua script as an error; it no longer substitutes the UID script or reports a false success.
+- `prop <property> [value]` uses Minecraft-style query/set syntax: omit `[value]` to show the current value, or supply it to change the property. `prop set` and the former standalone `setProp` are removed. Map unlocking and open-state changes have separate commands: `unlock map [--force]` and `openstate <name|id> [true|false]`. Existing `player.setprop` and `player.setprop.others` permissions remain unchanged; `help prop` shows the syntax.
+- `avatar talent normal|skill|burst|all <level> [--avatar <avatarId>|--all]` and `avatar friendship set <level> [--avatar <avatarId>|--all]` support batch changes to owned characters. Talent `set`/`list` and `extralevel` remain single-character commands; `--all` and `--avatar` are mutually exclusive.
 - `avatar stat set <stat> <value> [--avatar <avatarId>]`, `avatar stat lock <stat> [value] [--avatar <avatarId>]`, and `avatar stat unlock <stat> [--avatar <avatarId>]` replace top-level `setStats`, `stats`, and `stat` without aliases. The old `freeze` and `unfreeze` routes remain removed.
 - `setSceneTag add <id>`, `remove <id>`, `reset` and `unlock all` are canonical; the old `set`, `del`, `restore` and `unlockall` subcommands are removed.
 - `unlock all [@UID]` replaces the standalone `unlockall` command. The existing `player.unlockall` permissions, open-state blacklist and scene-tag exclusion remain unchanged. It is distinct from `tag unlock all`, which operates on scene tags.
-- `ban <playerSelector> [endTime] [reason...]` bans an account (`endTime` is a Unix timestamp); `ban <IPv4> [reason...]` bans an IP. `unban <playerSelector|IPv4>` uses the same parser without subcommands or a keystore key. Account ban/unban requires `server.ban` and, for another account, `server.ban.others`; IP ban/unban requires `server.banip`.
+- `ban <playerSelector> [endTime] [reason...]` bans an account; `ban <IPv4> [endTime] [reason...]` bans an IP. For IP bans, `endTime` is a future Unix timestamp; omitting it (or using `0`) preserves an indefinite ban, and linked account bans expire with the IP ban. `unban <playerSelector|IPv4>` uses the same parser without subcommands or a keystore key. Account ban/unban requires `server.ban` and, for another account, `server.ban.others`; IP ban/unban requires `server.banip`.
 - `kick <playerSelector>` disconnects an online player. It requires `server.kick`, does not accept a keystore key, and no longer has the misleading `restart` alias.
 - `announce send <content...>` is the only direct-send route; bare `announce <content...>` is removed. `announce template <templateId>` is the canonical template route; `announce tpl` remains an alias.
-- `say <message...>` is the canonical message command. `sendMessage`, `sendservmsg`, `sendservermessage`, `b`, and `broadcast` are removed.
-- `player list` replaces `list [uid]` and `players`; it always displays each online player’s nickname and UID. The `--uid` option is not supported.
+- `say <message...>` broadcasts the full literal message to every online player, even if its final word resembles `@UID` or `username@`. `sayto <playerSelector> <message...>` sends only to an online player selected by `@UID`, `username@`, or `username@UID`; targeting someone else checks `server.sendmessage.others`. Both use `server.sendmessage`, neither consumes inline command targets, and Picocli @file expansion remains disabled. The old trailing-selector behavior is removed. The obsolete `sendMessage`, `sendservmsg`, `sendservermessage`, `b`, and `broadcast` aliases remain removed.
+- `player list` replaces `list [uid]` and `players`; it displays online players’ nicknames and UIDs. `player info <playerSelector>` also shows account, rank, world level and online state, plus scene/coordinates when online. The console can inspect any player; an in-game user needs `server.playerinfo` to inspect another player. The `--uid` option is not supported.
 - `account resetpassword <accountSelector> <new-password>` replaces `account resetpass`; `account passwd` is its sole shortcut. `account delete` and `account clone` also use an explicit selector for the existing account.
 - `info` has no `troubleshoot` or `helpme` aliases.
 - `battlepass` is the canonical battle-pass command with `bp` as its only alias; `give` retains `g`, `name` retains `rename`, and `namecard` retains `card`. Removed `item`, `giveitem`, `nickname`, and `setnamecard` aliases.
 - `coop [guestSelector] <hostSelector>` requires an online host. When the guest is omitted, it uses the current command target (the sender by default in-game); in the console, choose a guest with `target` or provide both selectors. Each explicit selector follows `playerSelector` syntax. Moving another player requires `server.coop.others`.
 
+- `trial change <scheduleId>`, `trial toggledungeon <index|all>` and `trial togglereward <index|all>` replace the old `trialAvatarActivity` / `taa` entrypoints; the existing `player.trialavataractivity` permissions are retained.
 - `dungeon <dungeonId>` is the canonical dungeon command. The former `enter_dungeon` and `enterdungeon` names are removed; the `player.enterdungeon` permission key remains unchanged.
 - Removed aliases: `pb`, `levelbreak`, `killCharacter`, `mattrack`, `unlockwp`, `item`, `giveitem`, `nickname`, `setnamecard`, and `suicide`. The old `el` shortcut is also gone after migrating `extralevel` into `avatar`.
 
@@ -216,15 +233,15 @@ avatar list
 avatar constellation set <0-6> [--avatar <avatarId> | --all]
 avatar constellation reset [--avatar <avatarId> | --all]
 avatar talent set <talentId> <level> [--avatar <avatarId>]
-avatar talent normal <level> [--avatar <avatarId>] # alias: n
-avatar talent skill <level> [--avatar <avatarId>]  # alias: e
-avatar talent burst <level> [--avatar <avatarId>]  # alias: q
-avatar talent all <level> [--avatar <avatarId>]
+avatar talent normal <level> [--avatar <avatarId> | --all] # alias: n
+avatar talent skill <level> [--avatar <avatarId> | --all]  # alias: e
+avatar talent burst <level> [--avatar <avatarId> | --all]  # alias: q
+avatar talent all <level> [--avatar <avatarId> | --all]
 avatar talent list [--avatar <avatarId>]
 avatar stat set <stat> <value> [--avatar <avatarId>]
 avatar stat lock <stat> [value] [--avatar <avatarId>]
 avatar stat unlock <stat> [--avatar <avatarId>]
-avatar friendship set <level> [--avatar <avatarId>]
+avatar friendship set <level> [--avatar <avatarId> | --all]
 avatar extralevel [--avatar <avatarId>]
 avatar max [--avatar <avatarId> | --all]
 ```

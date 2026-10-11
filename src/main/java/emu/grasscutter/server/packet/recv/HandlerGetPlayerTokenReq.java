@@ -22,17 +22,6 @@ import javax.crypto.Cipher;
 
 @Opcodes(PacketOpcodes.GetPlayerTokenReq)
 public class HandlerGetPlayerTokenReq extends PacketHandler {
-    /**
-     * Ban end time written for an account taken down by an IP ban.
-     *
-     * <p>An IP ban has no end of its own, but the ban screen needs one, so this stands in for "not
-     * coming back". banEndTime is an int of epoch seconds, so the furthest it can express is
-     * 2038-01-19 - upstream writes a 2099 timestamp here, which silently overflows. /unbanip is
-     * what actually lifts it.
-     */
-    private static final int IP_BAN_END_TIME = Integer.MAX_VALUE;
-
-
     // Read with ProtoRead rather than parseFrom: a mismatched field type makes parseFrom throw
     // instead of returning the fields that still line up. The numbers come from the generated
     // class so they follow the protocol; they used to be pinned to a 7.0 capture (2, 6, 588, 932),
@@ -210,18 +199,19 @@ public class HandlerGetPlayerTokenReq extends PacketHandler {
         // from the same address. The account ban is what the client is actually told about, since
         // it is the one the ban screen can explain.
         var clientIp = session.getAddress().getAddress().getHostAddress();
-        if (DatabaseHelper.isIpBanned(clientIp)) {
+        var ipBan = DatabaseHelper.getBannedIp(clientIp);
+        if (ipBan != null && ipBan.isActiveAt(System.currentTimeMillis() / 1000)) {
             var bannedAccount = session.getAccount();
             if (!bannedAccount.isBanned()) {
                 bannedAccount.setBanned(true);
                 bannedAccount.setBannedByIp(clientIp);
                 bannedAccount.setBanReason(DatabaseHelper.IP_BAN_REASON_PREFIX + clientIp);
                 bannedAccount.setBanStartTime((int) (System.currentTimeMillis() / 1000));
-                bannedAccount.setBanEndTime(IP_BAN_END_TIME);
+                bannedAccount.setBanEndTime(ipBan.accountBanEndTime());
                 bannedAccount.save();
                 Grasscutter.getLogger()
-                    .warn("IP {} is banned; account {} was banned with it.",
-                        clientIp, bannedAccount.getUsername());
+                    .warn("IP {} is banned until {}; account {} was banned with it.",
+                        clientIp, ipBan.getEndTime(), bannedAccount.getUsername());
             }
         }
 

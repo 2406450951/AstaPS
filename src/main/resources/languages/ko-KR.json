@@ -254,11 +254,6 @@
       "none_near": "No NPC within %s m.",
       "group_sent": "Asked the client to load group %s suite %s; its NPCs appear where the script places them (you must be in that group's scene)."
     },
-    "pierro": {
-      "description": "Toggle Il Pierro's support button from the Ronova fight",
-      "on": "Pierro's support button is on: his portrait appears on the team bar and strikes Ronova when pressed. It lasts until logout.",
-      "off": "Pierro's support button is off."
-    },
     "support": {
       "description": "Toggle team-bar support buttons: Il Pierro (pierro), Valeriy (valeriy), support blast (blast)",
       "on": "Support button on: %s. It lasts until logout.",
@@ -295,7 +290,10 @@
       "description": "🇺🇸Plays a cutscene"
     },
     "sound": {
-      "description": "🇺🇸Plays a sound"
+      "description": "Play a scene sound. sound list [filter] [--page N] searches observed sound names."
+    },
+    "lookup": {
+      "description": "Search game content names and IDs; paginate with --page N."
     },
     "reload": {
       "reload_start": "구성 설정을 다시 불러오는중...",
@@ -336,7 +334,11 @@
     },
     "say": {
       "success": "메세지 전송 성공.",
-      "description": "서버가 플레이어에게 메세지를 전송합니다. 목표를 지정하지 않고 명령어를 사용하는 경우, 서버의 모든 인원에게 메세지가 발송됩니다."
+      "description": "접속 중인 모든 플레이어에게 서버 메시지를 전송합니다."
+    },
+    "sayto": {
+      "success": "메세지 전송 성공.",
+      "description": "접속 중인 특정 플레이어에게 서버 메시지를 전송합니다."
     },
     "setConst": {
       "range_error": "별자리 레벨은 0과 6사이여야 합니다.",
@@ -353,8 +355,11 @@
       "level_error": "잘못된 호감도 지수",
       "description": "파티 내 자신의 캐릭터의 호감도를 설정합니다."
     },
-    "setProp": {
-      "description": "계정의 속성을 변경합니다. godmode등이 이를 통해 활성화 될 수 있으며, 나선비경을 잠금해제하거나, 기행의 레벨을 조정하는 등의 명령또한 이를 통해 가능합니다."
+    "openstate": {
+      "description": "Query or set OpenStates by name: openstate <name|id> [true|false]. Find names with openstate list [filter]."
+    },
+    "prop": {
+      "description": "계정의 속성을 변경합니다. godmode등이 이를 통해 활성화 될 수 있으며, 나선비경을 잠금해제하거나, 기행의 레벨을 조정하는 등의 명령또한 이를 통해 가능합니다. Use `unlock map` for map unlocks and `openstate` for OpenStates."
     },
     "setSceneTag": {
       "description": "계정별 장면 태그를 설정합니다. 이는 바위가 문을 막거나 건물이 보이거나, 월드에 표시되는 것에 영향을 주는 기타(주로 퀘스트 관련) 것들을 제어합니다."
@@ -425,7 +430,7 @@
       "success": " %s 을(를) %s, %s, %s 로 이동시켰습니다. scene %s.",
       "description": "플레이어의 위치를 이동시킵니다."
     },
-    "trialAvatarActivity": {
+    "trial": {
       "description": "평가판 아바타 활동의 기능을 조작합니다. 여기에는 던전 및 보상 상태 전환이 포함됩니다.",
       "not_found": "평가판 아바타 활동 플레이어 데이터를 찾을 수 없습니다. 활동이 활성화되지 않았을 수 있습니다.",
       "invalid_param": "잘못된 매개 변수.",

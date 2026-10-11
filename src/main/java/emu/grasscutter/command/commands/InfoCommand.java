@@ -38,19 +38,6 @@ public final class InfoCommand implements CommandHandler {
             var scriptsEnabled = gameOptions.enableScriptInBigWorld;
             var fastRequire = config.server.fastRequire;
 
-            CommandOutput.sendMessage(
-                    sender,
-                    """
-                    Modified by Kei-Luna and the contributors
-                    Created by Meledy
-                    - currently maintained by KingRainbow44
-                    - formerly maintained by Birdulon
-
-                    Other Credits
-                     - Slushy Team (akio, azzu, Areha11Fz, tamil; protocol)
-                     - Yuki (resource minifying & packaging)
-                     - Dimbreath (dumping most resources)""");
-
             if (sender == null
                     || sender.getAccount().hasPermission("grasscutter.command.troubleshoot")
                     || playerCount == 1) {
@@ -64,9 +51,7 @@ public final class InfoCommand implements CommandHandler {
                         Scripts Enabled: %s
                         Using Fast Require: %s
                         Operating System: %s
-                        Resource Information: %s
-
-                        discord.gg/2AxayFampP"""
+                        Resource Information: %s"""
                                 .formatted(
                                         build,
                                         playerCount,
@@ -77,7 +62,8 @@ public final class InfoCommand implements CommandHandler {
                                         resourceInfo));
             } else {
                 CommandOutput.sendMessage(
-                        sender, "Grasscutter Discord: discord.gg/2AxayFampP");
+                        sender,
+                        "Server revision: " + build + "\nOnline players: " + playerCount);
             }
         }
     }

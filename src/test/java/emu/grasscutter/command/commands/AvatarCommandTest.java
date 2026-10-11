@@ -58,7 +58,7 @@ public final class AvatarCommandTest {
     }
 
     @Test
-    void talentCommandsSelectOneOwnedAvatarAndHaveSlotAliases() {
+    void talentCommandsSupportSelectiveBulkOperationsAndHaveSlotAliases() {
         var subcommands = command().getSubcommands().get("talent").getSubcommands();
         for (String name : List.of("set", "normal", "skill", "burst", "all", "list", "n", "e", "q")) {
             assertTrue(subcommands.containsKey(name), name);
@@ -69,18 +69,29 @@ public final class AvatarCommandTest {
         for (String[] args : new String[][] {
                 {"talent", "set", "10001", "10", "--avatar", "1001"},
                 {"talent", "normal", "10"},
+                {"talent", "normal", "10", "--all"},
                 {"talent", "skill", "10", "--avatar", "1001"},
+                {"talent", "skill", "10", "--all"},
                 {"talent", "burst", "10"},
+                {"talent", "burst", "10", "--all"},
                 {"talent", "n", "10"},
                 {"talent", "e", "10"},
                 {"talent", "q", "10"},
                 {"talent", "all", "10", "--avatar", "1001"},
+                {"talent", "all", "10", "--all"},
                 {"talent", "list", "--avatar", "1001"}
         }) {
             assertDoesNotThrow(() -> command().parseArgs(args), String.join(" ", args));
         }
-        assertThrows(CommandLine.ParameterException.class,
-                () -> command().parseArgs("talent", "all", "10", "--all"));
+        for (String[] args : new String[][] {
+                {"talent", "set", "10001", "10", "--all"},
+                {"talent", "list", "--all"},
+                {"talent", "normal", "10", "--all", "--avatar", "1001"},
+                {"talent", "all", "10", "--all", "--avatar", "1001"}
+        }) {
+            assertThrows(CommandLine.ParameterException.class,
+                    () -> command().parseArgs(args), String.join(" ", args));
+        }
         assertThrows(CommandLine.ParameterException.class,
                 () -> command().parseArgs("talent", "getid"));
     }
@@ -91,6 +102,7 @@ public final class AvatarCommandTest {
                 {"list"},
                 {"friendship", "set", "10"},
                 {"friendship", "set", "5", "--avatar", "1001"},
+                {"friendship", "set", "5", "--all"},
                 {"extralevel"},
                 {"extralevel", "--avatar", "1001"},
                 {"max"},
@@ -100,7 +112,7 @@ public final class AvatarCommandTest {
             assertDoesNotThrow(() -> command().parseArgs(args), String.join(" ", args));
         }
         for (String[] args : new String[][] {
-                {"friendship", "set", "5", "--all"},
+                {"friendship", "set", "5", "--avatar", "1001", "--all"},
                 {"extralevel", "1001"},
                 {"max", "all"},
                 {"max", "--all", "--avatar", "1001"},

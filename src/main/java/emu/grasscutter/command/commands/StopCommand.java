@@ -15,6 +15,7 @@ import picocli.CommandLine;
         permission = "server.stop",
         targetRequirement = Command.TargetRequirement.NONE)
 public final class StopCommand implements CommandHandler {
+    static final int NORMAL_EXIT_CODE = 0;
     @Override
     public CommandLine createCommandLine(Player sender, Player targetPlayer) {
         return new CommandLine(new Args(sender));
@@ -34,7 +35,7 @@ public final class StopCommand implements CommandHandler {
             for (Player player : Grasscutter.getGameServer().getPlayers().values()) {
                 CommandOutput.sendMessage(player, translate(player, "commands.stop.success"));
             }
-            System.exit(1000);
+            System.exit(NORMAL_EXIT_CODE);
         }
     }
 }
