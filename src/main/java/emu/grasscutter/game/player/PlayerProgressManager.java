@@ -36,40 +36,33 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
                     // This should be removed when city reputation is implemented.
                     );
 
-    // Open states 7.0 added that sit behind OPEN_STATE_COND_QUEST and nothing else. With questing
-    // off nothing ever satisfies that condition, so the features stay locked for good rather than
-    // just unlocking late - the Nod-Krai and Natlan menu entries among them. Unlocked outright.
-    public static final Set<Integer> QUEST_GATED_7_0_OPEN_STATES =
-            Set.of(6701, 6702, 6706, 7011, 7014, 7015, 7016, 7021, 7025, 7055, 7056, 7059);
-
-    // Set of open states that are set per default for all accounts. Can be overwritten by an entry in
-    // `map`.
+    /**
+     * Login fallback states, only for genuine resource defaults plus the Paimon menu needed
+     * for chat. Quest-, level- and region-gated features use the runtime condition checker.
+     */
     public static final Set<Integer> DEFAULT_OPEN_STATES =
             GameData.getOpenStateList().stream()
-                    .filter(
-                            s ->
-                                    s.isDefaultState() && !s.isAllowClientOpen() // Actual default-opened states.
-                                            || ((s.getCond().size() == 1)
-                                                    && (s.getCond().get(0).getCondType()
-                                                            == OpenStateCondType.OPEN_STATE_COND_PLAYER_LEVEL)
-                                                    && (s.getCond().get(0).getParam() == 1))
-                                            // All states whose unlock we don't handle correctly yet.
-                                            || (s.getCond().stream()
-                                                    .anyMatch(
-                                                            c ->
-                                                                    c.getCondType() == OpenStateCondType.OPEN_STATE_OFFERING_LEVEL
-                                                                            || c.getCondType()
-                                                                                    == OpenStateCondType.OPEN_STATE_CITY_REPUTATION_LEVEL))
-                                            || QUEST_GATED_7_0_OPEN_STATES.contains(s.getId())
-                                            // Always unlock OPEN_STATE_PAIMON, otherwise the player will not have a
-                                            // working chat.
-                                            || s.getId() == 1)
+                    .filter(PlayerProgressManager::isDefaultOpenState)
                     .map(OpenStateData::getId)
-                    .filter(s -> !BLACKLIST_OPEN_STATES.contains(s)) // Filter out states in the blacklist.
-                    .filter(
-                            s ->
-                                    !IGNORED_OPEN_STATES.contains(s)) // Filter out states in the default ignore list.
+                    .filter(id -> !BLACKLIST_OPEN_STATES.contains(id))
+                    .filter(id -> !IGNORED_OPEN_STATES.contains(id))
                     .collect(Collectors.toSet());
+
+    static boolean isDefaultOpenState(OpenStateData state) {
+        return (state.isDefaultState() && !state.isAllowClientOpen())
+                || state.getId() == 1;
+    }
+
+    /**
+     * Automatic progression needs real server-owned conditions or a genuine default.
+     * An absent/unknown condition must not unlock a non-default feature at login.
+     */
+    static boolean isAutomaticOpenStateCandidate(OpenStateData state) {
+        return !state.isAllowClientOpen()
+                && (state.isDefaultState()
+                        || (state.getCond() != null
+                                && state.getCond().stream().anyMatch(c -> c.getCondType() != null)));
+    }
 
     public PlayerProgressManager(Player player) {
         super(player);
@@ -98,13 +91,15 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         this.tryUnlockOpenStates(false);
 
         if (!GAME_OPTIONS.questing.enabled) {
-            // Match remote LunaGC login unlocks when questing is off.
-            // IMPORTANT: do this BEFORE OpenStateUpdateNotify so the login snapshot already
-            // includes the bulk-unlocked map (remote applies these then notifies).
+            // Retain the existing starter Mondstadt navigation area when questing is disabled.
+            // This map unlock is separate from the OpenState mass-unlock option.
             this.player.getUnlockedScenePoints(3).add(7);
-            // Do NOT mass-unlock every city/world area here - map fog is owned by statue/waypoint
-            // unlocks (see syncSceneAreasFromUnlockedPoints). Starter Mondstadt area only.
             this.player.getUnlockedSceneAreas(3).add(1);
+        }
+
+        if (GAME_OPTIONS.unlockAllOpenStatesOnLogin) {
+            // Sandbox opt-in: preserve the former bulk unlock, but never tie it to questing.
+            // Do this before OpenStateUpdateNotify so the login snapshot is complete.
             this.setOpenState(47, 1, false);
             this.setOpenState(48, 1, false);
             this.setOpenState(1101, 1, false);
@@ -125,13 +120,13 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             }
             emu.grasscutter.Grasscutter.getLogger()
                     .debug(
-                            "Questing-off OpenState force-fill uid={} mapSize={} newlySet={}",
+                            "Configured OpenState bulk unlock uid={} mapSize={} newlySet={}",
                             this.player.getUid(),
                             this.player.getOpenStates().size(),
                             unlocked);
         }
 
-        // Send notify to the client (after questing-off fill so the snapshot is complete).
+        // Send notify after optional mass unlock so the login snapshot is complete.
         player.getSession().send(new PacketOpenStateUpdateNotify(this.player));
 
         // Offerings such as the Sacred Sakura: send PlayerOfferingDataNotify on login, otherwise the
@@ -214,7 +209,10 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
                     }
                 }
                     // ToDo: Implement.
-                case OPEN_STATE_OFFERING_LEVEL, OPEN_STATE_CITY_REPUTATION_LEVEL -> {}
+                case OPEN_STATE_OFFERING_LEVEL, OPEN_STATE_CITY_REPUTATION_LEVEL -> {
+                    // Unsupported offering and reputation requirements must not auto-unlock.
+                    return false;
+                }
             }
         }
 
@@ -257,16 +255,13 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         // Get list of open states that are not yet unlocked.
         var lockedStates =
                 GameData.getOpenStateList().stream()
-                        .filter(s -> this.player.getOpenStates().getOrDefault(s, 0) == 0)
+                        .filter(s -> this.player.getOpenStates().getOrDefault(s.getId(), 0) == 0)
                         .toList();
 
         // Try unlocking all of them.
         for (var state : lockedStates) {
-            // To auto-unlock a state, it has to meet three conditions:
-            // * it can not be a state that is unlocked by the client,
-            // * it has to meet all its unlock conditions, and
-            // * it can not be in the blacklist.
-            if (!state.isAllowClientOpen()
+            // Client-owned, conditionless non-default and unsupported states stay locked.
+            if (isAutomaticOpenStateCandidate(state)
                     && this.areConditionsMet(state)
                     && !BLACKLIST_OPEN_STATES.contains(state.getId())
                     && !IGNORED_OPEN_STATES.contains(state.getId())) {
