@@ -2,6 +2,7 @@ import java.util.Locale
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.JavaExec
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.compile.JavaCompile
 
@@ -65,10 +66,25 @@ allprojects { currentProject ->
             task.dependsOn(currentProject.tasks.named(protocolTools.compileJavaTaskName))
             task.classpath = protocolTools.runtimeClasspath
             task.mainClass.set('emu.grasscutter.tools.protocol.ProtocolJavaGenerator')
+            // protoc produces deterministic source files for this descriptor set. Declare
+            // all native-tool and descriptor inputs so an outdated cache cannot be reused.
+            // Relative normalization lets separate Git worktrees share the same cache entry.
             task.inputs.files(descriptorSet, protocolFileList)
+                    .withPropertyName('descriptorInputs')
+                    .withPathSensitivity(PathSensitivity.RELATIVE)
             task.inputs.dir(supplementalProtoDir)
+                    .withPropertyName('supplementalProto')
+                    .withPathSensitivity(PathSensitivity.RELATIVE)
             task.inputs.dir(supplementalImportDir)
+                    .withPropertyName('supplementalImports')
+                    .withPathSensitivity(PathSensitivity.RELATIVE)
+            task.inputs.files(protocCompiler)
+                    .withPropertyName('protocExecutable')
+                    .withPathSensitivity(PathSensitivity.NONE)
+            task.inputs.property('protocVersion', protocVersion)
+            task.inputs.property('protocPlatform', protocClassifier)
             task.outputs.dir(generatedProtocolJava)
+            task.outputs.cacheIf('7.1 protocol source generation is reproducible') { true }
 
             task.doFirst {
                 def protocExecutable = protocCompiler.singleFile
@@ -89,24 +105,48 @@ allprojects { currentProject ->
             }
         }
 
-        sourceSets.main.java.srcDir(generatedProtocolJava)
 
-        currentProject.tasks.register('lintGeneratedProtocolJava', JavaCompile) { task ->
+        // Keep generated protocol classes in their own cacheable compilation task.
+        // Ordinary server code changes must not invalidate compilation of 7.1 protocol sources.
+        def protocolSources =
+                sourceSets.findByName('generatedProtocol') ?: sourceSets.create('generatedProtocol')
+        protocolSources.java.srcDir(generatedProtocolJava)
+        currentProject.dependencies.add(
+                protocolSources.implementationConfigurationName,
+                "com.google.protobuf:protobuf-java:${protocVersion}")
+
+        // Gradle tracks protocolSources.output as a build dependency, so main and test
+        // compilation wait for the generated protocol classes automatically.
+        sourceSets.main.compileClasspath += protocolSources.output
+        sourceSets.main.runtimeClasspath += protocolSources.output
+        sourceSets.test.compileClasspath += protocolSources.output
+        sourceSets.test.runtimeClasspath += protocolSources.output
+
+        currentProject.tasks.named(protocolSources.compileJavaTaskName, JavaCompile) {
+            dependsOn 'generateProtocolJava'
+            options.encoding = 'UTF-8'
+            options.release.set(21)
+            options.fork = true
+            options.forkOptions.memoryMaximumSize = '6g'
+            options.compilerArgs.addAll(['-Xlint:all', '-Werror'])
+        }
+
+        // Keep generated classes and sources in the same public artifacts as before.
+        currentProject.tasks.named('jar') {
+            from(protocolSources.output)
+        }
+        currentProject.tasks.named('sourcesJar') {
+            from(protocolSources.allSource)
+        }
+
+        // The normal protocol compilation already enforces strict lint; do not compile
+        // the same 2,073 generated files a second time just to repeat the check.
+        currentProject.tasks.register('lintGeneratedProtocolJava') { task ->
             task.group = 'verification'
-            task.description = 'Compile regenerated 7.1 protocol Java with all javac lint warnings treated as errors.'
-            task.dependsOn 'generateProtocolJava'
-            task.source(generatedProtocolJava)
-            task.classpath = sourceSets.main.compileClasspath
-            task.destinationDirectory.set(
-                    currentProject.layout.buildDirectory.dir('classes/java/protocolLint'))
-            task.options.encoding = 'UTF-8'
-            task.options.release.set(21)
-            task.options.compilerArgs.addAll(['-Xlint:all', '-Werror'])
+            task.description = 'Verify generated 7.1 protocol Java was compiled with strict javac lint.'
+            task.dependsOn currentProject.tasks.named(protocolSources.compileJavaTaskName)
         }
 
-        currentProject.tasks.named('compileJava') {
-            dependsOn 'injectGitHash', 'generateProtocolJava'
-        }
         currentProject.tasks.named('sourcesJar') {
             dependsOn 'generateProtocolJava'
         }

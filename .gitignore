@@ -30,8 +30,7 @@ hs_err_pid*
 build/
 out/
 
-# Ignore Gradle properties
-gradle.properties
+# Repository-level Gradle properties are tracked; put machine-specific settings in ~/.gradle/gradle.properties.
 
 # Eclipse
 .project

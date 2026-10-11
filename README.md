@@ -43,6 +43,24 @@ Then build with:
 
 On Windows use `.\gradlew.bat`, or run `gradlew-jar.bat`.
 
+### Faster local builds
+
+The wrapper uses **Gradle 9.8.1**. The build cache and configuration cache are enabled in `gradle.properties`; unchanged protocol generation and compilation outputs can be reused across builds and Git worktrees.
+
+To compile without packaging a JAR:
+
+```sh
+./gradlew classes -PskipHandbook=1
+```
+
+For a quicker **local-test** fat JAR, disable ZIP compression:
+
+```sh
+./gradlew jar -PskipHandbook=1 -PfastJar
+```
+
+On Windows, use `.\gradlew.bat` in place of `./gradlew`. Both modes produce `grasscutter-7.1.0.jar` in the project root. The fast mode keeps the same JAR entries but makes the file much larger (roughly 230 MB instead of 85 MB in CI); use the default compressed build for distribution.
+
 ## Running
 
 1. Start MongoDB.
