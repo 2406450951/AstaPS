@@ -106,6 +106,15 @@ public final class DungeonSystem extends BaseGameSystem {
         var scene = player.getScene();
         if (savePrevious) scene.setPrevScene(scene.getId());
 
+        // The scene's own origin dies with it, and a dungeon scene is deregistered as soon as the
+        // last player leaves - so keep the origin on the player, who does survive the logout.
+        // Player.onLogin() reads this pair instead of restoring a login into an empty dungeon
+        // shell. Only world scenes qualify, so a home or activity handoff cannot record one.
+        if (scene != null && scene.getSceneType() == SceneType.SCENE_WORLD) {
+            player.setPrevSceneForDungeon(scene.getId());
+            player.setPrevPosForDungeon(new Position(player.getPosition()));
+        }
+
         // Domain / material / talent / weapon / relic: force teardown when reusing the same
         // dungeon scene so old monsters/gadgets do not linger (mirrors tower handoff).
         if (scene != null

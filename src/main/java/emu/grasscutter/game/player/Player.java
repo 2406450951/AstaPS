@@ -89,6 +89,9 @@ public class Player implements PlayerHook, FieldFetch {
     @Getter @Setter private Position prevPos;
     @Getter @Setter private Position prevPosForHome;
     @Getter @Setter private int prevScene;
+    // Written and read only as a pair, unlike prevScene, which entering a home also overwrites.
+    @Getter @Setter private Position prevPosForDungeon;
+    @Getter @Setter private int prevSceneForDungeon;
     @Getter private Position rotation;
     @Getter private PlayerBirthday birthday;
     @Getter private PlayerCodex codex;
@@ -1570,6 +1573,21 @@ public class Player implements PlayerHook, FieldFetch {
                 pos = ScriptLoader.getSceneMeta(this.getSceneId()).config.born_pos;
             }
             this.position.set(pos);
+        }
+
+        // The same holds for every other dungeon, and mid-quest it strands the step: the scene
+        // comes back with no running dungeon, so the subquest never gets its rewind. Arriving in
+        // the world is what fires ENTER_MY_WORLD and lets the quest's own fail/rollback execs
+        // restart the segment, so send the player back to where they walked in from.
+        savedScene = GameData.getSceneDataMap().get(this.getSceneId());
+        if (savedScene != null && savedScene.getSceneType() == SceneType.SCENE_DUNGEON) {
+            var originScene = this.prevSceneForDungeon > 0 ? this.prevSceneForDungeon : 3;
+            var originPos = this.getPrevPosForDungeon();
+            this.setSceneId(originScene);
+            this.position.set(
+                    originPos != null && !originPos.equals(Position.ZERO)
+                            ? originPos
+                            : ScriptLoader.getSceneMeta(originScene).config.born_pos);
         }
 
         World world = new World(this);
