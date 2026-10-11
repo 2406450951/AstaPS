@@ -256,41 +256,93 @@ public final class DomainStatueDropService {
             int rollTimes) {
         int dungeonId = dungeonData.getId();
         int nativeRoot = dungeonData.getStatueDrop();
-        boolean hasProxy = GameData.getDungeonDropDataMap() != null
-                && GameData.getDungeonDropDataMap().containsKey(dungeonId);
-        boolean nativeReady = player.getServer().getDropSystem()
-                .hasUsableDungeonRewardRoot(nativeRoot);
-        var source = DomainDropSafety.chooseRewardSource(
-                nativeReady, hasProxy, nativeRoot > 0, hasPreview);
-        switch (source) {
-            case NATIVE_ROOT:
-                // This root is backed by the pinned 7.1 resource graph. Do not
-                // replace an empty native roll with guessed proxy/preview items.
-                return rollStatueDropTable(player, nativeRoot, rollTimes);
-            case VALIDATED_PROXY:
-                // Reconstructed server-side rates only when the native root is absent.
-                // Invalid or zero-only pools refuse the claim before resin is paid.
-                try {
-                    return rollDungeonDropJson(dm, dungeonData, rollTimes);
-                } catch (IllegalArgumentException invalidProxy) {
-                    Grasscutter.getLogger().warn(
-                            "StatueDrop: rejecting DungeonDrop.json proxy dungeon={}",
-                            dungeonId, invalidProxy);
-                    return null;
-                }
-            case PREVIEW_ONLY:
-                List<GameItem> previewRewards = new ArrayList<>();
-                for (ItemParamData param : preview.getPreviewItems()) {
-                    if (param != null && param.getId() > 0) {
-                        previewRewards.addAll(InventoryGrantBuilder.create(
-                                GameData.getItemDataMap().get(param.getId()),
-                                Math.multiplyExact(Math.max(param.getCount(), 1), rollTimes),
-                                1));
+        var proxy = GameData.getDungeonDropDataMap() == null
+                ? null : GameData.getDungeonDropDataMap().get(dungeonId);
+        var subType = dungeonData.getSubType();
+        var proxyIds = new java.util.HashSet<Integer>();
+        boolean verifiedProxy = false;
+        if (proxy != null) {
+            try {
+                DomainDropSafety.validatePool(dungeonId, proxy, subType);
+                for (var entry : proxy) proxyIds.addAll(entry.getItems());
+                var artifacts = new java.util.HashSet<Integer>();
+                for (int id : proxyIds) {
+                    var data = GameData.getItemDataMap().get(id);
+                    if (data == null) throw new IllegalArgumentException("unknown proxy item " + id);
+                    if (data.getItemType() == emu.grasscutter.game.inventory.ItemType.ITEM_RELIQUARY) {
+                        artifacts.add(id);
                     }
                 }
-                return previewRewards;
+                verifiedProxy = DomainDropSafety.isVerifiedCompatibilityPool(dungeonId, artifacts);
+                if (!verifiedProxy) {
+                    Grasscutter.getLogger().warn(
+                            "StatueDrop: proxy mismatch dungeon={} artifact families={}",
+                            dungeonId, artifacts);
+                }
+            } catch (IllegalArgumentException invalid) {
+                Grasscutter.getLogger().warn(
+                        "StatueDrop: unverified proxy dungeon={}", dungeonId, invalid);
+            }
+        }
+
+        // Preview entries corroborate expected item families, but are never rolled as loot.
+        var previewIds = new java.util.HashSet<Integer>();
+        if (hasPreview) {
+            for (ItemParamData entry : preview.getPreviewItems()) {
+                if (entry != null && entry.getId() > 0) previewIds.add(entry.getId());
+            }
+        }
+        var expectedIds = verifiedProxy ? proxyIds : previewIds;
+        var nativeGraph = GameData.getDropTableDataMap();
+        boolean nativeReady = player.getServer().getDropSystem()
+                .hasUsableDungeonRewardRoot(nativeRoot);
+        java.util.Set<Integer> nativeItems = nativeReady
+                ? DomainDropSafety.nativeLeafIds(nativeRoot, id -> {
+                    var table = nativeGraph.get(id);
+                    if (table == null) return null;
+                    if (table.getDropVec() == null) return List.of();
+                    return table.getDropVec().stream()
+                            .filter(entry -> entry != null && entry.getWeight() > 0)
+                            .map(emu.grasscutter.data.common.DropItemData::getId)
+                            .toList();
+                })
+                : java.util.Set.of();
+        boolean knownNativeItems = !nativeItems.isEmpty()
+                && nativeItems.stream().allMatch(GameData.getItemDataMap()::containsKey);
+        java.util.function.IntPredicate categoryItem = id -> {
+            var data = GameData.getItemDataMap().get(id);
+            if (data == null) return false;
+            if (subType == emu.grasscutter.game.dungeons.enums.DungeonSubType.DUNGEON_SUB_RELIQUARY) {
+                return data.getItemType() == emu.grasscutter.game.inventory.ItemType.ITEM_RELIQUARY;
+            }
+            return id >= 100000 && id < 200000;
+        };
+        boolean verifiedNative = nativeReady && knownNativeItems
+                && DomainDropSafety.matchesNativeFamilies(
+                        nativeItems, expectedIds, subType, categoryItem);
+
+        var source = DomainDropSafety.chooseRewardSource(verifiedNative, verifiedProxy);
+        if (nativeReady && !verifiedNative) {
+            Grasscutter.getLogger().warn(
+                    "StatueDrop: native root rejected dungeon={} root={} leaves={} proxyValidated={}",
+                    dungeonId, nativeRoot, nativeItems.size(), verifiedProxy);
+        }
+        switch (source) {
+            case NATIVE_ROOT:
+                return rollStatueDropTable(player, nativeRoot, rollTimes);
+            case VALIDATED_PROXY:
+                try {
+                    return rollDungeonDropJson(dm, dungeonData, rollTimes);
+                } catch (RuntimeException invalidProxy) {
+                    Grasscutter.getLogger().warn(
+                            "StatueDrop: proxy roll refused dungeon={}", dungeonId, invalidProxy);
+                    return null;
+                }
             case NONE:
             default:
+                Grasscutter.getLogger().warn(
+                        "StatueDrop: no verified reward source dungeon={} nativeRoot={} proxy={} preview={}",
+                        dungeonId, nativeRoot, proxy != null, hasPreview);
                 return null;
         }
     }
