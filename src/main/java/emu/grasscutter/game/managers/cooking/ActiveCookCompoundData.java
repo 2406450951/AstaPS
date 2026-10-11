@@ -5,10 +5,12 @@ import lombok.Getter;
 
 @Entity
 public class ActiveCookCompoundData {
-    private final int costTime;
-    @Getter private final int compoundId;
+    private int costTime;
+    @Getter private int compoundId;
     @Getter private int totalCount;
     private int startTime;
+
+    private ActiveCookCompoundData() {}
 
     public ActiveCookCompoundData(int compoundId, int processTime, int count, int startTime) {
         this.compoundId = compoundId;
