@@ -53,7 +53,7 @@ public final class DungeonManager {
 
 
     /** True only after a successful petrified-tree reward claim in this dungeon run. */
-    boolean hasClaimedDomainReward(int uid) {
+    synchronized boolean hasClaimedDomainReward(int uid) {
         return rewardedPlayers.contains(uid);
     }
     private final Set<Integer> activeDungeonWayPoints = new HashSet<>();
@@ -408,7 +408,7 @@ public final class DungeonManager {
         ended = true;
     }
 
-    public void restartDungeon() {
+    public synchronized void restartDungeon() {
         this.scene.setKilledMonsterCount(0);
         this.rewardedPlayers.clear();
         this.claimRunIdentity.restart();
