@@ -1712,15 +1712,16 @@ public class Player implements PlayerHook, FieldFetch {
             this.getEnterHomeRequests().values().forEach(req -> this.expireEnterHomeRequest(req, true));
             this.getEnterHomeRequests().clear();
 
-            this.save();
-            this.getTeamManager().saveAvatars();
-            this.getFriendsList().save();
-
             PlayerQuitEvent event = new PlayerQuitEvent(this);
             event.call();
         } catch (Throwable e) {
             Grasscutter.getLogger().warn("Player (UID {}) save failure", getUid(), e);
         } finally {
+            Utils.runAll(
+                    "Player (UID " + getUid() + ") logout save",
+                    this::save,
+                    () -> this.getTeamManager().saveAvatars(),
+                    () -> this.getFriendsList().save());
             removeFromServer();
         }
     }

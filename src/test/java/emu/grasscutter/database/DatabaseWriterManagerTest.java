@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.Duration;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.*;
 import org.junit.jupiter.api.Test;
 
@@ -175,6 +177,45 @@ class DatabaseWriterManagerTest {
         assertTrue(ranOnCaller.get());
         release.countDown();
         assertTrue(fixture.manager.shutdown(Duration.ofSeconds(1)).completed());
+    }
+
+    @Test
+    void fullOrderedCapacityRejectsOnlySuccessorsOfABusyEntity() throws Exception {
+        var pool = new ThreadPoolExecutor(
+                4, 4, 0, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(8),
+                new ThreadPoolExecutor.AbortPolicy());
+        var manager = new DatabaseWriterManager(Map.of("default", pool), 1);
+        var order = new CopyOnWriteArrayList<String>();
+        var started = new CountDownLatch(1);
+        var release = new CountDownLatch(1);
+        try {
+            manager.submitOrdered(pool, "a", () -> {
+                started.countDown();
+                try {
+                    release.await();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                order.add("a1");
+            });
+            assertTrue(started.await(2, TimeUnit.SECONDS));
+            manager.submitOrdered(pool, "a", () -> order.add("a2")); // fills the capacity of one
+
+            var unrelated = new CountDownLatch(2);
+            manager.submitOrdered(pool, "b", unrelated::countDown);
+            manager.submitOrdered(pool, "c", unrelated::countDown);
+            assertTrue(unrelated.await(2, TimeUnit.SECONDS));
+            assertThrows(
+                    RejectedExecutionException.class,
+                    () -> manager.submitOrdered(pool, "a", () -> order.add("a3")));
+
+            release.countDown();
+            assertTrue(manager.shutdown(Duration.ofSeconds(2)).completed());
+            assertEquals(List.of("a1", "a2"), order);
+        } finally {
+            release.countDown();
+            pool.shutdownNow();
+        }
     }
 
     private static final class Fixture implements AutoCloseable {

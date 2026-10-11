@@ -46,6 +46,9 @@ public class GameSession implements GameSessionManager.KcpChannel {
     /** Whether this session has already reported a frame that would not decrypt. */
     private boolean reportedBadMagic;
 
+    /** Both shutdown and the transport's close callback close a session; only the first counts. */
+    private boolean closeHandled;
+
     /** Packet classes already reported as having no 7.0 CmdId, so each is said once. */
     private static final java.util.Set<String> missingCmdIdReported =
             java.util.concurrent.ConcurrentHashMap.newKeySet();
@@ -352,23 +355,27 @@ public class GameSession implements GameSessionManager.KcpChannel {
     }
 
         @Override
-        public void handleClose() {
+        public synchronized void handleClose() {
+            if (closeHandled) return;
+            closeHandled = true;
             setState(SessionState.INACTIVE);
 
             Grasscutter.getLogger()
-                    .info(translate("messages.game.disconnect", this.getAddress().toString()));
+                    .info(translate("messages.game.disconnect", String.valueOf(this.getAddress())));
 
-            if (this.isLoggedIn()) {
-                Player player = getPlayer();
-
-                player.onLogout();
-            }
             try {
-                send(new BasePacket(PacketOpcodes.ServerDisconnectClientNotify));
-            } catch (Throwable ignore) {
-                Grasscutter.getLogger().warn("closing {} error", getAddress().getAddress().getHostAddress());
+                if (this.isLoggedIn()) {
+                    getPlayer().onLogout();
+                }
+            } finally {
+                try {
+                    send(new BasePacket(PacketOpcodes.ServerDisconnectClientNotify));
+                } catch (Throwable e) {
+                    Grasscutter.getLogger().warn("Disconnect notification failed for {}", getAddress(), e);
+                } finally {
+                    tunnel = null;
+                }
             }
-            tunnel = null;
         }
 
     public void close() {

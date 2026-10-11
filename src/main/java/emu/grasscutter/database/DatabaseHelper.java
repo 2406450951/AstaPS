@@ -5,6 +5,7 @@ import static com.mongodb.client.model.Filters.eq;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.mongodb.MongoWriteException;
 
+import dev.morphia.Datastore;
 import dev.morphia.query.*;
 import dev.morphia.query.experimental.filters.Filters;
 import emu.grasscutter.*;
@@ -39,10 +40,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import javax.annotation.Nullable;
 import lombok.Getter;
+import org.bson.Document;
 
 public final class DatabaseHelper {
     private static final AccountCreationService.Store ACCOUNT_CREATION_STORE =
@@ -323,16 +326,86 @@ public final class DatabaseHelper {
 
     /** Lifts the ban on every account this IP took down. Returns how many were unbanned. */
     public static int unbanAccountsBannedByIp(String ip) {
-        var accounts = DatabaseHelper.getAccountsBannedByIp(ip);
-        for (var account : accounts) {
-            account.setBanned(false);
-            account.setBanReason(null);
-            account.setBanEndTime(0);
-            account.setBanStartTime(0);
-            account.setBannedByIp(null);
-            DatabaseHelper.saveAccountAsync(account);
+        int unbanned = 0;
+        for (var account : DatabaseHelper.getAccountsBannedByIp(ip)) {
+            try {
+                unbanAccount(account);
+                unbanned++;
+            } catch (RuntimeException e) {
+                Grasscutter.getLogger().error("Failed to unban account {}.", account.getId(), e);
+            }
         }
-        return accounts.size();
+        return unbanned;
+    }
+
+    /** The account fields a ban sets. */
+    public static final String[] BAN_FIELDS = {
+        "banReason", "banEndTime", "banStartTime", "isBanned", "bannedByIp"
+    };
+
+    public static void unbanAccount(Account account) {
+        updateAccount(
+                account,
+                fresh -> {
+                    fresh.setBanned(false);
+                    fresh.setBanReason(null);
+                    fresh.setBanEndTime(0);
+                    fresh.setBanStartTime(0);
+                    fresh.setBannedByIp(null);
+                },
+                BAN_FIELDS);
+    }
+
+    /**
+     * Applies an administrative change to this account and to the online player's copy of it, then
+     * writes only the changed fields. A whole-document save from either copy would put back
+     * whatever else changed since it was loaded, such as a newer login token.
+     */
+    public static void updateAccount(Account account, Consumer<Account> change, String... fields) {
+        change.accept(account);
+        var server = Grasscutter.getGameServer();
+        var online = server == null ? null : server.getPlayerByAccountId(account.getId());
+        if (online != null && online.getAccount() != account) change.accept(online.getAccount());
+        saveAccountFields(account, fields);
+    }
+
+    /** Writes only these fields of the account, leaving the rest of the stored document alone. */
+    public static void saveAccountFields(Account account, String... fields) {
+        var datastore = DatabaseManager.getAccountDatastore();
+        var update = accountFieldUpdate(datastore, account, fields);
+        // Accepted full-account saves drain first, or one could land later and restore old fields.
+        try (DatabaseWriteBarrier ignored = DatabaseWriteBarrier.acquire()) {
+            datastore
+                    .getDatabase()
+                    .getCollection("accounts")
+                    .updateOne(eq("_id", account.getId()), update);
+        }
+    }
+
+    /** As {@link #saveAccountFields}, off the calling thread, which may be the logic loop. */
+    public static void saveAccountFieldsAsync(Account account, String... fields) {
+        CompletableFuture.runAsync(() -> saveAccountFields(account, fields))
+                .exceptionally(
+                        e -> {
+                            Grasscutter.getLogger()
+                                    .error("Failed to save account fields {}.", List.of(fields), e);
+                            return null;
+                        });
+    }
+
+    /** A $set of the fields as Morphia would store them, and an $unset of those it would omit. */
+    static Document accountFieldUpdate(Datastore datastore, Account account, String... fields) {
+        var stored = datastore.getMapper().toDocument(account);
+        var set = new Document();
+        var unset = new Document();
+        for (var field : fields) {
+            if (stored.get(field) != null) set.put(field, stored.get(field));
+            else unset.put(field, "");
+        }
+        var update = new Document();
+        if (!set.isEmpty()) update.put("$set", set);
+        if (!unset.isEmpty()) update.put("$unset", unset);
+        return update;
     }
 
     /**
@@ -365,14 +438,31 @@ public final class DatabaseHelper {
         }
     }
 
+    /**
+     * Orders writes by object identity: a save queued while an earlier one runs must not land
+     * first and leave the older state in the database.
+     */
+    private record SameObject(Object object) {
+        @Override
+        public boolean equals(Object other) {
+            return other instanceof SameObject same && same.object == object;
+        }
+
+        @Override
+        public int hashCode() {
+            return System.identityHashCode(object);
+        }
+    }
+
     /** Queues a save on the default pool, unless one is already queued for this object. */
     private static void submitDefaultSave(Object object) {
         // Already queued: that pending write will pick up this change too.
         if (!pendingDefaultSaves.add(object)) return;
 
         try {
-            submitDatabaseWrite(
+            databaseWriters.submitOrderedUncapped(
                     eventExecutor,
+                    new SameObject(object),
                     () -> {
                         // Cleared before the write, not after: anything changed while this one runs
                         // has to be able to queue a write of its own.
@@ -391,8 +481,9 @@ public final class DatabaseHelper {
         if (!pendingGroupSaves.add(groupInstance)) return;
 
         try {
-            submitDatabaseWrite(
+            databaseWriters.submitOrderedUncapped(
                     eventExecutorGroup,
+                    new SameObject(groupInstance),
                     () -> {
                         pendingGroupSaves.remove(groupInstance);
                         saveWithRetry(groupInstance);

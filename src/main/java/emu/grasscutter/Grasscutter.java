@@ -233,11 +233,12 @@ public final class Grasscutter {
     /** Server shutdown event. */
     private static void onShutdown() {
         // Disable all plugins.
-        if (pluginManager != null) pluginManager.disablePlugins();
+        if (pluginManager != null) Utils.runAll("Plugin shutdown", pluginManager::disablePlugins);
         // Shutdown the game server.
-        if (gameServer != null) gameServer.onServerShutdown();
+        if (gameServer != null) Utils.runAll("Game server shutdown", gameServer::onServerShutdown);
 
-        boolean interrupted = false;
+        // Held until the database writers have drained, so its waits are not cut short.
+        boolean interrupted = Thread.interrupted();
         try {
             // Wait for Grasscutter's thread pool to finish.
             var executor = Grasscutter.getThreadPool();
