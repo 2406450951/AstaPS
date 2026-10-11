@@ -35,11 +35,12 @@ public final class TeleportCommand implements CommandHandler {
         private final Player sender;
         private final Player targetPlayer;
 
-        @Parameters(index = "0", arity = "0..1", paramLabel = "[pointId]")
-        private Integer pointId;
-
-        @Parameters(index = "1", arity = "0..1", paramLabel = "[sceneId]")
-        private Integer sceneId;
+        /**
+         * {@code <pointId> [sceneId]}, or {@code <x> <y> <z> [sceneId]} as before the picocli migration:
+         * three or more arguments are coordinates, the same as {@code teleport pos}.
+         */
+        @Parameters(arity = "0..4", paramLabel = "[pointId [sceneId] | x y z [sceneId]]")
+        private java.util.List<String> args = new java.util.ArrayList<>();
 
         private Root(Player sender, Player targetPlayer) {
             this.sender = sender;
@@ -48,7 +49,24 @@ public final class TeleportCommand implements CommandHandler {
 
         @Override
         public void run() {
-            if (pointId == null) {
+            if (args.isEmpty()) {
+                TeleportCommand.this.sendUsageMessage(sender);
+                return;
+            }
+            if (args.size() >= 3) {
+                Integer scene = args.size() == 4 ? parseIntOrNull(args.get(3)) : null;
+                if (args.size() == 4 && scene == null) {
+                    TeleportCommand.this.sendUsageMessage(sender);
+                    return;
+                }
+                new PositionTeleport(sender, targetPlayer, args.get(0), args.get(1), args.get(2), scene)
+                        .run();
+                return;
+            }
+
+            Integer pointId = parseIntOrNull(args.get(0));
+            Integer sceneId = args.size() == 2 ? parseIntOrNull(args.get(1)) : null;
+            if (pointId == null || (args.size() == 2 && sceneId == null)) {
                 TeleportCommand.this.sendUsageMessage(sender);
                 return;
             }
@@ -56,6 +74,14 @@ public final class TeleportCommand implements CommandHandler {
             Player target = resolveTarget(sender, targetPlayer);
             if (target == null) return;
             teleportToScenePoint(sender, target, pointId, sceneId);
+        }
+    }
+
+    private static Integer parseIntOrNull(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return null;
         }
     }
 
@@ -129,6 +155,15 @@ public final class TeleportCommand implements CommandHandler {
         private PositionTeleport(Player sender, Player targetPlayer) {
             this.sender = sender;
             this.targetPlayer = targetPlayer;
+        }
+
+        private PositionTeleport(
+                Player sender, Player targetPlayer, String x, String y, String z, Integer sceneId) {
+            this(sender, targetPlayer);
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.sceneId = sceneId;
         }
 
         @Override
