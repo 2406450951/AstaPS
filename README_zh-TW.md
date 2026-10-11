@@ -43,6 +43,24 @@ javac -version
 
 Windows 用 `.\gradlew.bat`，或直接執行 `gradlew-jar.bat`。
 
+### 加快本機編譯
+
+Gradle Wrapper 使用 **Gradle 9.8.1**。`gradle.properties` 預設啟用建置快取與設定快取；協定資料和原始碼不變時，可在多次建置及不同 Git 工作目錄之間重複使用產生與編譯結果。
+
+只編譯、不封裝 JAR：
+
+```sh
+./gradlew classes -PskipHandbook=1
+```
+
+在本機測試時，可略過 JAR 的 ZIP 壓縮以加快封裝：
+
+```sh
+./gradlew jar -PskipHandbook=1 -PfastJar
+```
+
+Windows 上請將 `./gradlew` 換成 `.\gradlew.bat`。兩種模式都會在專案根目錄產生 `grasscutter-7.1.0.jar`。快速封裝不會改變 JAR 內的檔案，但體積較大（CI 測試中約 230 MB，標準壓縮版約 85 MB）；發布時建議使用預設壓縮模式。
+
 ## 執行
 
 1. 啟動 MongoDB。
