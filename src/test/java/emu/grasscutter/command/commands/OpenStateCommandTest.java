@@ -61,7 +61,7 @@ public final class OpenStateCommandTest {
         assertEquals(2801, OpenStateNames.parse("adventure_manual_education"));
         assertEquals(7100, OpenStateNames.parse("7100"));
         assertEquals("gacha (31)", OpenStateNames.display(31));
-        assertEquals("7100", OpenStateNames.display(7100));
+        assertEquals("7100 (unknown)", OpenStateNames.display(7100));
         var ids = Set.of(31, 45, 24, 7100);
         assertEquals(List.of("gacha", "guide_map", "resin"),
                 OpenStateNames.suggestions(ids));
