@@ -469,19 +469,20 @@ public class GameMainQuest {
         }
     }
 
+    /** Accept conditions determine how a quest starts, not whether it can finish. */
+    static boolean shouldHandleFinishEvent(GameQuest quest, QuestContent event) {
+        if (quest == null || event == null || quest.getState() != QuestState.QUEST_STATE_UNFINISHED
+                || quest.getQuestData() == null) return false;
+        var conditions = quest.getQuestData().getFinishCond();
+        return conditions != null && conditions.stream()
+                .anyMatch(condition -> condition != null && condition.getType() == event);
+    }
+
     public void tryFinishSubQuests(QuestContent condType, String paramStr, int... params) {
         try {
             List<GameQuest> subQuestsWithCond =
                     getChildQuests().values().stream()
-                            // There are subQuests with no acceptCond, but can be finished (example: 35104)
-                            .filter(
-                                    p ->
-                                            p.getState() == QuestState.QUEST_STATE_UNFINISHED
-                                                    && p.getQuestData().getAcceptCond() != null)
-                            .filter(
-                                    p ->
-                                            p.getQuestData().getFinishCond().stream()
-                                                    .anyMatch(q -> q.getType() == condType))
+                            .filter(p -> shouldHandleFinishEvent(p, condType))
                             .toList();
 
             for (GameQuest subQuestWithCond : subQuestsWithCond) {
