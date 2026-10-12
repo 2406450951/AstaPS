@@ -66,5 +66,6 @@ public final class TalkManager extends BasePlayerManager {
         if (mainQuest == null) return;
 
         mainQuest.getTalks().put(talkId, new TalkData(talkId, ""));
+        mainQuest.save();
     }
 }

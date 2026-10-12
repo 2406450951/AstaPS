@@ -14,10 +14,12 @@ import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.*;
 import emu.grasscutter.game.quest.enums.*;
 import emu.grasscutter.game.world.*;
+import emu.grasscutter.game.world.data.TeleportProperties;
 import emu.grasscutter.net.proto.EnterTypeOuterClass;
 import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import emu.grasscutter.scripts.constants.*;
 import emu.grasscutter.scripts.data.*;
+import emu.grasscutter.server.event.player.PlayerTeleportEvent.TeleportType;
 import emu.grasscutter.server.packet.send.*;
 import emu.grasscutter.server.packet.send.PacketSceneEntityAppearNotify;
 import emu.grasscutter.server.packet.send.PacketSceneEntityDisappearNotify;
@@ -1706,30 +1708,28 @@ public class ScriptLib {
 
         final Position finalRot = targetRot;
         final Position dest = targetPos;
-        scene.getPlayers().stream()
-                .filter(p -> targets.contains(p.getUid()))
-                .forEach(
-                        p -> {
-                            if (softTeleport) {
-                                softTeleportInScene(scene, p, dest, finalRot);
-                            } else {
-                                scene.removePlayer(p);
-                                scene.addPlayer(p);
-                                p.getPosition().set(dest);
-                                if (finalRot != null && p.getRotation() != null) {
-                                    p.getRotation().set(finalRot);
-                                }
-                                p.sendPacket(
-                                        new PacketPlayerEnterSceneNotify(
-                                                p,
-                                                EnterTypeOuterClass.EnterType.EnterType_ENTER_GOTO,
-                                                Lua,
-                                                scene.getId(),
-                                                dest));
-                                p.sendPacket(new PacketEnterScenePeerNotify(p));
-                            }
-                        });
-        return 0;
+        boolean accepted = true;
+        for (var p : List.copyOf(scene.getPlayers())) {
+            if (!targets.contains(p.getUid())) continue;
+            if (softTeleport) {
+                softTeleportInScene(scene, p, dest, finalRot);
+                continue;
+            }
+            // Through the world: a same-scene transfer keeps the scene and its scripts alive.
+            accepted &=
+                    p.getWorld()
+                            .transferPlayerToScene(
+                                    p,
+                                    TeleportProperties.builder()
+                                            .sceneId(scene.getId())
+                                            .teleportType(TeleportType.SCRIPT)
+                                            .enterReason(Lua)
+                                            .enterType(EnterTypeOuterClass.EnterType.EnterType_ENTER_GOTO)
+                                            .teleportTo(dest)
+                                            .teleportRot(finalRot)
+                                            .build());
+        }
+        return accepted ? 0 : 3;
     }
 
     /** Move player/avatars in-place without leaving the scene (no group reload). */

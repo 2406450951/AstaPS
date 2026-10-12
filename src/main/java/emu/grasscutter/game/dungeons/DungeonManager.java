@@ -100,10 +100,6 @@ public final class DungeonManager {
                     return;
                 }
             }
-            // Set ended now because calling EVENT_DUNGEON_SETTLE
-            // during finishDungeon() may cause reentrance into
-            // this function, leading to double settles.
-            ended = true;
             finishDungeon();
         }
     }
@@ -121,6 +117,10 @@ public final class DungeonManager {
             // TODO should use levelConfigMap? and how?
             return dungeonData.getShowLevel();
         }
+    }
+
+    public boolean isWayPointActive(int pointId) {
+        return activeDungeonWayPoints.contains(pointId);
     }
 
     public boolean activateRespawnPoint(int pointId) {
@@ -410,6 +410,9 @@ public final class DungeonManager {
     }
 
     public void finishDungeon() {
+        // Set ended first: EVENT_DUNGEON_SETTLE can re-enter, and reward statues call this again.
+        if (ended) return;
+        ended = true;
         this.notifyEndDungeon(true);
         this.endDungeon(BaseDungeonResult.DungeonEndReason.COMPLETED);
 
