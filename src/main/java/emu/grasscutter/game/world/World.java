@@ -535,6 +535,9 @@ public class World implements Iterable<Player> {
 
         if (newScene != null) {
             newScene.addPlayer(player);
+            // The hold only had to bridge the moment the player was out of the scene; left set, a
+            // disconnect would keep this scene registered and the next entry would reuse it.
+            if (newScene == oldScene) newScene.setDontDestroyWhenEmpty(false);
             player.getTeamManager().applyAbilities(newScene);
         }
 

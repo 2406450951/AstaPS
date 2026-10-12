@@ -1497,9 +1497,17 @@ public class SceneScriptManager {
         if (executingEvents == 0) clearDestroyedState();
     }
 
-    /** Saves group progress, then drops the script state. */
+    /**
+     * Saves open-world group progress, then drops the script state.
+     *
+     * <p>Only open-world scenes keep it. Group instances are stored per host and group and every
+     * scene loads them back, so saving a dungeon's end state would bring its dead monsters, gadget
+     * states and variables back on the next run of a weekly boss, quest dungeon or Abyss chamber.
+     */
     private void clearDestroyedState() {
-        scene.saveGroups();
+        if (scene.getSceneType() == emu.grasscutter.game.props.SceneType.SCENE_WORLD) {
+            scene.saveGroups();
+        }
         currentTriggers.clear();
         ongoingTriggers.clear();
         triggersByGroupScene.clear();

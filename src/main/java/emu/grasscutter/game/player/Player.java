@@ -1161,6 +1161,11 @@ public class Player implements PlayerHook, FieldFetch {
         }
 
         target.onInteract(this, interactReq);
+        // EntityGadget, EntityItem and EntityMonster credit the quest themselves once the interaction
+        // goes through; a client-created gadget has no interaction logic of its own and still counts.
+        if (target instanceof emu.grasscutter.game.entity.EntityClientGadget clientGadget) {
+            onGadgetInteracted(clientGadget.getGadgetId());
+        }
     }
 
     /** Quest credit for a gadget interaction that went through. */

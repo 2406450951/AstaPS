@@ -416,7 +416,11 @@ public final class DomainDungeonHelper {
             var manager = scene.getDungeonManager();
             return manager != null && manager.getDungeonData().getId() == n2 && scene.getPrevScenePoint() == n;
         }
-        if (scene.getSceneType() != SceneType.SCENE_WORLD) {
+        // Event dungeons have entry points in activity scenes, and some in rooms; the point below
+        // still has to offer the dungeon and the player has to stand at it.
+        if (scene.getSceneType() != SceneType.SCENE_WORLD
+                && scene.getSceneType() != SceneType.SCENE_ACTIVITY
+                && scene.getSceneType() != SceneType.SCENE_ROOM) {
             Grasscutter.getLogger().warn("Blocked dungeon enter uid={} dungeon={} from scene {} ({})", new Object[]{player.getUid(), n2, scene.getId(), scene.getSceneType()});
             return false;
         }
