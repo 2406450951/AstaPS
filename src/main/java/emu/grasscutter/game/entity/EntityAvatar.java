@@ -313,7 +313,24 @@ public class EntityAvatar extends GameEntity {
         this.addEnergy(amount, reason, false);
     }
 
+    /** Flat elemental energy from an ability; special-energy gauges are left alone. */
+    public void addAbilityEnergy(float amount) {
+        var energySkill = this.getAvatar().getSkillDepot().getEnergySkillData();
+        if (!this.getPlayer().getEnergyManager().isEnergyUsage()
+                || (energySkill != null && energySkill.getSpecialEnergyMin() > 0)) return;
+        this.addEnergy(
+                amount,
+                PropChangeReason.PropChangeReason_PROP_CHANGE_ABILITY,
+                true,
+                ChangeEnergyReason.ChangeEnergyReason_CHANGE_ENERGY_ABILITY);
+    }
+
     public void addEnergy(float amount, PropChangeReason reason, boolean isFlat) {
+        this.addEnergy(amount, reason, isFlat, null);
+    }
+
+    public void addEnergy(
+            float amount, PropChangeReason reason, boolean isFlat, ChangeEnergyReason energyReason) {
 
         val elementType = this.getAvatar().getSkillDepot().getElementType();
         val curEnergyProp = elementType.getCurEnergyProp();
@@ -343,7 +360,10 @@ public class EntityAvatar extends GameEntity {
             // re-synced to the real server value and looked like energy "vanished".
             this.getScene()
                     .broadcastPacket(
-                            new PacketEntityFightPropChangeReasonNotify(this, curEnergyProp, delta, reason));
+                            energyReason == null
+                                    ? new PacketEntityFightPropChangeReasonNotify(this, curEnergyProp, delta, reason)
+                                    : new PacketEntityFightPropChangeReasonNotify(
+                                            this, curEnergyProp, delta, reason, energyReason));
         }
     }
 

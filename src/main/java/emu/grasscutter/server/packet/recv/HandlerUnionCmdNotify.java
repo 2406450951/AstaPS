@@ -58,16 +58,5 @@ public class HandlerUnionCmdNotify extends PacketHandler {
 
         session.getPlayer().getCombatInvokeHandler().update(session.getPlayer());
         session.getPlayer().getAbilityInvokeHandler().update(session.getPlayer());
-
-        while (!session.getPlayer().getAttackResults().isEmpty()) {
-            var attack = session.getPlayer().getAttackResults().poll();
-            // Lets the DPS dummy tell reaction damage from elemental damage inside damage().
-            emu.grasscutter.game.dps.DPSAttackContext.set(attack);
-            try {
-                session.getPlayer().getScene().handleAttack(attack);
-            } finally {
-                emu.grasscutter.game.dps.DPSAttackContext.clear();
-            }
-        }
     }
 }

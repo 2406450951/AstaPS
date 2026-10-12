@@ -95,7 +95,8 @@ public class Ability {
             return owner instanceof EntityAvatar avatarEntity ? avatarEntity : null;
         }
         String abilityName = data.abilityName;
-        for (var member : player.getTeamManager().getActiveTeam()) {
+        // Copy: the synchronized roster's iterator is not itself synchronized.
+        for (var member : new ArrayList<>(player.getTeamManager().getActiveTeam())) {
             if (member == null) continue;
             var av = member.getAvatar();
             var avData = av.getAvatarData();

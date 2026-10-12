@@ -53,6 +53,9 @@ public class GameSession implements GameSessionManager.KcpChannel {
     private static final java.util.Set<String> missingCmdIdReported =
             java.util.concurrent.ConcurrentHashMap.newKeySet();
     @Getter @Setter private SessionState state;
+    /** The last MOTION_LAND_SPEED sample; a landing time of 0 means no fall is pending. */
+    @Getter @Setter private float landingSpeed;
+    @Getter @Setter private long landingTimeMillis;
 
     @Getter private int clientTime;
     @Getter private long lastPingTime;
