@@ -57,6 +57,12 @@ public final class IceCreatureSystem {
         var config = IceCreatureConfig.get();
         Scene scene = player.getScene();
         int type = config.typeOf(req.getGadgetId());
+        log("build request gadget {} type {} pos {} replace {} values {}",
+                req.getGadgetId(), type, req.getPos(), req.getReplaceGuidListList(),
+                req.getGlobalValueListList().stream()
+                        .map(v -> (v.getKey().hasStr() ? v.getKey().getStr() : String.valueOf(v.getKey().getHash()))
+                                + "=" + v.getFloatValue())
+                        .toList());
         if (scene == null || type == 0 || !config.isBuildScene(scene.getId())) {
             log("refused build of gadget {} in scene {}: not an Ice Creature or not a build scene",
                     req.getGadgetId(), scene == null ? 0 : scene.getId());
@@ -122,6 +128,10 @@ public final class IceCreatureSystem {
                     .filter(r -> r.getEntityId() != 0 && req.getEntityIdListList().contains(r.getEntityId()))
                     .toList();
             retcode = doomed.isEmpty() ? FAIL : OK;
+            log("remove request entities {} scene {} flag {}: matched {} of {} standing creatures {}",
+                    req.getEntityIdListList(), req.getSceneId(), req.getUnk15(), doomed.size(),
+                    player.getIceCreatures().size(),
+                    player.getIceCreatures().stream().map(r -> r.getGuid() + "@" + r.getEntityId()).toList());
             removeRecords(player, doomed);
         }
         int entityId = req.getEntityIdListCount() == 0 ? 0 : req.getEntityIdList(0);
