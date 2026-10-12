@@ -64,4 +64,17 @@ class IceCreatureConfigTest {
         b.setCost(300);
         assertEquals(0f, IceCreatureSystem.materialLeft(400f, java.util.List.of(a, b)));
     }
+
+    @Test
+    void guidsAreNeverReusedAfterRemoval() {
+        long first = IceCreatureSystem.nextGuid(7, java.util.List.of(), 1_000);
+        var standing = new IceCreatureRecord();
+        standing.setGuid(first);
+        long second = IceCreatureSystem.nextGuid(7, java.util.List.of(standing), 1_000);
+        assertTrue(second > first, "built in the same second");
+        // Every creature removed: a later build still moves forward.
+        long third = IceCreatureSystem.nextGuid(7, java.util.List.of(), 1_001);
+        assertTrue(third > first);
+        assertEquals(7L, third >>> 32);
+    }
 }

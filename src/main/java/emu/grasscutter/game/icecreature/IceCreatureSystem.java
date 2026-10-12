@@ -265,10 +265,19 @@ public final class IceCreatureSystem {
                 .build();
     }
 
+    /**
+     * A GUID never handed out before. Taking the next one after the standing creatures reused a removed
+     * creature's GUID once all were gone, and the client still tied that GUID to the removed gadget.
+     * The clock keeps it moving forward across removals and restarts.
+     */
+    static long nextGuid(int uid, List<IceCreatureRecord> records, long nowSeconds) {
+        long low = GUID_BASE + (nowSeconds & 0x3FFFFFFFL);
+        for (var record : records) low = Math.max(low, (record.getGuid() & 0xFFFFFFFFL) + 1);
+        return ((long) uid << 32) | (low & 0xFFFFFFFFL);
+    }
+
     private static long nextGuid(Player player) {
-        long low = GUID_BASE;
-        for (var record : player.getIceCreatures()) low = Math.max(low, record.getGuid() & 0xFFFFFFFFL);
-        return ((long) player.getUid() << 32) | (low + 1);
+        return nextGuid(player.getUid(), player.getIceCreatures(), System.currentTimeMillis() / 1000);
     }
 
     private static void log(String format, Object... args) {
