@@ -1370,7 +1370,8 @@ public class Scene {
             }
 
             this.getScriptManager()
-                    .refreshGroup(groupInstance, 0, false);
+                    .refreshGroup(groupInstance,
+                            emu.grasscutter.game.quest.LiyueSceneGroupRecovery.selectSuite(this, groupInstance), false);
 
             this.loadedGroups.add(group);
         }

@@ -209,6 +209,13 @@ public abstract class GameEntity {
         var properties = this.getFightProperties();
         if (properties == null) return;
 
+        // Infinite HP is used by some invulnerable entities, but NaN must never enter HP state.
+        if ((id == FightProperty.FIGHT_PROP_CUR_HP.getId() && Float.isNaN(value))
+                || (id == FightProperty.FIGHT_PROP_CUR_HP_DEBTS.getId() && !Float.isFinite(value))) {
+            Grasscutter.getLogger().warn("Rejected invalid HP property: entity={} prop={} value={}",
+                    getId(), id, value);
+            return;
+        }
         properties.put(id, value);
     }
 
@@ -466,6 +473,12 @@ public abstract class GameEntity {
     }
 
     public synchronized float heal(float amount, boolean mute) {
+        if (!Float.isFinite(amount)) {
+            Grasscutter.getLogger().warn("Rejected non-finite healing: entity={} scene={} amount={}",
+                    getId(), getScene() == null ? 0 : getScene().getId(), amount);
+            return 0f;
+        }
+        if (amount <= 0f) return 0f;
         ClorindeBoLUtil.beforeHeal(this);
         try {
         if (this.getFightProperties() == null) {
@@ -477,6 +490,11 @@ public abstract class GameEntity {
         float curHp = this.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP);
         float maxHp = this.getFightProperty(FightProperty.FIGHT_PROP_MAX_HP);
         float curHpDebt = this.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS);
+        if (!Float.isFinite(curHp) || !Float.isFinite(maxHp) || !Float.isFinite(curHpDebt)) {
+            Grasscutter.getLogger().warn("Rejected healing with invalid HP state: entity={} hp={} max={} debt={}",
+                    getId(), curHp, maxHp, curHpDebt);
+            return 0f;
+        }
 
         if (curHp >= maxHp && curHpDebt <= 0) {
             return 0f;
@@ -570,6 +588,11 @@ public abstract class GameEntity {
     private void damage(float amount, int killerId, ElementType attackType,
             PropChangeReason propChangeReason, ChangHpReason changeHpReason, boolean respectLockHp) {
 
+        if (!Float.isFinite(amount)) {
+            Grasscutter.getLogger().warn("Rejected non-finite damage: entity={} scene={} attacker={} amount={}",
+                    getId(), getScene() == null ? 0 : getScene().getId(), killerId, amount);
+            return;
+        }
         if (this.getFightProperties() == null || !hasFightProperty(FightProperty.FIGHT_PROP_CUR_HP)) {
             return;
         }
@@ -600,6 +623,11 @@ public abstract class GameEntity {
         }
         event.call();
         if (event.isCanceled()) {
+            return;
+        }
+        if (!Float.isFinite(event.getDamage())) {
+            Grasscutter.getLogger().warn("Rejected non-finite damage event: entity={} attacker={} amount={}",
+                    getId(), killerId, event.getDamage());
             return;
         }
 
@@ -638,6 +666,7 @@ public abstract class GameEntity {
             // revived immediately. See Scene.killEntity.
         }
 
+        if (!Float.isFinite(effectiveDamage)) return;
         this.addFightProperty(FightProperty.FIGHT_PROP_CUR_HP, -effectiveDamage);
 
         this.lastAttackType = attackType;

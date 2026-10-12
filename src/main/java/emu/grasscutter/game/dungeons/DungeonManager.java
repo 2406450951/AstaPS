@@ -105,7 +105,9 @@ public final class DungeonManager {
     }
 
     public boolean isFinishedSuccessfully() {
-        if (passConfigData.getConds() == null) return false;
+        // Missing pass conditions mean completion is controlled by quest/script actions.
+        // An empty quest-style AND must not settle the dungeon on its first unrelated event.
+        if (passConfigData.getConds() == null || passConfigData.getConds().isEmpty()) return false;
         return LogicType.calculate(passConfigData.getLogicType(), finishedConditions);
     }
 
@@ -431,6 +433,9 @@ public final class DungeonManager {
     }
 
     public void quitDungeon() {
+        // Leaving a dungeon that already settled - many have no pass condition and are completed by
+        // their script - is not a quit, and must not fail the quests waiting on it.
+        if (this.ended) return;
         this.notifyEndDungeon(false);
         this.endDungeon(BaseDungeonResult.DungeonEndReason.QUIT);
     }

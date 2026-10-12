@@ -1233,6 +1233,10 @@ public final class AbilityManager extends BasePlayerManager {
         } else if (modChange.getAction() == ModifierAction.ModifierAction_REMOVED) {
             AbilityModifierController removed =
                     entity.getInstancedModifiers().remove(head.getInstancedModifierId());
+            if (removed != null) {
+                emu.grasscutter.game.quest.LiyueAmberQuestSupport.onModifierRemoved(
+                        this.player, entity, removed.getAbilityData(), removed.getModifierData());
+            }
             if (removed != null && isLightLockAbility(removed.getAbilityData())
                     && removed.getModifierData().onRemoved != null) {
                 for (var action : removed.getModifierData().onRemoved) {

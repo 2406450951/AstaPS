@@ -104,6 +104,12 @@ public final class ActionHealHP extends AbilityActionHandler {
 
         float finalAmount = amountToRegenerate * abilityRatio * action.healRatio.get(ability, 1f);
 
+        if (!Float.isFinite(finalAmount)) {
+            Grasscutter.getLogger().warn("Rejected non-finite HealHP formula: ability={} caster={} target={} amount={}",
+                    abilityName, owner.getId(), healTarget.getId(), finalAmount);
+            return false;
+        }
+
         if (healTarget instanceof EntityAvatar burstHealer
                 && burstHealer.getAvatar() != null
                 && burstHealer.getAvatar().getAvatarId() == ArlecchinoBoLUtil.ARLECCHINO_AVATAR_ID

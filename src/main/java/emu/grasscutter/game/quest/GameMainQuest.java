@@ -33,6 +33,9 @@ public class GameMainQuest {
     @Getter private long[] timeVar;
     @Getter private ParentQuestState state;
     @Getter private boolean isFinished;
+    // Completion evidence for MQ1000 rescue plot reports that arrive before acceptance.
+    @Getter @Setter(AccessLevel.PACKAGE) private boolean liyueRescuePlotReported;
+    @Getter @Setter(AccessLevel.PACKAGE) private int liyueAmberSuite;
     @Getter List<QuestGroupSuite> questGroupSuites;
 
     @Getter int[] suggestTrackMainQuestList;
@@ -239,6 +242,56 @@ public class GameMainQuest {
         }
 
         return null;
+    }
+
+    /** Resume reviewed parallel stages without replaying completed talks or resetting counters. */
+    public List<Position> resumeOnLogin() {
+        if (this.questManager == null) this.questManager = getOwner().getQuestManager();
+        if (QuestManager.isQuestingActive()) {
+            var jadePosition = LiyueJadeChamberRecovery.resumeOnLogin(this);
+            if (jadePosition != null) return jadePosition;
+        }
+        if (QuestManager.isQuestingActive() && LiyueGoldenHouseEntrySupport.resumeOnLogin(this))
+            return null;
+        if (QuestManager.isQuestingActive() && LiyueChargePotRecovery.resumeOnLogin(this))
+            return null;
+        if (QuestManager.isQuestingActive() && LiyueCloudDungeonEntryRecovery.resumeOnLogin(this))
+            return null;
+        if (QuestManager.isQuestingActive() && (LiyueCloudRecipeRecovery.resumeOnLogin(this)
+                || LiyueMountainQuestResume.resumeOnLogin(this))) return null;
+        if (QuestManager.isQuestingActive() && LiyueCityQuestResume.resumeOnLogin(this)) {
+            return null;
+        }
+        if (QuestManager.isQuestingActive() && LiyueWangshuItemRecovery.resumeOnLogin(this)) {
+            return null;
+        }
+        if (QuestManager.isQuestingActive() && LiyueRescuePlotRecovery.resumeOnLogin(this)) {
+            return null;
+        }
+        var recovery = QuestManager.isQuestingActive()
+                ? LiyueParallelQuestResume.selectPhase(this) : null;
+        if (recovery == null) return rewind();
+
+        for (var quest : recovery.quests()) {
+            if (quest.getState() == QuestState.QUEST_STATE_UNSTARTED) quest.start();
+        }
+
+        // Older order-based rewinds may have erased counters while keeping completed talks.
+        // Restore only their missing contribution, so repeated logins never add it twice.
+        int completedTalks = recovery.completedTalks();
+        for (int counterId : recovery.phase().counters()) {
+            int saved = Math.max(0,
+                    getOwner().getPlayerProgress().getCurrentProgress(String.valueOf(counterId)));
+            if (completedTalks > saved) {
+                getOwner().getProgressManager().addQuestProgress(counterId, completedTalks - saved);
+            }
+            // Recheck persisted counts even if no new talk event occurred this session.
+            getOwner().getQuestManager().queueEvent(
+                    QuestContent.QUEST_CONTENT_ADD_QUEST_PROGRESS, counterId);
+        }
+        var counter = getChildQuestById(recovery.phase().completedCounter());
+        if (counter.getState() == QuestState.QUEST_STATE_FINISHED) counter.triggerStateEvents();
+        return null; // Keep the saved login position.
     }
 
     // Rewinds to the last finished/unfinished rewind quest, and returns the avatar rewind position

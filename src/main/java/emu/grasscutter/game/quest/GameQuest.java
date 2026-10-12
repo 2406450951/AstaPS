@@ -105,6 +105,8 @@ public class GameQuest {
                 .getBeginExec()
                 .forEach(e -> getOwner().getServer().getQuestSystem().triggerExec(this, e, e.getParam()));
         this.getOwner().getQuestManager().checkQuestAlreadyFulfilled(this);
+        if (this.mainQuestId == 1012 && this.subQuestId == 101210)
+            LiyuePerfumeQuestSupport.sendFormulas(getOwner());
 
         if (DebugConstants.LOG_QUEST_START) {
             Grasscutter.getLogger().debug("Quest {} is started", subQuestId);
@@ -169,6 +171,9 @@ public class GameQuest {
     }
 
     public boolean clearProgress(boolean notifyDelete) {
+        LiyueRescuePlotRecovery.clearReportForRollback(this);
+        if (getMainQuestId() == 1008 && getSubQuestId() == 100808)
+            getMainQuest().setLiyueAmberSuite(0);
         // TODO improve
         var oldState = state;
         if (questData.getAcceptCond() != null && questData.getAcceptCond().size() != 0) {

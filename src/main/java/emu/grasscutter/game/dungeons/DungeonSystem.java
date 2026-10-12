@@ -15,6 +15,9 @@ import emu.grasscutter.server.game.*;
 import emu.grasscutter.server.packet.send.PacketDungeonEntryInfoRsp;
 import it.unimi.dsi.fastutil.ints.*;
 import java.util.List;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair;
 
 public final class DungeonSystem extends BaseGameSystem {
     private static final BasicDungeonSettleListener basicDungeonSettleObserver =
@@ -60,20 +63,20 @@ public final class DungeonSystem extends BaseGameSystem {
      * @param pointId The dungeon point ID.
      */
     public void sendEntryInfoFor(Player player, int pointId, int sceneId) {
-        var entry = GameData.getScenePointEntryById(sceneId, pointId);
-        if (entry == null) {
-            // An invalid point ID was sent.
-            player.sendPacket(new PacketDungeonEntryInfoRsp());
-            return;
-        }
+        sendEntryInfoFor(player,
+                List.of(Uint32Pair.newBuilder().setKey(sceneId).setValue(pointId).build()), false);
+    }
 
-        // Check if the player has quests with dungeon IDs.
-        var questDungeons = player.getQuestManager().questsForDungeon(entry);
-        if (questDungeons.size() > 0) {
-            player.sendPacket(new PacketDungeonEntryInfoRsp(entry.getPointData(), questDungeons));
-        } else {
-            player.sendPacket(new PacketDungeonEntryInfoRsp(entry.getPointData()));
+    public void sendEntryInfoFor(
+            Player player, Collection<Uint32Pair> scenePoints, boolean entryList) {
+        var entries = new LinkedHashMap<ScenePointEntry, List<Integer>>();
+        for (var scenePoint : new java.util.LinkedHashSet<>(scenePoints)) {
+            int sceneId = scenePoint.getKey() > 0 ? scenePoint.getKey() : player.getSceneId();
+            var entry = GameData.getScenePointEntryById(sceneId, scenePoint.getValue());
+            if (entry == null || !"DungeonEntry".equals(entry.getPointData().getType())) continue;
+            entries.put(entry, player.getQuestManager().questsForDungeon(entry));
         }
+        player.sendPacket(new PacketDungeonEntryInfoRsp(entries, player.getLevel(), entryList));
     }
 
     public boolean triggerCondition(
