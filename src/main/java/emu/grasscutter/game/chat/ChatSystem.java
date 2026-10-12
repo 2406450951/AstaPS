@@ -46,23 +46,25 @@ public class ChatSystem implements ChatSystemHandler {
     /********************
      * Chat history handling
      ********************/
-    private void putInHistory(int uid, int partnerId, ChatInfo info) {
+    private synchronized void putInHistory(int uid, int partnerId, ChatInfo info) {
         this.history
                 .computeIfAbsent(uid, x -> new HashMap<>())
                 .computeIfAbsent(partnerId, x -> new ArrayList<>())
                 .add(info);
     }
 
-    public void clearHistoryOnLogout(Player player) {
+    public synchronized void clearHistoryOnLogout(Player player) {
         this.history.remove(player.getUid());
     }
 
+    /** Copies one conversation so packets never iterate the live list. */
+    private synchronized List<ChatInfo> copyHistory(int uid, int partnerId) {
+        return new ArrayList<>(
+                this.history.getOrDefault(uid, Map.of()).getOrDefault(partnerId, List.of()));
+    }
+
     public void handlePullPrivateChatReq(Player player, int partnerId) {
-        var chatHistory =
-                this.history
-                        .computeIfAbsent(player.getUid(), x -> new HashMap<>())
-                        .computeIfAbsent(partnerId, x -> new ArrayList<>());
-        player.sendPacket(new PacketPullPrivateChatRsp(chatHistory));
+        player.sendPacket(new PacketPullPrivateChatRsp(copyHistory(player.getUid(), partnerId)));
     }
 
     public void handlePullRecentChatReq(Player player) {
@@ -263,14 +265,13 @@ public class ChatSystem implements ChatSystemHandler {
      * after login, not only once the client pulls it after a teleport.
      */
     public void ensureServerConversation(Player player) {
-        var playerHistory = this.history.computeIfAbsent(player.getUid(), x -> new HashMap<>());
-        var serverHistory = playerHistory.get(GameConstants.SERVER_CONSOLE_UID);
-        if (serverHistory == null || serverHistory.isEmpty()) {
+        var serverHistory = copyHistory(player.getUid(), GameConstants.SERVER_CONSOLE_UID);
+        if (serverHistory.isEmpty()) {
             this.sendServerWelcomeMessages(player);
-            serverHistory = playerHistory.get(GameConstants.SERVER_CONSOLE_UID);
+            serverHistory = copyHistory(player.getUid(), GameConstants.SERVER_CONSOLE_UID);
         }
 
-        if (serverHistory == null || serverHistory.isEmpty()) {
+        if (serverHistory.isEmpty()) {
             return;
         }
 

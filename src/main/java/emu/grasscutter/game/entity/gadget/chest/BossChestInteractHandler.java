@@ -21,15 +21,16 @@ public class BossChestInteractHandler implements ChestInteractHandler {
     }
 
     public boolean onInteract(GadgetChest chest, Player player, boolean useCondensedResin) {
-        var blossomRewards =
-                player
-                        .getScene()
-                        .getBlossomManager()
-                        .onReward(player, chest.getGadget(), useCondensedResin);
+        var blossomManager = player.getScene().getBlossomManager();
+        var blossomRewards = blossomManager.onReward(player, chest.getGadget(), useCondensedResin);
         if (blossomRewards != null) {
             player.getInventory().addItems(blossomRewards, ActionReason.OpenWorldBossChest);
             player.sendPacket(new PacketGadgetAutoPickDropInfoNotify(blossomRewards));
             return true;
+        }
+        // A ley line flower the player couldn't pay for has no boss reward to fall back to.
+        if (blossomManager.hasRewardChest(chest.getGadget())) {
+            return false;
         }
 
         var worldDataManager = chest.getGadget().getScene().getWorld().getServer().getWorldDataSystem();
