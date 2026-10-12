@@ -251,6 +251,8 @@ public class GameMainQuest {
             var jadePosition = LiyueJadeChamberRecovery.resumeOnLogin(this);
             if (jadePosition != null) return jadePosition;
         }
+        if (QuestManager.isQuestingActive() && LiyueActFourEntrySupport.resumeOnLogin(this))
+            return null;
         if (QuestManager.isQuestingActive() && LiyueGoldenHouseEntrySupport.resumeOnLogin(this))
             return null;
         if (QuestManager.isQuestingActive() && LiyueChargePotRecovery.resumeOnLogin(this))
