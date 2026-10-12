@@ -135,7 +135,7 @@ public final class OpenStateCommand implements CommandHandler {
                     "Open states (" + page + "/" + pages + ", " + matches.size() + " matches):");
             int start = (page - 1) * PAGE_SIZE;
             for (var entry : matches.subList(start, Math.min(start + PAGE_SIZE, matches.size()))) {
-                message.append("\n  ").append(entry.name()).append(" (").append(entry.id()).append(")");
+                message.append("\n  ").append(OpenStateNames.display(entry.id()));
             }
             if (page < pages) {
                 message.append("\nNext: openstate list");

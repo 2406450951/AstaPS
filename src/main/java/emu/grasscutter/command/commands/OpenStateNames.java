@@ -51,7 +51,7 @@ public final class OpenStateNames {
 
     static String display(int id) {
         String name = BY_ID.get(id);
-        return name == null ? Integer.toString(id) : name + " (" + id + ")";
+        return name == null ? id + " (unknown)" : name + " (" + id + ")";
     }
 
     record Entry(int id, String name) {}

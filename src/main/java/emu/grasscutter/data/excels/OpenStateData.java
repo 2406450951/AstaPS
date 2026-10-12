@@ -1,5 +1,6 @@
 package emu.grasscutter.data.excels;
 
+import com.google.gson.annotations.SerializedName;
 import emu.grasscutter.data.*;
 import lombok.Getter;
 
@@ -41,6 +42,7 @@ public class OpenStateData extends GameResource {
 
     public static class OpenStateCond {
         @Getter
+        @SerializedName(value = "cond_type", alternate = {"condType"})
         private OpenStateCondType condType;
         @Getter
         private int param;
