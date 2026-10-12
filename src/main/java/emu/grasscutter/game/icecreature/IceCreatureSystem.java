@@ -23,6 +23,7 @@ import emu.grasscutter.net.proto.IceCreatureGadgetRemoveRspOuterClass.IceCreatur
 import emu.grasscutter.net.proto.IceCreatureLikeReqOuterClass.IceCreatureLikeReq;
 import emu.grasscutter.net.proto.IceCreatureLikeRspOuterClass.IceCreatureLikeRsp;
 import emu.grasscutter.net.proto.RetcodeOuterClass.Retcode;
+import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import emu.grasscutter.server.packet.send.PacketIceCreature;
 import emu.grasscutter.utils.Utils;
 import java.util.ArrayList;
@@ -234,7 +235,9 @@ public final class IceCreatureSystem {
         Scene scene = player.getScene();
         if (scene != null && record.getSceneId() == scene.getId()) {
             var entity = scene.getEntityById(record.getEntityId());
-            if (entity != null) scene.removeEntity(entity);
+            // REMOVE, not the default DIE: the creatures are invincible true-ice gadgets with no death
+            // to play, and a client given DIE left every removed one standing.
+            if (entity != null) scene.removeEntity(entity, VisionType.VisionType_VISION_REMOVE);
         }
         record.setEntityId(0);
     }
