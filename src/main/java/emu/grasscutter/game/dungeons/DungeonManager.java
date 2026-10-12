@@ -35,9 +35,25 @@ public final class DungeonManager {
 
     @Getter private final int[] finishedConditions;
     private final IntSet rewardedPlayers = new IntOpenHashSet();
+    private final DomainClaimRunIdentity claimRunIdentity = new DomainClaimRunIdentity();
+
+    synchronized String getClaimOperationId() {
+        return claimRunIdentity.operationId(dungeonData.getId());
+    }
+
+    // Called only after a proven unpaid attempt, under the claim monitor.
+    synchronized void rotateClaimIdentityAfterUnpaidAttempt() {
+        claimRunIdentity.restart();
+    }
+
+    /** The claim service uses this set while holding the DungeonManager monitor. */
+    IntSet getRewardedPlayersForClaims() {
+        return rewardedPlayers;
+    }
+
 
     /** True only after a successful petrified-tree reward claim in this dungeon run. */
-    boolean hasClaimedDomainReward(int uid) {
+    synchronized boolean hasClaimedDomainReward(int uid) {
         return rewardedPlayers.contains(uid);
     }
     private final Set<Integer> activeDungeonWayPoints = new HashSet<>();
@@ -158,121 +174,15 @@ public final class DungeonManager {
         return pointData.getRot() != null ? pointData.getRot() : null;
     }
 
+    /** Keep legacy callers on the same guarded, receipted claim path as GadgetRewardStatue. */
     public boolean getStatueDrops(Player player, boolean useCondensed, int groupId) {
-        if (!isFinishedSuccessfully()) {
-            Grasscutter.getLogger()
-                    .warn("getStatueDrops abort: not finished dungeon={}", dungeonData.getId());
-            return false;
-        }
-
-        var preview = dungeonData.getRewardPreviewData();
-        if (preview == null && dungeonData.getPassRewardPreviewID() > 0) {
-            preview = GameData.getRewardPreviewDataMap().get(dungeonData.getPassRewardPreviewID());
-            // keep resolved preview for subsequent claims in this process
-            try {
-                var field = dungeonData.getClass().getDeclaredField("rewardPreviewData");
-                field.setAccessible(true);
-                field.set(dungeonData, preview);
-            } catch (Throwable ignored) {
-            }
-        }
-        boolean hasPreview =
-                preview != null
-                        && preview.getPreviewItems() != null
-                        && preview.getPreviewItems().length > 0;
-        if (!hasPreview && dungeonData.getStatueDrop() <= 0) {
-            Grasscutter.getLogger()
-                    .warn(
-                            "getStatueDrops abort: no preview/statueDrop dungeon={}",
-                            dungeonData.getId());
-            return false;
-        }
-
-        // Already rewarded
-        if (rewardedPlayers.contains(player.getUid())) {
-            Grasscutter.getLogger()
-                    .warn(
-                            "getStatueDrops abort: already rewarded uid={} dungeon={}",
-                            player.getUid(),
-                            dungeonData.getId());
-            return false;
-        }
-
-        if (!handleCost(player, useCondensed)) {
-            Grasscutter.getLogger()
-                    .warn(
-                            "getStatueDrops abort: handleCost failed uid={} dungeon={}",
-                            player.getUid(),
-                            dungeonData.getId());
-            return false;
-        }
-
-        try {
-            DungeonDropLoader.ensureLoaded();
-        } catch (Throwable ignored) {
-        }
-
-        // Prefer DungeonDrop.json when present. Many Nod-Krai/Snezhnaya reliquary domains
-        // reuse Peak-of-Vindagnyr statueDrop IDs (e.g. 4706 -> 85315500), which would
-        // incorrectly grant Blizzard Strayer instead of Scarlet Proof / Heart of the Furnace.
-        List<GameItem> rewards = null;
-        int dungeonId = dungeonData.getId();
-        boolean hasDungeonDrop =
-                GameData.getDungeonDropDataMap() != null
-                        && GameData.getDungeonDropDataMap().containsKey(dungeonId);
-        if (hasDungeonDrop) {
-            rewards = new ArrayList<>(this.rollRewards(useCondensed));
-            Grasscutter.getLogger()
-                    .info(
-                            "getStatueDrops using DungeonDrop.json dungeon={} items={}",
-                            dungeonId,
-                            rewards != null ? rewards.size() : 0);
-        }
-        int statueDrop = dungeonData.getStatueDrop();
-        if ((rewards == null || rewards.isEmpty()) && statueDrop > 0) {
-            rewards =
-                    player.getServer().getDropSystem().handleDungeonRewardDrop(statueDrop, useCondensed);
-        }
-        if (rewards == null || rewards.isEmpty()) {
-            rewards = new ArrayList<>(this.rollRewards(useCondensed));
-        }
-        if ((rewards == null || rewards.isEmpty()) && hasPreview) {
-            rewards = new ArrayList<>();
-            for (ItemParamData param : preview.getPreviewItems()) {
-                if (param != null && param.getId() > 0) {
-                    rewards.add(new GameItem(param.getId(), Math.max(param.getCount(), 1)));
-                }
-            }
-        }
-        if (rewards == null || rewards.isEmpty()) {
-            Grasscutter.getLogger()
-                    .warn(
-                            "getStatueDrops abort: empty rewards dungeon={} statueDrop={}",
-                            dungeonData.getId(),
-                            statueDrop);
-            return false;
-        }
-
-        try {
-            ReliquaryDomainBonusHelper.appendToRewards(this, rewards);
-        } catch (Throwable t) {
-            Grasscutter.getLogger().warn("appendToRewards failed", t);
-        }
-
-        // Add rewards to player and send notification.
-        player.getInventory().addItems(rewards, ActionReason.DungeonStatueDrop);
-        player.sendPacket(new PacketGadgetAutoPickDropInfoNotify(rewards));
-
-        rewardedPlayers.add(player.getUid());
-
-        scene.getScriptManager().callEvent(new ScriptArgs(groupId, EventType.EVENT_DUNGEON_REWARD_GET));
-        Grasscutter.getLogger()
-                .info(
-                        "getStatueDrops ok uid={} dungeon={} items={}",
-                        player.getUid(),
-                        dungeonData.getId(),
-                        rewards.size());
-        return true;
+        return DomainStatueDropService.claim(
+                player, this,
+                useCondensed
+                        ? DomainStatueClaimHelper.ClaimMode.CONDENSE
+                        : DomainStatueClaimHelper.ClaimMode.NORMAL_1X,
+                groupId,
+                useCondensed ? 2 : 1);
     }
 
     public boolean handleCost(Player player, boolean useCondensed) {
@@ -506,9 +416,10 @@ public final class DungeonManager {
         ended = true;
     }
 
-    public void restartDungeon() {
+    public synchronized void restartDungeon() {
         this.scene.setKilledMonsterCount(0);
         this.rewardedPlayers.clear();
+        this.claimRunIdentity.restart();
         Arrays.fill(finishedConditions, 0);
         this.ended = false;
         this.activeDungeonWayPoints.clear();

@@ -252,6 +252,13 @@ public final class DungeonSystem extends BaseGameSystem {
             return;
         }
 
+        // The grant/charge critical section uses this exact DungeonManager monitor.
+        // Scene teardown must not pass a still-running claim on the old instance.
+        synchronized (dungeonManager) {
+            if (player.getScene() != scene || scene.getDungeonManager() != dungeonManager) {
+                return;
+            }
+            dungeonManager.restartDungeon();
         var dungeonData = dungeonManager.getDungeonData();
         var sceneId = dungeonData.getSceneId();
         var isTower = dungeonManager.isTowerDungeon();
@@ -308,6 +315,7 @@ public final class DungeonSystem extends BaseGameSystem {
         Grasscutter.getLogger().info(
                 "Dungeon restart uid={} dungeon={} scene={} restored={}/{}",
                 player.getUid(), dungeonData.getId(), sceneId, restored, participants.size());
+        } // dungeonManager: same lock as DomainDropSafety.commitOnce
     }
 
 }

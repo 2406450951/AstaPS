@@ -5658,6 +5658,282 @@
     ]
   },
   {
+    "dungeonId": 4470,
+    "comment": "Fontaine weapon materials 1 / tier 1; compatibility template 4330 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1125
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          10
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          4,
+          6
+        ],
+        "probabilities": [
+          20,
+          60,
+          30
+        ],
+        "items": [
+          114049
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4471,
+    "comment": "Fontaine weapon materials 1 / tier 2; compatibility template 4331 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1550
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          15
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          20,
+          80
+        ],
+        "items": [
+          114049
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          2
+        ],
+        "items": [
+          114050
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4472,
+    "comment": "Fontaine weapon materials 1 / tier 3; compatibility template 4332 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1850
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          15
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          80,
+          20
+        ],
+        "items": [
+          114049
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          20,
+          80
+        ],
+        "items": [
+          114050
+        ]
+      },
+      {
+        "comment": "4-star Weapon Material",
+        "counts": [
+          1,
+          2
+        ],
+        "probabilities": [
+          50,
+          50
+        ],
+        "items": [
+          114051
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4473,
+    "comment": "Fontaine weapon materials 1 / tier 4; compatibility template 4333 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          2200
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          20
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          80,
+          20
+        ],
+        "items": [
+          114049
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          1,
+          4
+        ],
+        "probabilities": [
+          25,
+          25,
+          25,
+          25
+        ],
+        "items": [
+          114050
+        ]
+      },
+      {
+        "comment": "4-star Weapon Material",
+        "counts": [
+          1,
+          4
+        ],
+        "probabilities": [
+          25,
+          25,
+          25,
+          25
+        ],
+        "items": [
+          114051
+        ]
+      },
+      {
+        "comment": "5-star Weapon Material",
+        "counts": [
+          1,
+          2
+        ],
+        "probabilities": [
+          50,
+          50
+        ],
+        "items": [
+          114052
+        ]
+      }
+    ]
+  },
+  {
     "dungeonId": 4480,
     "comment": "Generated reliquary domain 4480",
     "drops": [
@@ -7229,6 +7505,558 @@
         ],
         "items": [
           104346
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4500,
+    "comment": "Fontaine weapon materials 2 / tier 1; compatibility template 4330 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1125
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          10
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          4,
+          6
+        ],
+        "probabilities": [
+          20,
+          60,
+          30
+        ],
+        "items": [
+          114053
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4501,
+    "comment": "Fontaine weapon materials 2 / tier 2; compatibility template 4331 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1550
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          15
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          20,
+          80
+        ],
+        "items": [
+          114053
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          2
+        ],
+        "items": [
+          114054
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4502,
+    "comment": "Fontaine weapon materials 2 / tier 3; compatibility template 4332 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1850
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          15
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          80,
+          20
+        ],
+        "items": [
+          114053
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          20,
+          80
+        ],
+        "items": [
+          114054
+        ]
+      },
+      {
+        "comment": "4-star Weapon Material",
+        "counts": [
+          1,
+          2
+        ],
+        "probabilities": [
+          50,
+          50
+        ],
+        "items": [
+          114055
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4503,
+    "comment": "Fontaine weapon materials 2 / tier 4; compatibility template 4333 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          2200
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          20
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          80,
+          20
+        ],
+        "items": [
+          114053
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          1,
+          4
+        ],
+        "probabilities": [
+          25,
+          25,
+          25,
+          25
+        ],
+        "items": [
+          114054
+        ]
+      },
+      {
+        "comment": "4-star Weapon Material",
+        "counts": [
+          1,
+          4
+        ],
+        "probabilities": [
+          25,
+          25,
+          25,
+          25
+        ],
+        "items": [
+          114055
+        ]
+      },
+      {
+        "comment": "5-star Weapon Material",
+        "counts": [
+          1,
+          2
+        ],
+        "probabilities": [
+          50,
+          50
+        ],
+        "items": [
+          114056
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4504,
+    "comment": "Fontaine weapon materials 3 / tier 1; compatibility template 4330 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1125
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          10
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          4,
+          6
+        ],
+        "probabilities": [
+          20,
+          60,
+          30
+        ],
+        "items": [
+          114057
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4505,
+    "comment": "Fontaine weapon materials 3 / tier 2; compatibility template 4331 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1550
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          15
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          20,
+          80
+        ],
+        "items": [
+          114057
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          2
+        ],
+        "items": [
+          114058
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4506,
+    "comment": "Fontaine weapon materials 3 / tier 3; compatibility template 4332 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          1850
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          15
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          80,
+          20
+        ],
+        "items": [
+          114057
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          20,
+          80
+        ],
+        "items": [
+          114058
+        ]
+      },
+      {
+        "comment": "4-star Weapon Material",
+        "counts": [
+          1,
+          2
+        ],
+        "probabilities": [
+          50,
+          50
+        ],
+        "items": [
+          114059
+        ]
+      }
+    ]
+  },
+  {
+    "dungeonId": 4507,
+    "comment": "Fontaine weapon materials 3 / tier 4; compatibility template 4333 (not verified native rates)",
+    "drops": [
+      {
+        "comment": "AR exp",
+        "counts": [
+          100
+        ],
+        "items": [
+          102
+        ]
+      },
+      {
+        "comment": "Mora",
+        "counts": [
+          2200
+        ],
+        "items": [
+          202
+        ]
+      },
+      {
+        "comment": "Friendship exp",
+        "counts": [
+          20
+        ],
+        "items": [
+          105
+        ],
+        "mpDouble": true
+      },
+      {
+        "comment": "2-star Weapon Material",
+        "counts": [
+          2,
+          3
+        ],
+        "probabilities": [
+          80,
+          20
+        ],
+        "items": [
+          114057
+        ]
+      },
+      {
+        "comment": "3-star Weapon Material",
+        "counts": [
+          1,
+          4
+        ],
+        "probabilities": [
+          25,
+          25,
+          25,
+          25
+        ],
+        "items": [
+          114058
+        ]
+      },
+      {
+        "comment": "4-star Weapon Material",
+        "counts": [
+          1,
+          4
+        ],
+        "probabilities": [
+          25,
+          25,
+          25,
+          25
+        ],
+        "items": [
+          114059
+        ]
+      },
+      {
+        "comment": "5-star Weapon Material",
+        "counts": [
+          1,
+          2
+        ],
+        "probabilities": [
+          50,
+          50
+        ],
+        "items": [
+          114060
         ]
       }
     ]
