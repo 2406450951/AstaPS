@@ -47,6 +47,13 @@ public class EntityGadget extends EntityBaseGadget {
     @Getter private final Position bornPos;
     @Getter private final Position bornRot;
     @Getter @Setter private GameEntity owner = null;
+
+    /**
+     * Server global values set on top of the config's, such as those an Ice Creature build request
+     * asks for. Keyed by ability hash; a later value replaces a config value of the same name.
+     */
+    @Getter private final Map<Integer, AbilityScalarValueEntryOuterClass.AbilityScalarValueEntry>
+            extraGlobalValues = new java.util.LinkedHashMap<>();
     @Getter @Setter private List<GameEntity> children = new ArrayList<>();
 
     @Getter private int state;
@@ -587,20 +594,25 @@ public class EntityGadget extends EntityBaseGadget {
     private AbilitySyncStateInfo.Builder initialAbilityInfo() {
         var info = AbilitySyncStateInfo.newBuilder();
         var globalValue = this.configGadget == null ? null : this.configGadget.getGlobalValue();
-        if (globalValue == null || globalValue.getInitServerGlobalValues() == null) return info;
-        globalValue
-                .getInitServerGlobalValues()
-                .forEach(
-                        (key, value) -> {
-                            if (key == null || value == null) return;
-                            info.addSgvDynamicValueMap(
-                                    AbilityScalarValueEntryOuterClass.AbilityScalarValueEntry.newBuilder()
-                                            .setKey(
-                                                    AbilityStringOuterClass.AbilityString.newBuilder()
-                                                            .setHash(emu.grasscutter.utils.Utils.abilityHash(key))
-                                                            .setStr(key))
-                                            .setFloatValue(value));
-                        });
+        if (globalValue != null && globalValue.getInitServerGlobalValues() != null) {
+            globalValue
+                    .getInitServerGlobalValues()
+                    .forEach(
+                            (key, value) -> {
+                                if (key == null || value == null) return;
+                                if (this.extraGlobalValues.containsKey(emu.grasscutter.utils.Utils.abilityHash(key))) {
+                                    return;
+                                }
+                                info.addSgvDynamicValueMap(
+                                        AbilityScalarValueEntryOuterClass.AbilityScalarValueEntry.newBuilder()
+                                                .setKey(
+                                                        AbilityStringOuterClass.AbilityString.newBuilder()
+                                                                .setHash(emu.grasscutter.utils.Utils.abilityHash(key))
+                                                                .setStr(key))
+                                                .setFloatValue(value));
+                            });
+        }
+        this.extraGlobalValues.values().forEach(info::addSgvDynamicValueMap);
         return info;
     }
 

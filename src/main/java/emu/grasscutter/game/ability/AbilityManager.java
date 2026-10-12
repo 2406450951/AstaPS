@@ -1491,6 +1491,7 @@ public final class AbilityManager extends BasePlayerManager {
             var data = GameData.getAbilityData(name);
             avatar.getInstancedAbilities().add(data != null ? new Ability(data, avatar, player) : null);
         }
+        emu.grasscutter.game.icecreature.IceCreatureAbilities.addInstances(player, avatar);
     }
 
     private void invokeAction(

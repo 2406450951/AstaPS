@@ -107,6 +107,14 @@ public class PacketPlayerEnterSceneInfoNotify extends BasePacket {
                             .build())
                     .setFloatValue(frigidState.getFrigid())
                     .build());
+            String material = emu.grasscutter.game.player.SnezhnayaFrigid.BUILD_MATERIAL_GV;
+            teamInfo.addSgvDynamicValueMap(AbilityScalarValueEntry.newBuilder()
+                    .setKey(AbilityString.newBuilder()
+                            .setHash(Utils.abilityHash(material))
+                            .setStr(material)
+                            .build())
+                    .setFloatValue(emu.grasscutter.game.icecreature.IceCreatureSystem.materialLeft(player))
+                    .build());
         }
 
         if (moonPhaseCount > 0) {

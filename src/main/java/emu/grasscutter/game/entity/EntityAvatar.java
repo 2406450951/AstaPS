@@ -504,6 +504,10 @@ public class EntityAvatar extends GameEntity {
         } catch (Throwable ignored) {
         }
 
+        embryoId =
+                emu.grasscutter.game.icecreature.IceCreatureAbilities.appendEmbryos(
+                        this, abilityControlBlock, embryoId);
+
         return abilityControlBlock.build();
     }
 

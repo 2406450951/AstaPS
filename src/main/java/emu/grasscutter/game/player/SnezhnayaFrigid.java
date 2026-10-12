@@ -16,11 +16,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * Snezhnaya's Frigid (严寒) meter: the team abilities that run it, where they apply, and the server side
  * of the two values it shows.
  *
- * <p>Officially the Snezhnaya level-1 areas (80100..80500, areaID1 55..59 in scene 3) grant the
- * {@code DynamicAbility_IceCreature_V7_0_Team} ability group, and the Frigid team abilities come with
- * it. The rest of that group drives Ice Creatures, which need protocol this server does not have yet,
- * so only the Frigid part is granted here - the same set as the official
- * {@code DynamicAbility_SnezhnayaFrigid_Only_V7_0_Team} group.
+ * <p>The Snezhnaya level-1 areas (80100..80500, areaID1 55..59 in scene 3) grant the
+ * {@code DynamicAbility_IceCreature_V7_0_Team} and {@code DynamicAbility_SnezhnayaTrain_V7_0_Team}
+ * ability groups to the team and {@code DynamicAbility_IceCreature_V7_0_Avatar} to every character
+ * (see {@link emu.grasscutter.game.icecreature.IceCreatureAbilities}). The Frigid team abilities are
+ * part of the first group, so one grant covers both the meter and Icemaking.
  *
  * <p>Two server global values drive it. {@code SGV_SnezhnayaEnergy} is the Kresnik energy - the warmth
  * the team spends in cold areas - and only once it runs out does {@code SGV_SnezhnayaFrigid} build
@@ -35,10 +35,10 @@ public final class SnezhnayaFrigid {
     public static final String FRIGID_GV = "SGV_SnezhnayaFrigid";
     public static final String ENERGY_GV = "SGV_SnezhnayaEnergy";
 
-    /**
-     * Full Kresnik energy. No resource states the cap; sending 100 showed the warmth bar at 20%, so the
-     * client draws it out of 500.
-     */
+    /** Ice Creature build material left: the limit less what the player's standing creatures cost. */
+    public static final String BUILD_MATERIAL_GV = "SGV_SnezhnayaBuildResource";
+
+    /** Full Kresnik energy, CONST_VALUE_SNEZHNAYA_ENERGY_LIMIT; the warmth bar draws it out of 500. */
     public static final float MAX_ENERGY = 500f;
 
     public static final float MAX_FRIGID = 100f;
@@ -46,13 +46,21 @@ public final class SnezhnayaFrigid {
     /** How long a tick's priority level holds off lower levels; ticks arrive about once a second. */
     private static final long PRIORITY_HOLD_MS = 1500;
 
-    /** DynamicAbility_SnezhnayaFrigid_Only_V7_0_Team. */
+    /**
+     * DynamicAbility_IceCreature_V7_0_Team plus DynamicAbility_SnezhnayaTrain_V7_0_Team. The first entry
+     * is what {@link #isGranted} checks.
+     */
     static final List<String> TEAM_ABILITIES =
             List.of(
                     "SceneObj_Area_Zd_SnezhnayaFrigid_TeamAbility_Basic",
+                    "DynamicAbility_IceCreature_7_0",
+                    "DynamicAbility_Cannon_Aim",
+                    "DynamicAbility_SnezBookAvailable",
+                    "Snezhnaya_LocalTrigger_TeamAbility",
                     "Snezhnaya_ZDNervePlant_TeamAbility",
                     "Snezhnaya_StarConductor_TeamAbility",
-                    "Snezhnaya_PlayerGlasses_Eff");
+                    "Snezhnaya_PlayerGlasses_Eff",
+                    "DynamicAbility_SnezhnayaTrain_CheckAvatarOnTrain_Team");
 
     /** Every ability carrying change-Frigid mixins, for when an invoke's ability id cannot be resolved. */
     private static final List<String> FRIGID_ABILITIES =
@@ -112,6 +120,7 @@ public final class SnezhnayaFrigid {
         if (in == isGranted(player)) return;
         logChange(player, in, "scene entry");
         TeamAbilityToggle.set(player, TEAM_ABILITIES, in, false);
+        emu.grasscutter.game.icecreature.IceCreatureAbilities.sync(player, in, false);
     }
 
     /** Applies a seamless border crossing: updates the team abilities and, on entry, resends both values. */
@@ -126,6 +135,7 @@ public final class SnezhnayaFrigid {
 
         logChange(player, in, "crossing");
         TeamAbilityToggle.set(player, TEAM_ABILITIES, in, true);
+        emu.grasscutter.game.icecreature.IceCreatureAbilities.sync(player, in, true);
         if (in) sendValues(player, stateOf(player));
     }
 
@@ -194,6 +204,18 @@ public final class SnezhnayaFrigid {
         }
         player.sendPacket(new PacketServerGlobalValueChangeNotify(team.getId(), ENERGY_GV, energy));
         player.sendPacket(new PacketServerGlobalValueChangeNotify(team.getId(), FRIGID_GV, frigid));
+        sendBuildMaterial(player);
+    }
+
+    /** Resends the Ice Creature build material after a build or removal changed it. */
+    public static void sendBuildMaterial(Player player) {
+        var team = player.getTeamManager() == null ? null : player.getTeamManager().getEntity();
+        if (team == null) return;
+        player.sendPacket(
+                new PacketServerGlobalValueChangeNotify(
+                        team.getId(),
+                        BUILD_MATERIAL_GV,
+                        emu.grasscutter.game.icecreature.IceCreatureSystem.materialLeft(player)));
     }
 
     private static void logChange(Player player, boolean in, String reason) {
