@@ -42,6 +42,12 @@ class LegacyCommandSyntaxTest {
         var handler = map.getHandler(label);
         assertTrue(handler != null, () -> "no command for: " + line);
         String resolved = handler.getLabel().toLowerCase(Locale.ROOT);
+        var rerouted = LegacyCommandSyntax.rerouteBuiltIn(resolved, args);
+        if (rerouted != null && map.getHandler(rerouted.get(0)) != null) {
+            handler = map.getHandler(rerouted.get(0));
+            resolved = handler.getLabel().toLowerCase(Locale.ROOT);
+            args = rerouted.subList(1, rerouted.size());
+        }
         args = new ArrayList<>(LegacyCommandSyntax.rewriteArguments(resolved, args));
         if (handler.getClass().getAnnotation(Command.class).inlineTarget()) {
             args.removeIf(CommandMap::isTargetSelector);
@@ -118,6 +124,50 @@ class LegacyCommandSyntaxTest {
         assertTrue(failures.isEmpty(), () -> "Old forms that no longer parse:\n" + String.join("\n", failures));
     }
 
+    /** What GrasscutterTools (jie65535/grasscuttercommandgenerator v1.20.3) writes for each of its pages. */
+    @Test
+    void grasscutterToolsCommandsParse() {
+        String[] lines = {
+            // PageGiveItem / PageGiveWeapon / PageAvatar / PageArtifact / GOOD import
+            "give 1001 lv90 c6 sl10", "give 1001 lv90 c6", "give avatars lv90 c6 sl10", "give avatars lv90 c6",
+            "give weapons x1 lv90 r5", "give 11509 x1 lv90 r5", "give 101 x10 lv1",
+            "give 81234 lv20 15001 501021,2 501031,1", "give 81234 lv20",
+            "give all x9999 lv90 c6 r5 sl10", "give 102 x1880200",
+            // PageSpawn
+            "spawn 21010101 x5 lv90", "spawn 2008 x25", "spawn 21010101 x1 lv90 hp100 maxhp100 atk10 def10 ai1",
+            "spawn 70220005 x1 state201 100 200 300",
+            // PageTasks / CustomCommands
+            "prop god on", "prop ns on", "prop ue on", "prop wl 8", "prop unlockmap 1", "prop ut 12", "prop bp 50",
+            "prop fly on", "prop is_game_time_locked on", "prop is_weather_locked on", "prop SetOpenState 47",
+            "prop UnsetOpenState 48", "prop bplevel 10", "prop towerlevel 8", "prop worldlevel 8",
+            "setfetterlevel 10", "h", "kill 0", "pos", "reload", "resetconst", "resetconst all",
+            "clear all lv90 r5 5*", "clear wp lv90 r5 5*", "clear art lv20 5*", "clear mat",
+            "killall", "tpall", "list uid", "say hi", "a welcome", "stop", "unlockall", "troubleshoot",
+            "setstats cdr 100%", "setstats lock hp 100", "setstats unlock hp", "setstats atk 50",
+            // PageScene / PageWeather / PageAchievement / PageQuest / PageSceneTag
+            "tp 0 400 0 3", "tp ~ ~10 ~", "tp ~ ~100 ~", "tp ^10 ^ ^", "tp ^ ^ ^-10", "scene 3", "dungeon 5001",
+            "cutscene 101", "weather", "weather 0 1", "weather sunny",
+            "achievement grantall", "achievement revokeall", "achievement grant 80001", "achievement revoke 80001",
+            "achievement progress 80001 3", "quest add 35104", "quest finish 35104",
+            "tag unlockall", "tag reset", "tag add 1", "tag remove 1",
+            "talent n 10", "talent e 10", "talent q 10", "talent all 10", "setConst 6", "setConst 6 all",
+            "se pyro",
+            // PageManagement / PagePermission / PageMail
+            "account create bob", "account create bob 10002", "account delete bob",
+            "permission add @10001 player.give", "unban @10001", "ban @10001 1999999999",
+            "sendMail all", "sendMail 10001", "sendMail finish",
+        };
+        var failures = new ArrayList<String>();
+        for (String line : lines) {
+            try {
+                assertParses(line);
+            } catch (AssertionError e) {
+                failures.add(e.getMessage());
+            }
+        }
+        assertTrue(failures.isEmpty(), () -> "GrasscutterTools commands that do not parse:\n" + String.join("\n", failures));
+    }
+
     @Test
     void noCommandHasSubcommandsThatDifferOnlyInCase() {
         for (var handler : map.getHandlersAsList()) {
@@ -146,6 +196,10 @@ class LegacyCommandSyntaxTest {
         assertEquals(List.of("ban", "1.2.3.4", "cheating"), route("banip pw 1.2.3.4 cheating"));
         assertEquals(List.of("windy", "uid", "Hello", "world"), route("uid set Hello world"));
         assertEquals(List.of("account", "resetpassword", "bob@", "pw"), route("account resetpass bob pw"));
+        assertEquals(List.of("openstate", "47", "true"), route("prop SetOpenState 47"));
+        assertEquals(List.of("unlock", "map"), route("prop unlockmap 1"));
+        assertEquals(List.of("player", "list"), route("list uid"));
+        assertEquals(List.of("kill"), route("kill 0"));
     }
 
     @Test

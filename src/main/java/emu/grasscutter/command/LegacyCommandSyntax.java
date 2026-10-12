@@ -57,8 +57,6 @@ final class LegacyCommandSyntax {
             Map.entry("killall", List.of("kill", "all")),
             Map.entry("killcharacter", List.of("kill")),
             Map.entry("suicide", List.of("kill")),
-            Map.entry("list", List.of("player", "list")),
-            Map.entry("players", List.of("player", "list")),
             Map.entry("unlockall", List.of("unlock", "all")),
             Map.entry("trialavataractivity", List.of("trial")),
             Map.entry("taa", List.of("trial")),
@@ -114,6 +112,8 @@ final class LegacyCommandSyntax {
         if (renamed != null) return concat(renamed, args);
 
         return switch (label) {
+            // "list uid" asked for UIDs, which player list always shows.
+            case "list", "players" -> List.of("player", "list");
             case "heal", "h" -> withFlagWord(List.of("restore", "hp"), args, "all", "--all");
             case "max", "maxavatar", "maxchar" -> withFlagWord(List.of("avatar", "max"), args, "all", "--all");
             case "setconst", "setconstellation" ->
@@ -132,6 +132,14 @@ final class LegacyCommandSyntax {
         };
     }
 
+    /**
+     * The command line for an old use of a current built-in command that now belongs to another
+     * command, or null when the use is still that command's own.
+     */
+    static List<String> rerouteBuiltIn(String label, List<String> args) {
+        return label.equals("prop") ? prop(args) : null;
+    }
+
     /** Translates old argument forms of a current built-in command; returns {@code args} if none apply. */
     static List<String> rewriteArguments(String label, List<String> args) {
         return switch (label) {
@@ -145,6 +153,8 @@ final class LegacyCommandSyntax {
             case "setscenetag" -> replaceFirst(args, "unlockall", List.of("unlock", "all"));
             case "account" -> account(args);
             case "coop" -> coop(args);
+            // GrasscutterTools sends "kill 0"; the old kill ignored its argument.
+            case "kill" -> args.size() == 1 && isDigits(args.get(0)) ? List.of() : args;
             default -> args;
         };
     }
@@ -247,6 +257,17 @@ final class LegacyCommandSyntax {
             }
         }
         return out;
+    }
+
+    /** Open states and the map unlock were player properties before they got commands of their own. */
+    private static List<String> prop(List<String> args) {
+        if (args.size() != 2) return null;
+        return switch (args.get(0).toLowerCase(Locale.ROOT)) {
+            case "setopenstate", "so" -> List.of("openstate", args.get(1), "true");
+            case "unsetopenstate", "uo" -> List.of("openstate", args.get(1), "false");
+            case "unlockmap", "um" -> List.of("unlock", "map");
+            default -> null;
+        };
     }
 
     /** The old coop took a bare host UID. */

@@ -665,6 +665,19 @@ public final class CommandMap {
             CommandOutput.sendTranslatedMessage(player, "commands.generic.unknown_command", typedLabel);
             return;
         }
+        CommandHandler routed;
+        synchronized (this.picocliLock) {
+            routed = this.commands.get(resolvedLabel);
+        }
+        if (routed != null && isBuiltIn(routed)) {
+            List<String> rerouted = LegacyCommandSyntax.rerouteBuiltIn(resolvedLabel, args);
+            String reroutedLabel = rerouted == null ? null : this.resolveCommandLabel(rerouted.get(0));
+            if (reroutedLabel != null) {
+                label = rerouted.get(0);
+                args = new ArrayList<>(rerouted.subList(1, rerouted.size()));
+                resolvedLabel = reroutedLabel;
+            }
+        }
 
         final CommandHandler handler;
         final Command annotation;
