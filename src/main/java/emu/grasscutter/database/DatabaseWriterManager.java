@@ -41,6 +41,7 @@ public final class DatabaseWriterManager {
     private final int orderedCapacity;
     private final ThreadLocal<Integer> writeDepth = ThreadLocal.withInitial(() -> 0);
     private final ThreadLocal<ArrayDeque<WriteTask>> callerRunQueue = new ThreadLocal<>();
+    /** Only queued successors count; heads go straight to their pool, which bounds them. */
     private int orderedOutstanding;
     private int synchronousActive;
     private boolean accepting = true;
@@ -65,7 +66,7 @@ public final class DatabaseWriterManager {
 
     /** Saturation still runs on the caller; a closed admission gate rejects visibly. */
     void submit(ExecutorService executor, Runnable task) {
-        submit(executor, null, task);
+        submit(executor, null, false, task);
     }
 
     /**
@@ -74,10 +75,20 @@ public final class DatabaseWriterManager {
      * the caller might hold an inventory or player monitor.
      */
     void submitOrdered(ExecutorService executor, Object entityKey, Runnable task) {
-        submit(executor, Objects.requireNonNull(entityKey, "entityKey"), task);
+        submit(executor, Objects.requireNonNull(entityKey, "entityKey"), true, task);
     }
 
-    private void submit(ExecutorService executor, Object entityKey, Runnable runnable) {
+    /**
+     * As {@link #submitOrdered}, never rejected for capacity. For callers that queue at most one
+     * successor per key, so the queue stays bounded without a caller-run fallback that could
+     * reorder writes.
+     */
+    void submitOrderedUncapped(ExecutorService executor, Object entityKey, Runnable task) {
+        submit(executor, Objects.requireNonNull(entityKey, "entityKey"), false, task);
+    }
+
+    private void submit(
+            ExecutorService executor, Object entityKey, boolean capped, Runnable runnable) {
         Objects.requireNonNull(runnable, "task");
         WriteTask task;
         boolean dispatch;
@@ -87,7 +98,7 @@ public final class DatabaseWriterManager {
             if (!pools.containsValue(executor) || executor.isShutdown()) {
                 throw new RejectedExecutionException("Database writer is unavailable");
             }
-            if (entityKey != null && orderedOutstanding >= orderedCapacity) {
+            if (capped && entityKey != null && ordered.containsKey(entityKey) && orderedOutstanding >= orderedCapacity) {
                 throw new RejectedExecutionException("Ordered database write capacity is full");
             }
             task = new WriteTask(executor, entityKey, runnable);
@@ -98,7 +109,7 @@ public final class DatabaseWriterManager {
                 var queue = ordered.computeIfAbsent(entityKey, ignored -> new ArrayDeque<>());
                 dispatch = queue.isEmpty();
                 queue.addLast(task);
-                orderedOutstanding++;
+                if (!dispatch) orderedOutstanding++;
             }
         } finally {
             lifecycle.unlock();
@@ -340,8 +351,8 @@ public final class DatabaseWriterManager {
                 try {
                     outstanding.remove(this);
                     if (entityKey != null) {
-                        orderedOutstanding--;
                         var queue = ordered.get(entityKey);
+                        if (queue.size() > 1) orderedOutstanding--;
                         queue.removeFirst();
                         if (queue.isEmpty()) ordered.remove(entityKey);
                         else next = queue.getFirst();
@@ -369,8 +380,8 @@ public final class DatabaseWriterManager {
         task.cancelled = true;
         outstanding.remove(task);
         if (task.entityKey != null) {
-            orderedOutstanding--;
             var queue = ordered.get(task.entityKey);
+            if (queue.size() > 1) orderedOutstanding--;
             boolean wasHead = queue.getFirst() == task;
             queue.remove(task);
             if (queue.isEmpty()) ordered.remove(task.entityKey);

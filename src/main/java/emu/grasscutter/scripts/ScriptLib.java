@@ -13,11 +13,14 @@ import emu.grasscutter.game.entity.gadget.platform.*;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.*;
 import emu.grasscutter.game.quest.enums.*;
+import emu.grasscutter.game.quest.LiyueCloudDungeonSupport;
 import emu.grasscutter.game.world.*;
+import emu.grasscutter.game.world.data.TeleportProperties;
 import emu.grasscutter.net.proto.EnterTypeOuterClass;
 import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import emu.grasscutter.scripts.constants.*;
 import emu.grasscutter.scripts.data.*;
+import emu.grasscutter.server.event.player.PlayerTeleportEvent.TeleportType;
 import emu.grasscutter.server.packet.send.*;
 import emu.grasscutter.server.packet.send.PacketSceneEntityAppearNotify;
 import emu.grasscutter.server.packet.send.PacketSceneEntityDisappearNotify;
@@ -323,10 +326,18 @@ public class ScriptLib {
 
     public int AddQuestProgress(String var1) {
         logger.debug("[LUA] Call AddQuestProgress with {}", var1);
+        boolean liyueProgress = getSceneScriptManager().getScene().getId() == 3
+                && ("13310390801".equals(var1) || "133101914".equals(var1)
+                    || "133101915".equals(var1) || "133101916".equals(var1)
+                    || emu.grasscutter.game.quest.LiyueChargePotRecovery.isProgressKey(var1));
+        // The condition dispatcher indexes params[0] even for a string-keyed Lua notification.
+        // Always provide the neutral value, including the Golden House completion callback.
+        int[] params = new int[] {0};
         for (var player : getSceneScriptManager().getScene().getPlayers()) {
             player.getPlayerProgress().addToCurrentProgress(var1, 1);
-            player.getQuestManager().queueEvent(QuestCond.QUEST_COND_LUA_NOTIFY, var1);
-            player.getQuestManager().queueEvent(QuestContent.QUEST_CONTENT_LUA_NOTIFY, var1);
+            if (liyueProgress) player.save();
+            player.getQuestManager().queueEvent(QuestCond.QUEST_COND_LUA_NOTIFY, var1, params);
+            player.getQuestManager().queueEvent(QuestContent.QUEST_CONTENT_LUA_NOTIFY, var1, params);
         }
 
         return 0;
@@ -1614,6 +1625,9 @@ public class ScriptLib {
     }
 
     public int StopChallenge(int var1, int var2) {
+        var scene = getSceneScriptManager().getScene();
+        if (LiyueCloudDungeonSupport.isTargetScene(scene) && var1 >= 100 && var1 <= 102)
+            return LiyueCloudDungeonSupport.stopFireChallenge(scene, var1, var2);
         logger.warn("[LUA] Call unimplemented StopChallenge with {} {}", var1, var2);
 
         return 0;
@@ -1706,30 +1720,28 @@ public class ScriptLib {
 
         final Position finalRot = targetRot;
         final Position dest = targetPos;
-        scene.getPlayers().stream()
-                .filter(p -> targets.contains(p.getUid()))
-                .forEach(
-                        p -> {
-                            if (softTeleport) {
-                                softTeleportInScene(scene, p, dest, finalRot);
-                            } else {
-                                scene.removePlayer(p);
-                                scene.addPlayer(p);
-                                p.getPosition().set(dest);
-                                if (finalRot != null && p.getRotation() != null) {
-                                    p.getRotation().set(finalRot);
-                                }
-                                p.sendPacket(
-                                        new PacketPlayerEnterSceneNotify(
-                                                p,
-                                                EnterTypeOuterClass.EnterType.EnterType_ENTER_GOTO,
-                                                Lua,
-                                                scene.getId(),
-                                                dest));
-                                p.sendPacket(new PacketEnterScenePeerNotify(p));
-                            }
-                        });
-        return 0;
+        boolean accepted = true;
+        for (var p : List.copyOf(scene.getPlayers())) {
+            if (!targets.contains(p.getUid())) continue;
+            if (softTeleport) {
+                softTeleportInScene(scene, p, dest, finalRot);
+                continue;
+            }
+            // Through the world: a same-scene transfer keeps the scene and its scripts alive.
+            accepted &=
+                    p.getWorld()
+                            .transferPlayerToScene(
+                                    p,
+                                    TeleportProperties.builder()
+                                            .sceneId(scene.getId())
+                                            .teleportType(TeleportType.SCRIPT)
+                                            .enterReason(Lua)
+                                            .enterType(EnterTypeOuterClass.EnterType.EnterType_ENTER_GOTO)
+                                            .teleportTo(dest)
+                                            .teleportRot(finalRot)
+                                            .build());
+        }
+        return accepted ? 0 : 3;
     }
 
     /** Move player/avatars in-place without leaving the scene (no group reload). */

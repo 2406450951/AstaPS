@@ -633,6 +633,43 @@ public final class ActionHealHPArlecchinoTest {
         }
     }
 
+    @Test
+    void flatAmountIsAddedOnceAlongsideRatios() throws Exception {
+        try (var caster = fixture(10000032, 5_000f, 0f);
+                var recipient = fixture(10000032, 1_000f, 0f)) {
+            var action = heal(null, 1_000f);
+            action.amountByCasterMaxHPRatio = new DynamicFloat(.1f);
+            assertTrue(new ActionHealHP().execute(ability(caster.entity, "Test_Heal"),
+                    action, ByteString.EMPTY, recipient.entity));
+            recipient.assertState(3_000f, 0f);
+        }
+    }
+
+    @Test
+    void casterHealBonusAndRecipientHealedBonusApply() throws Exception {
+        try (var caster = fixture(10000032, 5_000f, 0f);
+                var recipient = fixture(10000032, 1_000f, 0f)) {
+            caster.entity.setFightProperty(FightProperty.FIGHT_PROP_HEAL_ADD, .5f);
+            recipient.entity.setFightProperty(FightProperty.FIGHT_PROP_HEAL_ADD, 2f);
+            recipient.entity.setFightProperty(FightProperty.FIGHT_PROP_HEALED_ADD, .25f);
+            var action = heal(null, 1_000f);
+            action.ignoreAbilityProperty = false;
+            assertTrue(new ActionHealHP().execute(ability(caster.entity, "Test_Heal"),
+                    action, ByteString.EMPTY, recipient.entity));
+            recipient.assertState(2_750f, 0f);
+        }
+    }
+
+    @Test
+    void targetCurrentHpRatioScalesCurrentHp() throws Exception {
+        try (var recipient = fixture(10000032, 1_000f, 0f)) {
+            var action = heal(null, 0f);
+            action.amountByTargetCurrentHPRatio = new DynamicFloat(.1f);
+            assertTrue(execute(recipient, "Test_Heal", action));
+            recipient.assertState(1_100f, 0f);
+        }
+    }
+
     private static boolean execute(
             Fixture fixture, String abilityName, AbilityModifierAction action) throws Exception {
         return new ActionHealHP()

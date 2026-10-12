@@ -35,7 +35,9 @@ public final class StopCommand implements CommandHandler {
             for (Player player : Grasscutter.getGameServer().getPlayers().values()) {
                 CommandOutput.sendMessage(player, translate(player, "commands.stop.success"));
             }
-            System.exit(NORMAL_EXIT_CODE);
+            // In game this runs on the logic thread. System.exit blocks until the shutdown hook
+            // finishes, and the hook saves every player on that same thread, so exit from another one.
+            new Thread(() -> System.exit(NORMAL_EXIT_CODE), "server-stop").start();
         }
     }
 }

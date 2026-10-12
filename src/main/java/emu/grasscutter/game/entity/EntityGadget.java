@@ -47,6 +47,13 @@ public class EntityGadget extends EntityBaseGadget {
     @Getter private final Position bornPos;
     @Getter private final Position bornRot;
     @Getter @Setter private GameEntity owner = null;
+
+    /**
+     * Server global values set on top of the config's, such as those an Ice Creature build request
+     * asks for. Keyed by ability hash; a later value replaces a config value of the same name.
+     */
+    @Getter private final Map<Integer, AbilityScalarValueEntryOuterClass.AbilityScalarValueEntry>
+            extraGlobalValues = new java.util.LinkedHashMap<>();
     @Getter @Setter private List<GameEntity> children = new ArrayList<>();
 
     @Getter private int state;
@@ -229,6 +236,26 @@ public class EntityGadget extends EntityBaseGadget {
 
     // TODO refactor
     public void buildContent() {
+        emu.grasscutter.game.quest.LiyueTeapotDungeonSupport.prepareCobweb(this);
+        if (emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell.matches(this)) {
+            if (!(this.content instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell))
+                this.content = new emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell(this);
+            return;
+        }
+        if (emu.grasscutter.game.entity.gadget.GadgetLiyueGuizhong.matches(this)) {
+            if (!(this.content instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueGuizhong))
+                this.content = new emu.grasscutter.game.entity.gadget.GadgetLiyueGuizhong(this);
+            return;
+        }
+        if (emu.grasscutter.game.entity.gadget.GadgetLiyueJadeMaterials.matches(this)) {
+            if (!(this.content instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueJadeMaterials))
+                this.content = new emu.grasscutter.game.entity.gadget.GadgetLiyueJadeMaterials(this);
+            return;
+        }
+        if (GadgetLiyueFoodOffering.matches(this)) {
+            this.content = new GadgetLiyueFoodOffering(this);
+            return;
+        }
         if (this.getContent() != null
                 || this.getGadgetData() == null
                 || this.getGadgetData().getType() == null) {
@@ -265,21 +292,6 @@ public class EntityGadget extends EntityBaseGadget {
 
     @Override
     public void onInteract(Player player, GadgetInteractReq interactReq) {
-        try {
-            if (emu.grasscutter.game.world.AndriusTrialStartHelper.tryStart(player, this, 0)) {
-                return;
-            }
-        } catch (Throwable ignored) {
-        }
-
-        // OfferingGadgets such as the Sacred Sakura must still open the offering page even when content is unset.
-        try {
-            if (emu.grasscutter.game.entity.gadget.OfferingHelper.tryInteract(player, this)) {
-                return;
-            }
-        } catch (Throwable ignored) {
-        }
-
         boolean interactOk = this.interactEnabled;
         try {
             interactOk =
@@ -289,11 +301,27 @@ public class EntityGadget extends EntityBaseGadget {
         }
         if (!interactOk) return;
 
-        if (this.getContent() == null) {
-            return;
+        try {
+            if (emu.grasscutter.game.world.AndriusTrialStartHelper.tryStart(player, this, 0)) {
+                player.onGadgetInteracted(getGadgetId());
+                return;
+            }
+        } catch (Throwable ignored) {
         }
 
-        boolean shouldDelete = this.getContent().onInteract(player, interactReq);
+        // OfferingGadgets such as the Sacred Sakura must still open the offering page even when content is unset.
+        try {
+            if (emu.grasscutter.game.entity.gadget.OfferingHelper.tryInteract(player, this)) {
+                player.onGadgetInteracted(getGadgetId());
+                return;
+            }
+        } catch (Throwable ignored) {
+        }
+
+        boolean shouldDelete = this.getContent() != null && this.getContent().onInteract(player, interactReq);
+        if (!(this.getContent() instanceof emu.grasscutter.game.entity.gadget.CreditsOwnInteraction)) {
+            player.onGadgetInteracted(getGadgetId());
+        }
 
         if (shouldDelete) {
             this.getScene().killEntity(this);
@@ -340,6 +368,7 @@ public class EntityGadget extends EntityBaseGadget {
 
     @Override
     public void onDeath(int killerId) {
+        emu.grasscutter.game.quest.LiyueAmberQuestSupport.onGadgetDeath(this);
         super.onDeath(killerId); // Invoke super class's onDeath() method.
 
         // Breakable gather ores (incl. Scarlet Quartz): spawn ground drop on death.
@@ -376,6 +405,8 @@ public class EntityGadget extends EntityBaseGadget {
                 getScene().getScriptManager().getGroupInstanceById(this.getGroupId());
         if (groupInstance != null && metaGadget != null)
             groupInstance.getDeadEntities().add(metaGadget.config_id);
+
+        emu.grasscutter.game.entity.gadget.MeltableIceHelper.onShattered(this);
     }
 
     /**
@@ -490,8 +521,13 @@ public class EntityGadget extends EntityBaseGadget {
                 }
 
                 double time = 0;
+                boolean liyuePlatform = emu.grasscutter.game.quest.LiyueCloudDungeonSupport.isPlatform(this);
+                int startedRoute = configRoute.getRouteId();
                 for (var i = currIndex; i < points.length; ++i) {
-                    time += points[i].getPos().computeDistance(prevpos) / points[i].getTargetVelocity();
+                    double distance = points[i].getPos().computeDistance(prevpos);
+                    time += liyuePlatform
+                            ? emu.grasscutter.game.quest.LiyueCloudDungeonSupport.pointSeconds(points[i], distance)
+                            : distance / points[i].getTargetVelocity();
                     prevpos = points[i].getPos();
                     val I = i;
                     configRoute
@@ -501,6 +537,8 @@ public class EntityGadget extends EntityBaseGadget {
                                             .getScheduler()
                                             .scheduleDelayedTask(
                                                     () -> {
+                                                        if (liyuePlatform && (!configRoute.isStarted()
+                                                                || configRoute.getRouteId() != startedRoute)) return;
                                                         if (points[I].isHasReachEvent() && I > currIndex) {
                                                             this.getScene()
                                                                     .getScriptManager()
@@ -515,11 +553,15 @@ public class EntityGadget extends EntityBaseGadget {
                                                         }
                                                         configRoute.setStartIndex(I);
                                                         this.position.set(points[I].getPos());
+                                                        if (liyuePlatform && points[I].getRotRoundLeaveDir() != null)
+                                                            this.getRotation().set(points[I].getRotRoundLeaveDir());
                                                         if (I == points.length - 1) {
                                                             configRoute.setStarted(false);
                                                         }
                                                     },
-                                                    (int) time));
+                                                    liyuePlatform
+                                                            ? emu.grasscutter.game.quest.LiyueCloudDungeonSupport.ticksForSeconds(time + 0.3)
+                                                            : (int) time));
                 }
             }
         }
@@ -575,11 +617,43 @@ public class EntityGadget extends EntityBaseGadget {
         return true;
     }
 
+    /**
+     * The server global values the gadget config declares under {@code globalValue.initServerGlobalValues}.
+     *
+     * <p>The gadget's abilities read these from the first frame - Snezhnaya's meltable ice takes its melt
+     * rate from {@code SGV_Meltable_Ratio} and its size from {@code SGV_InitialSize} - and without them
+     * every value reads 0, so Fire hits shrank the ice by nothing.
+     */
+    private AbilitySyncStateInfo.Builder initialAbilityInfo() {
+        var info = AbilitySyncStateInfo.newBuilder();
+        var globalValue = this.configGadget == null ? null : this.configGadget.getGlobalValue();
+        if (globalValue != null && globalValue.getInitServerGlobalValues() != null) {
+            globalValue
+                    .getInitServerGlobalValues()
+                    .forEach(
+                            (key, value) -> {
+                                if (key == null || value == null) return;
+                                if (this.extraGlobalValues.containsKey(emu.grasscutter.utils.Utils.abilityHash(key))) {
+                                    return;
+                                }
+                                info.addSgvDynamicValueMap(
+                                        AbilityScalarValueEntryOuterClass.AbilityScalarValueEntry.newBuilder()
+                                                .setKey(
+                                                        AbilityStringOuterClass.AbilityString.newBuilder()
+                                                                .setHash(emu.grasscutter.utils.Utils.abilityHash(key))
+                                                                .setStr(key))
+                                                .setFloatValue(value));
+                            });
+        }
+        this.extraGlobalValues.values().forEach(info::addSgvDynamicValueMap);
+        return info;
+    }
+
     @Override
     public SceneEntityInfo toProto() {
         EntityAuthorityInfo authority =
                 EntityAuthorityInfo.newBuilder()
-                        .setAbilityInfo(AbilitySyncStateInfo.newBuilder())
+                        .setAbilityInfo(this.initialAbilityInfo())
                         .setRendererChangedInfo(EntityRendererChangedInfo.newBuilder())
                         .setAiInfo(
                                 SceneEntityAiInfo.newBuilder().setIsEnteredCombat(true))

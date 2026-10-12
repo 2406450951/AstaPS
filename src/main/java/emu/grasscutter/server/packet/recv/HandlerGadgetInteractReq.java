@@ -1,6 +1,5 @@
 package emu.grasscutter.server.packet.recv;
 
-import emu.grasscutter.game.quest.enums.QuestContent;
 import emu.grasscutter.net.packet.*;
 import emu.grasscutter.net.proto.GadgetInteractReqOuterClass.GadgetInteractReq;
 import emu.grasscutter.server.game.GameSession;
@@ -11,11 +10,15 @@ public class HandlerGadgetInteractReq extends PacketHandler {
     @Override
     public void handle(GameSession session, byte[] header, byte[] payload) throws Exception {
         GadgetInteractReq req = GadgetInteractReq.parseFrom(payload);
+        var entity = session.getPlayer().getScene().getEntityById(req.getGadgetEntityId());
+        if (entity instanceof emu.grasscutter.game.entity.EntityGadget gadget
+                && (gadget.getContent() instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell
+                    || gadget.getContent() instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueGuizhong
+                    || gadget.getContent() instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueJadeMaterials)) {
+            session.getPlayer().interactWith(req.getGadgetEntityId(), req);
+            return;
+        }
 
-        session
-                .getPlayer()
-                .getQuestManager()
-                .queueEvent(QuestContent.QUEST_CONTENT_INTERACT_GADGET, req.getGadgetId());
         session.getPlayer().interactWith(req.getGadgetEntityId(), req);
     }
 }

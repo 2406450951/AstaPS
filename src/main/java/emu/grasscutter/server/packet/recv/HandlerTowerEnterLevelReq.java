@@ -45,7 +45,9 @@ public class HandlerTowerEnterLevelReq extends PacketHandler {
             player.getTowerManager().restartFloorFromChamberOne();
         }
         boolean firstChamber = TowerAbyssFix.isFirstChamber(player) || restartFloor;
-        player.getTowerManager().enterLevel(enterPointId);
+        if (!player.getTowerManager().enterLevel(enterPointId)) {
+            return;
+        }
         try {
             teamManager.useTemporaryTeam(0);
             if (firstChamber) {

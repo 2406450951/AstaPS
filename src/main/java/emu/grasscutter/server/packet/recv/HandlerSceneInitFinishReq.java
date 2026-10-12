@@ -43,7 +43,7 @@ public class HandlerSceneInitFinishReq extends PacketHandler {
             session.send(new PacketPlayerWorldSceneInfoListNotify(player));
             session.send(new PacketSceneForceUnlockNotify(1, true));
             session.send(new PacketHostPlayerNotify(world));
-            session.send(new PacketSceneDataNotify(DomainDungeonHelper.notifySceneId(player)));
+            session.send(new PacketSceneDataNotify(player));
 
             session.send(new PacketSceneTimeNotify(player));
             session.send(new PacketPlayerGameTimeNotify(player));

@@ -15,6 +15,9 @@ import emu.grasscutter.server.game.*;
 import emu.grasscutter.server.packet.send.PacketDungeonEntryInfoRsp;
 import it.unimi.dsi.fastutil.ints.*;
 import java.util.List;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair;
 
 public final class DungeonSystem extends BaseGameSystem {
     private static final BasicDungeonSettleListener basicDungeonSettleObserver =
@@ -60,20 +63,20 @@ public final class DungeonSystem extends BaseGameSystem {
      * @param pointId The dungeon point ID.
      */
     public void sendEntryInfoFor(Player player, int pointId, int sceneId) {
-        var entry = GameData.getScenePointEntryById(sceneId, pointId);
-        if (entry == null) {
-            // An invalid point ID was sent.
-            player.sendPacket(new PacketDungeonEntryInfoRsp());
-            return;
-        }
+        sendEntryInfoFor(player,
+                List.of(Uint32Pair.newBuilder().setKey(sceneId).setValue(pointId).build()), false);
+    }
 
-        // Check if the player has quests with dungeon IDs.
-        var questDungeons = player.getQuestManager().questsForDungeon(entry);
-        if (questDungeons.size() > 0) {
-            player.sendPacket(new PacketDungeonEntryInfoRsp(entry.getPointData(), questDungeons));
-        } else {
-            player.sendPacket(new PacketDungeonEntryInfoRsp(entry.getPointData()));
+    public void sendEntryInfoFor(
+            Player player, Collection<Uint32Pair> scenePoints, boolean entryList) {
+        var entries = new LinkedHashMap<ScenePointEntry, List<Integer>>();
+        for (var scenePoint : new java.util.LinkedHashSet<>(scenePoints)) {
+            int sceneId = scenePoint.getKey() > 0 ? scenePoint.getKey() : player.getSceneId();
+            var entry = GameData.getScenePointEntryById(sceneId, scenePoint.getValue());
+            if (entry == null || !"DungeonEntry".equals(entry.getPointData().getType())) continue;
+            entries.put(entry, player.getQuestManager().questsForDungeon(entry));
         }
+        player.sendPacket(new PacketDungeonEntryInfoRsp(entries, player.getLevel(), entryList));
     }
 
     public boolean triggerCondition(
@@ -103,32 +106,24 @@ public final class DungeonSystem extends BaseGameSystem {
                         dungeonId);
 
         var sceneId = data.getSceneId();
+        var origin = player.getScene();
+        var originPos = new Position(player.getPosition());
+        if (!player.getWorld().transferPlayerToScene(player, sceneId, data)) {
+            return false;
+        }
         var scene = player.getScene();
-        if (savePrevious) scene.setPrevScene(scene.getId());
-
         // The scene's own origin dies with it, and a dungeon scene is deregistered as soon as the
         // last player leaves - so keep the origin on the player, who does survive the logout.
         // Player.onLogin() reads this pair instead of restoring a login into an empty dungeon
         // shell. Only world scenes qualify, so a home or activity handoff cannot record one.
-        if (scene != null && scene.getSceneType() == SceneType.SCENE_WORLD) {
-            player.setPrevSceneForDungeon(scene.getId());
-            player.setPrevPosForDungeon(new Position(player.getPosition()));
+        if (origin != null && origin.getSceneType() == SceneType.SCENE_WORLD) {
+            player.setPrevSceneForDungeon(origin.getId());
+            player.setPrevPosForDungeon(originPos);
         }
-
-        // Domain / material / talent / weapon / relic: force teardown when reusing the same
-        // dungeon scene so old monsters/gadgets do not linger (mirrors tower handoff).
-        if (scene != null
-                && scene.getSceneType() == SceneType.SCENE_DUNGEON
-                && scene.getId() == sceneId
-                && DomainDungeonHelper.isDomainScene(scene)) {
-            scene.setDontDestroyWhenEmpty(false);
-            scene.removePlayer(player);
+        if (savePrevious && origin != null) {
+            scene.setPrevScene(
+                    origin.getSceneType() == SceneType.SCENE_WORLD ? origin.getId() : origin.getPrevScene());
         }
-
-        if (!player.getWorld().transferPlayerToScene(player, sceneId, data)) {
-            return false;
-        }
-        scene = player.getScene();
         scene.setDungeonManager(new DungeonManager(scene, data));
         MissingDomainFallbackManager.install(scene, data);
         scene.addDungeonSettleObserver(basicDungeonSettleObserver);
@@ -155,8 +150,6 @@ public final class DungeonSystem extends BaseGameSystem {
                         player.getUid(),
                         dungeonId);
 
-        // Same-scene re-entry (retry) must destroy the live chamber. transferPlayerToScene would
-        // otherwise set dontDestroyWhenEmpty and keep the previous monsters under the buff UI.
         Scene current = player.getScene();
         if (current != null
                 && current.getSceneType() == SceneType.SCENE_DUNGEON
@@ -164,17 +157,16 @@ public final class DungeonSystem extends BaseGameSystem {
                         || (current.getDungeonManager() != null
                                 && current.getDungeonManager().isTowerDungeon()))) {
             TowerAbyssFix.endChallengeUi(player);
-            current.setDontDestroyWhenEmpty(false);
-            current.removePlayer(player);
         }
 
-        if (player.getWorld().transferPlayerToScene(player, data.getSceneId(), data)) {
-            var scene = player.getScene();
-            var dungeonManager = new DungeonManager(scene, data);
-            dungeonManager.setTowerDungeon(true);
-            scene.setDungeonManager(dungeonManager);
-            dungeonSettleListeners.forEach(scene::addDungeonSettleObserver);
+        if (!player.getWorld().transferPlayerToScene(player, data.getSceneId(), data)) {
+            return false;
         }
+        var scene = player.getScene();
+        var dungeonManager = new DungeonManager(scene, data);
+        dungeonManager.setTowerDungeon(true);
+        scene.setDungeonManager(dungeonManager);
+        dungeonSettleListeners.forEach(scene::addDungeonSettleObserver);
         return true;
     }
 

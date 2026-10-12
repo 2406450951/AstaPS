@@ -6,6 +6,7 @@ import emu.grasscutter.Grasscutter;
 import emu.grasscutter.command.Command;
 import emu.grasscutter.command.CommandHandler;
 import emu.grasscutter.command.CommandOutput;
+import emu.grasscutter.database.DatabaseHelper;
 import emu.grasscutter.game.Account;
 import emu.grasscutter.game.player.Player;
 import picocli.CommandLine;
@@ -77,11 +78,11 @@ public final class PermissionCommand implements CommandHandler {
             Account account = account();
             if (account == null) return;
             if (account.addPermission(permission)) {
+                DatabaseHelper.saveAccountFields(account, "permissions");
                 CommandOutput.sendMessage(sender, translate(sender, "commands.permission.add"));
             } else {
                 CommandOutput.sendMessage(sender, translate(sender, "commands.permission.has_error"));
             }
-            account.save();
         }
     }
 
@@ -99,12 +100,12 @@ public final class PermissionCommand implements CommandHandler {
             Account account = account();
             if (account == null) return;
             if (account.removePermission(permission)) {
+                DatabaseHelper.saveAccountFields(account, "permissions");
                 CommandOutput.sendMessage(sender, translate(sender, "commands.permission.remove"));
             } else {
                 CommandOutput.sendMessage(
                         sender, translate(sender, "commands.permission.not_have_error"));
             }
-            account.save();
         }
     }
 
@@ -119,7 +120,7 @@ public final class PermissionCommand implements CommandHandler {
             Account account = account();
             if (account == null) return;
             account.clearPermission();
-            account.save();
+            DatabaseHelper.saveAccountFields(account, "permissions");
             CommandOutput.sendMessage(sender, translate(sender, "commands.permission.remove"));
         }
     }

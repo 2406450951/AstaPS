@@ -5,6 +5,7 @@ import emu.grasscutter.command.Command;
 import emu.grasscutter.command.CommandHandler;
 import emu.grasscutter.command.CommandOutput;
 import emu.grasscutter.command.CommandMap;
+import emu.grasscutter.database.DatabaseHelper;
 import emu.grasscutter.game.Account;
 import emu.grasscutter.game.BannedIp;
 import emu.grasscutter.game.player.Player;
@@ -138,12 +139,17 @@ public final class BanCommand implements CommandHandler {
             if (!hasPermission(sender, "server.ban",
                     someoneElse ? "server.ban.others" : null)) return;
 
-            account.setBanReason(args.reason());
-            account.setBanEndTime(args.endTime());
-            account.setBanStartTime((int) (System.currentTimeMillis() / 1000));
-            account.setBannedByIp(null);
-            account.setBanned(true);
-            account.save();
+            int startTime = (int) (System.currentTimeMillis() / 1000);
+            DatabaseHelper.updateAccount(
+                    account,
+                    banned -> {
+                        banned.setBanReason(args.reason());
+                        banned.setBanEndTime(args.endTime());
+                        banned.setBanStartTime(startTime);
+                        banned.setBannedByIp(null);
+                        banned.setBanned(true);
+                    },
+                    DatabaseHelper.BAN_FIELDS);
 
             Player online = Grasscutter.getGameServer().getPlayerByAccountId(account.getId());
             if (online != null && online.getSession() != null) online.getSession().close();

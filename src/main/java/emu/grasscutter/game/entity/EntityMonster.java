@@ -62,6 +62,8 @@ public class EntityMonster extends GameEntity {
     @Nullable @Getter @Setter private SceneMonster metaMonster;
     /** Set when gather reward was already granted via interact (avoid double drop on killEntity). */
     @Getter @Setter private boolean envGatherRewarded;
+    private boolean commissionDeathReported;
+    @Getter @Setter private boolean goldenHousePhaseTransitionPending;
 
     public EntityMonster(
             Scene scene, MonsterData monsterData, Position pos, Position rot, int level) {
@@ -243,8 +245,13 @@ public class EntityMonster extends GameEntity {
             return;
         }
 
-        player.getInventory().addItem(gatherData.getGatherItem(), ActionReason.SubfieldDrop);
+        // Reward once, and only once the item is in the bag.
+        if (this.envGatherRewarded
+                || !player.getInventory().addItem(gatherData.getGatherItem(), ActionReason.SubfieldDrop)) {
+            return;
+        }
         this.envGatherRewarded = true;
+        player.onGadgetInteracted(interactReq.getGadgetId());
 
         this.getScene().killEntity(this);
     }
@@ -297,6 +304,9 @@ public class EntityMonster extends GameEntity {
 
         // Get HP after damage.
         float hpAfterDamage = this.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP);
+
+        emu.grasscutter.game.quest.LiyueGoldenHouseCombatSupport.afterDamage(
+                this, hpBeforeDamage, amount, killerId);
 
         // Invoke energy drop logic.
         for (Player player : this.getScene().getPlayers()) {
@@ -356,6 +366,12 @@ public class EntityMonster extends GameEntity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        // Commission progress lives with the world host, once per monster.
+        var host = scene.getWorld().getHost();
+        if (!commissionDeathReported && host != null && host.getDailyTaskManager() != null) {
+            commissionDeathReported = true;
+            host.getDailyTaskManager().onMonsterDeath(scene, getGroupId());
         }
         // Battle Pass trigger
         scene

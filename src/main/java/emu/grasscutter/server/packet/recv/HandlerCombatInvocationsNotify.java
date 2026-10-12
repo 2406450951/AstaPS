@@ -1,6 +1,7 @@
 package emu.grasscutter.server.packet.recv;
 
 import emu.grasscutter.Grasscutter;
+import emu.grasscutter.game.dps.DPSAttackContext;
 import emu.grasscutter.game.entity.EntityAvatar;
 import emu.grasscutter.game.entity.EntityClientGadget;
 import emu.grasscutter.game.entity.EntityMonster;
@@ -25,10 +26,6 @@ import emu.grasscutter.server.packet.send.PacketEntityFightPropUpdateNotify;
 
 @Opcodes(PacketOpcodes.CombatInvocationsNotify)
 public class HandlerCombatInvocationsNotify extends PacketHandler {
-
-    private float cachedLandingSpeed = 0;
-    private long cachedLandingTimeMillisecond = 0;
-    private boolean monitorLandingEvent = false;
 
     @Override
     public void handle(GameSession session, byte[] header, byte[] payload) throws Exception {
@@ -206,15 +203,13 @@ public class HandlerCombatInvocationsNotify extends PacketHandler {
                                 .handleCombatInvocationsNotify(session, moveInfo, entity);
 
                         if (motionState == MotionState.MotionState_MOTION_LAND_SPEED) {
-                            cachedLandingSpeed = motionInfo.getSpeed().getY();
-                            cachedLandingTimeMillisecond = System.currentTimeMillis();
-                            monitorLandingEvent = true;
+                            session.setLandingSpeed(motionInfo.getSpeed().getY());
+                            session.setLandingTimeMillis(System.currentTimeMillis());
                         }
-                        if (monitorLandingEvent) {
-                            if (motionState == MotionState.MotionState_MOTION_FALL_ON_GROUND) {
-                                monitorLandingEvent = false;
-                                handleFallOnGround(session, entity, motionState);
-                            }
+                        if (motionState == MotionState.MotionState_MOTION_FALL_ON_GROUND
+                                && session.getLandingTimeMillis() != 0) {
+                            handleFallOnGround(session, entity);
+                            session.setLandingTimeMillis(0);
                         }
 
                         if (motionState == MotionState.MotionState_MOTION_NOTIFY
@@ -241,15 +236,32 @@ public class HandlerCombatInvocationsNotify extends PacketHandler {
         }
         // Flush even when this notify arrives outside UnionCmd (needed for MP motion/skill sync).
         session.getPlayer().getCombatInvokeHandler().update(session.getPlayer());
+
+        // A standalone notify has no UnionCmdNotify after it to apply its hits. Inside a batch they
+        // wait for the end of it, after the ability invokes (shields, modifiers) sent alongside.
+        if (!HandlerUnionCmdNotify.isHandlingBatch()) applyQueuedAttacks(session.getPlayer());
     }
 
-    private void handleFallOnGround(GameSession session, GameEntity entity, MotionState motionState) {
+    static void applyQueuedAttacks(emu.grasscutter.game.player.Player player) {
+        var attacks = player.getAttackResults();
+        for (var attack = attacks.poll(); attack != null; attack = attacks.poll()) {
+            // Lets the DPS dummy tell reaction damage from elemental damage inside damage().
+            DPSAttackContext.set(attack);
+            try {
+                player.getScene().handleAttack(attack);
+            } finally {
+                DPSAttackContext.clear();
+            }
+        }
+    }
+
+    private void handleFallOnGround(GameSession session, GameEntity entity) {
         if (session.getPlayer().isInGodMode()) {
             return;
         }
 
         int maxDelay = 200;
-        long actualDelay = System.currentTimeMillis() - cachedLandingTimeMillisecond;
+        long actualDelay = System.currentTimeMillis() - session.getLandingTimeMillis();
         Grasscutter.getLogger()
                 .trace(
                         "MOTION_FALL_ON_GROUND received after "
@@ -263,6 +275,7 @@ public class HandlerCombatInvocationsNotify extends PacketHandler {
         }
         float currentHP = entity.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP);
         float maxHP = entity.getFightProperty(FightProperty.FIGHT_PROP_MAX_HP);
+        float cachedLandingSpeed = session.getLandingSpeed();
         float damageFactor = 0;
         if (cachedLandingSpeed < -23.5) {
             damageFactor = 0.33f;
@@ -323,7 +336,6 @@ public class HandlerCombatInvocationsNotify extends PacketHandler {
                     .getStaminaManager()
                     .killAvatar(session, entity, PlayerDieTypeOuterClass.PlayerDieType.PlayerDieType_PLAYER_DIE_FALL);
         }
-        cachedLandingSpeed = 0;
     }
 
     /**

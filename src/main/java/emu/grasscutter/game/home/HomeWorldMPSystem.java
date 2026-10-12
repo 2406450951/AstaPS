@@ -242,6 +242,10 @@ public class HomeWorldMPSystem extends BaseGameSystem {
         if (victim == null || owner.equals(victim)) {
             return false;
         }
+        // Only a guest in the owner's own home; otherwise any player could pull anyone out of their world.
+        if (!owner.getCurHomeWorld().isInHome(victim)) {
+            return false;
+        }
 
         if (victim.getSceneLoadState() != Player.SceneLoadState.LOADED) {
             return false;

@@ -67,6 +67,7 @@ public final class GameServer extends KcpServer implements Iterable<Player> {
     private volatile long lastTickCompletedNanos;
     private volatile long lastTickDurationMillis;
     private volatile long maxTickDurationMillis;
+    private Timer gameLoop;
 
     @Setter private DispatchClient dispatchClient;
 
@@ -459,7 +460,7 @@ public final class GameServer extends KcpServer implements Iterable<Player> {
         this.announceTowerRotation();
 
         // Schedule game loop.
-        Timer gameLoop = new Timer();
+        gameLoop = new Timer();
         gameLoop.scheduleAtFixedRate(
                 new TimerTask() {
                     @Override
@@ -499,28 +500,50 @@ public final class GameServer extends KcpServer implements Iterable<Player> {
         }
     }
 
+    /** Saves every player and world before the transport stops. Leaves any interrupt set. */
     public void onServerShutdown() {
-        var event = new ServerStopEvent(ServerEvent.Type.GAME, OffsetDateTime.now());
-        event.call();
+        GameSessionManager.closeAdmission();
+        if (gameLoop != null) {
+            gameLoop.cancel();
+            synchronized (this) {} // Waits for a running tick; onTick is synchronized.
+        }
+        Utils.runAll(
+                "Server stop event",
+                () -> new ServerStopEvent(ServerEvent.Type.GAME, OffsetDateTime.now()).call());
 
-        // Save players & the world.
-        this.getPlayers().forEach((uid, player) -> player.getSession().close());
-        this.getWorlds().forEach(World::save);
-
-        Utils.sleep(1000L); // Wait 1 second for operations to finish.
-        this.stop(); // Stop the server.
-
+        // Log players out on the logic thread, which owns their state; the writer drain saves them.
+        boolean interrupted = false;
+        var logicThread = GameSessionManager.getLogicThread();
         try {
-            var threadPool = GameSessionManager.getLogicThread();
+            logicThread
+                    .submit(
+                            () -> {
+                                var sessions =
+                                        this.getPlayers().values().stream()
+                                                .map(Player::getSession)
+                                                .filter(Objects::nonNull)
+                                                .toList();
+                                sessions.forEach(
+                                        session -> Utils.runAll("Logout", session::close, session::handleClose));
+                            })
+                    .get(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            interrupted = true;
+        } catch (ExecutionException | TimeoutException e) {
+            Grasscutter.getLogger().error("Not every player was logged out before shutdown.", e);
+        }
+        this.getWorlds().forEach(world -> Utils.runAll("World save", world::save));
 
-            // Shutdown network thread.
-            threadPool.shutdownGracefully();
-            // Wait for the network thread to finish.
-            if (!threadPool.awaitTermination(5, TimeUnit.SECONDS)) {
+        this.stop(); // Stop the server.
+        logicThread.shutdownGracefully();
+        try {
+            if (!logicThread.awaitTermination(5, TimeUnit.SECONDS)) {
                 Grasscutter.getLogger().error("Logic thread did not terminate!");
             }
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            interrupted = true;
         }
+        if (interrupted) Thread.currentThread().interrupt();
     }
 
     @NotNull @Override

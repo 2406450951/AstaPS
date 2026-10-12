@@ -868,6 +868,12 @@ public final class TeamManager extends BasePlayerDataManager {
         if (index < 0 || newEntity == oldEntity) {
             return;
         }
+        if (newEntity.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP) <= 0) {
+            // Server and client HP can disagree for a moment; answer with the avatar still on the
+            // field so the client is not left waiting on the switch.
+            this.getPlayer().sendPacket(new PacketChangeAvatarRsp(oldEntity.getAvatar().getGuid()));
+            return;
+        }
 
         var event =
             new PlayerSwitchAvatarEvent(this.getPlayer(), oldEntity.getAvatar(), newEntity.getAvatar());
@@ -1120,9 +1126,13 @@ public final class TeamManager extends BasePlayerDataManager {
             .stopSustainedStaminaHandler();
 
         for (EntityAvatar entity : this.getActiveTeam()) {
-            entity.setFightProperty(
-                FightProperty.FIGHT_PROP_CUR_HP,
-                entity.getFightProperty(FightProperty.FIGHT_PROP_MAX_HP) * .4f);
+            if (entity.isAlive()) {
+                entity.setFightProperty(
+                    FightProperty.FIGHT_PROP_CUR_HP,
+                    entity.getFightProperty(FightProperty.FIGHT_PROP_MAX_HP) * .4f);
+            } else {
+                entity.reviveToRatio(.4f);
+            }
             this.getPlayer().getSatiationManager().removeSatiationDirectly(entity.getAvatar(), 15000);
             this.getPlayer()
                 .sendPacket(

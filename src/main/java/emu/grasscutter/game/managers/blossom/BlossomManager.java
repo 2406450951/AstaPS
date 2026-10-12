@@ -211,6 +211,28 @@ public class BlossomManager {
         return GameData.getRewardPreviewDataMap().get((int) previewReward);
     }
 
+    public boolean hasRewardChest(EntityGadget chest) {
+        synchronized (activeChests) {
+            return activeChests.stream().anyMatch(active -> active.getChest() == chest);
+        }
+    }
+
+    /** Called once the reward chest is fully claimed; ignores chests this manager doesn't own. */
+    public void retireChest(EntityGadget chest) {
+        synchronized (activeChests) {
+            var it = activeChests.iterator();
+            while (it.hasNext()) {
+                var active = it.next();
+                if (active.getChest() == chest) {
+                    it.remove();
+                    recycleGadgetEntity(List.of(active.getGadget()));
+                    blossomConsumed.add(active.getGadget().getSpawnEntry());
+                    return;
+                }
+            }
+        }
+    }
+
     public List<GameItem> onReward(Player player, EntityGadget chest, boolean useCondensedResin) {
         var resinManager = player.getResinManager();
         synchronized (activeChests) {
@@ -239,9 +261,6 @@ public class BlossomManager {
                             }
                             items.add(new GameItem(blossomReward.getItemId(), rewardCount));
                         }
-                        it.remove();
-                        recycleGadgetEntity(List.of(gadget));
-                        blossomConsumed.add(gadget.getSpawnEntry());
                         return items;
                     }
                     return null;

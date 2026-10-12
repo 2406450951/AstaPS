@@ -295,9 +295,11 @@ public final class AbilityManager extends BasePlayerManager {
             return;
         }
 
+        boolean ownerWasLive = isLive(ability.getOwner());
         eventExecutor.submit(
             () -> {
                 try {
+                    if (ownerWasLive && !isLive(ability.getOwner())) return;
                     if (!handler.execute(ability, action, abilityData, target)) {
                         Grasscutter.getLogger()
                             .debug("Ability execute action failed for {} at {}.", action.type, ability);
@@ -342,32 +344,27 @@ public final class AbilityManager extends BasePlayerManager {
 
     public void executeMixin(Ability ability, AbilityMixinData mixinData, ByteString abilityData) {
 
-        var invoke = AbilityInvokeEntry.newBuilder().setAbilityData(abilityData).build();
-        var head = invoke.getHead();
         var handler = mixinHandlers.get(mixinData.type);
         GameEntity target = ability.getOwner();
-        Player player = getPlayer();
 
-        if (handler == mixinHandlers.get(AbilityMixinData.Type.SwitchHealToHPDebtsMixin)) {
-
-            if (target instanceof EntityAvatar avatar) {
-
-                if (avatar.getAvatar().getAvatarId() == 10000098 || avatar.getAvatar().getAvatarId() == 10000096)
-                    target.setConvertToHpDebt(true);
-
-            }
-
+        // This mixin has no handler; it only marks Clorinde and Arlecchino as converting heals to HP debt.
+        if (mixinData.type == AbilityMixinData.Type.SwitchHealToHPDebtsMixin
+                && target instanceof EntityAvatar avatar
+                && (avatar.getAvatar().getAvatarId() == 10000098 || avatar.getAvatar().getAvatarId() == 10000096)) {
+            target.setConvertToHpDebt(true);
         }
 
-        if (handler == null || ability == null) {
+        if (handler == null) {
             Grasscutter.getLogger()
                 .trace("Could not execute ability mixin {} at {}", mixinData.type, ability);
             return;
         }
 
+        boolean ownerWasLive = isLive(target);
         eventExecutor.submit(
             () -> {
                 try {
+                    if (ownerWasLive && !isLive(target)) return;
                     if (!handler.execute(ability, mixinData, abilityData, target)) {
                         Grasscutter.getLogger()
                             .error("Ability execute action failed for {} at {}.", mixinData.type, ability);
@@ -377,6 +374,17 @@ public final class AbilityManager extends BasePlayerManager {
                         .error("Ability mixin {} threw at {}.", mixinData.type, ability, e);
                 }
             });
+    }
+
+    /** Queued work is dropped for an entity that has since left the player's scene or world. */
+    private boolean isLive(GameEntity entity) {
+        if (entity instanceof EntityAvatar a) {
+            return this.player.getWorld() != null && this.player.getTeamManager().getActiveTeam().contains(a);
+        }
+        // Scene identity, not entity-map membership: queued actions run on a pool in no fixed order,
+        // so a gadget's HealHP can run after its own KillSelf removed it, and that heal still counts.
+        var scene = this.player.getWorld() == null ? null : this.player.getScene();
+        return entity != null && scene != null && entity.getScene() == scene;
     }
 
     /**
@@ -459,6 +467,13 @@ public final class AbilityManager extends BasePlayerManager {
             Grasscutter.getLogger()
                 .trace("Target: " + this.player.getScene().getEntityById(invoke.getHead().getTargetId()));
         }
+        if (invoke.getArgumentType()
+                == AbilityInvokeArgument.AbilityInvokeArgument_ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR) {
+            this.logSnezhnayaFrigidInvoke(invoke);
+            emu.grasscutter.game.player.SnezhnayaFrigid.onInvoke(this.player, invoke);
+            return;
+        }
+
         if (invoke.getHead().getLocalId() != 0) {
             this.handleServerInvoke(invoke);
             return;
@@ -495,6 +510,29 @@ public final class AbilityManager extends BasePlayerManager {
                 }
             }
         }
+    }
+
+    /** Frigid invokes logged so far this session, capped so a long stay does not flood the log. */
+    private int snezhnayaFrigidInvokesLogged = 0;
+
+    /**
+     * Logs ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR invokes raw at debug level (start the server with
+     * -debug). Their payload has no named message in the 7.1 protocol, and it is what the server must act
+     * on to move the Frigid meter.
+     */
+    private void logSnezhnayaFrigidInvoke(AbilityInvokeEntry invoke) {
+        if (!Grasscutter.getLogger().isDebugEnabled() || this.snezhnayaFrigidInvokesLogged >= 200) return;
+        this.snezhnayaFrigidInvokesLogged++;
+        var head = invoke.getHead();
+        Grasscutter.getLogger()
+                .debug(
+                        "[SnezhnayaFrigid] invoke #{} entity={} ability={} modifier={} localId={} data={}",
+                        this.snezhnayaFrigidInvokesLogged,
+                        invoke.getEntityId(),
+                        head.getInstancedAbilityId(),
+                        head.getInstancedModifierId(),
+                        head.getLocalId(),
+                        java.util.HexFormat.of().formatHex(invoke.getAbilityData().toByteArray()));
     }
 
     private void handleClearGlobalFloatValue(AbilityInvokeEntry invoke)
@@ -1195,6 +1233,10 @@ public final class AbilityManager extends BasePlayerManager {
         } else if (modChange.getAction() == ModifierAction.ModifierAction_REMOVED) {
             AbilityModifierController removed =
                     entity.getInstancedModifiers().remove(head.getInstancedModifierId());
+            if (removed != null) {
+                emu.grasscutter.game.quest.LiyueAmberQuestSupport.onModifierRemoved(
+                        this.player, entity, removed.getAbilityData(), removed.getModifierData());
+            }
             if (removed != null && isLightLockAbility(removed.getAbilityData())
                     && removed.getModifierData().onRemoved != null) {
                 for (var action : removed.getModifierData().onRemoved) {
@@ -1461,6 +1503,7 @@ public final class AbilityManager extends BasePlayerManager {
             var data = GameData.getAbilityData(name);
             avatar.getInstancedAbilities().add(data != null ? new Ability(data, avatar, player) : null);
         }
+        emu.grasscutter.game.icecreature.IceCreatureAbilities.addInstances(player, avatar);
     }
 
     private void invokeAction(

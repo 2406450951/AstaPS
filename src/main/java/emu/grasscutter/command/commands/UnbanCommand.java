@@ -68,11 +68,7 @@ public final class UnbanCommand implements CommandHandler {
             if (!BanCommand.hasPermission(
                     sender, "server.ban", someoneElse ? "server.ban.others" : null)) return;
 
-            account.setBanReason(null);
-            account.setBanEndTime(0);
-            account.setBanStartTime(0);
-            account.setBanned(false);
-            account.save();
+            DatabaseHelper.unbanAccount(account);
             CommandOutput.sendTranslatedMessage(sender, "commands.unban.success");
         }
 

@@ -331,7 +331,7 @@ public final class QuestManager extends BasePlayerManager {
         List<GameMainQuest> activeQuests = getActiveMainQuests();
         List<GameQuest> activeSubs = new ArrayList<>(activeQuests.size());
         for (GameMainQuest quest : activeQuests) {
-            List<Position> rewindPos = quest.rewind(); // <pos, rotation>
+            List<Position> rewindPos = quest.resumeOnLogin(); // <pos, rotation>
             var activeQuest = quest.getActiveQuests();
             if (rewindPos != null) {
                 getPlayer().getPosition().set(rewindPos.get(0));
@@ -344,7 +344,10 @@ public final class QuestManager extends BasePlayerManager {
             quest.checkProgress();
         }
 
-        if (isQuestingActive()) this.resumeMainQuestHandoffs();
+        if (isQuestingActive()) {
+            this.resumeMainQuestHandoffs();
+            eventExecutor.submit(() -> LiyueDainsleifEntrySupport.resumeOnLogin(this));
+        }
 
         if (this.player.getActivityManager() != null)
             this.player.getActivityManager().triggerActivityConditions();
@@ -661,6 +664,7 @@ public final class QuestManager extends BasePlayerManager {
                         Grasscutter.getLogger().debug("Added quest {}", questData.getSubId());
                     }
                 });
+        LiyueDainsleifEntrySupport.onConditionEvent(this, condType, params);
     }
 
     public boolean wasSubQuestStarted(QuestData questData) {
@@ -672,6 +676,14 @@ public final class QuestManager extends BasePlayerManager {
 
     public void triggerEvent(QuestContent condType, String paramStr, int... params) {
         Grasscutter.getLogger().trace("Trigger Event {}, {}, {}", condType, paramStr, params);
+        if (isQuestingActive()) {
+            LiyueRescuePlotRecovery.recordCompletionReport(this, condType, paramStr, params);
+        }
+
+        if (isQuestingActive() && condType == QuestContent.QUEST_CONTENT_ITEM_LESS_THAN
+                && params.length > 0 && params[0] == 100496) {
+            LiyueBargainSupport.checkPurse(getPlayer());
+        }
 
         List<GameMainQuest> checkMainQuests =
                 this.getMainQuests().values().stream()
@@ -690,6 +702,7 @@ public final class QuestManager extends BasePlayerManager {
      * @param quest The ID of the quest.
      */
     public void checkQuestAlreadyFulfilled(GameQuest quest) {
+        if (isQuestingActive()) LiyueRescuePlotRecovery.replayReportedCompletion(quest);
         Grasscutter.getThreadPool()
                 .submit(
                         () -> {

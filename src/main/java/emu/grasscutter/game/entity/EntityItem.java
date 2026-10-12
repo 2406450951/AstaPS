@@ -109,6 +109,7 @@ public class EntityItem extends EntityBaseGadget {
             return;
         }
 
+        player.onGadgetInteracted(getGadgetId());
         this.getScene().removeEntity(this);
 
         if (!this.isShare()) { // not shared drop

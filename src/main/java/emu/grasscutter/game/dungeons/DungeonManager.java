@@ -100,16 +100,14 @@ public final class DungeonManager {
                     return;
                 }
             }
-            // Set ended now because calling EVENT_DUNGEON_SETTLE
-            // during finishDungeon() may cause reentrance into
-            // this function, leading to double settles.
-            ended = true;
             finishDungeon();
         }
     }
 
     public boolean isFinishedSuccessfully() {
-        if (passConfigData.getConds() == null) return false;
+        // Missing pass conditions mean completion is controlled by quest/script actions.
+        // An empty quest-style AND must not settle the dungeon on its first unrelated event.
+        if (passConfigData.getConds() == null || passConfigData.getConds().isEmpty()) return false;
         return LogicType.calculate(passConfigData.getLogicType(), finishedConditions);
     }
 
@@ -121,6 +119,10 @@ public final class DungeonManager {
             // TODO should use levelConfigMap? and how?
             return dungeonData.getShowLevel();
         }
+    }
+
+    public boolean isWayPointActive(int pointId) {
+        return activeDungeonWayPoints.contains(pointId);
     }
 
     public boolean activateRespawnPoint(int pointId) {
@@ -410,6 +412,9 @@ public final class DungeonManager {
     }
 
     public void finishDungeon() {
+        // Set ended first: EVENT_DUNGEON_SETTLE can re-enter, and reward statues call this again.
+        if (ended) return;
+        ended = true;
         this.notifyEndDungeon(true);
         this.endDungeon(BaseDungeonResult.DungeonEndReason.COMPLETED);
 
@@ -428,6 +433,9 @@ public final class DungeonManager {
     }
 
     public void quitDungeon() {
+        // Leaving a dungeon that already settled - many have no pass condition and are completed by
+        // their script - is not a quit, and must not fail the quests waiting on it.
+        if (this.ended) return;
         this.notifyEndDungeon(false);
         this.endDungeon(BaseDungeonResult.DungeonEndReason.QUIT);
     }

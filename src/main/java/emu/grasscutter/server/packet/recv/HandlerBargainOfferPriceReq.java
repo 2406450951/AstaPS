@@ -1,5 +1,6 @@
 package emu.grasscutter.server.packet.recv;
 
+import emu.grasscutter.game.quest.LiyueBargainSupport;
 import emu.grasscutter.game.quest.enums.QuestContent;
 import emu.grasscutter.net.packet.*;
 import emu.grasscutter.net.proto.BargainOfferPriceReqOuterClass.BargainOfferPriceReq;
@@ -18,6 +19,7 @@ public final class HandlerBargainOfferPriceReq extends PacketHandler {
         var progress = player.getPlayerProgress();
         var bargain = progress.getBargains().get(bargainId);
         if (bargain == null) return;
+        if (LiyueBargainSupport.handleOffer(player, bargain, packet.getPrice())) return;
 
         // Apply the offer.
         var result = bargain.applyOffer(packet.getPrice());

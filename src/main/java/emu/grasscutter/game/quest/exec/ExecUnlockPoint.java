@@ -15,6 +15,12 @@ public class ExecUnlockPoint extends QuestExecHandler {
         int sceneId = Integer.parseInt(paramStr[0]);
         int pointId = Integer.parseInt(paramStr[1]);
 
+        if (LiyueGoldenHouseEntrySupport.isEntryAction(quest, sceneId, pointId))
+            return LiyueGoldenHouseEntrySupport.enable(quest);
+
+        if (LiyueCloudDungeonEntryRecovery.isEntryAction(quest, sceneId, pointId))
+            return LiyueCloudDungeonEntryRecovery.enable(quest);
+
         var scenePointEntry = GameData.getScenePointEntryById(sceneId, pointId);
         boolean isStatue =
                 scenePointEntry != null && isStatuePoint(scenePointEntry.getPointData());

@@ -114,7 +114,6 @@ public final class PacketOpcodes {
     // public static final int PDBEODEKJOC = 2557;
     public static final int BargainOfferPriceRsp = 9419;
     public static final int PlayerStartMatchRsp = 1006;
-    // public static final int LKADPFLJIOH = 6254;
     public static final int _TakeBeyondBattlePassRewardReq = 27251;
     public static final int ScenePlayerLocationNotify = 26016;
     public static final int AvatarChangeCostumeRsp = 9057;
@@ -463,7 +462,6 @@ public final class PacketOpcodes {
     public static final int QuestCreateEntityReq = 29721;
     public static final int TakeBattlePassMissionPointReq = 0; // 7.1 CmdId unknown (7.0: 2572)
     public static final int GetBonusActivityRewardReq = 28092;
-    // public static final int MDEHHBAHLFI = 5180;
     // public static final int FHPBJEGIIND = 26403;
     public static final int _UgcEnterDungeonRsp = 1660;
     // public static final int FEMLJCEENAM = 1209;
@@ -490,7 +488,6 @@ public final class PacketOpcodes {
     // public static final int DLAOECMIMBE = 22849;
     // public static final int AMNLFBPLDKN = 22894;
     // public static final int IHBFDBMHMKM = 5831;
-    // public static final int KFIKHMHNGJC = 27474;
     // public static final int FEDIDADMJMA = 23231;
     public static final int ChannellerSlabSaveAssistInfoRsp = 5558;
     // public static final int AOIGGEPKFIO = 27010;
@@ -751,7 +748,6 @@ public final class PacketOpcodes {
     // public static final int KBMBMAKEDNA = 20630;
     public static final int HomeResourceTakeHomeCoinReq = 0; // 7.1 CmdId unknown (7.0: 4460)
     public static final int SceneInitFinishReq = 6623;
-    // public static final int GFOKIAOHPKO = 25935;
     public static final int AbilityChangeNotify = 25853;
     public static final int WorldPlayerInfoNotify = 2076;
     public static final int DungeonChallengeFinishNotify = 20234;
@@ -1827,7 +1823,6 @@ public final class PacketOpcodes {
     public static final int LanternRiteDoFireworksReformRsp = 29296;
     // public static final int JMJIFIFIADC = 21810;
     // public static final int ECDKMMNCOEJ = 26731;
-    // public static final int HJOMJOJJAMH = 6301;
     public static final int GadgetPlayStartNotify = 29148;
     // public static final int CCHNJOCFNHF = 28341;
     public static final int StartBuoyantCombatGalleryRsp = 1070;
@@ -2267,7 +2262,6 @@ public final class PacketOpcodes {
     // public static final int EPMEJNJPPOF = 23866;
     public static final int WidgetQuickHitTreeRsp = 24161;
     // public static final int FLGHDFNONEO = 28052;
-    // public static final int OIOCLKPOPAE = 22946;
     public static final int _UgcDungeonCandidateTeamCreateReq = 20707;
     // public static final int EJDOPMJGBFD = 21030;
     public static final int GetGameTimeLockedQuestListRsp = 25511;
@@ -3037,6 +3031,16 @@ public final class PacketOpcodes {
     public static final int TpsEquipChangeNotify = 21312;
     public static final int TpsRegionalPlaySupplyInfoNotify = 6579;
     public static final int TpsAmmunitionChangeNotify = 24371; // name inferred, see docs/tps
+
+    // Snezhnaya Ice Creatures (Icemaking), from kitkat-multiverse/genshin-protocol 7.1.0.
+    public static final int IceCreatureBuildReq = 5180;
+    public static final int IceCreatureBuildRsp = 6254;
+    public static final int IceCreatureLikeReq = 9517;
+    public static final int IceCreatureLikeRsp = 25935;
+    public static final int IceCreatureGadgetRemoveReq = 27474;
+    public static final int IceCreatureGadgetRemoveRsp = 24183;
+    public static final int IceCreatureAllGadgetInfoNotify = 6301;
+    public static final int IceCreatureGadgetDisappearNotify = 22946;
 
     // Opcodes only this repository's handlers use (negative: never matches a packet).
     public static final int AvatarTraceEffectChangeNotify = -1001; // no 7.1 CmdId known
