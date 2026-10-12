@@ -47,6 +47,13 @@ public class EntityGadget extends EntityBaseGadget {
     @Getter private final Position bornPos;
     @Getter private final Position bornRot;
     @Getter @Setter private GameEntity owner = null;
+
+    /**
+     * Server global values set on top of the config's, such as those an Ice Creature build request
+     * asks for. Keyed by ability hash; a later value replaces a config value of the same name.
+     */
+    @Getter private final Map<Integer, AbilityScalarValueEntryOuterClass.AbilityScalarValueEntry>
+            extraGlobalValues = new java.util.LinkedHashMap<>();
     @Getter @Setter private List<GameEntity> children = new ArrayList<>();
 
     @Getter private int state;
@@ -375,6 +382,8 @@ public class EntityGadget extends EntityBaseGadget {
                 getScene().getScriptManager().getGroupInstanceById(this.getGroupId());
         if (groupInstance != null && metaGadget != null)
             groupInstance.getDeadEntities().add(metaGadget.config_id);
+
+        emu.grasscutter.game.entity.gadget.MeltableIceHelper.onShattered(this);
     }
 
     /**
@@ -574,11 +583,43 @@ public class EntityGadget extends EntityBaseGadget {
         return true;
     }
 
+    /**
+     * The server global values the gadget config declares under {@code globalValue.initServerGlobalValues}.
+     *
+     * <p>The gadget's abilities read these from the first frame - Snezhnaya's meltable ice takes its melt
+     * rate from {@code SGV_Meltable_Ratio} and its size from {@code SGV_InitialSize} - and without them
+     * every value reads 0, so Fire hits shrank the ice by nothing.
+     */
+    private AbilitySyncStateInfo.Builder initialAbilityInfo() {
+        var info = AbilitySyncStateInfo.newBuilder();
+        var globalValue = this.configGadget == null ? null : this.configGadget.getGlobalValue();
+        if (globalValue != null && globalValue.getInitServerGlobalValues() != null) {
+            globalValue
+                    .getInitServerGlobalValues()
+                    .forEach(
+                            (key, value) -> {
+                                if (key == null || value == null) return;
+                                if (this.extraGlobalValues.containsKey(emu.grasscutter.utils.Utils.abilityHash(key))) {
+                                    return;
+                                }
+                                info.addSgvDynamicValueMap(
+                                        AbilityScalarValueEntryOuterClass.AbilityScalarValueEntry.newBuilder()
+                                                .setKey(
+                                                        AbilityStringOuterClass.AbilityString.newBuilder()
+                                                                .setHash(emu.grasscutter.utils.Utils.abilityHash(key))
+                                                                .setStr(key))
+                                                .setFloatValue(value));
+                            });
+        }
+        this.extraGlobalValues.values().forEach(info::addSgvDynamicValueMap);
+        return info;
+    }
+
     @Override
     public SceneEntityInfo toProto() {
         EntityAuthorityInfo authority =
                 EntityAuthorityInfo.newBuilder()
-                        .setAbilityInfo(AbilitySyncStateInfo.newBuilder())
+                        .setAbilityInfo(this.initialAbilityInfo())
                         .setRendererChangedInfo(EntityRendererChangedInfo.newBuilder())
                         .setAiInfo(
                                 SceneEntityAiInfo.newBuilder().setIsEnteredCombat(true))

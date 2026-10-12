@@ -133,6 +133,8 @@ public class Player implements PlayerHook, FieldFetch {
     private Map<Integer, Integer> tpsAmmunition;
     // TPS weapons the TPS traveler wears; it is a trial avatar and is never saved itself.
     private List<Integer> tpsLoadout;
+    // Snezhnaya Ice Creatures this player built.
+    private List<emu.grasscutter.game.icecreature.IceCreatureRecord> iceCreatures;
     @Getter @Setter private Map<Integer, Set<Integer>> unlockedSceneAreas;
     @Getter @Setter private Map<Integer, Set<Integer>> unlockedScenePoints;
     /** Debug/test: points forced locked even if GetScenePointRsp would otherwise unlock-all. */
@@ -1489,6 +1491,13 @@ public class Player implements PlayerHook, FieldFetch {
             this.tpsLoadout = new ArrayList<>();
         }
         return this.tpsLoadout;
+    }
+
+    public List<emu.grasscutter.game.icecreature.IceCreatureRecord> getIceCreatures() {
+        if (this.iceCreatures == null) {
+            this.iceCreatures = new ArrayList<>();
+        }
+        return this.iceCreatures;
     }
 
     public Map<Integer, Integer> getTpsAmmunition() {

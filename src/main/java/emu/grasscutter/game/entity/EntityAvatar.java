@@ -524,6 +524,10 @@ public class EntityAvatar extends GameEntity {
         } catch (Throwable ignored) {
         }
 
+        embryoId =
+                emu.grasscutter.game.icecreature.IceCreatureAbilities.appendEmbryos(
+                        this, abilityControlBlock, embryoId);
+
         return abilityControlBlock.build();
     }
 
@@ -537,6 +541,7 @@ public class EntityAvatar extends GameEntity {
 
         super.move(event.getDestination(), rotation);
         this.getPlayer().refreshPhlogistonRegion();
+        emu.grasscutter.game.player.SnezhnayaFrigid.refresh(this.getPlayer());
     }
 
     @Override

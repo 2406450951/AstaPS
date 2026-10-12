@@ -51,6 +51,9 @@ public class HandlerEnterSceneDoneReq extends PacketHandler {
         // Spawn other entites already in world
         player.getScene().showOtherEntities(player);
 
+        // Snezhnaya Ice Creatures the player built here stand again.
+        emu.grasscutter.game.icecreature.IceCreatureSystem.onEnterSceneDone(player);
+
         // Locations
         session.send(new PacketWorldPlayerLocationNotify(player.getWorld()));
         session.send(new PacketScenePlayerLocationNotify(player.getScene()));

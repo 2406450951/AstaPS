@@ -24,9 +24,10 @@ public final class BattlePassCommand implements CommandHandler {
     @Override
     public CommandLine createCommandLine(Player sender, Player targetPlayer) {
         var commandLine = new CommandLine(new Root(sender));
-        commandLine.registerConverter(PaidFlag.class, BattlePassCommand::parsePaidFlag);
         commandLine.addSubcommand("buy", new Buy(sender, targetPlayer));
         commandLine.addSubcommand("paid", new Paid(sender, targetPlayer));
+        // Converters only reach the subcommands that exist when they are registered.
+        CommandHandler.registerConverterTree(commandLine, PaidFlag.class, BattlePassCommand::parsePaidFlag);
         return commandLine;
     }
 

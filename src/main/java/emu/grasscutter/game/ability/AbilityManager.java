@@ -465,6 +465,13 @@ public final class AbilityManager extends BasePlayerManager {
             Grasscutter.getLogger()
                 .trace("Target: " + this.player.getScene().getEntityById(invoke.getHead().getTargetId()));
         }
+        if (invoke.getArgumentType()
+                == AbilityInvokeArgument.AbilityInvokeArgument_ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR) {
+            this.logSnezhnayaFrigidInvoke(invoke);
+            emu.grasscutter.game.player.SnezhnayaFrigid.onInvoke(this.player, invoke);
+            return;
+        }
+
         if (invoke.getHead().getLocalId() != 0) {
             this.handleServerInvoke(invoke);
             return;
@@ -501,6 +508,29 @@ public final class AbilityManager extends BasePlayerManager {
                 }
             }
         }
+    }
+
+    /** Frigid invokes logged so far this session, capped so a long stay does not flood the log. */
+    private int snezhnayaFrigidInvokesLogged = 0;
+
+    /**
+     * Logs ABILITY_MIXIN_CHANGE_SNEZHNAYA_FRIGID_VAR invokes raw at debug level (start the server with
+     * -debug). Their payload has no named message in the 7.1 protocol, and it is what the server must act
+     * on to move the Frigid meter.
+     */
+    private void logSnezhnayaFrigidInvoke(AbilityInvokeEntry invoke) {
+        if (!Grasscutter.getLogger().isDebugEnabled() || this.snezhnayaFrigidInvokesLogged >= 200) return;
+        this.snezhnayaFrigidInvokesLogged++;
+        var head = invoke.getHead();
+        Grasscutter.getLogger()
+                .debug(
+                        "[SnezhnayaFrigid] invoke #{} entity={} ability={} modifier={} localId={} data={}",
+                        this.snezhnayaFrigidInvokesLogged,
+                        invoke.getEntityId(),
+                        head.getInstancedAbilityId(),
+                        head.getInstancedModifierId(),
+                        head.getLocalId(),
+                        java.util.HexFormat.of().formatHex(invoke.getAbilityData().toByteArray()));
     }
 
     private void handleClearGlobalFloatValue(AbilityInvokeEntry invoke)
@@ -1467,6 +1497,7 @@ public final class AbilityManager extends BasePlayerManager {
             var data = GameData.getAbilityData(name);
             avatar.getInstancedAbilities().add(data != null ? new Ability(data, avatar, player) : null);
         }
+        emu.grasscutter.game.icecreature.IceCreatureAbilities.addInstances(player, avatar);
     }
 
     private void invokeAction(

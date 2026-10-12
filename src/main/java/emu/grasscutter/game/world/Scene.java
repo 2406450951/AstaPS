@@ -238,6 +238,7 @@ public class Scene {
             if (player.getProperty(PlayerProperty.PROP_PHLOGISTON_ENABLE) != phlogistonEnabled) {
                 player.setProperty(PlayerProperty.PROP_PHLOGISTON_ENABLE, phlogistonEnabled);
             }
+            emu.grasscutter.game.player.SnezhnayaFrigid.syncForSceneEntry(player);
 
             this.setupPlayerAvatars(player);
         }

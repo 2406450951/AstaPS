@@ -19,6 +19,14 @@ public final class TeamAbilityToggle {
     }
 
     public static void set(Player player, Collection<String> abilities, boolean enable) {
+        set(player, abilities, enable, true);
+    }
+
+    /**
+     * @param notify whether to resend the team control block; pass false while the player is entering a
+     *     scene, whose enter packets carry the updated block anyway
+     */
+    public static void set(Player player, Collection<String> abilities, boolean enable, boolean notify) {
         var teamManager = player.getTeamManager();
         var embryos = teamManager.getTeamAbilityEmbryos();
         var team = teamManager.getEntity();
@@ -48,7 +56,7 @@ public final class TeamAbilityToggle {
             }
         }
 
-        if (team != null) {
+        if (notify && team != null) {
             player.sendPacket(new PacketAbilityChangeNotify(team.getId(), teamManager.getAbilityControlBlock()));
         }
     }

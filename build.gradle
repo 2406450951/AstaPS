@@ -47,6 +47,10 @@ compileJava {
 		// Protocol Java is generated at build time; keep enough heap for a full clean compile.
 		memoryMaximumSize = "6g"
 	}
+	// Lombok reads these while compiling, so a change to one must not reuse cached classes.
+	inputs.files(fileTree('src/main/java') { include '**/lombok.config' }, 'lombok.config')
+			.withPropertyName('lombokConfig')
+			.withPathSensitivity(PathSensitivity.RELATIVE)
 }
 
 compileTestJava.options.encoding = 'UTF-8'
