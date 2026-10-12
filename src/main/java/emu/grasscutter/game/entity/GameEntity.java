@@ -369,6 +369,14 @@ public abstract class GameEntity {
         return hpThresholdRatio <= 0.0f ? 1e-6f : hpThresholdRatio;
     }
 
+    /**
+     * A gadget whose combat config locks its HP still breaks on a hit that would kill it; Lua groups
+     * wait for those deaths. HP locked by a modifier, or on a monster, holds.
+     */
+    private boolean configLockedGadgetDies(float curHp, float damage) {
+        return lockHP && !modifierLockHP && this instanceof EntityBaseGadget && curHp <= damage;
+    }
+
     public boolean isLockHP() {
         return lockHP || modifierLockHP;
     }
@@ -608,7 +616,8 @@ public abstract class GameEntity {
 
                 effectiveDamage = curHp - 1;
             }
-        } else if (curHp != Float.POSITIVE_INFINITY && (!isLockHP() || !respectLockHp)) {
+        } else if (curHp != Float.POSITIVE_INFINITY && (!isLockHP() || !respectLockHp)
+                || configLockedGadgetDies(curHp, event.getDamage())) {
             effectiveDamage = event.getDamage();
         }
 

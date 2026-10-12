@@ -381,8 +381,10 @@ public final class AbilityManager extends BasePlayerManager {
         if (entity instanceof EntityAvatar a) {
             return this.player.getWorld() != null && this.player.getTeamManager().getActiveTeam().contains(a);
         }
+        // Scene identity, not entity-map membership: queued actions run on a pool in no fixed order,
+        // so a gadget's HealHP can run after its own KillSelf removed it, and that heal still counts.
         var scene = this.player.getWorld() == null ? null : this.player.getScene();
-        return entity != null && scene != null && scene.getEntityById(entity.getId()) == entity;
+        return entity != null && scene != null && entity.getScene() == scene;
     }
 
     /**

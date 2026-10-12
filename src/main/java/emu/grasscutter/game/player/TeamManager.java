@@ -865,8 +865,13 @@ public final class TeamManager extends BasePlayerDataManager {
             }
         }
 
-        if (index < 0 || newEntity == oldEntity
-            || newEntity.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP) <= 0) {
+        if (index < 0 || newEntity == oldEntity) {
+            return;
+        }
+        if (newEntity.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP) <= 0) {
+            // Server and client HP can disagree for a moment; answer with the avatar still on the
+            // field so the client is not left waiting on the switch.
+            this.getPlayer().sendPacket(new PacketChangeAvatarRsp(oldEntity.getAvatar().getGuid()));
             return;
         }
 

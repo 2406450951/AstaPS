@@ -369,28 +369,28 @@ public final class DatabaseHelper {
         saveAccountFields(account, fields);
     }
 
-    /** Writes only these fields of the account, leaving the rest of the stored document alone. */
+    /**
+     * Writes only these fields of the account, leaving the rest of the stored document alone.
+     *
+     * <p>The write is queued behind the account's earlier saves, so an older whole-document save can
+     * never land afterwards and put the old fields back. A global write barrier would order it too,
+     * but it rejects every other player's saves while it is held.
+     */
     public static void saveAccountFields(Account account, String... fields) {
         var datastore = DatabaseManager.getAccountDatastore();
         var update = accountFieldUpdate(datastore, account, fields);
-        // Accepted full-account saves drain first, or one could land later and restore old fields.
-        try (DatabaseWriteBarrier ignored = DatabaseWriteBarrier.acquire()) {
-            datastore
-                    .getDatabase()
-                    .getCollection("accounts")
-                    .updateOne(eq("_id", account.getId()), update);
-        }
+        databaseWriters.submitOrderedUncapped(
+                eventExecutorAccount,
+                new AccountKey(account.getId()),
+                () -> datastore.getDatabase().getCollection("accounts").updateOne(eq("_id", account.getId()), update));
     }
 
-    /** As {@link #saveAccountFields}, off the calling thread, which may be the logic loop. */
+    /** Orders one account's writes; whole-document saves and field updates share it. */
+    private record AccountKey(String accountId) {}
+
+    /** Kept for callers of the earlier synchronous form; {@link #saveAccountFields} is queued already. */
     public static void saveAccountFieldsAsync(Account account, String... fields) {
-        CompletableFuture.runAsync(() -> saveAccountFields(account, fields))
-                .exceptionally(
-                        e -> {
-                            Grasscutter.getLogger()
-                                    .error("Failed to save account fields {}.", List.of(fields), e);
-                            return null;
-                        });
+        saveAccountFields(account, fields);
     }
 
     /** A $set of the fields as Morphia would store them, and an $unset of those it would omit. */
@@ -414,8 +414,20 @@ public final class DatabaseHelper {
      * @param object The object to save.
      */
     public static void saveAccountAsync(Object object) {
+        if (object instanceof Account account) {
+            submitAccountSave(account, () -> DatabaseManager.getAccountDatastore().save(account));
+            return;
+        }
         submitDatabaseWrite(
                 eventExecutorAccount, () -> DatabaseManager.getAccountDatastore().save(object));
+    }
+
+    private static void submitAccountSave(Account account, Runnable save) {
+        if (account.getId() == null) {
+            submitDatabaseWrite(eventExecutorAccount, save);
+        } else {
+            databaseWriters.submitOrderedUncapped(eventExecutorAccount, new AccountKey(account.getId()), save);
+        }
     }
 
     /**
@@ -432,7 +444,7 @@ public final class DatabaseHelper {
         } else if (object instanceof SceneGroupInstance groupInstance) {
             submitGroupSave(groupInstance);
         } else if (object instanceof Account account) {
-            submitDatabaseWrite(eventExecutorAccount, () -> saveWithRetry(account));
+            submitAccountSave(account, () -> saveWithRetry(account));
         } else {
             submitDefaultSave(object);
         }

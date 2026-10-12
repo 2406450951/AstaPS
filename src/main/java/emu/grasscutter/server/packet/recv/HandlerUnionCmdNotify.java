@@ -12,6 +12,13 @@ import emu.grasscutter.server.game.GameSession;
 
 @Opcodes(PacketOpcodes.UnionCmdNotify)
 public class HandlerUnionCmdNotify extends PacketHandler {
+    private static final ThreadLocal<Boolean> HANDLING_BATCH = ThreadLocal.withInitial(() -> false);
+
+    /** Whether the current thread is inside a UnionCmdNotify, whose end applies queued hits. */
+    static boolean isHandlingBatch() {
+        return HANDLING_BATCH.get();
+    }
+
     @Override
     public void handle(GameSession session, byte[] header, byte[] payload) throws Exception {
         UnionCmdNotify req = UnionCmdNotify.parseFrom(payload);
@@ -39,6 +46,19 @@ public class HandlerUnionCmdNotify extends PacketHandler {
                             batch.toString().trim());
         }
 
+        HANDLING_BATCH.set(true);
+        try {
+            handleBatch(session, header, req);
+        } finally {
+            HANDLING_BATCH.set(false);
+        }
+
+        session.getPlayer().getCombatInvokeHandler().update(session.getPlayer());
+        session.getPlayer().getAbilityInvokeHandler().update(session.getPlayer());
+        HandlerCombatInvocationsNotify.applyQueuedAttacks(session.getPlayer());
+    }
+
+    private static void handleBatch(GameSession session, byte[] header, UnionCmdNotify req) throws Exception {
         for (UnionCmd cmd : req.getCmdListList()) {
             int cmdOpcode = cmd.getMessageId();
             byte[] cmdPayload = cmd.getBody().toByteArray();
@@ -55,8 +75,5 @@ public class HandlerUnionCmdNotify extends PacketHandler {
                     .getPacketHandler()
                     .handle(session, cmd.getMessageId(), header, cmd.getBody().toByteArray());
         }
-
-        session.getPlayer().getCombatInvokeHandler().update(session.getPlayer());
-        session.getPlayer().getAbilityInvokeHandler().update(session.getPlayer());
     }
 }

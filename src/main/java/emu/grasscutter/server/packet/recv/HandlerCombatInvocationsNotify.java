@@ -237,13 +237,18 @@ public class HandlerCombatInvocationsNotify extends PacketHandler {
         // Flush even when this notify arrives outside UnionCmd (needed for MP motion/skill sync).
         session.getPlayer().getCombatInvokeHandler().update(session.getPlayer());
 
-        // Apply the hits now: a standalone notify has no UnionCmdNotify after it to do so.
-        var attacks = session.getPlayer().getAttackResults();
+        // A standalone notify has no UnionCmdNotify after it to apply its hits. Inside a batch they
+        // wait for the end of it, after the ability invokes (shields, modifiers) sent alongside.
+        if (!HandlerUnionCmdNotify.isHandlingBatch()) applyQueuedAttacks(session.getPlayer());
+    }
+
+    static void applyQueuedAttacks(emu.grasscutter.game.player.Player player) {
+        var attacks = player.getAttackResults();
         for (var attack = attacks.poll(); attack != null; attack = attacks.poll()) {
             // Lets the DPS dummy tell reaction damage from elemental damage inside damage().
             DPSAttackContext.set(attack);
             try {
-                session.getPlayer().getScene().handleAttack(attack);
+                player.getScene().handleAttack(attack);
             } finally {
                 DPSAttackContext.clear();
             }
