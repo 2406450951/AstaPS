@@ -1133,11 +1133,20 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             this.player.getInventory().addItem(104003, 50, ActionReason.UnlockPointReward); // hero's wit
             this.player.getInventory().addItem(104013, 20, ActionReason.UnlockPointReward); // mystic enhancement ore
         } else if (newlyUnlocked) {
-            // Ordinary waypoint or domain entrance
-            this.player.getInventory().addItem(201, 2888, ActionReason.UnlockPointReward); // primogems
-            this.player.getInventory().addItem(102, 300, ActionReason.UnlockPointReward); // adventure EXP
-            this.player.getInventory().addItem(104003, 5, ActionReason.UnlockPointReward); // hero's wit
-            this.player.getInventory().addItem(104013, 5, ActionReason.UnlockPointReward); // mystic enhancement ore
+            // Ordinary waypoints use their scene-point reward, not a fixed grant.
+            var pointReward =
+                    GameData.getTransPointRewardDataMap().get((sceneId << 16) + pointId);
+            if (pointReward != null) {
+                var reward = GameData.getRewardDataMap().get(pointReward.getRewardId());
+                if (reward != null) {
+                    this.player.getInventory()
+                            .addItemParamDatas(reward.getAllRewardItems(), ActionReason.UnlockPointReward);
+                } else {
+                    emu.grasscutter.Grasscutter.getLogger()
+                            .warn("Missing reward {} for scene {} point {}",
+                                    pointReward.getRewardId(), sceneId, pointId);
+                }
+            }
         }
 
         // Fire quest trigger for trans point unlock.
