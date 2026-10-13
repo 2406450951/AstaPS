@@ -62,15 +62,9 @@ public class PacketGetScenePointRsp extends BasePacket {
             if (pointId == 7) has7 = unlockedSet.contains(7);
         }
 
-        // Map fog areas: only what the player has unlocked (via statues / waypoints).
-        var areas = player.getUnlockedSceneAreas(sceneId);
-        if (areas.isEmpty() && sceneId == 3) {
-            p.addUnlockAreaList(1);
-        } else {
-            for (int areaId : areas) {
-                p.addUnlockAreaList(areaId);
-            }
-        }
+        // Scene-point and scene-area snapshots must agree about visible map regions.
+        // Fog-off mode does not unlock points or persist additional area flags.
+        p.addAllUnlockAreaList(SceneAreaVisibility.forPlayer(player, sceneId));
 
         Grasscutter.getLogger()
                 .debug(

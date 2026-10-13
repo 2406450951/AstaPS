@@ -90,12 +90,8 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         // already met before certain open state unlocks were implemented.
         this.tryUnlockOpenStates(false);
 
-        if (!GAME_OPTIONS.questing.enabled) {
-            // Retain the existing starter Mondstadt navigation area when questing is disabled.
-            // This map unlock is separate from the OpenState mass-unlock option.
-            this.player.getUnlockedScenePoints(3).add(7);
-            this.player.getUnlockedSceneAreas(3).add(1);
-        }
+        // Disabling quests must not activate the first Statue of the Seven or reveal
+        // its map area. Point (3,7) is unlocked only by normal gameplay/commands.
 
         if (GAME_OPTIONS.unlockAllOpenStatesOnLogin) {
             // Sandbox opt-in: preserve the former bulk unlock, but never tie it to questing.
@@ -280,100 +276,28 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
      ******************************************************************************************************************
      *****************************************************************************************************************/
     private void addStatueQuestsOnLogin() {
-        // Get all currently existing subquests for the "unlock all statues" main quest.
-        var statueMainQuest = GameData.getMainQuestDataMap().get(303);
-        if (statueMainQuest == null || statueMainQuest.getSubQuests() == null) {
-            this.seedUnlockedStatuesFromLegacyUnlockAll();
-            this.forgeAllStatueTalkGates();
+        var data = GameData.getMainQuestDataMap().get(303);
+        if (data == null || data.getSubQuests() == null) {
+            emu.grasscutter.Grasscutter.getLogger()
+                    .warn("Missing statue activation quest 303 for uid={}", this.player.getUid());
             return;
         }
-        var statueSubQuests = statueMainQuest.getSubQuests();
 
-        // Add the main statue quest if it isn't active yet.
-        var statueGameMainQuest = this.player.getQuestManager().getMainQuestById(303);
-        if (statueGameMainQuest == null) {
-            this.player.getQuestManager().addQuest(30302);
-            statueGameMainQuest = this.player.getQuestManager().getMainQuestById(303);
+        var quests = this.player.getQuestManager();
+        var main = quests.getMainQuestById(303);
+        if (main == null) {
+            quests.addQuest(30302);
+            main = quests.getMainQuestById(303);
         }
+        if (main == null) return;
 
-        // Migrate: old GetScenePointRsp unlocked-all statues visually without writing the set.
-        // Seed unlocked statues once so already-lit pillars stay lit; locked ones stay unlockable.
-        this.seedUnlockedStatuesFromLegacyUnlockAll();
-        // Rebuild map fog from unlocked points (statues + waypoints) - one area per unlock.
-        this.syncSceneAreasFromUnlockedPoints(3);
-
-        // Always mark statue Talk gates FINISHED so goddess F / heal / offer need no questing.
-        // Do NOT call GameQuest.finish(): finishExec hangs login / white-screens the client.
-        int finished = 0;
-        try {
-            if (statueGameMainQuest != null) {
-                for (var subData : statueSubQuests) {
-                    var subGameQuest = statueGameMainQuest.getChildQuestById(subData.getSubId());
-                    if (subGameQuest == null) {
-                        this.player.getQuestManager().addQuest(subData.getSubId());
-                        subGameQuest = statueGameMainQuest.getChildQuestById(subData.getSubId());
-                    } else if (subGameQuest.getState() == QuestState.QUEST_STATE_UNSTARTED) {
-                        this.player.getQuestManager().addQuest(subData.getSubId());
-                        subGameQuest = statueGameMainQuest.getChildQuestById(subData.getSubId());
-                    }
-                    if (subGameQuest != null
-                            && subGameQuest.getState() != QuestState.QUEST_STATE_FINISHED) {
-                        subGameQuest.setState(QuestState.QUEST_STATE_FINISHED);
-                        subGameQuest.setFinishTime(emu.grasscutter.utils.Utils.getCurrentSeconds());
-                        subGameQuest.save();
-                        finished++;
-                    }
-                }
+        // Quest 303 owns activation. Never rewrite completed quests or scene-point state at login.
+        for (var sub : data.getSubQuests()) {
+            var quest = main.getChildQuestById(sub.getSubId());
+            if (quest != null && quest.getState() == QuestState.QUEST_STATE_UNSTARTED) {
+                quests.addQuest(sub.getSubId());
             }
-
-            // Only bypass the starter-statue quest when the normal quest runtime is unavailable.
-            // Pre-finishing 35205 during normal questing materializes main quest 352 before the
-            // 351 -> 352 handoff and leaves its opening subquest unstarted.
-            if (shouldBypassStarterStatueQuest()) {
-                var q = this.player.getQuestManager().getQuestById(35205);
-                if (q == null) {
-                    this.player.getQuestManager().addQuest(35205);
-                    q = this.player.getQuestManager().getQuestById(35205);
-                }
-                if (q != null && q.getState() != QuestState.QUEST_STATE_FINISHED) {
-                    q.setState(QuestState.QUEST_STATE_FINISHED);
-                    q.setFinishTime(emu.grasscutter.utils.Utils.getCurrentSeconds());
-                    q.save();
-                    finished++;
-                }
-            }
-
-            // Forge EVERY area Talk gate - locked pillars auto-unlock on EnterTrans; F tip ready.
-            finished += this.forgeAllStatueTalkGates();
-        } catch (Throwable t) {
-            emu.grasscutter.Grasscutter.getLogger()
-                    .warn("Statue quest silent-finish failed uid={}", this.player.getUid(), t);
         }
-        emu.grasscutter.Grasscutter.getLogger()
-                .debug(
-                        "Statue talk gates ready uid={} count={} (no quest prerequisite for F)",
-                        this.player.getUid(),
-                        finished);
-    }
-
-    static boolean shouldBypassStarterStatueQuest() {
-        return shouldBypassStarterStatueQuest(
-                GAME_OPTIONS.questing.enabled,
-                emu.grasscutter.config.Configuration.SERVER.game.enableScriptInBigWorld);
-    }
-
-    static boolean shouldBypassStarterStatueQuest(boolean questingEnabled, boolean scriptsEnabled) {
-        return !questingEnabled || !scriptsEnabled;
-    }
-
-    /** Ensure starter statue exists; do not mass-unlock every statue (map fog is per-statue). */
-    private void seedUnlockedStatuesFromLegacyUnlockAll() {
-        final int sceneId = 3;
-        var unlocked = this.player.getUnlockedScenePoints(sceneId);
-        // Always keep the Starfell statue available as a starter unlock.
-        unlocked.add(7);
-        // Clear force-lock on starter if any.
-        this.player.getForceLockedScenePoints(sceneId).remove(7);
     }
 
     /**
@@ -438,78 +362,13 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         }
     }
 
-    /** Forge all SotS TalkExcel gate quests as FINISHED for the client. */
-    private int forgeAllStatueTalkGates() {
-        var forged = this.buildForgedStatueTalkQuests();
-        if (forged.isEmpty()) return 0;
-        this.player.sendPacket(new PacketQuestListUpdateNotify(forged));
-        return forged.size();
-    }
-
-    /**
-     * Client-only FINISHED quest entries for every known statue Talk gate (303xx), so goddess F
-     * needs no quest playthrough. Used by login QuestListNotify and EnterTrans refresh.
-     */
-    public java.util.List<emu.grasscutter.net.proto.QuestOuterClass.Quest>
-            buildForgedStatueTalkQuests() {
-        var out = new java.util.ArrayList<emu.grasscutter.net.proto.QuestOuterClass.Quest>();
-        var seen = new java.util.HashSet<Integer>();
-
-        for (var e :
-                emu.grasscutter.game.managers.StatueTalkQuests.all().int2IntEntrySet()) {
-            int questId = e.getIntValue();
-            if (questId <= 0 || !seen.add(questId)) continue;
-
-            var existing = this.player.getQuestManager().getQuestById(questId);
-            if (existing != null) {
-                if (existing.getState() != QuestState.QUEST_STATE_FINISHED) {
-                    existing.setState(QuestState.QUEST_STATE_FINISHED);
-                    existing.setFinishTime(emu.grasscutter.utils.Utils.getCurrentSeconds());
-                    existing.save();
-                }
-                continue;
-            }
-            out.add(
-                    emu.grasscutter.server.packet.send.PacketQuestListUpdateNotify.forgeQuest(
-                            questId, 303, 3));
-            this.player.getForgedStatueTalkQuests().add(questId);
-        }
-        return out;
-    }
-
-    /** Re-push Talk gate for one unlocked statue (EnterTrans / after unlock). */
-    public void refreshStatueTalkGate(int sceneId, int pointId) {
+    /** Refresh post-activation interactions without modifying quest or area progression. */
+    public void refreshStatueGoddessInteractions(int sceneId, int pointId) {
         var entry = GameData.getScenePointEntryById(sceneId, pointId);
-        if (entry == null || entry.getPointData() == null) return;
-        if (!emu.grasscutter.game.managers.StatueTalkQuests.isStatuePoint(entry.getPointData())) {
-            return;
-        }
-        if (!this.player.getUnlockedScenePoints(sceneId).contains(pointId)) return;
-        if (this.player.isScenePointForceLocked(sceneId, pointId)) return;
-
-        int areaId = entry.getPointData().getAreaId();
-        int questId = emu.grasscutter.game.managers.StatueTalkQuests.questForArea(areaId);
-        if (questId > 0) {
-            var existing = this.player.getQuestManager().getQuestById(questId);
-            if (existing != null) {
-                // Only notify when state actually flips - re-sending FINISHED on every EnterTrans
-                // makes the client replay quest rewards (character EXP x20 spam).
-                if (existing.getState() != QuestState.QUEST_STATE_FINISHED) {
-                    existing.setState(QuestState.QUEST_STATE_FINISHED);
-                    existing.setFinishTime(emu.grasscutter.utils.Utils.getCurrentSeconds());
-                    existing.save();
-                    this.player.sendPacket(new PacketQuestListUpdateNotify(existing));
-                }
-            } else if (this.player.getForgedStatueTalkQuests().add(questId)) {
-                // No QuestExcel: forge once per session (login QuestListNotify also injects these).
-                this.player.sendPacket(new PacketQuestListUpdateNotify(questId, 303, 3));
-            }
-        }
-        if (areaId > 0) {
-            // Client Talk also needs QUEST_COND_SCENE_AREA_UNLOCKED for this area.
-            this.unlockSceneAreaHierarchy(sceneId, areaId);
-        }
-        // Goddess NPC: one GroupSuiteNotify per visit (debounced) - keeps F without SFX thrash.
+        if (entry == null || entry.getPointData() == null
+                || !emu.grasscutter.game.managers.StatueTalkQuests.isStatuePoint(entry.getPointData())
+                || !this.player.getUnlockedScenePoints(sceneId).contains(pointId)
+                || this.player.isScenePointForceLocked(sceneId, pointId)) return;
         this.refreshStatueGoddessNpc(sceneId, pointId);
     }
 
@@ -1030,60 +889,6 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
     }
 
     /**
-     * 真解锁神像：标记解锁 + 通知客户端 + **补回神像雕像 gadget** + 铺回血代理。
-     *
-     * <p>客户端收到解锁通知后会把「未解锁雕像」移除，等服务器给「已激活」实体；AstaPS 原先
-     * 不给，所以神像会“灭掉”且不能传送。这里用场景点数据里的 gadgetId 把雕像补回去。
-     */
-    public void miaoUnlockStatue(int sceneId, int pointId) {
-        var entry = GameData.getScenePointEntryById(sceneId, pointId);
-        if (entry == null || entry.getPointData() == null) return;
-        var pd = entry.getPointData();
-        var transition =
-                applyTransPointUnlock(
-                        this.player.getUnlockedScenePoints(sceneId),
-                        this.player.getForceLockedScenePoints(sceneId),
-                        pointId);
-        boolean isNew = transition.newlyUnlocked();
-        if (transition.changed()) {
-            this.player.sendPacket(
-                    new emu.grasscutter.server.packet.send.PacketScenePointUnlockNotify(
-                            sceneId, pointId));
-            // 关键：重发场景点列表，客户端的“已解锁/可传送”状态来自这个包。
-            this.player.sendPacket(
-                    new emu.grasscutter.server.packet.send.PacketGetScenePointRsp(
-                            this.player, sceneId));
-        }
-        try {
-            var scene = this.player.getScene();
-            if (scene != null && scene.getId() == sceneId && pd.getGadgetId() > 0) {
-                int gid = pd.getGadgetId();
-                // 已经补过就不再重复补
-                boolean exists = false;
-                for (var ent : scene.getEntities().values()) {
-                    if (ent instanceof emu.grasscutter.game.entity.EntityGadget eg
-                            && eg.getGadgetData() != null
-                            && eg.getGadgetData().getId() == gid) {
-                        exists = true;
-                        break;
-                    }
-                }
-                if (!exists) {
-                    var pos = pd.getPos() != null ? pd.getPos() : pd.getTranPos();
-                    var rot = pd.getRot() != null ? pd.getRot() : pd.getTranRot();
-                    if (pos != null) {
-                        var eg = new emu.grasscutter.game.entity.EntityGadget(
-                                scene, gid, pos, rot != null ? rot : new emu.grasscutter.game.world.Position());
-                        scene.addEntity(eg);
-                    }
-                }
-            }
-        } catch (Throwable t) {
-        }
-        this.refreshStatueGoddessNpc(sceneId, pointId);
-    }
-
-    /**
      * Lock a quest-controlled scene point on the client and in persisted player state.
      * ScenePointUnlockNotify's generated field 4 is the 7.1 locked-point wire field.
      */
@@ -1124,20 +929,15 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             this.unlockSceneAreaHierarchy(sceneId, pointData.getAreaId());
         }
 
-        // Unlock rewards: statues vs waypoints/dungeon entries. Never duplicate them when a quest
-        // temporarily re-locks a point the player had already discovered.
-        if (newlyUnlocked && isStatue) {
-            this.player.getInventory().addItem(201, 2888, ActionReason.UnlockPointReward); // primogems
-            this.player.getInventory().addItem(102, 800, ActionReason.UnlockPointReward); // adventure EXP
-            this.player.getInventory().addItem(107009, 3, ActionReason.UnlockPointReward); // fragile resin
-            this.player.getInventory().addItem(104003, 50, ActionReason.UnlockPointReward); // hero's wit
-            this.player.getInventory().addItem(104013, 20, ActionReason.UnlockPointReward); // mystic enhancement ore
-        } else if (newlyUnlocked) {
-            // Ordinary waypoint or domain entrance
-            this.player.getInventory().addItem(201, 2888, ActionReason.UnlockPointReward); // primogems
-            this.player.getInventory().addItem(102, 300, ActionReason.UnlockPointReward); // adventure EXP
-            this.player.getInventory().addItem(104003, 5, ActionReason.UnlockPointReward); // hero's wit
-            this.player.getInventory().addItem(104013, 5, ActionReason.UnlockPointReward); // mystic enhancement ore
+        // Only the first permanent activation grants rewards. Quest-lock release does not.
+        // The server-owned TOML is the sole source of the reward amounts.
+        if (newlyUnlocked) {
+            var kind = emu.grasscutter.game.reward.TransPointRewardConfig.kindOf(pointData, isStatue);
+            // Domain entries have a separate activation receipt: handbook syncing can
+            // pre-mark their map points unlocked before the player reaches the entrance.
+            if (kind != null && kind != emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN) {
+                grantTransPointReward(sceneId, pointId, kind);
+            }
         }
 
         // Fire quest trigger for trans point unlock.
@@ -1154,9 +954,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         } catch (Throwable ignored) {
         }
 
-        // After unlock, forge Talk gate finished so goddess F works without playing 303xx.
+        // Once the native activation quest unlocks the point, expose the post-activation NPC.
         if (isStatue) {
-            this.refreshStatueTalkGate(sceneId, pointId);
+            this.refreshStatueGoddessInteractions(sceneId, pointId);
         }
 
         // Send packet.
@@ -1179,12 +979,56 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         return true;
     }
 
+    private void grantTransPointReward(
+            int sceneId,
+            int pointId,
+            emu.grasscutter.game.reward.TransPointRewardConfig.Kind kind) {
+        var reward = emu.grasscutter.game.reward.TransPointRewardConfig.current()
+                .resolve(sceneId, pointId, kind);
+        if (!reward.isEmpty()) {
+            this.player.getInventory().addItemParamDatas(reward, ActionReason.UnlockPointReward);
+        }
+    }
+
+    /**
+     * Claim a dungeon entrance's first activation reward on UnlockTransPointReq.
+     * DomainHandbookHelper may already have opened the map point for UI navigation;
+     * that synthetic unlock must never consume this independent activation receipt.
+     */
+    public boolean rewardDomainActivation(int sceneId, int pointId) {
+        var entry = GameData.getScenePointEntryById(sceneId, pointId);
+        if (entry == null
+                || emu.grasscutter.game.reward.TransPointRewardConfig.kindOf(
+                        entry.getPointData(), false)
+                        != emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN) {
+            return false;
+        }
+
+        synchronized (this.player) {
+            var receipts = this.player.getRewardedDungeonEntries(sceneId);
+            if (receipts.contains(pointId)) return false;
+            grantTransPointReward(
+                    sceneId, pointId,
+                    emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN);
+            receipts.add(pointId);
+            this.player.save();
+            emu.grasscutter.Grasscutter.getLogger()
+                    .info("First domain activation reward uid={} scene={} point={}",
+                            this.player.getUid(), sceneId, pointId);
+            return true;
+        }
+    }
+
     public void unlockSceneArea(int sceneId, int areaId) {
         // Add the area to the list of unlocked areas in its scene.
         this.player.getUnlockedSceneAreas(sceneId).add(areaId);
 
-        // Send packet.
-        this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, areaId));
+        // A quest may request area 1 before statue (3,7) is activated.
+        // Preserve quest progress but do not reveal the area on the client yet.
+        if (emu.grasscutter.server.packet.send.SceneAreaVisibility
+                .forPlayer(this.player, sceneId).contains(areaId)) {
+            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, areaId));
+        }
         try {
             InvestigationHandbookHelper.trigger(
                     this.player,
@@ -1217,8 +1061,20 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             }
         }
 
-        if (!newly.isEmpty()) {
-            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, newly));
+        // A prior quest/old build might have stored area 1 before the statue
+        // unlocked. Re-send it when the statue really activates even if the
+        // area flag is not newly inserted.
+        var notifyAreas = new java.util.LinkedHashSet<>(newly);
+        if (sceneId == 3 && areaId == 1) {
+            notifyAreas.add(1);
+        }
+        // A different statue's region hierarchy can contain area 1. Do not
+        // announce it until its own point (3,7) is active.
+        notifyAreas.retainAll(
+                emu.grasscutter.server.packet.send.SceneAreaVisibility
+                        .forPlayer(this.player, sceneId));
+        if (!notifyAreas.isEmpty()) {
+            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, notifyAreas));
             this.player.save();
             try {
                 for (int unlockedAreaId : newly) {
@@ -1241,9 +1097,6 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         if (pointIds == null) return;
 
         var justified = new java.util.LinkedHashSet<Integer>();
-        if (sceneId == 3) {
-            justified.add(1); // starter Mondstadt
-        }
         var unlockedPoints = this.player.getUnlockedScenePoints(sceneId);
         for (int pointId : pointIds) {
             if (!unlockedPoints.contains(pointId)) continue;
@@ -1273,7 +1126,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         areas.clear();
         areas.addAll(justified);
         this.player.save();
-        this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, justified));
+        this.player.sendPacket(new PacketSceneAreaUnlockNotify(
+                sceneId, emu.grasscutter.server.packet.send.SceneAreaVisibility
+                        .forPlayer(this.player, sceneId)));
         emu.grasscutter.Grasscutter.getLogger()
                 .debug(
                         "Synced scene areas from points uid={} scene={} areas={}",

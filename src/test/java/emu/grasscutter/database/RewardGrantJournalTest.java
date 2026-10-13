@@ -130,4 +130,38 @@ final class RewardGrantJournalTest {
         assertEquals(Stage.CONFIRMED, journal.unresolved().getFirst().stage());
     }
 
+    @Test
+    void failedDatabaseConfirmationLeavesUnresolvedIntentAndBlocksReuse() {
+        var stored = new FakeStore();
+        var journal = new RewardGrantJournal(new RewardGrantJournal.Store() {
+            public boolean insert(Receipt receipt) { return stored.insert(receipt); }
+            public boolean transition(Key key, Stage from, Stage to) {
+                throw new IllegalStateException("database unavailable");
+            }
+            public List<Receipt> unresolved() { return stored.unresolved(); }
+        });
+        assertTrue(journal.prepare(CLAIM, REWARDS));
+        assertThrows(IllegalStateException.class, () -> journal.confirm(CLAIM));
+        assertEquals(Stage.PREPARED, journal.unresolved().getFirst().stage());
+        assertFalse(journal.prepare(CLAIM, REWARDS));
+    }
+
+    @Test
+    void failedDatabaseCompletionRetainsConfirmedReceiptWithoutReplayingGrant() {
+        var stored = new FakeStore();
+        var journal = new RewardGrantJournal(new RewardGrantJournal.Store() {
+            public boolean insert(Receipt receipt) { return stored.insert(receipt); }
+            public boolean transition(Key key, Stage from, Stage to) {
+                if (to == Stage.COMPLETED) throw new IllegalStateException("database unavailable");
+                return stored.transition(key, from, to);
+            }
+            public List<Receipt> unresolved() { return stored.unresolved(); }
+        });
+        assertTrue(journal.prepare(CLAIM, REWARDS));
+        journal.confirm(CLAIM);
+        assertThrows(IllegalStateException.class, () -> journal.complete(CLAIM));
+        assertEquals(Stage.CONFIRMED, journal.unresolved().getFirst().stage());
+        assertFalse(journal.prepare(CLAIM, REWARDS));
+    }
+
 }

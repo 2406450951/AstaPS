@@ -14,27 +14,29 @@ public class HandlerUnlockTransPointReq extends PacketHandler {
         boolean isStatue =
                 emu.grasscutter.game.managers.StatueTalkQuests.isStatuePoint(
                         entry != null ? entry.getPointData() : null);
-        if (isStatue) {
-            // 真解锁 + 把雕像 gadget 补回去 + 铺回血代理
-            session.getPlayer()
-                    .getProgressManager()
-                    .miaoUnlockStatue(req.getSceneId(), req.getPointId());
-            return;
-        }
+        // A Statue of the Seven is activated by quest 303 (or the starter quest 352),
+        // not by the ordinary waypoint request.
+        if (isStatue) return;
 
         boolean unlocked =
                 session
                         .getPlayer()
                         .getProgressManager()
                         .unlockTransPoint(req.getSceneId(), req.getPointId(), isStatue);
+        // Domain entrance activation uses an independent persisted receipt because
+        // the handbook can pre-unlock its map point without a player interaction.
+        boolean rewarded =
+                session.getPlayer().getProgressManager()
+                        .rewardDomainActivation(req.getSceneId(), req.getPointId());
         emu.grasscutter.Grasscutter.getLogger()
                 .info(
-                        "UnlockTransPointReq uid={} scene={} point={} statue={} unlocked={}",
+                        "UnlockTransPointReq uid={} scene={} point={} statue={} unlocked={} domainRewarded={}",
                         session.getPlayer().getUid(),
                         req.getSceneId(),
                         req.getPointId(),
                         isStatue,
-                        unlocked);
+                        unlocked,
+                        rewarded);
 
         // Current 7.1 clients update the live waypoint state from ScenePointUnlockNotify. Runtime
         // controls confirmed that a correctly encoded notify is sufficient for activation, map

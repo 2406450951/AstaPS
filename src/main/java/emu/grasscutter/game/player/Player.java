@@ -137,6 +137,8 @@ public class Player implements PlayerHook, FieldFetch {
     private List<emu.grasscutter.game.icecreature.IceCreatureRecord> iceCreatures;
     @Getter @Setter private Map<Integer, Set<Integer>> unlockedSceneAreas;
     @Getter @Setter private Map<Integer, Set<Integer>> unlockedScenePoints;
+    /** Separate first-entry reward receipts; handbook unlocks do not establish discovery. */
+    private Map<Integer, Set<Integer>> rewardedDungeonEntries;
     /** Debug/test: points forced locked even if GetScenePointRsp would otherwise unlock-all. */
     @Getter @Setter private Map<Integer, Set<Integer>> forceLockedScenePoints;
     @Getter @Setter private List<Integer> chatEmojiIdList;
@@ -168,10 +170,6 @@ public class Player implements PlayerHook, FieldFetch {
     @Transient @Getter
     private final Map<Integer, java.util.List<Integer>> goddessNpcEntityByPoint =
             new ConcurrentHashMap<>();
-    /** Forged 303xx Talk-gate quests already pushed this session — not persisted. */
-    @Transient @Getter
-    private final Set<Integer> forgedStatueTalkQuests = ConcurrentHashMap.newKeySet();
-
     @Transient private long nextGuid = 0;
     @Transient @Getter @Setter private int peerId;
     // volatile rather than guarded by the player lock: Scene and World set these while holding
@@ -305,6 +303,7 @@ public class Player implements PlayerHook, FieldFetch {
         this.sceneTags = new HashMap<>();
         this.unlockedSceneAreas = new HashMap<>();
         this.unlockedScenePoints = new HashMap<>();
+        this.rewardedDungeonEntries = new HashMap<>();
         this.forceLockedScenePoints = new HashMap<>();
         this.chatEmojiIdList = new ArrayList<>();
         this.playerProgress = new PlayerProgress();
@@ -599,6 +598,13 @@ public class Player implements PlayerHook, FieldFetch {
 
     public Set<Integer> getUnlockedScenePoints(int sceneId) {
         return this.unlockedScenePoints.computeIfAbsent(sceneId, i -> new CopyOnWriteArraySet<>());
+    }
+
+    public Set<Integer> getRewardedDungeonEntries(int sceneId) {
+        if (this.rewardedDungeonEntries == null) {
+            this.rewardedDungeonEntries = new HashMap<>();
+        }
+        return this.rewardedDungeonEntries.computeIfAbsent(sceneId, i -> new CopyOnWriteArraySet<>());
     }
 
     public Set<Integer> getForceLockedScenePoints(int sceneId) {
