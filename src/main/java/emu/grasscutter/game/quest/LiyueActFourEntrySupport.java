@@ -2,8 +2,11 @@ package emu.grasscutter.game.quest;
 
 import emu.grasscutter.data.GameData;
 import emu.grasscutter.data.common.PointData;
+import emu.grasscutter.data.excels.ChapterData;
 import emu.grasscutter.data.excels.quest.QuestData;
+import emu.grasscutter.game.quest.enums.LogicType;
 import emu.grasscutter.game.quest.enums.ParentQuestState;
+import emu.grasscutter.game.quest.enums.QuestCond;
 import emu.grasscutter.game.quest.enums.QuestContent;
 import emu.grasscutter.game.quest.enums.QuestState;
 import emu.grasscutter.server.packet.send.PacketScenePointUnlockNotify;
@@ -70,6 +73,49 @@ public final class LiyueActFourEntrySupport {
         player.sendPacket(new PacketScenePointUnlockNotify(3, entry.point()));
         if (changed) player.save();
         return true;
+    }
+
+    /** Recheck only the next chapter's entry after Act IV has actually finished. */
+    static void resumeNextChapter(QuestManager manager) {
+        if (!QuestManager.isQuestingActive()) return;
+        var end = manager.getQuestById(800311);
+        var previous = manager.getMainQuestById(8003);
+        var chapter = ChapterData.getBeginQuestChapterMap().get(200003);
+        if (end == null || end.getState() != QuestState.QUEST_STATE_FINISHED
+                || previous == null || !previous.isFinished()
+                || chapter == null || chapter.getId() != 1201
+                || manager.getPlayer().getLevel() < chapter.getNeedPlayerLevel()) return;
+
+        var data = GameData.getQuestDataMap().get(200001);
+        var next = manager.getMainQuestById(2000);
+        if (data == null || data.getMainId() != 2000 || manager.wasSubQuestStarted(data)
+                || (next != null && next.isFinished())) return;
+        var conditions = data.getAcceptCond();
+        if (conditions == null || conditions.isEmpty()) return;
+        int[] progress = new int[conditions.size()];
+        for (int i = 0; i < conditions.size(); i++) {
+            var condition = conditions.get(i);
+            var params = condition.getParam();
+            if (condition.getType() == null || params == null || params.length == 0) return;
+            progress[i] = manager.getPlayer().getServer().getQuestSystem()
+                    .triggerCondition(manager.getPlayer(), data, condition,
+                            condition.getParamStr(), params) ? 1 : 0;
+        }
+        // An already-ended, unconfigured activity emits no event to fill the cached AND gate.
+        if (LogicType.calculate(data.getAcceptCondComb(), progress)) {
+            manager.getAcceptProgressLists().put(data.getId(), progress);
+            manager.addQuest(data);
+        }
+    }
+
+    static void onConditionEvent(QuestManager manager, QuestCond type, int[] params) {
+        if (params == null || params.length == 0) return;
+        if ((type == QuestCond.QUEST_COND_QUEST_GLOBAL_VAR_EQUAL && params[0] == 10010)
+                || (type == QuestCond.QUEST_COND_STATE_EQUAL && params[0] == 800311)
+                || (type == QuestCond.QUEST_COND_ACTIVITY_END && params[0] == 2005001)
+                || type == QuestCond.QUEST_COND_PLAYER_LEVEL_EQUAL_GREATER) {
+            resumeNextChapter(manager);
+        }
     }
 
     static boolean resumeOnLogin(GameMainQuest main) {
