@@ -14,14 +14,14 @@ public class HandlerPlayerEnterDungeonReq extends PacketHandler {
         // Auto template
         PlayerEnterDungeonReq req = PlayerEnterDungeonReq.parseFrom(payload);
 
-         var success =
+        var success =
                 DomainDungeonHelper.canEnterDungeonFromOpenWorld(
                                 session.getPlayer(), req.getPointId(), req.getDungeonId())
                         && session
                                 .getServer()
                                 .getDungeonSystem()
                                 .enterDungeon(session.getPlayer(), req.getPointId(), req.getDungeonId(), true);
-         session
+        session
                 .getPlayer()
                 .sendPacket(new PacketPlayerEnterDungeonRsp(req.getPointId(), req.getDungeonId(), success));
     }
