@@ -107,6 +107,7 @@ public class GameQuest {
         this.getOwner().getQuestManager().checkQuestAlreadyFulfilled(this);
         MondstadtStoryQuestSupport.enableDungeonEntry(this);
         AmberFlightExamSupport.ensure(this);
+        RazorWolfQuestSupport.ensure(this);
         if (this.mainQuestId == 1012 && this.subQuestId == 101210)
             LiyuePerfumeQuestSupport.sendFormulas(getOwner());
 

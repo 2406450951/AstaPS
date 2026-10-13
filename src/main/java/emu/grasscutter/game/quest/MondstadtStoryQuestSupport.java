@@ -163,6 +163,7 @@ public final class MondstadtStoryQuestSupport {
 
     /** Continue an earned segment after scene loading; login returns dungeon players to their entry point. */
     public static void onSceneLoaded(emu.grasscutter.game.player.Player player) {
+        RazorWolfQuestSupport.onSceneLoaded(player);
         if (player.getSceneLoadState() != emu.grasscutter.game.player.Player.SceneLoadState.LOADED
                 || (player.getSceneId() != 1015 && player.getSceneId() != 3)) return;
         var scene = player.getScene();

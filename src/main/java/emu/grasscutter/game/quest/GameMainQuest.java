@@ -252,6 +252,7 @@ public class GameMainQuest {
             if (jadePosition != null) return jadePosition;
         }
         if (AmberFlightExamSupport.preserveOnLogin(this)) return null;
+        if (QuestManager.isQuestingActive() && RazorWolfQuestSupport.isActiveBattle(this)) return null;
         if (MondstadtStoryQuestSupport.restoreCompletedAmberDungeon(this)) return null;
         if (QuestManager.isQuestingActive() && MondstadtStoryQuestSupport.isAmberSecondSegment(this)) return null;
         if (MondstadtStoryQuestSupport.canContinueAmberDungeon(

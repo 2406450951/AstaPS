@@ -1416,7 +1416,8 @@ public class SceneScriptManager {
         }
         boolean hasTrigger =
                 group.triggers.values().stream()
-                        .anyMatch(t -> t.getEvent() == EVENT_TIMER_EVENT && t.getSource().equals(source));
+                        .anyMatch(t -> t.getEvent() == EVENT_TIMER_EVENT
+                                && (t.getSource().isEmpty() || t.getSource().equals(source)));
         if (!hasTrigger) return 0;
 
         // Lua passes seconds; the scene scheduler counts ticks and stops while the scene is paused.

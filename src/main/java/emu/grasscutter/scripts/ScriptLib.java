@@ -583,6 +583,8 @@ public class ScriptLib {
         } catch (Throwable ignored) {
         }
 
+        if (emu.grasscutter.game.quest.RazorWolfQuestSupport.scheduleStoryWolf(
+                getSceneScriptManager().getScene(), getCurrentGroup().get(), configId, delayTime)) return 0;
         getSceneScriptManager().spawnMonstersByConfigId(getCurrentGroup().get(), configId, delayTime);
         return 0;
     }
