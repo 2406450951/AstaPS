@@ -557,17 +557,8 @@ public class EntityMonster extends GameEntity {
                         .setBornType(MonsterBornType.MonsterBornType_MONSTER_BORN_DEFAULT);
         summonTagMap.forEach((k, v) -> monsterInfo.putSummonTagMap(k, v == null ? 0 : 1));
 
-        if (this.metaMonster != null) {
-            if (this.metaMonster.special_name_id != 0) {
-                monsterInfo
-                        .setTitleId(this.metaMonster.title_id)
-                        .setSpecialNameId(this.metaMonster.special_name_id);
-            } else if (data.getDescribeData() != null) {
-                monsterInfo
-                        .setTitleId(data.getDescribeData().getTitleId())
-                        .setSpecialNameId(data.getSpecialNameId());
-            }
-        }
+        var names = MonsterNameResolver.resolve(data, this.metaMonster);
+        monsterInfo.setTitleId(names.titleId()).setSpecialNameId(names.specialNameId());
 
         if (this.getMonsterWeaponId() > 0) {
             SceneWeaponInfo weaponInfo =

@@ -810,7 +810,7 @@ public final class AndriusTrialStartHelper {
                 meta.pose_id = 0;
                 meta.drop_id = 1000100;
                 meta.title_id = 112;
-                meta.special_name_id = 4;
+                meta.special_name_id = 2011102;
                 meta.pos = pos.clone();
                 meta.rot = rot.clone();
                 monster.setMetaMonster(meta);

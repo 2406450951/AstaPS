@@ -239,6 +239,7 @@ public class GameQuest {
         }
         this.finishTime = Utils.getCurrentSeconds();
         AmberFlightExamSupport.stopWithQuest(this);
+        RazorWolfQuestSupport.onQuestFinished(this);
 
         this.getOwner().sendPacket(new PacketQuestListUpdateNotify(this));
 

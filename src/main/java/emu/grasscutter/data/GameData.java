@@ -22,6 +22,7 @@ import emu.grasscutter.data.excels.monster.MonsterCurveData;
 import emu.grasscutter.data.excels.monster.MonsterData;
 import emu.grasscutter.data.excels.monster.MonsterDescribeData;
 import emu.grasscutter.data.excels.monster.MonsterSpecialNameData;
+import emu.grasscutter.data.excels.monster.MonsterTitleData;
 import emu.grasscutter.data.excels.quest.QuestData;
 import emu.grasscutter.data.excels.quest.QuestGlobalVarData;
 import emu.grasscutter.data.excels.reliquary.ReliquaryAffixData;
@@ -368,6 +369,10 @@ public final class GameData {
 
     @Getter
     private static final Int2ObjectMap<MonsterSpecialNameData> monsterSpecialNameDataMap =
+            new Int2ObjectOpenHashMap<>();
+
+    @Getter
+    private static final Int2ObjectMap<MonsterTitleData> monsterTitleDataMap =
             new Int2ObjectOpenHashMap<>();
 
     @Getter
