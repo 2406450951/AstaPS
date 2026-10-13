@@ -22,8 +22,9 @@ The main datasets currently maintained as local files include:
 - **Spawns and exploration:** `Spawns.json`, `GadgetSpawns.json`,
   `*_explore_points.json`, `region_explore_points.json`, and
   `specialty_materials_points.json`.
-- **Gacha and shop data:** `GachaEpitomized*.json`, `Shop*.json`,
-  `GachaBannerPrefab.txt`.
+- **Gacha and shop data:** `GachaEpitomized*.json` and `Shop.json`.
+  Extra shop examples and the historical banner-name reference are archived at
+  `docs/reference/data/`, not loaded at runtime.
 - **Other server data:** `AvatarBaseStats.json`, `boss-drop-tags.json`,
   and client dispatch/version configuration under `version/`.
 
