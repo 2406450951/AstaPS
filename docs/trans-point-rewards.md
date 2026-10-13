@@ -1,10 +1,9 @@
 # AstaPS first-unlock rewards
 
 `config/rewards/trans-point-rewards.toml` is a server-owned configuration, generated
-on the first startup. The old root-level `trans-point-rewards.toml` is moved to this
-location automatically when the new path is missing. If both exist, startup rejects
-the conflict to avoid silently choosing one. Changes made by the server owner are never overwritten on startup.
-Malformed or unsupported config stops startup; there is no native reward-table fallback.
+on the first startup. Existing configuration is never overwritten. Malformed or
+unsupported configuration stops startup; there is no native reward-table fallback.
+There is no legacy-path migration: only this path is read.
 
 ## Supported selectors
 

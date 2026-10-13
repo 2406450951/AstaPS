@@ -42,16 +42,7 @@ public final class TransPointRewardConfig {
 
     public static void loadOrCreate(Path path) {
         try {
-            Path legacy = Path.of("trans-point-rewards.toml");
-            if (Files.exists(legacy) && Files.exists(path)) {
-                throw new IllegalStateException(
-                        "Both " + legacy + " and " + path
-                                + " exist. Remove the obsolete copy explicitly to avoid ambiguous rewards.");
-            }
-            if (Files.exists(legacy)) {
-                Files.createDirectories(path.toAbsolutePath().getParent());
-                Files.move(legacy, path);
-            } else if (Files.notExists(path)) {
+            if (Files.notExists(path)) {
                 Files.createDirectories(path.toAbsolutePath().getParent());
                 try (InputStream source = TransPointRewardConfig.class.getResourceAsStream(TEMPLATE)) {
                     if (source == null) throw new IOException("Missing bundled template " + TEMPLATE);

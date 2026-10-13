@@ -1,8 +1,8 @@
 # Runtime configuration layout
 
 The server operator owns **config/**. The project and resource pack must not
-silently overwrite local policy. `config.json` remains at the root for compatibility:
-global network, database, service options, and existing global tuning still live there.
+silently overwrite local policy. `config.json` remains the global settings
+entry point for network, database, services, and existing global tuning.
 
 Only one gameplay config currently exists:
 
@@ -20,8 +20,8 @@ AstaPS/
 │   │   └── rolls.toml                  # Future, not yet created
 │   └── domains/
 │       └── schedules.toml              # Future, not yet created
-├── data/                                # Project base data; legacy mixed ownership
-└── resources/                           # Game asset extracts
+├── data/                                # Server data tables and some runtime state
+└── resources/                           # Client-extracted and server-supported game resources
 ```
 
 ## Ownership and precedence
@@ -29,9 +29,13 @@ AstaPS/
 - `resources/`: client-extracted point, dungeon, item, quest, and Excel data.
   Native IDs and scene topology may be used to identify a target. They do not
   override an operator's gameplay policy.
-- `data/`: versioned project-maintained base datasets, often large JSON tables.
-  Existing `ChestDrop.json`, `MonsterDrop.json`, and `DungeonDrop.json`
-  remain untouched until their respective systems are redesigned.
+- `data/`: server-defined data tables, especially `ChestDrop.json`,
+  `MonsterDrop.json`, and `DungeonDrop.json`. Most DataLoader calls prefer a
+  local `data/` copy over the bundled `src/main/resources/defaults/data/` copy,
+  whereas certain bundled-first loaders intentionally reverse that priority.
+  This directory currently also contains state and generated files; it has mixed
+  ownership and should not become the default home for new human-written policy.
+  Existing tables and their load behavior remain untouched.
 - `config/`: server-owner policy written in TOML when concise enough to maintain
   by hand. Large, machine-generated data should not be converted to huge TOML
   arrays merely for consistency.
@@ -60,14 +64,12 @@ overwritten by native asset changes.
 Do not introduce a global generic selector engine or shared hot-reload behavior
 until another subsystem needs them. Each feature owns validation and tests.
 
-## Deployment and migration
+## Deployment
 
-Bundled defaults belong to `src/main/resources/`, while the runtime files under
-`config/` are gitignored. First startup generates a missing file. Updates never
-overwrite existing operator values. Unknown keys or invalid values cause explicit
-load errors, and schema changes must have documented migration tests.
+Bundled defaults belong to `src/main/resources/`, while runtime files under
+`config/` are gitignored. First startup generates a missing file. Updates do
+not overwrite operator values. Unknown keys and invalid values fail validation.
 
-The initial transport rewards implementation originally used root-level
-`trans-point-rewards.toml`. Its startup loader now moves that file to
-`config/rewards/trans-point-rewards.toml` if the destination is absent.
-If both exist, startup reports a conflict instead of choosing one silently.
+Only the documented config path is read. No automatic legacy-path imports,
+migration branches, or undocumented fallbacks are added for draft features.
+Breaking schema changes must be documented and tested explicitly.
