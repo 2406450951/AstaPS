@@ -23,7 +23,9 @@ public class DungeonData extends GameResource {
     private DungeonInvolveType involveType;
     @Getter private int limitLevel;
     @Getter private int passCond;
-    @Getter private int passJumpDungeon;
+    // Native 7.1 name for the next segment of a chained story dungeon.
+    @Getter @SerializedName(value = "passJumpDungeon", alternate = {"DBMHBKIDAJH"})
+    private int passJumpDungeon;
     @Getter private int reviveMaxCount;
     @Getter private int settleCountdownTime;
     @Getter private int failSettleCountdownTime;

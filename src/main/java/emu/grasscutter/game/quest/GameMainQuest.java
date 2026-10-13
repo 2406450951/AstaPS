@@ -252,6 +252,8 @@ public class GameMainQuest {
             if (jadePosition != null) return jadePosition;
         }
         if (AmberFlightExamSupport.preserveOnLogin(this)) return null;
+        if (MondstadtStoryQuestSupport.canContinueAmberDungeon(
+                getChildQuestById(48510), GameData.getDungeonDataMap().get(2007))) return null;
         if (QuestManager.isQuestingActive() && LiyueGoldenHouseEntrySupport.resumeOnLogin(this))
             return null;
         if (QuestManager.isQuestingActive() && LiyueChargePotRecovery.resumeOnLogin(this))

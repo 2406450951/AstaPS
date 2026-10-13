@@ -71,6 +71,52 @@ public final class MondstadtStoryQuestSupport {
         }
     }
 
+    static boolean canContinueAmberDungeon(GameQuest quest, emu.grasscutter.data.excels.dungeon.DungeonData dungeon) {
+        if (!QuestManager.isQuestingActive() || quest == null || dungeon == null
+                || quest.getMainQuestId() != 485 || quest.getSubQuestId() != 48510
+                || quest.getState() != QuestState.QUEST_STATE_UNFINISHED
+                || dungeon.getId() != 2007 || dungeon.getSceneId() != 1015
+                || dungeon.getPassCond() != 35 || dungeon.getPassJumpDungeon() != 2006) return false;
+        var main = quest.getMainQuest();
+        if (main == null || main.isFinished() || main.getState() == ParentQuestState.PARENT_QUEST_STATE_FINISHED)
+            return false;
+        for (int id : new int[] {48509, 48512}) {
+            var prerequisite = main.getChildQuestById(id);
+            if (prerequisite == null || prerequisite.getState() != QuestState.QUEST_STATE_FINISHED) return false;
+        }
+        return true;
+    }
+
+    /** Continue an earned segment after scene loading; login returns dungeon players to their entry point. */
+    public static void onSceneLoaded(emu.grasscutter.game.player.Player player) {
+        if (player.getSceneLoadState() != emu.grasscutter.game.player.Player.SceneLoadState.LOADED
+                || (player.getSceneId() != 1015 && player.getSceneId() != 3)) return;
+        var scene = player.getScene();
+        var quest = player.getQuestManager().getQuestById(48510);
+        var data = GameData.getDungeonDataMap().get(2007);
+        if (scene == null || !canContinueAmberDungeon(quest, data)) return;
+        scene.runWhenFinished(() -> scene.getScheduler().scheduleDelayedTask(() -> {
+            if (player.getScene() != scene
+                    || player.getSceneLoadState() != emu.grasscutter.game.player.Player.SceneLoadState.LOADED
+                    || !canContinueAmberDungeon(quest, data)) return;
+            if (scene.getId() == 3) {
+                // Only recover at the original unlocked entry, not from an unrelated world location.
+                if (emu.grasscutter.game.dungeons.DomainDungeonHelper.canEnterDungeonFromOpenWorld(player, 102, 2007))
+                    player.getServer().getDungeonSystem().enterDungeon(player, 102, 2006, true);
+                return;
+            }
+            var manager = scene.getDungeonManager();
+            if (manager == null || manager.getDungeonData().getId() != 2007) return;
+            if (manager.isFinishedSuccessfully()) {
+                player.getServer().getDungeonSystem().enterDungeon(player, 0, 2006, false);
+            } else {
+                // Replay completion evidence, not a quest finish or a synthetic dungeon-entry event.
+                scene.triggerDungeonEvent(
+                        emu.grasscutter.game.dungeons.enums.DungeonPassConditionType.DUNGEON_COND_FINISH_QUEST, 48512);
+            }
+        }, 1));
+    }
+
     static boolean isEligible(QuestManager manager, QuestData data) {
         if (!canResume(manager, data)) return false;
         var conditions = data.getAcceptCond();
