@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +45,7 @@ public final class TransPointRewardConfig {
             if (Files.notExists(path)) {
                 try (InputStream source = TransPointRewardConfig.class.getResourceAsStream(TEMPLATE)) {
                     if (source == null) throw new IOException("Missing bundled template " + TEMPLATE);
-                    Files.copy(source, path, StandardCopyOption.COPY_ATTRIBUTES);
+                    Files.copy(source, path);
                 }
             }
             // Failed edits must never silently reset the owner's configuration.
