@@ -933,18 +933,10 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             this.unlockSceneAreaHierarchy(sceneId, pointData.getAreaId());
         }
 
-        // Unlock rewards: statues vs waypoints/dungeon entries. Never duplicate them when a quest
-        // temporarily re-locks a point the player had already discovered.
-        if (newlyUnlocked && isStatue) {
-            this.player.getInventory().addItem(201, 2888, ActionReason.UnlockPointReward); // primogems
-            this.player.getInventory().addItem(102, 800, ActionReason.UnlockPointReward); // adventure EXP
-            this.player.getInventory().addItem(107009, 3, ActionReason.UnlockPointReward); // fragile resin
-            this.player.getInventory().addItem(104003, 50, ActionReason.UnlockPointReward); // hero's wit
-            this.player.getInventory().addItem(104013, 20, ActionReason.UnlockPointReward); // mystic enhancement ore
-        } else if (newlyUnlocked) {
-            // Ordinary waypoints use their scene-point reward, not a fixed grant.
-            var pointReward =
-                    GameData.getTransPointRewardDataMap().get((sceneId << 16) + pointId);
+        // Waypoints and statues share the same first-unlock reward table.
+        // Releasing a quest lock does not grant this reward again.
+        if (newlyUnlocked) {
+            var pointReward = GameData.getTransPointRewardDataMap().get((sceneId << 16) + pointId);
             if (pointReward != null) {
                 var reward = GameData.getRewardDataMap().get(pointReward.getRewardId());
                 if (reward != null) {
