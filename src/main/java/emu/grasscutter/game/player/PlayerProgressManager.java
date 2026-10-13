@@ -1064,9 +1064,11 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         // A prior quest/old build might have stored area 1 before the statue
         // unlocked. Re-send it when the statue really activates even if the
         // area flag is not newly inserted.
-        boolean revealStoredStarterArea = sceneId == 3 && areaId == 1 && newly.isEmpty();
-        if (!newly.isEmpty() || revealStoredStarterArea) {
-            var notifyAreas = revealStoredStarterArea ? java.util.List.of(1) : newly;
+        var notifyAreas = new java.util.LinkedHashSet<>(newly);
+        if (sceneId == 3 && areaId == 1) {
+            notifyAreas.add(1);
+        }
+        if (!notifyAreas.isEmpty()) {
             this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, notifyAreas));
             this.player.save();
             try {
