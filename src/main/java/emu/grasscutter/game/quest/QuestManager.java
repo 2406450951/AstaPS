@@ -347,6 +347,7 @@ public final class QuestManager extends BasePlayerManager {
         if (isQuestingActive()) {
             this.resumeMainQuestHandoffs();
             eventExecutor.submit(() -> LiyueDainsleifEntrySupport.resumeOnLogin(this));
+            eventExecutor.submit(() -> MondstadtStoryQuestSupport.resumeOnLogin(this));
         }
 
         if (this.player.getActivityManager() != null)
@@ -597,6 +598,7 @@ public final class QuestManager extends BasePlayerManager {
 
     public void triggerEvent(QuestCond condType, String paramStr, int... params) {
         Grasscutter.getLogger().trace("Trigger Event {}, {}, {}", condType, paramStr, params);
+        MondstadtStoryQuestSupport.onConditionEvent(this, condType, params);
         var potentialQuests = GameData.getQuestDataByConditions(condType, params[0], paramStr);
         if (potentialQuests == null) {
             return;

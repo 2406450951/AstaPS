@@ -105,6 +105,7 @@ public class GameQuest {
                 .getBeginExec()
                 .forEach(e -> getOwner().getServer().getQuestSystem().triggerExec(this, e, e.getParam()));
         this.getOwner().getQuestManager().checkQuestAlreadyFulfilled(this);
+        MondstadtStoryQuestSupport.enableDungeonEntry(this);
         if (this.mainQuestId == 1012 && this.subQuestId == 101210)
             LiyuePerfumeQuestSupport.sendFormulas(getOwner());
 
