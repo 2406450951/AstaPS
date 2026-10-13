@@ -131,9 +131,8 @@ public class HandlerEnterSceneDoneReq extends PacketHandler {
                 int pid = (Integer) cands.get(i)[0];
                 try {
                     if (player.getGoddessNpcEntityByPoint().containsKey(pid)) continue;
-                    // 真解锁 + 补雕像 + 铺代理（三者一起，否则要么不能传送、要么雕像消失）
-                    // 不自动解锁：只对“已解锁”的点刷新代理（没解锁就什么都不做）
-                    player.getProgressManager().refreshStatueTalkGate(scId, pid);
+                    // Do not change activation state. Refresh only interactions for activated statues.
+                    player.getProgressManager().refreshStatueGoddessInteractions(scId, pid);
                     done.append(pid).append(' ');
                 } catch (Throwable t) {
                 }

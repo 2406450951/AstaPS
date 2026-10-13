@@ -7,16 +7,10 @@ import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 
-/**
- * Maps scene-3 statue {@code areaId} → TalkExcel gate quest (303xx).
- *
- * <p>Client goddess F tip needs gate quest state=3. The server forges all of these FINISHED on
- * login so SotS unlock / F / heal / offer need no quest playthrough.
- */
+/** Identifies Statue-of-the-Seven points and their goddess NPC placements. */
 public final class StatueTalkQuests {
     private StatueTalkQuests() {}
 
-    private static final Int2IntMap AREA_TO_QUEST = new Int2IntOpenHashMap();
     private static final Int2IntMap AREA_TO_NPC = new Int2IntOpenHashMap();
     private static final IntSet GODDESS_NPC_IDS = new IntOpenHashSet();
     private static volatile boolean goddessNpcIdsLoaded;
@@ -38,83 +32,13 @@ public final class StatueTalkQuests {
                     });
 
     static {
-        // Mondstadt / Liyue / Inazuma / Chasm
-        put(3, 30302);
-        put(2, 30303);
-        put(4, 30304);
-        put(5, 30305);
-        put(7, 30306);
-        put(6, 30307);
-        put(8, 30308);
-        put(9, 30309);
-        put(10, 30310);
-        put(11, 30311);
-        put(12, 30312);
-        put(13, 30313);
-        put(14, 30314);
-        put(17, 30315);
-        put(18, 30316);
-        put(19, 30317);
-        // Sumeru rainforest
-        put(20, 30318);
-        put(21, 30319);
-        put(29, 30320);
-        put(23, 30321);
-        put(24, 30322);
-        put(25, 30323);
-        put(22, 30324);
-        // Sumeru desert
-        put(26, 30325);
-        put(27, 30326);
-        put(28, 30327);
-        put(32, 30328);
-        put(30, 30329);
-        put(31, 30330);
-        // Fontaine
-        put(33, 30331);
-        put(34, 30332);
-        put(35, 30333);
-        put(36, 30334);
-        put(37, 30335);
-        put(38, 30336);
-        put(39, 30337);
-        put(40, 30338);
-        put(41, 30339);
-        put(42, 30340);
-        // Natlan / later (TalkExcel ids continue)
-        put(43, 30341);
-        put(44, 30342);
-        put(45, 30343);
-        put(46, 30344);
-        put(48, 30345);
-        put(49, 30346);
-        // TalkExcel tip: area → gate quest / goddess npc (Natlan late + Nod-Krai City 7)
-        putArea(51, 30348, 6906);
-        putArea(52, 30352, 6907);
-        putArea(53, 30347, 6910);
-        putArea(70, 30349, 7900); // point 1515
-        putArea(71, 30350, 7901); // point 1516
-        putArea(72, 30351, 7902); // point 1517
-        // City 8 (55–59 / 76) SotS have spring+npc but no 303xx Talk tips in this resource set.
-    }
-
-    private static void put(int areaId, int questId) {
-        AREA_TO_QUEST.put(areaId, questId);
-    }
-
-    private static void putArea(int areaId, int questId, int npcId) {
-        AREA_TO_QUEST.put(areaId, questId);
-        if (npcId > 0) {
-            AREA_TO_NPC.put(areaId, npcId);
-        }
-    }
-
-    /** @return gate quest id, or 0 if unknown */
-    public static int questForArea(int areaId) {
-        if (!AREA_TO_QUEST.containsKey(areaId)) {
-            return 0;
-        }
-        return AREA_TO_QUEST.get(areaId);
+        // NPC placements absent from some scene-point rows in the 7.1 resource.
+        AREA_TO_NPC.put(51, 6906);
+        AREA_TO_NPC.put(52, 6907);
+        AREA_TO_NPC.put(53, 6910);
+        AREA_TO_NPC.put(70, 7900);
+        AREA_TO_NPC.put(71, 7901);
+        AREA_TO_NPC.put(72, 7902);
     }
 
     /** @return goddess npcId for area tip, or 0 if unknown */
@@ -123,10 +47,6 @@ public final class StatueTalkQuests {
             return 0;
         }
         return AREA_TO_NPC.get(areaId);
-    }
-
-    public static Int2IntMap all() {
-        return AREA_TO_QUEST;
     }
 
     /**
