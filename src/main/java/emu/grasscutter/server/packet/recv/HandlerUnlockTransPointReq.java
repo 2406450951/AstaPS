@@ -23,14 +23,20 @@ public class HandlerUnlockTransPointReq extends PacketHandler {
                         .getPlayer()
                         .getProgressManager()
                         .unlockTransPoint(req.getSceneId(), req.getPointId(), isStatue);
+        // Domain entrance activation uses an independent persisted receipt because
+        // the handbook can pre-unlock its map point without a player interaction.
+        boolean rewarded =
+                session.getPlayer().getProgressManager()
+                        .rewardDomainActivation(req.getSceneId(), req.getPointId());
         emu.grasscutter.Grasscutter.getLogger()
                 .info(
-                        "UnlockTransPointReq uid={} scene={} point={} statue={} unlocked={}",
+                        "UnlockTransPointReq uid={} scene={} point={} statue={} unlocked={} domainRewarded={}",
                         session.getPlayer().getUid(),
                         req.getSceneId(),
                         req.getPointId(),
                         isStatue,
-                        unlocked);
+                        unlocked,
+                        rewarded);
 
         // Current 7.1 clients update the live waypoint state from ScenePointUnlockNotify. Runtime
         // controls confirmed that a correctly encoded notify is sufficient for activation, map

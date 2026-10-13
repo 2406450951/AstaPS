@@ -23,6 +23,7 @@ import emu.grasscutter.net.proto.IceCreatureGadgetRemoveRspOuterClass.IceCreatur
 import emu.grasscutter.net.proto.IceCreatureLikeReqOuterClass.IceCreatureLikeReq;
 import emu.grasscutter.net.proto.IceCreatureLikeRspOuterClass.IceCreatureLikeRsp;
 import emu.grasscutter.net.proto.RetcodeOuterClass.Retcode;
+import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import emu.grasscutter.server.packet.send.PacketIceCreature;
 import emu.grasscutter.utils.Utils;
 import java.util.ArrayList;
@@ -57,6 +58,12 @@ public final class IceCreatureSystem {
         var config = IceCreatureConfig.get();
         Scene scene = player.getScene();
         int type = config.typeOf(req.getGadgetId());
+        log("build request gadget {} type {} pos {} replace {} values {}",
+                req.getGadgetId(), type, req.getPos(), req.getReplaceGuidListList(),
+                req.getGlobalValueListList().stream()
+                        .map(v -> (v.getKey().hasStr() ? v.getKey().getStr() : String.valueOf(v.getKey().getHash()))
+                                + "=" + v.getFloatValue())
+                        .toList());
         if (scene == null || type == 0 || !config.isBuildScene(scene.getId())) {
             log("refused build of gadget {} in scene {}: not an Ice Creature or not a build scene",
                     req.getGadgetId(), scene == null ? 0 : scene.getId());
@@ -122,6 +129,10 @@ public final class IceCreatureSystem {
                     .filter(r -> r.getEntityId() != 0 && req.getEntityIdListList().contains(r.getEntityId()))
                     .toList();
             retcode = doomed.isEmpty() ? FAIL : OK;
+            log("remove request entities {} scene {} flag {}: matched {} of {} standing creatures {}",
+                    req.getEntityIdListList(), req.getSceneId(), req.getUnk15(), doomed.size(),
+                    player.getIceCreatures().size(),
+                    player.getIceCreatures().stream().map(r -> r.getGuid() + "@" + r.getEntityId()).toList());
             removeRecords(player, doomed);
         }
         int entityId = req.getEntityIdListCount() == 0 ? 0 : req.getEntityIdList(0);
@@ -224,7 +235,9 @@ public final class IceCreatureSystem {
         Scene scene = player.getScene();
         if (scene != null && record.getSceneId() == scene.getId()) {
             var entity = scene.getEntityById(record.getEntityId());
-            if (entity != null) scene.removeEntity(entity);
+            // REMOVE, not the default DIE: the creatures are invincible true-ice gadgets with no death
+            // to play, and a client given DIE left every removed one standing.
+            if (entity != null) scene.removeEntity(entity, VisionType.VisionType_VISION_REMOVE);
         }
         record.setEntityId(0);
     }
@@ -255,10 +268,19 @@ public final class IceCreatureSystem {
                 .build();
     }
 
+    /**
+     * A GUID never handed out before. Taking the next one after the standing creatures reused a removed
+     * creature's GUID once all were gone, and the client still tied that GUID to the removed gadget.
+     * The clock keeps it moving forward across removals and restarts.
+     */
+    static long nextGuid(int uid, List<IceCreatureRecord> records, long nowSeconds) {
+        long low = GUID_BASE + (nowSeconds & 0x3FFFFFFFL);
+        for (var record : records) low = Math.max(low, (record.getGuid() & 0xFFFFFFFFL) + 1);
+        return ((long) uid << 32) | (low & 0xFFFFFFFFL);
+    }
+
     private static long nextGuid(Player player) {
-        long low = GUID_BASE;
-        for (var record : player.getIceCreatures()) low = Math.max(low, record.getGuid() & 0xFFFFFFFFL);
-        return ((long) player.getUid() << 32) | (low + 1);
+        return nextGuid(player.getUid(), player.getIceCreatures(), System.currentTimeMillis() / 1000);
     }
 
     private static void log(String format, Object... args) {

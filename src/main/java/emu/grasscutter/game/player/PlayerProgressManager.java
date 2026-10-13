@@ -90,12 +90,8 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         // already met before certain open state unlocks were implemented.
         this.tryUnlockOpenStates(false);
 
-        if (!GAME_OPTIONS.questing.enabled) {
-            // Retain the existing starter Mondstadt navigation area when questing is disabled.
-            // This map unlock is separate from the OpenState mass-unlock option.
-            this.player.getUnlockedScenePoints(3).add(7);
-            this.player.getUnlockedSceneAreas(3).add(1);
-        }
+        // Disabling quests must not activate the first Statue of the Seven or reveal
+        // its map area. Point (3,7) is unlocked only by normal gameplay/commands.
 
         if (GAME_OPTIONS.unlockAllOpenStatesOnLogin) {
             // Sandbox opt-in: preserve the former bulk unlock, but never tie it to questing.
@@ -933,20 +929,14 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             this.unlockSceneAreaHierarchy(sceneId, pointData.getAreaId());
         }
 
-        // Waypoints and statues share the same first-unlock reward table.
-        // Releasing a quest lock does not grant this reward again.
+        // Only the first permanent activation grants rewards. Quest-lock release does not.
+        // The server-owned TOML is the sole source of the reward amounts.
         if (newlyUnlocked) {
-            var pointReward = GameData.getTransPointRewardDataMap().get((sceneId << 16) + pointId);
-            if (pointReward != null) {
-                var reward = GameData.getRewardDataMap().get(pointReward.getRewardId());
-                if (reward != null) {
-                    this.player.getInventory()
-                            .addItemParamDatas(reward.getAllRewardItems(), ActionReason.UnlockPointReward);
-                } else {
-                    emu.grasscutter.Grasscutter.getLogger()
-                            .warn("Missing reward {} for scene {} point {}",
-                                    pointReward.getRewardId(), sceneId, pointId);
-                }
+            var kind = emu.grasscutter.game.reward.TransPointRewardConfig.kindOf(pointData, isStatue);
+            // Domain entries have a separate activation receipt: handbook syncing can
+            // pre-mark their map points unlocked before the player reaches the entrance.
+            if (kind != null && kind != emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN) {
+                grantTransPointReward(sceneId, pointId, kind);
             }
         }
 
@@ -989,12 +979,56 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         return true;
     }
 
+    private void grantTransPointReward(
+            int sceneId,
+            int pointId,
+            emu.grasscutter.game.reward.TransPointRewardConfig.Kind kind) {
+        var reward = emu.grasscutter.game.reward.TransPointRewardConfig.current()
+                .resolve(sceneId, pointId, kind);
+        if (!reward.isEmpty()) {
+            this.player.getInventory().addItemParamDatas(reward, ActionReason.UnlockPointReward);
+        }
+    }
+
+    /**
+     * Claim a dungeon entrance's first activation reward on UnlockTransPointReq.
+     * DomainHandbookHelper may already have opened the map point for UI navigation;
+     * that synthetic unlock must never consume this independent activation receipt.
+     */
+    public boolean rewardDomainActivation(int sceneId, int pointId) {
+        var entry = GameData.getScenePointEntryById(sceneId, pointId);
+        if (entry == null
+                || emu.grasscutter.game.reward.TransPointRewardConfig.kindOf(
+                        entry.getPointData(), false)
+                        != emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN) {
+            return false;
+        }
+
+        synchronized (this.player) {
+            var receipts = this.player.getRewardedDungeonEntries(sceneId);
+            if (receipts.contains(pointId)) return false;
+            grantTransPointReward(
+                    sceneId, pointId,
+                    emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN);
+            receipts.add(pointId);
+            this.player.save();
+            emu.grasscutter.Grasscutter.getLogger()
+                    .info("First domain activation reward uid={} scene={} point={}",
+                            this.player.getUid(), sceneId, pointId);
+            return true;
+        }
+    }
+
     public void unlockSceneArea(int sceneId, int areaId) {
         // Add the area to the list of unlocked areas in its scene.
         this.player.getUnlockedSceneAreas(sceneId).add(areaId);
 
-        // Send packet.
-        this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, areaId));
+        // A quest may request area 1 before statue (3,7) is activated.
+        // Preserve quest progress but do not reveal the area on the client yet.
+        if (emu.grasscutter.server.packet.send.SceneAreaVisibility
+                .forPlayer(this.player, sceneId).contains(areaId)) {
+            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, areaId));
+        }
         try {
             InvestigationHandbookHelper.trigger(
                     this.player,
@@ -1027,8 +1061,20 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             }
         }
 
-        if (!newly.isEmpty()) {
-            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, newly));
+        // A prior quest/old build might have stored area 1 before the statue
+        // unlocked. Re-send it when the statue really activates even if the
+        // area flag is not newly inserted.
+        var notifyAreas = new java.util.LinkedHashSet<>(newly);
+        if (sceneId == 3 && areaId == 1) {
+            notifyAreas.add(1);
+        }
+        // A different statue's region hierarchy can contain area 1. Do not
+        // announce it until its own point (3,7) is active.
+        notifyAreas.retainAll(
+                emu.grasscutter.server.packet.send.SceneAreaVisibility
+                        .forPlayer(this.player, sceneId));
+        if (!notifyAreas.isEmpty()) {
+            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, notifyAreas));
             this.player.save();
             try {
                 for (int unlockedAreaId : newly) {
@@ -1051,9 +1097,6 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         if (pointIds == null) return;
 
         var justified = new java.util.LinkedHashSet<Integer>();
-        if (sceneId == 3) {
-            justified.add(1); // starter Mondstadt
-        }
         var unlockedPoints = this.player.getUnlockedScenePoints(sceneId);
         for (int pointId : pointIds) {
             if (!unlockedPoints.contains(pointId)) continue;
@@ -1083,7 +1126,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         areas.clear();
         areas.addAll(justified);
         this.player.save();
-        this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, justified));
+        this.player.sendPacket(new PacketSceneAreaUnlockNotify(
+                sceneId, emu.grasscutter.server.packet.send.SceneAreaVisibility
+                        .forPlayer(this.player, sceneId)));
         emu.grasscutter.Grasscutter.getLogger()
                 .debug(
                         "Synced scene areas from points uid={} scene={} areas={}",

@@ -20,10 +20,10 @@ public final class PacketOpcodes {
     public static final int CheckUgcUpdateReq = 0;
     public static final int DeleteFriendReq = 3037;
     public static final int EntityAiKillSelfNotify = 29500;
-    public static final int ForgeGetQueueDataReq = 0;
+    public static final int ForgeGetQueueDataReq = 26968; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GetAllH5ActivityInfoReq = 0;
     public static final int GetCompoundDataReq = 8732; // 7.1 CmdId unknown (7.0: 9980)
-    public static final int GetFriendShowAvatarInfoReq = 0;
+    public static final int GetFriendShowAvatarInfoReq = 24487; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GetFriendShowNameCardInfoReq = 29743;
     public static final int GetHomeLevelUpRewardReq = 2113;
     public static final int GetProfilePictureDataReq = 27037; // [MIAO] 7.1 开更换界面
@@ -33,7 +33,7 @@ public final class PacketOpcodes {
     public static final int HomeChooseModuleReq = 0;
     public static final int HomeEnterEditModeFinishReq = 0;
     public static final int HomeGetBasicInfoReq = 0;
-    public static final int HomeGetOnlineStatusReq = 0;
+    public static final int HomeGetOnlineStatusReq = 6555; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int HomeSceneInitFinishReq = 27778;
     public static final int MusicGameCreateBeatmapReq = 0;
     public static final int MusicGameGetBeatmapReq = 0;
@@ -81,7 +81,7 @@ public final class PacketOpcodes {
     public static final int ReliquaryUpgradeReq = 7294;
     public static final int PhotoActivityFinishReq = 1560;
     public static final int GCGLevelChallengeFinishNotify = 29745;
-    public static final int TakeInvestigationRewardReq = 0; // 7.1 CmdId unknown (7.0: 211)
+    public static final int TakeInvestigationRewardReq = 8841; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int BatchBuyGoodsRsp = 29921;
     public static final int WindSeedClientNotify = 25742;
     // public static final int DJFIHMEOPFA = 7165;
@@ -95,10 +95,10 @@ public final class PacketOpcodes {
     public static final int ChessPickCardRsp = 28802;
     // public static final int NCKJGDKCFMA = 9726;
     public static final int FishingGallerySettleNotify = 26138;
-    public static final int PlayerApplyEnterMpResultRsp = 0; // 7.1 CmdId unknown (7.0: 307)
+    public static final int PlayerApplyEnterMpResultRsp = 24522; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int _GetBeyondPlayerInfoReq = 5960;
     // public static final int KDNBHKFPJLE = 329;
-    public static final int GetAllUnlockNameCardReq = 0; // 7.1 CmdId unknown (7.0: 323)
+    public static final int GetAllUnlockNameCardReq = 107; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int UpdateReunionWatcherNotify = 21498;
     public static final int PlayerPropChangeReasonNotify = 20925;
     // public static final int SingleStartBrickBreakerReq = 20901;
@@ -266,7 +266,7 @@ public final class PacketOpcodes {
     // public static final int ClientPauseNotify = 8996;
     public static final int GadgetPlayDataNotify = 20094;
     public static final int HomeSceneJumpReq = 0; // 7.1 CmdId unknown (7.0: 1332)
-    public static final int SetPlayerPropRsp = 0; // 7.1 CmdId unknown (7.0: 1336)
+    public static final int SetPlayerPropRsp = 8223; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int PHJADDJILFG = 25697;
     public static final int _TakeWorldWatcherRewardReq = 0; // 7.1 CmdId unknown (7.0: 1342)
     public static final int SelectWorktopOptionReq = 22443;
@@ -337,7 +337,7 @@ public final class PacketOpcodes {
     // public static final int _TakeAquariumTaskRewardReq = 28425;
     // public static final int DBELAAGKAKN = 29612;
     public static final int EchoShellTakeRewardReq = 9815;
-    public static final int UnlockTransPointRsp = 0; // 7.1 CmdId unknown (7.0: 1776)
+    public static final int UnlockTransPointRsp = 8462; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GCGApplyInviteBattleRsp = 22696;
     // public static final int OJKIDELKKFH = 20989;
     public static final int AvatarSatiationDataNotify = 29588;
@@ -403,7 +403,7 @@ public final class PacketOpcodes {
     // public static final int ECJPMCMAOJG = 5511;
     public static final int PushTipsAllDataNotify = 21552;
     public static final int PotionResetChallengeRsp = 21358;
-    public static final int PlayerChatRsp = 0; // 7.1 CmdId unknown (7.0: 2174)
+    public static final int PlayerChatRsp = 637; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int SetOpenStateReq = 7645;
     public static final int ChangeMailStarNotify = 8766;
     public static final int _BeyondPlayerReportReq = 2673;
@@ -420,7 +420,7 @@ public final class PacketOpcodes {
     // public static final int NDLJLOKEEBF = 106;
     // public static final int LCEEAENIPNB = 2347;
     // public static final int CJAAPGLFPNO = 2341;
-    public static final int PathfindingEnterSceneRsp = 0; // 7.1 CmdId unknown (7.0: 2316)
+    public static final int PathfindingEnterSceneRsp = 2376; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GMShowObstacleRsp = 2355;
     // public static final int NAHAGELILAL = 2364;
     // public static final int OHCNNJJPHLN = 2372;
@@ -460,7 +460,7 @@ public final class PacketOpcodes {
     public static final int GravenInnocencePhotoFinishReq = 29645;
     public static final int TowerAllDataReq = 27826; // from nameTranslations (7.1)
     public static final int QuestCreateEntityReq = 29721;
-    public static final int TakeBattlePassMissionPointReq = 0; // 7.1 CmdId unknown (7.0: 2572)
+    public static final int TakeBattlePassMissionPointReq = 23648; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GetBonusActivityRewardReq = 28092;
     // public static final int FHPBJEGIIND = 26403;
     public static final int _UgcEnterDungeonRsp = 1660;
@@ -508,7 +508,7 @@ public final class PacketOpcodes {
     // public static final int PNDKPFMCKLP = 23070;
     // public static final int AFIENOJODHE = 7778;
     // public static final int ECBJPBMCBLK = 25604;
-    public static final int PlayerSetPauseRsp = 0; // 7.1 CmdId unknown (7.0: 2870)
+    public static final int PlayerSetPauseRsp = 4761; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int TowerRecordHandbookRsp = 29419;
     // public static final int LMBNHHEABFO = 21395;
     public static final int SpringUseReq = 0; // 7.1 CmdId unknown (7.0: 2907)
@@ -558,7 +558,7 @@ public final class PacketOpcodes {
     public static final int MiracleRingDestroyNotify = 6455;
     // public static final int HEENKABNGHE = 25293;
     // public static final int OGCNCDJEFKH = 1483;
-    public static final int TowerTeamSelectRsp = 0; // 7.1 CmdId unknown (7.0: 3271)
+    public static final int TowerTeamSelectRsp = 28763; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int _UseTreasureKeyReq = 4301;
     public static final int HomeComfortInfoNotify = 2471;
     // public static final int BJPOLINNNNM = 8808;
@@ -640,7 +640,7 @@ public final class PacketOpcodes {
     // public static final int PBFOBPBHHNN = 22487;
     // public static final int NAOJMDABLEA = 3963;
     // public static final int DGMLEFGNFCJ = 23762;
-    public static final int SetChatEmojiCollectionRsp = 0; // 7.1 CmdId unknown (7.0: 3810)
+    public static final int SetChatEmojiCollectionRsp = 25173; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int PCIJFBPHGKJ = 27210;
     // public static final int BJONOELAKLI = 8267;
     // public static final int PEAHGHEKKLA = 9435;
@@ -683,10 +683,10 @@ public final class PacketOpcodes {
     // public static final int HLAALBHEELB = 6949;
     public static final int DungeonWayPointActivateRsp = 0; // 7.1 CmdId unknown (7.0: 4069)
     public static final int AvatarDelNotify = 28768;
-    public static final int WidgetDoBagRsp = 0; // 7.1 CmdId unknown (7.0: 4078)
+    public static final int WidgetDoBagRsp = 21894; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int DailyTaskScoreRewardNotify = 1358;
     public static final int HomePlantWeedReq = 21538;
-    public static final int GetPlayerHomeCompInfoReq = 0; // 7.1 CmdId unknown (7.0: 4082)
+    public static final int GetPlayerHomeCompInfoReq = 6450; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int _BeyondHallChangeTagsReq = 28249;
     public static final int TakeAchievementGoalRewardReq = 0; // 7.1 CmdId unknown (7.0: 4089)
     public static final int NormalUidOpNotify = 22391;
@@ -853,7 +853,7 @@ public final class PacketOpcodes {
     // public static final int HAEAGNKJEJN = 22794;
     public static final int WindFieldGalleryInfoNotify = 4948;
     // public static final int OFCAEIEAGFB = 8469;
-    public static final int HomeTransferRsp = 0; // 7.1 CmdId unknown (7.0: 5343)
+    public static final int HomeTransferRsp = 1789; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int BHNGIHMHPPE = 21183;
     public static final int PotionSaveDungeonResultReq = 4461;
     public static final int TakeCityReputationExploreRewardReq = 4973;
@@ -887,7 +887,7 @@ public final class PacketOpcodes {
     // public static final int FEHFPMOOJEG = 8763;
     public static final int DigActivityMarkPointChangeNotify = 8255;
     public static final int QuestTransmitReq = 6206;
-    public static final int GetHomeExchangeWoodInfoReq = 0; // 7.1 CmdId unknown (7.0: 5527)
+    public static final int GetHomeExchangeWoodInfoReq = 20116; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int ForgeQueueManipulateRsp = 22232;
     // public static final int IOILHCLLLAO = 28344;
     // public static final int LCNLHAOBBFE = 24604;
@@ -969,7 +969,7 @@ public final class PacketOpcodes {
     public static final int ScenePlayerSoundNotify = 25095;
     // public static final int LOHDOJILBEM = 6132;
     public static final int ToTheMoonEnterSceneReq = 6200;
-    public static final int ToTheMoonEnterSceneRsp = 0; // 7.1 CmdId unknown (7.0: 6122)
+    public static final int ToTheMoonEnterSceneRsp = 6103; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int PPCNDFIEEIC = 6192;
     public static final int ToTheMoonRemoveObstacleReq = 6190;
     public static final int ToTheMoonQueryPathReq = 6188;
@@ -1046,7 +1046,7 @@ public final class PacketOpcodes {
     // public static final int JLPIHENCHNE = 22348;
     public static final int McoinExchangeHcoinRsp = 27147;
     // public static final int DPOIKBLHNHH = 2492;
-    public static final int _GetBeyondPlayerSocialInfoReq = 0; // 7.1 CmdId unknown (7.0: 6739)
+    public static final int _GetBeyondPlayerSocialInfoReq = 4086; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int DeathZoneObserveNotify = 26031;
     public static final int AvatarPromoteGetRewardReq = 8532;
     public static final int WatcherChangeNotify = 3917;
@@ -1160,7 +1160,7 @@ public final class PacketOpcodes {
     // public static final int NEDDMBPCHFG = 1928;
     // public static final int EALGJHGIPFI = 658;
     public static final int LunaRiteHintPointRsp = 22395;
-    public static final int SeeMonsterRsp = 0; // 7.1 CmdId unknown (7.0: 7491)
+    public static final int SeeMonsterRsp = 60; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int FEPKPKKBEEB = 557;
     public static final int ActivitySelectAvatarCardRsp = 898;
     public static final int _GCGReplaySetFavoriteRsp = 3615;
@@ -1197,7 +1197,7 @@ public final class PacketOpcodes {
     // public static final int NDDLMAEFGPC = 4423;
     // public static final int EKFIBHCJGKM = 23295;
     public static final int _UgcDungeonPublishResultNotify = 25669;
-    public static final int HomeGetArrangementInfoReq = 0; // 7.1 CmdId unknown (7.0: 7727)
+    public static final int HomeGetArrangementInfoReq = 23469; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int KHGIDJCCEKG = 4399;
     public static final int ChapterStateNotify = 9598;
     // public static final int GJGJFEMDPFH = 706;
@@ -1242,7 +1242,7 @@ public final class PacketOpcodes {
     public static final int WeaponPromoteReq = 26071;
     public static final int ChangeTeamNameRsp = 6702;
     // public static final int HODGMKGPIPM = 2288;
-    public static final int DungeonPlayerDieRsp = 0; // 7.1 CmdId unknown (7.0: 8043)
+    public static final int DungeonPlayerDieRsp = 2666; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int BartenderCancelOrderRsp = 21974;
     // public static final int EFECJBHJAPB = 26388;
     public static final int EchoNotify = 25629;
@@ -1266,7 +1266,7 @@ public final class PacketOpcodes {
     public static final int MichiaeMatsuriRemoveChestMarkNotify = 3304;
     // public static final int MFPBCBMLDJD = 28789;
     // public static final int KOJABFMGOEO = 57;
-    public static final int AvatarChangeElementTypeRsp = 0; // 7.1 CmdId unknown (7.0: 8248)
+    public static final int AvatarChangeElementTypeRsp = 4438; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int BLKBFFCDOOH = 29899;
     public static final int AvatarPromoteGetRewardRsp = 5905;
     public static final int WatcherAllDataNotify = 6265;
@@ -1351,13 +1351,13 @@ public final class PacketOpcodes {
     // public static final int GJOCENLDHJH = 7935;
     public static final int LanV3RaceSettleNotify = 24845;
     // public static final int NMPCDAGJKKD = 20813;
-    public static final int DelBackupAvatarTeamRsp = 0; // 7.1 CmdId unknown (7.0: 8855)
+    public static final int DelBackupAvatarTeamRsp = 5712; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int HMOCBHAGMID = 9777;
     // public static final int NKIEJCINADJ = 25725;
     public static final int GetCityReputationInfoRsp = 29340;
     // public static final int EJNCJIBNOJM = 9613;
     public static final int RoguelikeRuneRecordUpdateNotify = 7720;
-    public static final int _EnterMapLayerRsp = 0; // 7.1 CmdId unknown (7.0: 8901)
+    public static final int _EnterMapLayerRsp = 21115; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int GMFLEBMPBPI = 25165;
     // public static final int BDEJPJEIJIP = 8036;
     // public static final int LFJIIDGGPGB = 23650;
@@ -1394,7 +1394,7 @@ public final class PacketOpcodes {
     public static final int FishBattleBeginRsp = 0; // 7.1 CmdId unknown (7.0: 9135)
     public static final int SpiceActivityFinishMakeSpiceRsp = 20336;
     public static final int ChallengeDataNotify = 29437;
-    public static final int AddBackupAvatarTeamRsp = 0; // 7.1 CmdId unknown (7.0: 9149)
+    public static final int AddBackupAvatarTeamRsp = 22904; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int EvtCreateGadgetNotify = 22067;
     public static final int TakeBackGivingItemRsp = 26864;
     public static final int QuestTransmitRsp = 29015;
@@ -1458,7 +1458,7 @@ public final class PacketOpcodes {
     public static final int _ActivityClientPlayEnterDungeonRsp = 4487;
     public static final int CrystalLinkDungeonInfoNotify = 2578;
     // public static final int IKIPJJICMEA = 20499;
-    public static final int GetAllActivatedBargainDataReq = 0; // 7.1 CmdId unknown (7.0: 9710)
+    public static final int GetAllActivatedBargainDataReq = 27916; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GetShopReq = 7829; // from LunaGC_7.1.0
     public static final int PullPrivateChatRsp = 28347;
     public static final int IrodoriChessPlayerInfoNotify = 28735;
@@ -1472,7 +1472,7 @@ public final class PacketOpcodes {
     public static final int GachaOpenWishNotify = 0; // 7.1 CmdId unknown (7.0: 9800)
     public static final int FungusCaptureSettleNotify = 1553;
     public static final int WidgetWeatherWizardDataNotify = 9150;
-    public static final int SetBattlePassViewedReq = 0; // 7.1 CmdId unknown (7.0: 9820)
+    public static final int SetBattlePassViewedReq = 23538; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int AvatarFollowRouteNotify = 8449;
     public static final int TowerBuffSelectRsp = 9661;
     // public static final int CHDGBLAODCL = 22966;
@@ -1502,12 +1502,12 @@ public final class PacketOpcodes {
     // public static final int GCGDSBanCardNotify = 6875;
     // public static final int CCFCEALGINO = 25503;
     // public static final int OODOGOBDLJP = 3733;
-    public static final int DelMailReq = 0; // 7.1 CmdId unknown (7.0: 20013)
+    public static final int DelMailReq = 3404; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int MMKLJMCGFHB = 9540;
     // public static final int KEFILHHHBCB = 9995;
     // public static final int ABJLJDNCJNP = 27119;
     // public static final int DLOMILCFHPB = 28098;
-    public static final int ChooseCurAvatarTeamRsp = 0; // 7.1 CmdId unknown (7.0: 20048)
+    public static final int ChooseCurAvatarTeamRsp = 29488; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GCGStartChallengeByCheckRewardRsp = 4269;
     // public static final int GCGDSDeckSaveReq = 25609;
     // public static final int _TakeAquariumTaskRewardRsp = 23990;
@@ -1568,7 +1568,7 @@ public final class PacketOpcodes {
     // public static final int NAPJAGAPMFA = 25408;
     public static final int _AnecdoteInfoUpdateNotify = 26199;
     public static final int ForgeQueueManipulateReq = 2573;
-    public static final int _AnecdoteGetDataReq = 0; // 7.1 CmdId unknown (7.0: 20526)
+    public static final int _AnecdoteGetDataReq = 21657; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int ItemAddHintNotify = 652;
     // public static final int LKPOCMAIOHA = 4586;
     public static final int ScenePlayOwnerStartInviteRsp = 26508;
@@ -1635,11 +1635,11 @@ public final class PacketOpcodes {
     // public static final int ADGJHGIMMOO = 9879;
     public static final int NpcTalkRsp = 3514;
     // public static final int DEHIOICICPG = 9006;
-    public static final int GetMapAreaReq = 0; // 7.1 CmdId unknown (7.0: 20974)
+    public static final int GetMapAreaReq = 21678; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int DPPGPOIHEDO = 26169;
     public static final int FungusFighterTrainingGallerySettleNotify = 6416;
     // public static final int OHIMIGBCMEB = 9347;
-    public static final int GetMailItemReq = 0; // 7.1 CmdId unknown (7.0: 21017)
+    public static final int GetMailItemReq = 3042; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int ABBNDMIMONA = 3482;
     // public static final int OHLCKLOEPBH = 29640;
     public static final int _RemoveMutelistReq = 0; // 7.1 CmdId unknown (7.0: 21030)
@@ -1671,7 +1671,7 @@ public final class PacketOpcodes {
     // public static final int PJPLNFFGLCN = 4758;
     public static final int _TowerDefenseOperationNotify = 947;
     // public static final int ADKKDHJEGDE = 3743;
-    public static final int GetPlayerBlacklistReq = 0; // 7.1 CmdId unknown (7.0: 21222)
+    public static final int GetPlayerBlacklistReq = 5616; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int PlayerCookRsp = 4698;
     // public static final int JFNMMAFIGHI = 4381;
     public static final int EntityForceSyncReq = 3153;
@@ -1721,7 +1721,7 @@ public final class PacketOpcodes {
     public static final int HPNIJELOPEB_Rsp = 0; // 7.1 CmdId unknown (7.0: 21616)
     // public static final int LKAOBAPLPIB = 29928;
     // public static final int PIFNPBAHPFM = 2298;
-    public static final int MarkMapRsp = 0; // 7.1 CmdId unknown (7.0: 21638)
+    public static final int MarkMapRsp = 4646; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GalleryBalloonScoreNotify = 27276;
     public static final int UpdatePlayerShowNameCardListReq = 29960;
     public static final int NALBKOPFIFD = 9787; // 7.1: {personal_line_id, retcode} rsp
@@ -1866,7 +1866,7 @@ public final class PacketOpcodes {
     public static final int GCGMessagePackNotify = 22983;
     public static final int GetUgcRsp = 27887;
     // public static final int KPFKAFKMIHJ = 22109;
-    public static final int ClientLockGameTimeNotify = 0; // 7.1 CmdId unknown (7.0: 22608)
+    public static final int ClientLockGameTimeNotify = 27447; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int CombineFormulaDataNotify = 9365;
     public static final int AvatarFightPropNotify = 26318;
     public static final int HomeUpdatePictureFrameInfoReq = 21432;
@@ -1931,7 +1931,7 @@ public final class PacketOpcodes {
     public static final int PlayerApplyEnterMpResultNotify = 28155;
     // public static final int BHHJENAJHFP = 24820;
     public static final int _MonsterSnapSettleReq = 25397;
-    public static final int AvatarExpeditionAllDataReq = 0; // 7.1 CmdId unknown (7.0: 23006)
+    public static final int AvatarExpeditionAllDataReq = 26769; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int OMGJLOONCFG = 25018;
     public static final int _WorldWatcherAllDataNotify = 0; // 7.1 CmdId unknown (7.0: 23009)
     public static final int BatchBuyGoodsReq = 3046;
@@ -1940,8 +1940,8 @@ public final class PacketOpcodes {
     public static final int EffigyChallengeV2EnterDungeonReq = 20676;
     // public static final int LOCAOJENNKJ = 4325;
     public static final int AvatarChangeElementTypeReq = 26128;
-    public static final int GetRegionSearchReq = 0; // 7.1 CmdId unknown (7.0: 23100)
-    public static final int FurnitureMakeReq = 0; // 7.1 CmdId unknown (7.0: 23107)
+    public static final int GetRegionSearchReq = 6435; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
+    public static final int FurnitureMakeReq = 2299; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int IGDOHHJHIKP = 24450;
     // public static final int DELMJCPELAE = 26422;
     // public static final int MCBLOGKLGLJ = 27835;
@@ -2005,7 +2005,7 @@ public final class PacketOpcodes {
     // public static final int LMJKOPOLLOF = 29173;
     public static final int HomeResourceNotify = 1023;
     public static final int RoguelikeCardGachaNotify = 25978;
-    public static final int _MoveTeamReq = 0; // 7.1 CmdId unknown (7.0: 23619)
+    public static final int _MoveTeamReq = 20029; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int ProjectorOptionRsp = 26410;
     public static final int OneoffGatherPointDetectorDataNotify = 25175;
     // public static final int MDHHPFOHJLG = 21086;
@@ -2180,7 +2180,7 @@ public final class PacketOpcodes {
     public static final int TakeCompoundOutputReq = 8446;
     public static final int ClearRoguelikeCurseNotify = 21804;
     // public static final int ANENBCAMLIG = 8516;
-    public static final int WorldPlayerReviveRsp = 0; // 7.1 CmdId unknown (7.0: 24752)
+    public static final int WorldPlayerReviveRsp = 9129; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GetWorldMpInfoReq = 0; // 7.1 CmdId unknown (7.0: 24757)
     public static final int LanternRiteStartFireworksReformRsp = 24748;
     public static final int SceneAudioNotify = 1922;
@@ -2258,7 +2258,7 @@ public final class PacketOpcodes {
     // public static final int COIJMEBGNPB = 7210;
     public static final int PlayerRechargeDataNotify = 9913;
     // public static final int EBAFBJENLJN = 9431;
-    public static final int GetAreaExplorePointReq = 0; // 7.1 CmdId unknown (7.0: 25269)
+    public static final int GetAreaExplorePointReq = 9020; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int EPMEJNJPPOF = 23866;
     public static final int WidgetQuickHitTreeRsp = 24161;
     // public static final int FLGHDFNONEO = 28052;
@@ -2335,7 +2335,7 @@ public final class PacketOpcodes {
     public static final int UseItemRsp = 25449;
     // public static final int DEIGGGMFHON = 829;
     public static final int FleurFairMusicGameStartRsp = 1477;
-    public static final int GetChatEmojiCollectionReq = 0; // 7.1 CmdId unknown (7.0: 25825)
+    public static final int GetChatEmojiCollectionReq = 24581; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int FPEGHJANILP = 27946;
     // public static final int NBGFLJHFDNM = 29885;
     // public static final int KAHIDGJJGBA = 6794;
@@ -2389,8 +2389,8 @@ public final class PacketOpcodes {
     public static final int TakeResinCardDailyRewardReq = 20861;
     // public static final int JBAOIBOAFCD = 4282;
     public static final int BonusActivityInfoRsp = 2826;
-    public static final int GetFurnitureCurModuleArrangeCountReq = 0; // 7.1 CmdId unknown (7.0: 26230)
-    public static final int FurnitureMakeStartRsp = 0; // 7.1 CmdId unknown (7.0: 26239)
+    public static final int GetFurnitureCurModuleArrangeCountReq = 8067; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
+    public static final int FurnitureMakeStartRsp = 21056; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int _ActivityClientPlayCurLevelInfoUpdateNotify = 7838;
     public static final int QuestUpdateQuestVarNotify = 29989;
     public static final int _GetShopBatchReq = 27535;
@@ -2442,7 +2442,7 @@ public final class PacketOpcodes {
     // public static final int JMBJECONMHO = 4721;
     public static final int _QuestRenameMiscReq = 2429;
     public static final int ReliquaryOfferDataNotify = 24434; // 圣言自明机
-    public static final int _AvatarEscoffierSkillCookReq = 0; // 7.1 CmdId unknown (7.0: 26785)
+    public static final int _AvatarEscoffierSkillCookReq = 29232; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int LuaEnvironmentEffectNotify = 6607;
     public static final int _ShowBubbleTalkNotify = 21655;
     // public static final int GMPEJHLMPIO = 27309;
@@ -2470,7 +2470,7 @@ public final class PacketOpcodes {
     // public static final int BOKGJKLLIGF = 1472;
     // public static final int LFFJLPIHCHL = 2499;
     // public static final int JLDLGKJGEDM = 22731;
-    public static final int GetAllSceneGalleryInfoReq = 0; // 7.1 CmdId unknown (7.0: 26971)
+    public static final int GetAllSceneGalleryInfoReq = 7016; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int NOHJDPCIPPL = 8991;
     // public static final int ELEFEMDJMOO = 8951;
     public static final int HomeAvatarRewardEventGetReq = 1414;
@@ -2528,7 +2528,7 @@ public final class PacketOpcodes {
     // public static final int FBLBDPPBMOC = 7134;
     // public static final int AJOLGAEOPDE = 3868;
     public static final int GadgetChainLevelUpdateNotify = 20241;
-    public static final int HomeSaveArrangementNoChangeReq = 0; // 7.1 CmdId unknown (7.0: 27352)
+    public static final int HomeSaveArrangementNoChangeReq = 42; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int TryEnterHomeRsp = 3936;
     public static final int ActivityCoinInfoNotify = 25531;
     public static final int GetBattlePassProductRsp = 20122;
@@ -2597,7 +2597,7 @@ public final class PacketOpcodes {
     // public static final int HCONJAHFJPO = 26497;
     // public static final int NJLFEHOLDDB = 3893;
     // public static final int PNHPNOEGAND = 8406;
-    public static final int _GetWidgetQuickSlotListRsp = 0; // 7.1 CmdId unknown (7.0: 27801)
+    public static final int _GetWidgetQuickSlotListRsp = 5047; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GetGameplayRecommendationReq = 79;
     public static final int _AnecdoteFinishNotify = 406;
     public static final int EvtLocalGadgetOwnerLeaveSceneNotify = 3095;
@@ -2617,7 +2617,7 @@ public final class PacketOpcodes {
     public static final int FishEscapeNotify = 2486;
     public static final int BargainTerminateNotify = 7831;
     public static final int HomeLimitedShopInfoRsp = 2652;
-    public static final int ReunionBriefInfoReq = 0; // 7.1 CmdId unknown (7.0: 27913)
+    public static final int ReunionBriefInfoReq = 5886; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int DungeonRestartReq = 9381; // 7.1: confirmed in Fontaine weapon domain 4471
     // public static final int OfferingPariSearchRsp = 25683;
     public static final int PushTipsChangeNotify = 4737;
@@ -2669,7 +2669,7 @@ public final class PacketOpcodes {
     public static final int ReliquaryUpgradeRsp = 25149;
     public static final int RogueDiaryDungeonSettleNotify = 20005;
     // public static final int FLPFLCPNIAG = 3528;
-    public static final int _GetWidgetQuickSlotListReq = 0; // 7.1 CmdId unknown (7.0: 28198)
+    public static final int _GetWidgetQuickSlotListReq = 525; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int AvatarSkillUpgradeRsp = 2562;
     // public static final int MHAKNFEHJHO = 9392;
     // public static final int LKHLKMNNOKN = 29209;
@@ -2703,7 +2703,7 @@ public final class PacketOpcodes {
     public static final int DungeonRestartInviteNotify = 8198;
     // public static final int NDELMIPKPED = 26651;
     public static final int HomeResourceTakeFetterExpReq = 0; // 7.1 CmdId unknown (7.0: 28435)
-    public static final int GetDailyDungeonEntryInfoReq = 0; // 7.1 CmdId unknown (7.0: 28445)
+    public static final int GetDailyDungeonEntryInfoReq = 20841; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int JIOHELNPINH = 22474;
     public static final int HomePreviewBlueprintReq = 7639;
     // public static final int SorushTrialStartGalleryRsp = 6839;
@@ -2727,7 +2727,7 @@ public final class PacketOpcodes {
     public static final int _UgcDungeonPublishDungeonReq = 25221;
     public static final int UpdatePlayerShowNameCardListRsp = 22615;
     public static final int HomeClearGroupRecordRsp = 1823;
-    public static final int TakeMaterialDeleteReturnRsp = 0; // 7.1 CmdId unknown (7.0: 28605)
+    public static final int TakeMaterialDeleteReturnRsp = 23074; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int KPHKMKLKADJ = 26969;
     public static final int WinterCampTriathlonSettleNotify = 24776;
     public static final int PlatformChangeRouteNotify = 0; // 7.1 CmdId unknown (7.0: 28611)
@@ -2791,7 +2791,7 @@ public final class PacketOpcodes {
     // public static final int PEBBPALOFBP = 1345;
     public static final int WorldRoutineTypeCloseNotify = 8094;
     // public static final int HGCAFMLDILH = 29830;
-    public static final int GetWidgetSlotReq = 0; // 7.1 CmdId unknown (7.0: 28994)
+    public static final int GetWidgetSlotReq = 4994; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int ReunionDailyRefreshNotify = 22454;
     public static final int PlayerSetLanguageReq = 24516;
     // public static final int DMEAKHDFOIG = 25611;
@@ -2868,7 +2868,7 @@ public final class PacketOpcodes {
     public static final int _MonsterChessV2FlagSelectRsp = 4825;
     // public static final int MIEENPDOGIP = 9475;
     public static final int LaunchFireworksReq = 26674;
-    public static final int EnterTrialAvatarActivityDungeonRsp = 0; // 7.1 CmdId unknown (7.0: 29517)
+    public static final int EnterTrialAvatarActivityDungeonRsp = 21467; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GroupLinkChangeNotify = 0; // 7.1 CmdId unknown (7.0: 29523)
     // public static final int JourneyDiceEnterDungeonReq = 5240;
     public static final int ActivityBannerNotify = 26136;
@@ -2994,9 +2994,9 @@ public final class PacketOpcodes {
     public static final int HomeModuleUnlockNotify = 0; // 7.1 CmdId unknown (7.0: 1)
     public static final int HomePreChangeEditModeNotify = 1974;
     public static final int HomeSceneInitFinishRsp = 0; // 7.1 CmdId unknown (7.0: 1)
-    public static final int HomeUpdateArrangementInfoRsp = 0; // 7.1 CmdId unknown (7.0: 1)
+    public static final int HomeUpdateArrangementInfoRsp = 20044; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int java = 0; // 7.1 CmdId unknown (7.0: 1)
-    public static final int LaunchFireworksRsp = 0; // 7.1 CmdId unknown (7.0: 1)
+    public static final int LaunchFireworksRsp = 3595; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int MusicGameCreateBeatmapRsp = 0; // 7.1 CmdId unknown (7.0: 1)
     public static final int MusicGameGetBeatmapRsp = 0; // 7.1 CmdId unknown (7.0: 1)
     public static final int MusicGameSearchBeatmapRsp = 0; // 7.1 CmdId unknown (7.0: 1)
@@ -3008,7 +3008,7 @@ public final class PacketOpcodes {
     public static final int RemoveCustomTeamRsp = 0; // 7.1 CmdId unknown (7.0: 1)
     public static final int SceneEntityUpdateNotify = 1936; // 7.1 CmdId unknown (7.0: 1)
     public static final int SceneKickPlayerRsp = 0; // 7.1 CmdId unknown (7.0: 1)
-    public static final int SetFriendEnterHomeOptionRsp = 0; // 7.1 CmdId unknown (7.0: 1)
+    public static final int SetFriendEnterHomeOptionRsp = 28346; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int SetPlayerBornDataRsp = 4385; // 7.1 global, runtime-confirmed
     public static final int SkipPlayerGameTimeRsp = 338; // 7.1 CmdId unknown (7.0: 1)
     public static final int TheaterLobbySceneJumpRsp = 0; // 7.1 CmdId unknown (7.0: 1)
@@ -3048,21 +3048,21 @@ public final class PacketOpcodes {
     public static final int DungeonQuickOpenRsp = 20791; // 7.1 packet of the same name
     public static final int EnterMapLayerReq = 5991; // 7.1 packet of the same name
     public static final int EnterMapLayerReq_660 = -1002; // no 7.1 CmdId known
-    public static final int EnterMapLayerRsp = -1003; // no 7.1 CmdId known
+    public static final int EnterMapLayerRsp = 21115; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int EnterMapLayerRsp_660 = -1004; // no 7.1 CmdId known
     public static final int FNBOONCENJP_Req = -1005; // no 7.1 CmdId known
-    public static final int GetBeyondPlayerSocialInfoReq = -1006; // no 7.1 CmdId known
+    public static final int GetBeyondPlayerSocialInfoReq = 4086; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GetBeyondPlayerSocialInfoRsp = 3347; // 7.1 packet of the same name
     public static final int GetShopBatchReq = 27535; // 7.1 packet of the same name
     public static final int GetShopBatchRsp = 24069; // 7.1 packet of the same name
     public static final int GetShopReqNew = -1007; // no 7.1 CmdId known
     public static final int GetShopRspNew = -1008; // no 7.1 CmdId known
-    public static final int GetWidgetQuickSlotListReq = -1009; // no 7.1 CmdId known
-    public static final int GetWidgetQuickSlotListRsp = -1010; // no 7.1 CmdId known
+    public static final int GetWidgetQuickSlotListReq = 525; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
+    public static final int GetWidgetQuickSlotListRsp = 5047; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int HCEMMAHMHLE_Req = -1011; // no 7.1 CmdId known
     public static final int MusicGameBookAllDataNotify = 8786; // 7.1 packet of the same name
     public static final int Opcode6231 = -1012; // no 7.1 CmdId known
-    public static final int PlayerOfferingReq = -1013; // no 7.1 CmdId known
+    public static final int PlayerOfferingReq = 4465; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int SetCoopChapterViewedRsp = -1014; // no 7.1 CmdId known
     public static final int SetReliquaryStarStateReq = 5672; // 7.1 packet of the same name
     public static final int SetReliquaryStarStateRsp = 7536; // 7.1 packet of the same name

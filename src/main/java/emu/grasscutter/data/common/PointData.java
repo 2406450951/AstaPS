@@ -15,6 +15,10 @@ public final class PointData {
     @Getter private int areaId;
 
     private String $type;
+    /** Native point subtype (e.g. TOWER/PORTAL), distinct from $type. */
+    @com.google.gson.annotations.SerializedName("type")
+    @Getter private String pointType;
+    @Getter private String mapVisibility;
     @Getter private Position tranPos;
     @Getter private Position pos;
     @Getter private Position rot;
