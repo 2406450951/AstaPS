@@ -74,6 +74,9 @@ GM Handbook*.txt
 handbook.html
 
 config.json
+# Local game rules (all subdirectories) are owned by the server operator.
+/config/
+# Legacy location: moved into config/rewards/ on the next startup.
 /trans-point-rewards.toml
 mitmdump.exe
 mongod.exe

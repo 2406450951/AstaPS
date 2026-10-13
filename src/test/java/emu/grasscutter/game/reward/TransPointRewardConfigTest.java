@@ -6,9 +6,12 @@ import com.google.gson.Gson;
 import emu.grasscutter.data.common.PointData;
 import emu.grasscutter.data.common.ItemParamData;
 import emu.grasscutter.data.excels.dungeon.DungeonEntryData;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 final class TransPointRewardConfigTest {
     private static final Gson GSON = new Gson();
@@ -92,6 +95,18 @@ final class TransPointRewardConfigTest {
         assertNull(TransPointRewardConfig.kindOf(portal, false));
         assertNull(TransPointRewardConfig.kindOf(hidden, false));
         assertNull(TransPointRewardConfig.kindOf(dungeon, false));
+    }
+
+    @Test
+    void createsNestedLocalConfigAndPreservesOwnerEdits(@TempDir Path tempDir) throws Exception {
+        Path config = tempDir.resolve("config/rewards/trans-point-rewards.toml");
+        TransPointRewardConfig.loadOrCreate(config);
+        assertTrue(Files.exists(config));
+        assertTrue(Files.readString(config).contains("[\"kind=waypoint\"]"));
+
+        Files.writeString(config, RULES);
+        TransPointRewardConfig.loadOrCreate(config);
+        assertEquals(RULES, Files.readString(config));
     }
 
     @Test

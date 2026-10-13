@@ -1,7 +1,9 @@
 # AstaPS first-unlock rewards
 
-`trans-point-rewards.toml` is a server-owned configuration, generated beside `config.json`
-on the first startup. Changes made by the server owner are never overwritten on startup.
+`config/rewards/trans-point-rewards.toml` is a server-owned configuration, generated
+on the first startup. The old root-level `trans-point-rewards.toml` is moved to this
+location automatically when the new path is missing. If both exist, startup rejects
+the conflict to avoid silently choosing one. Changes made by the server owner are never overwritten on startup.
 Malformed or unsupported config stops startup; there is no native reward-table fallback.
 
 ## Supported selectors
@@ -17,7 +19,7 @@ mean zero, not inherited values. `adventureExp`, `primogems`, and `mora` are
 non-negative integers; `items` is an array of `{ id = ..., count = ... }`.
 
 The bundled template is `src/main/resources/trans-point-rewards.toml`.
-The local generated file is gitignored. This intentionally does **not** load
+The local generated config directory is gitignored. This intentionally does **not** load
 `ExcelBinOutput/TransPointRewardConfigData.json` or look up the old `rewardId`
 in `RewardExcelConfigData.json`.
 
