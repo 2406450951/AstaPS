@@ -82,6 +82,10 @@ final class TransPointRewardConfigTest {
                 TransPointRewardConfig.kindOf(ordinary, false));
         assertEquals(TransPointRewardConfig.Kind.STATUE,
                 TransPointRewardConfig.kindOf(ordinary, true));
+        var obfuscatedStatue = GSON.fromJson(
+                "{\"$type\":\"KDEHKECBDBO\",\"gadgetId\":70130009}", PointData.class);
+        assertEquals(TransPointRewardConfig.Kind.STATUE,
+                TransPointRewardConfig.kindOf(obfuscatedStatue, true));
         assertNull(TransPointRewardConfig.kindOf(portal, false));
         assertNull(TransPointRewardConfig.kindOf(hidden, false));
         assertNull(TransPointRewardConfig.kindOf(dungeon, false));
