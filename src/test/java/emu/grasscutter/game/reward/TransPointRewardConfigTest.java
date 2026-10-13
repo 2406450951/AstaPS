@@ -80,8 +80,11 @@ final class TransPointRewardConfigTest {
         var dungeon = GSON.fromJson("{\"$type\":\"DungeonEntry\"}", PointData.class);
         assertEquals(TransPointRewardConfig.Kind.WAYPOINT,
                 TransPointRewardConfig.kindOf(ordinary, false));
+        var statue = GSON.fromJson(
+                "{\"$type\":\"SceneTransPoint\",\"gadgetId\":70110001,\"maxSpringVolume\":5000}",
+                PointData.class);
         assertEquals(TransPointRewardConfig.Kind.STATUE,
-                TransPointRewardConfig.kindOf(ordinary, true));
+                TransPointRewardConfig.kindOf(statue, true));
         var obfuscatedStatue = GSON.fromJson(
                 "{\"$type\":\"KDEHKECBDBO\",\"gadgetId\":70130009}", PointData.class);
         assertEquals(TransPointRewardConfig.Kind.STATUE,
