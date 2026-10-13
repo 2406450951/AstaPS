@@ -71,6 +71,72 @@ public final class MondstadtStoryQuestSupport {
         }
     }
 
+    static boolean hasEarnedAmberContinuation(GameMainQuest main, boolean firstDungeonCompleted) {
+        if (!firstDungeonCompleted || main == null || main.getParentQuestId() != 485
+                || main.isFinished() || main.getState() == ParentQuestState.PARENT_QUEST_STATE_FINISHED) return false;
+        var target = main.getChildQuestById(48510);
+        if (target == null || target.getState() == QuestState.QUEST_STATE_FINISHED) return false;
+        for (int id : new int[] {48501, 48511, 48509, 48512})
+            if (main.getChildQuestById(id) == null) return false;
+        // A later active/finished stage must never be rewound by this first-segment migration.
+        for (int id : new int[] {48502, 48503, 48504, 48505, 48506, 48507, 48508}) {
+            var later = main.getChildQuestById(id);
+            if (later != null && (later.getState() != QuestState.QUEST_STATE_UNSTARTED
+                    && later.getState() != QuestState.QUEST_STATE_NONE)) return false;
+        }
+        return true;
+    }
+
+    /** Restore only progress proved by the saved one-time dungeon clear, without repeating rewards. */
+    static boolean restoreCompletedAmberDungeon(GameMainQuest main) {
+        if (!QuestManager.isQuestingActive() || main == null || main.getOwner() == null) return false;
+        var player = main.getOwner();
+        var progress = player.getPlayerProgress();
+        if (progress == null || !hasEarnedAmberContinuation(main, progress.getCompletedDungeons().contains(2007)))
+            return false;
+        boolean changed = false;
+        for (int id : new int[] {48501, 48511, 48509, 48512, 48510}) {
+            var quest = main.getChildQuestById(id);
+            var state = id == 48510 ? QuestState.QUEST_STATE_UNFINISHED : QuestState.QUEST_STATE_FINISHED;
+            if (quest.getState() == state) continue;
+            quest.setState(state);
+            if (quest.getStartTime() == 0) quest.setStartTime(emu.grasscutter.utils.Utils.getCurrentSeconds());
+            if (quest.getAcceptTime() == 0) quest.setAcceptTime(quest.getStartTime());
+            if (quest.getFinishProgressList() != null) Arrays.fill(quest.getFinishProgressList(), id == 48510 ? 0 : 1);
+            if (quest.getFailProgressList() != null) Arrays.fill(quest.getFailProgressList(), 0);
+            if (id != 48510 && quest.getFinishTime() == 0) quest.setFinishTime(emu.grasscutter.utils.Utils.getCurrentSeconds());
+            player.sendPacket(new emu.grasscutter.server.packet.send.PacketQuestListUpdateNotify(quest));
+            changed = true;
+        }
+        if (changed) main.save();
+        return true;
+    }
+
+    static boolean isAmberSecondSegment(GameMainQuest main) {
+        if (main == null || main.getParentQuestId() != 485 || main.isFinished()
+                || main.getState() == ParentQuestState.PARENT_QUEST_STATE_FINISHED) return false;
+        for (int id : new int[] {48501, 48511, 48509, 48512, 48510}) {
+            var quest = main.getChildQuestById(id);
+            if (quest == null || quest.getState() != QuestState.QUEST_STATE_FINISHED) return false;
+        }
+        var end = main.getChildQuestById(48506);
+        if (end != null && end.getState() == QuestState.QUEST_STATE_FINISHED) return false;
+        for (int id : new int[] {48502, 48503, 48504, 48505, 48506}) {
+            var quest = main.getChildQuestById(id);
+            if (quest != null && quest.getState() == QuestState.QUEST_STATE_UNFINISHED) return true;
+        }
+        return false;
+    }
+
+    public static boolean isAmberWaterGroup(emu.grasscutter.game.world.Scene scene, int groupId) {
+        return scene != null && scene.getId() == 1016 && groupId == 201016003;
+    }
+
+    public static boolean isAmberWaterPlatform(emu.grasscutter.game.entity.EntityGadget gadget) {
+        return gadget != null && isAmberWaterGroup(gadget.getScene(), gadget.getGroupId())
+                && (gadget.getConfigId() == 3013 || gadget.getConfigId() == 3016 || gadget.getConfigId() == 3017);
+    }
+
     static boolean canContinueAmberDungeon(GameQuest quest, emu.grasscutter.data.excels.dungeon.DungeonData dungeon) {
         if (!QuestManager.isQuestingActive() || quest == null || dungeon == null
                 || quest.getMainQuestId() != 485 || quest.getSubQuestId() != 48510
@@ -92,6 +158,19 @@ public final class MondstadtStoryQuestSupport {
         if (player.getSceneLoadState() != emu.grasscutter.game.player.Player.SceneLoadState.LOADED
                 || (player.getSceneId() != 1015 && player.getSceneId() != 3)) return;
         var scene = player.getScene();
+        var main = player.getQuestManager().getMainQuestById(485);
+        if (QuestManager.isQuestingActive() && scene != null && scene.getId() == 3
+                && isAmberSecondSegment(main)) {
+            scene.runWhenFinished(() -> scene.getScheduler().scheduleDelayedTask(() -> {
+                if (player.getScene() == scene
+                        && player.getSceneLoadState() == emu.grasscutter.game.player.Player.SceneLoadState.LOADED
+                        && isAmberSecondSegment(main)
+                        && emu.grasscutter.game.dungeons.DomainDungeonHelper.canEnterDungeonFromOpenWorld(player, 102, 2007))
+                    player.getServer().getDungeonSystem().enterDungeon(player, 102, 2006, true);
+            }, 1));
+            return;
+        }
+        restoreCompletedAmberDungeon(main);
         var quest = player.getQuestManager().getQuestById(48510);
         var data = GameData.getDungeonDataMap().get(2007);
         if (scene == null || !canContinueAmberDungeon(quest, data)) return;
