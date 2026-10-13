@@ -426,10 +426,6 @@ public final class GameData {
     private static final Int2ObjectMap<RewardData> rewardDataMap = new Int2ObjectOpenHashMap<>();
 
     @Getter
-    private static final Int2ObjectMap<TransPointRewardData> transPointRewardDataMap =
-            new Int2ObjectOpenHashMap<>();
-
-    @Getter
     private static final Int2ObjectMap<RewardPreviewData> rewardPreviewDataMap =
             new Int2ObjectOpenHashMap<>();
 

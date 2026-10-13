@@ -933,20 +933,12 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             this.unlockSceneAreaHierarchy(sceneId, pointData.getAreaId());
         }
 
-        // Waypoints and statues share the same first-unlock reward table.
-        // Releasing a quest lock does not grant this reward again.
+        // Only the first permanent activation grants rewards. Quest-lock release does not.
+        // The server-owned TOML is the sole source of the reward amounts.
         if (newlyUnlocked) {
-            var pointReward = GameData.getTransPointRewardDataMap().get((sceneId << 16) + pointId);
-            if (pointReward != null) {
-                var reward = GameData.getRewardDataMap().get(pointReward.getRewardId());
-                if (reward != null) {
-                    this.player.getInventory()
-                            .addItemParamDatas(reward.getAllRewardItems(), ActionReason.UnlockPointReward);
-                } else {
-                    emu.grasscutter.Grasscutter.getLogger()
-                            .warn("Missing reward {} for scene {} point {}",
-                                    pointReward.getRewardId(), sceneId, pointId);
-                }
+            var kind = emu.grasscutter.game.reward.TransPointRewardConfig.kindOf(pointData, isStatue);
+            if (kind != null) {
+                grantTransPointReward(sceneId, pointId, kind);
             }
         }
 
@@ -987,6 +979,46 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         }
         this.player.save();
         return true;
+    }
+
+    private void grantTransPointReward(
+            int sceneId,
+            int pointId,
+            emu.grasscutter.game.reward.TransPointRewardConfig.Kind kind) {
+        var reward = emu.grasscutter.game.reward.TransPointRewardConfig.current()
+                .resolve(sceneId, pointId, kind);
+        if (!reward.isEmpty()) {
+            this.player.getInventory().addItemParamDatas(reward, ActionReason.UnlockPointReward);
+        }
+    }
+
+    /**
+     * A domain's handbook unlock is not discovery: the handbook grants access in bulk.
+     * Only a successfully entered, native reward-eligible entrance earns the configured
+     * reward. Store an independent receipt so reconnecting or entering again cannot pay twice.
+     */
+    public boolean rewardDungeonEntry(int sceneId, int pointId) {
+        var point = GameData.getScenePointEntryById(sceneId, pointId);
+        if (point == null || point.getPointData() == null
+                || !"DungeonEntry".equals(point.getPointData().getType())) {
+            return false;
+        }
+        boolean eligible = GameData.getDungeonEntryDataMap().values().stream()
+                .anyMatch(entry -> entry.getSceneId() == sceneId
+                        && entry.getDungeonEntryId() == pointId
+                        && entry.getRewardDataId() > 0);
+        if (!eligible) return false;
+
+        synchronized (this.player) {
+            var receipts = this.player.getRewardedDungeonEntries(sceneId);
+            if (receipts.contains(pointId)) return false;
+            grantTransPointReward(
+                    sceneId, pointId,
+                    emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN);
+            receipts.add(pointId);
+            this.player.save();
+            return true;
+        }
     }
 
     public void unlockSceneArea(int sceneId, int areaId) {

@@ -1,0 +1,26 @@
+# AstaPS server-owned first-unlock rewards. This file is generated once.
+# Selectors: "kind=waypoint", "kind=statue", "kind=domain", "7:*", "3:6".
+# Priority: exact point > scene > kind. Every table replaces the entire reward.
+version = 1
+
+["kind=waypoint"]
+adventureExp = 50
+primogems = 5
+
+["kind=statue"]
+adventureExp = 50
+primogems = 5
+
+# Only native reward-eligible domain entrances; awarded on first successful entry.
+["kind=domain"]
+adventureExp = 50
+primogems = 5
+
+# The tutorial waypoint's native first-unlock reward has no primogems.
+["3:6"]
+adventureExp = 10
+
+# Three Realms Gateway Offering (scene 7).
+["7:*"]
+primogems = 5
+items = [{ id = 101692, count = 20 }]
