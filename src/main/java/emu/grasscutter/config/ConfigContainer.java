@@ -39,9 +39,10 @@ public class ConfigContainer {
      * Version 15 - 'server.watchdog' was added for the database monitor and timed restart.
      * Version 16 - 'server.http.webConsole' was added for the password-protected web console.
      * Version 17 - 'gameOptions.unlockAllOpenStatesOnLogin' controls optional login feature unlock.
+     * Version 18 - 'gameOptions.mapFogEnabled' controls exploration fog (enabled by default).
      */
     private static int version() {
-        return 17;
+        return 18;
     }
 
     /**
@@ -421,6 +422,10 @@ public class ConfigContainer {
 
         /** Sandbox-only: unlock all supported OpenStates on login. Disabled by default. */
         public boolean unlockAllOpenStatesOnLogin = false;
+
+        /** Show unexplored map fog until the corresponding Statue of the Seven unlocks an area. */
+        public boolean mapFogEnabled = true;
+
         public ArtifactShopOptions artifactShop = new ArtifactShopOptions();
         public boolean staminaUsage = true;
         public boolean energyUsage = true;
