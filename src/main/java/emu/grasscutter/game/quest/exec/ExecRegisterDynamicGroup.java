@@ -14,6 +14,11 @@ public class ExecRegisterDynamicGroup extends QuestExecHandler {
         var sceneId = Integer.parseInt(paramStr[0]);
         var groupId = Integer.parseInt(paramStr[1]);
 
+        if (sceneId == 3 && groupId == 133001244 && quest.getMainQuestId() == 480 && quest.getSubQuestId() == 48002) {
+            AmberFlightExamSupport.ensure(quest);
+            return true;
+        }
+
         Grasscutter.getLogger().debug("Registering group {}", groupId);
 
         var scene = quest.getOwner().getWorld().getSceneById(sceneId);

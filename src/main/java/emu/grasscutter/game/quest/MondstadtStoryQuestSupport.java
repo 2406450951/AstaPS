@@ -61,6 +61,7 @@ public final class MondstadtStoryQuestSupport {
                         .thenComparingInt(QuestData::getOrder))
                 .toList();
         for (var data : candidates) {
+            if (data.getSubId() == 48002) AmberFlightExamSupport.ensure(manager.getQuestById(48002));
             if (data.getSubId() == 48501) {
                 var existing = manager.getQuestById(48501);
                 if (existing != null) enableDungeonEntry(existing);

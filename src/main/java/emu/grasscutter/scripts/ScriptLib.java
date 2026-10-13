@@ -228,7 +228,8 @@ public class ScriptLib {
         var existingChallenge = scene.getChallenge();
         if (existingChallenge != null && existingChallenge.inProgress()) {
             logger.warn("ActiveChallenge: tried to create challenge while one is already in progress");
-            return 0;
+            return emu.grasscutter.game.quest.AmberFlightExamSupport.isFlightChallenge(
+                    scene, getCurrentGroup().get(), challengeId, challengeIndex) ? 1 : 0;
         }
 
         var players = scene.getPlayers();
