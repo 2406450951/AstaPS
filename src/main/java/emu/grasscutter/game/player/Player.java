@@ -168,10 +168,6 @@ public class Player implements PlayerHook, FieldFetch {
     @Transient @Getter
     private final Map<Integer, java.util.List<Integer>> goddessNpcEntityByPoint =
             new ConcurrentHashMap<>();
-    /** Forged 303xx Talk-gate quests already pushed this session — not persisted. */
-    @Transient @Getter
-    private final Set<Integer> forgedStatueTalkQuests = ConcurrentHashMap.newKeySet();
-
     @Transient private long nextGuid = 0;
     @Transient @Getter @Setter private int peerId;
     // volatile rather than guarded by the player lock: Scene and World set these while holding

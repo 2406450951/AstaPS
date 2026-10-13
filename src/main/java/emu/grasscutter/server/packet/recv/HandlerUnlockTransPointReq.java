@@ -14,13 +14,9 @@ public class HandlerUnlockTransPointReq extends PacketHandler {
         boolean isStatue =
                 emu.grasscutter.game.managers.StatueTalkQuests.isStatuePoint(
                         entry != null ? entry.getPointData() : null);
-        if (isStatue) {
-            // 真解锁 + 把雕像 gadget 补回去 + 铺回血代理
-            session.getPlayer()
-                    .getProgressManager()
-                    .miaoUnlockStatue(req.getSceneId(), req.getPointId());
-            return;
-        }
+        // A Statue of the Seven is activated by quest 303 (or the starter quest 352),
+        // not by the ordinary waypoint request.
+        if (isStatue) return;
 
         boolean unlocked =
                 session
