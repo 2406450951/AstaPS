@@ -49,11 +49,11 @@ public class PacketGetDailyDungeonEntryInfoRsp extends BasePacket {
             if (data.getSceneId() != sceneId) {
                 continue;
             }
-            // Prefer handbook-flagged; if none resolve, fall through still helps UI.
+            // Listing eligibility is independent of whether the map point is unlocked.
             if (!data.isShowInAdvHandbook()) {
                 continue;
             }
-            var entry = buildEntry(data, playerLevel);
+            var entry = buildEntry(data, player, playerLevel);
             if (entry != null) {
                 rsp.addDailyDungeonInfoList(entry);
             }
@@ -68,7 +68,7 @@ public class PacketGetDailyDungeonEntryInfoRsp extends BasePacket {
         return rsp.build();
     }
 
-    private static DailyDungeonEntryInfo buildEntry(DungeonEntryData data, int playerLevel) {
+    private static DailyDungeonEntryInfo buildEntry(DungeonEntryData data, Player player, int playerLevel) {
         int[] dungeonIds = resolveDungeonIds(data);
         if (dungeonIds == null || dungeonIds.length == 0) {
             return null;
@@ -83,12 +83,22 @@ public class PacketGetDailyDungeonEntryInfoRsp extends BasePacket {
             }
         }
 
+        // Do not advertise an unexplored entrance as quick-open or an uncleared
+        // dungeon as completed just to make the handbook page populate.
+        boolean unlocked = player != null
+                && player.getUnlockedScenePoints(data.getSceneId()).contains(data.getDungeonEntryId())
+                && !player.isScenePointForceLocked(data.getSceneId(), data.getDungeonEntryId());
+        boolean passed = player != null
+                && player.getPlayerProgress() != null
+                && player.getPlayerProgress().getCompletedDungeons() != null
+                && player.getPlayerProgress().getCompletedDungeons().contains(recommend);
+
         return DailyDungeonEntryInfo.newBuilder()
                 .setEDEOIILGGJC(true)
-                .setIsQuickOpen(true)
+                .setIsQuickOpen(unlocked)
                 .setRecommendDungeonId(recommend)
                 .setRecommendDungeonEntryInfo(
-                        DungeonEntryInfo.newBuilder().setDungeonId(recommend).setIsPassed(true))
+                        DungeonEntryInfo.newBuilder().setDungeonId(recommend).setIsPassed(passed))
                 .setAKNPDDFHEKO(true)
                 .setDungeonEntryId(data.getDungeonEntryId())
                 .setDungeonEntryConfigId(data.getId())
