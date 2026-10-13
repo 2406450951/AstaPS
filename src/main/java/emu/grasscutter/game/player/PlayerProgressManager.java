@@ -1068,6 +1068,11 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         if (sceneId == 3 && areaId == 1) {
             notifyAreas.add(1);
         }
+        // A different statue's region hierarchy can contain area 1. Do not
+        // announce it until its own point (3,7) is active.
+        notifyAreas.retainAll(
+                emu.grasscutter.server.packet.send.SceneAreaVisibility
+                        .forPlayer(this.player, sceneId));
         if (!notifyAreas.isEmpty()) {
             this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, notifyAreas));
             this.player.save();
@@ -1121,7 +1126,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         areas.clear();
         areas.addAll(justified);
         this.player.save();
-        this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, justified));
+        this.player.sendPacket(new PacketSceneAreaUnlockNotify(
+                sceneId, emu.grasscutter.server.packet.send.SceneAreaVisibility
+                        .forPlayer(this.player, sceneId)));
         emu.grasscutter.Grasscutter.getLogger()
                 .debug(
                         "Synced scene areas from points uid={} scene={} areas={}",
