@@ -19,7 +19,8 @@ public class DungeonEntryData extends GameResource {
     private DungunEntryType type;
     private DungeonEntryCondCombType condComb;
     private List<DungeonEntryCondition> satisfiedCond;
-    private boolean isShowInAdvHandbook = true;
+    // Missing native flag means the entrance is not listed in the Adventurer Handbook.
+    private boolean isShowInAdvHandbook;
     private boolean isDefaultOpen;
 
     public static class DungeonEntryCondition {

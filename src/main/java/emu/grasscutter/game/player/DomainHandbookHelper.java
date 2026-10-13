@@ -23,8 +23,8 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Adventurer Handbook domain list sync (ported from the known-good 6.6 DomainHandbook patch).
  *
- * <p>Right-page domains only appear when dungeon-entry points are unlocked+unhidden and their
- * areas are unlocked. Also pushes GetDailyDungeonEntryInfoRsp when the client opens the domain list.
+ * <p>Synchronizes native handbook entries and already-unlocked map points. A handbook listing
+ * never discovers a dungeon entrance or changes the player's permanent unlock state.
  */
 public final class DomainHandbookHelper {
     private static final Path CONFIG_PATH =
@@ -47,7 +47,6 @@ public final class DomainHandbookHelper {
         }
         try {
             ensureLoaded();
-            applyUnlocks(player);
             DEFERRED_DONE.remove(player.getUid());
             LAST_FULL_SYNC_MS.remove(player.getUid());
             scheduleDeferredSync(player);
@@ -74,7 +73,6 @@ public final class DomainHandbookHelper {
         }
         try {
             ensureLoaded();
-            applyUnlocks(player);
             syncToClient(player, "enter-scene");
         } catch (Throwable t) {
             Grasscutter.getLogger().warn("DomainHandbook enter-scene failed: {}", t.toString());
@@ -88,7 +86,6 @@ public final class DomainHandbookHelper {
         }
         try {
             ensureLoaded();
-            applyUnlocks(player);
             // Avoid re-sending GetScenePointRsp here (resets handbook scroll).
             // Handler sends both wire layouts after this returns.
             return true;
@@ -131,13 +128,11 @@ public final class DomainHandbookHelper {
                 }
             }
             if (!pointIds.isEmpty()) {
-                // After applyUnlocks, handbook entry points are in the unlocked set -
-                // push them so the handbook domain tab stays populated.
-                var unlocked = player.getUnlockedScenePoints(sceneId);
-                var already = new ArrayList<Integer>();
-                for (int pid : pointIds) {
-                    if (unlocked.contains(pid)) already.add(pid);
-                }
+                // Synchronize actual discoveries only. Handbook listing is not an unlock event.
+                var already = alreadyUnlockedEntries(
+                        pointIds,
+                        player.getUnlockedScenePoints(sceneId),
+                        player.getForceLockedScenePoints(sceneId));
                 if (!already.isEmpty()) {
                     player.getSession().send(new PacketScenePointUnlockNotify(sceneId, already));
                     points += already.size();
@@ -155,12 +150,16 @@ public final class DomainHandbookHelper {
                         areas);
     }
 
-    private static void applyUnlocks(Player player) {
-        // Unlock handbook dungeon-entry points only. Do NOT unlock HANDBOOK_AREAS -
-        // that previously forced map fog/waypoints open on new accounts (a8e01cd).
-        for (Map.Entry<Integer, List<Integer>> entry : HANDBOOK_ENTRIES.entrySet()) {
-            player.getUnlockedScenePoints(entry.getKey()).addAll(entry.getValue());
+    /** Select stored discoveries without changing unlock state or releasing quest locks. */
+    static List<Integer> alreadyUnlockedEntries(
+            List<Integer> handbookEntries, Set<Integer> unlocked, Set<Integer> forceLocked) {
+        var result = new ArrayList<Integer>();
+        for (int pointId : handbookEntries) {
+            if (unlocked.contains(pointId) && !forceLocked.contains(pointId)) {
+                result.add(pointId);
+            }
         }
+        return result;
     }
 
     private static void scheduleDeferredSync(Player player) {
@@ -177,7 +176,6 @@ public final class DomainHandbookHelper {
                                 if (!DEFERRED_DONE.add(uid)) {
                                     return;
                                 }
-                                applyUnlocks(online);
                                 syncToClient(online, "deferred");
                             } catch (InterruptedException ie) {
                                 Thread.currentThread().interrupt();

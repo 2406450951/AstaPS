@@ -32,9 +32,10 @@ For domains, the client `UnlockTransPointReq` for a native `DungeonEntry`
 point is the activation event, including story entrances without
 `DungeonEntryExcelConfigData.rewardDataId` (scene 3 points 1 and 20).
 Native `rewardDataId` no longer decides eligibility or amounts.
-The handbook can pre-unlock domain map points for navigation, so a separate
-persisted `rewardedDungeonEntries` activation receipt prevents duplicate claims
-without mistaking handbook synchronization for player discovery.
+The handbook only lists native handbook entries and re-synchronizes already-unlocked
+points; it does not discover or unlock new entrances. A separate persisted
+`rewardedDungeonEntries` activation receipt prevents duplicate claims and keeps
+older player saves with historical synthetic unlocks safe from repeat rewards.
 Hidden and natively pre-unlocked domain points are ineligible.
 Entering or re-entering a dungeon never grants discovery rewards.
 
