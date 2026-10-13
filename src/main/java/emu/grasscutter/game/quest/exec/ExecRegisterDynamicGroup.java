@@ -14,7 +14,7 @@ public class ExecRegisterDynamicGroup extends QuestExecHandler {
         var sceneId = Integer.parseInt(paramStr[0]);
         var groupId = Integer.parseInt(paramStr[1]);
 
-        if (sceneId == 3 && groupId == 133001244 && quest.getMainQuestId() == 480 && quest.getSubQuestId() == 48002) {
+        if (AmberFlightExamSupport.ownsGroup(quest, sceneId, groupId)) {
             AmberFlightExamSupport.ensure(quest);
             return true;
         }
