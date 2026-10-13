@@ -1357,9 +1357,13 @@ public final class TeamManager extends BasePlayerDataManager {
         this.trialAvatarTeamPostUpdate(questId != 0 ? this.getActiveTeam().size() - 1 : 0);
     }
 
+    /** Dungeon/activity cleanup must preserve trial avatars granted by active quests. */
     public void removeTrialAvatar() {
         this.removeTrialAvatar(
-            this.getTrialAvatars().values().stream().map(Avatar::getTrialAvatarId).toList());
+            this.getTrialAvatars().values().stream()
+                .filter(avatar -> avatar.getGrantReason()
+                    == GrantReason.GRANT_REASON_BY_TRIAL_AVATAR_ACTIVITY.getNumber())
+                .map(Avatar::getTrialAvatarId).toList());
     }
 
     public void removeTrialAvatar(int trialAvatarId) {
