@@ -61,6 +61,7 @@ public class SceneScriptManager {
     private final Map<Integer, Set<Pair<String, Integer>>> activeGroupTimers;
     private final LiyueCloudDungeonTimers liyueDungeonTimers = new LiyueCloudDungeonTimers(this);
     private CompletableFuture<Void> liyueFireEvents = CompletableFuture.completedFuture(null);
+    private final Map<Integer, CompletableFuture<Void>> amberFlightEvents = new HashMap<>();
     private final Map<String, AtomicInteger> triggerInvocations;
     private final Map<Integer, EntityRegion> regions; // <EntityId-Region>
     private final Map<Integer, SceneGroup> sceneGroups;
@@ -959,10 +960,24 @@ public class SceneScriptManager {
          * not get it. e.g. CallEvent -> set -> ScriptLib.xxx -> CallEvent -> set -> remove -> NPE ->
          * (remove) So we use thread pool to clean the stack to avoid this new issue.
          */
+        if (emu.grasscutter.game.quest.AmberFlightExamSupport.isFlightGroup(getScene(), params.getGroupId())) {
+            return enqueueAmberFlightEvent(params);
+        }
         if (LiyueCloudDungeonSupport.isFireLinkGroup(getScene(), params.getGroupId())) {
             return enqueueLiyueFireEvent(params);
         }
         return eventExecutor.submit(() -> this.realCallEvent(params));
+    }
+
+    private synchronized Future<?> enqueueAmberFlightEvent(ScriptArgs params) {
+        // Nearby coin regions enter in the same tick. Keep read/modify/write batch actions in FIFO order.
+        var previous = amberFlightEvents.getOrDefault(params.getGroupId(), CompletableFuture.completedFuture(null));
+        var next = previous.handleAsync((ignored, failure) -> {
+            realCallEvent(params);
+            return (Void) null;
+        }, eventExecutor);
+        amberFlightEvents.put(params.getGroupId(), next);
+        return next;
     }
 
     private synchronized Future<?> enqueueLiyueFireEvent(ScriptArgs params) {

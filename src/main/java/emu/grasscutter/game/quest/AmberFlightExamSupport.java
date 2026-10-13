@@ -140,6 +140,11 @@ public final class AmberFlightExamSupport {
         ensureTransition(player.getQuestManager().getMainQuestById(427));
     }
 
+    public static boolean isFlightGroup(Scene scene, int groupId) {
+        return scene != null && scene.getId() == 3
+                && EXAMS.stream().anyMatch(exam -> exam.groupId == groupId);
+    }
+
     public static boolean isFlightChallenge(Scene scene, SceneGroup group, int localId, int dataId) {
         return scene != null && scene.getId() == 3 && group != null && dataId == 295
                 && EXAMS.stream().anyMatch(exam -> exam.groupId == group.id && exam.localId == localId);
