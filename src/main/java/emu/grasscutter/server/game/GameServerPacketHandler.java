@@ -95,6 +95,10 @@ public final class GameServerPacketHandler {
         registerIfAbsent(
                 PacketOpcodes.TakePlayerLevelRewardReq,
                 emu.grasscutter.server.packet.recv.HandlerTakePlayerLevelRewardReq.class);
+        // Keep native achievement claims registered if Reflections misses the patched class.
+        registerIfAbsent(
+                PacketOpcodes.TakeAchievementRewardReq,
+                emu.grasscutter.server.packet.recv.HandlerTakeAchievementRewardReq.class);
         // Adventurer Handbook Investigation/preparation claim rewards.
         registerIfAbsent(
                 PacketOpcodes.TakeInvestigationTargetRewardReq,
