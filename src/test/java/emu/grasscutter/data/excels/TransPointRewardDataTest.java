@@ -26,6 +26,22 @@ final class TransPointRewardDataTest {
     }
 
     @Test
+    void statueAndWaypointCanShareAnExcelRewardId() {
+        var statue = GSON.fromJson(
+                "{\"sceneId\":3,\"pointId\":3,\"rewardId\":220311}",
+                TransPointRewardData.class);
+        var waypoint = GSON.fromJson(
+                "{\"sceneId\":3,\"pointId\":8,\"rewardId\":220311}",
+                TransPointRewardData.class);
+
+        assertNotEquals(statue.getId(), waypoint.getId());
+        assertEquals(statue.getRewardId(), waypoint.getRewardId());
+        var reward = readReward(
+                "{\"rewardId\":220311,\"rewardItemList\":[{}],\"playerExp\":50,\"hcoin\":5}");
+        assertEquals(Map.of(102, 50, 201, 5), itemsById(reward));
+    }
+
+    @Test
     void ordinaryWaypointRewardUsesRootFields() {
         var reward = readReward(
                 "{\"rewardId\":220311,\"rewardItemList\":[{},{},{}],\"playerExp\":50,\"hcoin\":5}");
