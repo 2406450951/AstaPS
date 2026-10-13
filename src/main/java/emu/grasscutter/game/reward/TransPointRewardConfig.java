@@ -176,10 +176,12 @@ public final class TransPointRewardConfig {
 
     /** Point subtype and native pre-unlock flags are eligibility, not reward configuration. */
     public static Kind kindOf(PointData point, boolean isStatue) {
-        if (point == null || !"SceneTransPoint".equals(point.getType()) || point.isUnlocked()) {
-            return null;
+        if (point == null || point.isUnlocked()) return null;
+        // Recent statue resources may use an obfuscated $type rather than SceneTransPoint.
+        if (isStatue && emu.grasscutter.game.managers.StatueTalkQuests.isStatuePoint(point)) {
+            return Kind.STATUE;
         }
-        if (isStatue) return Kind.STATUE;
+        if (!"SceneTransPoint".equals(point.getType())) return null;
         // PORTAL and unidentified TOWER subtypes are not ordinary waypoints.
         if (point.getPointType() != null) return null;
         if ("Never".equals(point.getMapVisibility())) return null;
