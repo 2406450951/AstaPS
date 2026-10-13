@@ -11,7 +11,7 @@ primogems = 5
 adventureExp = 50
 primogems = 5
 
-# Only native reward-eligible domain entrances; awarded on first successful entry.
+# Awarded on first manual activation of a dungeon entrance, not on entering it.
 ["kind=domain"]
 adventureExp = 50
 primogems = 5

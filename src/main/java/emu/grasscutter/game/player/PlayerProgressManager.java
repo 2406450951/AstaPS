@@ -937,7 +937,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         // The server-owned TOML is the sole source of the reward amounts.
         if (newlyUnlocked) {
             var kind = emu.grasscutter.game.reward.TransPointRewardConfig.kindOf(pointData, isStatue);
-            if (kind != null) {
+            // Domain entries have a separate activation receipt: handbook syncing can
+            // pre-mark their map points unlocked before the player reaches the entrance.
+            if (kind != null && kind != emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN) {
                 grantTransPointReward(sceneId, pointId, kind);
             }
         }
@@ -993,21 +995,18 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
     }
 
     /**
-     * A domain's handbook unlock is not discovery: the handbook grants access in bulk.
-     * Only a successfully entered, native reward-eligible entrance earns the configured
-     * reward. Store an independent receipt so reconnecting or entering again cannot pay twice.
+     * Claim a dungeon entrance's first activation reward on UnlockTransPointReq.
+     * DomainHandbookHelper may already have opened the map point for UI navigation;
+     * that synthetic unlock must never consume this independent activation receipt.
      */
-    public boolean rewardDungeonEntry(int sceneId, int pointId) {
-        var point = GameData.getScenePointEntryById(sceneId, pointId);
-        if (point == null || point.getPointData() == null
-                || !"DungeonEntry".equals(point.getPointData().getType())) {
+    public boolean rewardDomainActivation(int sceneId, int pointId) {
+        var entry = GameData.getScenePointEntryById(sceneId, pointId);
+        if (entry == null
+                || emu.grasscutter.game.reward.TransPointRewardConfig.kindOf(
+                        entry.getPointData(), false)
+                        != emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN) {
             return false;
         }
-        boolean eligible = GameData.getDungeonEntryDataMap().values().stream()
-                .anyMatch(entry -> entry.getSceneId() == sceneId
-                        && entry.getDungeonEntryId() == pointId
-                        && entry.getRewardDataId() > 0);
-        if (!eligible) return false;
 
         synchronized (this.player) {
             var receipts = this.player.getRewardedDungeonEntries(sceneId);
@@ -1017,6 +1016,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
                     emu.grasscutter.game.reward.TransPointRewardConfig.Kind.DOMAIN);
             receipts.add(pointId);
             this.player.save();
+            emu.grasscutter.Grasscutter.getLogger()
+                    .info("First domain activation reward uid={} scene={} point={}",
+                            this.player.getUid(), sceneId, pointId);
             return true;
         }
     }

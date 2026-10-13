@@ -50,10 +50,10 @@ overwritten by native asset changes.
 ## Future subsystem boundaries
 
 - `rewards/trans-point-rewards.toml`: first discovery/activation rewards for
-  waypoints, Statues of The Seven and reward-eligible domain entrances.
+  waypoints, Statues of The Seven and manually activated domain entrances.
 - `drops/chests.toml`, `drops/monsters.toml`, `drops/domains.toml`:
   loot pool policy, drop probabilities and counts. These do not define
-  the first-entry domain reward or domain unlock rules.
+  the first-activation domain reward or domain unlock rules.
 - `artifacts/rolls.toml`: generation of artifact main stats, substats,
   initial rolls, and upgrade weights; independent of the dungeon's chance to
   produce an artifact.

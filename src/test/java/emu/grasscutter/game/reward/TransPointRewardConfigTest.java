@@ -94,7 +94,14 @@ final class TransPointRewardConfigTest {
                 TransPointRewardConfig.kindOf(obfuscatedStatue, true));
         assertNull(TransPointRewardConfig.kindOf(portal, false));
         assertNull(TransPointRewardConfig.kindOf(hidden, false));
-        assertNull(TransPointRewardConfig.kindOf(dungeon, false));
+        assertEquals(TransPointRewardConfig.Kind.DOMAIN,
+                TransPointRewardConfig.kindOf(dungeon, false));
+        var preUnlockedDomain = GSON.fromJson(
+                "{\"$type\":\"DungeonEntry\",\"unlocked\":true}", PointData.class);
+        var hiddenDomain = GSON.fromJson(
+                "{\"$type\":\"DungeonEntry\",\"mapVisibility\":\"Never\"}", PointData.class);
+        assertNull(TransPointRewardConfig.kindOf(preUnlockedDomain, false));
+        assertNull(TransPointRewardConfig.kindOf(hiddenDomain, false));
     }
 
     @Test
@@ -110,12 +117,20 @@ final class TransPointRewardConfigTest {
     }
 
     @Test
-    void domainNativeRewardIdIsEligibilityNotAmount() {
+    void domainWithNoNativeRewardIdStillUsesServerOwnedFirstActivationReward() {
+        // Scene 3 point 20 is a native story dungeon with no rewardDataId.
         var domain = GSON.fromJson(
-                "{\"id\":1,\"sceneId\":3,\"dungeonEntryId\":48,\"rewardDataId\":220404}",
+                "{\"id\":1003,\"sceneId\":3,\"dungeonEntryId\":20}",
                 DungeonEntryData.class);
-        assertEquals(3, domain.getSceneId());
-        assertEquals(48, domain.getDungeonEntryId());
-        assertEquals(220404, domain.getRewardDataId());
+        var point = GSON.fromJson(
+                "{\"$type\":\"DungeonEntry\",\"gadgetId\":70120001}",
+                PointData.class);
+        assertEquals(0, domain.getRewardDataId());
+        assertEquals(TransPointRewardConfig.Kind.DOMAIN,
+                TransPointRewardConfig.kindOf(point, false));
+        var rewards = TransPointRewardConfig.parse(RULES)
+                .resolve(domain.getSceneId(), domain.getDungeonEntryId(),
+                        TransPointRewardConfig.kindOf(point, false));
+        assertEquals(Map.of(102, 50, 201, 5), items(rewards));
     }
 }
