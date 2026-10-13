@@ -10,12 +10,11 @@ public class PacketGetSceneAreaRsp extends BasePacket {
 
         this.buildHeader(0);
 
-        // The area snapshot reflects the player's statue unlocks; building a reply must not
-        // silently unlock and persist every region.
+        // Map fog is a client presentation setting; never grant area unlocks while replying.
         GetSceneAreaRsp.Builder b =
                 GetSceneAreaRsp.newBuilder()
                         .setSceneId(sceneId)
-                        .addAllAreaIdList(player.getUnlockedSceneAreas(sceneId));
+                        .addAllAreaIdList(SceneAreaVisibility.forPlayer(player, sceneId));
 
         // Cities 1..10 (Mondstadt..Nod-Krai era); SotS trees / statue levels.
         for (int cityId = 1; cityId <= 10; cityId++) {
