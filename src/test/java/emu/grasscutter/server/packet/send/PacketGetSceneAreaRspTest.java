@@ -43,19 +43,20 @@ final class PacketGetSceneAreaRspTest {
     }
 
     @Test
-    void freshPlayerSeesOnlyTheStartingAreaWithoutPersistingAnyUnlocks() throws Exception {
+    void freshPlayerDoesNotSeeStarterStatueAreaBeforeActivation() throws Exception {
         var player = new Player();
         var response = GetSceneAreaRsp.parseFrom(new PacketGetSceneAreaRsp(player, 3).getData());
         var points = GetScenePointRsp.parseFrom(new PacketGetScenePointRsp(player, 3).getData());
 
         assertEquals(3, response.getSceneId());
-        assertEquals(Set.of(1), Set.copyOf(response.getAreaIdListList()));
-        assertEquals(Set.of(1), Set.copyOf(points.getUnlockAreaListList()));
+        assertTrue(response.getAreaIdListList().isEmpty());
+        assertTrue(points.getUnlockAreaListList().isEmpty());
         assertTrue(player.getUnlockedSceneAreas(3).isEmpty());
+        assertFalse(player.getUnlockedScenePoints(3).contains(7));
     }
 
     @Test
-    void onlyUnlockedAreasOfTheRequestedSceneAreReturned() throws Exception {
+    void regionOneIsGatedByStatueSevenWithoutDestroyingLegacyAreaFlags() throws Exception {
         var player = new Player();
         player.getUnlockedSceneAreas(3).addAll(Set.of(1, 3, 7));
         player.getUnlockedSceneAreas(4).add(25);
@@ -63,16 +64,50 @@ final class PacketGetSceneAreaRspTest {
         var mondstadt = GetSceneAreaRsp.parseFrom(new PacketGetSceneAreaRsp(player, 3).getData());
         var otherScene = GetSceneAreaRsp.parseFrom(new PacketGetSceneAreaRsp(player, 4).getData());
 
-        assertEquals(Set.of(1, 3, 7), Set.copyOf(mondstadt.getAreaIdListList()));
+        assertEquals(Set.of(3, 7), Set.copyOf(mondstadt.getAreaIdListList()));
         assertEquals(Set.of(25), Set.copyOf(otherScene.getAreaIdListList()));
         assertEquals(Set.of(1, 3, 7), player.getUnlockedSceneAreas(3));
         assertEquals(Set.of(25), player.getUnlockedSceneAreas(4));
+
+        player.getUnlockedScenePoints(3).add(7);
+        assertEquals(Set.of(1, 3, 7), Set.copyOf(
+                GetSceneAreaRsp.parseFrom(new PacketGetSceneAreaRsp(player, 3).getData())
+                        .getAreaIdListList()));
+
+        player.getForceLockedScenePoints(3).add(7);
+        assertEquals(Set.of(3, 7), Set.copyOf(
+                GetSceneAreaRsp.parseFrom(new PacketGetSceneAreaRsp(player, 3).getData())
+                        .getAreaIdListList()));
+    }
+
+    @Test
+    void activatedStatueRevealsAreaOneEvenIfAnOldSaveLacksItsAreaFlag() throws Exception {
+        var player = new Player();
+        player.getUnlockedScenePoints(3).add(7);
+        var areas = GetSceneAreaRsp.parseFrom(new PacketGetSceneAreaRsp(player, 3).getData());
+        var points = GetScenePointRsp.parseFrom(new PacketGetScenePointRsp(player, 3).getData());
+
+        assertEquals(Set.of(1), Set.copyOf(areas.getAreaIdListList()));
+        assertEquals(Set.of(1), Set.copyOf(points.getUnlockAreaListList()));
+        assertTrue(player.getUnlockedSceneAreas(3).isEmpty());
+    }
+
+    @Test
+    void disablingFogStillShowsAllAreasWithStatueLocked() throws Exception {
+        var player = new Player();
+        player.getUnlockedSceneAreas(3).add(1);
+        GAME_OPTIONS.mapFogEnabled = false;
+        var areas = GetSceneAreaRsp.parseFrom(new PacketGetSceneAreaRsp(player, 3).getData());
+        assertEquals(1000, areas.getAreaIdListCount());
+        assertFalse(player.getUnlockedScenePoints(3).contains(7));
+        assertEquals(Set.of(1), player.getUnlockedSceneAreas(3));
     }
 
     @Test
     void fogCanBeSwitchedRepeatedlyWithoutChangingProgress() throws Exception {
         var player = new Player();
         player.getUnlockedSceneAreas(3).addAll(Set.of(1, 3));
+        player.getUnlockedScenePoints(3).add(7);
 
         for (boolean enabled : new boolean[] {true, false, true, false, true}) {
             GAME_OPTIONS.mapFogEnabled = enabled;

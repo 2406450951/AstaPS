@@ -9,6 +9,7 @@ import emu.grasscutter.server.packet.send.PacketGetDailyDungeonEntryInfoRsp;
 import emu.grasscutter.server.packet.send.PacketGetSceneAreaRsp;
 import emu.grasscutter.server.packet.send.PacketSceneAreaUnlockNotify;
 import emu.grasscutter.server.packet.send.PacketScenePointUnlockNotify;
+import emu.grasscutter.server.packet.send.SceneAreaVisibility;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -117,7 +118,7 @@ public final class DomainHandbookHelper {
             List<Integer> pointIds = entry.getValue();
             Set<Integer> areaIds = HANDBOOK_AREAS.getOrDefault(sceneId, Set.of());
             if (!areaIds.isEmpty()) {
-                var unlockedAreas = player.getUnlockedSceneAreas(sceneId);
+                var unlockedAreas = SceneAreaVisibility.forPlayer(player, sceneId);
                 var alreadyAreas = new ArrayList<Integer>();
                 for (int aid : areaIds) {
                     if (unlockedAreas.contains(aid)) alreadyAreas.add(aid);

@@ -90,12 +90,8 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         // already met before certain open state unlocks were implemented.
         this.tryUnlockOpenStates(false);
 
-        if (!GAME_OPTIONS.questing.enabled) {
-            // Retain the existing starter Mondstadt navigation area when questing is disabled.
-            // This map unlock is separate from the OpenState mass-unlock option.
-            this.player.getUnlockedScenePoints(3).add(7);
-            this.player.getUnlockedSceneAreas(3).add(1);
-        }
+        // Disabling quests must not activate the first Statue of the Seven or reveal
+        // its map area. Point (3,7) is unlocked only by normal gameplay/commands.
 
         if (GAME_OPTIONS.unlockAllOpenStatesOnLogin) {
             // Sandbox opt-in: preserve the former bulk unlock, but never tie it to questing.
@@ -1027,8 +1023,12 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         // Add the area to the list of unlocked areas in its scene.
         this.player.getUnlockedSceneAreas(sceneId).add(areaId);
 
-        // Send packet.
-        this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, areaId));
+        // A quest may request area 1 before statue (3,7) is activated.
+        // Preserve quest progress but do not reveal the area on the client yet.
+        if (emu.grasscutter.server.packet.send.SceneAreaVisibility
+                .forPlayer(this.player, sceneId).contains(areaId)) {
+            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, areaId));
+        }
         try {
             InvestigationHandbookHelper.trigger(
                     this.player,
@@ -1061,8 +1061,20 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             }
         }
 
-        if (!newly.isEmpty()) {
-            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, newly));
+        // A prior quest/old build might have stored area 1 before the statue
+        // unlocked. Re-send it when the statue really activates even if the
+        // area flag is not newly inserted.
+        var notifyAreas = new java.util.LinkedHashSet<>(newly);
+        if (sceneId == 3 && areaId == 1) {
+            notifyAreas.add(1);
+        }
+        // A different statue's region hierarchy can contain area 1. Do not
+        // announce it until its own point (3,7) is active.
+        notifyAreas.retainAll(
+                emu.grasscutter.server.packet.send.SceneAreaVisibility
+                        .forPlayer(this.player, sceneId));
+        if (!notifyAreas.isEmpty()) {
+            this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, notifyAreas));
             this.player.save();
             try {
                 for (int unlockedAreaId : newly) {
@@ -1085,9 +1097,6 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         if (pointIds == null) return;
 
         var justified = new java.util.LinkedHashSet<Integer>();
-        if (sceneId == 3) {
-            justified.add(1); // starter Mondstadt
-        }
         var unlockedPoints = this.player.getUnlockedScenePoints(sceneId);
         for (int pointId : pointIds) {
             if (!unlockedPoints.contains(pointId)) continue;
@@ -1117,7 +1126,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         areas.clear();
         areas.addAll(justified);
         this.player.save();
-        this.player.sendPacket(new PacketSceneAreaUnlockNotify(sceneId, justified));
+        this.player.sendPacket(new PacketSceneAreaUnlockNotify(
+                sceneId, emu.grasscutter.server.packet.send.SceneAreaVisibility
+                        .forPlayer(this.player, sceneId)));
         emu.grasscutter.Grasscutter.getLogger()
                 .debug(
                         "Synced scene areas from points uid={} scene={} areas={}",

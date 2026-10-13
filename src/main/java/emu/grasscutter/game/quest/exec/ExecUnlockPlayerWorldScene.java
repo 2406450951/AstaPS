@@ -12,7 +12,11 @@ public class ExecUnlockPlayerWorldScene extends QuestExecHandler {
         if (paramStr == null || paramStr.length < 1) return false;
         try {
             int sceneId = Integer.parseInt(paramStr[0]);
-            quest.getOwner().getProgressManager().unlockSceneArea(sceneId, 1);
+            // Unlocking access to the open-world scene is not exploration of
+            // Mondstadt's first Statue of the Seven region (scene 3, area 1).
+            if (sceneId != 3) {
+                quest.getOwner().getProgressManager().unlockSceneArea(sceneId, 1);
+            }
             return true;
         } catch (NumberFormatException e) {
             return false;
