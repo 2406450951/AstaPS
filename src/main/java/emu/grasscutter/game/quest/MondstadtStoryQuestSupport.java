@@ -153,6 +153,14 @@ public final class MondstadtStoryQuestSupport {
         return true;
     }
 
+    /** The post-enter-world packet must not erase a segment restored from its actual clear receipt. */
+    public static boolean keepEarnedAmberContinuation(GameQuest quest, int enteredSceneId) {
+        if (enteredSceneId != 3 || quest == null || quest.getOwner() == null
+                || quest.getOwner().getSceneId() != 3 || quest.getOwner().getPlayerProgress() == null) return false;
+        return quest.getOwner().getPlayerProgress().getCompletedDungeons().contains(2007)
+                && canContinueAmberDungeon(quest, GameData.getDungeonDataMap().get(2007));
+    }
+
     /** Continue an earned segment after scene loading; login returns dungeon players to their entry point. */
     public static void onSceneLoaded(emu.grasscutter.game.player.Player player) {
         if (player.getSceneLoadState() != emu.grasscutter.game.player.Player.SceneLoadState.LOADED
