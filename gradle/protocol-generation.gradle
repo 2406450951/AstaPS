@@ -152,6 +152,9 @@ allprojects { currentProject ->
         }
         currentProject.tasks.named('javadoc') {
             exclude '**/net/proto/**'
+            // Delombok Javadoc still imports generated protocol types.
+            // Give Javadoc the compiled protocol classes without documenting them.
+            classpath += protocolSources.output
         }
     }
 }

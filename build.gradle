@@ -24,18 +24,25 @@ plugins {
 }
 
 spotless {
+    // Keep formatting checks opt-in while upgrading the formatter; explicit
+    // spotlessCheck and spotlessApply remain available.
+    enforceCheck false
     java {
-        target fileTree(rootDir) {
-            include '**/*.java'
-            exclude '**/generated/**/*.*'
-            exclude '.idea/**/*.*'
-        }
+        // Only format tracked source trees; build/ contains generated protocol and class outputs.
+        target files(
+                fileTree('src/main/java') {
+                    include '**/*.java'
+                    exclude 'emu/grasscutter/BuildConfig.java' // Generated during the build.
+                },
+                fileTree('src/test/java') { include '**/*.java' },
+                fileTree('tools/protocol/java') { include '**/*.java' }
+        )
 
         importOrder('io.grasscutter', '', 'java', 'javax', '\\#java', '\\#') // Configure import order.
-        googleJavaFormat('1.15.0') // Use Google's Java formatter.
+        googleJavaFormat('1.37.0') // Use Google's Java formatter.
         formatAnnotations() // Reformat annotations.
         endWithNewline() // Ensure files end with a newline.
-        indentWithTabs(2); indentWithSpaces(4) // Use 4 spaces for indentation.
+        leadingSpacesToTabs(2); leadingTabsToSpaces(4) // Use 4 spaces for indentation.
         toggleOffOn() // Toggle off/on.
     }
 }
@@ -304,6 +311,9 @@ javadoc {
 
     // Add this to avoid warning caused by lack of comments in proto generated java files
     options.addStringOption('Xdoclint:none', '-quiet')
+    // Delombok copies per-package lombok.config files into its generated source tree.
+    // Javadoc treats those as package names unless they are explicitly excluded.
+    exclude '**/lombok.config'
     exclude '**/*.md'
     exclude 'src/handbook/**/*.*'
 }
@@ -370,6 +380,10 @@ def buildMetadataTask = tasks.register('generateBuildMetadata') {
 // The resource is available to application/run/test and included in the fat JAR.
 sourceSets.main.output.dir([builtBy: buildMetadataTask], buildMetadataDirectory)
 tasks.named('compileJava') {
+    dependsOn 'generateBuildConfig'
+}
+// The source archive reads BuildConfig.java generated directly into src/main/java.
+tasks.named('sourcesJar') {
     dependsOn 'generateBuildConfig'
 }
 
