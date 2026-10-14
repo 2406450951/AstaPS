@@ -1693,7 +1693,7 @@ public final class PacketOpcodes {
     // public static final int MPLJADMBFNG = 25350;
     public static final int _SetReliquaryStarStateRsp = 7536;
     public static final int SumoDungeonSettleNotify = 7547;
-    public static final int PlatformStopRouteNotify = 0; // 7.1 CmdId unknown (7.0: 21414)
+    public static final int PlatformStopRouteNotify = 4699; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int DropItemReq = 25716;
     // public static final int UgcTowerLevelUpNotify = 2278;
     public static final int CheckAddItemExceedLimitNotify = 8097;
@@ -2079,7 +2079,7 @@ public final class PacketOpcodes {
     public static final int BlessingAcceptGivePicRsp = 2726;
     public static final int RogueDiaryDungeonInfoNotify = 20847;
     // public static final int ADGHJBDBHFK = 22678;
-    public static final int PlatformStartRouteNotify = 0; // 7.1 CmdId unknown (7.0: 24148)
+    public static final int PlatformStartRouteNotify = 29891; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int ScenePlayOutofRegionNotify = 24084;
     public static final int EnterFishingReq = 0; // 7.1 CmdId unknown (7.0: 24152)
     // public static final int EDFGBIIOAAN = 1897;
@@ -2730,7 +2730,7 @@ public final class PacketOpcodes {
     public static final int TakeMaterialDeleteReturnRsp = 23074; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int KPHKMKLKADJ = 26969;
     public static final int WinterCampTriathlonSettleNotify = 24776;
-    public static final int PlatformChangeRouteNotify = 0; // 7.1 CmdId unknown (7.0: 28611)
+    public static final int PlatformChangeRouteNotify = 6989; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int FDMOOGNDEFH = 21778;
     public static final int EffigyChallengeInfoNotify = 25575;
     // public static final int CANIKGGABFO = 3923;

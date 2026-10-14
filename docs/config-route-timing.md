@@ -16,7 +16,7 @@ The first `reachStop` marker after the source ends the active segment. Starting 
 
 ## Resource and protocol compatibility
 
-Route resources accept canonical field names and underscore-prefixed route and point fields, including `_reachStop`. Scene-route containers accept both supported resource key families. Serialization continues to use canonical names. When a platform-route-change opcode is unavailable, route changes use the existing entity-refresh packet path. An avatar-near-platform event with no parameters takes the same source-entity config-id workaround as a zero first parameter, and is dropped only when that entity is gone.
+Route resources accept canonical field names and underscore-prefixed route and point fields, including `_reachStop`. Scene-route containers accept both supported resource key families. Serialization continues to use canonical names. Start, stop and route changes go out as the 7.1 `PlatformStartRouteNotify` (29891), `PlatformStopRouteNotify` (4699) and `PlatformChangeRouteNotify` (6989); the entity-refresh fallback only remains for a build that unmaps them. An avatar-near-platform event with no parameters takes the same source-entity config-id workaround as a zero first parameter, and is dropped only when that entity is gone.
 
 ## Verification
 

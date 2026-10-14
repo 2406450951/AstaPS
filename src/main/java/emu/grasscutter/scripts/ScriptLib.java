@@ -1409,28 +1409,31 @@ public class ScriptLib {
             return 2;
         }
 
-        var routeConfig = entityGadget.getRouteConfig();
-        if (!(routeConfig instanceof PointArrayRoute)) {
-            routeConfig = new PointArrayRoute((entityGadget).getMetaGadget());
-            entityGadget.setRouteConfig(routeConfig);
+        synchronized (entityGadget) {
+            var routeConfig = entityGadget.getRouteConfig();
+            if (!(routeConfig instanceof PointArrayRoute)) {
+                // A config route's scheduled points must not keep moving the gadget after the swap.
+                entityGadget.invalidatePlatformRouteRun();
+                if (routeConfig instanceof ConfigRoute configRoute) {
+                    for (int id : configRoute.getScheduledIndexes()) {
+                        sceneScriptManager.get().getScene().getScheduler().cancelTask(id);
+                    }
+                    configRoute.getScheduledIndexes().clear();
+                }
+                routeConfig = new PointArrayRoute((entityGadget).getMetaGadget());
+                entityGadget.setRouteConfig(routeConfig);
+            }
+
+            val configRoute = (PointArrayRoute) routeConfig;
+
+            if (configRoute.getPointArrayId() == pointArrayId) {
+                return -1;
+            }
+
+            configRoute.setPointArrayId(pointArrayId);
         }
 
-        val configRoute = (PointArrayRoute) routeConfig;
-
-        if (configRoute.getPointArrayId() == pointArrayId) {
-            return -1;
-        }
-
-        configRoute.setPointArrayId(pointArrayId);
-
-        if (emu.grasscutter.net.packet.PacketOpcodes.PlatformChangeRouteNotify > 0) {
-            sceneScriptManager.get().getScene().broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
-        } else {
-            // Unknown opcodes are discarded by GameSession; refresh only this gadget instead.
-            var scene = sceneScriptManager.get().getScene();
-            scene.broadcastPacket(new PacketSceneEntityDisappearNotify(entityGadget, VisionType.VisionType_VISION_REFRESH));
-            scene.broadcastPacket(new PacketSceneEntityAppearNotify(entityGadget, VisionType.VisionType_VISION_REFRESH, 0));
-        }
+        sceneScriptManager.get().getScene().broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
 
         return -1;
     }
