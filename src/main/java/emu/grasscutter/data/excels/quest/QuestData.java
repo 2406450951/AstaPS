@@ -19,6 +19,11 @@ public class QuestData extends GameResource {
     @Getter private int mainId;
     @Getter private int order;
     @Getter private long descTextMapHash;
+    @Getter private String showType;
+
+    public boolean isHidden() {
+        return "QUEST_HIDDEN".equals(showType);
+    }
 
     @Getter private boolean finishParent;
     @Getter private boolean isRewind;
@@ -74,6 +79,7 @@ public class QuestData extends GameResource {
      * group-suite refresh to spawn the combat-training slime.
      */
     public void applyFrom(MainQuestData.SubQuestData additionalData) {
+        if (additionalData.getShowType() != null) this.showType = additionalData.getShowType();
         this.isRewind = additionalData.isRewind();
         this.finishParent = additionalData.isFinishParent();
         this.beginExec = effectiveExecList(this.beginExec, additionalData.getBeginExec());

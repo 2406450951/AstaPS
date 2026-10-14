@@ -81,6 +81,7 @@ public class MainQuestData {
     public static class SubQuestData {
         private int subId;
         private int order;
+        private String showType;
         private boolean isMpBlock;
         private boolean isRewind, finishParent;
 

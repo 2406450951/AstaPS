@@ -3,10 +3,14 @@ package emu.grasscutter.command.commands;
 import static emu.grasscutter.utils.lang.Language.translate;
 
 import emu.grasscutter.command.*;
+import emu.grasscutter.data.GameData;
+import emu.grasscutter.data.excels.quest.QuestData;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.quest.GameQuest;
 import emu.grasscutter.game.quest.QuestManager;
 import emu.grasscutter.game.quest.enums.*;
+import emu.grasscutter.utils.Utils;
+import emu.grasscutter.utils.lang.Language;
 import java.util.*;
 import java.util.stream.Collectors;
 import picocli.CommandLine;
@@ -318,19 +322,42 @@ public final class QuestCommand implements CommandHandler {
         }
     }
 
-    // The debug log is optional and must never hide unfinished quests from the command.
-    static List<Integer> activeQuestIds(Collection<emu.grasscutter.game.quest.GameMainQuest> mainQuests) {
+    // A quest may be running in the server while deliberately hidden from the client.
+    // This is common for statue / waypoint unlock bookkeeping (e.g. main quest 303).
+    static List<GameQuest> activeQuests(
+            Collection<emu.grasscutter.game.quest.GameMainQuest> mainQuests,
+            boolean includeHidden) {
         return mainQuests.stream()
                 .flatMap(main -> main.getActiveQuests().stream())
-                .map(GameQuest::getSubQuestId)
-                .sorted()
+                .filter(quest ->
+                        includeHidden
+                                || quest.getQuestData() == null
+                                || !quest.getQuestData().isHidden())
+                .sorted(Comparator.comparingInt(GameQuest::getSubQuestId))
                 .toList();
+    }
+
+    private static String questName(long textMapHash, String language) {
+        if (textMapHash == 0) return "Unknown";
+        var text = Language.getTextMapKey(textMapHash);
+        if (text == null) return "Unknown";
+        var value = text.getGC(language);
+        return value == null || value.isBlank()
+                ? "Unknown"
+                : value.replaceAll("[\\r\\n]+", " ").trim();
     }
 
     @picocli.CommandLine.Command(name = "list")
     private final class ListQuests implements Runnable {
+        private static final int PAGE_SIZE = 10;
         private final Player sender;
         private final Player targetPlayer;
+
+        @picocli.CommandLine.Option(names = {"-a", "--all"}, description = "Include hidden internal quests")
+        private boolean includeHidden;
+
+        @picocli.CommandLine.Option(names = {"-p", "--page"}, defaultValue = "1", description = "Page number")
+        private int page;
 
         private ListQuests(Player sender, Player targetPlayer) {
             this.sender = sender;
@@ -339,16 +366,49 @@ public final class QuestCommand implements CommandHandler {
 
         @Override
         public void run() {
-            var allQuestIds = activeQuestIds(targetPlayer.getQuestManager().getActiveMainQuests());
+            var mainQuests = targetPlayer.getQuestManager().getActiveMainQuests();
+            var all = activeQuests(mainQuests, true);
+            var visible = activeQuests(mainQuests, false);
+            var selected = includeHidden ? all : visible;
+            var hiddenCount = all.size() - visible.size();
 
+            int pages = Math.max(1, (selected.size() + PAGE_SIZE - 1) / PAGE_SIZE);
+            if (page < 1 || page > pages) {
+                CommandOutput.sendMessage(sender, "Quest list page must be between 1 and " + pages + ".");
+                return;
+            }
+
+            String language =
+                    Utils.getLanguageCode(targetPlayer.getAccount().getLocale());
+            String header =
+                    "Quests: " + selected.size() + " active"
+                            + (includeHidden ? " (including hidden)" : ", " + hiddenCount + " hidden")
+                            + " - page " + page + "/" + pages;
+
+            var entries =
+                    selected.subList((page - 1) * PAGE_SIZE, Math.min(page * PAGE_SIZE, selected.size()))
+                            .stream()
+                            .map(quest -> {
+                                QuestData data = quest.getQuestData();
+                                var mainData = GameData.getMainQuestDataMap().get(quest.getMainQuestId());
+                                String name = questName(data == null ? 0 : data.getDescTextMapHash(), language);
+                                String mainName = questName(mainData == null ? 0 : mainData.getTitleTextMapHash(), language);
+                                return "%d: %s (main %d: %s)%s"
+                                        .formatted(
+                                                quest.getSubQuestId(),
+                                                name,
+                                                quest.getMainQuestId(),
+                                                mainName,
+                                                data != null && data.isHidden() ? " [hidden]" : "");
+                            })
+                            .toList();
             CommandOutput.sendMessage(
                     sender,
-                    "Quests: "
-                            + (allQuestIds.isEmpty()
-                                    ? "(no active quests)"
-                                    : allQuestIds.stream()
-                                            .map(String::valueOf)
-                                            .collect(Collectors.joining(", "))));
+                    header
+                            + (entries.isEmpty() ? "\\n(no active quests)" : "\\n" + String.join("\\n", entries))
+                            + (!includeHidden && hiddenCount > 0
+                                    ? "\\nUse quest list --all to inspect hidden quests."
+                                    : ""));
         }
     }
 }
