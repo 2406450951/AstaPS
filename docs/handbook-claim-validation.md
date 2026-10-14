@@ -18,4 +18,4 @@ This change does not modify reward eligibility, delivery, persistence, response 
 
 There are 50 cases: 36 malformed payloads, 12 valid payloads, and 2 duplicate-ID requests whose final value is zero. Against `origin/main` at `4ae9884d`, 32 cases fail; after the parser fix, all 50 pass. Valid cases verify that rewards still reach inventory and persist normally.
 
-Both handlers are invoked directly. In particular, chapter request identity in the 7.1 client remains unresolved: these tests prove the existing local parser defect, not that a real client can reach the chapter handler. Existing registration is left untouched; this change neither enables an unmapped claim nor guesses a replacement opcode, schema, or field meaning.
+Both handlers are invoked directly. The 7.1 chapter claim (`TakeInvestigationRewardReq`, CmdId 8841) carries the chapter id on field 6; the handler previously read field 5, so every real Investigation Progress claim decoded as chapter 0 and was rejected. Target claims (`TakeInvestigationTargetRewardReq`, CmdId 2703) keep `quest_id` on field 9.

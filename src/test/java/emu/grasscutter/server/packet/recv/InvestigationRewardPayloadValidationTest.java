@@ -31,7 +31,7 @@ import java.util.stream.Stream;
 
 /**
  * Whole-payload validation at the existing handlers, without accounts or external resources.
- * Chapter invocation is direct: this test does not establish its 7.1 request identity.
+ * Chapter claims carry the chapter id on field 6 (7.1 TakeInvestigationRewardReq, CmdId 8841).
  */
 @ExtendWith(ServerResourceFixture.class)
 final class InvestigationRewardPayloadValidationTest {
@@ -159,16 +159,16 @@ final class InvestigationRewardPayloadValidationTest {
     }
 
     private static String payload(boolean target, String template) {
-        return template.replace("{id}", target ? "48e1d403" : "28914e")
-                .replace("{tag}", target ? "48" : "28")
-                .replace("{zero}", target ? "4800" : "2800")
+        return template.replace("{id}", target ? "48e1d403" : "30914e")
+                .replace("{tag}", target ? "48" : "30")
+                .replace("{zero}", target ? "4800" : "3000")
                 // A length-delimited ID is deliberately followed by an otherwise valid varint.
-                .replace("{wrong}", target ? "4ae1d403" : "2a914e")
-                .replace("{fixed64}", (target ? "49" : "29") + "0000000000000000")
-                .replace("{fixed32}", (target ? "4d" : "2d") + "00000000")
-                .replace("{group}", target ? "4b4c" : "2b2c")
-                .replace("{invalid}", target ? "4e" : "2e")
-                .replace("{end}", target ? "4c" : "2c");
+                .replace("{wrong}", target ? "4ae1d403" : "32914e")
+                .replace("{fixed64}", (target ? "49" : "31") + "0000000000000000")
+                .replace("{fixed32}", (target ? "4d" : "35") + "00000000")
+                .replace("{group}", target ? "4b4c" : "3334")
+                .replace("{invalid}", target ? "4e" : "36")
+                .replace("{end}", target ? "4c" : "34");
     }
 
     @ParameterizedTest(name = "target={0}, malformed={1}")
