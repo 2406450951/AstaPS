@@ -1086,6 +1086,21 @@ public class Scene {
         for (SpawnDataEntry entry : visible) {
 
             if (!spawnedEntities.contains(entry) && !this.getDeadSpawnedEntities().contains(entry)) {
+                // The dead set is per scene instance and forgets a collected oculus on relog.
+                if (entry.getGatherItemId() > 0
+                        && entry.getGroup() != null
+                        && OpenWorldSpawnHelper.isPermanentGather(entry.getGatherItemId())
+                        && OpenWorldSpawnHelper.isEntityRespawnBlocked(
+                                this, entry.getGroup().getGroupId(), entry.getConfigId())) {
+                    Grasscutter.getLogger()
+                            .debug(
+                                    "[Spawn] skip collected oculus item={} group={} cfg={}",
+                                    entry.getGatherItemId(),
+                                    entry.getGroup().getGroupId(),
+                                    entry.getConfigId());
+                    this.getDeadSpawnedEntities().add(entry);
+                    continue;
+                }
 
                 GameEntity entity = null;
 
