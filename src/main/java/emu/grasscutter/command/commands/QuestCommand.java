@@ -405,9 +405,9 @@ public final class QuestCommand implements CommandHandler {
             CommandOutput.sendMessage(
                     sender,
                     header
-                            + (entries.isEmpty() ? "\\n(no active quests)" : "\\n" + String.join("\\n", entries))
+                            + (entries.isEmpty() ? "\n(no active quests)" : "\n" + String.join("\n", entries))
                             + (!includeHidden && hiddenCount > 0
-                                    ? "\\nUse quest list --all to inspect hidden quests."
+                                    ? "\nUse quest list --all to inspect hidden quests."
                                     : ""));
         }
     }
