@@ -3,6 +3,8 @@ package emu.grasscutter.command.commands;
 import static org.junit.jupiter.api.Assertions.*;
 
 import emu.grasscutter.command.Command;
+import emu.grasscutter.net.proto.OpenStateChangeNotifyOuterClass.OpenStateChangeNotify;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
@@ -21,6 +23,15 @@ public final class BarrierCommandTest {
                 () -> command.createCommandLine(null, null).parseArgs("toggle"));
         assertThrows(CommandLine.ParameterException.class,
                 () -> command.createCommandLine(null, null).parseArgs("on", "off"));
+    }
+
+    @Test
+    void togglesStarterRegionRestrictionWithOpenState47() throws Exception {
+        var off = OpenStateChangeNotify.parseFrom(BarrierCommand.barrierStatePacket(false).getData());
+        var on = OpenStateChangeNotify.parseFrom(BarrierCommand.barrierStatePacket(true).getData());
+
+        assertEquals(Map.of(47, 1), off.getOpenStateMapMap());
+        assertEquals(Map.of(47, 0), on.getOpenStateMapMap());
     }
 
     @Test

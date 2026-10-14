@@ -35,6 +35,11 @@ public final class BarrierCommand implements CommandHandler {
         return commandLine;
     }
 
+    // The starter-region boundary uses OpenState 47 (LIMIT_REGION_FRESHMEAT), not 48.
+    static PacketOpenStateChangeNotify barrierStatePacket(boolean enabled) {
+        return new PacketOpenStateChangeNotify(47, enabled ? 0 : 1);
+    }
+
     @CommandLine.Command(name = "barrier")
     private static final class Args implements Runnable {
         private final Player sender;
@@ -56,7 +61,7 @@ public final class BarrierCommand implements CommandHandler {
                 return;
             }
             boolean enabled = state == State.ON;
-            targetPlayer.sendPacket(new PacketOpenStateChangeNotify(48, enabled ? 0 : 1));
+            targetPlayer.sendPacket(barrierStatePacket(enabled));
             CommandOutput.sendMessage(sender, enabled ? "Restored barrier" : "Removed barrier");
         }
     }
