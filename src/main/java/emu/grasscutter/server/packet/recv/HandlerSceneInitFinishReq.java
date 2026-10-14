@@ -83,8 +83,7 @@ public class HandlerSceneInitFinishReq extends PacketHandler {
      * Builds the watermark payload.
      *
      * <p>The default path is the {@link LuaShell} login chunk, which rewrites only the {@code "UID:"}
-     * prefix and so keeps the player's UID on screen. It is loaded once at startup and can be
-     * replaced by dropping a compiled chunk at {@code lua/login.luac}.
+     * prefix and so keeps the player's UID on screen.
      *
      * <p>A configured {@code watermark.text} still wins: that path overwrites the whole watermark
      * and is the only way to show per-player text, which the shared shell cannot do.

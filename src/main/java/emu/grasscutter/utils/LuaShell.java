@@ -4,11 +4,7 @@ import emu.grasscutter.GameConstants;
 import emu.grasscutter.server.game.GameSession;
 import emu.grasscutter.server.packet.send.PacketWindSeedClientNotify;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 /**
  * The compiled-Lua shell sent to the client at login, which rebrands the beta watermark.
@@ -17,9 +13,8 @@ import java.util.Arrays;
  * existing text and replaces only the {@code "UID:"} prefix. The player's UID stays on screen and
  * only the label in front of it changes.
  *
- * <p>The baked blob can be replaced at runtime by dropping a compiled chunk at {@code
- * lua/login.luac}; it is read once at startup. When no file is present the built-in blob is used and
- * its {@code 0.0.0} placeholder is stamped with the running game version.
+ * <p>The built-in array is always what goes out; at startup its {@code 0.0.0} placeholder is
+ * stamped with the running game version.
  */
 public class LuaShell {
     /** Called once from main during startup. */
@@ -28,22 +23,7 @@ public class LuaShell {
     }
 
     public static void getLoginLuaShell() {
-        byte[] luaFile;
-        try {
-            luaFile =
-                    Files.readAllBytes(
-                            Paths.get(".").toAbsolutePath().normalize().resolve("lua/login.luac"));
-        } catch (IOException e) {
-            luaFile = luaShell;
-        }
-
-        // No usable external chunk: keep the baked one and stamp the version into it.
-        if (Arrays.equals(luaFile, new byte[0]) || luaFile.length < 6 || luaFile == luaShell) {
-            updateLuaShellWithGameVersion(GameConstants.VERSION);
-            return;
-        }
-
-        luaShell = luaFile;
+        updateLuaShellWithGameVersion(GameConstants.VERSION);
     }
 
     public static void sendLuaShell(GameSession session, byte[] shell) {
