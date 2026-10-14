@@ -29,6 +29,25 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
     // region gating. Empty set = match remote unlock behaviour.
     public static final Set<Integer> BLACKLIST_OPEN_STATES = Set.of();
 
+    /**
+     * Hidden quests that gate open states but can never start: their 7.1 accept condition is the
+     * exported "quest 0 finished" placeholder. Each finishes on the same talk as the shown quest it
+     * maps to, so that quest finishing stands in for it.
+     *
+     * <pre>
+     * 2010001 (Wish, 31)                  talk 35801 -> 35802
+     * 35001   (LIMIT_REGION_FRESHMEAT 47) talks 30902/30904 -> 31101
+     * </pre>
+     */
+    static final java.util.Map<Integer, Integer> HIDDEN_QUEST_SIBLINGS =
+            java.util.Map.of(2010001, 35802, 35001, 31101);
+
+    /**
+     * OPEN_STATE_LIMIT_REGION_GLOBAL waits on unreleased test quest 99902, so the server owns it, as
+     * LunaGC does; without it the 7.0 world region never opens past the starter boundary.
+     */
+    static final int OPEN_STATE_LIMIT_REGION_GLOBAL = 48;
+
     public static final Set<Integer> IGNORED_OPEN_STATES =
             Set.of(
                     1404 // OPEN_STATE_MENGDE_INFUSEDCRYSTAL, causes quest 'Mine Craft' to be given to the
@@ -89,6 +108,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         // Try unlocking open states on player login. This handles accounts where unlock conditions were
         // already met before certain open state unlocks were implemented.
         this.tryUnlockOpenStates(false);
+        if (this.getOpenState(OPEN_STATE_LIMIT_REGION_GLOBAL) == 0) {
+            this.setOpenState(OPEN_STATE_LIMIT_REGION_GLOBAL, 1, false);
+        }
 
         // Disabling quests must not activate the first Statue of the Seven or reveal
         // its map area. Point (3,7) is unlocked only by normal gameplay/commands.
@@ -178,6 +200,11 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
     /**********
      * Condition checking for setting open states.
      **********/
+    private boolean isQuestFinished(int questId) {
+        var quest = this.player.getQuestManager().getQuestById(questId);
+        return quest != null && quest.getState() == QuestState.QUEST_STATE_FINISHED;
+    }
+
     private boolean areConditionsMet(OpenStateData openState) {
         // Check all conditions and test if at least one of them is violated.
         for (var condition : openState.getCond()) {
@@ -190,9 +217,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
                 }
                 case OPEN_STATE_COND_QUEST -> {
                     // check sub quest id for quest finished met requirements
-                    var quest = this.player.getQuestManager().getQuestById(condition.getParam());
-                    if (quest == null || quest.getState() != QuestState.QUEST_STATE_FINISHED) {
-                        return false;
+                    if (!this.isQuestFinished(condition.getParam())) {
+                        int sibling = HIDDEN_QUEST_SIBLINGS.getOrDefault(condition.getParam(), 0);
+                        if (sibling == 0 || !this.isQuestFinished(sibling)) return false;
                     }
                 }
                 case OPEN_STATE_COND_PARENT_QUEST -> {

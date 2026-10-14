@@ -368,6 +368,8 @@ public class Avatar {
         if (depot != null && depot.getEnergySkillData() != null) {
             ElementType element = depot.getElementType();
             var maxEnergy = depot.getEnergySkillData().getCostElemVal();
+            // Saves from before the refill cap can hold more than the max.
+            if (maxEnergy > 0 && currentEnergy > maxEnergy) currentEnergy = maxEnergy;
             this.setFightProperty(element.getMaxEnergyProp(), maxEnergy);
             this.setFightProperty(
                     element.getCurEnergyProp(), GAME_OPTIONS.energyUsage ? currentEnergy : maxEnergy);
