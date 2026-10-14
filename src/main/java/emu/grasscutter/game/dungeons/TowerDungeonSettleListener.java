@@ -6,6 +6,7 @@ import emu.grasscutter.game.dungeons.dungeon_results.BaseDungeonResult.DungeonEn
 import emu.grasscutter.game.dungeons.dungeon_results.TowerResult;
 import emu.grasscutter.game.inventory.GameItem;
 import emu.grasscutter.game.props.ActionReason;
+import emu.grasscutter.game.tower.TowerRewards;
 import emu.grasscutter.server.packet.send.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,7 @@ public class TowerDungeonSettleListener implements DungeonSettleListener {
         scene.broadcastPacket(new PacketDungeonSettleNotify(result));
     }
 
-    /** First-clear chamber loot from TowerLevelExcel firstPassRewardId. */
+    /** First-clear chamber loot from the rotation reward group, with a chamber-row fallback. */
     private static List<GameItem> grantFirstPassRewards(
             emu.grasscutter.game.tower.TowerManager towerManager, int levelId) {
         var record = towerManager.getRecordMap().get(towerManager.getCurrentFloorId());
@@ -106,7 +107,11 @@ public class TowerDungeonSettleListener implements DungeonSettleListener {
         if (levelData == null) {
             levelData = towerManager.getCurrentTowerLevelDataMap();
         }
-        if (levelData == null || levelData.getFirstPassRewardId() <= 0) {
+        var schedule =
+                towerManager.getPlayer().getServer().getTowerSystem().getCurrentTowerScheduleData();
+        var floorData = GameData.getTowerFloorDataMap().get(towerManager.getCurrentFloorId());
+        int rewardId = TowerRewards.chamberRewardId(schedule, floorData, levelData);
+        if (rewardId <= 0) {
             emu.grasscutter.Grasscutter.getLogger()
                     .warn(
                             "Tower firstPass missing reward uid={} levelId={}",
@@ -114,7 +119,7 @@ public class TowerDungeonSettleListener implements DungeonSettleListener {
                             levelId);
             return List.of();
         }
-        var reward = GameData.getRewardDataMap().get(levelData.getFirstPassRewardId());
+        var reward = GameData.getRewardDataMap().get(rewardId);
         if (reward == null || reward.getRewardItemList() == null) {
             return List.of();
         }
@@ -135,7 +140,7 @@ public class TowerDungeonSettleListener implements DungeonSettleListener {
                             towerManager.getPlayer().getUid(),
                             towerManager.getCurrentFloorId(),
                             levelId,
-                            levelData.getFirstPassRewardId(),
+                            rewardId,
                             items.size());
         }
         return items;
