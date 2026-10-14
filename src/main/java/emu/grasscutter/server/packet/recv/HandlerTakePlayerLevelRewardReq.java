@@ -59,7 +59,7 @@ public class HandlerTakePlayerLevelRewardReq extends PacketHandler {
         }
     }
 
-    /** Live 7.1 Katheryne requests use field 15; the generated descriptor still says 11. */
+    /** Validate the complete 7.1 field-15 request before entering the reward boundary. */
     private static int readLevel(byte[] payload) throws IOException {
         if (payload == null || payload.length == 0) return 0;
         CodedInputStream input = CodedInputStream.newInstance(payload);
