@@ -318,6 +318,15 @@ public final class QuestCommand implements CommandHandler {
         }
     }
 
+    // The debug log is optional and must never hide unfinished quests from the command.
+    static List<Integer> activeQuestIds(Collection<emu.grasscutter.game.quest.GameMainQuest> mainQuests) {
+        return mainQuests.stream()
+                .flatMap(main -> main.getActiveQuests().stream())
+                .map(GameQuest::getSubQuestId)
+                .sorted()
+                .toList();
+    }
+
     @picocli.CommandLine.Command(name = "list")
     private final class ListQuests implements Runnable {
         private final Player sender;
@@ -330,32 +339,16 @@ public final class QuestCommand implements CommandHandler {
 
         @Override
         public void run() {
-            var questManager = targetPlayer.getQuestManager();
-            var mainQuests = questManager.getActiveMainQuests();
-            var allQuestIds =
-                    mainQuests.stream()
-                            .filter(
-                                    quest ->
-                                            questManager
-                                                    .getLoggedQuests()
-                                                    .contains(quest.getParentQuestId()))
-                            .filter(
-                                    quest ->
-                                            quest.getState()
-                                                    != ParentQuestState.PARENT_QUEST_STATE_FINISHED)
-                            .map(quest -> quest.getChildQuests().values())
-                            .flatMap(Collection::stream)
-                            .filter(quest -> quest.getState() == QuestState.QUEST_STATE_UNFINISHED)
-                            .map(GameQuest::getSubQuestId)
-                            .map(String::valueOf)
-                            .toList();
+            var allQuestIds = activeQuestIds(targetPlayer.getQuestManager().getActiveMainQuests());
 
             CommandOutput.sendMessage(
                     sender,
                     "Quests: "
                             + (allQuestIds.isEmpty()
                                     ? "(no active quests)"
-                                    : String.join(", ", allQuestIds)));
+                                    : allQuestIds.stream()
+                                            .map(String::valueOf)
+                                            .collect(Collectors.joining(", "))));
         }
     }
 }
