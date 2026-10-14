@@ -36,6 +36,23 @@ final class ConfigRouteRun {
     }
 
     /**
+     * Whether the route times its points by {@code speedLevel} instead of a target velocity: some
+     * point from the resume index on has no velocity at all. About a quarter of 7.1 routes do, and
+     * they keep the legacy start path, which still sends the start for the client to animate.
+     */
+    static boolean usesSpeedLevels(EntityGadget gadget, ConfigRoute config) {
+        var route = gadget.getScene().getSceneRouteById(config.getRouteId());
+        if (route == null || route.getPoints() == null) return false;
+        var points = route.getPoints();
+        int start = config.getStartIndex() == points.length - 1 ? 0 : config.getStartIndex();
+        if (start < 0) return false;
+        for (int i = start; i < points.length; i++) {
+            if (points[i] != null && points[i].getTargetVelocity() == 0) return true;
+        }
+        return false;
+    }
+
+    /**
      * Validate before resetting an index, dispatching point zero, scheduling, or publishing state.
      */
     static ConfigRouteRun plan(EntityGadget gadget, ConfigRoute config, RoutePoint[] points) {

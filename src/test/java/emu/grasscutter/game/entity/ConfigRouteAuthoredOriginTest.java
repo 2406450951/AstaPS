@@ -196,7 +196,7 @@ class ConfigRouteAuthoredOriginTest {
         assertEquals(0, f.gadget.getPosition().computeDistance(f.spawn));
         f.change();
         assertEquals(0, f.gadget.getPosition().computeDistance(f.spawn));
-        f.scene.route.getPoints()[0].setTargetVelocity(0);
+        f.scene.route.getPoints()[0].setTargetVelocity(-1);
         int packets = f.scene.packets.size();
         assertEquals(2, f.lib.StartPlatform(174002));
         assertEquals(0, f.gadget.getPosition().computeDistance(f.spawn));

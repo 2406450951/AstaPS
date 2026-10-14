@@ -1,6 +1,5 @@
 package emu.grasscutter.server.packet.recv;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import emu.grasscutter.net.proto.ClientScriptEventNotifyOuterClass.ClientScriptEventNotify;
@@ -10,14 +9,17 @@ import org.junit.jupiter.api.Test;
 
 class ClientScriptEventNotifyTest {
     @Test
-    void emptyNearPlatformParametersAreRejectedBeforeSceneAccess() {
+    void emptyNearPlatformParametersReachTheConfigIdWorkaround() {
         byte[] payload =
                 ClientScriptEventNotify.newBuilder()
                         .setEventType(EventType.EVENT_AVATAR_NEAR_PLATFORM)
                         .build()
                         .toByteArray();
 
-        assertDoesNotThrow(
+        // The empty list is no longer dropped: it goes on to the scene (null here) to look up the
+        // source entity's config id, instead of failing on the absent first parameter.
+        assertThrows(
+                NullPointerException.class,
                 () -> new HandlerClientScriptEventNotify().handle(null, new byte[0], payload));
     }
 

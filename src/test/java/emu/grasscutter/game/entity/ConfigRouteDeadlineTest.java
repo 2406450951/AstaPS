@@ -299,7 +299,6 @@ class ConfigRouteDeadlineTest {
     void malformedOrdinaryPlanFailsAtomicallyIncludingFinalIndexReset() throws Exception {
         for (String bad :
                 List.of(
-                        "zero",
                         "negative",
                         "NaN",
                         "infinite",
@@ -310,7 +309,6 @@ class ConfigRouteDeadlineTest {
             Fixture f = new Fixture(200);
             f.config.setStartIndex(2);
             switch (bad) {
-                case "zero" -> f.scene.route.getPoints()[0].setTargetVelocity(0);
                 case "negative" -> f.scene.route.getPoints()[0].setTargetVelocity(-1);
                 case "NaN" -> f.scene.route.getPoints()[0].setTargetVelocity(Float.NaN);
                 case "infinite" ->

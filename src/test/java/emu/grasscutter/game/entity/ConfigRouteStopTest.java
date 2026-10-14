@@ -102,7 +102,7 @@ class ConfigRouteStopTest {
         f.scene.now = 102300;
         f.polls(1);
         assertEquals(1, f.config.getStartIndex());
-        f.scene.route.getPoints()[2].setTargetVelocity(0);
+        f.scene.route.getPoints()[2].setTargetVelocity(-1);
         int packets = f.scene.packets.size(), events = f.scene.manager.events.size();
         assertEquals(2, f.lib.StartPlatform(174002));
         assertEquals(1, f.config.getStartIndex());
@@ -117,6 +117,29 @@ class ConfigRouteStopTest {
         single.polls(1);
         assertFalse(single.config.isStarted());
         assertFalse(single.config.isActive());
+    }
+
+    @Test
+    void finalPointClosesTheRouteWithoutRefreshingTheEntity() throws Exception {
+        var f = new ConfigRouteDeadlineTest.Fixture(200);
+        assertTrue(f.gadget.startPlatform());
+        int packets = f.scene.packets.size();
+        f.scene.now = f.config.getStartSceneTime() + 10000;
+        f.polls(10);
+        assertEquals(2, f.config.getStartIndex());
+        assertFalse(f.config.isStarted());
+        assertFalse(f.config.isActive());
+        assertTrue(f.config.getScheduledIndexes().isEmpty());
+        assertEquals(packets, f.scene.packets.size());
+    }
+
+    @Test
+    void speedLevelRoutesKeepTheLegacyStart() throws Exception {
+        var f = new ConfigRouteDeadlineTest.Fixture(200);
+        for (var point : f.scene.route.getPoints()) point.setTargetVelocity(0);
+        assertEquals(0, f.lib.StartPlatform(174002));
+        assertTrue(f.config.isStarted());
+        assertFalse(f.scene.packets.isEmpty());
     }
 
     @ParameterizedTest

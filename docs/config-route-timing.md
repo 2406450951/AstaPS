@@ -12,11 +12,11 @@ The complete ordinary route plan is validated before resetting a completed index
 
 Each point has a cancellable repeating scheduler task. Polling checks the advertised scene-clock deadline, including signed 32-bit clock wrap, and never advances early. Due points advance in route order even if scheduler iteration encounters a later task first. Stop, restart, and route replacement invalidate the old run under the gadget monitor, so retained callbacks cannot advance a replacement run. Each task advances at most once.
 
-The first `reachStop` marker after the source ends the active segment. Starting again resumes from the reached point without stopping immediately at that same marker. Final-point completion retains the existing stop behavior. Liyue dungeon platforms retain their existing wait-time and rotation handling instead of using the ordinary distance/velocity plan.
+The first `reachStop` marker after the source ends the active segment. Starting again resumes from the reached point without stopping immediately at that same marker. Reaching the final point closes the route state and cancels its tasks without a stop broadcast: 7.1 has no stop opcode, so a stop there would refresh the entity under anyone standing on it. Routes whose points carry no target velocity (they are timed by `speedLevel`, about a quarter of 7.1 routes) and the Amber water platforms keep the legacy start path. Liyue dungeon platforms retain their existing wait-time and rotation handling instead of using the ordinary distance/velocity plan.
 
 ## Resource and protocol compatibility
 
-Route resources accept canonical field names and underscore-prefixed route and point fields, including `_reachStop`. Scene-route containers accept both supported resource key families. Serialization continues to use canonical names. When a platform-route-change opcode is unavailable, route changes use the existing entity-refresh packet path. An empty avatar-near-platform event is ignored before accessing its absent first parameter; other event handling is unchanged.
+Route resources accept canonical field names and underscore-prefixed route and point fields, including `_reachStop`. Scene-route containers accept both supported resource key families. Serialization continues to use canonical names. When a platform-route-change opcode is unavailable, route changes use the existing entity-refresh packet path. An avatar-near-platform event with no parameters takes the same source-entity config-id workaround as a zero first parameter, and is dropped only when that entity is gone.
 
 ## Verification
 
