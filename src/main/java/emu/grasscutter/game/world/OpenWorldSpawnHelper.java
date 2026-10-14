@@ -238,6 +238,13 @@ public final class OpenWorldSpawnHelper {
         return item != null && item.getMaterialType() == MaterialType.MATERIAL_ELEM_CRYSTAL;
     }
 
+    /** A Lua gather point whose gather item is an oculus. */
+    public static boolean isPermanentGatherPoint(int pointType) {
+        if (pointType <= 0) return false;
+        GatherData gather = GameData.getGatherDataMap().get(pointType);
+        return gather != null && isPermanentGather(gather.getItemId());
+    }
+
     private static boolean isExpired(Scene scene, int n, Document document) {
         int n2;
         long l = OpenWorldSpawnHelper.readConsumedAt(document);

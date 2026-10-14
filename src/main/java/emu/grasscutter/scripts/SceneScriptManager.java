@@ -839,7 +839,11 @@ public class SceneScriptManager {
                             return shouldSpawnGadget(
                                     entity != null && entity.getGroupId() == group.id,
                                     groupInstance.isScriptGadgetDestroyed(m.config_id),
-                                    m.isOneoff, m.persistent,
+                                    m.isOneoff,
+                                    // Many oculus gather points are oneoff without persistent.
+                                    m.persistent
+                                            || emu.grasscutter.game.world.OpenWorldSpawnHelper
+                                                    .isPermanentGatherPoint(m.point_type),
                                     groupInstance.getDeadEntities().contains(m.config_id));
                         })
                 .map(g -> createGadget(group.id, group.block_id, g, groupInstance.getCachedGadgetState(g)))
