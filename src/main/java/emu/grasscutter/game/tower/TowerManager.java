@@ -471,10 +471,13 @@ public class TowerManager extends BasePlayerManager {
     private void mergeFirstPassRewards(int floorId, Map<Integer, Integer> into) {
         int firstLevelId = getFirstLevelId(floorId);
         if (firstLevelId == 0) return;
+        var schedule = player.getServer().getTowerSystem().getCurrentTowerScheduleData();
+        var floorData = GameData.getTowerFloorDataMap().get(floorId);
         for (int i = 0; i < LEVELS_PER_FLOOR; i++) {
             var levelData = GameData.getTowerLevelDataMap().get(firstLevelId + i);
-            if (levelData == null || levelData.getFirstPassRewardId() <= 0) continue;
-            var reward = GameData.getRewardDataMap().get(levelData.getFirstPassRewardId());
+            int rewardId = TowerRewards.chamberRewardId(schedule, floorData, levelData);
+            if (rewardId <= 0) continue;
+            var reward = GameData.getRewardDataMap().get(rewardId);
             if (reward == null || reward.getRewardItemList() == null) continue;
             for (var param : reward.getRewardItemList()) {
                 if (param == null || param.getId() <= 0 || param.getCount() <= 0) continue;
@@ -1075,17 +1078,12 @@ public class TowerManager extends BasePlayerManager {
             return false;
         }
 
+        var schedule = player.getServer().getTowerSystem().getCurrentTowerScheduleData();
         var items = new ArrayList<emu.grasscutter.game.inventory.GameItem>();
         int progress = claimed;
         while (progress + 3 <= 9 && stars >= progress + 3) {
             int tier = progress + 3;
-            int rewardId =
-                    switch (tier) {
-                        case 3 -> floorData.getRewardIdThreeStars();
-                        case 6 -> floorData.getRewardIdSixStars();
-                        case 9 -> floorData.getRewardIdNineStars();
-                        default -> 0;
-                    };
+            int rewardId = TowerRewards.starRewardId(schedule, floorData, tier);
             if (rewardId <= 0) {
                 Grasscutter.getLogger()
                         .warn("Tower claim stars: no rewardId floor={} tier={}", floorId, tier);

@@ -12,6 +12,7 @@ public class TowerScheduleData extends GameResource {
     @SerializedName(value = "schedules", alternate = {"LHOGNLPBILP"})
     private List<ScheduleDetail> schedules;
     private int monthlyLevelConfigId;
+    private int rewardGroup;
 
     @Override
     public int getId() {
@@ -52,6 +53,10 @@ public class TowerScheduleData extends GameResource {
 
     public int getMonthlyLevelConfigId() {
         return monthlyLevelConfigId;
+    }
+
+    public int getRewardGroup() {
+        return rewardGroup;
     }
 
     public static class ScheduleDetail {
