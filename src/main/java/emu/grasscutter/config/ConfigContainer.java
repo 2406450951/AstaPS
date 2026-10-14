@@ -581,7 +581,7 @@ public class ConfigContainer {
         }
 
         public static class WatermarkOptions {
-            /* Replace the client's beta watermark text for everyone on this server. */
+            /* Use the custom text below. When false, everyone gets the login Lua shell watermark. */
             public boolean enabled = true;
             /* Text to show, which OVERWRITES the whole watermark. Capped at 254 bytes by the
              * payload format; longer values fall back to the login Lua shell.

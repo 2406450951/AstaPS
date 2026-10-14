@@ -91,16 +91,8 @@ public class HandlerSceneInitFinishReq extends PacketHandler {
      */
     private static BasePacket buildWatermarkPacket() {
         ConfigContainer.GameOptions.WatermarkOptions w = Configuration.GAME_OPTIONS.watermark;
-        if (!w.enabled) {
-            return new PacketWindSeedUID();
-        }
-
-        if (w.text == null || w.text.isBlank()) {
-            byte[] shell = LuaShell.getLuaShell();
-            if (shell != null && shell.length >= 6) {
-                return new PacketWindSeedClientNotify(shell);
-            }
-            return new PacketWindSeedUID();
+        if (!w.enabled || w.text == null || w.text.isBlank()) {
+            return new PacketWindSeedClientNotify(LuaShell.getLuaShell());
         }
 
         Player player = WatermarkGradientHelper.getCurrentPlayer();
@@ -113,9 +105,6 @@ public class HandlerSceneInitFinishReq extends PacketHandler {
             return new PacketWindSeedClientNotify(WatermarkUtils.buildLuac(text));
         }
         Grasscutter.getLogger().warn("Watermark text too long; using the login Lua shell instead.");
-        byte[] shell = LuaShell.getLuaShell();
-        return shell != null && shell.length >= 6
-                ? new PacketWindSeedClientNotify(shell)
-                : new PacketWindSeedUID();
+        return new PacketWindSeedClientNotify(LuaShell.getLuaShell());
     }
 }
