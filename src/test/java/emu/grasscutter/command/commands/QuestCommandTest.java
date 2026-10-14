@@ -53,6 +53,15 @@ public final class QuestCommandTest {
         assertEquals(List.of(30302, 30600), ids(QuestCommand.activeQuests(List.of(main), true)));
     }
 
+    @Test
+    void treatsMissingTextMapPlaceholdersAsUnknown() {
+        assertEquals(null, QuestCommand.readableQuestText("[N/A] 1965198481"));
+        assertEquals(null, QuestCommand.readableQuestText(null));
+        assertEquals(null, QuestCommand.readableQuestText(" "));
+        assertEquals("Meet Lisa at the temple", QuestCommand.readableQuestText("Meet Lisa at the temple"));
+        assertEquals("First line Second line", QuestCommand.readableQuestText("First line\nSecond line"));
+    }
+
     private static List<Integer> ids(List<GameQuest> quests) {
         return quests.stream().map(GameQuest::getSubQuestId).collect(Collectors.toList());
     }

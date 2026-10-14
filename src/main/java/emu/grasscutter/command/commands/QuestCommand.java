@@ -337,14 +337,22 @@ public final class QuestCommand implements CommandHandler {
                 .toList();
     }
 
+    /** Reject placeholder strings generated when the requested hash is absent from TextMap. */
+    static String readableQuestText(String text) {
+        if (text == null || text.isBlank() || text.startsWith("[N/A]")) return null;
+        return text.replaceAll("[\\r\\n]+", " ").trim();
+    }
+
     private static String questName(long textMapHash, String language) {
         if (textMapHash == 0) return "Unknown";
-        var text = Language.getTextMapKey(textMapHash);
-        if (text == null) return "Unknown";
-        var value = text.getGC(language);
-        return value == null || value.isBlank()
-                ? "Unknown"
-                : value.replaceAll("[\\r\\n]+", " ").trim();
+        // The Quest and TextMap dumps can differ by 512 hashes, as with item names.
+        for (long candidate : new long[] {textMapHash, textMapHash + 512L}) {
+            var text = Language.getTextMapKey(candidate);
+            if (text == null) continue;
+            var name = readableQuestText(text.getGC(language));
+            if (name != null) return name;
+        }
+        return "Unknown";
     }
 
     @picocli.CommandLine.Command(name = "list")
@@ -358,6 +366,9 @@ public final class QuestCommand implements CommandHandler {
 
         @picocli.CommandLine.Option(names = {"-p", "--page"}, defaultValue = "1", description = "Page number")
         private int page;
+
+        @picocli.CommandLine.Option(names = {"--lang"}, description = "Quest text language, e.g. zh-CN")
+        private String requestedLanguage;
 
         private ListQuests(Player sender, Player targetPlayer) {
             this.sender = sender;
@@ -378,8 +389,13 @@ public final class QuestCommand implements CommandHandler {
                 return;
             }
 
-            String language =
-                    Utils.getLanguageCode(targetPlayer.getAccount().getLocale());
+            String language = requestedLanguage != null
+                    ? requestedLanguage
+                    : Utils.getLanguageCode(targetPlayer.getAccount().getLocale());
+            if (!Language.TextStrings.MAP_GC_LANGUAGES.containsKey(language)) {
+                CommandOutput.sendMessage(sender, "Unsupported quest text language: " + language);
+                return;
+            }
             String header =
                     "Quests: " + selected.size() + " active"
                             + (includeHidden ? " (including hidden)" : ", " + hiddenCount + " hidden")
