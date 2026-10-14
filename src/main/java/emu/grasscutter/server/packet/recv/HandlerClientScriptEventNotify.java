@@ -16,6 +16,10 @@ public class HandlerClientScriptEventNotify extends PacketHandler {
     @Override
     public void handle(GameSession session, byte[] header, byte[] payload) throws Exception {
         val data = ClientScriptEventNotify.parseFrom(payload);
+        if (data.getEventType() == EventType.EVENT_AVATAR_NEAR_PLATFORM
+                && data.getParamListCount() == 0) {
+            return;
+        }
         val scriptManager = session.getPlayer().getScene().getScriptManager();
         val args =
                 new ScriptArgs(0, data.getEventType())
