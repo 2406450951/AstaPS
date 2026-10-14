@@ -61,6 +61,7 @@ public class SceneScriptManager {
     private final Map<Integer, Set<Pair<String, Integer>>> activeGroupTimers;
     private final LiyueCloudDungeonTimers liyueDungeonTimers = new LiyueCloudDungeonTimers(this);
     private CompletableFuture<Void> liyueFireEvents = CompletableFuture.completedFuture(null);
+    private final Map<Integer, CompletableFuture<Void>> amberQuestEvents = new HashMap<>();
     private final Map<String, AtomicInteger> triggerInvocations;
     private final Map<Integer, EntityRegion> regions; // <EntityId-Region>
     private final Map<Integer, SceneGroup> sceneGroups;
@@ -959,10 +960,25 @@ public class SceneScriptManager {
          * not get it. e.g. CallEvent -> set -> ScriptLib.xxx -> CallEvent -> set -> remove -> NPE ->
          * (remove) So we use thread pool to clean the stack to avoid this new issue.
          */
+        if (emu.grasscutter.game.quest.AmberFlightExamSupport.isFlightGroup(getScene(), params.getGroupId())
+                || emu.grasscutter.game.quest.MondstadtStoryQuestSupport.isAmberWaterGroup(getScene(), params.getGroupId())) {
+            return enqueueAmberQuestEvent(params);
+        }
         if (LiyueCloudDungeonSupport.isFireLinkGroup(getScene(), params.getGroupId())) {
             return enqueueLiyueFireEvent(params);
         }
         return eventExecutor.submit(() -> this.realCallEvent(params));
+    }
+
+    private synchronized Future<?> enqueueAmberQuestEvent(ScriptArgs params) {
+        // Coin batches and the two water switches update shared Lua counters; preserve event order.
+        var previous = amberQuestEvents.getOrDefault(params.getGroupId(), CompletableFuture.completedFuture(null));
+        var next = previous.handleAsync((ignored, failure) -> {
+            realCallEvent(params);
+            return (Void) null;
+        }, eventExecutor);
+        amberQuestEvents.put(params.getGroupId(), next);
+        return next;
     }
 
     private synchronized Future<?> enqueueLiyueFireEvent(ScriptArgs params) {
@@ -1400,7 +1416,8 @@ public class SceneScriptManager {
         }
         boolean hasTrigger =
                 group.triggers.values().stream()
-                        .anyMatch(t -> t.getEvent() == EVENT_TIMER_EVENT && t.getSource().equals(source));
+                        .anyMatch(t -> t.getEvent() == EVENT_TIMER_EVENT
+                                && (t.getSource().isEmpty() || t.getSource().equals(source)));
         if (!hasTrigger) return 0;
 
         // Lua passes seconds; the scene scheduler counts ticks and stops while the scene is paused.

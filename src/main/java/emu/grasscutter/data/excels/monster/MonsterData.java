@@ -99,15 +99,7 @@ public class MonsterData extends GameResource {
 
         this.describeData = GameData.getMonsterDescribeDataMap().get(this.getDescribeId());
 
-        if (this.describeData == null) {
-            return;
-        }
-        for (var entry : GameData.getMonsterSpecialNameDataMap().int2ObjectEntrySet()) {
-            if (entry.getValue().getSpecialNameLabId() == this.getDescribeData().getSpecialNameLabId()) {
-                this.specialNameId = entry.getIntKey();
-                break;
-            }
-        }
+        this.specialNameId = MonsterNameResolver.defaultSpecialNameId(this.describeData);
     }
 
     public float getFightProperty(FightProperty prop) {

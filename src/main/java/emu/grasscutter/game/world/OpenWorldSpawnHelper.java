@@ -39,6 +39,7 @@ import emu.grasscutter.database.DatabaseManager;
 import emu.grasscutter.game.dungeons.DomainDungeonHelper;
 import emu.grasscutter.game.entity.EntityGadget;
 import emu.grasscutter.game.entity.EntityMonster;
+import emu.grasscutter.game.inventory.MaterialType;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.world.NodKraiExploreSpawnHelper;
 import emu.grasscutter.game.world.SnezhnayaExploreSpawnHelper;
@@ -231,11 +232,20 @@ public final class OpenWorldSpawnHelper {
         return OpenWorldSpawnHelper.resolveRefreshId(scene, n);
     }
 
+    /** Oculi (MATERIAL_ELEM_CRYSTAL) are collected once per world and never come back. */
+    public static boolean isPermanentGather(int itemId) {
+        var item = GameData.getItemDataMap().get(itemId);
+        return item != null && item.getMaterialType() == MaterialType.MATERIAL_ELEM_CRYSTAL;
+    }
+
     private static boolean isExpired(Scene scene, int n, Document document) {
         int n2;
         long l = OpenWorldSpawnHelper.readConsumedAt(document);
         if (l <= 0L) {
             return true;
+        }
+        if (document.get("gatherItemId") instanceof Number item && isPermanentGather(item.intValue())) {
+            return false;
         }
         long l2 = System.currentTimeMillis() / 1000L;
         return l2 >= l + (long)OpenWorldSpawnHelper.intervalSeconds(scene, n2 = OpenWorldSpawnHelper.readRefreshId(document, scene, n));

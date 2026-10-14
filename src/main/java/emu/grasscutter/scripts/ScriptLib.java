@@ -228,7 +228,8 @@ public class ScriptLib {
         var existingChallenge = scene.getChallenge();
         if (existingChallenge != null && existingChallenge.inProgress()) {
             logger.warn("ActiveChallenge: tried to create challenge while one is already in progress");
-            return 0;
+            return emu.grasscutter.game.quest.AmberFlightExamSupport.isFlightChallenge(
+                    scene, getCurrentGroup().get(), challengeId, challengeIndex) ? 1 : 0;
         }
 
         var players = scene.getPlayers();
@@ -582,6 +583,8 @@ public class ScriptLib {
         } catch (Throwable ignored) {
         }
 
+        if (emu.grasscutter.game.quest.RazorWolfQuestSupport.scheduleStoryWolf(
+                getSceneScriptManager().getScene(), getCurrentGroup().get(), configId, delayTime)) return 0;
         getSceneScriptManager().spawnMonstersByConfigId(getCurrentGroup().get(), configId, delayTime);
         return 0;
     }
@@ -1406,19 +1409,29 @@ public class ScriptLib {
             return 2;
         }
 
-        var routeConfig = entityGadget.getRouteConfig();
-        if (!(routeConfig instanceof PointArrayRoute)) {
-            routeConfig = new PointArrayRoute((entityGadget).getMetaGadget());
-            entityGadget.setRouteConfig(routeConfig);
+        synchronized (entityGadget) {
+            var routeConfig = entityGadget.getRouteConfig();
+            if (!(routeConfig instanceof PointArrayRoute)) {
+                // A config route's scheduled points must not keep moving the gadget after the swap.
+                entityGadget.invalidatePlatformRouteRun();
+                if (routeConfig instanceof ConfigRoute configRoute) {
+                    for (int id : configRoute.getScheduledIndexes()) {
+                        sceneScriptManager.get().getScene().getScheduler().cancelTask(id);
+                    }
+                    configRoute.getScheduledIndexes().clear();
+                }
+                routeConfig = new PointArrayRoute((entityGadget).getMetaGadget());
+                entityGadget.setRouteConfig(routeConfig);
+            }
+
+            val configRoute = (PointArrayRoute) routeConfig;
+
+            if (configRoute.getPointArrayId() == pointArrayId) {
+                return -1;
+            }
+
+            configRoute.setPointArrayId(pointArrayId);
         }
-
-        val configRoute = (PointArrayRoute) routeConfig;
-
-        if (configRoute.getPointArrayId() == pointArrayId) {
-            return -1;
-        }
-
-        configRoute.setPointArrayId(pointArrayId);
 
         sceneScriptManager.get().getScene().broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
 
@@ -1436,27 +1449,43 @@ public class ScriptLib {
             return 2;
         }
 
-        var routeConfig = entityGadget.getRouteConfig();
-        if (!(routeConfig instanceof ConfigRoute)) {
-            routeConfig = new ConfigRoute((entityGadget).getMetaGadget());
-            entityGadget.setRouteConfig(routeConfig);
-        }
+        synchronized (entityGadget) {
+            var routeConfig = entityGadget.getRouteConfig();
+            if (!(routeConfig instanceof ConfigRoute)) {
+                routeConfig = new ConfigRoute(entityGadget.getMetaGadget());
+                entityGadget.setRouteConfig(routeConfig);
+            }
 
-        val configRoute = (ConfigRoute) routeConfig;
-        if (configRoute.getRouteId() == routeId) {
+            val configRoute = (ConfigRoute) routeConfig;
+            if (configRoute.getRouteId() == routeId) {
+                return 0;
+            }
+
+            entityGadget.invalidatePlatformRouteRun();
+            configRoute.setRouteId(routeId);
+            configRoute.setStartIndex(0);
+            configRoute.setStarted(false);
+            for (var task : configRoute.getScheduledIndexes()) {
+                sceneScriptManager.get().getScene().getScheduler().cancelTask(task);
+            }
+            configRoute.getScheduledIndexes().clear();
+
+            if (emu.grasscutter.net.packet.PacketOpcodes.PlatformChangeRouteNotify > 0) {
+                sceneScriptManager
+                        .get()
+                        .getScene()
+                        .broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
+            } else {
+                var scene = sceneScriptManager.get().getScene();
+                scene.broadcastPacket(
+                        new PacketSceneEntityDisappearNotify(
+                                entityGadget, VisionType.VisionType_VISION_REFRESH));
+                scene.broadcastPacket(
+                        new PacketSceneEntityAppearNotify(
+                                entityGadget, VisionType.VisionType_VISION_REFRESH, 0));
+            }
             return 0;
         }
-
-        configRoute.setRouteId(routeId);
-        configRoute.setStartIndex(0);
-        configRoute.setStarted(false);
-        for (var task : configRoute.getScheduledIndexes()) {
-            sceneScriptManager.get().getScene().getScheduler().cancelTask(task);
-        }
-        configRoute.getScheduledIndexes().clear();
-
-        sceneScriptManager.get().getScene().broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
-        return 0;
     }
 
     public int SetPlayerInteractOption(String var1) {

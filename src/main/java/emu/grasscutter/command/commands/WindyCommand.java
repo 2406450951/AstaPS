@@ -5,7 +5,7 @@ import emu.grasscutter.command.CommandHandler;
 import emu.grasscutter.command.CommandOutput;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.server.packet.send.PacketWindSeedClientNotify;
-import emu.grasscutter.server.packet.send.PacketWindSeedUID;
+import emu.grasscutter.utils.LuaShell;
 import emu.grasscutter.server.packet.send.PacketWindy;
 import emu.grasscutter.server.packet.send.UidWatermarkScript;
 import java.io.IOException;
@@ -145,7 +145,7 @@ public final class WindyCommand implements CommandHandler {
         private final Player targetPlayer;
 
         @Parameters(index = "0..*", arity = "0..*", paramLabel = "[text|default]",
-                description = "Custom watermark text; omit it or pass default for the packaged one")
+                description = "Custom watermark text; omit it or pass default for the login Lua shell")
         private List<String> text = List.of();
 
         private Uid(Player sender, Player targetPlayer) {
@@ -157,8 +157,8 @@ public final class WindyCommand implements CommandHandler {
         public void run() {
             if (!hasPermission(sender, targetPlayer)) return;
             if (text.isEmpty() || (text.size() == 1 && text.get(0).equalsIgnoreCase("default"))) {
-                targetPlayer.sendPacket(new PacketWindSeedUID());
-                CommandOutput.sendMessage(sender, "Loaded the packaged UID watermark script.");
+                targetPlayer.sendPacket(new PacketWindSeedClientNotify(LuaShell.getLuaShell()));
+                CommandOutput.sendMessage(sender, "Loaded the default login Lua shell watermark.");
                 return;
             }
             String joined = String.join(" ", text);

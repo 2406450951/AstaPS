@@ -319,6 +319,15 @@ public final class QuestManager extends BasePlayerManager {
                         });
     }
 
+    /**
+     * Called once the player's activity manager exists, after {@link #onLogin}: the next chapter's
+     * entry after Liyue Act IV is gated on an activity having ended, and checking it earlier hit a
+     * null activity manager.
+     */
+    public void onActivitiesReady() {
+        if (isQuestingActive()) eventExecutor.submit(() -> LiyueActFourEntrySupport.resumeNextChapter(this));
+    }
+
     public void onLogin() {
         if (this.isQuestingEnabled()) {
             // The sweep is what fills a fresh quest log at login; see questing.triggerAllOnLogin.
@@ -347,6 +356,8 @@ public final class QuestManager extends BasePlayerManager {
         if (isQuestingActive()) {
             this.resumeMainQuestHandoffs();
             eventExecutor.submit(() -> LiyueDainsleifEntrySupport.resumeOnLogin(this));
+            eventExecutor.submit(() -> MondstadtStoryQuestSupport.resumeOnLogin(this));
+            // The next chapter after Liyue Act IV waits for onActivitiesReady.
         }
 
         if (this.player.getActivityManager() != null)
@@ -597,6 +608,8 @@ public final class QuestManager extends BasePlayerManager {
 
     public void triggerEvent(QuestCond condType, String paramStr, int... params) {
         Grasscutter.getLogger().trace("Trigger Event {}, {}, {}", condType, paramStr, params);
+        MondstadtStoryQuestSupport.onConditionEvent(this, condType, params);
+        LiyueActFourEntrySupport.onConditionEvent(this, condType, params);
         var potentialQuests = GameData.getQuestDataByConditions(condType, params[0], paramStr);
         if (potentialQuests == null) {
             return;

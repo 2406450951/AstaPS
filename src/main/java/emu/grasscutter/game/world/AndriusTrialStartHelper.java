@@ -112,6 +112,8 @@ public final class AndriusTrialStartHelper {
         }
 
         stripStartOptions(scene);
+        if (emu.grasscutter.game.quest.RazorWolfQuestSupport.isActiveBattle(
+                scene.getWorld().getHost().getQuestManager().getMainQuestById(454))) return true;
 
         if (hasAliveAndrius(scene)) {
             clearAndriusLimbo(scene);
@@ -162,6 +164,10 @@ public final class AndriusTrialStartHelper {
             return;
         }
         int mid = monster.getEntityTypeId();
+        // The story wolf is removed by MQ454's cutscene cleanup, not a weekly-boss kill.
+        if (emu.grasscutter.game.quest.RazorWolfQuestSupport.isStoryWolf(
+                monster.getScene() != null ? monster.getScene().getId() : 0,
+                monster.getGroupId(), monster.getConfigId(), mid)) return;
         if (mid != MONSTER_ID && mid != 29020101) {
             return;
         }
@@ -217,6 +223,8 @@ public final class AndriusTrialStartHelper {
         if (scene == null) {
             return false;
         }
+        if (emu.grasscutter.game.quest.RazorWolfQuestSupport.isActiveBattle(
+                scene.getWorld().getHost().getQuestManager().getMainQuestById(454))) return true;
         if (hasAliveAndrius(scene) || isIntroPending(scene)) {
             return true;
         }
@@ -802,7 +810,7 @@ public final class AndriusTrialStartHelper {
                 meta.pose_id = 0;
                 meta.drop_id = 1000100;
                 meta.title_id = 112;
-                meta.special_name_id = 4;
+                meta.special_name_id = 2011102;
                 meta.pos = pos.clone();
                 meta.rot = rot.clone();
                 monster.setMetaMonster(meta);

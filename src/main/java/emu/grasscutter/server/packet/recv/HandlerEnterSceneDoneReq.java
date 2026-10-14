@@ -151,5 +151,7 @@ public class HandlerEnterSceneDoneReq extends PacketHandler {
 
         // Rsp
         session.send(new PacketEnterSceneDoneRsp(player));
+        emu.grasscutter.game.quest.AmberFlightExamSupport.onSceneLoaded(player);
+        emu.grasscutter.game.quest.MondstadtStoryQuestSupport.onSceneLoaded(player);
     }
 }

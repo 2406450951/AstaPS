@@ -66,6 +66,7 @@ public class EntityGadget extends EntityBaseGadget {
     @Getter @Setter private SceneGadget metaGadget;
     @Nullable @Getter ConfigEntityGadget configGadget;
     @Getter @Setter private BaseRoute routeConfig;
+    private volatile ConfigRouteRun configRouteRun;
 
     @Getter @Setter private int stopValue = 0; // Controller related, inited to zero
     @Getter @Setter private int startValue = 0; // Controller related, inited to zero
@@ -476,13 +477,20 @@ public class EntityGadget extends EntityBaseGadget {
         }
     }
 
-    public boolean startPlatform() {
+    public synchronized boolean startPlatform() {
         if (routeConfig == null) {
             return false;
         }
 
         if (routeConfig.isStarted()) {
             return true;
+        }
+
+        if (routeConfig instanceof ConfigRoute configRoute
+                && !emu.grasscutter.game.quest.LiyueCloudDungeonSupport.isPlatform(this)
+                && !emu.grasscutter.game.quest.MondstadtStoryQuestSupport.isAmberWaterPlatform(this)
+                && !ConfigRouteRun.usesSpeedLevels(this, configRoute)) {
+            return startOrdinaryConfigRoute(configRoute);
         }
 
         if (routeConfig instanceof ConfigRoute configRoute) {
@@ -522,10 +530,12 @@ public class EntityGadget extends EntityBaseGadget {
 
                 double time = 0;
                 boolean liyuePlatform = emu.grasscutter.game.quest.LiyueCloudDungeonSupport.isPlatform(this);
+                boolean timedPlatform = liyuePlatform
+                        || emu.grasscutter.game.quest.MondstadtStoryQuestSupport.isAmberWaterPlatform(this);
                 int startedRoute = configRoute.getRouteId();
                 for (var i = currIndex; i < points.length; ++i) {
                     double distance = points[i].getPos().computeDistance(prevpos);
-                    time += liyuePlatform
+                    time += timedPlatform
                             ? emu.grasscutter.game.quest.LiyueCloudDungeonSupport.pointSeconds(points[i], distance)
                             : distance / points[i].getTargetVelocity();
                     prevpos = points[i].getPos();
@@ -537,8 +547,10 @@ public class EntityGadget extends EntityBaseGadget {
                                             .getScheduler()
                                             .scheduleDelayedTask(
                                                     () -> {
-                                                        if (liyuePlatform && (!configRoute.isStarted()
+                                                        if (timedPlatform && (!configRoute.isStarted()
                                                                 || configRoute.getRouteId() != startedRoute)) return;
+                                                        configRoute.setStartIndex(I);
+                                                        this.position.set(points[I].getPos());
                                                         if (points[I].isHasReachEvent() && I > currIndex) {
                                                             this.getScene()
                                                                     .getScriptManager()
@@ -551,23 +563,126 @@ public class EntityGadget extends EntityBaseGadget {
                                                                                     .setParam3(I)
                                                                                     .setEventSource(this.getConfigId()));
                                                         }
-                                                        configRoute.setStartIndex(I);
-                                                        this.position.set(points[I].getPos());
                                                         if (liyuePlatform && points[I].getRotRoundLeaveDir() != null)
                                                             this.getRotation().set(points[I].getRotRoundLeaveDir());
                                                         if (I == points.length - 1) {
                                                             configRoute.setStarted(false);
                                                         }
                                                     },
-                                                    liyuePlatform
+                                                    timedPlatform
                                                             ? emu.grasscutter.game.quest.LiyueCloudDungeonSupport.ticksForSeconds(time + 0.3)
                                                             : (int) time));
                 }
             }
         }
 
+        publishPlatformStart();
+        return true;
+    }
+
+    private boolean startOrdinaryConfigRoute(ConfigRoute config) {
+        var route = getScene().getSceneRouteById(config.getRouteId());
+        if (route == null || route.getPoints() == null || route.getPoints().length == 0) {
+            Grasscutter.getLogger()
+                    .warn(
+                            "Cannot start ordinary platform group={} config={} route={}: route has no points",
+                            getGroupId(),
+                            getConfigId(),
+                            config.getRouteId());
+            return false;
+        }
+        var run = ConfigRouteRun.plan(this, config, route.getPoints());
+        if (run == null) {
+            Grasscutter.getLogger()
+                    .warn(
+                            "Cannot start ordinary platform group={} config={} route={}: invalid distance/velocity duration",
+                            getGroupId(),
+                            getConfigId(),
+                            config.getRouteId());
+            return false;
+        }
+        invalidatePlatformRouteRun();
+        // A completed run can leave expired IDs in the installed list. Retire these on a valid
+        // restart.
+        for (int id : config.getScheduledIndexes()) getScene().getScheduler().cancelTask(id);
+        config.getScheduledIndexes().clear();
+        config.setStartIndex(run.startIndex);
+        configRouteRun = run;
+        if (run.startIndex == 0) {
+            getScene()
+                    .getScriptManager()
+                    .callEvent(
+                            new ScriptArgs(
+                                            getGroupId(),
+                                            EventType.EVENT_PLATFORM_REACH_POINT,
+                                            getConfigId(),
+                                            run.routeId)
+                                    .setParam3(0)
+                                    .setEventSource(getConfigId()));
+        }
+        for (int i = run.startIndex; i <= run.endIndex; i++) {
+            var task = new ConfigRouteRun.Task(this, run, i);
+            int id = getScene().getScheduler().scheduleRepeatingTask(task, 1);
+            task.setTaskId(id);
+            config.getScheduledIndexes().add(id);
+        }
+        publishPlatformStart();
+        return true;
+    }
+
+    boolean isCurrentConfigRouteRun(ConfigRouteRun run) {
+        return configRouteRun == run
+                && routeConfig == run.config
+                && run.config.getRouteId() == run.routeId;
+    }
+
+    void advanceConfigRoutePoint(ConfigRouteRun run, int index) {
+        // Keep ordinary reach-event/index/position/final-flag behavior unchanged.
+        if (run.points[index].isHasReachEvent() && index > run.startIndex) {
+            getScene()
+                    .getScriptManager()
+                    .callEvent(
+                            new ScriptArgs(
+                                            getGroupId(),
+                                            EventType.EVENT_PLATFORM_REACH_POINT,
+                                            getConfigId(),
+                                            run.config.getRouteId())
+                                    .setParam3(index)
+                                    .setEventSource(getConfigId()));
+        }
+        run.config.setStartIndex(index);
+        position.set(run.points[index].getPos());
+        if (index == run.points.length - 1) {
+            // The client already ran the route to its end; a stop here would refresh the entity
+            // (no 7.1 stop opcode) and drop anyone standing on it, so only the state is closed.
+            invalidatePlatformRouteRun();
+            for (int id : run.config.getScheduledIndexes()) getScene().getScheduler().cancelTask(id);
+            run.config.getScheduledIndexes().clear();
+            run.config.stopRoute(getScene());
+        } else if (index == run.endIndex && index > run.startIndex) {
+            // Do not stop again at the zero-distance source point when resuming a stopped segment.
+            stopPlatform();
+        }
+    }
+
+    /**
+     * Invalidate even retained/dequeued callbacks; callers changing a route hold this same monitor.
+     */
+    public synchronized void invalidatePlatformRouteRun() {
+        if (configRouteRun != null) configRouteRun.cancel();
+        configRouteRun = null;
+    }
+
+    private void publishPlatformStart() {
         getScene().broadcastPacket(new PacketSceneTimeNotify(getScene()));
         routeConfig.startRoute(getScene());
+        if (configRouteRun != null && isCurrentConfigRouteRun(configRouteRun)) {
+            // Represent the initial off-source approach before the authored timeline origin.
+            // Use the same clock sample taken by BaseRoute; preserve its int32 wrap semantics.
+            routeConfig.setStartSceneTime(
+                    routeConfig.getStartSceneTime() - 300 + configRouteRun.leadMillis);
+            configRouteRun.arm();
+        }
         if (PacketOpcodes.PlatformStartRouteNotify > 0) {
             getScene().broadcastPacket(new PacketPlatformStartRouteNotify(this));
         } else if (routeConfig instanceof ConfigRoute) {
@@ -580,11 +695,10 @@ public class EntityGadget extends EntityBaseGadget {
                             new PacketSceneEntityAppearNotify(
                                     this, VisionTypeOuterClass.VisionType.VisionType_VISION_REFRESH, 0));
         }
-
-        return true;
     }
 
-    public boolean stopPlatform() {
+    public synchronized boolean stopPlatform() {
+        invalidatePlatformRouteRun();
         if (routeConfig == null) {
             return false;
         }

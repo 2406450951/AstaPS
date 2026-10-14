@@ -215,7 +215,7 @@ public final class Grasscutter {
             System.exit(1);
         }
 
-        // Load the login Lua shell (external lua/login.luac if present, otherwise the baked one).
+        // Stamp the game version into the built-in login Lua shell.
         emu.grasscutter.utils.LuaShell.addLoginLuaShell();
 
         // Start the periodic status readout.

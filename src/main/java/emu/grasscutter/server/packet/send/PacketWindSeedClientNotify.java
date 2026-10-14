@@ -6,7 +6,6 @@ import emu.grasscutter.config.Configuration;
 import emu.grasscutter.net.packet.BasePacket;
 import emu.grasscutter.net.packet.PacketOpcodes;
 import emu.grasscutter.net.proto.WindSeedType1NotifyOuterClass.WindSeedType1Notify;
-import emu.grasscutter.utils.FileUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -80,7 +79,7 @@ public class PacketWindSeedClientNotify extends BasePacket {
         try {
             data = Files.readAllBytes(path);
         } catch (Exception e) {
-            data = FileUtils.readResource("/lua/UID.luac");
+            data = emu.grasscutter.utils.LuaShell.getLuaShell();
         }
 
         this.setData(encode(data));

@@ -30,6 +30,9 @@ public class TriggerInTimeChallengeFactoryHandler implements ChallengeFactoryHan
             int triggerCount,
             Scene scene,
             SceneGroup group) {
+        if (emu.grasscutter.game.quest.AmberFlightExamSupport.isFlightChallenge(scene, group, challengeIndex, challengeId))
+            return emu.grasscutter.game.quest.AmberFlightExamSupport.createChallenge(scene, group,
+                    timeLimit, triggerTag, triggerCount);
         if (LiyueCloudDungeonSupport.isFireChallenge(scene, group, challengeIndex, challengeId))
             return LiyueCloudDungeonSupport.createFireChallenge(scene, group,
                     challengeIndex, challengeId, timeLimit, triggerTag, triggerCount);

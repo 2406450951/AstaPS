@@ -580,21 +580,8 @@ public class ConfigContainer {
             public boolean triggerAllOnLogin = false;
         }
 
+        /** How the login Lua shell watermark is sent; its text is the built-in LuaShell chunk. */
         public static class WatermarkOptions {
-            /* Replace the client's beta watermark text for everyone on this server. */
-            public boolean enabled = true;
-            /* Text to show, which OVERWRITES the whole watermark. Capped at 254 bytes by the
-             * payload format; longer values fall back to the login Lua shell.
-             *
-             * Leave this blank (the default) to use LuaShell instead: that chunk rewrites only the
-             * "UID:" prefix, so the player's UID stays on screen. Set a value here only when you
-             * want per-player text, which the shared shell cannot produce. */
-            public String text = "";
-            /* Colour as hex (#RRGGBB or #RGB). Leave blank to keep the client's default white. */
-            public String color = "#9333EA";
-            /* Set to fade from "color" to this one across the text. Blank means a flat colour.
-             * A gradient costs ~24 bytes per character, so it fits roughly 10 characters. */
-            public String gradientTo = "#FF1493";
             /* CmdId to send the wind seed notify under. 0 (recommended) uses
              * PacketOpcodes.WindSeedType1Notify, 29056 in 7.1. Set to -1 to send nothing at all.
              *

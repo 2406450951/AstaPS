@@ -20,6 +20,8 @@ public class ContentEnterMyWorld extends BaseContent {
             GameQuest quest, QuestData.QuestContentCondition condition, String paramStr, int... params) {
         if (condition == null || condition.getParam() == null
                 || condition.getParam().length == 0 || params.length == 0) return false;
+        // Amber's first segment was already cleared; this login packet precedes native re-entry.
+        if (MondstadtStoryQuestSupport.keepEarnedAmberContinuation(quest, params[0])) return false;
         return matchesScene(condition.getParam()[0], params[0], quest.getOwner().getSceneId());
     }
 }

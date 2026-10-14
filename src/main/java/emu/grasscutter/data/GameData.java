@@ -22,6 +22,7 @@ import emu.grasscutter.data.excels.monster.MonsterCurveData;
 import emu.grasscutter.data.excels.monster.MonsterData;
 import emu.grasscutter.data.excels.monster.MonsterDescribeData;
 import emu.grasscutter.data.excels.monster.MonsterSpecialNameData;
+import emu.grasscutter.data.excels.monster.MonsterTitleData;
 import emu.grasscutter.data.excels.quest.QuestData;
 import emu.grasscutter.data.excels.quest.QuestGlobalVarData;
 import emu.grasscutter.data.excels.reliquary.ReliquaryAffixData;
@@ -33,6 +34,7 @@ import emu.grasscutter.data.excels.tower.TowerFloorData;
 import emu.grasscutter.data.excels.tps.*;
 import emu.grasscutter.data.excels.tower.TowerBuffData;
 import emu.grasscutter.data.excels.tower.TowerLevelData;
+import emu.grasscutter.data.excels.tower.TowerRewardData;
 import emu.grasscutter.data.excels.tower.TowerScheduleData;
 import emu.grasscutter.data.excels.trial.*;
 import emu.grasscutter.data.excels.weapon.WeaponCurveData;
@@ -371,6 +373,10 @@ public final class GameData {
             new Int2ObjectOpenHashMap<>();
 
     @Getter
+    private static final Int2ObjectMap<MonsterTitleData> monsterTitleDataMap =
+            new Int2ObjectOpenHashMap<>();
+
+    @Getter
     private static final Int2ObjectMap<MusicGameBasicData> musicGameBasicDataMap =
             new Int2ObjectOpenHashMap<>();
 
@@ -458,6 +464,10 @@ public final class GameData {
 
     @Getter
     private static final Int2ObjectMap<TowerScheduleData> towerScheduleDataMap =
+            new Int2ObjectOpenHashMap<>();
+
+    @Getter
+    private static final Int2ObjectMap<TowerRewardData> towerRewardDataMap =
             new Int2ObjectOpenHashMap<>();
 
     /**

@@ -299,11 +299,15 @@ public class EntityAvatar extends GameEntity {
     }
 
     public boolean addEnergy(float amount) {
-        var curEnergyProp = this.getAvatar().getSkillDepot().getElementType().getCurEnergyProp();
+        var elementType = this.getAvatar().getSkillDepot().getElementType();
+        var curEnergyProp = elementType.getCurEnergyProp();
         var curEnergy = this.getFightProperty(curEnergyProp);
-        if (curEnergy == amount) return false;
+        var maxEnergy = this.getFightProperty(elementType.getMaxEnergyProp());
+        // Quest refills add a whole burst cost; past the max a single burst would leave the bar full.
+        var next = maxEnergy > 0 ? Math.min(curEnergy + amount, maxEnergy) : curEnergy + amount;
+        if (next == curEnergy) return false;
 
-        this.getAvatar().setCurrentEnergy(curEnergyProp, curEnergy + amount);
+        this.getAvatar().setCurrentEnergy(curEnergyProp, next);
 
         this.getScene().broadcastPacket(new PacketEntityFightPropUpdateNotify(this, curEnergyProp));
         return true;

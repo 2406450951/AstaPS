@@ -105,6 +105,9 @@ public class GameQuest {
                 .getBeginExec()
                 .forEach(e -> getOwner().getServer().getQuestSystem().triggerExec(this, e, e.getParam()));
         this.getOwner().getQuestManager().checkQuestAlreadyFulfilled(this);
+        MondstadtStoryQuestSupport.enableDungeonEntry(this);
+        AmberFlightExamSupport.ensure(this);
+        RazorWolfQuestSupport.ensure(this);
         if (this.mainQuestId == 1012 && this.subQuestId == 101210)
             LiyuePerfumeQuestSupport.sendFormulas(getOwner());
 
@@ -235,6 +238,8 @@ public class GameQuest {
             this.state = QuestState.QUEST_STATE_FINISHED;
         }
         this.finishTime = Utils.getCurrentSeconds();
+        AmberFlightExamSupport.stopWithQuest(this);
+        RazorWolfQuestSupport.onQuestFinished(this);
 
         this.getOwner().sendPacket(new PacketQuestListUpdateNotify(this));
 
@@ -293,6 +298,7 @@ public class GameQuest {
     public void fail() {
         this.state = QuestState.QUEST_STATE_FAILED;
         this.finishTime = Utils.getCurrentSeconds();
+        AmberFlightExamSupport.stopWithQuest(this);
 
         this.getOwner().sendPacket(new PacketQuestListUpdateNotify(this));
 
