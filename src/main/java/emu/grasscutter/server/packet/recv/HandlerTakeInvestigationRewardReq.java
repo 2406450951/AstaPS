@@ -7,6 +7,7 @@ import emu.grasscutter.net.packet.PacketHandler;
 import emu.grasscutter.net.packet.PacketOpcodes;
 import emu.grasscutter.server.game.GameSession;
 import emu.grasscutter.server.packet.send.PacketTakeInvestigationRewardRsp;
+import java.io.IOException;
 
 /** TakeInvestigationRewardReq: id = 5 (chapter / investigation id) */
 @Opcodes(PacketOpcodes.TakeInvestigationRewardReq)
@@ -24,15 +25,21 @@ public class HandlerTakeInvestigationRewardReq extends PacketHandler {
         }
         try {
             CodedInputStream input = CodedInputStream.newInstance(payload);
+            int value = 0;
             while (!input.isAtEnd()) {
                 int tag = input.readTag();
                 int field = tag >>> 3;
                 if (field == fieldNum) {
-                    return input.readUInt32();
+                    if ((tag & 7) != 0) {
+                        return 0;
+                    }
+                    value = input.readUInt32();
+                } else if (!input.skipField(tag)) {
+                    return 0;
                 }
-                input.skipField(tag);
             }
-        } catch (Exception ignored) {
+            return value;
+        } catch (IOException ignored) {
         }
         return 0;
     }
