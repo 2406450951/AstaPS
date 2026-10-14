@@ -1109,7 +1109,7 @@ public final class PacketOpcodes {
     public static final int GCGTavernNpcInfoNotify = 25416;
     public static final int DestroyMaterialReq = 8587;
     public static final int ChangeMpTeamAvatarRsp = 24192;
-    public static final int TakeAchievementRewardReq = 0; // 7.1 CmdId unknown (7.0: 7185)
+    public static final int TakeAchievementRewardReq = 25857; // Captured native 7.1 achievement claim
     public static final int _WeekActiveInteractNotify = 0; // 7.1 CmdId unknown (7.0: 7193)
     // public static final int MFEKMJONFGL = 20086;
     // public static final int NBANNLGLBMG = 22177;
@@ -1732,7 +1732,7 @@ public final class PacketOpcodes {
     public static final int TowerCurLevelRecordChangeNotify = 9479;
     public static final int SetLimitOptimizationNotify = 25455;
     public static final int DeshretObeliskChestInfoNotify = 29346;
-    public static final int TakeAchievementRewardRsp = 0; // 7.1 CmdId unknown (7.0: 21731)
+    public static final int TakeAchievementRewardRsp = 9071; // Native 7.1 achievement reward response
     // public static final int EHEOAKMNMEA = 26235;
     public static final int PlayerApplyEnterHomeResultNotify = 29313;
     public static final int VintageMarketFinishStorePlayReq = 4178;
