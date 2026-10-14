@@ -1436,27 +1436,43 @@ public class ScriptLib {
             return 2;
         }
 
-        var routeConfig = entityGadget.getRouteConfig();
-        if (!(routeConfig instanceof ConfigRoute)) {
-            routeConfig = new ConfigRoute((entityGadget).getMetaGadget());
-            entityGadget.setRouteConfig(routeConfig);
-        }
+        synchronized (entityGadget) {
+            var routeConfig = entityGadget.getRouteConfig();
+            if (!(routeConfig instanceof ConfigRoute)) {
+                routeConfig = new ConfigRoute(entityGadget.getMetaGadget());
+                entityGadget.setRouteConfig(routeConfig);
+            }
 
-        val configRoute = (ConfigRoute) routeConfig;
-        if (configRoute.getRouteId() == routeId) {
+            val configRoute = (ConfigRoute) routeConfig;
+            if (configRoute.getRouteId() == routeId) {
+                return 0;
+            }
+
+            entityGadget.invalidatePlatformRouteRun();
+            configRoute.setRouteId(routeId);
+            configRoute.setStartIndex(0);
+            configRoute.setStarted(false);
+            for (var task : configRoute.getScheduledIndexes()) {
+                sceneScriptManager.get().getScene().getScheduler().cancelTask(task);
+            }
+            configRoute.getScheduledIndexes().clear();
+
+            if (emu.grasscutter.net.packet.PacketOpcodes.PlatformChangeRouteNotify > 0) {
+                sceneScriptManager
+                        .get()
+                        .getScene()
+                        .broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
+            } else {
+                var scene = sceneScriptManager.get().getScene();
+                scene.broadcastPacket(
+                        new PacketSceneEntityDisappearNotify(
+                                entityGadget, VisionType.VisionType_VISION_REFRESH));
+                scene.broadcastPacket(
+                        new PacketSceneEntityAppearNotify(
+                                entityGadget, VisionType.VisionType_VISION_REFRESH, 0));
+            }
             return 0;
         }
-
-        configRoute.setRouteId(routeId);
-        configRoute.setStartIndex(0);
-        configRoute.setStarted(false);
-        for (var task : configRoute.getScheduledIndexes()) {
-            sceneScriptManager.get().getScene().getScheduler().cancelTask(task);
-        }
-        configRoute.getScheduledIndexes().clear();
-
-        sceneScriptManager.get().getScene().broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
-        return 0;
     }
 
     public int SetPlayerInteractOption(String var1) {
