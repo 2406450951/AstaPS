@@ -1420,7 +1420,14 @@ public class ScriptLib {
 
         configRoute.setPointArrayId(pointArrayId);
 
-        sceneScriptManager.get().getScene().broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
+        if (emu.grasscutter.net.packet.PacketOpcodes.PlatformChangeRouteNotify > 0) {
+            sceneScriptManager.get().getScene().broadcastPacket(new PacketPlatformChangeRouteNotify(entityGadget));
+        } else {
+            // Unknown opcodes are discarded by GameSession; refresh only this gadget instead.
+            var scene = sceneScriptManager.get().getScene();
+            scene.broadcastPacket(new PacketSceneEntityDisappearNotify(entityGadget, VisionType.VisionType_VISION_REFRESH));
+            scene.broadcastPacket(new PacketSceneEntityAppearNotify(entityGadget, VisionType.VisionType_VISION_REFRESH, 0));
+        }
 
         return -1;
     }
