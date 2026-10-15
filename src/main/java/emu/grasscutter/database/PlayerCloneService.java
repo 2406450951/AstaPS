@@ -9,6 +9,7 @@ import emu.grasscutter.game.AccountUsernamePolicy;
 import emu.grasscutter.game.player.Player;
 import java.util.List;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /** Creates an independent player save snapshot under a new account and UID. */
 public final class PlayerCloneService {
@@ -123,9 +124,7 @@ public final class PlayerCloneService {
                 for (OwnedCollection owned : OWNED_COLLECTIONS) {
                     var collection = database.getCollection(owned.name());
                     for (Document source : collection.find(eq(owned.ownerField(), sourceUid))) {
-                        Document target = new Document(source);
-                        target.remove("_id");
-                        target.put(owned.ownerField(), targetUid);
+                        Document target = cloneOwnedDocument(source, owned.ownerField(), targetUid);
                         collection.insertOne(target);
                         clonedDocuments++;
                     }
@@ -153,6 +152,22 @@ public final class PlayerCloneService {
                 throw failure;
             }
         }
+    }
+
+    static Document cloneOwnedDocument(Document source, String ownerField, int targetUid) {
+        Document target = new Document(source);
+        target.remove("_id");
+        if (source.get("_id") instanceof String sourceId) {
+            // Morphia's String @Id fields must remain BSON strings. Letting insertOne allocate an
+            // ObjectId makes a later save address a different ID and can violate the owner index.
+            String targetId;
+            do {
+                targetId = new ObjectId().toHexString();
+            } while (targetId.equals(sourceId));
+            target.put("_id", targetId);
+        }
+        target.put(ownerField, targetUid);
+        return target;
     }
 
     private static void rollbackClone(int targetUid, String targetAccountId) {
