@@ -42,3 +42,13 @@ jobs:
         run: python -m unittest discover -s tools/protocol -p 'test_*compatibility*.py' -v
       - name: Verify merged server descriptor generation (not a client compatibility audit)
         run: bash gradlew generateProtocolJava --build-cache --max-workers=2 -Dorg.gradle.jvmargs=-Xmx4g
+      - name: Validate generated server descriptor provenance
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, "tools/protocol")
+          from check_compatibility import load_server_descriptor
+          load_server_descriptor(Path("."), Path("build/generated/protocol/7.1/server.desc"))
+          print("Generated server descriptor and implementation hashes match.")
+          PY
