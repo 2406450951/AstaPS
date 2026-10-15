@@ -49,6 +49,23 @@ public class HandlerQuickUseWidgetReq extends PacketHandler {
             Inventory inventory = session.getPlayer().getInventory();
             InventoryTab inventoryTab = inventory.getInventoryTab(ItemType.ITEM_MATERIAL);
             GameItem item = inventoryTab.getItemById(materialId);
+            if (item == null || item.getCount() <= 0) {
+                proto.setRetcode(1).setMaterialId(materialId);
+                BasePacket rsp = new BasePacket(PacketOpcodes.QuickUseWidgetRsp);
+                rsp.setData(proto);
+                session.send(rsp);
+                return;
+            }
+            // Widgets that do not stack (Grey Eyes 220133, the gadgets and devices) are reusable; only
+            // stackable ones such as bombs are spent on use.
+            if (item.getItemData() == null || item.getItemData().getStackLimit() <= 1) {
+                Grasscutter.getLogger().debug("[Widget] quick use of reusable widget {}", materialId);
+                proto.setRetcode(0).setMaterialId(materialId);
+                BasePacket rsp = new BasePacket(PacketOpcodes.QuickUseWidgetRsp);
+                rsp.setData(proto);
+                session.send(rsp);
+                return;
+            }
             int remain = item.getCount();
             if (remain > 0) {
                 remain--;

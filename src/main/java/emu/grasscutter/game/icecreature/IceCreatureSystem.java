@@ -2,9 +2,11 @@ package emu.grasscutter.game.icecreature;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import emu.grasscutter.Grasscutter;
+import emu.grasscutter.config.Configuration;
 import emu.grasscutter.game.entity.EntityGadget;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.player.SnezhnayaFrigid;
+import emu.grasscutter.game.props.LifeState;
 import emu.grasscutter.game.world.Position;
 import emu.grasscutter.game.world.Scene;
 import emu.grasscutter.game.world.WorldAreaIndex;
@@ -25,6 +27,8 @@ import emu.grasscutter.net.proto.IceCreatureLikeRspOuterClass.IceCreatureLikeRsp
 import emu.grasscutter.net.proto.RetcodeOuterClass.Retcode;
 import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import emu.grasscutter.server.packet.send.PacketIceCreature;
+import emu.grasscutter.server.packet.send.PacketLifeStateChangeNotify;
+import emu.grasscutter.server.packet.send.PacketSceneEntityDisappearNotify;
 import emu.grasscutter.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
@@ -235,11 +239,30 @@ public final class IceCreatureSystem {
         Scene scene = player.getScene();
         if (scene != null && record.getSceneId() == scene.getId()) {
             var entity = scene.getEntityById(record.getEntityId());
-            // REMOVE, not the default DIE: the creatures are invincible true-ice gadgets with no death
-            // to play, and a client given DIE left every removed one standing.
-            if (entity != null) scene.removeEntity(entity, VisionType.VisionType_VISION_REMOVE);
+            if (entity instanceof EntityGadget gadget) {
+                // LIFE_DEAD runs the true-ice onKill dissolve. The client keeps these invincible gadgets
+                // standing on a DIE disappear alone, so REMOVE follows once the die time has played.
+                scene.broadcastPacket(new PacketLifeStateChangeNotify(gadget, LifeState.LIFE_DEAD));
+                scene.removeEntity(gadget, VisionType.VisionType_VISION_DIE);
+                int ticks = (int) Math.ceil(dieSeconds(gadget) * 1000d
+                        / Math.max(1, Configuration.GAME_INFO.tickRateMs));
+                scene.getScheduler().scheduleDelayedTask(
+                        () -> scene.broadcastPacket(
+                                new PacketSceneEntityDisappearNotify(gadget, VisionType.VisionType_VISION_REMOVE)),
+                        Math.max(1, ticks));
+            } else if (entity != null) {
+                scene.removeEntity(entity, VisionType.VisionType_VISION_REMOVE);
+            }
         }
         record.setEntityId(0);
+    }
+
+    /** The gadget's {@code combat.die.dieEndTime}, 1s for the 7.1 Ice Creatures. */
+    private static double dieSeconds(EntityGadget gadget) {
+        var config = gadget.getConfigGadget();
+        var combat = config == null ? null : config.getCombat();
+        var die = combat == null ? null : combat.getDie();
+        return die == null || die.getDieEndTime() <= 0 ? 1d : die.getDieEndTime();
     }
 
     static IceCreatureGadgetInfo info(Player owner, IceCreatureRecord record) {
