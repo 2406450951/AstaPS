@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.TreeSet;
@@ -22,9 +24,11 @@ public final class ProtocolJavaGenerator {
     private ProtocolJavaGenerator() {}
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 6) {
+        if (args.length != 6 && args.length != 7) {
             throw new IllegalArgumentException(
-                    "usage: ProtocolJavaGenerator <protoc> <descriptor-set> <file-list> <supplemental-proto-dir> <supplemental-import-dir> <java-out>");
+                    "usage: ProtocolJavaGenerator <protoc> <descriptor-set> <file-list>"
+                        + " <supplemental-proto-dir> <supplemental-import-dir> <java-out>"
+                        + " [audit-descriptor-out]");
         }
 
         var protoc = Path.of(args[0]).toAbsolutePath().normalize();
@@ -33,6 +37,19 @@ public final class ProtocolJavaGenerator {
         var supplementalProtoDir = Path.of(args[3]).toAbsolutePath().normalize();
         var supplementalImportDir = Path.of(args[4]).toAbsolutePath().normalize();
         var javaOut = Path.of(args[5]).toAbsolutePath().normalize();
+        var auditOut = args.length == 7 ? Path.of(args[6]).toAbsolutePath().normalize() : null;
+        if (auditOut != null) {
+            if (auditOut.equals(descriptorSet)
+                    || auditOut.equals(fileList)
+                    || auditOut.startsWith(javaOut)
+                    || auditOut.startsWith(supplementalProtoDir)
+                    || auditOut.startsWith(supplementalImportDir)) {
+                throw new IllegalArgumentException(
+                        "Audit output must not overwrite protocol inputs or Java output");
+            }
+            Files.deleteIfExists(auditOut);
+            Files.deleteIfExists(Path.of(auditOut + ".json"));
+        }
 
         requireRegularFile(protoc, "protoc executable");
         requireRegularFile(descriptorSet, "descriptor set");
@@ -60,6 +77,7 @@ public final class ProtocolJavaGenerator {
         recreateDirectory(javaOut);
 
         Path temporaryDirectory = null;
+        byte[] auditDescriptor = null;
         try {
             temporaryDirectory = Files.createTempDirectory("astaps-protocol-descriptors-");
             var supplementalDescriptorSet = temporaryDirectory.resolve("supplemental.desc");
@@ -79,7 +97,8 @@ public final class ProtocolJavaGenerator {
 
             var baseDescriptors = FileDescriptorSet.parseFrom(Files.readAllBytes(descriptorSet));
             var combinedDescriptors = mergeAndPatchDescriptors(baseDescriptors, supplementalDescriptors);
-            Files.write(combinedDescriptorSet, combinedDescriptors.toByteArray());
+            auditDescriptor = combinedDescriptors.toByteArray();
+            Files.write(combinedDescriptorSet, auditDescriptor);
 
             var filesToGenerate = List.copyOf(allProtocolFiles);
             for (int offset = 0; offset < filesToGenerate.size(); offset += FILES_PER_PROTOC_INVOCATION) {
@@ -115,12 +134,50 @@ public final class ProtocolJavaGenerator {
                             + " overrides)");
         }
 
+        if (auditOut != null) {
+            Files.createDirectories(auditOut.getParent());
+            Files.write(auditOut, auditDescriptor);
+            String metadata =
+                    "{\"format\":\"astaps.server-protocol-descriptor.v1\","
+                            + "\"descriptor_sha256\":\""
+                            + sha256(auditDescriptor)
+                            + "\","
+                            + "\"base_sha256\":\""
+                            + sha256(Files.readAllBytes(descriptorSet))
+                            + "\","
+                            + "\"proto_sources_sha256\":\""
+                            + sourceFingerprint(supplementalProtoDir, supplementalImportDir)
+                            + "\"}\n";
+            Files.writeString(Path.of(auditOut + ".json"), metadata, StandardCharsets.UTF_8);
+        }
+
         System.out.printf(
                 "Generated %,d Java files from %,d base descriptors and %,d supplemental proto files (%,d overrides).%n",
                 javaFileCount,
                 protocolFiles.size(),
                 supplementalProtoFiles.size(),
                 overlappingFiles.size());
+    }
+
+    private static String sha256(byte[] bytes) throws Exception {
+        return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
+    }
+
+    private static String sourceFingerprint(Path protoDir, Path importDir) throws Exception {
+        var rows = new TreeSet<String>();
+        for (int i = 0; i < 2; i++) {
+            Path root = i == 0 ? protoDir : importDir;
+            String prefix = i == 0 ? "compat/" : "compat-imports/";
+            for (String name : listProtoFiles(root)) {
+                rows.add(
+                        prefix
+                                + name
+                                + "\0"
+                                + sha256(Files.readAllBytes(root.resolve(name)))
+                                + "\n");
+            }
+        }
+        return sha256(String.join("", rows).getBytes(StandardCharsets.UTF_8));
     }
 
     private static FileDescriptorSet mergeAndPatchDescriptors(

@@ -58,6 +58,8 @@ allprojects { currentProject ->
         def supplementalImportDir = currentProject.layout.projectDirectory.dir('protocol/7.1/compat-imports')
         def generatedProtocolJava =
                 currentProject.layout.buildDirectory.dir('generated/sources/protocol/7.1/java/main')
+        def auditDescriptor =
+                currentProject.layout.buildDirectory.file('generated/protocol/7.1/server.desc')
 
         currentProject.tasks.register('generateProtocolJava', JavaExec) { task ->
             task.group = 'protocol'
@@ -84,6 +86,8 @@ allprojects { currentProject ->
             task.inputs.property('protocVersion', protocVersion)
             task.inputs.property('protocPlatform', protocClassifier)
             task.outputs.dir(generatedProtocolJava)
+            task.outputs.file(auditDescriptor)
+            task.outputs.file(auditDescriptor.map { file -> new File(file.asFile.path + '.json') })
             task.outputs.cacheIf('7.1 protocol source generation is reproducible') { true }
 
             task.doFirst {
@@ -101,6 +105,7 @@ allprojects { currentProject ->
                     supplementalProtoDir.asFile.absolutePath,
                     supplementalImportDir.asFile.absolutePath,
                     generatedProtocolJava.get().asFile.absolutePath,
+                    auditDescriptor.get().asFile.absolutePath,
                 ])
             }
         }
