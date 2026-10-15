@@ -52,6 +52,9 @@ def fixture(root, mismatch=False, unrelated=False):
     (proto / 'compat').mkdir(parents=True)
     (proto / 'compat-imports').mkdir()
     (proto / 'protocol.desc').write_bytes(b'synthetic base descriptor identity')
+    generator = root / 'tools/protocol/java/SyntheticGenerator.java'
+    generator.parent.mkdir(parents=True)
+    generator.write_text('class SyntheticGenerator {}')
     row = native()
     row['semantic_aliases'] = [{'name': 'ExampleRsp', 'status': 'verified',
                                'direction': 'server_to_client', 'evidence': ['synthetic assertion']}]
@@ -67,7 +70,8 @@ def fixture(root, mismatch=False, unrelated=False):
     path.write_bytes(desc.SerializeToString())
     metadata = {'format': 'astaps.server-protocol-descriptor.v1', 'descriptor_sha256': c.digest(path.read_bytes()),
                 'base_sha256': c.digest((proto / 'protocol.desc').read_bytes()),
-                'proto_sources_sha256': c.proto_source_fingerprint(root)}
+                'proto_sources_sha256': c.proto_source_fingerprint(root),
+                'generator_sources_sha256': c.generator_source_fingerprint(root)}
     Path(str(path) + '.json').write_text(json.dumps(metadata))
     code = root / 'src/main/java/emu/grasscutter'
     (code / 'net/packet').mkdir(parents=True)

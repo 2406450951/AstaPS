@@ -8,6 +8,7 @@ from pathlib import Path
 
 from google.protobuf import descriptor_pb2
 from google.protobuf.message import DecodeError
+from wire_facts import validate_directional_wire_facts
 
 ROOT = Path(__file__).resolve().parents[2]
 SCOPE = r".*"
@@ -59,9 +60,10 @@ def load_reference(path):
         if len(numbers) != len(set(numbers)) or any(type(n) is not int or not 0 < n < 2**29 for n in numbers):
             raise ValueError("Invalid or duplicate native field numbers")
         for field in row.get("fields", []):
-            if field.get("property_statuses", {}).get("serialized_tags") in VERIFIED:
-                if any(type(tag) is not int or tag >> 3 != field["number"] for tag in field.get("properties", {}).get("serialized_tags", [])):
-                    raise ValueError("Writer tag contradicts its verified field number")
+            properties = field.get("properties", {})
+            for key in ("serialized_tags", "accepted_wire_types"):
+                if key in properties:
+                    validate_directional_wire_facts(field["number"], key, properties[key])
     return reference
 
 
@@ -76,6 +78,17 @@ def proto_source_fingerprint(repo):
     return digest("".join(sorted(rows)).encode())
 
 
+def generator_source_fingerprint(repo):
+    root = repo / "tools/protocol/java"
+    if not root.is_dir():
+        raise ValueError(f"Missing protocol generator source directory: {root}")
+    paths = sorted(path for path in root.rglob("*.java") if path.is_file())
+    if not paths:
+        raise ValueError(f"Missing protocol generator Java sources: {root}")
+    rows = [f"{path.relative_to(root).as_posix()}\0{digest(path.read_bytes())}\n" for path in paths]
+    return digest("".join(sorted(rows)).encode("utf-8"))
+
+
 def load_server_descriptor(repo, path):
     data = path.read_bytes()
     metadata = json.loads(Path(str(path) + ".json").read_text())
@@ -83,7 +96,8 @@ def load_server_descriptor(repo, path):
         raise ValueError("Unsupported server descriptor manifest")
     expected = {"descriptor_sha256": digest(data),
                 "base_sha256": digest((repo / "protocol/7.1/protocol.desc").read_bytes()),
-                "proto_sources_sha256": proto_source_fingerprint(repo)}
+                "proto_sources_sha256": proto_source_fingerprint(repo),
+                "generator_sources_sha256": generator_source_fingerprint(repo)}
     if any(metadata.get(k) != v for k, v in expected.items()):
         raise ValueError("Server descriptor is stale or modified; run ./gradlew generateProtocolJava")
     file_set = descriptor_pb2.FileDescriptorSet.FromString(data)
@@ -180,12 +194,18 @@ def scan_packets(repo, opcodes, scope):
                 literal = list(re.finditer(r"\bsuper\s*\(\s*(-?(?:0[xX][0-9a-fA-F]+|0|[1-9][0-9]*))\s*[,)]", text))
                 matches += literal
             else:
-                matches = list(re.finditer(r"@Opcodes\s*\(\s*PacketOpcodes\.(\w+)\s*\)", text))
+                # Match the complete annotation argument, not a prefix of an expression.
+                # Extra attributes may disable registration and are deliberately unsupported.
+                matches = list(re.finditer(
+                    r"@Opcodes\s*\(\s*(?:value\s*=\s*)?"
+                    r"(?:PacketOpcodes\.(\w+)|(-?(?:0[xX][0-9a-fA-F]+|0|[1-9][0-9]*)))\s*\)", text))
             if not matches and scope.search(path.stem):
-                unresolved.append({"path": path.relative_to(repo).as_posix(), "reason": "no supported literal opcode binding"})
+                unresolved.append({"path": path.relative_to(repo).as_posix(), "direction": direction,
+                                   "reason": "no supported literal opcode binding"})
             for match in matches:
-                name = match.group(1)
-                symbol = name if name in opcodes else path.stem.removeprefix("Packet") if java_int_literal(name) is not None else name
+                name = match.group(1) or match.group(2)
+                prefix = "Packet" if direction == "server_to_client" else "Handler"
+                symbol = path.stem.removeprefix(prefix) if java_int_literal(name) is not None else name
                 if not scope.search(symbol) and not scope.search(path.stem):
                     continue
                 number = opcodes.get(name)
@@ -204,6 +224,8 @@ def finding(code, severity, symbol, expected=None, actual=None, field=None, **co
     item = {"code": code, "severity": severity, "symbol": symbol, "field": field,
             "expected": expected, "actual": actual, **context}
     stable = {k: item.get(k) for k in ("code", "symbol", "field", "expected", "actual", "direction", "native_type")}
+    if code == "source_binding_unresolved":
+        stable.update({k: item.get(k) for k in ("path", "reason")})
     item["fingerprint"] = digest(canonical_bytes(stable))
     return item
 
@@ -415,6 +437,10 @@ def main():
         if args.baseline and (baseline.get("client_artifact_sha256") != reference["artifact"]["sha256"]
                 or baseline.get("reference_sha256") != reference["content_sha256"]):
             raise ValueError("Debt belongs to a different reference; review it before rebaselining")
+        for item in unresolved_usage:
+            context = {k: v for k, v in item.items() if k != "symbol"}
+            findings.append(finding("source_binding_unresolved", "unknown",
+                item.get("symbol", Path(item["path"]).stem), **context))
         findings += lost_bindings(repo, scope, usage, baseline)
         resolved = classify_debt(findings, baseline)
         if args.write_baseline:

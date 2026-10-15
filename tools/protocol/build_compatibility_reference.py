@@ -11,6 +11,8 @@ import json
 from pathlib import Path
 import re
 
+from wire_facts import validate_directional_wire_facts
+
 FORMAT = 'astaps.protocol-compatibility-reference.v1'
 SCOPE = re.compile(r'.*')
 KINDS = {'double', 'float', 'int64', 'uint64', 'int32', 'fixed64', 'fixed32',
@@ -99,11 +101,7 @@ def project_field(field, identities):
         elif key == 'wire_type' and type(value) is int and 0 <= value <= 5:
             properties[key] = value
         elif key in ('accepted_wire_types', 'serialized_tags'):
-            require(isinstance(value, list) and all(type(n) is int and n >= 0 for n in value),
-                    'invalid directional wire facts')
-            require(all(n <= 5 for n in value) if key == 'accepted_wire_types'
-                    else all(n >> 3 == field['number'] and (n & 7) <= 5 for n in value),
-                    'invalid directional wire facts')
+            validate_directional_wire_facts(field['number'], key, value)
             properties[key] = sorted(set(value))
     statuses = {key: status if status in STATUSES else 'unknown'
                 for key, status in field['property_statuses'].items()

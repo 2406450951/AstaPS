@@ -14,7 +14,8 @@ allprojects { currentProject ->
 
         def sourceSets = currentProject.extensions.getByType(SourceSetContainer)
         def protocolTools = sourceSets.findByName('protocolTools') ?: sourceSets.create('protocolTools')
-        protocolTools.java.srcDir(currentProject.file('tools/protocol/java'))
+        def generatorSourceDir = currentProject.layout.projectDirectory.dir('tools/protocol/java')
+        protocolTools.java.srcDir(generatorSourceDir.asFile)
 
         def protocVersion = '4.36.2'
         currentProject.dependencies.add(
@@ -83,6 +84,9 @@ allprojects { currentProject ->
             task.inputs.files(protocCompiler)
                     .withPropertyName('protocExecutable')
                     .withPathSensitivity(PathSensitivity.NONE)
+            task.inputs.dir(generatorSourceDir)
+                    .withPropertyName('generatorImplementation')
+                    .withPathSensitivity(PathSensitivity.RELATIVE)
             task.inputs.property('protocVersion', protocVersion)
             task.inputs.property('protocPlatform', protocClassifier)
             task.outputs.dir(generatedProtocolJava)
@@ -106,6 +110,7 @@ allprojects { currentProject ->
                     supplementalImportDir.asFile.absolutePath,
                     generatedProtocolJava.get().asFile.absolutePath,
                     auditDescriptor.get().asFile.absolutePath,
+                    generatorSourceDir.asFile.absolutePath,
                 ])
             }
         }

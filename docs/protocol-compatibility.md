@@ -14,7 +14,7 @@ bash gradlew generateProtocolJava --max-workers=2
 
 `.github/workflows/protocol-compatibility.yml` runs these checks. The tests construct nonauthoritative `ExampleReq`/`ExampleRsp` contracts, sentinel command IDs, Java source snippets and protobuf descriptors in temporary directories. They exercise the actual command-line checker for success, mismatches, missing inputs, empty audits and exact debt handling. No game files, capture directory, server or database is needed. CI does not load a real client reference, audit actual client compatibility, or upload references/reports.
 
-Descriptor generation uses the existing base descriptor, supplemental sources and current descriptor patches, not the legacy checked-in Java dump. Its sidecar binds the descriptor, base descriptor and both supplemental source directories by SHA-256. Changed/stale inputs fail with instructions to regenerate. This validates server build inputs, not client behavior.
+Descriptor generation uses the existing base descriptor, supplemental sources and current descriptor patches, not the legacy checked-in Java dump. Its sidecar binds the descriptor, base descriptor, both supplemental source directories and the complete Java generator source tree by SHA-256. Gradle explicitly tracks that implementation directory as an input; direct checker runs also reject retained descriptors after generator/helper source changes or when an older sidecar lacks that binding. Changed/stale inputs fail with instructions to regenerate. This validates server build inputs, not client behavior.
 
 ## Audit with your own authorized reference
 
@@ -37,9 +37,11 @@ Exit codes: 0 means no new hard errors in the selected comparisons; 1 means new 
 - **Review:** differences joined only by server opcode/name candidates; wire-compatible type/cardinality differences; extra server fields; enum-domain differences; unavailable opcodes; nontrivial transformations. Matching IDs do not verify semantic names. Descriptors cannot establish whether handwritten server code implements a transformation.
 - **Unknown:** incomplete schemas, unsupported source expressions, missing descriptor bindings or directional wire proof, and unsupported map-component contracts.
 
+Provided directional wire facts must be lists of genuine integers, not booleans or strings. Reader wire types must be in 0–5; writer tags must be positive, use a wire type in that range, and identify their own field. Invalid facts are input errors (exit 2), not compatibility mismatches, even for externally prepared references. The producer and loader share these syntax checks.
+
 The checker uses supplied reader acceptance for server-to-client packets and writer tags for client-to-server packets, distinguishing packed emission from accepted packed/unpacked scalar forms. Synthetic field names are not compared with server field names. Nested comparisons inherit parent confidence; enum differences do not prove rejection of unknown proto3 values. Reports do not prove oneof semantics, loaded hotfix behavior or runtime message semantics.
 
-Java scanning handles simple literal/alias opcode constants and direct packet constructor/handler declarations, ignoring comments and literals. It does not execute Java, analyze general control flow, establish actual delivery or prove handler-registration completeness. These caveats apply even when a reference labels its inputs verified.
+Java scanning handles simple literal/alias opcode constants and direct packet constructor/handler declarations, ignoring comments and literals. Receive annotations support named opcode constants, decimal/hex integer literals and the optional `value =` spelling. Unsupported bindings remain explicit unknown findings, retain source context in the report, and count in the printed unknown summary; unknowns alone do not make the exit status fail. The scanner does not execute Java, analyze general control flow, establish actual delivery or prove handler-registration completeness. These caveats apply even when a reference labels its inputs verified.
 
 ### Optional debt
 

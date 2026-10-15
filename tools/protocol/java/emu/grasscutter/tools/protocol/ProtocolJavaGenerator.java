@@ -24,11 +24,11 @@ public final class ProtocolJavaGenerator {
     private ProtocolJavaGenerator() {}
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 6 && args.length != 7) {
+        if (args.length != 6 && args.length != 8) {
             throw new IllegalArgumentException(
                     "usage: ProtocolJavaGenerator <protoc> <descriptor-set> <file-list>"
                         + " <supplemental-proto-dir> <supplemental-import-dir> <java-out>"
-                        + " [audit-descriptor-out]");
+                        + " [audit-descriptor-out generator-source-dir]");
         }
 
         var protoc = Path.of(args[0]).toAbsolutePath().normalize();
@@ -37,9 +37,16 @@ public final class ProtocolJavaGenerator {
         var supplementalProtoDir = Path.of(args[3]).toAbsolutePath().normalize();
         var supplementalImportDir = Path.of(args[4]).toAbsolutePath().normalize();
         var javaOut = Path.of(args[5]).toAbsolutePath().normalize();
-        var auditOut = args.length == 7 ? Path.of(args[6]).toAbsolutePath().normalize() : null;
+        var auditOut = args.length == 8 ? Path.of(args[6]).toAbsolutePath().normalize() : null;
+        var generatorSourceDir =
+                args.length == 8 ? Path.of(args[7]).toAbsolutePath().normalize() : null;
         if (auditOut != null) {
-            if (auditOut.equals(descriptorSet)
+            if (javaOut.startsWith(generatorSourceDir) || generatorSourceDir.startsWith(javaOut)) {
+                throw new IllegalArgumentException("Generator sources and Java output must not overlap");
+            }
+            if (auditOut.equals(protoc)
+                    || auditOut.startsWith(generatorSourceDir)
+                    || auditOut.equals(descriptorSet)
                     || auditOut.equals(fileList)
                     || auditOut.startsWith(javaOut)
                     || auditOut.startsWith(supplementalProtoDir)
@@ -56,6 +63,8 @@ public final class ProtocolJavaGenerator {
         requireRegularFile(fileList, "protocol file list");
         requireDirectory(supplementalProtoDir, "supplemental proto directory");
         requireDirectory(supplementalImportDir, "supplemental import stub directory");
+        var generatorSourcesHash =
+                generatorSourceDir == null ? null : generatorFingerprint(generatorSourceDir);
 
         var protocolFiles = Files.readAllLines(fileList, StandardCharsets.UTF_8).stream()
                 .map(String::trim)
@@ -147,6 +156,9 @@ public final class ProtocolJavaGenerator {
                             + "\","
                             + "\"proto_sources_sha256\":\""
                             + sourceFingerprint(supplementalProtoDir, supplementalImportDir)
+                            + "\","
+                            + "\"generator_sources_sha256\":\""
+                            + generatorSourcesHash
                             + "\"}\n";
             Files.writeString(Path.of(auditOut + ".json"), metadata, StandardCharsets.UTF_8);
         }
@@ -161,6 +173,22 @@ public final class ProtocolJavaGenerator {
 
     private static String sha256(byte[] bytes) throws Exception {
         return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
+    }
+
+    private static String generatorFingerprint(Path root) throws Exception {
+        requireDirectory(root, "generator source directory");
+        var rows = new TreeSet<String>();
+        try (Stream<Path> files = Files.walk(root)) {
+            for (Path path : files.filter(Files::isRegularFile)
+                    .filter(file -> file.getFileName().toString().endsWith(".java")).toList()) {
+                rows.add(root.relativize(path).toString().replace(File.separatorChar, '/')
+                        + "\0" + sha256(Files.readAllBytes(path)) + "\n");
+            }
+        }
+        if (rows.isEmpty()) {
+            throw new IllegalArgumentException("Generator source directory contains no Java files: " + root);
+        }
+        return sha256(String.join("", rows).getBytes(StandardCharsets.UTF_8));
     }
 
     private static String sourceFingerprint(Path protoDir, Path importDir) throws Exception {
