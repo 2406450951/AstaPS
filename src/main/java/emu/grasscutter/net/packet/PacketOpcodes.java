@@ -713,7 +713,7 @@ public final class PacketOpcodes {
     public static final int GachaSimpleInfoNotify = 29467;
     public static final int DungeonDataNotify = 1057;
     // public static final int FPIOIMMDMJE = 1288;
-    public static final int ReadPrivateChatReq = 0; // 7.1 CmdId unknown (7.0: 4231)
+    public static final int ReadPrivateChatReq = 26929; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int CodexDataUpdateNotify = 24419;
     public static final int SeaLampFlyLampRsp = 27616;
     // public static final int EKDANHFDCCG = 23502;
@@ -2346,7 +2346,7 @@ public final class PacketOpcodes {
     // public static final int DDEHNBPLDIP = 4215;
     public static final int _DungeonQuickOpenRsp = 20791;
     // public static final int IFIMCGFEDCI = 3060;
-    public static final int ReadPrivateChatRsp = 0; // 7.1 CmdId unknown (7.0: 25913)
+    public static final int ReadPrivateChatRsp = 21003; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int KCGJCLKNIHN = 22518;
     // public static final int PJFEBILHHJJ = 21312;
     // public static final int GCGReplayBriefDataNotify = 3831;
