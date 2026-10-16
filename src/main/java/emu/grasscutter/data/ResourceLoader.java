@@ -172,7 +172,12 @@ public final class ResourceLoader {
         val simpleName = c.getSimpleName();
         if (doReload || !loadedResources.contains(simpleName)) {
             for (String name : type.name()) {
-                loadFromResource(c, FileUtils.getExcelPath(name), map);
+                var path = FileUtils.getExcelPath(name);
+                if (type.optional() && !java.nio.file.Files.exists(path)) {
+                    Grasscutter.getLogger().debug("Optional resource {} is not present, skipped", name);
+                    continue;
+                }
+                loadFromResource(c, path, map);
             }
             loadedResources.add(simpleName);
         }
