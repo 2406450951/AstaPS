@@ -30,6 +30,9 @@ public final class SceneGroupInstance {
 
     @Getter @Setter private int lastTimeRefreshed;
 
+    /** Versioned commission-owned encounter state; ordinary groups never read or write it. */
+    @Getter @Setter private String dailyTaskSnapshot;
+
     public SceneGroupInstance(SceneGroup group, Player owner) {
         this.luaGroup = group;
         this.groupId = group.id;

@@ -13,6 +13,9 @@ public class DailyTaskData extends GameResource {
     private int id;
     private int cityId;
     private int poolId;
+    private String centerPosition;
+    private float enterDistance;
+    private float exitDistance;
     private String type;
     private List<Integer> newGroupVec;
     private String finishType;
