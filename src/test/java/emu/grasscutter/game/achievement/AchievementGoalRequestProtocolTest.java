@@ -61,7 +61,7 @@ final class AchievementGoalRequestProtocolTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"72010a", "700a", "080172010a", "72010a1801", "72010a220178", "72010a2d01000000", "72010a290100000000000000"})
+    @ValueSource(strings = {"72010a", "700a", "080172010a", "72010a1801", "72010a220178", "72010a2d01000000", "72010a08ffffffffffffffffff01", "72010a290100000000000000"})
     void packedUnpackedAndUnknownFieldsAreAccepted(String hex) throws Exception {
         handle(HexFormat.of().parseHex(hex));
         assertEquals(1, achievements.calls);
@@ -91,7 +91,12 @@ final class AchievementGoalRequestProtocolTest {
                 "0a808080801072010a",
                 "0a8080808010",
                 "0b72010a0c",
-                "72010a0b0c"
+                "72010a0b0c",
+                "f0808080100a",
+                "f280808010010a",
+                "00",
+                "72010a0880808080808080808002",
+                "72010a08ffffffffffffffffff7f"
             })
     void malformedMissingDuplicateAndOutOfRangeIdsNeverReachRewards(String hex) throws Exception {
         handle(HexFormat.of().parseHex(hex));

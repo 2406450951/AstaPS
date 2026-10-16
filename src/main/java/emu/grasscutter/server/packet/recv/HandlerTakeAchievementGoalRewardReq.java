@@ -37,7 +37,9 @@ public class HandlerTakeAchievementGoalRewardReq extends PacketHandler {
         var ids = new ArrayList<Integer>();
         var unique = new HashSet<Integer>();
         while (!input.isAtEnd()) {
-            int tag = input.readTag();
+            long wireTag = readUInt32(input);
+            if (wireTag >>> 3 == 0) throw new IOException("Invalid field number");
+            int tag = (int) wireTag;
             if ((tag >>> 3) != 14) {
                 skipUnknown(input, tag);
                 continue;
@@ -61,7 +63,7 @@ public class HandlerTakeAchievementGoalRewardReq extends PacketHandler {
     // CodedInputStream.skipField truncates length varints to 32 bits, so skip unknown fields here.
     private static void skipUnknown(CodedInputStream input, int tag) throws IOException {
         switch (tag & 7) {
-            case 0 -> input.readRawVarint64();
+            case 0 -> skipVarint64(input);
             case 1 -> input.skipRawBytes(8);
             case 2 -> {
                 long length = readUInt32(input);
@@ -71,6 +73,16 @@ public class HandlerTakeAchievementGoalRewardReq extends PacketHandler {
             case 5 -> input.skipRawBytes(4);
             default -> throw new IOException("Unsupported unknown-field wire type");
         }
+    }
+
+    // readRawVarint64 silently drops bits beyond 64; accept at most ten bytes, the last only 0 or 1.
+    private static void skipVarint64(CodedInputStream input) throws IOException {
+        for (int i = 0; i < 10; i++) {
+            int next = input.readRawByte() & 0xff;
+            if (i == 9 && next > 1) throw new IOException("Overflowing varint");
+            if ((next & 0x80) == 0) return;
+        }
+        throw new IOException("Overlong varint");
     }
 
     // Avoid truncating an oversized varint into a valid ID or a short packed-field length.
