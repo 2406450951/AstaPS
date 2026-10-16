@@ -5,6 +5,7 @@ import emu.grasscutter.scripts.SceneScriptManager;
 import emu.grasscutter.scripts.constants.EventType;
 import emu.grasscutter.scripts.data.*;
 import emu.grasscutter.scripts.listener.ScriptMonsterListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,6 +23,13 @@ public final class ScriptMonsterTideService {
     private final OnMonsterDead onMonsterDead = new OnMonsterDead();
     private final String source;
 
+    /** Persistable progress of one tide, so a restored encounter resumes its pending waves. */
+    public static final class State {
+        public String source;
+        public int tideCount, killCount, alive, sceneLimit;
+        public List<Integer> orders, configIds;
+    }
+
     public ScriptMonsterTideService(
             SceneScriptManager sceneScriptManager,
             String source,
@@ -29,6 +37,36 @@ public final class ScriptMonsterTideService {
             int tideCount,
             int monsterSceneLimit,
             Integer[] ordersConfigId) {
+        this(sceneScriptManager, source, group, tideCount, monsterSceneLimit, ordersConfigId, true);
+    }
+
+    /** Re-registers a tide at its saved progress without spawning a new first turn. */
+    public static ScriptMonsterTideService restore(
+            SceneScriptManager sceneScriptManager, SceneGroup group, State state) {
+        var service =
+                new ScriptMonsterTideService(
+                        sceneScriptManager,
+                        state.source,
+                        group,
+                        state.tideCount,
+                        state.sceneLimit,
+                        state.configIds.toArray(new Integer[0]),
+                        false);
+        service.monsterConfigOrders.clear();
+        service.monsterConfigOrders.addAll(state.orders);
+        service.monsterKillCount.set(state.killCount);
+        service.monsterAlive.set(state.alive);
+        return service;
+    }
+
+    private ScriptMonsterTideService(
+            SceneScriptManager sceneScriptManager,
+            String source,
+            SceneGroup group,
+            int tideCount,
+            int monsterSceneLimit,
+            Integer[] ordersConfigId,
+            boolean spawnFirstTurn) {
         this.sceneScriptManager = sceneScriptManager;
         this.currentGroup = group;
         this.monsterSceneLimit = monsterSceneLimit;
@@ -44,7 +82,7 @@ public final class ScriptMonsterTideService {
                 .addMonsterCreatedListener(onMonsterCreated);
         this.sceneScriptManager.getScriptMonsterSpawnService().addMonsterDeadListener(onMonsterDead);
         // spawn the first turn
-        for (int i = 0; i < this.monsterSceneLimit; i++) {
+        for (int i = 0; spawnFirstTurn && i < this.monsterSceneLimit; i++) {
             sceneScriptManager.addEntity(
                     this.sceneScriptManager.createMonster(group.id, group.block_id, getNextMonster()));
         }
@@ -96,6 +134,31 @@ public final class ScriptMonsterTideService {
             scriptArgs.setEventSource(source);
             sceneScriptManager.callEvent(scriptArgs);
         }
+    }
+
+    public int getGroupId() {
+        return currentGroup.id;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    /** A finished tide holds nothing worth saving. */
+    public boolean isPending() {
+        return monsterSceneLimit > 0 && (monsterTideCount.get() > 0 || monsterAlive.get() > 0);
+    }
+
+    public State snapshot() {
+        var state = new State();
+        state.source = source;
+        state.tideCount = monsterTideCount.get();
+        state.killCount = monsterKillCount.get();
+        state.alive = monsterAlive.get();
+        state.sceneLimit = monsterSceneLimit;
+        state.orders = new ArrayList<>(monsterConfigOrders);
+        state.configIds = new ArrayList<>(monsterConfigIds);
+        return state;
     }
 
     public void unload() {

@@ -90,6 +90,7 @@ public final class DailyTaskGroupLifecycleTest {
         owner.scene = scene;
         owner.setWorld(world);
         var scripts = alloc(C.class);
+        set(SceneScriptManager.class, scripts, "monsterTides", new ArrayList<>());
         scripts.initialized = true;
         scripts.scene = scene;
         scripts.groups = new LinkedHashMap<>();
@@ -540,6 +541,19 @@ public final class DailyTaskGroupLifecycleTest {
                 scene.groups.contains(unrelated)
                         && !DailyTaskGroupLifecycle.unregisterOwned(scene, unrelated.id, manager),
                 "unrelated preloaded dynamic group cannot be adopted or removed");
+        var dormant = scripts.instances.get(group.id);
+        dormant.setDailyTaskSnapshot("{\"stale\":true}");
+        DailyTaskGroupLifecycle.discardDormant(scene, group.id, manager);
+        check(
+                dormant.getDailyTaskSnapshot() == null,
+                "same-day reroll discards an unloaded encounter's saved snapshot");
+        scene.groups.add(group);
+        dormant.setDailyTaskSnapshot("{\"live\":true}");
+        DailyTaskGroupLifecycle.discardDormant(scene, group.id, manager);
+        check(
+                "{\"live\":true}".equals(dormant.getDailyTaskSnapshot()),
+                "dormant discard never touches a loaded encounter");
+        scene.groups.remove(group);
         System.out.println(
                 "PASS "
                         + checks

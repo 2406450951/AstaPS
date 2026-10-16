@@ -663,6 +663,7 @@ public class DailyTaskManager {
 
 		for (int groupId : groupIds) {
 			if (!this.isGroupLoaded(scene, groupId)) {
+				DailyTaskGroupLifecycle.discardDormant(scene, groupId, this);
 				continue;
 			}
 

@@ -68,6 +68,8 @@ public class SceneScriptManager {
     private final Map<Integer, SceneGroupInstance> sceneGroupsInstances;
     private final Map<Integer, SceneGroupInstance> cachedSceneGroupsInstances;
     private ScriptMonsterTideService scriptMonsterTideService;
+    private final List<ScriptMonsterTideService> monsterTides = new ArrayList<>();
+    private boolean restoringMonster;
     private ScriptMonsterSpawnService scriptMonsterSpawnService;
     /** blockid - loaded groupSet */
     private final Map<Integer, Set<SceneGroup>> loadedGroupSetPerBlock;
@@ -947,6 +949,25 @@ public class SceneScriptManager {
             String source, SceneGroup group, Integer[] ordersConfigId, int tideCount, int sceneLimit) {
         this.scriptMonsterTideService =
                 new ScriptMonsterTideService(this, source, group, tideCount, sceneLimit, ordersConfigId);
+        this.monsterTides.add(this.scriptMonsterTideService);
+    }
+
+    /** Every tide started in this scene; Lua may start several per group. */
+    public synchronized List<ScriptMonsterTideService> getMonsterTides(int groupId) {
+        return this.monsterTides.stream().filter(tide -> tide.getGroupId() == groupId).toList();
+    }
+
+    public synchronized void restoreMonsterTide(SceneGroup group, ScriptMonsterTideService.State state) {
+        this.monsterTides.add(ScriptMonsterTideService.restore(this, group, state));
+    }
+
+    /** Drops a finished or discarded encounter's tides so stale counts cannot leak into a new one. */
+    public synchronized void unloadMonsterTides(int groupId) {
+        for (var tide : getMonsterTides(groupId)) {
+            tide.unload();
+            this.monsterTides.remove(tide);
+            if (this.scriptMonsterTideService == tide) this.scriptMonsterTideService = null;
+        }
     }
 
     public void unloadCurrentMonsterTide() {
@@ -1319,6 +1340,21 @@ public class SceneScriptManager {
         return entity;
     }
 
+    /** Rebuilds a monster that was alive when its group was suspended; it is not a new spawn. */
+    public EntityMonster restoreMonster(int groupId, int blockId, SceneMonster monster) {
+        boolean previous = this.restoringMonster;
+        this.restoringMonster = true;
+        try {
+            return createMonster(groupId, blockId, monster);
+        } finally {
+            this.restoringMonster = previous;
+        }
+    }
+
+    public boolean isRestoringMonster() {
+        return this.restoringMonster;
+    }
+
     public EntityMonster createMonster(int groupId, int blockId, SceneMonster monster) {
         if (!emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.maySpawn(this, groupId)) return null;
         if (monster == null) {
@@ -1342,9 +1378,11 @@ public class SceneScriptManager {
         entity.setPoseId(monster.pose_id);
         entity.setMetaMonster(monster);
 
-        this.getScriptMonsterSpawnService()
-                .onMonsterCreatedListener
-                .forEach(action -> action.onNotify(entity));
+        if (!this.isRestoringMonster()) {
+            this.getScriptMonsterSpawnService()
+                    .onMonsterCreatedListener
+                    .forEach(action -> action.onNotify(entity));
+        }
 
         return entity;
     }
@@ -1605,6 +1643,7 @@ public class SceneScriptManager {
             }
             scriptMonsterTideService = null;
         }
+        monsterTides.clear();
         if (scriptMonsterSpawnService != null) {
             scriptMonsterSpawnService.onMonsterCreatedListener.clear();
             scriptMonsterSpawnService.onMonsterDeadListener.clear();

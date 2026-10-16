@@ -11,6 +11,7 @@ import emu.grasscutter.game.world.*;
 import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import emu.grasscutter.scripts.*;
 import emu.grasscutter.scripts.data.*;
+import emu.grasscutter.scripts.service.ScriptMonsterTideService;
 import emu.grasscutter.server.packet.send.PacketSceneEntityAppearNotify;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -78,6 +79,8 @@ public final class DailyTaskGroupLifecycle {
         List<Thing> entities;
         Map<String, Integer> triggers;
         List<Integer> regions;
+        /** Absent in snapshots written before tide persistence. */
+        List<ScriptMonsterTideService.State> tides;
 
         Snapshot(
                 int version,
@@ -396,6 +399,9 @@ public final class DailyTaskGroupLifecycle {
                             things,
                             triggers,
                             regions);
+            var tides = new ArrayList<ScriptMonsterTideService.State>();
+            for (var tide : scripts.getMonsterTides(plan.group)) if (tide.isPending()) tides.add(tide.snapshot());
+            if (!tides.isEmpty()) value.tides = tides;
             String text = JSON.toJson(value);
             if (text.length() > 262144) return false;
             instance.setDailyTaskSnapshot(text);
@@ -495,12 +501,33 @@ public final class DailyTaskGroupLifecycle {
             if (cached != null) cached.setDailyTaskSnapshot(cachedText);
         }
         if (result) {
+            scripts.unloadMonsterTides(group);
             state.owned.remove(group);
             state.restored.remove(group);
             state.recoveryRequested.remove(group);
             state.settling.remove(group);
         }
         return result;
+    }
+
+    /**
+     * A same-day reroll may select the same task and group again; nothing saved for the previous
+     * issue of an unloaded (dormant) encounter may survive into it.
+     */
+    public static void discardDormant(Scene scene, int group, DailyTaskManager manager) {
+        if (!owner(manager, scene) || questOwned(scene, group) || loaded(scene, group)) return;
+        var scripts = scene.getScriptManager();
+        var active = scripts.getGroupInstanceById(group);
+        var cached = scripts.getCachedGroupInstances().get(group);
+        if (active != null) active.setDailyTaskSnapshot(null);
+        if (cached != null) cached.setDailyTaskSnapshot(null);
+        scripts.unloadMonsterTides(group);
+        var state = scene.getDailyTaskGroups();
+        if (state == null || state.manager != manager) return;
+        state.owned.remove(group);
+        state.restored.remove(group);
+        state.recoveryRequested.remove(group);
+        state.settling.remove(group);
     }
 
     public static boolean isActive(DailyTaskManager manager, Scene scene, int task) {
@@ -582,11 +609,30 @@ public final class DailyTaskGroupLifecycle {
         for (var id : saved.regions)
             if (id == null || !group.regions.containsKey(id))
                 throw new IllegalStateException("Invalid commission region snapshot");
+        if (saved.tides != null) {
+            if (saved.tides.size() > 16) throw new IllegalStateException("Invalid commission tide snapshot");
+            for (var tide : saved.tides)
+                if (tide == null
+                        || tide.source == null
+                        || tide.tideCount < 0
+                        || tide.killCount < 0
+                        || tide.alive < 0
+                        || tide.sceneLimit <= 0
+                        || tide.sceneLimit > 64
+                        || tide.orders == null
+                        || tide.configIds == null
+                        || tide.configIds.isEmpty()
+                        || tide.configIds.size() > 64
+                        || tide.orders.size() > 64
+                        || !tide.configIds.stream().allMatch(id -> id != null && group.monsters.containsKey(id))
+                        || !tide.orders.stream().allMatch(id -> id != null && group.monsters.containsKey(id)))
+                    throw new IllegalStateException("Invalid commission tide snapshot");
+        }
         for (var t : saved.entities) {
             GameEntity entity =
                     switch (t.kind) {
                         case "M" ->
-                                scripts.createMonster(group.id, group.block_id, group.monsters.get(t.config));
+                                scripts.restoreMonster(group.id, group.block_id, group.monsters.get(t.config));
                         case "G" ->
                                 scripts.createGadget(
                                         group.id, group.block_id, group.gadgets.get(t.config), t.gadgetState);
@@ -609,6 +655,13 @@ public final class DailyTaskGroupLifecycle {
             var region = group.regions.get(id);
             if (region == null) throw new IllegalStateException("Missing commission region");
             scripts.registerRegion(new EntityRegion(scene, region));
+        }
+        // A live tide keeps counting its survivors across suspension; only a cold scene lacks it.
+        if (saved.tides != null) {
+            var live = new HashSet<String>();
+            for (var tide : scripts.getMonsterTides(group.id)) live.add(tide.getSource());
+            for (var tide : saved.tides)
+                if (!live.contains(tide.source)) scripts.restoreMonsterTide(group, tide);
         }
         // Hydrate existing encounter state without replaying refresh/group-load scripts or monster-live
         // actions.

@@ -88,6 +88,9 @@ class DailyTaskUnregisterStateTest {
         var world = allocate(HostWorld.class);
         var scene = allocate(RecordingScene.class);
         var scripts = allocate(Scripts.class);
+        var tides = SceneScriptManager.class.getDeclaredField("monsterTides");
+        tides.setAccessible(true);
+        tides.set(scripts, new java.util.ArrayList<>());
         world.host = player;
         scene.world = world;
         scene.scripts = scripts;
