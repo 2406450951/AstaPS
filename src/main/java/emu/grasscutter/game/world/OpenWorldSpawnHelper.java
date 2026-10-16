@@ -118,9 +118,17 @@ public final class OpenWorldSpawnHelper {
                 if (sceneGroupInstance != null && sceneGroupInstance.getLuaGroup() != null && sceneGroupInstance.getLuaGroup().refresh_id > 0) {
                     return sceneGroupInstance.getLuaGroup().refresh_id;
                 }
-                SceneGroup sceneGroup = scene.getScriptManager().getGroupById(n);
-                if (sceneGroup != null && sceneGroup.refresh_id > 0) {
-                    return sceneGroup.refresh_id;
+                // Cooldown bookkeeping must not activate a group after its final death unloaded it.
+                // Cached instances and already-parsed block metadata are safe, non-loading sources.
+                SceneGroupInstance cached = scene.getScriptManager().getCachedGroupInstances().get(n);
+                if (cached != null && cached.getLuaGroup() != null && cached.getLuaGroup().refresh_id > 0) {
+                    return cached.getLuaGroup().refresh_id;
+                }
+                for (var block : scene.getScriptManager().getBlocks().values()) {
+                    SceneGroup group = block.groups == null ? null : block.groups.get(n);
+                    if (group != null && group.refresh_id > 0) {
+                        return group.refresh_id;
+                    }
                 }
             }
         }

@@ -1218,7 +1218,8 @@ public class Scene {
                                         loadBlock(b);
                                         if (b.groups == null) continue;
                                         SceneGroup group = b.groups.getOrDefault(g, null);
-                                        if (group != null && !group.dynamic_load) return group;
+                                        if (group != null && !group.dynamic_load
+                                                && !isReplacedByLoadedDynamicGroup(group)) return group;
                                     }
 
                                     return null;
@@ -1255,6 +1256,20 @@ public class Scene {
             emu.grasscutter.Grasscutter.getLogger()
                     .error("OfferingSpawnHelper nearby check failed", __t);
         }
+    }
+
+    /** Authored replacement edges are scene-local policy only while their dynamic group is loaded. */
+    private boolean isReplacedByLoadedDynamicGroup(SceneGroup group) {
+        if (group.is_replaceable == null) return false;
+        for (var replacement : this.loadedGroups) {
+            if (!replacement.dynamic_load || replacement.is_replaceable == null) continue;
+            var data = GameData.getGroupReplacements().get(replacement.id);
+            if (data == null || data.replace_groups == null || !data.replace_groups.contains(group.id)) continue;
+            if ((group.is_replaceable.value
+                            && group.is_replaceable.version <= replacement.is_replaceable.version)
+                    || group.is_replaceable.new_bin_only) return true;
+        }
+        return false;
     }
 
     public void onLoadBlock(SceneBlock block, List<Player> players) {
@@ -1316,9 +1331,10 @@ public class Scene {
                 group -> {
                     if (GameData.getGroupReplacements().containsKey((int) group)) {
                         var data = GameData.getGroupReplacements().get((int) group);
+                        // An earlier replacement in the sorted order may already have unloaded this one.
                         var sceneGroupReplacement =
-                                this.loadedGroups.stream().filter(g -> g.id == group).findFirst().orElseThrow();
-                        if (sceneGroupReplacement.is_replaceable != null) {
+                                this.loadedGroups.stream().filter(g -> g.id == group).findFirst().orElse(null);
+                        if (sceneGroupReplacement != null && sceneGroupReplacement.is_replaceable != null) {
                             var it = data.replace_groups.iterator();
                             while (it.hasNext()) {
                                 var replace_group = it.next();
@@ -1333,7 +1349,6 @@ public class Scene {
                                                 || sceneGroup.is_replaceable.new_bin_only)) {
                                     this.unloadGroup(
                                             scriptManager.getBlocks().get(sceneGroup.block_id), replace_group);
-                                    it.remove();
                                     Grasscutter.getLogger().debug("Graph ordering: unloaded {}", replace_group);
                                 }
                             }

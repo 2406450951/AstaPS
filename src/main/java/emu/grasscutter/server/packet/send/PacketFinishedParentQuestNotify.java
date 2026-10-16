@@ -22,7 +22,8 @@ public class PacketFinishedParentQuestNotify extends BasePacket {
         for (GameMainQuest mainQuest : player.getQuestManager().getMainQuests().values()) {
             // Canceled Quests do not appear in this packet
             if (mainQuest.getState() == ParentQuestState.PARENT_QUEST_STATE_CANCELED) continue;
-            if (!questingEnabled && mainQuest.getState() != ParentQuestState.PARENT_QUEST_STATE_FINISHED)
+            if (!questingEnabled && mainQuest.getState() != ParentQuestState.PARENT_QUEST_STATE_FINISHED
+                    && !mainQuest.isAddedByCommand())
                 continue;
             proto.addParentQuestList(mainQuest.toProto(false));
         }

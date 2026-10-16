@@ -96,6 +96,12 @@ public final class QuestManager extends BasePlayerManager {
         return SERVER.game.enableScriptInBigWorld && GAME_OPTIONS.questing.enabled;
     }
 
+    /** Whether this quest is shown to the client: questing is on, or its line was added by command. */
+    public static boolean isQuestVisible(GameQuest quest) {
+        return isQuestingActive()
+                || (quest != null && quest.getMainQuest() != null && quest.getMainQuest().isAddedByCommand());
+    }
+
     /** Checks if questing can be enabled. */
     public boolean isQuestingEnabled() {
         // Check if scripts are enabled.
@@ -552,12 +558,26 @@ public final class QuestManager extends BasePlayerManager {
     }
 
     public GameQuest addQuest(@Nonnull QuestData questConfig) {
+        return this.addQuest(questConfig, false);
+    }
+
+    /** Adds a quest; {@code byCommand} keeps its quest line visible while questing is off. */
+    public GameQuest addQuestByCommand(int questId) {
+        var questConfig = GameData.getQuestDataMap().get(questId);
+        return questConfig == null ? null : this.addQuest(questConfig, true);
+    }
+
+    private GameQuest addQuest(@Nonnull QuestData questConfig, boolean byCommand) {
         // Main quest
         var mainQuest = this.getMainQuestById(questConfig.getMainId());
 
         // Create main quest if it doesnt exist
         if (mainQuest == null) {
             mainQuest = addMainQuest(questConfig);
+        }
+        if (byCommand && !mainQuest.isAddedByCommand()) {
+            mainQuest.setAddedByCommand(true);
+            mainQuest.save();
         }
 
         // Sub quest
