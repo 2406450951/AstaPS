@@ -63,7 +63,6 @@ public class AnnouncementSystem extends BaseGameSystem {
         var now = new java.util.Date();
         var list =
                 announceConfigItemMap.values().stream()
-                        .filter(AnnounceConfigItem::isTick)
                         .filter(i -> i.getBeginTime() == null || now.after(i.getBeginTime()))
                         .filter(i -> i.getEndTime() == null || now.before(i.getEndTime()))
                         .map(AnnounceConfigItem::toProto)

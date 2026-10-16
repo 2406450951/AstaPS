@@ -639,6 +639,10 @@ public class Player implements PlayerHook, FieldFetch {
             this.getProgressManager().tryUnlockOpenStates();
             this.getQuestManager().queueEvent(QuestContent.QUEST_CONTENT_PLAYER_LEVEL_UP, level);
             this.getQuestManager().queueEvent(QuestCond.QUEST_COND_PLAYER_LEVEL_EQUAL_GREATER, level);
+            if (level >= emu.grasscutter.game.dailytask.DailyTaskManager.UNLOCK_LEVEL
+                    && this.getDailyTaskManager() != null) {
+                this.getDailyTaskManager().ensureDailyTasksForToday();
+            }
 
             return true;
         }
