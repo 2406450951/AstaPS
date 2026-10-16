@@ -9,8 +9,7 @@ import emu.grasscutter.server.packet.send.PacketSetPlayerHeadImageRsp;
 public class HandlerSetPlayerHeadImageReq extends PacketHandler {
     @Override
     public void handle(GameSession session, byte[] header, byte[] payload) throws Exception {
-        // Generated proto disagrees with itself (field 4 vs comment/descriptor field 10).
-        // Accept either wire field so 7.0 clients can set avatars.
+        // 7.1 SetPlayerHeadImageReq (CmdId 6969) carries the profile picture id on field 8.
         int id = readProfilePictureId(payload);
         session.getPlayer().setHeadImage(id);
         session.send(new PacketSetPlayerHeadImageRsp(session.getPlayer()));
@@ -26,7 +25,7 @@ public class HandlerSetPlayerHeadImageReq extends PacketHandler {
             int tag = in.readTag();
             int field = tag >>> 3;
             int wire = tag & 7;
-            if ((field == 4 || field == 10) && wire == 0) {
+            if (field == 8 && wire == 0) {
                 id = in.readUInt32();
             } else if (!in.skipField(tag)) {
                 break;
