@@ -947,9 +947,16 @@ public class SceneScriptManager {
 
     public void startMonsterTideInGroup(
             String source, SceneGroup group, Integer[] ordersConfigId, int tideCount, int sceneLimit) {
-        this.scriptMonsterTideService =
-                new ScriptMonsterTideService(this, source, group, tideCount, sceneLimit, ordersConfigId);
-        this.monsterTides.add(this.scriptMonsterTideService);
+        ScriptMonsterTideService tide;
+        synchronized (this) {
+            if (destroyed) return;
+            tide = ScriptMonsterTideService.prepare(this, source, group, tideCount, sceneLimit, ordersConfigId);
+            this.scriptMonsterTideService = tide;
+            this.monsterTides.add(tide);
+        }
+        // Scene departure locks scene -> scripts. Never wait for the scene while holding this
+        // manager's monitor; a cancellation between registration and spawning must also be respected.
+        tide.spawnFirstTurn();
     }
 
     /** Every tide started in this scene; Lua may start several per group. */
@@ -971,12 +978,13 @@ public class SceneScriptManager {
         }
     }
 
-    public void unloadCurrentMonsterTide() {
+    public synchronized void unloadCurrentMonsterTide() {
         if (this.getScriptMonsterTideService() == null) {
             return;
         }
-        this.monsterTides.remove(this.getScriptMonsterTideService());
-        this.getScriptMonsterTideService().unload();
+        this.monsterTides.remove(this.scriptMonsterTideService);
+        this.scriptMonsterTideService.unload();
+        this.scriptMonsterTideService = null;
     }
 
     public void spawnMonstersByConfigId(SceneGroup group, int configId, int delayTime) {
@@ -1256,7 +1264,7 @@ public class SceneScriptManager {
         }
     }
 
-    public ScriptMonsterTideService getScriptMonsterTideService() {
+    public synchronized ScriptMonsterTideService getScriptMonsterTideService() {
         return scriptMonsterTideService;
     }
 
@@ -1661,7 +1669,7 @@ public class SceneScriptManager {
      * scene loads them back, so saving a dungeon's end state would bring its dead monsters, gadget
      * states and variables back on the next run of a weekly boss, quest dungeon or Abyss chamber.
      */
-    private void clearDestroyedState() {
+    private synchronized void clearDestroyedState() {
         if (scene.getSceneType() == emu.grasscutter.game.props.SceneType.SCENE_WORLD) {
             scene.saveGroups();
         }

@@ -1,6 +1,7 @@
 package emu.grasscutter.game.dailytask;
 
 import com.google.gson.Gson;
+
 import emu.grasscutter.data.GameData;
 import emu.grasscutter.data.binout.ScriptSceneData;
 import emu.grasscutter.data.excels.DailyTaskData;
@@ -11,10 +12,13 @@ import emu.grasscutter.game.world.*;
 import emu.grasscutter.net.packet.BasePacket;
 import emu.grasscutter.scripts.SceneScriptManager;
 import emu.grasscutter.scripts.data.*;
+
 import it.unimi.dsi.fastutil.ints.*;
+
+import sun.misc.Unsafe;
+
 import java.util.*;
 import java.util.concurrent.Future;
-import sun.misc.Unsafe;
 
 /** Real manager and scene lifecycle with in-memory entity, persistence and transport boundaries. */
 @org.junit.jupiter.api.extension.ExtendWith(emu.grasscutter.ServerResourceFixture.class)
@@ -49,6 +53,40 @@ public final class DailyTaskGroupLifecycleTest {
             cache.putAll(oldCache);
             serverField.set(null, oldServer);
         }
+    }
+
+    @org.junit.jupiter.api.Test
+    void periodicPollingIsThrottledPerSceneButExplicitLoadsAreImmediate() throws Exception {
+        var owner = alloc(P.class);
+        owner.uid = 10001;
+        var world = alloc(W.class);
+        world.owner = owner;
+        owner.setWorld(world);
+        var scene = alloc(S.class);
+        scene.world = world;
+        scene.scripts =
+                alloc(C.class); // Not initialized: this test measures polling, not resources.
+        var manager = new M(owner);
+        owner.manager = manager;
+        DailyTaskGroupLifecycle.tick(scene, 0);
+        DailyTaskGroupLifecycle.tick(scene, 200_000_000L);
+        DailyTaskGroupLifecycle.tick(scene, 999_999_999L);
+        org.junit.jupiter.api.Assertions.assertEquals(1, manager.polls);
+        manager.loadActiveGroups(scene);
+        org.junit.jupiter.api.Assertions.assertEquals(2, manager.polls);
+        DailyTaskGroupLifecycle.tick(scene, 1_000_000_000L);
+        org.junit.jupiter.api.Assertions.assertEquals(3, manager.polls);
+        var second = alloc(S.class);
+        second.world = world;
+        second.scripts = scene.scripts;
+        DailyTaskGroupLifecycle.tick(second, 1_000_000_001L);
+        org.junit.jupiter.api.Assertions.assertEquals(4, manager.polls);
+        owner.manager = new M(owner);
+        DailyTaskGroupLifecycle.tick(scene, 1_000_000_002L);
+        org.junit.jupiter.api.Assertions.assertEquals(
+                1,
+                owner.manager.polls,
+                "a new host manager does not inherit the previous lifecycle's throttle");
     }
 
     static int checks;
@@ -112,8 +150,7 @@ public final class DailyTaskGroupLifecycleTest {
                         "{\"id\":10102,\"type\":\"DAILY_TASK_SCENE\",\"finishType\":\"DAILY_FINISH_MONSTER_NUM\",\"finishProgress\":8,\"taskRewardId\":1,\"newGroupVec\":[133001306],\"centerPosition\":\"Event_10102\",\"enterDistance\":40,\"exitDistance\":60}",
                         DailyTaskData.class);
         GameData.getDailyTaskDataMap().put(10102, row);
-        manager
-                .getDailyTasks()
+        manager.getDailyTasks()
                 .add(gson.fromJson("{\"taskId\":10102,\"finishProgress\":8}", DailyTask.class));
         var f = DailyTaskManager.class.getDeclaredField("GROUP_RESOURCE_SUPPORT_CACHE");
         f.setAccessible(true);
@@ -155,7 +192,9 @@ public final class DailyTaskGroupLifecycleTest {
         scripts.blocks.put(3001, block);
         scripts.groups.put(group.id, group);
         check(
-                manager.loadActiveGroups(scene) == 0 && scene.groups.isEmpty() && scene.entities.isEmpty(),
+                manager.loadActiveGroups(scene) == 0
+                        && scene.groups.isEmpty()
+                        && scene.entities.isEmpty(),
                 "far real manager must not activate remote groups");
         check(
                 manager.saves == 0 && manager.getDailyTasks().get(0).getProgress() == 0,
@@ -179,14 +218,28 @@ public final class DailyTaskGroupLifecycleTest {
         check(
                 scripts.refreshes == 1 && scene.entities.size() == 2,
                 "repeated nearby calls do not duplicate group/suite");
+        var quietInstance = scripts.instances.get(group.id);
+        String quietSnapshot = quietInstance.getDailyTaskSnapshot();
+        var quietMonster = scene.entities.values().iterator().next();
+        quietMonster.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP, 91);
+        manager.loadActiveGroups(scene);
+        check(
+                quietSnapshot.equals(quietInstance.getDailyTaskSnapshot()),
+                "ordinary nearby update does not serialize changed HP without a"
+                        + " progress/save/suspend boundary");
+        quietMonster.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP, 100);
+        manager.loadActiveGroups(scene);
         owner.position = center.clone().addX(60);
         manager.loadActiveGroups(scene);
-        check(scene.entities.size() == 2 && scripts.unloads == 0, "inclusive60 retains active group");
+        check(
+                scene.entities.size() == 2 && scripts.unloads == 0,
+                "inclusive60 retains active group");
         var task = manager.getDailyTasks().get(0);
         task.addProgress(1);
         var first = scene.entities.values().iterator().next();
         scene.entities.remove(
-                first.getId()); // Simulated already-processed combat removal; no reward/control commands.
+                first.getId()); // Simulated already-processed combat removal; no reward/control
+        // commands.
         var survivor = (E) scene.entities.values().iterator().next();
         survivor.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP, 37);
         var instance = scripts.instances.get(group.id);
@@ -201,7 +254,9 @@ public final class DailyTaskGroupLifecycleTest {
                 "zero-HP dying population is treated as settling, not a live wave to suspend");
         DailyTaskGroupLifecycle.captureAll(scene);
         check(
-                gson.fromJson(instance.getDailyTaskSnapshot(), DailyTaskGroupLifecycle.Snapshot.class)
+                gson.fromJson(
+                                instance.getDailyTaskSnapshot(),
+                                DailyTaskGroupLifecycle.Snapshot.class)
                         .entities
                         .isEmpty(),
                 "dying zero-HP monster can never be serialized and revived as an alive zombie");
@@ -234,9 +289,11 @@ public final class DailyTaskGroupLifecycleTest {
                 "actual staged monster creation prefix rejects dormant callback");
         check(
                 guardScripts.createGadget(group.id, 3001, null, 0) == null,
-                "actual staged gadget creation prefix rejects dormant callback before dereferencing metadata");
+                "actual staged gadget creation prefix rejects dormant callback before dereferencing"
+                        + " metadata");
         check(
-                guardScripts.createMonsterByConfigIdByPos(group, 1311, center, new Position()) == null,
+                guardScripts.createMonsterByConfigIdByPos(group, 1311, center, new Position())
+                        == null,
                 "actual staged positioned-monster prefix rejects dormant callback");
         check(
                 DailyTaskGroupLifecycle.maySpawn(scripts, 133999999),
@@ -256,11 +313,11 @@ public final class DailyTaskGroupLifecycleTest {
         manager.loadActiveGroups(scene);
         check(
                 scripts.refreshes == 1 && scene.entities.size() == 1,
-                "exit/reentry/reloaded instance restores only survivor, never initial killed population");
+                "exit/reentry/reloaded instance restores only survivor, never initial killed"
+                        + " population");
         check(
                 scene.entities.values().iterator().next().getConfigId() == survivor.getConfigId()
-                        && scene
-                                        .entities
+                        && scene.entities
                                         .values()
                                         .iterator()
                                         .next()
@@ -273,10 +330,15 @@ public final class DailyTaskGroupLifecycleTest {
         check(
                 scripts.counts.get("WAVE") == 1,
                 "partially consumed multi-count trigger does not reset on suspension/restoration");
-        scene.entities.values().iterator().next().setFightProperty(FightProperty.FIGHT_PROP_CUR_HP, 36);
+        scene.entities
+                .values()
+                .iterator()
+                .next()
+                .setFightProperty(FightProperty.FIGHT_PROP_CUR_HP, 36);
         DailyTaskGroupLifecycle.captureAll(scene);
         var preSave =
-                gson.fromJson(restored.getDailyTaskSnapshot(), DailyTaskGroupLifecycle.Snapshot.class);
+                gson.fromJson(
+                        restored.getDailyTaskSnapshot(), DailyTaskGroupLifecycle.Snapshot.class);
         check(
                 preSave.entities.get(0).hp == 36 && manager.saves == 0,
                 "existing scene-save boundary captures latest HP without quota/account save");
@@ -291,7 +353,8 @@ public final class DailyTaskGroupLifecycleTest {
                 .put(
                         21010201,
                         gson.fromJson(
-                                "{\"id\":21010201}", emu.grasscutter.data.excels.monster.MonsterData.class));
+                                "{\"id\":21010201}",
+                                emu.grasscutter.data.excels.monster.MonsterData.class));
         scene.creationSentinel = true;
         try {
             guardScripts.createMonster(group.id, 3001, group.monsters.get(1311));
@@ -343,20 +406,25 @@ public final class DailyTaskGroupLifecycleTest {
         check(scene.entities.size() == 1, "reentry after script initialization preserves survivor");
         owner.position = center.clone().addX(61);
         manager.loadActiveGroups(scene);
-        String intact = restored.getDailyTaskSnapshot();
         restored.setDailyTaskSnapshot("{");
         owner.position = center.clone();
         int priorRefresh = scripts.refreshes;
         manager.loadActiveGroups(scene);
         check(
-                scene.entities.isEmpty() && scripts.refreshes == priorRefresh && task.getProgress() == 1,
-                "malformed stored snapshot cannot reset/reward a partial encounter");
-        restored.setDailyTaskSnapshot(intact);
+                scene.entities.size() == 2
+                        && scripts.refreshes == priorRefresh + 1
+                        && task.getProgress() == 1,
+                "malformed stored snapshot refreshes a playable encounter without changing task"
+                        + " progress");
+        String recovered = restored.getDailyTaskSnapshot();
         manager.loadActiveGroups(scene);
         check(
-                scene.entities.size() == 1,
-                "repairing test-only malformed snapshot resumes original encounter");
-        // A direct-created second-wave config not in the initial population must survive suspension.
+                scene.entities.size() == 2
+                        && scripts.refreshes == priorRefresh + 1
+                        && recovered.equals(restored.getDailyTaskSnapshot()),
+                "corrupt snapshot is replaced once, not retried on every nearby update");
+        // A direct-created second-wave config not in the initial population must survive
+        // suspension.
         scene.entities.clear();
         var wave = scripts.createMonster(group.id, 3001, group.monsters.get(1317));
         scene.entities.put(wave.getId(), wave);
@@ -369,7 +437,9 @@ public final class DailyTaskGroupLifecycleTest {
                 scene.entities.size() == 1
                         && scene.entities.values().iterator().next().getConfigId() == 1317,
                 "direct-created later wave retained without resetting initial suite population");
-        check(scripts.triggers.get(1).isEmpty(), "consumed wave trigger is not replayed on restore");
+        check(
+                scripts.triggers.get(1).isEmpty(),
+                "consumed wave trigger is not replayed on restore");
         var guest = alloc(P.class);
         guest.uid = 10002;
         set(Player.class, guest, "id", 10002);
@@ -389,7 +459,9 @@ public final class DailyTaskGroupLifecycleTest {
                 "guest manager cannot activate its own board in host world");
         scene.players.remove(guest);
         manager.loadActiveGroups(scene);
-        check(scene.entities.isEmpty(), "last nearby visitor departure permits nonlethal suspension");
+        check(
+                scene.entities.isEmpty(),
+                "last nearby visitor departure permits nonlethal suspension");
         owner.position = center.clone();
         manager.loadActiveGroups(scene);
         task.finish();
@@ -415,7 +487,8 @@ public final class DailyTaskGroupLifecycleTest {
         manager.getDailyTasks().clear();
         var combatTask =
                 gson.fromJson(
-                        "{\"taskId\":10102,\"finishProgress\":8,\"rewardId\":991001}", DailyTask.class);
+                        "{\"taskId\":10102,\"finishProgress\":8,\"rewardId\":991001}",
+                        DailyTask.class);
         manager.getDailyTasks().add(combatTask);
         set(DailyTaskManager.class, manager, "lastGenerationDate", 20261017);
         owner.position = center.clone();
@@ -434,7 +507,8 @@ public final class DailyTaskGroupLifecycleTest {
                 "stale old-scene Lua callback is denied after visitor changes scene");
         manager.loadActiveGroups(scene);
         check(
-                scene.entities.isEmpty() && scene.getDailyTaskGroups() != otherScene.getDailyTaskGroups(),
+                scene.entities.isEmpty()
+                        && scene.getDailyTaskGroups() != otherScene.getDailyTaskGroups(),
                 "scene transition suspends old population without sharing lifecycle state");
         owner.scene = scene;
         owner.position = center.clone();
@@ -445,7 +519,8 @@ public final class DailyTaskGroupLifecycleTest {
         check(
                 !DailyTaskGroupLifecycle.maySpawn(scripts, group.id)
                         && manager.loadActiveGroups(scene) == 0,
-                "retired world's manager cannot spawn or activate after ownership-world transition");
+                "retired world's manager cannot spawn or activate after ownership-world"
+                        + " transition");
         owner.setWorld(world);
         // Actual QuestManager scene-suite lookup, without constructors/database.
         var q = alloc(emu.grasscutter.game.quest.QuestManager.class);
@@ -507,7 +582,8 @@ public final class DailyTaskGroupLifecycleTest {
                         DailyTaskGroupLifecycle.Snapshot.class);
         check(
                 afterProgress.entities.size() == 1,
-                "post-Lua normal progress updates encounter snapshot immediately, not only on a later tick");
+                "post-Lua normal progress updates encounter snapshot immediately, not only on a"
+                        + " later tick");
         owner.position = center.clone().addX(61);
         manager.loadActiveGroups(scene);
         int refreshBeforeCallback = scripts.refreshes;
@@ -519,17 +595,21 @@ public final class DailyTaskGroupLifecycleTest {
                 "actual queued two-second recovery callback cannot recreate dormant remote wave");
         owner.position = center.clone();
         manager.loadActiveGroups(scene);
-        for (int kill = 1; kill < 8; kill++) manager.onMonsterDeath(scene, group.id, owner.position);
+        for (int kill = 1; kill < 8; kill++)
+            manager.onMonsterDeath(scene, group.id, owner.position);
         check(
                 combatTask.isFinished() && combatTask.getProgress() == 8 && manager.saves == 8,
                 "actual normal death-notification chain reaches capped8/8");
         check(
                 owner.inventory.receipts == 1 && owner.inventory.count == 10 && owner.saves == 1,
-                "actual preserved preview-reward body pays recording inventory once and persists virtual-reward owner once");
+                "actual preserved preview-reward body pays recording inventory once and persists"
+                        + " virtual-reward owner once");
         manager.onMonsterDeath(scene, group.id, owner.position);
         manager.onMonsterDeath(scene, 999, owner.position);
         check(
-                manager.saves == 8 && owner.inventory.receipts == 1 && combatTask.getProgress() == 8,
+                manager.saves == 8
+                        && owner.inventory.receipts == 1
+                        && combatTask.getProgress() == 8,
                 "duplicate/foreign group deaths cannot exceed cap or pay twice");
         check(
                 scene.entities.isEmpty() && scene.groups.isEmpty(),
@@ -557,11 +637,18 @@ public final class DailyTaskGroupLifecycleTest {
         System.out.println(
                 "PASS "
                         + checks
-                        + " production lifecycle assertions with in-memory entity/persistence/transport boundaries");
+                        + " production lifecycle assertions with in-memory"
+                        + " entity/persistence/transport boundaries");
     }
 
     static final class M extends DailyTaskManager {
-        int saves, recoveryRequests;
+        int saves, recoveryRequests, polls;
+
+        @Override
+        public synchronized int loadActiveGroups(Scene scene) {
+            polls++;
+            return super.loadActiveGroups(scene);
+        }
 
         M(Player p) {
             super(p);
@@ -721,6 +808,7 @@ public final class DailyTaskGroupLifecycleTest {
         Map<Integer, SceneBlock> blocks;
         Map<Integer, Set<SceneGroup>> perBlock;
         int refreshes, unloads, groupLoadEvents;
+        RuntimeException refreshFailure;
 
         C() {
             super(null);
@@ -774,6 +862,7 @@ public final class DailyTaskGroupLifecycleTest {
         @Override
         public int refreshGroup(SceneGroupInstance i, int suite, boolean exclude) {
             refreshes++;
+            if (refreshFailure != null) throw refreshFailure;
             i.setActiveSuiteId(1);
             for (int cfg : new int[] {1311, 1312}) {
                 var e = createMonster(i.getGroupId(), 3001, i.getLuaGroup().monsters.get(cfg));
@@ -796,10 +885,18 @@ public final class DailyTaskGroupLifecycleTest {
                 e.setBlockId(block);
                 e.setConfigId(meta.config_id);
                 e.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP, 100);
+                var spawns = getScriptMonsterSpawnService();
+                if (spawns != null && !isRestoringMonster())
+                    spawns.onMonsterCreatedListener.forEach(listener -> listener.onNotify(e));
                 return e;
             } catch (Exception failure) {
                 throw new RuntimeException(failure);
             }
+        }
+
+        @Override
+        public void addEntity(GameEntity entity) {
+            scene.entities.put(entity.getId(), entity);
         }
 
         @Override
