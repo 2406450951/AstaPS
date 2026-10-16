@@ -39,7 +39,7 @@ public class HandlerTakeAchievementGoalRewardReq extends PacketHandler {
         while (!input.isAtEnd()) {
             int tag = input.readTag();
             if ((tag >>> 3) != 14) {
-                if (!input.skipField(tag)) throw new IOException("Unexpected end-group in goal claim");
+                skipUnknown(input, tag);
                 continue;
             }
             if ((tag & 7) == 0) {
@@ -56,6 +56,21 @@ public class HandlerTakeAchievementGoalRewardReq extends PacketHandler {
         }
         if (ids.isEmpty()) throw new IOException("Missing achievement goal IDs");
         return ids;
+    }
+
+    // CodedInputStream.skipField truncates length varints to 32 bits, so skip unknown fields here.
+    private static void skipUnknown(CodedInputStream input, int tag) throws IOException {
+        switch (tag & 7) {
+            case 0 -> input.readRawVarint64();
+            case 1 -> input.skipRawBytes(8);
+            case 2 -> {
+                long length = readUInt32(input);
+                if (length > Integer.MAX_VALUE) throw new IOException("Oversized unknown field");
+                input.skipRawBytes((int) length);
+            }
+            case 5 -> input.skipRawBytes(4);
+            default -> throw new IOException("Unsupported unknown-field wire type");
+        }
     }
 
     // Avoid truncating an oversized varint into a valid ID or a short packed-field length.
