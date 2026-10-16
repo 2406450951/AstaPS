@@ -88,6 +88,19 @@ class SceneGroupReplacementTest {
     }
 
     @Test
+    void chainedReplacementSkipsNodeAlreadyUnloadedByLaterReplacement() {
+        int middle = NEW, last = NEW + 1;
+        var middleGroup = replacement;
+        var lastGroup = group(last, true);
+        GameData.getGroupReplacements().put(last, new GroupReplacementData(last, new ArrayList<>(List.of(middle))));
+        scene.groups.addAll(List.of(middleGroup, lastGroup));
+        assertDoesNotThrow(scene::onRegisterGroups);
+        assertEquals(List.of(middle), scene.unloads);
+        assertEquals(Set.of(lastGroup), scene.groups);
+        assertEquals(List.of(OLD), edge.replace_groups);
+    }
+
+    @Test
     void immutableAuthoredListWorks() {
         edge.replace_groups = List.of(OLD);
         scene.groups.addAll(List.of(old, replacement));

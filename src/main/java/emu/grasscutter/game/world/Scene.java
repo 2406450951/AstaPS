@@ -1331,9 +1331,10 @@ public class Scene {
                 group -> {
                     if (GameData.getGroupReplacements().containsKey((int) group)) {
                         var data = GameData.getGroupReplacements().get((int) group);
+                        // An earlier replacement in the sorted order may already have unloaded this one.
                         var sceneGroupReplacement =
-                                this.loadedGroups.stream().filter(g -> g.id == group).findFirst().orElseThrow();
-                        if (sceneGroupReplacement.is_replaceable != null) {
+                                this.loadedGroups.stream().filter(g -> g.id == group).findFirst().orElse(null);
+                        if (sceneGroupReplacement != null && sceneGroupReplacement.is_replaceable != null) {
                             var it = data.replace_groups.iterator();
                             while (it.hasNext()) {
                                 var replace_group = it.next();
