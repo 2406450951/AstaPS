@@ -341,9 +341,10 @@ public final class DailyTaskGroupLifecycle {
                 var task = m.getDailyTask(plan.task);
                 if (task != null && !task.isFinished() && !hasMonsters(state.scene, plan.group)) return;
                 if (!snapshot(m, state, plan)) return;
+                // Removal only; no killEntity/onDeath. A refused removal leaves the encounter live and owned.
+                if (!state.scene.unregisterDynamicGroup(plan.group)) return;
                 // Dormant tides must not react to unrelated deaths; resume rebuilds them from the snapshot.
-                state.scene.getScriptManager().unloadMonsterTides(plan.group);
-                state.scene.unregisterDynamicGroup(plan.group); // Removal only; no killEntity/onDeath.
+                scripts.unloadMonsterTides(plan.group);
             }
             state.owned.remove(plan.group);
             state.settling.remove(plan.group);
