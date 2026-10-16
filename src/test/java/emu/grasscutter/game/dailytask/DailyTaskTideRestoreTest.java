@@ -81,6 +81,44 @@ final class DailyTaskTideRestoreTest {
         assertTrue(scripts.getScriptMonsterSpawnService().onMonsterDeadListener.isEmpty());
     }
 
+    @Test
+    void cancelledTideIsNotTrackedAndRestoredTideStaysCancellable() throws Exception {
+        var scripts = scripts();
+        scripts.startMonsterTideInGroup("1", group, new Integer[] {1, 2}, 2, 1);
+        scripts.unloadCurrentMonsterTide();
+        assertTrue(scripts.getMonsterTides(GROUP).isEmpty());
+
+        var state = new ScriptMonsterTideService.State();
+        state.source = "2";
+        state.tideCount = 1;
+        state.alive = 1;
+        state.sceneLimit = 1;
+        state.orders = List.of(2);
+        state.configIds = List.of(1, 2);
+        scripts.restoreMonsterTide(group, state);
+        assertEquals(1, scripts.getMonsterTides(GROUP).size());
+        scripts.unloadCurrentMonsterTide();
+        assertTrue(scripts.getMonsterTides(GROUP).isEmpty());
+        assertTrue(scripts.getScriptMonsterSpawnService().onMonsterDeadListener.isEmpty());
+    }
+
+    @Test
+    void detachedTideIgnoresUnrelatedDeathsAndRefusedSpawnsAreSkipped() throws Exception {
+        var scripts = scripts();
+        scripts.startMonsterTideInGroup("1", group, new Integer[] {1, 2, 3, 4}, 4, 2);
+        scripts.unloadMonsterTides(GROUP);
+        scripts.added.clear();
+        scripts.getScriptMonsterSpawnService().onMonsterDead(null);
+        assertTrue(scripts.added.isEmpty(), "a detached tide never reacts to other deaths");
+
+        var live = scripts();
+        live.startMonsterTideInGroup("1", group, new Integer[] {1, 2, 3, 4}, 4, 2);
+        live.refuseCreation = true;
+        live.added.clear();
+        assertDoesNotThrow(() -> live.getScriptMonsterSpawnService().onMonsterDead(null));
+        assertTrue(live.added.isEmpty());
+    }
+
     static T scripts() throws Exception {
         var scene = alloc(DailyTaskGroupLifecycleTest.S.class);
         scene.creationSentinel = false;
@@ -95,6 +133,7 @@ final class DailyTaskTideRestoreTest {
     static final class T extends SceneScriptManager {
         DailyTaskGroupLifecycleTest.S scene;
         List<GameEntity> added;
+        boolean refuseCreation;
 
         T() {
             super(null);
@@ -109,6 +148,7 @@ final class DailyTaskTideRestoreTest {
         @Override
         public emu.grasscutter.game.entity.EntityMonster createMonster(
                 int groupId, int blockId, SceneMonster meta) {
+            if (refuseCreation) return null;
             try {
                 var entity = alloc(DailyTaskGroupLifecycleTest.E.class);
                 entity.setConfigId(meta.config_id);

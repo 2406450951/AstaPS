@@ -104,6 +104,9 @@ public class DailyTaskManager {
 	 */
 	private int lastGenerationDate;
 
+	/** Counts issued boards; a saved encounter only restores into the board that produced it. */
+	private int generationSerial;
+
     public DailyTaskManager() {}
 
     public DailyTaskManager(Player player) {
@@ -327,6 +330,7 @@ public class DailyTaskManager {
 
 		this.lastGenerationDate =
 				generationDate;
+		this.generationSerial++;
 
 		this.save();
 

@@ -958,7 +958,8 @@ public class SceneScriptManager {
     }
 
     public synchronized void restoreMonsterTide(SceneGroup group, ScriptMonsterTideService.State state) {
-        this.monsterTides.add(ScriptMonsterTideService.restore(this, group, state));
+        this.scriptMonsterTideService = ScriptMonsterTideService.restore(this, group, state);
+        this.monsterTides.add(this.scriptMonsterTideService);
     }
 
     /** Drops a finished or discarded encounter's tides so stale counts cannot leak into a new one. */
@@ -974,6 +975,7 @@ public class SceneScriptManager {
         if (this.getScriptMonsterTideService() == null) {
             return;
         }
+        this.monsterTides.remove(this.getScriptMonsterTideService());
         this.getScriptMonsterTideService().unload();
     }
 
@@ -1643,7 +1645,6 @@ public class SceneScriptManager {
             }
             scriptMonsterTideService = null;
         }
-        monsterTides.clear();
         if (scriptMonsterSpawnService != null) {
             scriptMonsterSpawnService.onMonsterCreatedListener.clear();
             scriptMonsterSpawnService.onMonsterDeadListener.clear();
@@ -1664,6 +1665,7 @@ public class SceneScriptManager {
         if (scene.getSceneType() == emu.grasscutter.game.props.SceneType.SCENE_WORLD) {
             scene.saveGroups();
         }
+        monsterTides.clear(); // After saveGroups, which snapshots pending tides.
         currentTriggers.clear();
         ongoingTriggers.clear();
         triggersByGroupScene.clear();

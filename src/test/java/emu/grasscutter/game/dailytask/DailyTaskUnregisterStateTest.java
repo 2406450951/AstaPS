@@ -105,7 +105,7 @@ class DailyTaskUnregisterStateTest {
         player.setWorld(world);
         var state = new DailyTaskGroupLifecycle.State(manager, scene);
         state.owned.put(
-                GROUP, new DailyTaskGroupLifecycle.Plan(1, GROUP, 20250101, new Position(), 40, 60));
+                GROUP, new DailyTaskGroupLifecycle.Plan(1, GROUP, 20250101, 0, new Position(), 40, 60));
         state.managed.add(GROUP);
         state.restored.add(GROUP);
         state.recoveryRequested.add(GROUP);

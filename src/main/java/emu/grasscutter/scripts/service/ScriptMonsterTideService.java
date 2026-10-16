@@ -124,9 +124,10 @@ public final class ScriptMonsterTideService {
             monsterKillCount.incrementAndGet();
             if (monsterTideCount.get() > 0) {
                 // add more
-                sceneScriptManager.addEntity(
+                var next =
                         sceneScriptManager.createMonster(
-                                currentGroup.id, currentGroup.block_id, getNextMonster()));
+                                currentGroup.id, currentGroup.block_id, getNextMonster());
+                if (next != null) sceneScriptManager.addEntity(next);
             }
             // call registered events that may spawn in more monsters
             var scriptArgs =

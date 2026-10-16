@@ -41,7 +41,7 @@ public final class DailyTaskGroupLifecycle {
         }
     }
 
-    record Plan(int task, int group, int date, Position center, float enter, float exit) {}
+    record Plan(int task, int group, int date, int serial, Position center, float enter, float exit) {}
 
     // Keep persisted DTOs compatible with Gson versions that do not construct records.
     static final class Thing {
@@ -76,6 +76,8 @@ public final class DailyTaskGroupLifecycle {
 
     static final class Snapshot {
         int version, owner, date, task, group, suite;
+        /** Absent (0) in snapshots written before issue serials. */
+        int serial;
         List<Thing> entities;
         Map<String, Integer> triggers;
         List<Integer> regions;
@@ -221,6 +223,7 @@ public final class DailyTaskGroupLifecycle {
                                                 task.getTaskId(),
                                                 group,
                                                 manager.getLastGenerationDate(),
+                                                manager.getGenerationSerial(),
                                                 point,
                                                 row.getEnterDistance(),
                                                 row.getExitDistance()));
@@ -243,6 +246,7 @@ public final class DailyTaskGroupLifecycle {
                 if (plan == null
                         || plan.task != entry.getValue().task
                         || plan.date != entry.getValue().date
+                        || plan.serial != entry.getValue().serial
                         || !near(scene, plan.center, plan.exit)) suspend(manager, state, entry.getValue());
                 else {
                     snapshot(
@@ -337,6 +341,8 @@ public final class DailyTaskGroupLifecycle {
                 var task = m.getDailyTask(plan.task);
                 if (task != null && !task.isFinished() && !hasMonsters(state.scene, plan.group)) return;
                 if (!snapshot(m, state, plan)) return;
+                // Dormant tides must not react to unrelated deaths; resume rebuilds them from the snapshot.
+                state.scene.getScriptManager().unloadMonsterTides(plan.group);
                 state.scene.unregisterDynamicGroup(plan.group); // Removal only; no killEntity/onDeath.
             }
             state.owned.remove(plan.group);
@@ -402,6 +408,7 @@ public final class DailyTaskGroupLifecycle {
             var tides = new ArrayList<ScriptMonsterTideService.State>();
             for (var tide : scripts.getMonsterTides(plan.group)) if (tide.isPending()) tides.add(tide.snapshot());
             if (!tides.isEmpty()) value.tides = tides;
+            value.serial = plan.serial;
             String text = JSON.toJson(value);
             if (text.length() > 262144) return false;
             instance.setDailyTaskSnapshot(text);
@@ -576,6 +583,7 @@ public final class DailyTaskGroupLifecycle {
         if (saved == null) throw new IllegalStateException("Missing commission snapshot");
         if (saved.owner != manager.getOwnerUid()
                 || saved.date != plan.date
+                || saved.serial != plan.serial
                 || saved.task != plan.task
                 || saved.group != plan.group) return scripts.refreshGroup(instance, suite, excludePrevious);
         if (saved.version != 1) throw new IllegalStateException("Unknown commission snapshot version");
@@ -656,7 +664,7 @@ public final class DailyTaskGroupLifecycle {
             if (region == null) throw new IllegalStateException("Missing commission region");
             scripts.registerRegion(new EntityRegion(scene, region));
         }
-        // A live tide keeps counting its survivors across suspension; only a cold scene lacks it.
+        // Suspension detaches tides, so resume rebuilds them from the snapshot (a still-live one is kept).
         if (saved.tides != null) {
             var live = new HashSet<String>();
             for (var tide : scripts.getMonsterTides(group.id)) live.add(tide.getSource());
