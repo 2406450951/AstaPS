@@ -15,4 +15,4 @@ The inspected build is `GenshinImpact.exe`, 444260776 bytes, SHA-256 `08a3086d5f
 
 `PacketTakeAchievementGoalRewardRspTest` checks the generated descriptor, actual success/error packet bytes, nested items, packed/unpacked IDs, signed int32 encoding, response opcode, and unchanged unmapped request opcode. The synthetic success fixture `42 01 01 4a 05 08 c9 01 10 05` represents goal ID 1 and item 201 count 5; the existing already-taken error is `38 f5 04` (retcode 629). These are schema-derived fixtures, not captured successful category claims.
 
-The goal request remains opcode **0** and is not enabled. No claim is made about its schema, end-to-end category claiming, runtime client acceptance, or loaded hotfix behavior. This change does not alter reward eligibility, delivery, persistence, or handlers. Static evidence describes the normal native path only.
+The goal request is mapped too: `TakeAchievementGoalRewardReq` is command **28295** with `id_list` on repeated uint32 field **14**, from kitkat-multiverse/genshin-protocol 7.1.0. Reward eligibility, delivery and persistence are unchanged.

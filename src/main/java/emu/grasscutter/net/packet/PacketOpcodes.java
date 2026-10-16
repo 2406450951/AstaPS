@@ -688,7 +688,7 @@ public final class PacketOpcodes {
     public static final int HomePlantWeedReq = 21538;
     public static final int GetPlayerHomeCompInfoReq = 6450; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int _BeyondHallChangeTagsReq = 28249;
-    public static final int TakeAchievementGoalRewardReq = 0; // 7.1 CmdId unknown (7.0: 4089)
+    public static final int TakeAchievementGoalRewardReq = 28295; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int NormalUidOpNotify = 22391;
     public static final int CutSceneEndNotify = 472;
     // public static final int ANPPHOKNGJD = 24720;

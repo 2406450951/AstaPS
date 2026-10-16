@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Test;
 
 final class PacketTakeAchievementGoalRewardRspTest {
     @Test
-    void mapsOnlyTheVerifiedResponse() {
+    void mapsTheResponseAndRequest() {
         assertEquals(22054, new PacketTakeAchievementGoalRewardRsp().getOpcode());
-        assertEquals(0, PacketOpcodes.TakeAchievementGoalRewardReq);
+        assertEquals(28295, PacketOpcodes.TakeAchievementGoalRewardReq);
     }
 
     @Test
