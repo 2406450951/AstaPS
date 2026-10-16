@@ -1,15 +1,79 @@
 package emu.grasscutter.server.packet.recv;
 
+import com.google.protobuf.CodedInputStream;
 import emu.grasscutter.net.packet.*;
-import emu.grasscutter.net.proto.TakeAchievementGoalRewardReqOuterClass;
 import emu.grasscutter.server.game.GameSession;
+import emu.grasscutter.server.packet.send.PacketTakeAchievementGoalRewardRsp;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 @Opcodes(PacketOpcodes.TakeAchievementGoalRewardReq)
 public class HandlerTakeAchievementGoalRewardReq extends PacketHandler {
     @Override
     public void handle(GameSession session, byte[] header, byte[] payload) throws Exception {
-        var req =
-                TakeAchievementGoalRewardReqOuterClass.TakeAchievementGoalRewardReq.parseFrom(payload);
-        session.getPlayer().getAchievements().takeGoalReward(req.getIdListList());
+        List<Integer> ids;
+        try {
+            ids = readIds(payload);
+        } catch (IOException exception) {
+            session.send(new PacketTakeAchievementGoalRewardRsp());
+            return;
+        }
+        var player = session.getPlayer();
+        if (player == null || player.getAchievements() == null) {
+            session.send(new PacketTakeAchievementGoalRewardRsp());
+            return;
+        }
+        // The existing synchronized reward boundary owns eligibility, delivery and persistence.
+        player.getAchievements().takeGoalReward(ids);
+    }
+
+    /** Validate the entire field-14 request before attempting any category reward. */
+    private static List<Integer> readIds(byte[] payload) throws IOException {
+        if (payload == null || payload.length == 0 || payload.length > 4096)
+            throw new IOException("Missing or oversized achievement goal claim");
+        var input = CodedInputStream.newInstance(payload);
+        var ids = new ArrayList<Integer>();
+        var unique = new HashSet<Integer>();
+        while (!input.isAtEnd()) {
+            int tag = input.readTag();
+            if ((tag >>> 3) != 14) {
+                if (!input.skipField(tag)) throw new IOException("Unexpected end-group in goal claim");
+                continue;
+            }
+            if ((tag & 7) == 0) {
+                addId(ids, unique, readUInt32(input));
+            } else if ((tag & 7) == 2) {
+                long length = readUInt32(input);
+                if (length > payload.length) throw new IOException("Oversized packed goal IDs");
+                int limit = input.pushLimit((int) length);
+                while (input.getBytesUntilLimit() > 0) addId(ids, unique, readUInt32(input));
+                input.popLimit(limit);
+            } else {
+                throw new IOException("Invalid achievement goal ID wire type");
+            }
+        }
+        if (ids.isEmpty()) throw new IOException("Missing achievement goal IDs");
+        return ids;
+    }
+
+    // Avoid truncating an oversized varint into a valid ID or a short packed-field length.
+    private static long readUInt32(CodedInputStream input) throws IOException {
+        long value = 0;
+        for (int shift = 0; shift < 35; shift += 7) {
+            int next = input.readRawByte() & 0xff;
+            value |= (long) (next & 0x7f) << shift;
+            if ((next & 0x80) == 0 && value <= 0xffffffffL) return value;
+        }
+        throw new IOException("Overlong achievement goal ID");
+    }
+
+    private static void addId(List<Integer> ids, HashSet<Integer> unique, long value) throws IOException {
+        if (value <= 0 || value > Integer.MAX_VALUE || ids.size() >= 64)
+            throw new IOException("Invalid achievement goal ID");
+        int id = (int) value;
+        if (!unique.add(id)) throw new IOException("Duplicate achievement goal ID");
+        ids.add(id);
     }
 }
