@@ -1230,6 +1230,49 @@ public final class AbilityManager extends BasePlayerManager {
                 emu.grasscutter.game.world.EffigyCombatHelper.onModifiersChanged(entity);
             } catch (Throwable ignored) {
             }
+
+            // Arlecchino 重击回收 (CA mark reclaim): the client only sends the modifier ADD for
+            // ExtraAttack_AddHpDebts_1/2 (65%/130%) and never runs the onAdded AddHPDebts itself.
+            // AddHPDebts is not in SERVER_OWNED_ON_ADDED, so nobody granted the Bond and 重击回收
+            // looked dead. The modifier is attached to the CA's client gadget, so a plain
+            // target="Caster" resolves to a non-avatar and the grant is dropped ("Cannot add HP
+            // debt to non-avatar entity"). Retarget at the gadget's true owner (Arlecchino) and run
+            // the onAdded AddHPDebts on it to restore the reclaim.
+            if (resolvedModName != null
+                    && ArlecchinoBoLUtil.isExtraAttackAddHpDebtsModifier(resolvedModName)
+                    && modifierData.onAdded != null) {
+                GameEntity bolCaster = entity != null ? entity.getTrueOwner() : null;
+                if (!(bolCaster instanceof EntityAvatar)) {
+                    EntityAvatar cur = this.player.getTeamManager().getCurrentAvatarEntity();
+                    if (cur != null) {
+                        bolCaster = cur;
+                    }
+                }
+                if (bolCaster instanceof EntityAvatar bolAvatar
+                        && bolAvatar.getAvatar() != null
+                        && bolAvatar.getAvatar().getAvatarId() == 10000096
+                        && instancedAbilityData != null) {
+                    Ability bolAbility = new Ability(instancedAbilityData, bolAvatar, this.player);
+                    for (var bolAction : modifierData.onAdded) {
+                        if (bolAction != null
+                                && bolAction.type == AbilityModifierAction.Type.AddHPDebts) {
+                            executeActionNow(
+                                    bolAbility, bolAction, invoke.getAbilityData(), bolAvatar);
+                        }
+                    }
+                    Grasscutter.getLogger()
+                            .info(
+                                    "[BoL] ExtraAttack reclaim {} → caster uid {} onAdded AddHPDebts",
+                                    resolvedModName,
+                                    bolAvatar.getAvatar().getAvatarId());
+                } else {
+                    Grasscutter.getLogger()
+                            .info(
+                                    "[BoL] ExtraAttack reclaim {} caster unresolved (trueOwner={})",
+                                    resolvedModName,
+                                    bolCaster);
+                }
+            }
         } else if (modChange.getAction() == ModifierAction.ModifierAction_REMOVED) {
             AbilityModifierController removed =
                     entity.getInstancedModifiers().remove(head.getInstancedModifierId());

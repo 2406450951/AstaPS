@@ -326,6 +326,12 @@ public final class ArlecchinoBurstBoL {
             if (pending == null || pending.avatar() != avatar) {
                 return false;
             }
+            // Apply the heal right away. The Bond itself stays held (PENDING) so the client can
+            // still scale the burst by it - only the CLEAR waits for the slash / lock end. Deferring
+            // the heal too made Q heal land ~0.5-1s late.
+            if (amount > 0f) {
+                ArlecchinoBoLUtil.applyBurstHeal(avatar, amount, mute);
+            }
             long now = System.currentTimeMillis();
             long lockEnd = pending.castAtMs() + LOCK_MS;
             boolean hold =
@@ -333,36 +339,13 @@ public final class ArlecchinoBurstBoL {
                             || (pending.clearAtMs() > 0L && now < pending.clearAtMs())
                             || (pending.clearAtMs() == 0L
                                     && now - pending.castAtMs() < MISS_TIMEOUT_MS);
-            if (hold) {
-                if (amount > 0f) {
-                    DEFERRED_HEAL.merge(
-                            avatar.getId(),
-                            new DeferredHeal(amount, mute),
-                            (a, b) ->
-                                    new DeferredHeal(
-                                            Math.max(a.amount(), b.amount()), a.mute() && b.mute()));
-                }
-                Grasscutter.getLogger()
-                        .info(
-                                "[BoL] Arlecchino burst: defer heal amount={} (lockLeft={} clearAt={})",
-                                amount,
-                                Math.max(0L, lockEnd - now),
-                                pending.clearAtMs());
-                return true;
+            if (!hold) {
+                // Past hold - settle the clear now.
+                applyClear(pending.avatar(), pending.bolSnapshot(), pending.castSnapshot(), "burst-heal");
+                COMPLETED_BURSTS.put(
+                        avatar.getId(), new CompletedBurst(avatar, System.currentTimeMillis()));
+                PENDING.remove(avatar.getId(), pending);
             }
-            // Past hold - settle clear first, then flush this heal (do not fall through to heal()).
-            if (amount > 0f) {
-                DEFERRED_HEAL.merge(
-                        avatar.getId(),
-                        new DeferredHeal(amount, mute),
-                        (a, b) ->
-                                new DeferredHeal(
-                                        Math.max(a.amount(), b.amount()), a.mute() && b.mute()));
-            }
-            applyClear(pending.avatar(), pending.bolSnapshot(), pending.castSnapshot(), "burst-heal");
-            COMPLETED_BURSTS.put(
-                    avatar.getId(), new CompletedBurst(avatar, System.currentTimeMillis()));
-            PENDING.remove(avatar.getId(), pending);
             return true;
         }
     }
