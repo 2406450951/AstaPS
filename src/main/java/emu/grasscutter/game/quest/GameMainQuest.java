@@ -36,6 +36,11 @@ public class GameMainQuest {
     // Completion evidence for MQ1000 rescue plot reports that arrive before acceptance.
     @Getter @Setter(AccessLevel.PACKAGE) private boolean liyueRescuePlotReported;
     @Getter @Setter(AccessLevel.PACKAGE) private int liyueAmberSuite;
+    /**
+     * Added with /quest add. Such a quest line is sent to the client and tracked even while general
+     * questing is off, since someone asked for it explicitly.
+     */
+    @Getter @Setter private boolean addedByCommand;
     @Getter List<QuestGroupSuite> questGroupSuites;
 
     @Getter int[] suggestTrackMainQuestList;

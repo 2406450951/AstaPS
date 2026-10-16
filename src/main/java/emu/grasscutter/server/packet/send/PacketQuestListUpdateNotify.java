@@ -12,7 +12,7 @@ public class PacketQuestListUpdateNotify extends BasePacket {
 
         var builder = QuestListUpdateNotify.newBuilder();
         // Statue activation quest 303 is processed even when general questing is disabled.
-        if (QuestManager.isQuestingActive()
+        if (QuestManager.isQuestVisible(quest)
                 || quest.getState() == QuestState.QUEST_STATE_FINISHED
                 || quest.getMainQuestId() == 303) {
             builder.addQuestList(quest.toProto());

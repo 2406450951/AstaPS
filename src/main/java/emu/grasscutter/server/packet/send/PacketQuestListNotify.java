@@ -26,7 +26,8 @@ public class PacketQuestListNotify extends BasePacket {
                             if (state == QuestState.QUEST_STATE_UNSTARTED) return;
                             // Statue activation (main quest 303) must remain visible even with questing off.
                             if (!questingEnabled && state != QuestState.QUEST_STATE_FINISHED
-                                    && quest.getMainQuestId() != 303) return;
+                                    && quest.getMainQuestId() != 303
+                                    && !emu.grasscutter.game.quest.QuestManager.isQuestVisible(quest)) return;
                             proto.addQuestList(quest.toProto());
                         });
 

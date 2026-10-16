@@ -67,6 +67,7 @@ public class PacketFinishedParentQuestUpdateNotify extends BasePacket {
      */
     private static boolean shouldShow(GameMainQuest quest) {
         return QuestManager.isQuestingActive()
+                || quest.isAddedByCommand()
                 || quest.getState() == ParentQuestState.PARENT_QUEST_STATE_FINISHED;
     }
 }

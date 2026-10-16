@@ -132,12 +132,8 @@ public final class QuestCommand implements CommandHandler {
 
         @Override
         public void run() {
-            if (!QuestManager.isQuestingActive()) {
-                CommandOutput.sendMessage(sender, translate(sender, "commands.quest.questing_off"));
-                return;
-            }
-
-            var quest = targetPlayer.getQuestManager().addQuest(questId.value());
+            // Works with questing off too: the added quest line is shown and tracked on its own.
+            var quest = targetPlayer.getQuestManager().addQuestByCommand(questId.value());
             if (quest != null) {
                 CommandOutput.sendMessage(
                         sender, translate(sender, "commands.quest.added", questId.value()));
