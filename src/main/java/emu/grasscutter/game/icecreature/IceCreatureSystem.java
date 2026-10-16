@@ -18,6 +18,7 @@ import emu.grasscutter.net.proto.IceCreatureBuildReqOuterClass.IceCreatureBuildR
 import emu.grasscutter.net.proto.IceCreatureBuildRspOuterClass.IceCreatureBuildRsp;
 import emu.grasscutter.net.proto.IceCreatureDataNotifyOuterClass.IceCreatureDataNotify;
 import emu.grasscutter.net.proto.IceCreatureDataNotifyOuterClass.IceCreatureTypeGadget;
+import emu.grasscutter.net.proto.IceCreatureSetTypeGadgetReqOuterClass.IceCreatureSetTypeGadgetReq;
 import emu.grasscutter.net.proto.IceCreatureGadgetDisappearNotifyOuterClass.IceCreatureGadgetDisappearNotify;
 import emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureGadgetDetail;
 import emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureGadgetInfo;
@@ -205,9 +206,13 @@ public final class IceCreatureSystem {
         var config = IceCreatureConfig.get();
         var notify = IceCreatureDataNotify.newBuilder();
         var unlocked = new java.util.TreeSet<Integer>();
+        var chosen = player.getIceCreatureTypeGadgets();
         config.getBuildableGadgetsByType().forEach((type, gadgets) -> {
             unlocked.addAll(gadgets);
-            notify.addTypeGadgetList(IceCreatureTypeGadget.newBuilder().setType(type).setGadgetId(gadgets.get(0)));
+            int look = chosen.getOrDefault(type, gadgets.get(0));
+            notify.addTypeGadgetList(IceCreatureTypeGadget.newBuilder()
+                    .setType(type)
+                    .setGadgetId(gadgets.contains(look) ? look : gadgets.get(0)));
         });
         notify.addAllUnlockedGadgetIdList(unlocked);
         synchronized (player) {
@@ -215,6 +220,20 @@ public final class IceCreatureSystem {
             notify.setTotalLikeNum(totalLikes(player));
         }
         player.sendPacket(new PacketIceCreature(PacketOpcodes.IceCreatureDataNotify, notify.build()));
+    }
+
+    /** cmd 29885: the player picked another look for one creature type on the build wheel. */
+    public static void onSetTypeGadget(Player player, IceCreatureSetTypeGadgetReq req) {
+        var gadgets = IceCreatureConfig.get().getBuildableGadgetsByType().get(req.getType());
+        if (gadgets == null || !gadgets.contains(req.getGadgetId())) {
+            log("refused look {} for type {}: not one of its gadgets", req.getGadgetId(), req.getType());
+        } else {
+            synchronized (player) {
+                player.getIceCreatureTypeGadgets().put(req.getType(), req.getGadgetId());
+            }
+            log("type {} now builds as gadget {}", req.getType(), req.getGadgetId());
+        }
+        sendData(player);
     }
 
     static int totalLikes(Player player) {

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import emu.grasscutter.net.packet.PacketOpcodes;
 import emu.grasscutter.net.proto.IceCreatureDataNotifyOuterClass.IceCreatureDataNotify;
 import emu.grasscutter.net.proto.IceCreatureDataNotifyOuterClass.IceCreatureTypeGadget;
+import emu.grasscutter.net.proto.IceCreatureSetTypeGadgetReqOuterClass.IceCreatureSetTypeGadgetReq;
 import emu.grasscutter.net.proto.UnlockTransPointRspOuterClass.UnlockTransPointRsp;
 import emu.grasscutter.net.proto.WatcherEventNotifyOuterClass.WatcherEventNotify;
 import emu.grasscutter.net.proto.WatcherEventTypeNotifyOuterClass.WatcherEventTypeNotify;
@@ -73,5 +74,14 @@ final class WatcherProtocolTest {
                         + "68f515"
                         + "720480a7ed22",
                 hex(data));
+    }
+
+    @Test
+    void iceCreatureSetTypeGadgetReadsItsOwnNumbers() throws Exception {
+        assertEquals(29885, PacketOpcodes.IceCreatureSetTypeGadgetReq);
+        // type (4) = 21, gadget_id (5) = 73174021.
+        var req = IceCreatureSetTypeGadgetReq.parseFrom(HexFormat.of().parseHex("2015" + "288598f222"));
+        assertEquals(21, req.getType());
+        assertEquals(73174021, req.getGadgetId());
     }
 }
