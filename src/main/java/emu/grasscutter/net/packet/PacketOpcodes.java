@@ -256,7 +256,7 @@ public final class PacketOpcodes {
     public static final int StartFishingReq = 0; // 7.1 CmdId unknown (7.0: 1223)
     public static final int AllShareCDDataNotify = 24819;
     public static final int SkyCrystalDetectorDataUpdateNotify = 6791;
-    public static final int TakeAchievementGoalRewardRsp = 0; // 7.1 CmdId unknown (7.0: 1233)
+    public static final int TakeAchievementGoalRewardRsp = 22054; // Verified 7.1 category reward response.
     // public static final int MGNFCHDMNEJ = 22026;
     public static final int StartBuoyantCombatGalleryReq = 27450;
     public static final int SceneAvatarStaminaStepRsp = 7933;
