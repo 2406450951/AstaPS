@@ -75,6 +75,8 @@ public final class ArlecchinoBoLSync {
         scene.broadcastPacket(new PacketServerGlobalValueChangeNotify(avatar, "Cur_HPDebts", newDebt));
         scene.broadcastPacket(new PacketServerGlobalValueChangeNotify(avatar, "_HPDebts", newDebt));
         repinUiBar(avatar);
+        // Arm the ~1s re-push so a later client-side predicted wipe self-corrects.
+        ArlecchinoBoLUtil.ensureBoLKeepalive(avatar);
     }
 
     /**

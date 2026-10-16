@@ -740,7 +740,7 @@ public final class ArlecchinoBoLUtil {
             return;
         }
         int n = entityAvatar.getId();
-        float f = AUTHORITATIVE_BOL.getOrDefault(n, 0.0f);
+        float f = entityAvatar.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS);
         if (f <= 0.5f) {
             ArlecchinoBoLUtil.cancelBoLKeepalive(n);
             return;
@@ -769,20 +769,21 @@ public final class ArlecchinoBoLUtil {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     private static void tickBoLKeepalive(int n) {
-        float f = AUTHORITATIVE_BOL.getOrDefault(n, 0.0f);
         EntityAvatar entityAvatar = BOL_KEEPALIVE_AVATAR.get(n);
-        if (f <= 0.5f
-                || entityAvatar == null
+        if (entityAvatar == null
                 || entityAvatar.getAvatar() == null
                 || entityAvatar.getPlayer() == null
                 || !entityAvatar.getPlayer().isOnline()) {
             ArlecchinoBoLUtil.cancelBoLKeepalive(n);
             return;
         }
-        float f2 = entityAvatar.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS);
-        if (Math.abs(f2 - f) <= 0.5f) {
+        float f = entityAvatar.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS);
+        if (f <= 0.5f) {
+            ArlecchinoBoLUtil.cancelBoLKeepalive(n);
             return;
         }
+        // Re-push the authoritative Bond every tick so a client-side predicted wipe (CA dash /
+        // E cast / taking a hit) self-corrects within ~1s instead of showing a phantom vanish.
         ALLOW_BOL_MUTATE.set(true);
         try {
             ArlecchinoBoLUtil.forcePushBoL(entityAvatar, f, ChangeHpDebtsReason._ChangeHpDebtsReason._ChangeHpDebtsReason_CHANGE_HP_DEBTS_ADD_ABILITY, true);

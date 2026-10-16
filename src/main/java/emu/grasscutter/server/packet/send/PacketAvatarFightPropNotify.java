@@ -1,6 +1,5 @@
 package emu.grasscutter.server.packet.send;
 
-import emu.grasscutter.game.ability.ArlecchinoBurstBoL;
 import emu.grasscutter.game.avatar.Avatar;
 import emu.grasscutter.game.entity.EntityAvatar;
 import emu.grasscutter.game.props.FightProperty;
@@ -16,13 +15,17 @@ public class PacketAvatarFightPropNotify extends BasePacket {
     public PacketAvatarFightPropNotify(Avatar avatar) {
         super(PacketOpcodes.AvatarFightPropNotify);
 
-        // A full Notify omits HP_DEBTS by default: including it after damage makes the client show the
-        // damage number without the HP actually dropping.
-        // Exception: it must be included while Arlecchino's Q is locked, otherwise the full Notify after
-        // SkillSucc wipes the Bond of Life bar immediately
-        // (the client cinematic already zeroed it locally, so a missing field in a full Notify confirms 0).
         var props = new HashMap<>(avatar.getFightProperties());
-        if (!shouldKeepHpDebts(avatar)) {
+        // A full Notify normally omits a prop to mean "unchanged", but the client reads a missing
+        // HP_DEBTS as 0 - so any full Notify sent with no Bond change (avatar upgrade on kill,
+        // MaxHP recompute, etc.) wiped Arlecchino's Bond of Life bar until the next entity re-sync
+        // (character switch / teleport). Always echo the live entity value for her instead.
+        EntityAvatar debtEntity = findArlecchinoEntity(avatar);
+        if (debtEntity != null) {
+            props.put(
+                    PROP_HP_DEBTS,
+                    debtEntity.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS));
+        } else {
             props.remove(PROP_HP_DEBTS);
         }
 
@@ -35,24 +38,23 @@ public class PacketAvatarFightPropNotify extends BasePacket {
         this.setData(proto);
     }
 
-    private static boolean shouldKeepHpDebts(Avatar avatar) {
+    /** The on-field Arlecchino entity for this avatar, whose fight props hold the live Bond. */
+    private static EntityAvatar findArlecchinoEntity(Avatar avatar) {
         if (avatar == null || avatar.getAvatarId() != ARLECCHINO_AVATAR_ID) {
-            return false;
+            return null;
         }
         try {
             var player = avatar.getPlayer();
             if (player == null || player.getTeamManager() == null) {
-                return false;
+                return null;
             }
             for (EntityAvatar ent : player.getTeamManager().getActiveTeam()) {
-                if (ent != null
-                        && ent.getAvatar() == avatar
-                        && ArlecchinoBurstBoL.isConsumeBlocked(ent.getId())) {
-                    return true;
+                if (ent != null && ent.getAvatar() == avatar) {
+                    return ent;
                 }
             }
         } catch (Throwable ignored) {
         }
-        return false;
+        return null;
     }
 }
