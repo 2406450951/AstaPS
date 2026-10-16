@@ -3,6 +3,7 @@ package emu.grasscutter.game.ability.actions;
 import com.google.protobuf.ByteString;
 import emu.grasscutter.Grasscutter;
 import emu.grasscutter.data.binout.AbilityModifier.AbilityModifierAction;
+import emu.grasscutter.data.binout.AbilityModifier.AbilityModifierAction.LuaCallType;
 import emu.grasscutter.game.ability.Ability;
 import emu.grasscutter.game.entity.GameEntity;
 import emu.grasscutter.scripts.ScriptLoader;
@@ -29,12 +30,17 @@ public final class ActionServerLuaCall extends AbilityActionHandler {
         scriptLib.setCurrentEntity(target);
         scriptLib.setSceneScriptManager(scriptManager);
 
+        // Configs without a call type (the Ice Creature SLC_IceCreature_ReportInteract calls) mean
+        // the gadget's own controller, the same as Gadget.
+        var callType = action.luaCallType == null ? LuaCallType.Gadget : action.luaCallType;
+
         // Attempt to call the function.
-        return switch (action.luaCallType) {
+        return switch (callType) {
             default -> false;
             case FromGroup -> {
                 var groupId = target.getGroupId();
                 var group = scriptManager.getGroupById(groupId);
+                if (group == null) yield false;
                 var script = group.getBindings();
 
                 // Set the script library's group.
@@ -43,8 +49,10 @@ public final class ActionServerLuaCall extends AbilityActionHandler {
                 yield ActionServerLuaCall.callFunction(script, functionName, ability, action);
             }
             case SpecificGroup -> {
+                if (action.callParamList == null || action.callParamList.length == 0) yield false;
                 var groupId = action.callParamList[0];
                 var group = scriptManager.getGroupById(groupId);
+                if (group == null) yield false;
                 var script = group.getBindings();
 
                 // Set the script library's group.
@@ -54,7 +62,7 @@ public final class ActionServerLuaCall extends AbilityActionHandler {
             }
             case Gadget -> {
                 var controller = target.getEntityController();
-                if (controller == null || functionName.isBlank()) yield false;
+                if (controller == null || functionName == null || functionName.isBlank()) yield false;
 
                 // Hand off the function handling to the controller.
             //    controller.callControllerScriptFunc(target, functionName, ability, action);

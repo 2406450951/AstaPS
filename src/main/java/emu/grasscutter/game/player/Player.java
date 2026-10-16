@@ -135,6 +135,8 @@ public class Player implements PlayerHook, FieldFetch {
     private List<Integer> tpsLoadout;
     // Snezhnaya Ice Creatures this player built.
     private List<emu.grasscutter.game.icecreature.IceCreatureRecord> iceCreatures;
+    /** The look the Ice Creature build wheel uses per creature type, as the client last chose. */
+    private Map<Integer, Integer> iceCreatureTypeGadgets;
     @Getter @Setter private Map<Integer, Set<Integer>> unlockedSceneAreas;
     /** Map area states a quest changed with QUEST_EXEC_CHANGE_MAP_AREA_STATE, by map area id. */
     private Map<Integer, Boolean> mapAreaStates;
@@ -1520,6 +1522,13 @@ public class Player implements PlayerHook, FieldFetch {
             this.iceCreatures = new ArrayList<>();
         }
         return this.iceCreatures;
+    }
+
+    public Map<Integer, Integer> getIceCreatureTypeGadgets() {
+        if (this.iceCreatureTypeGadgets == null) {
+            this.iceCreatureTypeGadgets = new HashMap<>();
+        }
+        return this.iceCreatureTypeGadgets;
     }
 
     public Map<Integer, Integer> getTpsAmmunition() {

@@ -3042,6 +3042,7 @@ public final class PacketOpcodes {
     public static final int IceCreatureAllGadgetInfoNotify = 6301;
     public static final int IceCreatureGadgetDisappearNotify = 22946;
     public static final int IceCreatureDataNotify = 25312; // unnamed LIIGONALLBB, name inferred
+    public static final int IceCreatureSetTypeGadgetReq = 29885; // unnamed KBLIMHCPJHP, name inferred
 
     // Opcodes only this repository's handlers use (negative: never matches a packet).
     public static final int AvatarTraceEffectChangeNotify = -1001; // no 7.1 CmdId known
