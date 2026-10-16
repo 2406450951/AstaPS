@@ -371,7 +371,7 @@ public class EntityMonster extends GameEntity {
         var host = scene.getWorld().getHost();
         if (!commissionDeathReported && host != null && host.getDailyTaskManager() != null) {
             commissionDeathReported = true;
-            host.getDailyTaskManager().onMonsterDeath(scene, getGroupId());
+            host.getDailyTaskManager().onMonsterDeath(scene, getGroupId(), getPosition());
         }
         // Battle Pass trigger
         scene

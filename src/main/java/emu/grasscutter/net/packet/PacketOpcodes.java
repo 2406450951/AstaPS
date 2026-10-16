@@ -256,7 +256,7 @@ public final class PacketOpcodes {
     public static final int StartFishingReq = 0; // 7.1 CmdId unknown (7.0: 1223)
     public static final int AllShareCDDataNotify = 24819;
     public static final int SkyCrystalDetectorDataUpdateNotify = 6791;
-    public static final int TakeAchievementGoalRewardRsp = 0; // 7.1 CmdId unknown (7.0: 1233)
+    public static final int TakeAchievementGoalRewardRsp = 22054; // Verified 7.1 category reward response.
     // public static final int MGNFCHDMNEJ = 22026;
     public static final int StartBuoyantCombatGalleryReq = 27450;
     public static final int SceneAvatarStaminaStepRsp = 7933;
@@ -688,7 +688,7 @@ public final class PacketOpcodes {
     public static final int HomePlantWeedReq = 21538;
     public static final int GetPlayerHomeCompInfoReq = 6450; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int _BeyondHallChangeTagsReq = 28249;
-    public static final int TakeAchievementGoalRewardReq = 0; // 7.1 CmdId unknown (7.0: 4089)
+    public static final int TakeAchievementGoalRewardReq = 28295; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int NormalUidOpNotify = 22391;
     public static final int CutSceneEndNotify = 472;
     // public static final int ANPPHOKNGJD = 24720;

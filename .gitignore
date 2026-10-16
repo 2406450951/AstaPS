@@ -120,3 +120,5 @@ _compile_errors.txt
 .gitignore
 _errs_detail.txt
 _errors_filtered.txt
+
+__pycache__/

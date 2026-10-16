@@ -119,7 +119,7 @@ public class TestWorld extends World {
         private final DailyTaskManager dailyTasks =
                 new DailyTaskManager() {
                     @Override
-                    public synchronized void onMonsterDeath(Scene scene, int groupId) {
+                    public synchronized void onMonsterDeath(Scene scene, int groupId, Position deathPos) {
                         commissionKills++;
                     }
                 };

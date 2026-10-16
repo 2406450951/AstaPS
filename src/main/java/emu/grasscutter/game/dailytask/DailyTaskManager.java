@@ -14,6 +14,7 @@ import emu.grasscutter.data.excels.RewardPreviewData;
 import emu.grasscutter.database.DatabaseHelper;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.ActionReason;
+import emu.grasscutter.game.world.Position;
 import emu.grasscutter.game.world.Scene;
 import emu.grasscutter.game.entity.EntityMonster;
 import emu.grasscutter.scripts.ScriptLoader;
@@ -43,7 +44,18 @@ public class DailyTaskManager {
     private static final int DAILY_TASK_COUNT = 4;
 
 	private static final int RANDOM_CITY_ID = 0;
-	private static final int DEFAULT_CITY_ID = RANDOM_CITY_ID;
+	private static final int MONDSTADT_CITY_ID = 1;
+	private static final int DEFAULT_CITY_ID = MONDSTADT_CITY_ID;
+
+	/** Commissions open at Adventure Rank 12. */
+	public static final int UNLOCK_LEVEL = 12;
+
+	/**
+	 * A commission monster only counts when a player is this close as it dies. Deaths far from every
+	 * player (script kills, falling under the scene, a group loaded while nobody is there) are not the
+	 * player's doing.
+	 */
+	static final float KILL_RANGE = 200f;
 
 	private static final int TEYVAT_SCENE_ID = 3;
 
@@ -163,7 +175,7 @@ public class DailyTaskManager {
 
 	private synchronized int ensureDailyTasksForToday(
 			boolean syncClient) {
-		if (this.player == null) {
+		if (this.player == null || !this.isUnlocked()) {
 			return 0;
 		}
 
@@ -625,8 +637,13 @@ public class DailyTaskManager {
 				.anyMatch(group -> group.id == groupId);
 	}
 
+	public boolean isUnlocked() {
+		return this.player != null && this.player.getLevel() >= UNLOCK_LEVEL;
+	}
+
 	public synchronized int loadActiveGroups(Scene scene) {
-		if (scene == null
+		if (!this.isUnlocked()
+				|| scene == null
 				|| scene.getId() != TEYVAT_SCENE_ID
 				|| scene.getScriptManager() == null
 				|| !scene.getScriptManager().isInit()) {
@@ -776,10 +793,19 @@ public class DailyTaskManager {
 
 	public synchronized void onMonsterDeath(
 			Scene scene,
-			int groupId) {
+			int groupId,
+			Position deathPos) {
 		if (groupId <= 0
 				|| this.player == null
 				|| this.dailyTasks == null) {
+			return;
+		}
+		if (!isNearAnyPlayer(scene, deathPos)) {
+			Grasscutter.getLogger()
+					.debug(
+							"[DailyTask] Ignored a monster death in group {} with no player within {}m.",
+							groupId,
+							KILL_RANGE);
 			return;
 		}
 
@@ -856,6 +882,18 @@ public class DailyTaskManager {
 
 		this.save();
 		this.syncAll();
+	}
+
+	static boolean isNearAnyPlayer(Scene scene, Position pos) {
+		if (scene == null || pos == null) return false;
+		for (var player : scene.getPlayers()) {
+			if (player != null
+					&& player.getPosition() != null
+					&& player.getPosition().computeDistance(pos) <= KILL_RANGE) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void scheduleStalledWaveRecovery(
