@@ -56,53 +56,56 @@ public final class ActionHealHPArlecchinoTest {
     private static final AtomicInteger ENTITY_IDS = new AtomicInteger(96_000);
 
     @Test
-    void pendingBurstKeepsHpAndBondUntilTickClearsThenHeals() throws Exception {
+    void pendingBurstHealsAtOnceAndHoldsBondUntilTickClears() throws Exception {
         try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
             ArlecchinoBurstBoL.onBurstCast(fixture.entity);
             fixture.packets.clear();
 
             assertTrue(execute(fixture, "Avatar_Arlecchino_Common", heal(BURST_HEAL_TAG, 1_000f)));
 
-            fixture.assertState(2_000f, 3_000f);
+            // The heal lands immediately; only the Bond clear waits for the slash / lock end.
+            fixture.assertState(3_000f, 3_000f);
             assertTrue(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
             assertEquals(0, fixture.entity.ordinaryHealCalls);
-            assertTrue(fixture.packets.isEmpty(), "Deferred healing must not notify a heal early");
+            fixture.assertHealNotification(1_000f, 1_000f);
+            fixture.assertHpUpdate(3_000f, 1_000f);
+            assertEquals(-1, fixture.firstPropertyUpdate(FightProperty.FIGHT_PROP_CUR_HP_DEBTS));
 
+            fixture.packets.clear();
             expirePendingCast(fixture.entity);
             ArlecchinoBurstBoL.onTick(fixture.player);
 
             fixture.assertState(3_000f, 0f);
             assertFalse(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
             assertEquals(0, fixture.entity.ordinaryHealCalls);
-            fixture.assertHealNotification(1_000f, 1_000f);
-            fixture.assertHpUpdate(3_000f, 1_000f);
             assertTrue(
-                    fixture.firstPropertyUpdate(FightProperty.FIGHT_PROP_CUR_HP_DEBTS)
-                            < fixture.firstPropertyUpdate(FightProperty.FIGHT_PROP_CUR_HP));
+                    fixture.packets.stream()
+                            .noneMatch(PacketEvtBeingHealedNotify.class::isInstance),
+                    "Settling the Bond must not heal again");
 
             fixture.packets.clear();
             ArlecchinoBurstBoL.onTick(fixture.player);
             fixture.assertState(3_000f, 0f);
-            assertTrue(fixture.packets.isEmpty(), "The deferred heal must settle only once");
+            assertTrue(fixture.packets.isEmpty(), "The burst must settle only once");
         }
     }
 
     @Test
-    void deferredBurstHealDoesNotRepayBondAddedAfterCast() throws Exception {
+    void burstHealDoesNotRepayBondAddedAfterCast() throws Exception {
         try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
             ArlecchinoBurstBoL.onBurstCast(fixture.entity);
             fixture.entity.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP_DEBTS, 4_000f);
             fixture.packets.clear();
 
             assertTrue(execute(fixture, "Avatar_Arlecchino_Common", heal(BURST_HEAL_TAG, 1_000f)));
-            fixture.assertState(2_000f, 4_000f);
+            fixture.assertState(3_000f, 4_000f);
+            fixture.assertHealNotification(1_000f, 1_000f);
 
             expirePendingCast(fixture.entity);
             ArlecchinoBurstBoL.onTick(fixture.player);
 
             fixture.assertState(3_000f, 1_000f);
             assertEquals(0, fixture.entity.ordinaryHealCalls);
-            fixture.assertHealNotification(1_000f, 1_000f);
         }
     }
 
@@ -116,17 +119,17 @@ public final class ActionHealHPArlecchinoTest {
 
             ArlecchinoBurstBoL.onTick(other.player);
 
-            caster.assertState(2_000f, 3_000f);
+            caster.assertState(3_000f, 3_000f);
             assertTrue(ArlecchinoBurstBoL.isPending(caster.entity.getId()));
-            assertTrue(hasDeferredHeal(caster.entity.getId()));
+            assertTrue(hasRecordedBurstHeal(caster.entity.getId()));
             assertTrue(caster.packets.isEmpty(), "Another player's tick must not repin the caster");
 
             expirePendingCast(caster.entity);
             ArlecchinoBurstBoL.onTick(other.player);
 
-            caster.assertState(2_000f, 3_000f);
+            caster.assertState(3_000f, 3_000f);
             assertTrue(ArlecchinoBurstBoL.isPending(caster.entity.getId()));
-            assertTrue(hasDeferredHeal(caster.entity.getId()));
+            assertTrue(hasRecordedBurstHeal(caster.entity.getId()));
             assertTrue(caster.packets.isEmpty(), "Another player's tick must not settle the caster");
             assertTrue(other.packets.isEmpty());
 
@@ -134,8 +137,7 @@ public final class ActionHealHPArlecchinoTest {
 
             caster.assertState(3_000f, 0f);
             assertFalse(ArlecchinoBurstBoL.isPending(caster.entity.getId()));
-            assertFalse(hasDeferredHeal(caster.entity.getId()));
-            caster.assertHealNotification(1_000f, 1_000f);
+            assertFalse(hasRecordedBurstHeal(caster.entity.getId()));
         }
     }
 
@@ -153,7 +155,7 @@ public final class ActionHealHPArlecchinoTest {
     }
 
     @Test
-    void lateCastConfirmationKeepsThePrearmedSlashAndDeferredHeal() throws Exception {
+    void lateCastConfirmationKeepsThePrearmedSlashAndItsHeal() throws Exception {
         try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
             ArlecchinoBurstBoL.tryPreArmFromAbility(
                     ability(fixture.entity, "Avatar_Arlecchino_ElementalBurst"), fixture.entity);
@@ -173,8 +175,8 @@ public final class ActionHealHPArlecchinoTest {
             ArlecchinoBurstBoL.onBurstCast(fixture.entity);
 
             assertSame(slash, pendingCast(fixture.entity), "Late confirmation must preserve settlement");
-            assertTrue(hasDeferredHeal(fixture.entity.getId()));
-            fixture.assertState(2_000f, 4_000f);
+            assertTrue(hasRecordedBurstHeal(fixture.entity.getId()));
+            fixture.assertState(3_000f, 4_000f);
             fixture.packets.clear();
             setPendingCast(
                     fixture.entity,
@@ -188,8 +190,11 @@ public final class ActionHealHPArlecchinoTest {
 
             fixture.assertState(3_000f, 1_000f);
             assertFalse(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
-            assertFalse(hasDeferredHeal(fixture.entity.getId()));
-            fixture.assertHealNotification(1_000f, 1_000f);
+            assertFalse(hasRecordedBurstHeal(fixture.entity.getId()));
+            assertTrue(
+                    fixture.packets.stream()
+                            .noneMatch(PacketEvtBeingHealedNotify.class::isInstance),
+                    "The heal already landed with the cast");
             fixture.packets.clear();
             ArlecchinoBurstBoL.onTick(fixture.player);
             assertTrue(fixture.packets.isEmpty(), "The confirmed cast must settle only once");
@@ -247,7 +252,7 @@ public final class ActionHealHPArlecchinoTest {
 
             assertFalse(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
             assertFalse(ArlecchinoBurstBoL.isConsumeBlocked(fixture.entity));
-            assertFalse(hasDeferredHeal(fixture.entity.getId()));
+            assertFalse(hasRecordedBurstHeal(fixture.entity.getId()));
             fixture.assertState(3_000f, 1_500f);
             assertTrue(fixture.packets.isEmpty(), "Late confirmation must not restart settlement");
         }
@@ -386,7 +391,7 @@ public final class ActionHealHPArlecchinoTest {
 
                 fixture.assertState(3_000f, 0f);
                 assertFalse(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
-                assertFalse(hasDeferredHeal(fixture.entity.getId()));
+                assertFalse(hasRecordedBurstHeal(fixture.entity.getId()));
                 assertFalse(ArlecchinoBurstBoL.hasRecentlyCompletedCast(fixture.entity));
                 fixture.assertHealNotification(1_000f, 1_000f);
             } finally {
@@ -400,7 +405,7 @@ public final class ActionHealHPArlecchinoTest {
     }
 
     @Test
-    void reusedEntityIdDoesNotInheritAnotherAvatarsDeferredHeal() throws Exception {
+    void reusedEntityIdDoesNotInheritAnotherAvatarsBurstHeal() throws Exception {
         try (var original = fixture(10000096, 2_000f, 3_000f);
                 var replacement = fixture(10000096, 5_000f, 2_000f)) {
             replacement.entity.setId(original.entity.getId());
@@ -411,7 +416,7 @@ public final class ActionHealHPArlecchinoTest {
                     ability(replacement.entity, "Avatar_Arlecchino_ElementalBurst"),
                     replacement.entity);
 
-            assertFalse(hasDeferredHeal(replacement.entity.getId()));
+            assertFalse(hasRecordedBurstHeal(replacement.entity.getId()));
             expirePendingCast(replacement.entity);
             original.packets.clear();
             replacement.packets.clear();
@@ -421,7 +426,8 @@ public final class ActionHealHPArlecchinoTest {
 
             ArlecchinoBurstBoL.onTick(replacement.player);
 
-            original.assertState(2_000f, 3_000f);
+            // The original avatar healed at once; the replacement inherits nothing.
+            original.assertState(3_000f, 3_000f);
             replacement.assertState(5_000f, 0f);
             assertFalse(ArlecchinoBurstBoL.isPending(replacement.entity.getId()));
             assertTrue(
@@ -431,7 +437,7 @@ public final class ActionHealHPArlecchinoTest {
     }
 
     @Test
-    void tickWaitingOnAvatarFlushesTheHealRegisteredBeforeSettlementExactlyOnce() throws Exception {
+    void tickWaitingOnAvatarSettlesAfterTheHealExactlyOnce() throws Exception {
         try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
             ArlecchinoBurstBoL.onBurstCast(fixture.entity);
             fixture.packets.clear();
@@ -461,8 +467,8 @@ public final class ActionHealHPArlecchinoTest {
                                     fixture,
                                     "Avatar_Arlecchino_Common",
                                     heal(BURST_HEAL_TAG, 1_000f)));
-                    fixture.assertState(2_000f, 3_000f);
-                    assertTrue(fixture.packets.isEmpty());
+                    fixture.assertState(3_000f, 3_000f);
+                    fixture.assertHealNotification(1_000f, 1_000f);
                     expirePendingCast(fixture.entity);
                 }
                 completion.get(5, TimeUnit.SECONDS);
@@ -471,7 +477,7 @@ public final class ActionHealHPArlecchinoTest {
                 assertFalse(ArlecchinoBurstBoL.isPending(fixture.entity.getId()));
                 assertEquals(0, fixture.entity.ordinaryHealCalls);
                 fixture.assertHealNotification(1_000f, 1_000f);
-                assertFalse(hasDeferredHeal(fixture.entity.getId()));
+                assertFalse(hasRecordedBurstHeal(fixture.entity.getId()));
                 fixture.packets.clear();
                 ArlecchinoBurstBoL.onTick(fixture.player);
                 assertTrue(fixture.packets.isEmpty());
@@ -611,7 +617,7 @@ public final class ActionHealHPArlecchinoTest {
     }
 
     @Test
-    void mutedDeferredBurstHealStillUpdatesHpWithoutBeingHealedNotification() throws Exception {
+    void mutedBurstHealStillUpdatesHpWithoutBeingHealedNotification() throws Exception {
         try (var fixture = fixture(10000096, 2_000f, 3_000f)) {
             ArlecchinoBurstBoL.onBurstCast(fixture.entity);
             fixture.packets.clear();
@@ -619,7 +625,7 @@ public final class ActionHealHPArlecchinoTest {
             action.muteHealEffect = true;
 
             assertTrue(execute(fixture, "Avatar_Arlecchino_Common", action));
-            fixture.assertState(2_000f, 3_000f);
+            fixture.assertState(3_000f, 3_000f);
 
             expirePendingCast(fixture.entity);
             ArlecchinoBurstBoL.onTick(fixture.player);
@@ -796,8 +802,8 @@ public final class ActionHealHPArlecchinoTest {
         fail("The tick must wait on the avatar monitor before healing is registered");
     }
 
-    private static boolean hasDeferredHeal(int entityId) throws Exception {
-        var field = ArlecchinoBurstBoL.class.getDeclaredField("DEFERRED_HEAL");
+    private static boolean hasRecordedBurstHeal(int entityId) throws Exception {
+        var field = ArlecchinoBurstBoL.class.getDeclaredField("BURST_HEALED");
         field.setAccessible(true);
         return ((Map<?, ?>) field.get(null)).containsKey(entityId);
     }
