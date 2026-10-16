@@ -16,6 +16,8 @@ import emu.grasscutter.net.proto.BPAEPJHBOFMOuterClass.BPAEPJHBOFM;
 import emu.grasscutter.net.proto.IceCreatureAllGadgetInfoNotifyOuterClass.IceCreatureAllGadgetInfoNotify;
 import emu.grasscutter.net.proto.IceCreatureBuildReqOuterClass.IceCreatureBuildReq;
 import emu.grasscutter.net.proto.IceCreatureBuildRspOuterClass.IceCreatureBuildRsp;
+import emu.grasscutter.net.proto.IceCreatureDataNotifyOuterClass.IceCreatureDataNotify;
+import emu.grasscutter.net.proto.IceCreatureDataNotifyOuterClass.IceCreatureTypeGadget;
 import emu.grasscutter.net.proto.IceCreatureGadgetDisappearNotifyOuterClass.IceCreatureGadgetDisappearNotify;
 import emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureGadgetDetail;
 import emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureGadgetInfo;
@@ -56,6 +58,7 @@ public final class IceCreatureSystem {
             build(player, req, rsp);
         }
         player.sendPacket(new PacketIceCreature(PacketOpcodes.IceCreatureBuildRsp, rsp.build()));
+        sendData(player);
     }
 
     private static void build(Player player, IceCreatureBuildReq req, IceCreatureBuildRsp.Builder rsp) {
@@ -144,6 +147,7 @@ public final class IceCreatureSystem {
                 new PacketIceCreature(
                         PacketOpcodes.IceCreatureGadgetRemoveRsp,
                         IceCreatureGadgetRemoveRsp.newBuilder().setRetcode(retcode).setEntityId(entityId).build()));
+        sendData(player);
     }
 
     public static void onLike(Player player, IceCreatureLikeReq req) {
@@ -174,6 +178,7 @@ public final class IceCreatureSystem {
     public static void onEnterSceneDone(Player player) {
         Scene scene = player.getScene();
         if (scene == null) return;
+        sendData(player);
         var notify = IceCreatureAllGadgetInfoNotify.newBuilder().setUid(player.getUid());
         synchronized (player) {
             for (var record : player.getIceCreatures()) {
@@ -189,6 +194,33 @@ public final class IceCreatureSystem {
         log("restored {} creatures in scene {} for {}",
                 notify.getIceCreatureGadgetInfoListCount(), scene.getId(), player.getUid());
         player.sendPacket(new PacketIceCreature(PacketOpcodes.IceCreatureAllGadgetInfoNotify, notify.build()));
+    }
+
+    /**
+     * The player's Ice Creature state (cmd 25312): which creatures the build wheel unlocks, the look
+     * each type uses, the creatures they have built and their total likes. Without it the wheel only
+     * offers the default creature. Every wheel type is unlocked here.
+     */
+    public static void sendData(Player player) {
+        var config = IceCreatureConfig.get();
+        var notify = IceCreatureDataNotify.newBuilder();
+        var unlocked = new java.util.TreeSet<Integer>();
+        config.getBuildableGadgetsByType().forEach((type, gadgets) -> {
+            unlocked.addAll(gadgets);
+            notify.addTypeGadgetList(IceCreatureTypeGadget.newBuilder().setType(type).setGadgetId(gadgets.get(0)));
+        });
+        notify.addAllUnlockedGadgetIdList(unlocked);
+        synchronized (player) {
+            for (var record : player.getIceCreatures()) notify.addBuiltGuidList(record.getGuid());
+            notify.setTotalLikeNum(totalLikes(player));
+        }
+        player.sendPacket(new PacketIceCreature(PacketOpcodes.IceCreatureDataNotify, notify.build()));
+    }
+
+    static int totalLikes(Player player) {
+        int likes = 0;
+        for (var record : player.getIceCreatures()) likes += record.getLikeNum();
+        return likes;
     }
 
     /**
@@ -286,6 +318,7 @@ public final class IceCreatureSystem {
                 .setLikeNum(record.getLikeNum())
                 .setCreatorUid(owner.getUid())
                 .setCreatorNickname(owner.getNickname() == null ? "" : owner.getNickname())
+                .setUnk9(totalLikes(owner))
                 .setUnk1401(record.isFlag())
                 .setDetail(detail)
                 .build();

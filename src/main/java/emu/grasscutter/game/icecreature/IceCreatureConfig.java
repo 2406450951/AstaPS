@@ -41,6 +41,9 @@ public final class IceCreatureConfig {
     private final Int2IntOpenHashMap costByType = new Int2IntOpenHashMap();
     private final Map<Long, Integer> maxByAreaAndType = new HashMap<>();
     private final Set<Integer> buildScenes = new IntOpenHashSet();
+    /** Player-buildable types (rows with an {@code order}) and their gadgets, by type id. */
+    private final java.util.SortedMap<Integer, java.util.List<Integer>> buildableGadgetsByType =
+            new java.util.TreeMap<>();
     private float materialLimit = DEFAULT_MATERIAL_LIMIT;
 
     IceCreatureConfig() {}
@@ -74,6 +77,11 @@ public final class IceCreatureConfig {
     /** Whether any limit row exists for this area, i.e. whether building is allowed there at all. */
     public boolean isBuildArea(int areaId) {
         return this.maxByAreaAndType.keySet().stream().anyMatch(k -> (int) (k >> 32) == areaId);
+    }
+
+    /** Types the build wheel offers, each with its gadgets (the first is the default look). */
+    public java.util.SortedMap<Integer, java.util.List<Integer>> getBuildableGadgetsByType() {
+        return this.buildableGadgetsByType;
     }
 
     public boolean isBuildScene(int sceneId) {
@@ -126,9 +134,15 @@ public final class IceCreatureConfig {
             if (type == 0) continue;
             this.costByType.put(type, intOf(row, COST));
             var gadgets = row.get("gadgetIdList");
+            var list = new java.util.ArrayList<Integer>();
             if (gadgets != null && gadgets.isJsonArray()) {
-                for (JsonElement gadget : gadgets.getAsJsonArray()) this.typeByGadget.put(gadget.getAsInt(), type);
+                for (JsonElement gadget : gadgets.getAsJsonArray()) {
+                    this.typeByGadget.put(gadget.getAsInt(), type);
+                    list.add(gadget.getAsInt());
+                }
             }
+            // Only the wheel's types carry an order; the rest are placed by quests and activities.
+            if (row.has("order") && !list.isEmpty()) this.buildableGadgetsByType.put(type, list);
         }
     }
 
