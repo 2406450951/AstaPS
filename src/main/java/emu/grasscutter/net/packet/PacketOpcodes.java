@@ -1104,7 +1104,7 @@ public final class PacketOpcodes {
     public static final int EvtDestroyGadgetNotify = 5753;
     public static final int AddQuestContentProgressReq = 23368;
     public static final int _UgcDungeonSaveDataReq = 20869;
-    public static final int ReadMailNotify = 0; // 7.1 CmdId unknown (7.0: 7118)
+    public static final int ReadMailNotify = 8592; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int HMCLACKOKHF = 5605;
     public static final int GCGTavernNpcInfoNotify = 25416;
     public static final int DestroyMaterialReq = 8587;
@@ -1484,7 +1484,7 @@ public final class PacketOpcodes {
     public static final int _ActivityClientPlayStartReq = 4484;
     public static final int OpenStateUpdateNotify = 20218;
     public static final int DungeonDieOptionRsp = 22925;
-    public static final int GetAllMailNotify = 0; // 7.1 CmdId unknown (7.0: 9884)
+    public static final int GetAllMailNotify = 28960; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     // public static final int BHGAEKGJMGF = 26710;
     public static final int PlayerWorldSceneInfoListNotify = 21302;
     // public static final int MBGCKNIKNNP = 29742;
