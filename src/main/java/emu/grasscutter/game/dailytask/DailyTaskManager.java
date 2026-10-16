@@ -164,7 +164,10 @@ public class DailyTaskManager {
 				new PacketDailyTaskDataNotify(this.player));
 		// Quota reuse must not suppress the joining player's existing board. Do not regenerate,
 		// persist, or broadcast another player's board merely to initialize this client.
-		if (this.isUnlocked() && this.dailyTasks.size() == DAILY_TASK_COUNT) {
+		// A failed generation leaves the previous day's tasks in place; do not advertise them.
+		if (this.isUnlocked()
+				&& this.lastGenerationDate == getCurrentDateKey()
+				&& this.dailyTasks.size() == DAILY_TASK_COUNT) {
 			this.player.sendPacket(new PacketWorldOwnerDailyTaskNotify(this.player));
 		}
 	}

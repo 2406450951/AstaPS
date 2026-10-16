@@ -135,6 +135,22 @@ final class DailyTaskLoginSyncTest {
         assertEquals(0, manager.saves);
     }
 
+    @Test
+    void staleBoardIsNotAdvertisedWhenTodaysGenerationCannotRun() {
+        var gson = new Gson();
+        var json = gson.toJsonTree(manager, DailyTaskManager.class).getAsJsonObject();
+        json.addProperty("lastGenerationDate", today() - 1);
+        try {
+            attach(gson.fromJson(json, RecordingManager.class));
+        } catch (Exception exception) {
+            throw new AssertionError(exception);
+        }
+        manager.onPlayerLogin();
+        if (manager.getLastGenerationDate() == today()) return; // Resources allowed a fresh set.
+        assertEquals(List.of(2841), opcodes());
+        assertEquals(today() - 1, manager.getLastGenerationDate());
+    }
+
     private void assertBoard(int city) throws Exception {
         var frame = transport.writes.get(1);
         var buffer = ByteBuffer.wrap(frame);
