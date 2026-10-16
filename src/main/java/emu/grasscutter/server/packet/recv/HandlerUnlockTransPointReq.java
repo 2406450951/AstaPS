@@ -2,8 +2,10 @@ package emu.grasscutter.server.packet.recv;
 
 import emu.grasscutter.data.GameData;
 import emu.grasscutter.net.packet.*;
+import emu.grasscutter.net.proto.RetcodeOuterClass.Retcode;
 import emu.grasscutter.net.proto.UnlockTransPointReqOuterClass.UnlockTransPointReq;
 import emu.grasscutter.server.game.GameSession;
+import emu.grasscutter.server.packet.send.PacketUnlockTransPointRsp;
 
 @Opcodes(PacketOpcodes.UnlockTransPointReq)
 public class HandlerUnlockTransPointReq extends PacketHandler {
@@ -38,9 +40,8 @@ public class HandlerUnlockTransPointReq extends PacketHandler {
                         unlocked,
                         rewarded);
 
-        // Current 7.1 clients update the live waypoint state from ScenePointUnlockNotify. Runtime
-        // controls confirmed that a correctly encoded notify is sufficient for activation, map
-        // usability, and teleport without an extra GetScenePointRsp refresh or an unconfirmed
-        // UnlockTransPointRsp CmdId.
+        // ScenePointUnlockNotify updates the waypoint itself, but the client keeps the starter
+        // "Press F to interact with a teleport waypoint" guide up until the request is answered.
+        session.send(new PacketUnlockTransPointRsp(Retcode.RET_SUCC));
     }
 }

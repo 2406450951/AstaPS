@@ -431,6 +431,7 @@ public class Achievements {
 
         this.registerNewAchievementsIfExist();
         this.player.sendPacket(new PacketAchievementAllDataNotify(this.player));
+        AchievementWatchers.sendAll(this.player);
     }
 
     private void registerNewAchievementsIfExist() {
