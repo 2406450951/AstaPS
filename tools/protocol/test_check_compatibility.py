@@ -301,6 +301,12 @@ class SourceAndCliTest(unittest.TestCase):
             root = Path(tmp); ref, _ = fixture(root, mismatch=True)
             debt = root / 'debt.json'
             self.assertEqual(1, cli(root, '--reference', ref, '--write-baseline', debt).returncode)
+            # The proposal is not a baseline until a person replaces its placeholder reason.
+            self.assertEqual(2, cli(root, '--reference', ref, '--baseline', debt).returncode)
+            row = json.loads(debt.read_text())
+            for entry in row['entries']:
+                entry['reason'] = 'Tracked in a test'
+            debt.write_text(json.dumps(row))
             self.assertEqual(0, cli(root, '--reference', ref, '--baseline', debt).returncode)
             row = json.loads(debt.read_text()); row['reference_sha256'] = 'b' * 64
             debt.write_text(json.dumps(row))

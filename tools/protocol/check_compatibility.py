@@ -31,7 +31,7 @@ def canonical_bytes(value):
 
 
 def load_reference(path):
-    reference = json.loads(Path(path).read_text())
+    reference = json.loads(Path(path).read_text(encoding="utf-8"))
     if reference.get("format") != "astaps.protocol-compatibility-reference.v1":
         raise ValueError("Unsupported client reference format")
     unsigned = {k: v for k, v in reference.items() if k != "content_sha256"}
@@ -91,7 +91,7 @@ def generator_source_fingerprint(repo):
 
 def load_server_descriptor(repo, path):
     data = path.read_bytes()
-    metadata = json.loads(Path(str(path) + ".json").read_text())
+    metadata = json.loads(Path(str(path) + ".json").read_text(encoding="utf-8"))
     if metadata.get("format") != "astaps.server-protocol-descriptor.v1":
         raise ValueError("Unsupported server descriptor manifest")
     expected = {"descriptor_sha256": digest(data),
@@ -163,7 +163,7 @@ def java_int_literal(text):
 
 
 def read_opcodes(path):
-    text = mask_java(path.read_text())
+    text = mask_java(path.read_text(encoding="utf-8"))
     expressions = dict(re.findall(r"\bpublic\s+static\s+final\s+int\s+(\w+)\s*=\s*([^;]+);", text))
     result = {}
     for _ in range(len(expressions) + 1):
@@ -188,7 +188,7 @@ def scan_packets(repo, opcodes, scope):
              ("client_to_server", repo / "src/main/java/emu/grasscutter/server/packet/recv")]
     for direction, root in roots:
         for path in sorted(root.rglob("*.java")):
-            text = mask_java(path.read_text())
+            text = mask_java(path.read_text(encoding="utf-8"))
             if direction == "server_to_client":
                 matches = list(re.finditer(r"\bsuper\s*\(\s*(?:emu\.grasscutter\.net\.packet\.)?PacketOpcodes\.(\w+)\s*(?=[,)])", text))
                 literal = list(re.finditer(r"\bsuper\s*\(\s*(-?(?:0[xX][0-9a-fA-F]+|0|[1-9][0-9]*))\s*[,)]", text))
@@ -391,12 +391,17 @@ def lost_bindings(repo, scope, usage, baseline):
     return result
 
 
+PLACEHOLDER_REASON = "Existing mismatch; review and add a tracking reference"
+
+
 def classify_debt(findings, baseline):
     if baseline.get("format") != "astaps.protocol-compatibility-debt.v1":
         raise ValueError("Unsupported compatibility debt format")
     entries = baseline.get("entries", [])
     if any(not e.get("reason") or not re.fullmatch(r"[0-9a-f]{64}", e.get("fingerprint", "")) for e in entries):
         raise ValueError("Debt entries require exact fingerprints and reasons")
+    if any(e.get("reason", "").strip() == PLACEHOLDER_REASON for e in entries):
+        raise ValueError("Debt entries still carry the proposed placeholder reason")
     if len({e["fingerprint"] for e in entries}) != len(entries):
         raise ValueError("Duplicate debt fingerprints")
     known = {e["fingerprint"]: e["reason"] for e in entries}
@@ -433,7 +438,7 @@ def main():
         if not comparisons:
             raise ValueError("No descriptor comparisons were possible; refusing an empty schema audit")
         # No implicit repository debt: a missing explicitly requested baseline is an error.
-        baseline = json.loads(args.baseline.read_text()) if args.baseline else {"format": "astaps.protocol-compatibility-debt.v1", "entries": []}
+        baseline = json.loads(args.baseline.read_text(encoding="utf-8")) if args.baseline else {"format": "astaps.protocol-compatibility-debt.v1", "entries": []}
         if args.baseline and (baseline.get("client_artifact_sha256") != reference["artifact"]["sha256"]
                 or baseline.get("reference_sha256") != reference["content_sha256"]):
             raise ValueError("Debt belongs to a different reference; review it before rebaselining")
@@ -449,11 +454,11 @@ def main():
                     "reference_sha256": reference["content_sha256"],
                     "monitored_bindings": sorted({(u["path"], u["symbol"], u["direction"]) for u in usage}),
                     "entries": [
-                {"fingerprint": row["fingerprint"], "reason": "Existing mismatch; review and add a tracking reference",
+                {"fingerprint": row["fingerprint"], "reason": PLACEHOLDER_REASON,
                  "code": row["code"], "symbol": row["symbol"]} for row in findings if row["severity"] == "error"]}
             debt["monitored_bindings"] = [dict(zip(("path", "symbol", "direction"), item)) for item in debt["monitored_bindings"]]
             args.write_baseline.parent.mkdir(parents=True, exist_ok=True)
-            args.write_baseline.write_text(json.dumps(debt, sort_keys=True, indent=2) + "\n")
+            args.write_baseline.write_text(json.dumps(debt, sort_keys=True, indent=2) + "\n", encoding="utf-8")
         summary = {"packet_usages": len(usage), "message_comparisons": comparisons,
                    "new_errors": sum(f["severity"] == "error" and not f["known_debt"] for f in findings),
                    "known_errors": sum(f["known_debt"] for f in findings),
@@ -472,12 +477,12 @@ def main():
                   "resolved_debt_fingerprints": resolved, "findings": findings}
         if args.output:
             args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(json.dumps(report, sort_keys=True, indent=2) + "\n")
+            args.output.write_text(json.dumps(report, sort_keys=True, indent=2) + "\n", encoding="utf-8")
         print(json.dumps(summary, sort_keys=True))
         for row in [f for f in findings if f["severity"] == "error"][:30]:
             print(f"{'KNOWN' if row['known_debt'] else 'NEW'} {row['code']}: {row['symbol']} field={row['field']} expected={row['expected']} actual={row['actual']}")
         return 1 if summary["new_errors"] else 0
-    except (OSError, ValueError, KeyError, TypeError, DecodeError, re.error) as error:
+    except (OSError, ValueError, KeyError, TypeError, AttributeError, DecodeError, re.error) as error:
         parser.exit(2, f"Cannot audit protocol: {error}\n")
 
 

@@ -224,13 +224,13 @@ def main():
     args = parser.parse_args()
     try:
         hashes = {key + '_sha256': file_hash(getattr(args, key)) for key in ('registry', 'schema', 'evidence', 'opcode_source')}
-        inputs = [json.loads(getattr(args, key).read_text()) for key in ('registry', 'schema', 'evidence')]
-        result = build_reference(*inputs, args.opcode_source.read_text(), hashes, args.expected_count)
+        inputs = [json.loads(getattr(args, key).read_text(encoding="utf-8")) for key in ('registry', 'schema', 'evidence')]
+        result = build_reference(*inputs, args.opcode_source.read_text(encoding="utf-8"), hashes, args.expected_count)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_bytes(canonical_bytes(result) + b'\n')
         print(json.dumps({'messages': len(result['messages']), 'enums': len(result['enums']),
                           'content_sha256': result['content_sha256']}, sort_keys=True))
-    except (OSError, ValueError, KeyError, TypeError) as error:
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as error:
         parser.exit(2, f'Cannot build reference: {error}\n')
 
 
