@@ -136,6 +136,8 @@ public class Player implements PlayerHook, FieldFetch {
     // Snezhnaya Ice Creatures this player built.
     private List<emu.grasscutter.game.icecreature.IceCreatureRecord> iceCreatures;
     @Getter @Setter private Map<Integer, Set<Integer>> unlockedSceneAreas;
+    /** Map area states a quest changed with QUEST_EXEC_CHANGE_MAP_AREA_STATE, by map area id. */
+    private Map<Integer, Boolean> mapAreaStates;
     @Getter @Setter private Map<Integer, Set<Integer>> unlockedScenePoints;
     /** Separate first-entry reward receipts; handbook unlocks do not establish discovery. */
     private Map<Integer, Set<Integer>> rewardedDungeonEntries;
@@ -594,6 +596,11 @@ public class Player implements PlayerHook, FieldFetch {
 
     public Set<Integer> getUnlockedSceneAreas(int sceneId) {
         return this.unlockedSceneAreas.computeIfAbsent(sceneId, i -> new CopyOnWriteArraySet<>());
+    }
+
+    public Map<Integer, Boolean> getMapAreaStates() {
+        if (this.mapAreaStates == null) this.mapAreaStates = new HashMap<>();
+        return this.mapAreaStates;
     }
 
     public Set<Integer> getUnlockedScenePoints(int sceneId) {
