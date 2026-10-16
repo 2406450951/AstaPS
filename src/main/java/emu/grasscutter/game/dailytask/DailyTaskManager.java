@@ -57,6 +57,9 @@ public class DailyTaskManager {
 	 */
 	static final float KILL_RANGE = 200f;
 
+	/** How long Lua gets to start a commission's next wave before the fallback steps in. */
+	static final long WAVE_RECOVERY_DELAY_MS = 2_000;
+
 	private static final int TEYVAT_SCENE_ID = 3;
 
     private static final String SUPPORTED_TASK_TYPE =
@@ -929,7 +932,14 @@ public class DailyTaskManager {
 								this.recoverStalledTwoSuiteTask(
 										scene,
 										taskId),
-						2);
+						// The scheduler counts server ticks, not seconds.
+						(int) Math.max(
+								1,
+								Math.ceil(
+										WAVE_RECOVERY_DELAY_MS
+												/ (double) Math.max(
+														1,
+														emu.grasscutter.config.Configuration.GAME_INFO.tickRateMs))));
 	}
 
 	private boolean hasLivingMonsterForTask(
