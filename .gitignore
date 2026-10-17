@@ -126,3 +126,8 @@ _errs_detail.txt
 _errors_filtered.txt
 
 __pycache__/
+
+# Local files beside the server; the jar bundles its own lua and webstatic
+/lua/
+/webstatic/
+/keystore.p12

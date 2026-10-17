@@ -79,7 +79,7 @@ The server's working files, including `config.json`, are stored in `docker_volum
 docker compose up -d
 ```
 
-To compile without starting services, use `docker compose build astaps-run`; later, `docker compose up -d` starts the compiled image. HTTP is published on port `8088` and the game server on both TCP and UDP port `22101` by default. Configure `ASTAPS_HTTP_PORT` and `ASTAPS_GAME_PORT` to change the host-side ports. Put the resource pack in `resources/` before starting the server. `lua/` is mounted read-only for `/windy` scripts. For clients on another device, configure the server's advertised/access address to the host's LAN address.
+To compile without starting services, use `docker compose build astaps-run`; later, `docker compose up -d` starts the compiled image. HTTP is published on port `8088` and the game server on both TCP and UDP port `22101` by default. Configure `ASTAPS_HTTP_PORT` and `ASTAPS_GAME_PORT` to change the host-side ports. Put the resource pack in `resources/` before starting the server. For clients on another device, configure the server's advertised/access address to the host's LAN address.
 
 The server image runs Java as its foreground process. With `docker compose up`, the command prompt is interactive; for a detached container, run `docker compose attach astaps-run` to enter commands and detach with `Ctrl-P`, then `Ctrl-Q`. The HTTP web console is another way to run console commands.
 
