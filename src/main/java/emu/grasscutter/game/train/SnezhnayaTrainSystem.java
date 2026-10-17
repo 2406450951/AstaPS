@@ -76,6 +76,20 @@ public final class SnezhnayaTrainSystem {
 
     private SnezhnayaTrainSystem() {}
 
+    /** Gadgets of the Snezhnaya trains (player trains and station trains). */
+    private static final java.util.Set<Integer> TRAIN_GADGETS =
+            java.util.Set.of(PLAYER_TRAIN_GADGET, 73144055, 73094006, 73144074);
+
+    /** Whether {@code entity} is a train or something one of its abilities created. */
+    public static boolean isTrainChain(emu.grasscutter.game.entity.GameEntity entity) {
+        while (entity instanceof EntityGadget gadget) {
+            if (TRAIN_GADGETS.contains(gadget.getGadgetId())) return true;
+            if (gadget.getOwner() == null) return false;
+            entity = gadget.getOwner();
+        }
+        return false;
+    }
+
     /** Players carrying Grey Eyes get their train in Teyvat, parked at Nachalo. */
     public static void onEnterSceneDone(Player player) {
         Scene scene = player.getScene();
@@ -95,12 +109,12 @@ public final class SnezhnayaTrainSystem {
                             .setKey(AbilityString.newBuilder().setHash(Utils.abilityHash(name)))
                             .setFloatValue(value)
                             .build()));
+            // Parked: on the park curve but not started, so the client neither runs it along the
+            // curve nor animates it as moving. A call (3893) hands it the client's curve state.
             gadget.setCurveMoveInfo(BMJNJLKCODG.newBuilder()
                     .setStartTime(scene.getSceneTime())
                     .setEEFABNDBKCO(PARK_CURVE)
                     .setHMHCGLCNBMK(1)
-                    .setSpeed(3.34375f)
-                    .setIsStarted(true)
                     .setLGIDIOIEGCI(1)
                     .build());
             scene.addEntity(gadget);
