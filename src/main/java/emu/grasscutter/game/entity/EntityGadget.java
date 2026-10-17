@@ -66,6 +66,9 @@ public class EntityGadget extends EntityBaseGadget {
     @Getter @Setter private SceneGadget metaGadget;
     @Nullable @Getter ConfigEntityGadget configGadget;
     @Getter @Setter private BaseRoute routeConfig;
+    /** SceneGadgetInfo field 27: where a curve-move gadget (the Snezhnaya trains) runs. */
+    @Getter @Setter
+    private emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG curveMoveInfo;
     private volatile ConfigRouteRun configRouteRun;
 
     @Getter @Setter private int stopValue = 0; // Controller related, inited to zero
@@ -833,6 +836,10 @@ public class EntityGadget extends EntityBaseGadget {
 
         if (routeConfig != null) {
             gadgetInfo.setPlatform(getPlatformInfo());
+        }
+
+        if (this.curveMoveInfo != null) {
+            gadgetInfo.setCFOMFPNHLJF(this.curveMoveInfo);
         }
 
         entityInfo.setGadget(gadgetInfo);

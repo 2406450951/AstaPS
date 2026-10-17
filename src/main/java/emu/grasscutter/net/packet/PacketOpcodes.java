@@ -1492,7 +1492,6 @@ public final class PacketOpcodes {
     public static final int _StrangerChatNotify = 29096;
     public static final int AddSeenMonsterNotify = 8918;
     public static final int AvatarUpgradeRsp = 9873;
-    // public static final int EHNLLNNEHDH = 28390;
     public static final int SubmitInferenceWordRsp = 22768;
     public static final int _GetPlayerMutelistReq = 0; // 7.1 CmdId unknown (7.0: 9965)
     // public static final int KBNMEGKBPKP = 22526;
@@ -1968,7 +1967,6 @@ public final class PacketOpcodes {
     public static final int BuyGoodsReq = 23592;
     public static final int AvatarEquipAffixStartNotify = 28856;
     public static final int _BeyondChatChannelDataNotify = 29773;
-    // public static final int IJJOEPGPMBF = 23234;
     public static final int SignInInfoRsp = 20757;
     public static final int _WeekActiveSelectAvatarReq = 114;
     public static final int GalleryBounceConjuringHitNotify = 6308;
@@ -2595,7 +2593,6 @@ public final class PacketOpcodes {
     public static final int FleurFairMusicGameSettleReq = 9346;
     // public static final int APEMKHKPIFM = 20454;
     // public static final int HCONJAHFJPO = 26497;
-    // public static final int NJLFEHOLDDB = 3893;
     // public static final int PNHPNOEGAND = 8406;
     public static final int _GetWidgetQuickSlotListRsp = 5047; // 7.1 CmdId from kitkat-multiverse/genshin-protocol 7.1.0
     public static final int GetGameplayRecommendationReq = 79;
@@ -3043,6 +3040,12 @@ public final class PacketOpcodes {
     public static final int IceCreatureGadgetDisappearNotify = 22946;
     public static final int IceCreatureDataNotify = 25312; // unnamed LIIGONALLBB, name inferred
     public static final int IceCreatureSetTypeGadgetReq = 29885; // unnamed KBLIMHCPJHP, name inferred
+
+    // Snezhnaya player train (Grey Eyes), names inferred from an official 7.1 capture.
+    public static final int SnezhnayaTrainCallReq = 3893; // unnamed BLIFHENFCPN
+    public static final int SnezhnayaTrainCallNotify = 26580; // unnamed MAFJAEIEHBI
+    public static final int SnezhnayaTrainStateNotify = 23234; // unnamed MAJEFOKBOEB
+    public static final int SnezhnayaTrainSetRouteReq = 28390; // unnamed FNMHDOMFIOB
 
     // Opcodes only this repository's handlers use (negative: never matches a packet).
     public static final int AvatarTraceEffectChangeNotify = -1001; // no 7.1 CmdId known
