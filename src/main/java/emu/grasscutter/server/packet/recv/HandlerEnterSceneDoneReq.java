@@ -53,6 +53,8 @@ public class HandlerEnterSceneDoneReq extends PacketHandler {
 
         // Snezhnaya Ice Creatures the player built here stand again.
         emu.grasscutter.game.icecreature.IceCreatureSystem.onEnterSceneDone(player);
+        // The Snezhnaya player train Grey Eyes calls; the client refuses to call without it.
+        emu.grasscutter.game.train.SnezhnayaTrainSystem.onEnterSceneDone(player);
 
         // Locations
         session.send(new PacketWorldPlayerLocationNotify(player.getWorld()));
