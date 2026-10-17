@@ -125,6 +125,13 @@ public class ActionCreateGadget extends AbilityActionHandler {
             return true;
         }
 
+        // The Snezhnaya trains' doors, carriages and triggers come from their own abilities, and the
+        // client builds them locally (an official capture has no EvtCreateGadgetNotify for them).
+        // Server copies only stack extra door interactions on the train.
+        if (emu.grasscutter.game.train.SnezhnayaTrainSystem.isTrainChain(entity)) {
+            return true;
+        }
+
         // Escoffier skill objs are client-owned (EvtCreateGadget). A server EntityGadget copy is an
         // empty shell the caster can see (no charge UI / SkillObj abilities), including cook pot
         // 42112005 and cold-storage mek 42112001.
