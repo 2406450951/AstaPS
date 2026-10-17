@@ -8,13 +8,6 @@ A private server for Genshin Impact **7.1.0**, built on Grasscutter.
 
 If you can fix a bug, please help me.
 
-## What it is
-
-- **Up-to-date content.** Monster and gadget spawn data current with 7.1.0, Spiral Abyss rotations, domains, the artifact shop, battle pass, and the rest of the live-service surface.
-- **Built to survive a bad day.** Database writes are split across four bounded pools that apply backpressure instead of dropping a player's progress; one world throwing during a tick no longer stops all the others.
-- **Visible when it is unwell.** A status readout logs CPU, memory, GC and every thread pool's queue depth on an interval, and `/api/status` serves the same figures over HTTP.
-- **English throughout.** Source, comments, commit messages and command output.
-
 ## Requirements
 
 |             |                                                                                                                                                                                                                                   |
@@ -134,43 +127,6 @@ On Windows, use `.\gradlew.bat` in place of `./gradlew`. Both modes produce `gra
 3. Run the jar once. It writes a `config.json` and stops if anything essential is missing.
 4. Start it again. The dispatch server listens on `8088` and the game server on `22101` by default.
 5. Point the client at the dispatch server. A proxy such as Fiddler or mitmproxy will do it, as will a client patch.
-
-### Accounts
-
-There is no registration page. An account is created either way:
-
-- **From the console.** `account create <username> [password] [@UID]` (password and UID optional).
-- **At sign-in.** Signing in with a name nobody holds registers it (needs `account.autoCreate` set to `true`). With `account.useIntegrationPassword` on, put `name&&password` in the username box and leave the password box alone — useful when proxying a bunch of clients at once and you don't want to set up a user for each.
-
-Provided passwords are BCrypt-hashed. An account created without a password has no password check until one is set. New accounts receive only configured default permissions, never an automatic `*` administrator grant. The console needs `server.game.enableConsole` set to `true`.
-
-### Web console (opt-in)
-
-The HTTP web console at `/console` can execute server-console commands. It is **disabled by
-default** and has **no built-in password**. To enable it, edit the existing `config.json`:
-
-```json
-{
-    "server": {
-        "http": {
-            "webConsole": {
-                "enabled": true,
-                "password": "replace-with-a-long-unique-secret"
-            }
-        }
-    }
-}
-```
-
-This is an excerpt: preserve all the other settings in your generated `config.json`.
-If `enabled` is true but `password` is missing or blank, the web-console routes are not
-registered and startup logs an error. Older installations that relied on the former built-in
-password must set their own password explicitly after upgrading.
-
-The console password and session token are transmitted over HTTP unless you provide
-transport encryption. Keep the HTTP port behind a firewall or trusted TLS reverse proxy;
-for a single-machine setup, set `server.http.bindAddress` to `127.0.0.1`. Never expose
-this command-execution interface directly to the public Internet.
 
 ## Commands
 
