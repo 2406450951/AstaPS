@@ -41,6 +41,16 @@ cp .env.example .env
 
 Edit `.env` to choose the Gradle/JDK, Node.js, Java runtime, and MongoDB image tags, or to change published ports. Compose reads `.env` automatically.
 
+On Linux, the containers run as `ASTAPS_UID`:`ASTAPS_GID` (default `1000:1000`) and write to bind-mounted host directories. Set both to your own IDs (`id -u` and `id -g`) and create the directories before the first start, otherwise Docker creates them as root and the server cannot write its config or logs:
+
+```sh
+mkdir -p docker_volumes/astaps-run docker_volumes/astaps-dev/gradle-cache docker_volumes/astaps-dev/handbook-node-modules
+```
+
+Docker Desktop on Windows and macOS works with the defaults.
+
+MongoDB is published on `127.0.0.1` only: port `27017` for the run deployment and `27018` for the dev one (`MONGO_RUN_PORT`, `MONGO_DEV_PORT`). Containers reach it by service name, so these ports are only for database tools on the host.
+
 ### Development
 
 Open a development shell with the checkout bind-mounted. The dev profile starts a separate MongoDB service and keeps its database storage separate from the run deployment. MongoDB files, Gradle's user cache, handbook dependencies, and server working files are stored under the ignored `docker_volumes/` directory.
@@ -76,9 +86,9 @@ The server's working files, including `config.json`, are stored in `docker_volum
 docker compose up -d
 ```
 
-To compile without starting services, use `docker compose build astaps-run`; later, `docker compose up -d` starts the compiled image. HTTP is published on port `8088` and the game server on both TCP and UDP port `22101` by default. Configure `ASTAPS_HTTP_PORT` and `ASTAPS_GAME_PORT` to change the host-side ports. Put the resource pack in the `resources/` submodule before starting the server. For clients on another device, configure the server's advertised/access address to the host's LAN address.
+To compile without starting services, use `docker compose build astaps-run`; later, `docker compose up -d` starts the compiled image. HTTP is published on port `8088` and the game server on both TCP and UDP port `22101` by default. Configure `ASTAPS_HTTP_PORT` and `ASTAPS_GAME_PORT` to change the host-side ports. Put the resource pack in `resources/` before starting the server. `lua/` is mounted read-only for `/windy` scripts. For clients on another device, configure the server's advertised/access address to the host's LAN address.
 
-The server image runs Java as its foreground process. With `docker compose up`, the command prompt is interactive; for a detached container, run `docker compose attach server` to enter commands and detach with `Ctrl-P`, then `Ctrl-Q`. The HTTP web console is another way to run console commands.
+The server image runs Java as its foreground process. With `docker compose up`, the command prompt is interactive; for a detached container, run `docker compose attach astaps-run` to enter commands and detach with `Ctrl-P`, then `Ctrl-Q`. The HTTP web console is another way to run console commands.
 
 ## Building
 
