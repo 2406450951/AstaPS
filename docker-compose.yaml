@@ -44,7 +44,6 @@ services:
       - ./docker_volumes/astaps-run:/runtime
       - ./resources:/runtime/resources:ro
       - ./data:/runtime/data
-      - ./lua:/runtime/lua:ro
     ports:
       - "${ASTAPS_HTTP_PORT:-8088}:8088"
       - "${ASTAPS_GAME_PORT:-22101}:22101/tcp"
