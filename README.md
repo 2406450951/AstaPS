@@ -102,31 +102,13 @@ Then build with:
 
 On Windows use `.\gradlew.bat`.
 
-### Faster local builds
-
-The wrapper uses **Gradle 9.8.1**. The build cache and configuration cache are enabled in `gradle.properties`; unchanged protocol generation and compilation outputs can be reused across builds and Git worktrees.
-
-To compile without packaging a JAR:
-
-```sh
-./gradlew classes -PskipHandbook=1
-```
-
-For a quicker **local-test** fat JAR, disable ZIP compression:
-
-```sh
-./gradlew jar -PskipHandbook=1 -PfastJar
-```
-
-On Windows, use `.\gradlew.bat` in place of `./gradlew`. Both modes produce `grasscutter-7.1.0.jar` in the project root. The fast mode keeps the same JAR entries but makes the file much larger (roughly 230 MB instead of 85 MB in CI); use the default compressed build for distribution.
-
 ## Running
 
 1. Start MongoDB.
 2. Put a 7.1.0 resource pack in `resources/`.
 3. Run the jar once. It writes a `config.json` and stops if anything essential is missing.
 4. Start it again. The dispatch server listens on `8088` and the game server on `22101` by default.
-5. Point the client at the dispatch server. A proxy such as Fiddler or mitmproxy will do it, as will a client patch.
+5. Point the client at the dispatch server: [GrasscutterTools](https://github.com/jie65535/GrasscutterCommandGenerator) has a built-in proxy, or use Fiddler, mitmproxy or a client patch.
 
 ## Commands
 
@@ -143,42 +125,7 @@ See the [CLI migration guide](docs/cli-picocli-migration.md) for details and the
 
 ## TPS shooting (7.1)
 
-Snezhnaya's third-person shooter mode works: guns and grenades worn next to an avatar's normal weapon, aimed and fired in TPS domains. The commands need the `player.tps` and `player.enterdungeon` permissions.
-
-**1. Get the weapons**
-
-```
-/tps give
-/tps give 224001
-/tps accessory
-```
-
-The first command grants all eight TPS weapons (224001–224008); the second grants only weapon 224001. The third unlocks accessories for owned weapons.
-
-**2. Play a TPS domain**
-
-```
-/dungeon 10955
-/dungeon 10953
-/dungeon 10960
-```
-
-Each line is a separate command. Dungeon 10955 is the shooting range; 10953 and 10960–10964 are Emerged Grey Field stages.
-
-Inside, your team is swapped for the TPS Traveler (matching your Traveler, level 20), wearing your TPS loadout, or 224001 the first time. Weapons you switch to there are kept as your loadout. Leaving the domain restores your team.
-
-**3. Outside a domain**
-
-Any avatar can wear TPS weapons, which is handy for trying them out:
-
-```
-/tps wear 224001 224004
-/tps refill
-```
-
-The first command equips a rifle and a grenade (at most two guns and one grenade); the second refills ammunition.
-
-Ammunition handling is still partly experimental. See [docs/tps/README.md](docs/tps/README.md) for what the server does, the `/tps ammo` switches, and what is not settled yet.
+Snezhnaya's third-person shooter mode works. See [docs/tps/README.md](docs/tps/README.md) for the commands, the TPS domains, and what is not settled yet.
 
 ## Licence
 
