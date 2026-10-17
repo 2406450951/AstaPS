@@ -34,7 +34,7 @@ javac -version
 
 `grasscutter-7.1.0.jar` 会生成在项目根目录。去掉 `-PskipHandbook=1` 可一并编译游戏内的手册；该步骤需要 NodeJS，没有就会失败。
 
-Windows 上用 `.\gradlew.bat`，或运行 `gradlew-jar.bat`。
+Windows 上用 `.\gradlew.bat`。
 
 ### 更快的本地编译
 
