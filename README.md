@@ -17,12 +17,78 @@ If you can fix a bug, please help me.
 
 ## Requirements
 
-| | |
-|---|---|
-| Java | **JDK 21** to build and **Java 21** to run. AstaPS uses Java 21 APIs such as virtual threads. |
-| MongoDB | Community Server. Must be running before the server starts. |
+|             |                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Java        | **JDK 21** to build and **Java 21** to run. AstaPS uses Java 21 APIs such as virtual threads.                                                                                                                                     |
+| MongoDB     | Community Server. Must be running before the server starts.                                                                                                                                                                       |
 | Game client | Genshin Impact 7.1.0. The official client checks the region's signature, so it needs a client patch to connect to a private server, such as [hk4e-patch-universal](https://github.com/MeChen618/patch). AstaPS does not ship one. |
-| Resources | A 7.1.0 resource pack, extracted to `resources/` in the server directory. If you don't have Resources, you can download it [here](https://github.com/MeChen618/AstaPS-Resource). |
+| Resources   | A 7.1.0 resource pack, extracted to `resources/` in the server directory. If you don't have Resources, you can download it [here](https://github.com/MeChen618/AstaPS-Resource).                                                  |
+
+## Docker
+
+To use a local development environment instead, see [Building](#building) and [Running](#running).
+
+Docker Compose provides the build tools, Java runtime, and MongoDB; Java, MongoDB, and Node.js do not need to be installed on the host. These steps use Docker Compose v2 and work on Windows, macOS, and Linux. Refer to the [Docker documentation](https://docs.docker.com/get-started/) for installation instructions.
+
+> [!NOTE]
+> Node.js is only needed to build the in-game handbook. The handbook is not required to run the server. The handbook build process is also currently broken.
+
+Create the Compose environment file:
+
+```sh
+cp .env.example .env
+```
+
+Edit `.env` to choose the Gradle/JDK, Node.js, Java runtime, and MongoDB image tags, or to change published ports. Compose reads `.env` automatically.
+
+On Linux, the containers run as `ASTAPS_UID`:`ASTAPS_GID` (default `1000:1000`) and write to bind-mounted host directories. Set both to your own IDs (`id -u` and `id -g`) and create the directories before the first start, otherwise Docker creates them as root and the server cannot write its config or logs:
+
+```sh
+mkdir -p docker_volumes/astaps-run docker_volumes/astaps-dev/gradle-cache docker_volumes/astaps-dev/handbook-node-modules
+```
+
+Docker Desktop on Windows and macOS works with the defaults.
+
+MongoDB is published on `127.0.0.1` only: port `27017` for the run deployment and `27018` for the dev one (`MONGO_RUN_PORT`, `MONGO_DEV_PORT`). Containers reach it by service name, so these ports are only for database tools on the host.
+
+### Development
+
+Open a development shell with the checkout bind-mounted. The dev profile starts a separate MongoDB service and keeps its database storage separate from the run deployment. MongoDB files, Gradle's user cache, handbook dependencies, and server working files are stored under the ignored `docker_volumes/` directory.
+
+```sh
+docker compose --profile dev run --service-ports --rm astaps-dev
+```
+
+Inside the container, run Gradle as mentioned in [Building](#building). The checkout is mounted at `/workspace`, and the working directory is set there.
+
+Gradle's user-home cache persists under `docker_volumes/astaps-dev/gradle-cache`, while project outputs remain in the bind-mounted checkout. The “incompatible/stopped Daemons could not be reused” notice only describes Gradle daemon reuse and does not mean those caches were skipped.
+
+When running from this shell, set both `databaseInfo.server.connectionUri` and `databaseInfo.game.connectionUri` in the project-root `config.json` to `mongodb://mongodb-dev:27017`. The development server uses the same fixed host ports as the run server: `8088` (HTTP) and `22101` (game). Only run one server at a time; configure `ASTAPS_HTTP_PORT` and `ASTAPS_GAME_PORT` if the host-side ports need to change.
+
+If Gradle fails in `generateBuildMetadata` because `git rev-parse` exits with code 128, rebuild the development image and start a fresh shell. The container trusts only the mounted checkout at `/workspace` for Git operations:
+
+```sh
+docker compose --profile dev build
+docker compose --profile dev run --service-ports --rm astaps-dev
+```
+
+### Compile and run
+
+Build the server image (compiling the current checkout) and start it with its own MongoDB:
+
+```sh
+docker compose up --build
+```
+
+The server's working files, including `config.json`, are stored in `docker_volumes/astaps-run/`. The `resources/` and writable `data/` directories are mounted from the checkout. Protocol definitions are build inputs; Gradle generates and packages their Java classes in the JAR, so the protocol directory does not need a runtime mount. On first start, the server creates its default configuration and may stop because setup is incomplete. Edit `docker_volumes/astaps-run/config.json`, changing both `databaseInfo.server.connectionUri` and `databaseInfo.game.connectionUri` from `mongodb://localhost:27017` to `mongodb://mongodb-run:27017`, then start the server again:
+
+```sh
+docker compose up -d
+```
+
+To compile without starting services, use `docker compose build astaps-run`; later, `docker compose up -d` starts the compiled image. HTTP is published on port `8088` and the game server on both TCP and UDP port `22101` by default. Configure `ASTAPS_HTTP_PORT` and `ASTAPS_GAME_PORT` to change the host-side ports. Put the resource pack in `resources/` before starting the server. `lua/` is mounted read-only for `/windy` scripts. For clients on another device, configure the server's advertised/access address to the host's LAN address.
+
+The server image runs Java as its foreground process. With `docker compose up`, the command prompt is interactive; for a detached container, run `docker compose attach astaps-run` to enter commands and detach with `Ctrl-P`, then `Ctrl-Q`. The HTTP web console is another way to run console commands.
 
 ## Building
 
@@ -74,7 +140,7 @@ On Windows, use `.\gradlew.bat` in place of `./gradlew`. Both modes produce `gra
 There is no registration page. An account is created either way:
 
 - **From the console.** `account create <username> [password] [@UID]` (password and UID optional).
-- **At sign-in.** Signing in with a name nobody holds registers it. With `account.useIntegrationPassword` on, put `name&&password` in the username box and leave the password box alone — useful when proxying a bunch of clients at once and you don't want to set up a user for each.
+- **At sign-in.** Signing in with a name nobody holds registers it (needs `account.autoCreate` set to `true`). With `account.useIntegrationPassword` on, put `name&&password` in the username box and leave the password box alone — useful when proxying a bunch of clients at once and you don't want to set up a user for each.
 
 Provided passwords are BCrypt-hashed. An account created without a password has no password check until one is set. New accounts receive only configured default permissions, never an automatic `*` administrator grant. The console needs `server.game.enableConsole` set to `true`.
 
@@ -85,14 +151,14 @@ default** and has **no built-in password**. To enable it, edit the existing `con
 
 ```json
 {
-  "server": {
-    "http": {
-      "webConsole": {
-        "enabled": true,
-        "password": "replace-with-a-long-unique-secret"
-      }
+    "server": {
+        "http": {
+            "webConsole": {
+                "enabled": true,
+                "password": "replace-with-a-long-unique-secret"
+            }
+        }
     }
-  }
 }
 ```
 
