@@ -26,6 +26,7 @@ public final class TeamCommand implements CommandHandler {
         commandLine.addSubcommand("add", new Add(sender, targetPlayer));
         commandLine.addSubcommand("remove", new Remove(sender, targetPlayer));
         commandLine.addSubcommand("set", new Set(sender, targetPlayer));
+        commandLine.addSubcommand("switch", new Switch(sender, targetPlayer));
         return commandLine;
     }
 
@@ -241,6 +242,33 @@ public final class TeamCommand implements CommandHandler {
 
             currentTeamAvatars.set(index, avatarId);
             return true;
+        }
+    }
+
+    @picocli.CommandLine.Command(name = "switch")
+    private final class Switch implements Runnable {
+        @Parameters(index = "0", paramLabel = "<index>")
+        private int index;
+
+        private final Player sender;
+        private final Player targetPlayer;
+
+        private Switch(Player sender, Player targetPlayer) {
+            this.sender = sender;
+            this.targetPlayer = targetPlayer;
+        }
+
+        @Override
+        public void run() {
+            var teamManager = targetPlayer.getTeamManager();
+            if (teamManager == null) return;
+            var team = teamManager.getTeams().get(index);
+            if (team == null || team.getAvatars().isEmpty()) {
+                CommandOutput.sendTranslatedMessage(sender, "commands.team.index_out_of_range");
+                return;
+            }
+            // Switches the active party preset; the manager pushes the change to the client itself.
+            teamManager.setCurrentTeam(index);
         }
     }
 
