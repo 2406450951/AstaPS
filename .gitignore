@@ -73,6 +73,10 @@ _transmuter_classes/
 GM Handbook*.txt
 handbook.html
 
+# docker
+.env
+docker_volumes/
+
 config.json
 # Local game rules (all subdirectories) are owned by the server operator.
 /config/
