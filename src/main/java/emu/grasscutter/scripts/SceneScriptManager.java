@@ -68,6 +68,8 @@ public class SceneScriptManager {
     private final Map<Integer, SceneGroupInstance> sceneGroupsInstances;
     private final Map<Integer, SceneGroupInstance> cachedSceneGroupsInstances;
     private ScriptMonsterTideService scriptMonsterTideService;
+    private final List<ScriptMonsterTideService> monsterTides = new ArrayList<>();
+    private boolean restoringMonster;
     private ScriptMonsterSpawnService scriptMonsterSpawnService;
     /** blockid - loaded groupSet */
     private final Map<Integer, Set<SceneGroup>> loadedGroupSetPerBlock;
@@ -119,6 +121,30 @@ public class SceneScriptManager {
 
     public Scene getScene() {
         return scene;
+    }
+
+    /** Used under this monitor before nonlethal commission suspension. */
+    public synchronized boolean isExecutingScripts() {
+        return executingEvents != 0;
+    }
+
+    public int getTriggerInvocationCount(String name) {
+        var count = triggerInvocations.get(name);
+        return count == null ? 0 : count.get();
+    }
+
+    public void restoreTriggerInvocation(SceneTrigger trigger, int count) {
+        if (count < 0) throw new IllegalArgumentException("Negative trigger invocation count");
+        registerTrigger(trigger);
+        triggerInvocations.get(trigger.getName()).set(count);
+    }
+
+    public Set<Integer> getRegisteredRegionConfigs(int groupId) {
+        Set<Integer> result = new HashSet<>();
+        for (var region : regions.values()) {
+            if (region.getGroupId() == groupId) result.add(region.getMetaRegion().config_id);
+        }
+        return result;
     }
 
     public SealBattleManager getSealBattleManager() {
@@ -921,15 +947,44 @@ public class SceneScriptManager {
 
     public void startMonsterTideInGroup(
             String source, SceneGroup group, Integer[] ordersConfigId, int tideCount, int sceneLimit) {
-        this.scriptMonsterTideService =
-                new ScriptMonsterTideService(this, source, group, tideCount, sceneLimit, ordersConfigId);
+        ScriptMonsterTideService tide;
+        synchronized (this) {
+            if (destroyed) return;
+            tide = ScriptMonsterTideService.prepare(this, source, group, tideCount, sceneLimit, ordersConfigId);
+            this.scriptMonsterTideService = tide;
+            this.monsterTides.add(tide);
+        }
+        // Scene departure locks scene -> scripts. Never wait for the scene while holding this
+        // manager's monitor; a cancellation between registration and spawning must also be respected.
+        tide.spawnFirstTurn();
     }
 
-    public void unloadCurrentMonsterTide() {
+    /** Every tide started in this scene; Lua may start several per group. */
+    public synchronized List<ScriptMonsterTideService> getMonsterTides(int groupId) {
+        return this.monsterTides.stream().filter(tide -> tide.getGroupId() == groupId).toList();
+    }
+
+    public synchronized void restoreMonsterTide(SceneGroup group, ScriptMonsterTideService.State state) {
+        this.scriptMonsterTideService = ScriptMonsterTideService.restore(this, group, state);
+        this.monsterTides.add(this.scriptMonsterTideService);
+    }
+
+    /** Drops a finished or discarded encounter's tides so stale counts cannot leak into a new one. */
+    public synchronized void unloadMonsterTides(int groupId) {
+        for (var tide : getMonsterTides(groupId)) {
+            tide.unload();
+            this.monsterTides.remove(tide);
+            if (this.scriptMonsterTideService == tide) this.scriptMonsterTideService = null;
+        }
+    }
+
+    public synchronized void unloadCurrentMonsterTide() {
         if (this.getScriptMonsterTideService() == null) {
             return;
         }
-        this.getScriptMonsterTideService().unload();
+        this.monsterTides.remove(this.scriptMonsterTideService);
+        this.scriptMonsterTideService.unload();
+        this.scriptMonsterTideService = null;
     }
 
     public void spawnMonstersByConfigId(SceneGroup group, int configId, int delayTime) {
@@ -1209,7 +1264,7 @@ public class SceneScriptManager {
         }
     }
 
-    public ScriptMonsterTideService getScriptMonsterTideService() {
+    public synchronized ScriptMonsterTideService getScriptMonsterTideService() {
         return scriptMonsterTideService;
     }
 
@@ -1222,6 +1277,7 @@ public class SceneScriptManager {
     }
 
     public EntityGadget createGadget(int groupId, int blockId, SceneGadget g, int state) {
+        if (!emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.maySpawn(this, groupId)) return null;
         if (g.isOneoff) {
             var hasEntity =
                     getScene().getEntities().values().stream()
@@ -1260,6 +1316,7 @@ public class SceneScriptManager {
     /** Same as {@link #createMonster}, but the caller chooses where it appears. Backs ScriptLib. */
     public EntityMonster createMonsterByConfigIdByPos(
             SceneGroup group, int configId, Position pos, Position rot) {
+        if (!emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.maySpawnFromGroup(this, group)) return null;
         if (group == null || group.monsters == null) return null;
 
         var monster = group.monsters.get(configId);
@@ -1293,7 +1350,23 @@ public class SceneScriptManager {
         return entity;
     }
 
+    /** Rebuilds a monster that was alive when its group was suspended; it is not a new spawn. */
+    public EntityMonster restoreMonster(int groupId, int blockId, SceneMonster monster) {
+        boolean previous = this.restoringMonster;
+        this.restoringMonster = true;
+        try {
+            return createMonster(groupId, blockId, monster);
+        } finally {
+            this.restoringMonster = previous;
+        }
+    }
+
+    public boolean isRestoringMonster() {
+        return this.restoringMonster;
+    }
+
     public EntityMonster createMonster(int groupId, int blockId, SceneMonster monster) {
+        if (!emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.maySpawn(this, groupId)) return null;
         if (monster == null) {
             return null;
         }
@@ -1315,9 +1388,11 @@ public class SceneScriptManager {
         entity.setPoseId(monster.pose_id);
         entity.setMetaMonster(monster);
 
-        this.getScriptMonsterSpawnService()
-                .onMonsterCreatedListener
-                .forEach(action -> action.onNotify(entity));
+        if (!this.isRestoringMonster()) {
+            this.getScriptMonsterSpawnService()
+                    .onMonsterCreatedListener
+                    .forEach(action -> action.onNotify(entity));
+        }
 
         return entity;
     }
@@ -1594,10 +1669,11 @@ public class SceneScriptManager {
      * scene loads them back, so saving a dungeon's end state would bring its dead monsters, gadget
      * states and variables back on the next run of a weekly boss, quest dungeon or Abyss chamber.
      */
-    private void clearDestroyedState() {
+    private synchronized void clearDestroyedState() {
         if (scene.getSceneType() == emu.grasscutter.game.props.SceneType.SCENE_WORLD) {
             scene.saveGroups();
         }
+        monsterTides.clear(); // After saveGroups, which snapshots pending tides.
         currentTriggers.clear();
         ongoingTriggers.clear();
         triggersByGroupScene.clear();

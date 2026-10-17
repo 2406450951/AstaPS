@@ -107,6 +107,9 @@ public class DailyTaskManager {
 	 */
 	private int lastGenerationDate;
 
+	/** Counts issued boards; a saved encounter only restores into the board that produced it. */
+	private int generationSerial;
+
     public DailyTaskManager() {}
 
     public DailyTaskManager(Player player) {
@@ -338,6 +341,7 @@ public class DailyTaskManager {
 
 		this.lastGenerationDate =
 				generationDate;
+		this.generationSerial++;
 
 		this.save();
 
@@ -653,52 +657,16 @@ public class DailyTaskManager {
 	}
 
 	public synchronized int loadActiveGroups(Scene scene) {
-		if (!this.isUnlocked()
-				|| scene == null
-				|| scene.getId() != TEYVAT_SCENE_ID
-				|| scene.getScriptManager() == null
-				|| !scene.getScriptManager().isInit()) {
-			return 0;
-		}
-
-		int ready = 0;
-
-		for (int groupId : this.collectTaskGroupIds(true)) {
-			if (this.isGroupLoaded(scene, groupId)) {
-				ready++;
-
-				Grasscutter.getLogger()
-						.debug(
-								"[DailyTask] Commission group {} is already loaded in scene {}.",
-								groupId,
-								scene.getId());
-
-				continue;
-			}
-
-			int suiteId = scene.loadDynamicGroup(groupId);
-
-			if (suiteId <= 0) {
-				Grasscutter.getLogger()
-						.warn(
-								"[DailyTask] Failed to activate dynamic commission group {} in scene {}.",
-								groupId,
-								scene.getId());
-				continue;
-			}
-
-			ready++;
-
-			Grasscutter.getLogger()
-					.info(
-							"[DailyTask] Activated dynamic commission group {} with init suite {} in scene {}.",
-							groupId,
-							suiteId,
-							scene.getId());
-		}
-
-		return ready;
+        if (!this.isUnlocked()) return 0;
+        return DailyTaskGroupLifecycle.update(this, scene);
 	}
+
+    /** Recheck the existing bounded wave repair after a dormant encounter becomes nearby again. */
+    public synchronized void scheduleActiveWaveRecovery(Scene scene, int taskId) {
+        if (DailyTaskGroupLifecycle.isActive(this, scene, taskId)) {
+            this.scheduleStalledWaveRecovery(scene, this.getDailyTask(taskId));
+        }
+    }
 
 	private void unloadGroups(Scene scene, Collection<Integer> groupIds) {
 		if (scene == null
@@ -710,10 +678,11 @@ public class DailyTaskManager {
 
 		for (int groupId : groupIds) {
 			if (!this.isGroupLoaded(scene, groupId)) {
+				DailyTaskGroupLifecycle.discardDormant(scene, groupId, this);
 				continue;
 			}
 
-			if (scene.unregisterDynamicGroup(groupId)) {
+			if (DailyTaskGroupLifecycle.unregisterOwned(scene, groupId, this)) {
 				Grasscutter.getLogger()
 						.debug(
 								"[DailyTask] Unloaded dynamic commission group {} from scene {}.",
@@ -891,6 +860,7 @@ public class DailyTaskManager {
 		 */
 		this.tryAutoClaimScoreReward();
 
+        DailyTaskGroupLifecycle.progressChanged(this, scene, groupId);
 		this.save();
 		this.syncAll();
 	}
@@ -970,6 +940,9 @@ public class DailyTaskManager {
 				|| this.player.getScene() != scene) {
 			return;
 		}
+
+        // A delayed wave repair must not recreate a proximity-suspended encounter.
+        if (!DailyTaskGroupLifecycle.isActive(this, scene, taskId)) return;
 
 		DailyTask task =
 				this.getDailyTask(taskId);

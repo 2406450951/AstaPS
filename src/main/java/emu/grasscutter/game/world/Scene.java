@@ -66,6 +66,7 @@ public class Scene {
     @Getter private final Set<SpawnDataEntry> deadSpawnedEntities;
     @Getter private final Set<SceneBlock> loadedBlocks;
     @Getter private final Set<SceneGroup> loadedGroups;
+    @Getter @Setter private transient emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.State dailyTaskGroups;
     @Getter private final BlossomManager blossomManager;
     private final HashSet<Integer> unlockedForces;
     private final long startWorldTime;
@@ -1256,6 +1257,7 @@ public class Scene {
             emu.grasscutter.Grasscutter.getLogger()
                     .error("OfferingSpawnHelper nearby check failed", __t);
         }
+        emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.tick(this);
     }
 
     /** Authored replacement edges are scene-local policy only while their dynamic group is loaded. */
@@ -1399,16 +1401,16 @@ public class Scene {
                 groupInstance = cachedInstance;
             }
 
-            this.getScriptManager()
-                    .refreshGroup(groupInstance,
-                            emu.grasscutter.game.quest.LiyueSceneGroupRecovery.selectSuite(this, groupInstance), false);
+            emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.refresh(
+                    this.getScriptManager(), groupInstance,
+                    emu.grasscutter.game.quest.LiyueSceneGroupRecovery.selectSuite(this, groupInstance), false);
 
             this.loadedGroups.add(group);
         }
 
         this.scriptManager.meetEntities(entities);
-        groups.forEach(
-                g -> scriptManager.callEvent(new ScriptArgs(g.id, EventType.EVENT_GROUP_LOAD, g.id)));
+        groups.forEach(g -> emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.groupLoad(
+                scriptManager, new ScriptArgs(g.id, EventType.EVENT_GROUP_LOAD, g.id)));
 
         Grasscutter.getLogger().trace("Scene {} loaded {} group(s)", this.getId(), groups.size());
     }
@@ -1641,6 +1643,7 @@ public class Scene {
     }
 
     public void saveGroups() {
+        emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.captureAll(this);
         this.getScriptManager().getCachedGroupInstances().values().forEach(SceneGroupInstance::save);
     }
 }
