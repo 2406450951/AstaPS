@@ -21,7 +21,7 @@
 |---|---|
 | Java | **JDK 21** 用於編譯，**Java 21** 用於執行。AstaPS 會使用虛擬執行緒等 Java 21 API。 |
 | MongoDB | Community Server，啟動伺服器前必須先跑起來。 |
-| 遊戲客戶端 | 原神 7.1.0。官方客戶端會校驗 region 的簽名，要連私服需要另外打客戶端補丁，例如 [hk4e-patch-universal](https://github.com/capyb2222/animegamepatch)。AstaPS 本身不附帶補丁。 |
+| 遊戲客戶端 | 原神 7.1.0。官方客戶端會校驗 region 的簽名，要連私服需要另外打客戶端補丁，例如 [hk4e-patch-universal](https://github.com/MeChen618/patch)。AstaPS 本身不附帶補丁。 |
 | 資源檔 | 7.1.0 的資源包，解壓到伺服器目錄下的 `resources/`。如果你沒有資源檔，可以透過[該連結](https://github.com/MeChen618/AstaPS-Resource)下載。 |
 
 ## 編譯
@@ -140,7 +140,7 @@ give 202 --amount 3 @10001
 
 本伺服器基於 **Grasscutter**。參考專案：**LunaGC**、**HunkyMeow**。
 
-「需求」中提到的客戶端補丁 [hk4e-patch-universal](https://github.com/capyb2222/animegamepatch) 由 **capyb2222** 維護，基於 [xeondev](https://git.xeondev.com/reversedrooms/hk4e-patch) 的原始 hk4e-patch 與 [oureveryday](https://github.com/oureveryday/) 的原始 hk4e-patch-universal。它是獨立專案，以自己的 GPL-3.0 授權發布。
+「需求」中提到的客戶端補丁 [hk4e-patch-universal](https://github.com/MeChen618/patch) 是 [capyb2222/animegamepatch](https://github.com/capyb2222/animegamepatch) 的副本，由 **capyb2222** 維護，基於 [xeondev](https://git.xeondev.com/reversedrooms/hk4e-patch) 的原始 hk4e-patch 與 [oureveryday](https://github.com/oureveryday/) 的原始 hk4e-patch-universal。它是獨立專案，以自己的 GPL-3.0 授權發布。
 
 本倉庫根部的匯入提交中，以姓名列出了它所承載的各位作者。
 
