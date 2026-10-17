@@ -230,6 +230,10 @@ public final class InvestigationHandbookHelper {
         }
         try {
             ensureLoaded();
+            // Handbook progress for area/waypoint targets is computed from saved state, and a save
+            // can lag behind the last unlock. Refresh it before deciding whether the reward is due,
+            // otherwise a completed row can still be refused here.
+            reconcileFromPlayerState(player);
             TargetDef target = resolveTarget(questId);
             if (target == null) {
                 Grasscutter.getLogger().warn("Investigation claim unknown questId={}", questId);
@@ -242,6 +246,14 @@ public final class InvestigationHandbookHelper {
                 return 0; // already claimed — idempotent ok
             }
             if (progress < total) {
+                Grasscutter.getLogger()
+                        .info(
+                                "Investigation claim refused (incomplete) uid={} questId={} targetId={} progress={}/{}",
+                                player.getUid(),
+                                questId,
+                                target.id,
+                                progress,
+                                total);
                 return 1;
             }
             grantReward(player, target.rewardId, emu.grasscutter.game.props.ActionReason.InvestigationTargetReward);
