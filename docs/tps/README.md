@@ -28,7 +28,11 @@ LittleIdol talents, which now load too.
 /tps wear 224001 224004   the field avatar wears the Glacia rifle and a fire grenade
 /tps refill          fill all ammunition and resend the weapons
 /tps ammo ...        ammunition experiments, see below
+/dungeon 10955       the shooting range
+/dungeon 10953       an Emerged Grey Field stage (also 10960-10964)
 ```
+
+The commands need the `player.tps` and `player.enterdungeon` permissions.
 
 ### Ammunition experiments
 

@@ -36,31 +36,13 @@ javac -version
 
 Windows 用 `.\gradlew.bat`。
 
-### 加快本機編譯
-
-Gradle Wrapper 使用 **Gradle 9.8.1**。`gradle.properties` 預設啟用建置快取與設定快取；協定資料和原始碼不變時，可在多次建置及不同 Git 工作目錄之間重複使用產生與編譯結果。
-
-只編譯、不封裝 JAR：
-
-```sh
-./gradlew classes -PskipHandbook=1
-```
-
-在本機測試時，可略過 JAR 的 ZIP 壓縮以加快封裝：
-
-```sh
-./gradlew jar -PskipHandbook=1 -PfastJar
-```
-
-Windows 上請將 `./gradlew` 換成 `.\gradlew.bat`。兩種模式都會在專案根目錄產生 `grasscutter-7.1.0.jar`。快速封裝不會改變 JAR 內的檔案，但體積較大（CI 測試中約 230 MB，標準壓縮版約 85 MB）；發布時建議使用預設壓縮模式。
-
 ## 執行
 
 1. 啟動 MongoDB。
 2. 把 7.1.0 資源包放進 `resources/`。
 3. 先跑一次 jar。它會寫出 `config.json`，缺少必要東西時會停下來。
 4. 再跑一次。Dispatch 預設監聽 `8088`，遊戲伺服器 `22101`。
-5. 把客戶端指向 dispatch。用 Fiddler、mitmproxy 之類的代理可以，客戶端補丁也可以。
+5. 把客戶端指向 dispatch：[GrasscutterTools](https://github.com/jie65535/GrasscutterCommandGenerator) 內建代理，也可以用 Fiddler、mitmproxy 或客戶端補丁。
 
 ## 指令
 
@@ -77,42 +59,7 @@ give 202 --amount 3 @10001
 
 ## TPS 射擊玩法（7.1）
 
-至冬的第三人稱射擊玩法可以玩：槍械和手榴彈裝備在角色原本的武器旁邊，在 TPS 秘境裡瞄準射擊。指令需要 `player.tps` 和 `player.enterdungeon` 權限。
-
-**1. 取得武器**
-
-```
-/tps give
-/tps give 224001
-/tps accessory
-```
-
-第一條指令發放全部八把 TPS 武器（224001–224008）；第二條只發放 224001；第三條解鎖已擁有武器的配件。
-
-**2. 進入 TPS 秘境**
-
-```
-/dungeon 10955
-/dungeon 10953
-/dungeon 10960
-```
-
-每行都是獨立指令。10955 是射擊靶場，10953 和 10960–10964 是灰原（Emerged Grey Field）各關。
-
-進入後，隊伍會換成 TPS 旅行者（與你的旅行者同性別，20 級），裝備你的 TPS 配裝，第一次進入時是 224001。在秘境裡換的武器會保存成你的配裝。離開秘境後隊伍會恢復原狀。
-
-**3. 秘境外**
-
-任何角色都能裝備 TPS 武器，方便試用：
-
-```
-/tps wear 224001 224004
-/tps refill
-```
-
-第一條指令裝備步槍和手榴彈（最多兩把槍、一顆手榴彈），第二條補滿彈藥。
-
-彈藥處理仍有部分屬於實驗性質。伺服器端的實作細節、`/tps ammo` 的切換選項，以及尚未確定的部分，見 [docs/tps/README.md](docs/tps/README.md)。
+至冬的第三人稱射擊玩法可用。指令、TPS 秘境與尚未確定的部分見 [docs/tps/README.md](docs/tps/README.md)。
 
 ## 授權
 
