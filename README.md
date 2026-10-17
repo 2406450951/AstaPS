@@ -21,7 +21,7 @@ If you can fix a bug, please help me.
 |---|---|
 | Java | **JDK 21** to build and **Java 21** to run. AstaPS uses Java 21 APIs such as virtual threads. |
 | MongoDB | Community Server. Must be running before the server starts. |
-| Game client | Genshin Impact 7.1.0. The official client checks the region's signature, so it needs a client patch to connect to a private server, such as [hk4e-patch-universal](https://github.com/capyb2222/animegamepatch). AstaPS does not ship one. |
+| Game client | Genshin Impact 7.1.0. The official client checks the region's signature, so it needs a client patch to connect to a private server, such as [hk4e-patch-universal](https://github.com/MeChen618/patch). AstaPS does not ship one. |
 | Resources | A 7.1.0 resource pack, extracted to `resources/` in the server directory. If you don't have Resources, you can download it [here](https://github.com/MeChen618/AstaPS-Resource). |
 
 ## Building
@@ -168,7 +168,7 @@ Released under the **GNU General Public License v3.0**. See [`LICENSE`](LICENSE)
 
 This server is based on **Grasscutter**. Reference projects: **LunaGC**, **HunkyMeow**.
 
-The client patch linked under Requirements, [hk4e-patch-universal](https://github.com/capyb2222/animegamepatch), is maintained by **capyb2222**, based on [xeondev](https://git.xeondev.com/reversedrooms/hk4e-patch)'s original hk4e-patch and [oureveryday](https://github.com/oureveryday/)'s original hk4e-patch-universal. It is a separate project under its own GPL-3.0 licence.
+The client patch linked under Requirements, [hk4e-patch-universal](https://github.com/MeChen618/patch), is a copy of [capyb2222/animegamepatch](https://github.com/capyb2222/animegamepatch), maintained by **capyb2222**, based on [xeondev](https://git.xeondev.com/reversedrooms/hk4e-patch)'s original hk4e-patch and [oureveryday](https://github.com/oureveryday/)'s original hk4e-patch-universal. It is a separate project under its own GPL-3.0 licence.
 
 The import commit at the root of this repository credits by name the authors whose work it carries.
 
