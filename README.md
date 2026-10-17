@@ -100,7 +100,7 @@ Then build with:
 
 `grasscutter-7.1.0.jar` lands in the project root. Drop `-PskipHandbook=1` to build the in-game handbook as well; that step needs NodeJS and fails without it.
 
-On Windows use `.\gradlew.bat`, or run `gradlew-jar.bat`.
+On Windows use `.\gradlew.bat`.
 
 ### Faster local builds
 
