@@ -98,6 +98,7 @@ public class Avatar {
 
     @Getter @Setter private int nameCardRewardId;
     @Getter @Setter private int nameCardId;
+    private Set<Integer> rewardedFetterLevels = new HashSet<>();
     @Getter @Setter private int traceEffect;
 
     // trial avatar property
@@ -1198,6 +1199,24 @@ public class Avatar {
         DatabaseHelper.saveAvatar(this);
     }
 
+    /**
+     * Fetter levels whose reward was claimed. The name card counts once the player owns it, so a
+     * card granted by command or claimed before this was tracked clears the red dot too.
+     */
+    public Set<Integer> getRewardedFetterLevels() {
+        var levels = new TreeSet<Integer>();
+        if (this.rewardedFetterLevels != null) levels.addAll(this.rewardedFetterLevels);
+        if (this.nameCardId != 0 && this.getPlayer().getNameCardList().contains(this.nameCardId)) {
+            levels.add(10);
+        }
+        return levels;
+    }
+
+    public void addRewardedFetterLevel(int fetterLevel) {
+        if (this.rewardedFetterLevels == null) this.rewardedFetterLevels = new HashSet<>();
+        this.rewardedFetterLevels.add(fetterLevel);
+    }
+
     public AvatarInfo toProto() {
         int fetterLevel = this.getFetterLevel();
         AvatarFetterInfo.Builder avatarFetter = AvatarFetterInfo.newBuilder().setExpLevel(fetterLevel);
@@ -1215,11 +1234,7 @@ public class Avatar {
                                             .setFetterState(FetterState.FINISH.getValue())));
         }
 
-        int cardId = this.getNameCardId();
-
-        if (this.getPlayer().getNameCardList().contains(cardId)) {
-            avatarFetter.addRewardedFetterLevelList(10);
-        }
+        avatarFetter.addAllRewardedFetterLevelList(this.getRewardedFetterLevels());
 
         AvatarInfo.Builder avatarInfo =
                 AvatarInfo.newBuilder()
