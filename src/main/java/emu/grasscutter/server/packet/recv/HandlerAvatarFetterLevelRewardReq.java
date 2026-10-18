@@ -50,7 +50,20 @@ public class HandlerAvatarFetterLevelRewardReq extends PacketHandler {
                     items.add(new GameItem(param.getId(), param.getCount()));
                 }
             }
-            player.getInventory().addItems(items, ActionReason.FetterLevelReward);
+            // All or nothing: a full bag delivers none, so keep the level claimable for a retry.
+            var added = player.getInventory().addItems(items, ActionReason.FetterLevelReward);
+            if (!added.allAccepted()) {
+                Grasscutter.getLogger()
+                        .debug(
+                                "[Fetter] uid={} level {} reward {} of avatar {} not admitted: {}",
+                                player.getUid(),
+                                fetterLevel,
+                                rewardId,
+                                avatar.getAvatarId(),
+                                added.entries());
+                session.send(new PacketAvatarFetterLevelRewardRsp(avatarGuid, fetterLevel));
+                return;
+            }
             avatar.addRewardedFetterLevel(fetterLevel);
             avatar.save();
             if (items.stream().anyMatch(item -> item.getItemId() == avatar.getNameCardId())) {
