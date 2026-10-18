@@ -3,6 +3,7 @@ package emu.grasscutter.data.excels.avatar;
 import emu.grasscutter.data.*;
 import emu.grasscutter.data.ResourceType.LoadPriority;
 import emu.grasscutter.data.common.PropGrowCurve;
+import emu.grasscutter.data.excels.FetterCharacterCardData;
 import emu.grasscutter.game.props.*;
 import emu.grasscutter.utils.Utils;
 import it.unimi.dsi.fastutil.ints.*;
@@ -67,6 +68,9 @@ public class AvatarData extends GameResource {
     private int nameCardRewardId;
     @Getter
     private int nameCardId;
+    /** Fetter level to reward id: the level 10 name card, plus any earlier reward. */
+    @Getter
+    private transient Int2IntMap fetterRewards = Int2IntMaps.EMPTY_MAP;
 
     public float getBaseHp(int level) {
         try {
@@ -119,9 +123,8 @@ public class AvatarData extends GameResource {
         // Get fetters from GameData
         this.fetters = GameData.getFetterDataEntries().get(this.id);
 
-        if (GameData.getFetterCharacterCardDataMap().get(this.id) != null) {
-            this.nameCardRewardId = GameData.getFetterCharacterCardDataMap().get(this.id).getRewardId();
-        }
+        this.fetterRewards = FetterCharacterCardData.rewardsOf(this.id);
+        this.nameCardRewardId = this.fetterRewards.get(10);
 
         if (GameData.getRewardDataMap().get(this.nameCardRewardId) != null) {
             this.nameCardId = GameData.getRewardDataMap().get(this.nameCardRewardId).getRewardItemList().get(0).getItemId();
