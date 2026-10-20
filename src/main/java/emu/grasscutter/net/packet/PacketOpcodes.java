@@ -1651,6 +1651,7 @@ public final class PacketOpcodes {
     public static final int PlayerSignatureAuditDataNotify = 0; // 7.1 CmdId unknown (7.0: 21073)
     // public static final int AMBMIOEKPKJ = 28628;
     public static final int _TakeAllForgeOutputRsp = 3416;
+    public static final int _TakeAllForgeOutputReq = 28982;
     public static final int _BeyondProfilePictureDataNotify = 6326;
     public static final int GCGGrowthLevelNotify = 24807;
     // public static final int PABHHNCJPIO = 4727;

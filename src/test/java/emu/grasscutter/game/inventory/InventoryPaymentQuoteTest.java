@@ -33,4 +33,21 @@ final class InventoryPaymentQuoteTest {
         assertEquals(Map.of(), InventoryPaymentQuote.calculate(
                 List.of(new ItemParamData(201, 0), new ItemParamData(202, 0)), 3));
     }
+
+    @Test
+    void ignoresEmptyExcelCostSlots() {
+        assertEquals(
+                Map.of(100017, 2),
+                InventoryPaymentQuote.calculate(
+                        List.of(
+                                new ItemParamData(100017, 1),
+                                new ItemParamData(0, 0),
+                                new ItemParamData(0, 0)),
+                        2));
+    }
+
+    @Test
+    void rejectsNonzeroCostsWithInvalidItemIds() {
+        assertNull(InventoryPaymentQuote.calculate(List.of(new ItemParamData(0, 1)), 1));
+    }
 }

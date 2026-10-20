@@ -131,7 +131,18 @@ public class GameSession implements GameSessionManager.KcpChannel {
         if (MUTED_LOG_OPCODES.contains(opcode)) return;
         Grasscutter.getLogger()
                 .info(sendOrRecv + ": " + PacketOpcodesUtils.getOpcodeName(opcode) + " (" + opcode + ")");
-        if (GAME_INFO.isShowPacketPayload) System.out.println(Utils.bytesToHex(payload));
+        if (GAME_INFO.isShowPacketPayload) {
+            try {
+                Grasscutter.getLogger().info(
+                        "packet: payload={}, rawFields={}",
+                        Utils.bytesToHex(payload),
+                        com.google.protobuf.UnknownFieldSet.parseFrom(payload));
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                Grasscutter.getLogger().info(
+                        "packet: payload={} (non-protobuf payload)",
+                        Utils.bytesToHex(payload));
+            }
+        }
     }
 
     public void send(BasePacket packet) {
