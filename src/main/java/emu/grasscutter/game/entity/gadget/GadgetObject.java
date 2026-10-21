@@ -31,7 +31,8 @@ public class GadgetObject extends GadgetContent {
             // packet to the client, no script event, and the group script never ran. Give the
             // Shrine of Depths gates a chance before falling through.
             if (TempleShrineHelper.onInteract(getGadget(), player)) {
-                return true;
+                // The interaction is handled, but deletion is owned by the group Lua script.
+                return false;
             }
             return false;
         }
