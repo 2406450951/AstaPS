@@ -139,6 +139,7 @@ public final class ForgingManager extends BasePlayerManager {
             this.player.sendPacket(
                     new PacketForgeStartRsp(
                             Retcode.RET_ITEM_COUNT_NOT_ENOUGH)); // ToDo: Probably the wrong return code.
+            return;
         }
 
         // Consume forge points.
