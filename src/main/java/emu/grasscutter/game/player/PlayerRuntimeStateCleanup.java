@@ -19,6 +19,7 @@ import emu.grasscutter.game.ability.SkirkInvokeLog;
 import emu.grasscutter.game.ability.SymphonistWeaponHelper;
 import emu.grasscutter.game.ability.XilonenC6HealHelper;
 import emu.grasscutter.game.ability.actions.ActionAvatarSkillStart;
+import emu.grasscutter.game.avatar.Avatar;
 import emu.grasscutter.game.avatar.SkirkTeamBonusHelper;
 import emu.grasscutter.game.avatar.TartagliaTeamBonusHelper;
 import emu.grasscutter.game.ability.LohenExtraArtSkillLevelHelper;
@@ -56,6 +57,7 @@ public final class PlayerRuntimeStateCleanup {
         run("PartyRevive", () -> PartyReviveHelper.clearPlayerState(player));
         run("QiqiEHeal", () -> QiqiEHealHelper.clearPlayerState(player));
         run("AvatarSkillStart", () -> ActionAvatarSkillStart.clearPlayerState(player));
+        run("Avatar fight prop coalesce", () -> Avatar.clearFightPropNotifyState(player));
         run("BattlePass", () -> BattlePassCompatHelper.clearPlayerState(uid));
         run("Domain continue", () -> DomainContinueSpawnHelper.clearPlayerState(uid));
         run("Tower", () -> TowerAbyssFix.clearEntry(player));

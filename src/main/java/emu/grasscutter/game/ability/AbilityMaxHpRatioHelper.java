@@ -8,7 +8,6 @@ import emu.grasscutter.game.entity.EntityAvatar;
 import emu.grasscutter.game.entity.GameEntity;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.FightProperty;
-import emu.grasscutter.server.packet.send.PacketAvatarFightPropNotify;
 import emu.grasscutter.server.packet.send.PacketEntityFightPropUpdateNotify;
 
 import java.util.Arrays;
@@ -190,7 +189,9 @@ public final class AbilityMaxHpRatioHelper {
 
             Player player = avatar.getPlayer();
             if (player != null && player.hasSentLoginPackets()) {
-                player.sendPacket(new PacketAvatarFightPropNotify(avatar));
+                // Coalesced with the send at the end of recalcStats: two full-props packets per
+                // recalc is what turned one modifier change into a four-packet burst.
+                avatar.queueFightPropNotify();
                 broadcastHp(entity);
             }
         } catch (Throwable t) {

@@ -843,7 +843,12 @@ public final class TeamManager extends BasePlayerDataManager {
 
     public synchronized void changeAvatar(long guid) {
         EntityAvatar oldEntity = this.getCurrentAvatarEntity();
-        if (oldEntity == null || guid == oldEntity.getAvatar().getGuid()) {
+        if (oldEntity == null) {
+            return;
+        }
+        if (guid == oldEntity.getAvatar().getGuid()) {
+            // Already on the field: still answer, or the client waits on a switch it never gets.
+            this.getPlayer().sendPacket(new PacketChangeAvatarRsp(guid));
             return;
         }
 
@@ -857,6 +862,10 @@ public final class TeamManager extends BasePlayerDataManager {
         }
 
         if (index < 0 || newEntity == oldEntity) {
+            // Requested avatar is not on the active team (stale client state after a team edit or a
+            // reconnect). Answer with the avatar still on the field so the client stops retrying -
+            // leaving it unanswered made the client resend ChangeAvatarReq several times a second.
+            this.getPlayer().sendPacket(new PacketChangeAvatarRsp(oldEntity.getAvatar().getGuid()));
             return;
         }
         if (newEntity.getFightProperty(FightProperty.FIGHT_PROP_CUR_HP) <= 0) {
