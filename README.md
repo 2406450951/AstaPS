@@ -14,7 +14,7 @@ If you can fix a bug, please help me.
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Java        | **JDK 21** to build and **Java 21** to run. AstaPS uses Java 21 APIs such as virtual threads.                                                                                                                                     |
 | MongoDB     | Community Server. Must be running before the server starts.                                                                                                                                                                       |
-| Game client | Genshin Impact 7.1.0. The official client checks the region's signature, so it needs a client patch to connect to a private server, such as [hk4e-patch-universal](https://github.com/MeChen618/patch). AstaPS does not ship one. |
+| Game client | Genshin Impact 7.1.0. The official client checks the region's signature, so it needs a client patch to connect to a private server, such as [hk4e-patch-universal](https://github.com/KitsukiDev/hk4e-patch-universal). AstaPS does not ship one. |
 | Resources   | A 7.1.0 resource pack, extracted to `resources/` in the server directory. If you don't have Resources, you can download it [here](https://github.com/MeChen618/AstaPS-Resource).                                                  |
 
 ## Docker
@@ -46,7 +46,7 @@ MongoDB is published on `127.0.0.1` only: port `27017` for the run deployment an
 
 ### Development
 
-Open a development shell with the checkout bind-mounted. The dev profile starts a separate MongoDB service and keeps its database storage separate from the run deployment. MongoDB files, Gradle's user cache, handbook dependencies, and server working files are stored under the ignored `docker_volumes/` directory.
+Open a development shell with the checkout bind-mounted. The dev profile starts a separate MongoDB service and keeps its database storage separate from the run deployment. MongoDB files, Gradle's user-home cache, and generated handbook dependencies live under `docker_volumes/astaps-dev/`.
 
 ```sh
 docker compose --profile dev run --service-ports --rm astaps-dev
@@ -54,11 +54,11 @@ docker compose --profile dev run --service-ports --rm astaps-dev
 
 Inside the container, run Gradle as mentioned in [Building](#building). The checkout is mounted at `/workspace`, and the working directory is set there.
 
-Gradle's user-home cache persists under `docker_volumes/astaps-dev/gradle-cache`, while project outputs remain in the bind-mounted checkout. The “incompatible/stopped Daemons could not be reused” notice only describes Gradle daemon reuse and does not mean those caches were skipped.
+Gradle's user-home cache persists under `docker_volumes/astaps-dev/gradle-cache`, while project outputs remain in the bind-mounted checkout. The “incompatible/stopped Daemons could not be reused” warning is harmless if Gradle recovers. Keep `config.json` under the checkout root, not in the container filesystem, when specifying local development paths.
 
-When running from this shell, set both `databaseInfo.server.connectionUri` and `databaseInfo.game.connectionUri` in the project-root `config.json` to `mongodb://mongodb-dev:27017`. The development server uses the same fixed host ports as the run server: `8088` (HTTP) and `22101` (game). Only run one server at a time; configure `ASTAPS_HTTP_PORT` and `ASTAPS_GAME_PORT` if the host-side ports need to change.
+When running from this shell, set both `databaseInfo.server.connectionUri` and `databaseInfo.game.connectionUri` in the project-root `config.json` to `mongodb://mongodb-dev:27017`. The development profile uses a network alias matching the service name, so the host ports remain available for the run deployment.
 
-If Gradle fails in `generateBuildMetadata` because `git rev-parse` exits with code 128, rebuild the development image and start a fresh shell. The container trusts only the mounted checkout at `/workspace` for Git operations:
+If Gradle fails in `generateBuildMetadata` because `git rev-parse` exits with code 128, rebuild the development image and start a fresh shell. The container trusts only the mounted checkout at `/workspace`; rebuild ensures the Git metadata is present there.
 
 ```sh
 docker compose --profile dev build
@@ -73,15 +73,17 @@ Build the server image (compiling the current checkout) and start it with its ow
 docker compose up --build
 ```
 
-The server's working files, including `config.json`, are stored in `docker_volumes/astaps-run/`. The `resources/` and writable `data/` directories are mounted from the checkout. Protocol definitions are build inputs; Gradle generates and packages their Java classes in the JAR, so the protocol directory does not need a runtime mount. On first start, the server creates its default configuration and may stop because setup is incomplete. Edit `docker_volumes/astaps-run/config.json`, changing both `databaseInfo.server.connectionUri` and `databaseInfo.game.connectionUri` from `mongodb://localhost:27017` to `mongodb://mongodb-run:27017`, then start the server again:
+The server's working files, including `config.json`, are stored in `docker_volumes/astaps-run/`. The `resources/` and writable `data/` directories are mounted from the checkout. Protocol definitions and generated files remain in the repository.
+
+To start the run deployment without rebuilding, use:
 
 ```sh
 docker compose up -d
 ```
 
-To compile without starting services, use `docker compose build astaps-run`; later, `docker compose up -d` starts the compiled image. HTTP is published on port `8088` and the game server on both TCP and UDP port `22101` by default. Configure `ASTAPS_HTTP_PORT` and `ASTAPS_GAME_PORT` to change the host-side ports. Put the resource pack in `resources/` before starting the server. For clients on another device, configure the server's advertised/access address to the host's LAN address.
+To compile without starting services, use `docker compose build astaps-run`; later, `docker compose up -d` starts the compiled image. HTTP is published on port `8088` and the game server on both the host and the Docker network; the exposed ports are defined in `docker-compose.yml`.
 
-The server image runs Java as its foreground process. With `docker compose up`, the command prompt is interactive; for a detached container, run `docker compose attach astaps-run` to enter commands and detach with `Ctrl-P`, then `Ctrl-Q`. The HTTP web console is another way to run console commands.
+The server image runs Java as its foreground process. With `docker compose up`, the command prompt is interactive; for a detached container, run `docker compose attach astaps-run` to enter command mode.
 
 ## Building
 
@@ -100,7 +102,7 @@ Then build with:
 
 `grasscutter-7.1.0.jar` lands in the project root. Drop `-PskipHandbook=1` to build the in-game handbook as well; that step needs NodeJS and fails without it.
 
-On Windows use `.\gradlew.bat`.
+On Windows use `./gradlew.bat`.
 
 ## Running
 
@@ -112,7 +114,7 @@ On Windows use `.\gradlew.bat`.
 
 ## Commands
 
-In-game commands use `/`; the server console omits it. Use `help` to list commands, or `help <command> [subcommand...]` for syntax and aliases. The console supports Tab completion; invalid arguments show usage.
+In-game commands use `/`; the server console omits it. Use `help` to list commands, or `help <command> [subcommand...]` for syntax and aliases. The console supports Tab completion; invalid arguments show the matching syntax.
 
 Player selectors: `@UID`, `username@`, or `username@UID`. Account management is console-only.
 
@@ -131,13 +133,13 @@ Snezhnaya's third-person shooter mode works. See [docs/tps/README.md](docs/tps/R
 
 Released under the **GNU General Public License v3.0**. See [`LICENSE`](LICENSE).
 
-`LICENSE-ClassGraph.txt` is not this project's licence. ClassGraph is an MIT-licensed dependency whose compiled classes ship inside `grasscutter-7.1.0.jar`, and MIT asks only that its notice travels with them.
+`LICENSE-ClassGraph.txt` is not this project's licence. ClassGraph is an MIT-licensed dependency whose compiled classes ship inside `grasscutter-7.1.0.jar`, and MIT asks only that its notice remain with the distribution.
 
 ## Credits
 
 This server is based on **Grasscutter**. Reference projects: **LunaGC**, **HunkyMeow**.
 
-The client patch linked under Requirements, [hk4e-patch-universal](https://github.com/MeChen618/patch), is a copy of [capyb2222/animegamepatch](https://github.com/capyb2222/animegamepatch), maintained by **capyb2222**, based on [xeondev](https://git.xeondev.com/reversedrooms/hk4e-patch)'s original hk4e-patch and [oureveryday](https://github.com/oureveryday/)'s original hk4e-patch-universal. It is a separate project under its own GPL-3.0 licence.
+The client patch linked under Requirements, [hk4e-patch-universal](https://github.com/KitsukiDev/hk4e-patch-universal), is a copy of [capyb2222/animegamepatch](https://github.com/capyb2222/animegamepatch), maintained by **capyb2222** and based on the original hk4e-patch by [xeondev](https://git.xeondev.com/reversedrooms/hk4e-patch) and the original hk4e-patch-universal by [oureveryday](https://github.com/oureveryday/).
 
 The import commit at the root of this repository credits by name the authors whose work it carries.
 
