@@ -1021,8 +1021,8 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
                 "transpoint",
                 java.util.Map.of(
                         "type", kind.name().toLowerCase(java.util.Locale.ROOT),
-                        "scene", Integer.toString(sceneId),
-                        "point", Integer.toString(pointId)),
+                        "scene", sceneId,
+                        "point", pointId),
                 java.util.concurrent.ThreadLocalRandom.current());
         var items = reward.entrySet().stream()
                 .filter(entry -> entry.getValue() > 0)
