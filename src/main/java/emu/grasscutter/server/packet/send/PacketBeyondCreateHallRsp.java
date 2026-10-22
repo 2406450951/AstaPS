@@ -26,6 +26,6 @@ public class PacketBeyondCreateHallRsp extends BasePacket {
             data = new byte[0];
         }
         this.setData(data);
-        Grasscutter.getLogger().info("[MIAO HALL] BeyondCreateHallRsp hallId={} retcode={} bytes={}", hallId, retcode, data.length);
+        Grasscutter.getLogger().debug("[MIAO HALL] BeyondCreateHallRsp hallId={} retcode={} bytes={}", hallId, retcode, data.length);
     }
 }

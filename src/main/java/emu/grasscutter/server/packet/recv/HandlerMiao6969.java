@@ -75,7 +75,7 @@ public class HandlerMiao6969 extends PacketHandler {
             if (v > 0) {
                 boolean isFrame = false;
                 for (int fid : FRAME_IDS) if (fid == v) isFrame = true;
-                Grasscutter.getLogger().info("MIAO 6969 value={} isFrame={} oldHead={} seq={}", v, isFrame, pl.getHeadImage(), seq);
+                Grasscutter.getLogger().debug("MIAO 6969 value={} isFrame={} oldHead={} seq={}", v, isFrame, pl.getHeadImage(), seq);
                 if (isFrame) { pl.setProfileFrameId(v); pl.save(); } else { pl.setHeadImage(v); pl.save(); }
             }
         } catch (Throwable t) { Grasscutter.getLogger().warn("MIAO 6969 apply fail: {}", t.toString()); }
@@ -89,7 +89,7 @@ public class HandlerMiao6969 extends PacketHandler {
                 var pl = session.getPlayer();
                 var detail = pl.getSocialDetail();
                 session.send(new emu.grasscutter.server.packet.send.PacketGetPlayerSocialDetailRsp(detail, fseq));
-                Grasscutter.getLogger().info(
+                Grasscutter.getLogger().debug(
                         "MIAO 6969 -> send 25989 head={} frame={} seq={}",
                         pl.getHeadImage(), pl.getProfileFrameId(), fseq);
             } catch (Throwable t) { Grasscutter.getLogger().warn("MIAO 25989 fail: {}", t.toString()); }
@@ -107,7 +107,7 @@ public class HandlerMiao6969 extends PacketHandler {
                 var rsp = new emu.grasscutter.server.packet.send.PacketBeyondPlayerDetailRsp(session.getPlayer());
                 rsp.setHeader(head(fseq));
                 session.send(rsp);
-                Grasscutter.getLogger().info("MIAO 6969 -> push 6326+4162 seq={} uid={}", fseq, session.getPlayer().getUid());
+                Grasscutter.getLogger().debug("MIAO 6969 -> push 6326+4162 seq={} uid={}", fseq, session.getPlayer().getUid());
             } catch (Throwable t) {
                 Grasscutter.getLogger().warn("MIAO 6969 push fail: {}", t.toString());
             }

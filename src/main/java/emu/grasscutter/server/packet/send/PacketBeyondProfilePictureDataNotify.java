@@ -52,12 +52,12 @@ public class PacketBeyondProfilePictureDataNotify extends BasePacket {
             }
             data = out.toByteArray();
             count = list.size();
-            Grasscutter.getLogger().info("BeyondProfilePictureNotify current={} (headImage={})", cur == null ? -1 : cur.id, player.getHeadImage());
+            Grasscutter.getLogger().debug("BeyondProfilePictureNotify current={} (headImage={})", cur == null ? -1 : cur.id, player.getHeadImage());
         } catch (Throwable t) {
             Grasscutter.getLogger().warn("PacketBeyondProfilePictureDataNotify build failed: {}", t.toString());
             data = new byte[] {0x08, 0x01};
         }
         this.setData(data);
-        Grasscutter.getLogger().info("BeyondProfilePictureNotify opcode=6326 entries={} bytes={}", count, data.length);
+        Grasscutter.getLogger().debug("BeyondProfilePictureNotify opcode=6326 entries={} bytes={}", count, data.length);
     }
 }

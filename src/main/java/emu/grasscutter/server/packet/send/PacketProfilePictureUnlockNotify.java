@@ -36,7 +36,7 @@ public class PacketProfilePictureUnlockNotify extends BasePacket {
             data = new byte[0];
         }
         this.setData(data);
-        Grasscutter.getLogger().info("ProfilePictureUnlockNotify opcode=27126 ids={} bytes={}", count, data.length);
+        Grasscutter.getLogger().debug("ProfilePictureUnlockNotify opcode=27126 ids={} bytes={}", count, data.length);
     }
 
     private static void writeVarint(ByteArrayOutputStream o, long v) {

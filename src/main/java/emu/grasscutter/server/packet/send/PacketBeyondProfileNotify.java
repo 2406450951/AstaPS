@@ -29,6 +29,6 @@ public class PacketBeyondProfileNotify extends BasePacket {
             data = new byte[0];
         }
         this.setData(data);
-        Grasscutter.getLogger().info("BeyondProfileNotify opcode={} bytes={}", opcode, data.length);
+        Grasscutter.getLogger().debug("BeyondProfileNotify opcode={} bytes={}", opcode, data.length);
     }
 }

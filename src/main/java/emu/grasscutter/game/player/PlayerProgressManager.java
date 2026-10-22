@@ -392,7 +392,7 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
                 emu.grasscutter.Grasscutter.getLogger().warn("MIAO unlockNotify fail: {}", t.toString());
             }
             emu.grasscutter.Grasscutter.getLogger()
-                    .info("MIAO forgeProfilePicture parentQuests={} items={} avatars={}", quests.size(), items, avatars);
+                    .debug("MIAO forgeProfilePicture parentQuests={} items={} avatars={}", quests.size(), items, avatars);
         } catch (Throwable t) {
             emu.grasscutter.Grasscutter.getLogger().warn("MIAO forgeProfilePicture fail: {}", t.toString());
         }
@@ -1072,7 +1072,7 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             receipts.add(pointId);
             this.player.save();
             emu.grasscutter.Grasscutter.getLogger()
-                    .info("First domain activation reward uid={} scene={} point={}",
+                    .debug("First domain activation reward uid={} scene={} point={}",
                             this.player.getUid(), sceneId, pointId);
             return true;
         }

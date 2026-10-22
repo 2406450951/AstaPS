@@ -42,7 +42,7 @@ extends PacketHandler {
             productId = "10203";
             string = "Tier_ugcbp_10";
         }
-        Grasscutter.getLogger().info("GetBattlePassProductReq uid={} playType={} product={}", new Object[]{gameSession.getPlayer() != null ? gameSession.getPlayer().getUid() : 0, n, productId});
+        Grasscutter.getLogger().debug("GetBattlePassProductReq uid={} playType={} product={}", new Object[]{gameSession.getPlayer() != null ? gameSession.getPlayer().getUid() : 0, n, productId});
         gameSession.send((BasePacket)new PacketGetBattlePassProductRsp(productId, string, n, 6700));
     }
 }

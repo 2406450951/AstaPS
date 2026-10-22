@@ -69,7 +69,7 @@ public class HandlerMiao21517 extends PacketHandler {
         try {
             var pl = session.getPlayer();
             if (v > 0) {
-                Grasscutter.getLogger().info("MIAO 21517 frame={} oldFrame={} seq={}", v, pl.getProfileFrameId(), seq);
+                Grasscutter.getLogger().debug("MIAO 21517 frame={} oldFrame={} seq={}", v, pl.getProfileFrameId(), seq);
                 pl.setProfileFrameId(v);
                 pl.save();
             }
@@ -83,7 +83,7 @@ public class HandlerMiao21517 extends PacketHandler {
             try {
                 var pl = session.getPlayer();
                 session.send(new emu.grasscutter.server.packet.send.PacketGetPlayerSocialDetailRsp(pl.getSocialDetail(), fseq));
-                Grasscutter.getLogger().info(
+                Grasscutter.getLogger().debug(
                         "MIAO 21517 -> send 25989 head={} frame={} seq={}",
                         pl.getHeadImage(), pl.getProfileFrameId(), fseq);
             } catch (Throwable t) { Grasscutter.getLogger().warn("MIAO 21517 25989 fail: {}", t.toString()); }
@@ -99,7 +99,7 @@ public class HandlerMiao21517 extends PacketHandler {
                 var rsp = new emu.grasscutter.server.packet.send.PacketBeyondPlayerDetailRsp(session.getPlayer());
                 rsp.setHeader(head(fseq));
                 session.send(rsp);
-                Grasscutter.getLogger().info("MIAO 21517 -> push 6326+4162 seq={} uid={}", fseq, session.getPlayer().getUid());
+                Grasscutter.getLogger().debug("MIAO 21517 -> push 6326+4162 seq={} uid={}", fseq, session.getPlayer().getUid());
             } catch (Throwable t) {
                 Grasscutter.getLogger().warn("MIAO 21517 push fail: {}", t.toString());
             }

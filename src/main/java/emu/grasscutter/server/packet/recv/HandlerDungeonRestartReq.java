@@ -17,7 +17,7 @@ public class HandlerDungeonRestartReq extends PacketHandler {
                     player == null ? 0 : player.getSceneId());
             return;
         }
-        Grasscutter.getLogger().info("DungeonRestartReq uid={} dungeon={} scene={}",
+        Grasscutter.getLogger().debug("DungeonRestartReq uid={} dungeon={} scene={}",
                 player.getUid(),
                 player.getScene().getDungeonManager().getDungeonData().getId(),
                 player.getSceneId());
