@@ -89,13 +89,12 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
 
     record TransPointUnlockTransition(boolean changed, boolean newlyUnlocked, boolean wasForceLocked) {}
 
-    /** Undo the in-memory point transition if first-activation rewards were rejected. */
-    static void revertUnrewardedTransPointUnlock(
-            Set<Integer> unlockedPoints, Set<Integer> forceLockedPoints,
-            int pointId, TransPointUnlockTransition transition) {
-        if (!transition.newlyUnlocked()) return;
-        unlockedPoints.remove(pointId);
-        if (transition.wasForceLocked()) forceLockedPoints.add(pointId);
+    /** Only a confirmed payout (including an intentional zero payout) clears pending state. */
+    static boolean settlePendingTransPointReward(
+            Set<Integer> pending, int pointId, java.util.function.BooleanSupplier grant) {
+        if (!pending.contains(pointId) || !grant.getAsBoolean()) return false;
+        pending.remove(pointId);
+        return true;
     }
 
     static boolean applyQuestPointLock(Set<Integer> forceLockedPoints, int pointId) {
@@ -177,6 +176,9 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             }
         } catch (Throwable ignored) {
         }
+
+        // Retry only activations that were explicitly persisted as unpaid.
+        retryPendingTransPointRewards();
     }
 
     /**********
@@ -948,6 +950,7 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
                         this.player.getForceLockedScenePoints(sceneId),
                         pointId);
         if (!transition.changed()) {
+            tryPendingTransPointReward(sceneId, pointId);
             return false;
         }
         boolean newlyUnlocked = transition.newlyUnlocked();
@@ -958,16 +961,15 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             isStatue = true;
         }
 
-        // Admit the full reward batch before recording the permanent point state.
+        // An eligible first-unlock creates a pending reward, not a prerequisite
+        // for permanent progress. Domain rewards begin on client activation.
+        boolean pendingReward = false;
         if (newlyUnlocked) {
             var kind = emu.grasscutter.game.reward.TransPointRewardEligibility.kindOf(pointData, isStatue);
-            // Dungeon entrances have a separate persisted activation receipt.
-            if (kind != null && kind != emu.grasscutter.game.reward.TransPointRewardEligibility.Kind.DOMAIN
-                    && !grantTransPointReward(sceneId, pointId, kind)) {
-                revertUnrewardedTransPointUnlock(
-                        this.player.getUnlockedScenePoints(sceneId),
-                        this.player.getForceLockedScenePoints(sceneId), pointId, transition);
-                return false;
+            if (kind != null && kind != emu.grasscutter.game.reward.TransPointRewardEligibility.Kind.DOMAIN) {
+                this.player.getPendingTransPointRewards(sceneId).add(pointId);
+                freezeTransPointReward(sceneId, pointId, kind);
+                pendingReward = true;
             }
         }
         if (newlyUnlocked && isStatue && pointData != null && pointData.getAreaId() > 0) {
@@ -1010,35 +1012,124 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         } catch (Throwable ignored) {
         }
         this.player.save();
+        if (pendingReward) tryPendingTransPointReward(sceneId, pointId);
         return true;
+    }
+
+    /** Retry only recorded first activations, never arbitrary already-unlocked map points. */
+    public void retryPendingTransPointRewards() {
+        for (var scene : java.util.Map.copyOf(player.getPendingTransPointRewards()).entrySet()) {
+            for (int pointId : Set.copyOf(scene.getValue())) {
+                tryPendingTransPointReward(scene.getKey(), pointId);
+            }
+        }
+    }
+
+    private boolean tryPendingTransPointReward(int sceneId, int pointId) {
+        synchronized (this.player) {
+            var pending = this.player.getPendingTransPointRewards(sceneId);
+            if (!pending.contains(pointId)) return false;
+
+            var entry = GameData.getScenePointEntryById(sceneId, pointId);
+            if (entry == null) return false;
+            var pointData = entry.getPointData();
+            var kind = emu.grasscutter.game.reward.TransPointRewardEligibility.kindOf(
+                    pointData,
+                    emu.grasscutter.game.managers.StatueTalkQuests.isStatuePoint(pointData));
+            if (kind == null) return false;
+
+            try {
+                boolean settled = settlePendingTransPointReward(
+                        pending, pointId, () -> grantTransPointReward(sceneId, pointId, kind));
+                if (!settled) {
+                    emu.grasscutter.Grasscutter.getLogger().warn(
+                            "Scene-point reward remains pending uid={} scene={} point={} kind={}",
+                            player.getUid(), sceneId, pointId, kind);
+                    return false;
+                }
+                if (kind == emu.grasscutter.game.reward.TransPointRewardEligibility.Kind.DOMAIN) {
+                    player.getRewardedDungeonEntries(sceneId).add(pointId);
+                }
+                player.getTransPointRewardSnapshots().remove(transPointSnapshotKey(sceneId, pointId));
+                player.save();
+                return true;
+            } catch (RuntimeException error) {
+                // Ambiguous journal or inventory failures must not trigger blind replay.
+                emu.grasscutter.Grasscutter.getLogger().error(
+                        "Scene-point reward needs attention uid={} scene={} point={} kind={}",
+                        player.getUid(), sceneId, pointId, kind, error);
+                return false;
+            }
+        }
+    }
+
+    /** MongoDB/Morphia map field names cannot contain dots. */
+    static String transPointSnapshotKey(int sceneId, int pointId) {
+        return sceneId + ":" + pointId;
+    }
+
+    /** A frozen zero payout is a value, not an absent snapshot. */
+    static java.util.Map<Integer, Integer> freezeRewardSnapshot(
+            java.util.Map<String, java.util.Map<Integer, Integer>> snapshots,
+            String identity,
+            java.util.function.Supplier<java.util.Map<Integer, Integer>> roll) {
+        return snapshots.computeIfAbsent(identity, unused -> java.util.Map.copyOf(roll.get()));
+    }
+
+    /** A successful first roll is immutable across config reloads and admission retries. */
+    private void freezeTransPointReward(int sceneId, int pointId,
+            emu.grasscutter.game.reward.TransPointRewardEligibility.Kind kind) {
+        String id = transPointSnapshotKey(sceneId, pointId);
+        var frozen = player.getTransPointRewardSnapshots();
+        if (frozen.containsKey(id)) return;
+        try {
+            freezeRewardSnapshot(frozen, id, () ->
+                    emu.grasscutter.game.reward.RewardConfiguration.current().roll(
+                            "transpoint", java.util.Map.of(
+                                    "type", kind.name().toLowerCase(java.util.Locale.ROOT),
+                                    "scene", sceneId, "point", pointId),
+                            java.util.concurrent.ThreadLocalRandom.current()));
+        } catch (RuntimeException error) {
+            // Keep progress and pending entitlement. A roll cannot be frozen until
+            // the configuration works; retries must not invent a payout.
+            emu.grasscutter.Grasscutter.getLogger().error(
+                    "Cannot freeze scene-point reward uid={} scene={} point={}",
+                    player.getUid(), sceneId, pointId, error);
+        }
     }
 
     private boolean grantTransPointReward(
             int sceneId,
             int pointId,
             emu.grasscutter.game.reward.TransPointRewardEligibility.Kind kind) {
-        var reward = emu.grasscutter.game.reward.RewardConfiguration.current().roll(
-                "transpoint",
-                java.util.Map.of(
-                        "type", kind.name().toLowerCase(java.util.Locale.ROOT),
-                        "scene", sceneId,
-                        "point", pointId),
-                java.util.concurrent.ThreadLocalRandom.current());
+        // The settled receipt is authoritative, including after a LootCSS edit.
+        var journal = new emu.grasscutter.database.RewardGrantJournal();
+        var key = new emu.grasscutter.database.RewardGrantJournal.Key(
+                emu.grasscutter.database.RewardGrantJournal.Source.TRANSPOINT,
+                player.getUid(), "point." + sceneId + "." + pointId);
+        if (journal.completed(key)) return true;
+        freezeTransPointReward(sceneId, pointId, kind);
+        var reward = player.getTransPointRewardSnapshots().get(transPointSnapshotKey(sceneId, pointId));
+        if (reward == null) return false;
         var items = reward.entrySet().stream()
                 .filter(entry -> entry.getValue() > 0)
                 .map(entry -> new emu.grasscutter.game.inventory.GameItem(
                         entry.getKey(), entry.getValue()))
                 .toList();
-        var journal = new emu.grasscutter.database.RewardGrantJournal();
-        var key = new emu.grasscutter.database.RewardGrantJournal.Key(
-                emu.grasscutter.database.RewardGrantJournal.Source.TRANSPOINT,
-                player.getUid(), "point." + sceneId + "." + pointId);
+        // Even a zero-payout activation receives a durable receipt, so changing
+        // LootCSS later cannot pay this event retroactively.
+
         var snapshot = items.stream().map(item -> new emu.grasscutter.database.RewardGrantJournal.Reward(
                 item.getItemId(), item.getCount(), item.getLevel())).toList();
         return emu.grasscutter.game.reward.RewardClaimFlow.grant(
                 emu.grasscutter.game.reward.RewardClaimFlow.receipt(journal, key, snapshot, java.util.List.of()),
                 new emu.grasscutter.game.reward.RewardClaimFlow.Delivery() {
                     public boolean admit(java.util.function.BooleanSupplier authorize, Runnable confirmed) {
+                        if (items.isEmpty()) {
+                            if (!authorize.getAsBoolean()) return false;
+                            confirmed.run();
+                            return true;
+                        }
                         return player.getInventory().addItems(items, ActionReason.UnlockPointReward,
                                 emu.grasscutter.game.inventory.InventoryAddPolicy.ALL_OR_NOTHING,
                                 authorize, confirmed).allAccepted();
@@ -1062,19 +1153,15 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         }
 
         synchronized (this.player) {
-            var receipts = this.player.getRewardedDungeonEntries(sceneId);
-            if (receipts.contains(pointId)) return false;
-            if (!grantTransPointReward(
-                    sceneId, pointId,
-                    emu.grasscutter.game.reward.TransPointRewardEligibility.Kind.DOMAIN)) {
-                return false;
+            if (this.player.getRewardedDungeonEntries(sceneId).contains(pointId)) return false;
+            // Activation is recorded independently. A later login can retry an
+            // unpaid claim; ambiguous receipts remain blocked by RewardGrantJournal.
+            if (this.player.getPendingTransPointRewards(sceneId).add(pointId)) {
+                freezeTransPointReward(sceneId, pointId,
+                        emu.grasscutter.game.reward.TransPointRewardEligibility.Kind.DOMAIN);
+                this.player.save();
             }
-            receipts.add(pointId);
-            this.player.save();
-            emu.grasscutter.Grasscutter.getLogger()
-                    .info("First domain activation reward uid={} scene={} point={}",
-                            this.player.getUid(), sceneId, pointId);
-            return true;
+            return tryPendingTransPointReward(sceneId, pointId);
         }
     }
 

@@ -1,46 +1,64 @@
-# AstaPS first-unlock rewards
+# Scene-point activation rewards (Global 7.1)
 
-`config/rewards/trans-point-rewards.toml` is a server-owned configuration, generated
-on the first startup. Existing configuration is never overwritten. Malformed or
-unsupported configuration stops startup; there is no native reward-table fallback.
-There is no legacy-path migration: only this path is read.
+The server loads configurable first-activation rewards from
+`rewards/transpoints.lcss`. On first setup, the packaged
+`src/main/resources/rewards/transpoints.lcss` is copied into the external
+`rewards/` directory. Subsequent reloads preserve operator edits.
 
-## Supported selectors
+Rules use `transpoint` selectors with a string `type` (`waypoint`,
+`statue`, or `domain`) and integer `scene` and `point` attributes.
+All reward contents, quantities, and probabilities are operator-defined.
+The bundled example is **not** verified official Global 7.1 payout data;
+see `docs/rewards/source-provenance.md`.
 
-- `["kind=waypoint"]`: ordinary teleport points
-- `["kind=statue"]`: Statues of The Seven
-- `["kind=domain"]`: dungeon entrances activated by the player
-- `["7:*"]`: every eligible point in scene 7
-- `["3:6"]`: one exact scene/point pair
+## Activation and settlement are separate
 
-Priority: exact point > scene > kind. Exactly one table applies; missing reward fields
-mean zero, not inherited values. `adventureExp`, `primogems`, and `mora` are
-non-negative integers; `items` is an array of `{ id = ..., count = ... }`.
+- **Waypoints and Statues of the Seven:** permanent scene-point state, quest
+  triggers, map notifications, and saving proceed regardless of reward
+  configuration or inventory admission. Eligible first unlocks record a pending
+  reward. Releasing a quest-imposed lock does not create another first unlock.
+- **Dungeon entrances:** the client's `UnlockTransPointReq` is the reward
+  activation. A handbook-supplied map unlock cannot initiate payment. The
+  successful activation receipt is tracked in `rewardedDungeonEntries`.
+  Reward errors do not suppress `UnlockTransPointRsp`.
+- Native pre-unlocked points, hidden points, unsupported portal/tower subtypes,
+  and unrelated scene points have no first-activation payout.
 
-The bundled template is `src/main/resources/trans-point-rewards.toml`.
-The local generated config directory is gitignored. This intentionally does **not** load
-`ExcelBinOutput/TransPointRewardConfigData.json` or look up the old `rewardId`
-in `RewardExcelConfigData.json`.
+Pending activations are stored in each player's `pendingTransPointRewards`
+map, keyed by scene and point. Progress is saved before an attempt to settle the
+reward. The first activation rolls and saves an immutable reward snapshot before delivery.
+An empty snapshot is a deliberate zero reward. A failed inventory admission
+leaves the snapshot and pending record in place. If reward configuration cannot
+be evaluated at activation, the entitlement stays pending until a valid roll
+can be frozen, with the failure recorded in the log. Frozen payout contents are not recalculated after a LootCSS edit.
+Pending records are retried when the player logs in
+or the same activation request is received again. Already-unlocked points
+**without** pending records are never granted retroactive rewards.
 
-## Native first-unlock boundaries
+## Idempotence and failures
 
-For waypoints and statues, rewards follow the existing permanent first-unlock state
-change. Releasing a quest lock does not pay a second reward. Pre-unlocked points,
-portal/unknown point subtypes, and hidden ordinary waypoints are ineligible.
+Nonzero and intentional zero-payout activations both use
+`RewardGrantJournal` with identity
+`transpoint:<uid>:point.<scene>.<point>`.
 
-For domains, the client `UnlockTransPointReq` for a native `DungeonEntry`
-point is the activation event, including story entrances without
-`DungeonEntryExcelConfigData.rewardDataId` (scene 3 points 1 and 20).
-Native `rewardDataId` no longer decides eligibility or amounts.
-The handbook only lists native handbook entries and re-synchronizes already-unlocked
-points; it does not discover or unlock new entrances. A separate persisted
-`rewardedDungeonEntries` activation receipt prevents duplicate claims and keeps
-older player saves with historical synthetic unlocks safe from repeat rewards.
-Hidden and natively pre-unlocked domain points are ineligible.
-Entering or re-entering a dungeon never grants discovery rewards.
+- The journal persists `PREPARED` before any inventory grant. Its confirmation
+  precedes the first item write, and successful delivery finishes `COMPLETED`.
+- Completed receipts prevent replay, even when the player-side pending flag
+  has not yet been cleared or LootCSS is edited later.
+- A failed preflight occurs before receipt preparation and permits a retry.
+  Ambiguous `PREPARED` or `CONFIRMED` receipts block blind re-granting;
+  they remain pending for operator inspection and reconciliation.
+- An empty configured payout is a deliberate settled outcome with an empty
+  receipt and no inventory write. It does not block activation.
 
-For existing player accounts, previously activated domain points have no
-historical claim receipt from before this implementation. Their first new
-activation request may pay once; no retroactive mass award is performed.
+The journal and player save are separate persistence operations, **not** an
+atomic transaction. An unresolved `CONFIRMED` record cannot prove whether
+every reward item was delivered. Inspect such entries in
+`reward_grant_receipts` before deciding how to reconcile them.
 
-Domain completion loot, resin, tree claims, and repeated challenges are unaffected.
+## Other reward sources
+
+World chests, resin-paid world-boss claims, and ley-line blossom claims keep
+their existing all-or-nothing inventory admission and payment rules. A rejected
+claim cannot silently consume the related chest or resin. Their receipt and
+retry semantics must remain source-specific.

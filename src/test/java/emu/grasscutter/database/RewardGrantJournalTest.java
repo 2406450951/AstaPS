@@ -85,7 +85,21 @@ final class RewardGrantJournalTest {
         assertThrows(IllegalArgumentException.class, () -> new Reward(202, -5, 1));
         assertThrows(IllegalArgumentException.class, () -> new Reward(202, 1, -1));
         assertThrows(IllegalArgumentException.class, () ->
+                new Receipt(CLAIM, Stage.PREPARED, null));
+        assertThrows(IllegalArgumentException.class, () ->
                 new Receipt(CLAIM, Stage.PREPARED, new ArrayList<>()));
+    }
+
+    @Test
+    void zeroPayoutClaimKeepsAReceiptAndCannotBeReopened() {
+        var journal = new RewardGrantJournal(new FakeStore());
+        var key = new Key(Source.TRANSPOINT, 10001, "point.3.6");
+        assertTrue(journal.prepare(key, List.of()));
+        assertEquals(List.of(), journal.unresolved().getFirst().rewards());
+        journal.confirm(key);
+        journal.complete(key);
+        assertTrue(journal.completed(key));
+        assertFalse(journal.prepare(key, REWARDS));
     }
 
     @Test
