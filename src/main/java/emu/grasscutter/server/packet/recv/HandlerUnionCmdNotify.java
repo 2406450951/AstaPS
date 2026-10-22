@@ -60,16 +60,6 @@ public class HandlerUnionCmdNotify extends PacketHandler {
 
     private static void handleBatch(GameSession session, byte[] header, UnionCmdNotify req) throws Exception {
         for (UnionCmd cmd : req.getCmdListList()) {
-            int cmdOpcode = cmd.getMessageId();
-            byte[] cmdPayload = cmd.getBody().toByteArray();
-            if (GAME_INFO.logPackets == ServerDebugMode.WHITELIST
-                    && SERVER.debugWhitelist.contains(cmd.getMessageId())) {
-                session.logPacket("RECV in Union", cmdOpcode, cmdPayload);
-            } else if (GAME_INFO.logPackets == ServerDebugMode.BLACKLIST
-                    && !SERVER.debugBlacklist.contains(cmd.getMessageId())) {
-                session.logPacket("RECV in Union", cmdOpcode, cmdPayload);
-            }
-
             session
                     .getServer()
                     .getPacketHandler()

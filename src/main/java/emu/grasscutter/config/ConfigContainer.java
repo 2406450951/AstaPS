@@ -137,8 +137,8 @@ public class ConfigContainer {
     }
 
     public static class Server {
-        public Set<Integer> debugWhitelist = Set.of();
-        public Set<Integer> debugBlacklist = Set.of();
+        public volatile Set<Integer> debugWhitelist = Set.of();
+        public volatile Set<Integer> debugBlacklist = Set.of();
         public ServerRunMode runMode = ServerRunMode.HYBRID;
         public boolean logCommands = false;
 
@@ -317,11 +317,11 @@ public class ConfigContainer {
         /* Kcp internal work interval (milliseconds) */
         public int kcpInterval = 20;
         /* Controls whether packets should be logged in console or not */
-        public ServerDebugMode logPackets = ServerDebugMode.NONE;
+        public volatile ServerDebugMode logPackets = ServerDebugMode.NONE;
         /* Show packet payload in console or no (in any case the payload is shown in encrypted view) */
-        public boolean isShowPacketPayload = false;
+        public volatile boolean isShowPacketPayload = false;
         /* Show annoying loop packets or no */
-        public boolean isShowLoopPackets = false;
+        public volatile boolean isShowLoopPackets = false;
 
         public boolean cacheSceneEntitiesEveryRun = false;
 
