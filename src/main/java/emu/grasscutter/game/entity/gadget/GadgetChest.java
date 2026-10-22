@@ -231,7 +231,7 @@ public class GadgetChest extends GadgetContent {
     }
 
     private boolean canClaimBossFlower(Player player) {
-        List<Integer> uids = bossUids;
+        List<Integer> uids = captureBossClaimants();
         return getGadget().getState() != CHEST_OPENED_STATE
                 && uids != null
                 && uids.contains(player.getUid())
@@ -477,20 +477,7 @@ public class GadgetChest extends GadgetContent {
         }
         SceneBossChest bossChest = sceneGadget.boss_chest;
         if (bossChest != null) {
-            if (bossUids == null) {
-                var flower = getGadget().getPosition();
-                List<Integer> present =
-                        getGadget().getScene().getPlayers().stream()
-                                .filter(p -> flower == null
-                                        || (p.getPosition() != null
-                                                && p.getPosition().computeDistance(flower) <= BOSS_CLAIM_RANGE))
-                                .map(Player::getUid)
-                                .toList();
-                if (!present.isEmpty()) {
-                    bossUids = present;
-                }
-            }
-            List<Integer> uids = bossUids != null ? bossUids : List.of();
+            List<Integer> uids = captureBossClaimants();
             builder.setBossChest(
                     BossChestInfoOuterClass.BossChestInfo.newBuilder()
                             .setMonsterConfigId(bossChest.monster_config_id)
@@ -500,6 +487,26 @@ public class GadgetChest extends GadgetContent {
                                     uids.stream().filter(uid -> !claimedBossUids.contains(uid)).toList())
                             .build());
         }
+    }
+
+    /** Capture the players near an unclaimed flower, including after an initially empty reveal. */
+    private List<Integer> captureBossClaimants() {
+        List<Integer> existing = bossUids;
+        if (existing != null) {
+            return existing;
+        }
+        var flower = getGadget().getPosition();
+        List<Integer> present =
+                getGadget().getScene().getPlayers().stream()
+                        .filter(p -> flower == null
+                                || (p.getPosition() != null
+                                        && p.getPosition().computeDistance(flower) <= BOSS_CLAIM_RANGE))
+                        .map(Player::getUid)
+                        .toList();
+        if (!present.isEmpty()) {
+            bossUids = present;
+        }
+        return present;
     }
 
     private SceneGadget resolveChestMeta() {
