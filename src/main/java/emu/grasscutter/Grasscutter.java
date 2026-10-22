@@ -130,6 +130,7 @@ public final class Grasscutter {
         logger.info(translate("messages.status.starting"));
         logger.info(translate("messages.status.game_version", GameConstants.VERSION));
         logger.info(translate("messages.status.version", GameConstants.VERSION, "Asta"));
+        logger.info("Commit: {} | Built: {}", BuildConfig.GIT_HASH, BuildConfig.BUILD_DATETIME);
 
         // Initialize database.
         DatabaseManager.initialize();
