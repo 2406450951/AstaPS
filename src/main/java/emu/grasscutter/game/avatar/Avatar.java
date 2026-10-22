@@ -43,6 +43,9 @@ import it.unimi.dsi.fastutil.ints.*;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 import javax.annotation.*;
 import lombok.*;
@@ -550,6 +553,81 @@ public class Avatar {
         return false;
     }
 
+    // --- AvatarFightPropNotify coalescing ---------------------------------
+    // recalcStats() used to send one AvatarFightPropNotify per call. Combat calls it once per
+    // modifier add/remove, so a single ClientAbilityChangeNotify fanned out into dozens of these
+    // - measured at 550/s for one avatar, which starved the client's frame loop. Coalesced here:
+    // the first send goes out immediately, further ones inside the window collapse into a single
+    // trailing send so the client always ends on the final state.
+    private static final long FIGHT_PROP_COALESCE_MS = 120L;
+    private static final ConcurrentHashMap<Long, Long> FIGHT_PROP_LAST_SENT =
+            new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<Long, Avatar> FIGHT_PROP_PENDING =
+            new ConcurrentHashMap<>();
+    private static final ScheduledExecutorService FIGHT_PROP_FLUSH =
+            Executors.newSingleThreadScheduledExecutor(
+                    runnable -> {
+                        Thread thread = new Thread(runnable, "avatar-fightprop-flush");
+                        thread.setDaemon(true);
+                        return thread;
+                    });
+
+    private void sendFightPropNotifyNow() {
+        Player player = this.getPlayer();
+        if (player == null || !player.hasSentLoginPackets()) {
+            return;
+        }
+        player.sendPacket(new PacketAvatarFightPropNotify(this));
+    }
+
+    /**
+     * Coalesced full-props send. Prefer this over building a {@link PacketAvatarFightPropNotify} by
+     * hand: the first call in a window goes out immediately, later calls inside the same window
+     * collapse into one trailing send that carries the final state.
+     */
+    public void queueFightPropNotify() {
+        long guid = this.getGuid();
+        long now = System.nanoTime();
+        Long last = FIGHT_PROP_LAST_SENT.get(guid);
+        if (last == null || now - last >= TimeUnit.MILLISECONDS.toNanos(FIGHT_PROP_COALESCE_MS)) {
+            FIGHT_PROP_LAST_SENT.put(guid, now);
+            this.sendFightPropNotifyNow();
+            return;
+        }
+        if (FIGHT_PROP_PENDING.putIfAbsent(guid, this) == null) {
+            FIGHT_PROP_FLUSH.schedule(
+                    () -> {
+                        Avatar pending = FIGHT_PROP_PENDING.remove(guid);
+                        if (pending == null) {
+                            return;
+                        }
+                        FIGHT_PROP_LAST_SENT.put(guid, System.nanoTime());
+                        try {
+                            pending.sendFightPropNotifyNow();
+                        } catch (Throwable ignored) {
+                            // The player may have gone offline between queue and flush.
+                        }
+                    },
+                    FIGHT_PROP_COALESCE_MS,
+                    TimeUnit.MILLISECONDS);
+        }
+    }
+
+    /** Drops this player coalescing state so the static maps do not outlive the session. */
+    public static void clearFightPropNotifyState(Player player) {
+        if (player == null || player.getAvatars() == null) {
+            return;
+        }
+        for (Avatar avatar : player.getAvatars().getAvatars().values()) {
+            if (avatar == null) {
+                continue;
+            }
+            long guid = avatar.getGuid();
+            FIGHT_PROP_PENDING.remove(guid);
+            FIGHT_PROP_LAST_SENT.remove(guid);
+        }
+    }
+
     public void recalcStats() {
         recalcStats(false);
     }
@@ -849,8 +927,8 @@ public class Avatar {
 
         // Packet
         if (getPlayer() != null && getPlayer().hasSentLoginPackets()) {
-            // Update stats for client
-            getPlayer().sendPacket(new PacketAvatarFightPropNotify(this));
+            // Update stats for client (coalesced, see queueFightPropNotify)
+            this.queueFightPropNotify();
             // Update client abilities
             EntityAvatar entity = this.getAsEntity();
             if (entity != null
