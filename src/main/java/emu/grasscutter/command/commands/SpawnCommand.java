@@ -225,6 +225,9 @@ public final class SpawnCommand implements CommandHandler {
         }
         gadget.buildContent();
         if (param.state != -1) gadget.setState(param.state);
+        // Spawned ley-line gadgets need a worktop option and challenge callback.
+        // Scene spawn loading does this already; /spawn must do it too.
+        param.scene.getBlossomManager().initBlossom(gadget);
         return gadget;
     }
 

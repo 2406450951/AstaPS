@@ -295,7 +295,11 @@ public class BlossomManager {
                 var active = it.next();
                 if (active.getChest() == chest) {
                     it.remove();
-                    blossomConsumed.add(active.getGadget().getSpawnEntry());
+                    // Debug-spawned outcrops have no authored SpawnDataEntry. Never
+                    // mark null as consumed, or later /spawn outcrops all get skipped.
+                    if (active.getGadget().getSpawnEntry() != null) {
+                        blossomConsumed.add(active.getGadget().getSpawnEntry());
+                    }
                     recycleGadgetEntity(List.of(active.getGadget()));
                     return;
                 }
