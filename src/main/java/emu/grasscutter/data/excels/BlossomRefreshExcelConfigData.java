@@ -35,7 +35,9 @@ public class BlossomRefreshExcelConfigData extends GameResource {
 
     @Getter
     public static class Drop {
+        @SerializedName(value = "drop_id", alternate = "dropId")
         int dropId;
+        @SerializedName(value = "preview_reward", alternate = "previewReward")
         int previewReward;
     }
 

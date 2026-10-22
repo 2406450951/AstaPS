@@ -17,6 +17,11 @@ final class RewardGrantJournalTest {
         private final Map<Key, Receipt> receipts = new HashMap<>();
 
         @Override
+        public boolean completed(Key key) {
+            return receipts.containsKey(key) && receipts.get(key).stage() == Stage.COMPLETED;
+        }
+
+        @Override
         public boolean insert(Receipt receipt) {
             return receipts.putIfAbsent(receipt.key(), receipt) == null;
         }
@@ -49,11 +54,15 @@ final class RewardGrantJournalTest {
     @Test
     void confirmedGrantIsVisibleForReconciliationUntilCompleted() {
         var journal = new RewardGrantJournal(new FakeStore());
+        assertFalse(journal.completed(CLAIM));
         journal.prepare(CLAIM, REWARDS);
+        assertFalse(journal.completed(CLAIM));
         journal.confirm(CLAIM);
+        assertFalse(journal.completed(CLAIM));
         assertEquals(Stage.CONFIRMED, journal.unresolved().getFirst().stage());
         journal.complete(CLAIM);
         assertTrue(journal.unresolved().isEmpty());
+        assertTrue(journal.completed(CLAIM));
         assertFalse(journal.prepare(CLAIM, REWARDS));
     }
 
@@ -116,6 +125,7 @@ final class RewardGrantJournalTest {
         assertTrue(journal.prepare(CLAIM, REWARDS));
         journal.abortUnpaid(CLAIM);
         assertTrue(journal.unresolved().isEmpty());
+        assertFalse(journal.completed(CLAIM));
         assertFalse(journal.prepare(CLAIM, REWARDS));
         assertThrows(IllegalStateException.class, () -> journal.confirm(CLAIM));
         assertThrows(IllegalStateException.class, () -> journal.abortUnpaid(CLAIM));
@@ -139,6 +149,7 @@ final class RewardGrantJournalTest {
                 throw new IllegalStateException("database unavailable");
             }
             public List<Receipt> unresolved() { return stored.unresolved(); }
+            public boolean completed(Key key) { return stored.completed(key); }
         });
         assertTrue(journal.prepare(CLAIM, REWARDS));
         assertThrows(IllegalStateException.class, () -> journal.confirm(CLAIM));
@@ -156,6 +167,7 @@ final class RewardGrantJournalTest {
                 return stored.transition(key, from, to);
             }
             public List<Receipt> unresolved() { return stored.unresolved(); }
+            public boolean completed(Key key) { return stored.completed(key); }
         });
         assertTrue(journal.prepare(CLAIM, REWARDS));
         journal.confirm(CLAIM);

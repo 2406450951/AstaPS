@@ -65,6 +65,27 @@ final class GadgetChestBossClaimTest {
     }
 
     @Test
+    void genericGadgetWithBossChestMetadataBecomesClaimableFlower() {
+        var generic = new EntityGadget(scene, FLOWER_ID, new Position(a.getPosition()));
+        var meta = new SceneGadget();
+        meta.boss_chest = new SceneBossChest();
+        meta.boss_chest.resin = 40;
+        meta.boss_chest.monster_config_id = 543001;
+        generic.setMetaGadget(meta);
+
+        // World boss flowers can use generic GadgetData, with their real function
+        // supplied by the scene script's boss_chest field, even for generic gadgets.
+        generic.buildContent();
+        assertInstanceOf(GadgetChest.class, generic.getContent());
+
+        var builder = SceneGadgetInfo.newBuilder();
+        generic.getContent().onBuildProto(builder);
+        assertTrue(builder.hasBossChest());
+        assertEquals(40, builder.getBossChest().getResin());
+        assertTrue(builder.getBossChest().getRemainUidListList().contains(a.getUid()));
+    }
+
+    @Test
     void eachEligiblePlayerClaimsOnceAndTheFlowerOpensAfterTheLast() {
         claim(a);
         claim(a);
@@ -76,6 +97,24 @@ final class GadgetChestBossClaimTest {
         claim(b);
         assertEquals(Map.of(100, 1, 200, 1), chest.grants);
         assertEquals(OPENED, flower.getState());
+    }
+
+    @Test
+    void worldBossClaimDoesNotDependOnBigWorldScriptMode() {
+        Grasscutter.getConfig().server.game.enableScriptInBigWorld = false;
+        claim(a);
+        assertEquals(Map.of(100, 1), chest.grants);
+    }
+
+    @Test
+    void failedBossRollDoesNotMarkTheFlowerClaimed() {
+        chest.allowGrant = false;
+        claim(a);
+        assertTrue(chest.grants.isEmpty());
+        assertNotEquals(OPENED, flower.getState());
+        chest.allowGrant = true;
+        claim(a);
+        assertEquals(Map.of(100, 1), chest.grants);
     }
 
     @Test
@@ -141,13 +180,15 @@ final class GadgetChestBossClaimTest {
 
     private static final class TestChest extends GadgetChest {
         final Map<Integer, Integer> grants = new HashMap<>();
+        boolean allowGrant = true;
 
         TestChest(EntityGadget gadget) {
             super(gadget);
         }
 
         @Override
-        protected boolean grantBossChestFallback(Player player, SceneGadget meta) {
+        protected boolean grantWorldBossReward(Player player, SceneGadget meta, int resinCost) {
+            if (!allowGrant) return false;
             grants.merge(player.getUid(), 1, Integer::sum);
             return true;
         }

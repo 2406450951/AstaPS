@@ -341,6 +341,15 @@ public class EntityMonster extends GameEntity {
     public void onDeath(int killerId) {
         super.onDeath(killerId); // Invoke super class's onDeath() method.
         var scene = this.getScene();
+        // The reward flower belongs to the monster's actual death. Handle it before
+        // unrelated Lua/challenge callbacks, which may fail and abort death processing.
+        try {
+            emu.grasscutter.game.world.WorldBossSpawnHelper.onWorldBossKilled(this);
+        } catch (Throwable t) {
+            emu.grasscutter.Grasscutter.getLogger().error(
+                    "World boss death handling failed scene={} group={} cfg={} monster={}",
+                    scene.getId(), getGroupId(), getConfigId(), getEntityTypeId(), t);
+        }
         var challenge = Optional.ofNullable(scene.getChallenge());
         var scriptManager = scene.getScriptManager();
 

@@ -1,9 +1,8 @@
 package emu.grasscutter.game.entity.gadget;
 
 import emu.grasscutter.Grasscutter;
-import emu.grasscutter.data.common.ItemParamData;
-import emu.grasscutter.data.excels.RewardPreviewData;
-import emu.grasscutter.game.drop.BossChestDropTagResolver;
+import emu.grasscutter.database.RewardGrantJournal;
+import emu.grasscutter.config.Configuration;
 import emu.grasscutter.game.drop.DropSystem;
 import emu.grasscutter.game.entity.EntityBaseGadget;
 import emu.grasscutter.game.entity.EntityGadget;
@@ -14,6 +13,7 @@ import emu.grasscutter.game.entity.gadget.chest.WorldChestLootHelper;
 import emu.grasscutter.game.inventory.GameItem;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.ActionReason;
+import emu.grasscutter.game.props.PlayerProperty;
 import emu.grasscutter.game.props.SceneType;
 import emu.grasscutter.game.props.WatcherTriggerType;
 import emu.grasscutter.game.world.NodKraiExploreSpawnHelper;
@@ -30,25 +30,24 @@ import emu.grasscutter.scripts.SceneScriptManager;
 import emu.grasscutter.scripts.data.SceneBossChest;
 import emu.grasscutter.scripts.data.SceneGadget;
 import emu.grasscutter.scripts.data.SceneGroup;
-import emu.grasscutter.scripts.data.SceneMonster;
 import emu.grasscutter.server.packet.send.PacketGadgetAutoPickDropInfoNotify;
 import emu.grasscutter.server.packet.send.PacketGadgetInteractRsp;
 import emu.grasscutter.server.packet.send.PacketSceneEntityAppearNotify;
 import emu.grasscutter.server.packet.send.PacketWorldChestOpenNotify;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * World chests + world-boss trounce blossoms. When DropTable misses ChestDrop ids,
- * falls back to InvestigationMonster reward preview.
+ * World chests and world-boss trounce blossoms. Boss rewards must come from
+ * an authoritative drop table; reward previews are never grant data.
  */
 public class GadgetChest extends GadgetContent {
     private static final int CHEST_OPENED_STATE = 102;
     private boolean ordinaryClaimed;
+    private final String ordinarySpawnId = UUID.randomUUID().toString();
     // Boss flowers: every player near the flower when it first appears claims once.
     private volatile List<Integer> bossUids;
     /**
@@ -58,6 +57,8 @@ public class GadgetChest extends GadgetContent {
      */
     private static final double BOSS_CLAIM_RANGE = 100;
     private final Set<Integer> claimedBossUids = ConcurrentHashMap.newKeySet();
+    // One durable receipt identity per flower spawn; rotate only after proven unpaid attempts.
+    private String bossClaimOperationId = UUID.randomUUID().toString();
 
     public GadgetChest(EntityGadget gadget) {
         super(gadget);
@@ -66,78 +67,80 @@ public class GadgetChest extends GadgetContent {
     @Override
     public synchronized boolean onInteract(
             Player player, GadgetInteractReqOuterClass.GadgetInteractReq req) {
+        var blossomManager = getGadget().getScene().getBlossomManager();
+        if (blossomManager.hasRewardChest(getGadget())) {
+            SceneGadget meta = resolveChestMeta();
+            if (meta == null || meta.boss_chest == null
+                    || finishIfAbandoned(player, meta) || !canClaimBossFlower(player)) {
+                return false;
+            }
+            if (req.getOpType() == InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START) {
+                player.sendPacket(
+                        new PacketGadgetInteractRsp(
+                                getGadget(),
+                                InteractTypeOuterClass.InteractType.InteractType_INTERACT_OPEN_CHEST,
+                                InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START));
+                return false;
+            }
+            var rewards = blossomManager.claimReward(player, getGadget(),
+                    req.getResinCostType()
+                            == ResinCostTypeOuterClass.ResinCostType.ResinCostType_CONDENSE,
+                    () -> claimedBossUids.add(player.getUid()));
+            if (rewards != null) {
+                finishBossClaim(player, meta);
+                player.sendPacket(new PacketGadgetAutoPickDropInfoNotify(rewards));
+            }
+            return false;
+        }
+        // World-boss flowers have exactly one claim route, independent of script mode.
+        // Weekly dungeon reward statues have their own native claim flow.
+        SceneGadget bossMeta = resolveChestMeta();
+        if (bossMeta != null && bossMeta.boss_chest != null
+                && getGadget().getScene().getSceneType() != SceneType.SCENE_DUNGEON) {
+            if (finishIfAbandoned(player, bossMeta) || !canClaimBossFlower(player)) {
+                return false;
+            }
+            if (req.getOpType() == InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START) {
+                player.sendPacket(
+                        new PacketGadgetInteractRsp(
+                                getGadget(),
+                                InteractTypeOuterClass.InteractType.InteractType_INTERACT_OPEN_CHEST,
+                                InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START));
+                return false;
+            }
+            int cost = bossMeta.boss_chest.resin;
+            if (cost <= 0) {
+                throw new IllegalStateException(
+                        "World boss flower has no native resin cost: " + getGadget().getGroupId());
+            }
+            boolean granted;
+            try {
+                granted = grantWorldBossReward(player, bossMeta, cost);
+            } catch (RuntimeException e) {
+                Grasscutter.getLogger().error(
+                        "World boss reward failed group={} uid={} tag={}",
+                        getGadget().getGroupId(), player.getUid(), bossMeta.drop_tag, e);
+                return false;
+            }
+            if (!granted) return false;
+            // Battle-pass bookkeeping must not turn an already-paid claim into a retry.
+            try {
+                var battlePass = player.getBattlePassManager();
+                if (battlePass != null) {
+                    battlePass.triggerMission(
+                            WatcherTriggerType.TRIGGER_WORLD_BOSS_REWARD,
+                            bossMeta.boss_chest.monster_config_id, 1);
+                }
+            } catch (RuntimeException e) {
+                Grasscutter.getLogger().warn(
+                        "World boss battle-pass bookkeeping failed uid={}", player.getUid(), e);
+            }
+            finishBossClaim(player, bossMeta);
+            return false;
+        }
         if (Grasscutter.getConfig().server.game.enableScriptInBigWorld) {
             SceneGadget meta = resolveChestMeta();
             DropSystem dropSystem = player.getServer().getDropSystem();
-            if (meta != null && meta.boss_chest != null) {
-                if (finishIfAbandoned(player, meta)) {
-                    return false;
-                }
-                if (!canClaimBossFlower(player)) {
-                    return false;
-                }
-                if (req.getOpType() == InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START) {
-                    player.sendPacket(
-                            new PacketGadgetInteractRsp(
-                                    getGadget(),
-                                    InteractTypeOuterClass.InteractType.InteractType_INTERACT_OPEN_CHEST,
-                                    InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START));
-                    return false;
-                }
-                int resinCost = meta.boss_chest.resin > 0 ? meta.boss_chest.resin : 40;
-                boolean spent = player.getResinManager().useResin(resinCost);
-                boolean ok = false;
-                if (spent) {
-                    try {
-                        if (meta.drop_tag != null) {
-                            ok = dropSystem.handleBossChestDrop(meta.drop_tag, player);
-                        }
-                    } catch (Throwable t) {
-                        player.getResinManager().addResin(resinCost);
-                        Grasscutter.getLogger()
-                                .warn(
-                                        "Boss chest drop threw group={} drop_tag={} uid={}",
-                                        getGadget().getGroupId(),
-                                        meta.drop_tag,
-                                        player.getUid(),
-                                        t);
-                        return false;
-                    }
-                    if (!ok) {
-                        ok = grantBossChestFallback(player, meta);
-                    }
-                }
-                if (ok) {
-                    try {
-                        player
-                                .getBattlePassManager()
-                                .triggerMission(
-                                        WatcherTriggerType.TRIGGER_WORLD_BOSS_REWARD,
-                                        meta.boss_chest.monster_config_id,
-                                        1);
-                    } catch (Throwable ignored) {
-                    }
-                    finishBossClaim(player, meta);
-                    Grasscutter.getLogger()
-                            .info(
-                                    "Trounce flower claimed uid={} group={} tag={}",
-                                    player.getUid(),
-                                    getGadget().getGroupId(),
-                                    meta.drop_tag);
-                    return false;
-                }
-                if (spent) {
-                    player.getResinManager().addResin(resinCost);
-                }
-                Grasscutter.getLogger()
-                        .warn(
-                                "Trounce flower claim failed uid={} group={} tag={} spent={}",
-                                player.getUid(),
-                                getGadget().getGroupId(),
-                                meta.drop_tag,
-                                spent);
-                return false;
-            }
             if (!canOpenOrdinary(player)) {
                 return false;
             }
@@ -149,7 +152,7 @@ public class GadgetChest extends GadgetContent {
                                 InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START));
                 return false;
             }
-            grantOrdinaryChestLoot(player);
+            if (!grantOrdinaryChestLoot(player)) return false;
             finishOpen(player, meta);
             return false;
         }
@@ -174,7 +177,7 @@ public class GadgetChest extends GadgetContent {
                                 InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START));
                 return false;
             }
-            grantOrdinaryChestLoot(player);
+            if (!grantOrdinaryChestLoot(player)) return false;
             finishOpen(player, null);
             return false;
         }
@@ -195,11 +198,11 @@ public class GadgetChest extends GadgetContent {
         boolean success;
         if (handler instanceof BossChestInteractHandler bossHandler) {
             var gadgetMeta = getGadget().getMetaGadget();
-            boolean bossMeta = gadgetMeta != null && gadgetMeta.boss_chest != null;
-            if (bossMeta && finishIfAbandoned(player, gadgetMeta)) {
+            boolean bossChestPresent = gadgetMeta != null && gadgetMeta.boss_chest != null;
+            if (bossChestPresent && finishIfAbandoned(player, gadgetMeta)) {
                 return false;
             }
-            if (bossMeta && !canClaimBossFlower(player)) {
+            if (bossChestPresent && !canClaimBossFlower(player)) {
                 return false;
             }
             success =
@@ -209,8 +212,7 @@ public class GadgetChest extends GadgetContent {
                             req.getResinCostType()
                                     == ResinCostTypeOuterClass.ResinCostType.ResinCostType_CONDENSE);
         } else {
-            grantOrdinaryChestLoot(player);
-            success = true;
+            success = grantOrdinaryChestLoot(player);
         }
         if (!success) {
             return false;
@@ -290,8 +292,7 @@ public class GadgetChest extends GadgetContent {
         return allClaimed;
     }
 
-    private void grantOrdinaryChestLoot(Player player) {
-        ordinaryClaimed = true;
+    private boolean grantOrdinaryChestLoot(Player player) {
         EntityGadget gadget = getGadget();
         SceneGadget meta = resolveChestMeta();
         if (meta != null && meta.chest_drop_id > 0) {
@@ -302,15 +303,86 @@ public class GadgetChest extends GadgetContent {
                             || dropSystem.hasQuestItemDrop(meta.chest_drop_id))
                     && dropSystem.handleChestDrop(
                             meta.chest_drop_id, Math.max(1, meta.drop_count), gadget)) {
-                return;
+                ordinaryClaimed = true;
+                return true;
             }
         }
-        WorldChestLootHelper.grant(player, gadget);
+        String identity = gadget.getGroupId() > 0 && gadget.getConfigId() > 0
+                ? gadget.getScene().getId() + "." + gadget.getGroupId() + "." + gadget.getConfigId()
+                : "spawn." + ordinarySpawnId;
+        return WorldChestLootHelper.grant(player, gadget, "chest." + identity,
+                () -> ordinaryClaimed = true);
     }
 
-    protected boolean grantBossChestFallback(Player player, SceneGadget meta) {
-        return emu.grasscutter.game.drop.WorldBossChestLootHelper.grant(
-                player, meta, getGadget().getGroupId());
+    /** Roll first, validate the whole reward batch, then charge once and grant. */
+    protected boolean grantWorldBossReward(Player player, SceneGadget meta, int resinCost) {
+        // Some spawned boss flowers omit drop_tag even though their native group
+        // has a verified mapping in boss-drop-tags.json.
+        String tag = meta.drop_tag;
+        if (tag == null || tag.isBlank()) {
+            tag = emu.grasscutter.game.drop.BossChestDropTagResolver.resolve(
+                    getGadget().getGroupId(),
+                    meta.boss_chest == null ? 0 : meta.boss_chest.monster_config_id);
+        }
+        if (tag == null || tag.isBlank()) {
+            throw new IllegalStateException(
+                    "World boss chest has no source-backed drop identity: " + getGadget().getGroupId());
+        }
+        if (resinCost <= 0) {
+            throw new IllegalArgumentException("World boss has no payable resin cost");
+        }
+        List<GameItem> items = player.getServer().getDropSystem()
+                .rollBossChestDrop(tag, player.getWorldLevel());
+        // Like dungeon claims, persist intent before charging. A paid but interrupted
+        // grant is never retried blindly: the receipt remains for reconciliation.
+        var journal = new RewardGrantJournal();
+        var receipt = new RewardGrantJournal.Key(
+                RewardGrantJournal.Source.WORLD_BOSS, player.getUid(),
+                "flower." + getGadget().getScene().getId() + "." + getGadget().getGroupId()
+                        + "." + bossClaimOperationId);
+        var intended = items.stream().map(item -> new RewardGrantJournal.Reward(
+                item.getItemId(), item.getCount(), item.getLevel())).toList();
+        var debits = Configuration.GAME_OPTIONS.resinOptions.resinUsage
+                ? List.of(new RewardGrantJournal.Debit(106, resinCost)) : List.<RewardGrantJournal.Debit>of();
+        var result = player.getInventory().addItems(
+                items, ActionReason.OpenWorldBossChest,
+                emu.grasscutter.game.inventory.InventoryAddPolicy.ALL_OR_NOTHING,
+                () -> {
+                    if (!canClaimBossFlower(player)
+                            || (Configuration.GAME_OPTIONS.resinOptions.resinUsage
+                                    && player.getProperty(PlayerProperty.PROP_PLAYER_RESIN) < resinCost)
+                            || !journal.prepare(receipt, intended, debits)) {
+                        return false;
+                    }
+                    if (player.getResinManager().useResin(resinCost)) {
+                        return true;
+                    }
+                    // useResin returning false proves that no charge took place.
+                    journal.abortUnpaid(receipt);
+                    bossClaimOperationId = UUID.randomUUID().toString();
+                    return false;
+                },
+                () -> {
+                    // This is before inventory writes, and cannot be undone safely.
+                    claimedBossUids.add(player.getUid());
+                    journal.confirm(receipt);
+                });
+        if (!result.allAccepted()) {
+            Grasscutter.getLogger().warn(
+                    "World boss reward refused group={} tag={} uid={} statuses={}",
+                    getGadget().getGroupId(), meta.drop_tag, player.getUid(),
+                    result.entries().stream().map(entry -> entry.status()).toList());
+            return false;
+        }
+        try {
+            journal.complete(receipt);
+        } catch (RuntimeException e) {
+            Grasscutter.getLogger().error(
+                    "World boss delivered but receipt remains unresolved uid={} receipt={}",
+                    player.getUid(), receipt.storageId(), e);
+        }
+        player.sendPacket(new PacketGadgetAutoPickDropInfoNotify(items));
+        return true;
     }
 
     private void finishOpen(Player player, SceneGadget sceneGadget) {

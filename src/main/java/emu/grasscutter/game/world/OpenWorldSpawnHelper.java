@@ -326,16 +326,11 @@ public final class OpenWorldSpawnHelper {
     }
 
     public static void onMonsterKilled(EntityMonster entityMonster) {
-        if (entityMonster != null) {
-            try {
-                WorldBossSpawnHelper.onWorldBossKilled(entityMonster);
-                if (WorldBossSpawnHelper.isWorldBossGroup(entityMonster.getGroupId())) {
-                    return;
-                }
-            }
-            catch (Throwable throwable) {
-                // empty catch block
-            }
+        // Boss death/flower handling runs first in EntityMonster.onDeath so failures
+        // in quests or scripted challenges cannot suppress the claimable flower.
+        if (entityMonster != null
+                && WorldBossSpawnHelper.isWorldBossGroup(entityMonster.getGroupId())) {
+            return;
         }
         if (entityMonster == null) {
             return;

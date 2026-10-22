@@ -10,6 +10,9 @@ import emu.grasscutter.command.CommandOutput;
 import emu.grasscutter.data.GameData;
 import emu.grasscutter.data.GameDepot;
 import emu.grasscutter.data.NameIndex;
+import emu.grasscutter.data.GenshinResourceIds;
+import emu.grasscutter.data.ResourceId;
+import emu.grasscutter.data.ResourceRegistry;
 import emu.grasscutter.data.excels.ItemData;
 import emu.grasscutter.data.excels.avatar.AvatarData;
 import emu.grasscutter.data.excels.reliquary.ReliquaryAffixData;
@@ -131,7 +134,25 @@ public final class GiveCommand implements CommandHandler {
                 }
             }
 
+            if (param.recipeId > 0) {
+                if (amount != 1) {
+                    CommandOutput.sendMessage(sender, "A cooking recipe is unlocked once; --amount must be 1.");
+                    return;
+                }
+                if (!targetPlayer.getCookingManager().unlockRecipe(param.recipeId)) {
+                    CommandOutput.sendMessage(sender, "Cooking recipe already unlocked: " + target);
+                    return;
+                }
+                CommandOutput.sendTranslatedMessage(
+                        sender, "commands.give.given", 1, target, targetPlayer.getUid());
+                return;
+            }
+
             if (param.avatarData != null) {
+                if (target.startsWith("genshin.avatar.") && amount != 1) {
+                    CommandOutput.sendMessage(sender, "An avatar is granted once; --amount must be 1.");
+                    return;
+                }
                 Avatar owned = targetPlayer.getAvatars().getAvatarById(param.avatarData.getId());
                 if (owned != null) updateAvatar(targetPlayer, owned, param);
                 else targetPlayer.addAvatar(makeAvatar(param));
@@ -192,17 +213,45 @@ public final class GiveCommand implements CommandHandler {
 
     private static boolean resolveTarget(
             Player sender, String input, GiveItemParameters param) {
-        try {
-            param.id = Integer.parseInt(input);
-        } catch (NumberFormatException ignored) {
-            var rest = new ArrayList<String>();
-            param.setPieces = NameIndex.resolveRelicSet(input, rest);
-            if (!param.setPieces.isEmpty()) param.id = param.setPieces.get(0);
-            else param.id = NameIndex.resolveRelic(input, rest);
-            if (param.id == 0) param.id = NameIndex.resolve(input, rest);
-            if (param.id == 0) {
-                CommandOutput.sendTranslatedMessage(sender, "commands.generic.invalid.itemId");
+        if (input.startsWith("genshin.")) {
+            try {
+                ResourceId resource = ResourceId.parse(input);
+                String resourceType = resource.size() > 1 ? resource.segment(1) : "";
+                // Artifact-set, avatar and cooking-definition identifiers are separate
+                // command domains. A fully specified inventory item always uses the
+                // exact same dictionary as LootCSS and loot.yaml.
+                boolean artifactSet = "artifact".equals(resourceType) && resource.size() == 3;
+                boolean cookingDefinition = "recipe".equals(resourceType)
+                        && resource.size() == 3;
+                int nativeId = artifactSet || cookingDefinition || "avatar".equals(resourceType)
+                        ? GenshinResourceIds.current().resolve(input)
+                        : ResourceRegistry.current().resolve(input);
+                if (artifactSet) {
+                    param.setPieces = NameIndex.bestPiecesForSet(nativeId);
+                    param.id = param.setPieces.get(0);
+                } else if (cookingDefinition) {
+                    param.recipeId = nativeId;
+                    return true;
+                } else {
+                    param.id = nativeId;
+                }
+            } catch (IllegalArgumentException e) {
+                CommandOutput.sendMessage(sender, "Invalid resource: " + e.getMessage());
                 return false;
+            }
+        } else {
+            try {
+                param.id = Integer.parseInt(input);
+            } catch (NumberFormatException ignored) {
+                var rest = new ArrayList<String>();
+                param.setPieces = NameIndex.resolveRelicSet(input, rest);
+                if (!param.setPieces.isEmpty()) param.id = param.setPieces.get(0);
+                else param.id = NameIndex.resolveRelic(input, rest);
+                if (param.id == 0) param.id = NameIndex.resolve(input, rest);
+                if (param.id == 0) {
+                    CommandOutput.sendTranslatedMessage(sender, "commands.generic.invalid.itemId");
+                    return false;
+                }
             }
         }
 
@@ -471,6 +520,7 @@ public final class GiveCommand implements CommandHandler {
         private List<Integer> setPieces = List.of();
         private ItemData data;
         private AvatarData avatarData;
+        private int recipeId;
         private boolean lvlGiven;
         private boolean constellationGiven;
         private boolean skillLevelGiven;

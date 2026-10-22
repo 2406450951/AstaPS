@@ -13,9 +13,15 @@ final class DomainClaimPaymentPreflight {
     private DomainClaimPaymentPreflight() {}
 
     static boolean canPay(Player player, DungeonData data, ClaimMode mode) {
+        if (data == null) return false;
+        return canPay(player, data, mode, data.getStatueCostID(), data.getStatueCostCount());
+    }
+
+    static boolean canPay(
+            Player player, DungeonData data, ClaimMode mode, int costId, int costCount) {
         if (player == null || data == null || mode == null) return false;
         return affordable(
-                mode, data.getStatueCostID(), data.getStatueCostCount(),
+                mode, costId, costCount,
                 GAME_OPTIONS.resinOptions.resinUsage,
                 player.getProperty(PlayerProperty.PROP_PLAYER_RESIN),
                 player.getInventory().getItemCountById(

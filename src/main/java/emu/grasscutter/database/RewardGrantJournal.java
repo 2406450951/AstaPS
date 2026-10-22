@@ -24,7 +24,7 @@ import org.bson.Document;
  */
 public final class RewardGrantJournal {
     public enum Source {
-        MAIL, SHOP, BATTLE_PASS, DOMAIN, GACHA
+        MAIL, SHOP, BATTLE_PASS, DOMAIN, WORLD_BOSS, WORLD_CHEST, BLOSSOM, TRANSPOINT, GACHA
     }
 
     public enum Stage {
@@ -87,6 +87,8 @@ public final class RewardGrantJournal {
         boolean transition(Key key, Stage from, Stage to);
 
         List<Receipt> unresolved();
+
+        boolean completed(Key key);
     }
 
     private final Store store;
@@ -144,9 +146,19 @@ public final class RewardGrantJournal {
         return List.copyOf(store.unresolved());
     }
 
+    public boolean completed(Key key) {
+        return store.completed(Objects.requireNonNull(key));
+    }
+
     private static final class MongoStore implements Store {
         private com.mongodb.client.MongoCollection<Document> collection() {
             return DatabaseManager.getGameDatabase().getCollection("reward_grant_receipts");
+        }
+
+        @Override
+        public boolean completed(Key key) {
+            return collection().find(Filters.and(Filters.eq("_id", key.storageId()),
+                    Filters.eq("stage", Stage.COMPLETED.name()))).first() != null;
         }
 
         @Override

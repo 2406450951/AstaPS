@@ -48,19 +48,6 @@ public class WorldDataSystem extends BaseGameSystem {
         return chestInteractHandlerMap;
     }
 
-    public RewardPreviewData getRewardByBossId(int monsterId) {
-        var investigationMonsterData =
-                GameData.getInvestigationMonsterDataMap().values().parallelStream()
-                        .filter(imd -> imd.getMonsterIdList() != null && !imd.getMonsterIdList().isEmpty())
-                        .filter(imd -> imd.getMonsterIdList().contains(monsterId))
-                        .findFirst();
-
-        return investigationMonsterData
-                .map(
-                        monsterData -> GameData.getRewardPreviewDataMap().get(monsterData.getRewardPreviewId()))
-                .orElse(null);
-    }
-
     private SceneGroup getInvestigationGroup(int sceneId, int groupId) {
         var key = sceneId + "_" + groupId;
         if (!sceneInvestigationGroupMap.containsKey(key)) {

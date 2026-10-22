@@ -22,6 +22,20 @@ public enum BlossomType {
         this.blossomChestId = blossomChestId;
     }
 
+    public String rewardKind() {
+        return switch (this) {
+            case GOLD -> "wealth";
+            case BLUE -> "revelation";
+        };
+    }
+
+    public String refreshType() {
+        return switch (this) {
+            case GOLD -> "BLOSSOM_REFRESH_SCOIN";
+            case BLUE -> "BLOSSOM_REFRESH_EXP";
+        };
+    }
+
     public static BlossomType valueOf(int i) {
         return map.get(i);
     }

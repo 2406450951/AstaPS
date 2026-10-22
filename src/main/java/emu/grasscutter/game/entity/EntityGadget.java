@@ -240,6 +240,12 @@ public class EntityGadget extends EntityBaseGadget {
 
     // TODO refactor
     public void buildContent() {
+        // Trounce flowers may use a generic GadgetData type. The script's
+        // boss_chest metadata is authoritative for claim interaction and proto.
+        if (this.metaGadget != null && this.metaGadget.boss_chest != null) {
+            if (!(this.content instanceof GadgetChest)) this.content = new GadgetChest(this);
+            return;
+        }
         emu.grasscutter.game.quest.LiyueTeapotDungeonSupport.prepareCobweb(this);
         if (emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell.matches(this)) {
             if (!(this.content instanceof emu.grasscutter.game.entity.gadget.GadgetLiyueDustBell))
@@ -830,6 +836,12 @@ public class EntityGadget extends EntityBaseGadget {
             gadgetInfo.setOwnerEntityId(owner.getId());
         }
 
+        // Script-spawned flowers can acquire their metadata after buildContent().
+        // Ensure their network entity advertises the BossChestInfo and eligibility.
+        if (this.metaGadget != null && this.metaGadget.boss_chest != null
+                && !(this.content instanceof GadgetChest)) {
+            this.content = new GadgetChest(this);
+        }
         if (this.getContent() != null) {
             this.getContent().onBuildProto(gadgetInfo);
         }

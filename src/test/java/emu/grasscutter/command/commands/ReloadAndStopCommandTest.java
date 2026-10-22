@@ -11,14 +11,14 @@ import picocli.CommandLine;
 public final class ReloadAndStopCommandTest {
     @Test
     void reloadModulesAreNamedAndKeepLegacyOrder() {
-        assertEquals(List.of("config", "language", "gacha", "shop", "combine"),
+        assertEquals(List.of("config", "language", "gacha", "shop", "combine", "rewards"),
                 ReloadCommand.supportedModules());
         var command = new ReloadCommand().createCommandLine(null, null);
-        assertEquals(Set.of("all", "config", "language", "gacha", "shop", "combine"),
+        assertEquals(Set.of("all", "config", "language", "gacha", "shop", "combine", "rewards"),
                 command.getSubcommands().keySet());
         assertEquals("server.reload", ReloadCommand.class.getAnnotation(Command.class).permission());
         assertDoesNotThrow(() -> command.parseArgs());
-        for (String name : List.of("all", "config", "language", "gacha", "shop", "combine")) {
+        for (String name : List.of("all", "config", "language", "gacha", "shop", "combine", "rewards")) {
             var cli = new ReloadCommand().createCommandLine(null, null);
             assertDoesNotThrow(() -> cli.parseArgs(name), name);
             assertTrue(cli.getSubcommands().get(name).getUsageMessage().contains("reload"));

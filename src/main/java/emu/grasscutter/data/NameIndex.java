@@ -130,6 +130,20 @@ public final class NameIndex {
         return pieces;
     }
 
+    /** Resolve all five native slots in one set, with no missing-piece fallback. */
+    public static List<Integer> bestPiecesForSet(int setId) {
+        var pieces = new ArrayList<Integer>();
+        for (var slot : WHOLE_SET) {
+            int piece = bestPiece(setId, slot);
+            if (piece <= 0) {
+                throw new IllegalArgumentException("Incomplete artifact set " + setId
+                        + ": missing slot " + slot);
+            }
+            pieces.add(piece);
+        }
+        return List.copyOf(pieces);
+    }
+
     /**
      * How to write an id in a message people read: "Gladiator's Nostalgia (23414)".
      *

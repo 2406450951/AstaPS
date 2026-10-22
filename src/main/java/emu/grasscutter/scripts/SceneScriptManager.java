@@ -1421,6 +1421,12 @@ public class SceneScriptManager {
     }
 
     public void removeMonstersInGroup(SceneGroup group) {
+        // Java-created challenges (including ley-line outcrops) use an ephemeral
+        // SceneGroup with no Lua monster definitions. Nothing remains to remove
+        // once the last spawned challenge monster dies.
+        if (group == null || group.monsters == null || group.monsters.isEmpty()) {
+            return;
+        }
         var configSet =
                 group.monsters.values().stream().map(m -> m.config_id).collect(Collectors.toSet());
         var toRemove =

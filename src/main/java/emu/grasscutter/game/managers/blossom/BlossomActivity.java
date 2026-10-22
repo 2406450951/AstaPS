@@ -21,6 +21,16 @@ public final class BlossomActivity {
     private int generatedCount;
     private final int worldLevel;
     private boolean pass = false;
+    private final Set<Integer> rewardClaimants = new HashSet<>();
+    private final Map<Integer, String> rewardOperations = new HashMap<>();
+
+    boolean rewardClaimed(int uid) { return rewardClaimants.contains(uid); }
+    void confirmReward(int uid) { rewardClaimants.add(uid); }
+    String rewardOperation(int uid) {
+        return rewardOperations.computeIfAbsent(uid, ignored -> UUID.randomUUID().toString());
+    }
+    void resetUnpaidReward(int uid) { rewardOperations.remove(uid); }
+
     private final List<EntityMonster> activeMonsters = new ArrayList<>();
     private final Queue<Integer> candidateMonsters = new ArrayDeque<>();
     private static final int BLOOMING_GADGET_ID = 70210109;

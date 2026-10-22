@@ -64,6 +64,9 @@ public final class BossFlowerGuard {
                 catch (Throwable throwable) {
                     // empty catch block
                 }
+                if (bl2 && bl3 && (sceneGadget == null || sceneGadget.boss_chest == null)) {
+                    sceneGadget = WorldBossSpawnHelper.ensureBossChestGadgetMeta(entityGadget);
+                }
                 boolean bl4 = sceneGadget != null && sceneGadget.boss_chest != null;
                 int n4 = 0;
                 try {
@@ -74,7 +77,7 @@ public final class BossFlowerGuard {
                 }
                 boolean bl5 = bl = n4 == 102;
                 if (bl3) {
-                    if (bl) continue;
+                    if (bl || (bl2 && !bl4)) continue;
                     if (bl2) {
                         return true;
                     }

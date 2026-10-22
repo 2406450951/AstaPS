@@ -8,6 +8,7 @@ import emu.grasscutter.game.entity.*;
 import emu.grasscutter.game.inventory.*;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.ActionReason;
+import emu.grasscutter.game.reward.RewardConfiguration;
 import emu.grasscutter.scripts.data.SceneMonster;
 import emu.grasscutter.server.game.*;
 import emu.grasscutter.server.packet.send.*;
@@ -72,6 +73,25 @@ public final class DropSystem extends BaseGameSystem {
         }
         if (dropData == null) return 0;
         return dropData.getDropId();
+    }
+
+    /**
+     * Weekly Boss sources live in native ChestDrop (sourceType 35), not in the
+     * DungeonExcel statueDrop column. Return candidate native roots for the
+     * dungeon enemy level; the caller must independently verify boss identity.
+     */
+    public Map<String, Integer> weeklyBossRewardRoots(int level) {
+        if (level <= 0) return Map.of();
+        var roots = new java.util.TreeMap<String, Integer>();
+        chestReward.forEach((tag, entries) -> {
+            if (entries.stream().noneMatch(entry ->
+                    entry instanceof ChestDropData chest && chest.getSourceType() == 35)) {
+                return;
+            }
+            int root = queryDropData(tag, level, chestReward);
+            if (hasUsableDungeonRewardRoot(root)) roots.put(tag, root);
+        });
+        return Map.copyOf(roots);
     }
 
     /** Use native roots only when they contain at least one positive-weight entry. */
@@ -319,37 +339,71 @@ public final class DropSystem extends BaseGameSystem {
         return handleChestDrop(dropId, 1, bornFrom);
     }
 
-    public boolean handleBossChestDrop(String dropTag, Player player) {
-        int wl = player.getWorldLevel();
-        if (wl < 0) {
-            wl = 0;
+    /**
+     * Return native boss drops without granting, rewriting artifacts, or using preview data.
+     * The caller authorizes resin and inventory as one admission operation.
+     */
+    public List<GameItem> rollBossChestDrop(String dropTag, int worldLevel) {
+        if (dropTag == null || dropTag.isBlank()
+                || worldLevel < 0 || worldLevel >= bossLevel.length) {
+            throw new IllegalArgumentException(
+                    "Unidentified boss tag/world level: " + dropTag + "/" + worldLevel);
         }
-        if (wl >= bossLevel.length) {
-            wl = bossLevel.length - 1;
+        var configured = RewardConfiguration.current().rollWorldBoss(
+                dropTag, bossLevel[worldLevel], rand);
+        if (configured != null) {
+            List<GameItem> items = new ArrayList<>();
+            configured.forEach((id, amount) -> {
+                if (amount > 0) appendNativeDrop(id, amount, items);
+            });
+            if (items.isEmpty()) {
+                throw new IllegalStateException(
+                        "Empty configured world boss rewards: " + dropTag
+                                + " WL" + worldLevel);
+            }
+            return items;
         }
-        int dropId = queryDropData(dropTag, bossLevel[wl], chestReward);
-        if (dropId == 0 || !dropTable.containsKey(dropId)) {
-            Grasscutter.getLogger()
-                    .warn(
-                            "handleBossChestDrop missing dropTable id={} tag={} wl={}",
-                            dropId,
-                            dropTag,
-                            wl);
-            return false;
+        int dropId = queryDropData(dropTag, bossLevel[worldLevel], chestReward);
+        if (dropId <= 0 || !dropTable.containsKey(dropId)) {
+            throw new IllegalStateException(
+                    "Missing native boss drop table: " + dropTag
+                            + " WL" + worldLevel + " root=" + dropId);
         }
         var dropData = dropTable.get(dropId);
+        if (isEmptyDropTable(dropData)) {
+            throw new IllegalStateException(
+                    "Empty native boss drop table: " + dropTag + " WL" + worldLevel);
+        }
         List<GameItem> items = new ArrayList<>();
         processDrop(dropData, 1, items);
         if (items.isEmpty()) {
-            return false;
+            throw new IllegalStateException(
+                    "Native boss drop rolled no rewards: " + dropTag + " WL" + worldLevel);
         }
-        try {
-            BossChestInstructorFilter.apply(items);
-        } catch (Throwable ignored) {
+        return items;
+    }
+
+    /**
+     * Equipment constructors represent one instance, even when passed count > 1.
+     * Expand each roll before constructing it, rather than merging distinct equipment.
+     */
+    static void appendNativeDrop(int id, int amount, List<GameItem> items) {
+        var data = GameData.getItemDataMap().get(id);
+        if (data == null) {
+            throw new IllegalStateException("Native drop references unknown item: " + id);
         }
-        player.getInventory().addItems(items, ActionReason.OpenWorldBossChest);
-        player.sendPacket(new PacketGadgetAutoPickDropInfoNotify(items));
-        return true;
+        if (data.getItemType() == ItemType.ITEM_WEAPON
+                || data.getItemType() == ItemType.ITEM_RELIQUARY) {
+            for (int i = 0; i < amount; i++) items.add(new GameItem(data, 1));
+            return;
+        }
+        for (GameItem item : items) {
+            if (item.getItemId() == id) {
+                item.setCount(Math.addExact(item.getCount(), amount));
+                return;
+            }
+        }
+        items.add(new GameItem(data, amount));
     }
 
     private void processDrop(DropTableData dropData, int count, List<GameItem> items) {
@@ -380,15 +434,7 @@ public final class DropSystem extends BaseGameSystem {
                     if (dropTable.containsKey(id)) {
                         processDrop(dropTable.get(id), amount, items);
                     } else {
-                        boolean flag = true;
-                        for (var j : items) {
-                            if (j.getItemId() == id) {
-                                j.setCount(j.getCount() + amount);
-                                flag = false;
-                                break;
-                            }
-                        }
-                        if (flag) items.add(new GameItem(id, amount));
+                        appendNativeDrop(id, amount, items);
                     }
                     break;
                 }
@@ -403,15 +449,7 @@ public final class DropSystem extends BaseGameSystem {
                     if (dropTable.containsKey(id)) {
                         processDrop(dropTable.get(id), amount, items);
                     } else {
-                        boolean flag = true;
-                        for (var j : items) {
-                            if (j.getItemId() == id) {
-                                j.setCount(j.getCount() + amount);
-                                flag = false;
-                                break;
-                            }
-                        }
-                        if (flag) items.add(new GameItem(id, amount));
+                        appendNativeDrop(id, amount, items);
                     }
                 }
             }

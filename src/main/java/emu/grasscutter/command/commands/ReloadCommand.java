@@ -8,6 +8,7 @@ import emu.grasscutter.command.CommandHandler;
 import emu.grasscutter.command.CommandOutput;
 import emu.grasscutter.game.combine.CombineManger;
 import emu.grasscutter.game.player.Player;
+import emu.grasscutter.game.reward.RewardConfiguration;
 import java.util.Arrays;
 import java.util.List;
 import picocli.CommandLine;
@@ -27,7 +28,8 @@ public final class ReloadCommand implements CommandHandler {
         LANGUAGE("language", Grasscutter::loadLanguage),
         GACHA("gacha", () -> Grasscutter.getGameServer().getGachaSystem().load()),
         SHOP("shop", () -> Grasscutter.getGameServer().getShopSystem().load()),
-        COMBINE("combine", CombineManger::initialize);
+        COMBINE("combine", CombineManger::initialize),
+        REWARDS("rewards", RewardConfiguration::load);
 
         final String command;
         private final Runnable action;

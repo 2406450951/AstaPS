@@ -1,9 +1,13 @@
 package emu.grasscutter.game.managers.blossom;
 
 import emu.grasscutter.Grasscutter;
+import emu.grasscutter.database.RewardGrantJournal;
+import emu.grasscutter.game.reward.RewardClaimFlow;
+import emu.grasscutter.config.Configuration;
 import emu.grasscutter.data.*;
-import emu.grasscutter.data.common.ItemParamData;
-import emu.grasscutter.data.excels.RewardPreviewData;
+import emu.grasscutter.game.inventory.InventoryAddPolicy;
+import emu.grasscutter.game.props.ActionReason;
+import emu.grasscutter.game.reward.RewardConfiguration;
 import emu.grasscutter.game.entity.*;
 import emu.grasscutter.game.entity.gadget.GadgetWorktop;
 import emu.grasscutter.game.inventory.GameItem;
@@ -25,6 +29,69 @@ public class BlossomManager {
     private final List<EntityGadget> createdEntity = new ArrayList<>();
 
     private final List<SpawnDataEntry> blossomConsumed = new ArrayList<>();
+    private List<SpawnDataEntry> scriptedSpawnCandidates;
+    private final Set<SpawnDataEntry> scriptedSpawned = new HashSet<>();
+    private static final double SCRIPTED_SPAWN_RANGE = 400;
+
+    /** The regular spawn grid is bypassed while Lua scene groups are active.
+     * Populate the legacy ley-line outcrops from their authored spawn records in both modes.
+     */
+    public void ensureScriptedSpawns() {
+        if (scene.getDungeonManager() != null || scene.getPlayers().isEmpty()) return;
+        if (scriptedSpawnCandidates == null) {
+            scriptedSpawnCandidates = scriptedCandidates(GameDepot.getSpawnLists(), scene.getId());
+            long gold = scriptedSpawnCandidates.stream()
+                    .filter(entry -> BlossomType.valueOf(entry.getGadgetId()) == BlossomType.GOLD)
+                    .count();
+            long blue = scriptedSpawnCandidates.size() - gold;
+            Grasscutter.getLogger().info(
+                    "Ley-line outcrop sources scene={} wealth={} revelation={}",
+                    scene.getId(), gold, blue);
+        }
+        for (SpawnDataEntry spawn : scriptedSpawnCandidates) {
+            if (scriptedSpawned.contains(spawn) || blossomConsumed.contains(spawn)) continue;
+            boolean nearby = scene.getPlayers().stream()
+                    .anyMatch(player -> player.getPosition().computeDistance(spawn.getPos())
+                            <= SCRIPTED_SPAWN_RANGE);
+            if (!nearby) continue;
+
+            EntityGadget existing = scene.getEntities().values().stream()
+                    .filter(entity -> entity instanceof EntityGadget)
+                    .map(entity -> (EntityGadget) entity)
+                    .filter(entity -> entity.getGroupId() == spawn.getGroup().getGroupId()
+                            && entity.getConfigId() == spawn.getConfigId()
+                            && entity.getGadgetId() == spawn.getGadgetId())
+                    .findFirst().orElse(null);
+            if (existing != null) {
+                existing.setSpawnEntry(spawn);
+                initBlossom(existing);
+                scene.broadcastPacket(new emu.grasscutter.server.packet.send.PacketSceneEntityAppearNotify(
+                        existing, VisionTypeOuterClass.VisionType.VisionType_VISION_REFRESH, 0));
+            } else {
+                var gadget = new EntityGadget(
+                        scene, spawn.getGadgetId(), spawn.getPos(), spawn.getRot());
+                gadget.setGroupId(spawn.getGroup().getGroupId());
+                gadget.setConfigId(spawn.getConfigId());
+                gadget.setSpawnEntry(spawn);
+                if (spawn.getGadgetState() > 0) gadget.setState(spawn.getGadgetState());
+                initBlossom(gadget);
+                scene.addEntity(gadget);
+            }
+            scriptedSpawned.add(spawn);
+        }
+    }
+
+    /** Use existing spawn coordinates and gadget IDs, never synthetic ley-line positions. */
+    static List<SpawnDataEntry> scriptedCandidates(
+            Map<SpawnDataEntry.GridBlockId, ? extends List<SpawnDataEntry>> spawnLists,
+            int sceneId) {
+        return spawnLists.entrySet().stream()
+                .filter(entry -> entry.getKey().getSceneId() == sceneId)
+                .flatMap(entry -> entry.getValue().stream())
+                .filter(entry -> BlossomType.valueOf(entry.getGadgetId()) != null)
+                .distinct()
+                .toList();
+    }
 
     public BlossomManager(Scene scene) {
         this.scene = scene;
@@ -67,10 +134,13 @@ public class BlossomManager {
         if (BlossomType.valueOf(id) == null) {
             return;
         }
-        gadget.buildContent();
+        // Source gadget rows may carry a generic type under 7.1; a ley-line outcrop
+        // always needs a worktop to start its combat challenge.
+        GadgetWorktop gadgetWorktop = gadget.getContent() instanceof GadgetWorktop worktop
+                ? worktop : new GadgetWorktop(gadget);
+        gadget.replaceContent(gadgetWorktop);
         gadget.setState(204);
         int worldLevel = getWorldLevel();
-        GadgetWorktop gadgetWorktop = ((GadgetWorktop) gadget.getContent());
         gadgetWorktop.addWorktopOptions(new int[] {187});
         gadgetWorktop.setOnSelectWorktopOptionEvent(
                 (GadgetWorktop context, int option) -> {
@@ -119,6 +189,15 @@ public class BlossomManager {
     }
 
     public void notifyIcon() {
+        scene.broadcastPacket(new PacketBlossomBriefInfoNotify(buildBriefInfos()));
+    }
+
+    /** Sync map markers after EnterSceneDone, including when no outcrop is nearby. */
+    public void notifyIcon(Player player) {
+        player.sendPacket(new PacketBlossomBriefInfoNotify(buildBriefInfos()));
+    }
+
+    private List<BlossomBriefInfoOuterClass.BlossomBriefInfo> buildBriefInfos() {
         final int wl = getWorldLevel();
         final int worldLevel = (wl < 0) ? 0 : ((wl > 9) ? 9 : wl);
         final var worldLevelData = GameData.getWorldLevelDataMap().get(worldLevel);
@@ -128,6 +207,7 @@ public class BlossomManager {
                 .forEach(
                         (gridBlockId, spawnDataEntryList) -> {
                             int sceneId = gridBlockId.getSceneId();
+                            if (sceneId != scene.getId()) return;
                             // The block list already holds every spawn bucketed into this block, so
                             // walking out to each entry's whole group re-emitted the group once per
                             // entry - and re-emitted spawns that belong to other blocks, which then
@@ -161,7 +241,7 @@ public class BlossomManager {
                                                                 .build());
                                             });
                         });
-        scene.broadcastPacket(new PacketBlossomBriefInfoNotify(blossoms));
+        return blossoms;
     }
 
     public int getWorldLevel() {
@@ -169,46 +249,36 @@ public class BlossomManager {
     }
 
     private static Integer getPreviewReward(BlossomType type, int worldLevel) {
-        // TODO: blossoms should be based on their city
-        if (type == null) {
-            Grasscutter.getLogger().error("Illegal blossom type {}", type);
-            return null;
+        if (type == null || worldLevel < 0 || worldLevel > 9) {
+            throw new IllegalArgumentException(
+                    "Unsupported blossom type/world level: " + type + "/" + worldLevel);
         }
-
-        int blossomChestId = type.getBlossomChestId();
-        var dataMap = GameData.getBlossomRefreshExcelConfigDataMap();
-        for (var data : dataMap.values()) {
-            if (blossomChestId == data.getBlossomChestId()) {
-                var dropVecList = data.getDropVec();
-                if (dropVecList == null) {
-                    Grasscutter.getLogger()
-                            .debug("Blossom chest {} has no dropVec configured", blossomChestId);
-                    return null;
-                }
-                if (worldLevel < 0 || worldLevel >= dropVecList.length) {
-                    Grasscutter.getLogger().error("Illegal world level {}", worldLevel);
-                    return null;
-                }
-                return dropVecList[worldLevel].getPreviewReward();
+        // Both kinds have blossomChestId=1 in the native Excel rows. The actual
+        // distinction is refreshType (SCOIN vs EXP), shared across cities.
+        Integer previewId = null;
+        for (var data : GameData.getBlossomRefreshExcelConfigDataMap().values()) {
+            if (!type.refreshType().equals(data.getRefreshType())) continue;
+            var drops = data.getDropVec();
+            // Native Excel has 9 preview tiers (WL0..WL8); WL9 shares the capped WL8 preview.
+            int index = worldLevel == 9 ? 8 : worldLevel;
+            if (drops == null || drops.length <= index || drops[index] == null
+                    || drops[index].getPreviewReward() <= 0) {
+                throw new IllegalStateException(
+                        "Missing native blossom preview: " + type + " WL" + worldLevel
+                                + " refresh=" + data.getId());
             }
+            int candidate = drops[index].getPreviewReward();
+            if (previewId != null && previewId != candidate) {
+                throw new IllegalStateException(
+                        "Conflicting native blossom previews: " + type + " WL" + worldLevel);
+            }
+            previewId = candidate;
         }
-        // Missing resource rows, so every refresh would log it again (five camps at a time).
-        if (MISSING_TYPES_REPORTED.add(type)) {
-            Grasscutter.getLogger()
-                    .error(
-                            "Cannot find blossom type {} (chest {}) in BlossomRefreshExcelConfigData; its reward preview is skipped",
-                            type,
-                            blossomChestId);
-        } else {
-            Grasscutter.getLogger().debug("Cannot find blossom type {}", type);
+        if (previewId == null && MISSING_TYPES_REPORTED.add(type)) {
+            Grasscutter.getLogger().error(
+                    "Missing native blossom refresh type {} for {}", type.refreshType(), type);
         }
-        return null;
-    }
-
-    private static RewardPreviewData getRewardList(BlossomType type, int worldLevel) {
-        Integer previewReward = getPreviewReward(type, worldLevel);
-        if (previewReward == null) return null;
-        return GameData.getRewardPreviewDataMap().get((int) previewReward);
+        return previewId;
     }
 
     public boolean hasRewardChest(EntityGadget chest) {
@@ -225,49 +295,66 @@ public class BlossomManager {
                 var active = it.next();
                 if (active.getChest() == chest) {
                     it.remove();
-                    recycleGadgetEntity(List.of(active.getGadget()));
                     blossomConsumed.add(active.getGadget().getSpawnEntry());
+                    recycleGadgetEntity(List.of(active.getGadget()));
                     return;
                 }
             }
         }
     }
 
-    public List<GameItem> onReward(Player player, EntityGadget chest, boolean useCondensedResin) {
-        var resinManager = player.getResinManager();
+    /**
+     * Claim a completed ley-line flower. Roll the two rewards independently for
+     * condensed resin, preflight the complete inventory batch, then charge once.
+     * Admission/payment refusal permits retry. Ambiguous delivery failures retain a receipt.
+     */
+    public List<GameItem> claimReward(Player player, EntityGadget chest, boolean condensed,
+            Runnable confirmed) {
         synchronized (activeChests) {
-            var it = activeChests.iterator();
-            while (it.hasNext()) {
-                var activeChest = it.next();
-                if (activeChest.getChest() == chest) {
-                    boolean pay =
-                            useCondensedResin ? resinManager.useCondensedResin(1) : resinManager.useResin(20);
-                    if (pay) {
-                        int worldLevel = getWorldLevel();
-                        List<GameItem> items = new ArrayList<>();
-                        var gadget = activeChest.getGadget();
-                        var type = BlossomType.valueOf(gadget.getGadgetId());
-                        RewardPreviewData blossomRewards = getRewardList(type, worldLevel);
-                        if (blossomRewards == null) {
-                            Grasscutter.getLogger()
-                                    .error("Blossom could not support world level : " + worldLevel);
-                            return null;
+            BlossomActivity active = activeChests.stream()
+                    .filter(candidate -> candidate.getChest() == chest)
+                    .findFirst().orElse(null);
+            if (active == null || active.rewardClaimed(player.getUid())) return null;
+
+            BlossomType type = BlossomType.valueOf(active.getGadget().getGadgetId());
+            if (type == null) throw new IllegalStateException("Unknown claimed blossom type");
+            int worldLevel = getWorldLevel();
+            Map<Integer, Integer> rolled = RewardConfiguration.current().rollBlossom(
+                    type.rewardKind(), worldLevel, condensed,
+                    java.util.concurrent.ThreadLocalRandom.current());
+            var items = rolled.entrySet().stream()
+                    .map(entry -> new GameItem(entry.getKey(), entry.getValue()))
+                    .toList();
+            var resin = player.getResinManager();
+            var journal = new RewardGrantJournal();
+            var key = new RewardGrantJournal.Key(RewardGrantJournal.Source.BLOSSOM, player.getUid(),
+                    "flower." + scene.getId() + "." + active.getGadget().getGroupId() + "."
+                            + active.getGadget().getConfigId() + "." + active.rewardOperation(player.getUid()));
+            var snapshot = items.stream().map(item -> new RewardGrantJournal.Reward(
+                    item.getItemId(), item.getCount(), item.getLevel())).toList();
+            var debits = Configuration.GAME_OPTIONS.resinOptions.resinUsage
+                    ? List.of(new RewardGrantJournal.Debit(condensed ? 220007 : 106, condensed ? 1 : 20))
+                    : List.<RewardGrantJournal.Debit>of();
+            boolean accepted = RewardClaimFlow.grant(
+                    RewardClaimFlow.receipt(journal, key, snapshot, debits),
+                    new RewardClaimFlow.Delivery() {
+                        public boolean admit(java.util.function.BooleanSupplier authorize, Runnable claim) {
+                            return player.getInventory().addItems(items, ActionReason.OpenWorldBossChest,
+                                    InventoryAddPolicy.ALL_OR_NOTHING, authorize, claim).allAccepted();
                         }
-                        var rewards = blossomRewards.getPreviewItems();
-                        for (ItemParamData blossomReward : rewards) {
-                            int rewardCount = blossomReward.getCount();
-                            if (useCondensedResin) {
-                                rewardCount += blossomReward.getCount(); // Double!
-                            }
-                            items.add(new GameItem(blossomReward.getItemId(), rewardCount));
-                        }
-                        return items;
-                    }
-                    return null;
-                }
+                        public void publish() {}
+                    }, () -> condensed ? resin.useCondensedResin(1) : resin.useResin(20),
+                    () -> {
+                        active.confirmReward(player.getUid());
+                        confirmed.run();
+                    }, () -> active.resetUnpaidReward(player.getUid()));
+            if (!accepted) {
+                Grasscutter.getLogger().warn("Ley-line claim refused uid={} kind={} receipt={}",
+                        player.getUid(), type, key.storageId());
+                return null;
             }
+            return items;
         }
-        return null;
     }
 
     public static IntList getRandomMonstersID(int difficulty, int count) {

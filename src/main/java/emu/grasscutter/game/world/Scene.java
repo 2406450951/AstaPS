@@ -1257,6 +1257,7 @@ public class Scene {
             emu.grasscutter.Grasscutter.getLogger()
                     .error("OfferingSpawnHelper nearby check failed", __t);
         }
+        blossomManager.ensureScriptedSpawns();
         emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.tick(this);
     }
 
@@ -1526,23 +1527,31 @@ public class Scene {
     }
 
     public void addItemEntity(int itemId, int amount, GameEntity bornForm) {
+        addEntities(prepareItemEntities(itemId, amount, bornForm));
+    }
+
+    /** Construct and validate every pickup before any entity is added to the scene. */
+    public List<EntityItem> prepareItemEntities(int itemId, int amount, GameEntity bornFrom) {
         ItemData itemData = GameData.getItemDataMap().get(itemId);
-        if (itemData == null) {
-            return;
+        if (itemData == null || itemData.getItemType() == null || amount <= 0
+                || bornFrom == null || bornFrom.getScene() != this) {
+            throw new IllegalArgumentException("Invalid ground reward: " + itemId + " x" + amount);
         }
-        int count = Math.max(amount, 1);
+        var items = new ArrayList<EntityItem>();
         boolean split = itemData.isEquip() || isSplitGroundDropItem(itemId);
         if (split) {
-            float range = 1.5f + (.05f * count);
-            for (int i = 0; i < count; i++) {
-                Position pos = bornForm.getPosition().nearby2d(range).addZ(.9f);
-                addEntity(new EntityItem(this, null, itemData, pos, 1));
+            float range = 1.5f + (.05f * amount);
+            for (int i = 0; i < amount; i++) {
+                Position pos = bornFrom.getPosition().nearby2d(range).addZ(.9f);
+                items.add(new EntityItem(this, null, itemData, pos, 1));
             }
         } else {
-            addEntity(
-                    new EntityItem(
-                            this, null, itemData, bornForm.getPosition().clone().addZ(.9f), count));
+            items.add(new EntityItem(this, null, itemData,
+                    bornFrom.getPosition().clone().addZ(.9f), amount));
         }
+        // Force serialization before admission, so malformed pickup metadata fails before payouts.
+        items.forEach(EntityItem::toProto);
+        return List.copyOf(items);
     }
 
     public void loadNpcForPlayerEnter(Player player) {

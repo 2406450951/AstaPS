@@ -131,3 +131,6 @@ __pycache__/
 /lua/
 /webstatic/
 /keystore.p12
+
+# Editable reward configuration, populated beside the server JAR on first launch.
+/rewards/

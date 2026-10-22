@@ -547,6 +547,7 @@ public final class GameData {
     private static final Int2ObjectMap<RefreshPolicyExcelConfigData> refreshPolicyExcelConfigDataMap =
             new Int2ObjectOpenHashMap<>();
 
+    @Getter
     private static final Int2ObjectMap<AvatarPromoteData> avatarPromoteDataMap =
             new Int2ObjectOpenHashMap<>();
     private static final Int2ObjectMap<FetterData> fetterDataMap = new Int2ObjectOpenHashMap<>();

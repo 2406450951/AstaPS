@@ -35,6 +35,31 @@ final class PlayerProgressManagerTransPointStateTest {
     }
 
     @Test
+    void rejectedFirstActivationRestoresPointAndQuestLock() {
+        var unlocked = new HashSet<Integer>();
+        var locked = new HashSet<Integer>();
+        locked.add(7);
+        var change = PlayerProgressManager.applyTransPointUnlock(unlocked, locked, 7);
+        assertTrue(change.newlyUnlocked());
+        assertFalse(locked.contains(7));
+        PlayerProgressManager.revertUnrewardedTransPointUnlock(unlocked, locked, 7, change);
+        assertFalse(unlocked.contains(7));
+        assertTrue(locked.contains(7));
+        var retry = PlayerProgressManager.applyTransPointUnlock(unlocked, locked, 7);
+        assertTrue(retry.newlyUnlocked());
+    }
+
+    @Test
+    void rejectedFirstActivationWithoutQuestLockDoesNotCreateALock() {
+        var unlocked = new HashSet<Integer>();
+        var locked = new HashSet<Integer>();
+        var change = PlayerProgressManager.applyTransPointUnlock(unlocked, locked, 42);
+        PlayerProgressManager.revertUnrewardedTransPointUnlock(unlocked, locked, 42, change);
+        assertFalse(unlocked.contains(42));
+        assertFalse(locked.contains(42));
+    }
+
+    @Test
     void genuineFirstUnlockIsStillReportedAsNew() {
         var unlocked = new HashSet<Integer>();
         var forceLocked = new HashSet<Integer>();

@@ -441,13 +441,25 @@ public final class WorldBossSpawnHelper {
 
     public static void onWorldBossKilled(EntityMonster var0) {
         int var1;
-        if (var0 == null || var0.getScene() == null || !WorldBossSpawnHelper.isWorldBossGroup(var1 = var0.getGroupId())) {
+        if (var0 == null || var0.getScene() == null) return;
+        var1 = var0.getGroupId();
+        if (!WorldBossSpawnHelper.isWorldBossGroup(var1)) {
+            if (var0.getMonsterData() != null
+                    && var0.getMonsterData().getType() == emu.grasscutter.game.props.MonsterType.MONSTER_BOSS) {
+                Grasscutter.getLogger().info(
+                        "World boss death not indexed scene={} group={} cfg={} monster={} - no reward flower rule",
+                        var0.getScene().getId(), var1, var0.getConfigId(), var0.getEntityTypeId());
+            }
             return;
         }
         WorldBossSpawnHelper.ensureIndexBuilt();
         BossSpawnEntry var2 = (BossSpawnEntry)bossByGroupId.get(var1);
         // Accept form variants (e.g. 26230301/02/03) - an exact id mismatch previously skipped flower tracking.
         if (var2 == null || !WorldBossSpawnHelper.isMatchingBossMonsterId(var2.monsterId, var0.getEntityTypeId())) {
+            Grasscutter.getLogger().warn(
+                    "World boss death ID mismatch scene={} group={} cfg={} actualMonster={} expectedMonster={}",
+                    var0.getScene().getId(), var1, var0.getConfigId(), var0.getEntityTypeId(),
+                    var2 != null ? var2.monsterId : 0);
             return;
         }
         // Real combat kill must always drop a flower. Claim/forceRespawn suppress only blocks
@@ -463,8 +475,28 @@ public final class WorldBossSpawnHelper {
         if (var4 != null) {
             WorldBossSpawnHelper.resolveBossGroup(var3, var4, var2);
         }
+        boolean existingFlower = WorldBossSpawnHelper.hasUnclaimedBossChest(var3, var2);
         WorldBossSpawnHelper.spawnTrounceFlowerIfMissing(var3, var2, var0.getConfigId());
-        Grasscutter.getLogger().info("WorldBossSpawnHelper boss killed group {} cfg {} monster {} \u2014 awaiting trounce flower", (Object)var1, (Object)var0.getConfigId(), (Object)var0.getEntityTypeId());
+        if (WorldBossSpawnHelper.hasUnclaimedBossChest(var3, var2)) {
+            // A pre-existing script flower may have been sent before its boss_chest
+            // metadata was attached. Refresh its proto so the client sees the claim action.
+            if (existingFlower) {
+                for (GameEntity entity : var3.getEntities().values()) {
+                    if (!(entity instanceof EntityGadget flower)
+                            || flower.getGroupId() != var1 || flower.getState() == 102
+                            || flower.getMetaGadget() == null
+                            || flower.getMetaGadget().boss_chest == null) continue;
+                    flower.buildContent();
+                    var3.broadcastPacket(new emu.grasscutter.server.packet.send.PacketSceneEntityAppearNotify(
+                            flower,
+                            emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType.VisionType_VISION_REFRESH,
+                            0));
+                }
+            }
+            Grasscutter.getLogger().info("WorldBossSpawnHelper boss killed group {} cfg {} monster {} - claimable flower ready", var1, var0.getConfigId(), var0.getEntityTypeId());
+        } else {
+            Grasscutter.getLogger().warn("WorldBossSpawnHelper boss killed group {} cfg {} monster {} - no claimable flower spawned", var1, var0.getConfigId(), var0.getEntityTypeId());
+        }
     }
 
     private static boolean isMatchingBossMonsterId(int expected, int actual) {
@@ -1117,7 +1149,21 @@ public final class WorldBossSpawnHelper {
                     if (var4.block_id <= 0) {
                         var4.block_id = var1.blockId;
                     }
-                    if (!((var6 = var0.getEntityByConfigId(var5.config_id, var1.groupId)) instanceof EntityGadget)) {
+                    var6 = var0.getEntityByConfigId(var5.config_id, var1.groupId);
+                    if (var6 instanceof EntityGadget existing) {
+                        if (existing.getMetaGadget() == null
+                                || existing.getMetaGadget().boss_chest == null) {
+                            WorldBossSpawnHelper.ensureBossChestGadgetMeta(existing);
+                        }
+                        if (existing.getMetaGadget() != null
+                                && existing.getMetaGadget().boss_chest != null) {
+                            existing.buildContent();
+                        }
+                    }
+                    if (!(var6 instanceof EntityGadget existing
+                            && existing.getContent() instanceof emu.grasscutter.game.entity.gadget.GadgetChest
+                            && existing.getMetaGadget() != null
+                            && existing.getMetaGadget().boss_chest != null)) {
                         if (var6 != null) {
                             var0.removeEntity(var6);
                         }

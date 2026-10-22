@@ -52,10 +52,17 @@ public class ResinManager extends BasePlayerManager {
         this.player.sendPacket(new PacketResinChangeNotify(this.player));
 
         // Battle Pass trigger
-        this.player
-                .getBattlePassManager()
-                .triggerMission(
-                        WatcherTriggerType.TRIGGER_COST_MATERIAL, 106, amount); // Resin item id = 106
+        // An optional battle-pass failure must not make an already-paid claim retryable.
+        try {
+            var battlePass = this.player.getBattlePassManager();
+            if (battlePass != null) {
+                battlePass.triggerMission(WatcherTriggerType.TRIGGER_COST_MATERIAL, 106, amount);
+            }
+        } catch (RuntimeException e) {
+            emu.grasscutter.Grasscutter.getLogger().warn(
+                    "Resin payment succeeded but battle-pass bookkeeping failed uid={}",
+                    player.getUid(), e);
+        }
 
         return true;
     }

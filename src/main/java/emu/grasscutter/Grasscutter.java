@@ -131,10 +131,6 @@ public final class Grasscutter {
         logger.info(translate("messages.status.game_version", GameConstants.VERSION));
         logger.info(translate("messages.status.version", GameConstants.VERSION, "Asta"));
 
-        // Server-owned reward rules are authoritative; never read the native point reward map.
-        emu.grasscutter.game.reward.TransPointRewardConfig.loadOrCreate(
-                java.nio.file.Path.of("config", "rewards", "trans-point-rewards.toml"));
-
         // Initialize database.
         DatabaseManager.initialize();
 
@@ -184,6 +180,11 @@ public final class Grasscutter {
             // Load all resources.
             Grasscutter.updateDayOfWeek();
             ResourceLoader.loadAll();
+
+            // Item identities are available only after ExcelBinOutput has been loaded.
+            // CSS and YAML own ordinary chest and scene-point activation rewards.
+            emu.grasscutter.game.reward.RewardConfiguration.load();
+
 
             // GameServer is constructed before resources load, so cooking/compound default-unlock
             // tables were empty at that point. Rebuild them now that ExcelBinOutput is available.

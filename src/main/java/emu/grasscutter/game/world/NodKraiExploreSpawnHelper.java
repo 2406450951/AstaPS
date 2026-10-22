@@ -159,6 +159,7 @@ public final class NodKraiExploreSpawnHelper {
         public final int gadgetId;
         public final int pointType;
         public final int itemId;
+        public final String sourceRegion;
         public final Position pos;
 
         public ExplorePoint(int id, String kind, int gadgetId, int pointType, Position pos) {
@@ -166,11 +167,18 @@ public final class NodKraiExploreSpawnHelper {
         }
 
         public ExplorePoint(int id, String kind, int gadgetId, int pointType, int itemId, Position pos) {
+            this(id, kind, gadgetId, pointType, itemId, null, pos);
+        }
+
+        public ExplorePoint(
+                int id, String kind, int gadgetId, int pointType, int itemId,
+                String sourceRegion, Position pos) {
             this.id = id;
             this.kind = kind;
             this.gadgetId = gadgetId;
             this.pointType = pointType;
             this.itemId = itemId;
+            this.sourceRegion = sourceRegion;
             this.pos = pos;
         }
     }
@@ -205,6 +213,10 @@ public final class NodKraiExploreSpawnHelper {
                                 o.get("gadgetId").getAsInt(),
                                 o.has("pointType") ? o.get("pointType").getAsInt() : 0,
                                 o.has("itemId") ? o.get("itemId").getAsInt() : 0,
+                                o.has("region") && !o.get("region").isJsonNull()
+                                        ? o.get("region").getAsString()
+                                        : file.equals(POINTS_FILE) ? "nodkrai"
+                                        : file.equals(SNEZHNAYA_POINTS_FILE) ? "snezhnaya" : null,
                                 new Position(
                                         o.get("x").getAsFloat(),
                                         o.get("y").getAsFloat(),
@@ -849,12 +861,17 @@ public final class NodKraiExploreSpawnHelper {
         if (ep.pointType > 0) {
             gadget.setPointType(ep.pointType);
         }
-        // Attach SceneGadget meta so chest content/tier resolve cleanly.
+        // Preserve the source chest type: several types share the same gadget ID.
         if (ep.kind != null && ep.kind.startsWith("chest")) {
             emu.grasscutter.scripts.data.SceneGadget meta = new emu.grasscutter.scripts.data.SceneGadget();
             meta.gadget_id = gadgetId;
             meta.config_id = ep.id;
+            meta.chestType = emu.grasscutter.game.entity.gadget.chest.ChestTypeResolver
+                    .fromExploreKind(ep.kind);
+            meta.chestGrade = emu.grasscutter.game.entity.gadget.chest.ChestTypeResolver
+                    .gradeFromExploreKind(ep.kind);
             meta.drop_tag = dropTagForKind(ep);
+            meta.rewardRegion = ep.sourceRegion;
             meta.isOneoff = true;
             gadget.setMetaGadget(meta);
         }
