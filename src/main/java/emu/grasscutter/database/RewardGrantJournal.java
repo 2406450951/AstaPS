@@ -70,7 +70,10 @@ public final class RewardGrantJournal {
         public Receipt {
             Objects.requireNonNull(key, "key");
             Objects.requireNonNull(stage, "stage");
-            if (rewards == null || rewards.isEmpty() || rewards.size() > 10_000) {
+            // Only first-activation discovery rewards allow an explicit zero payout.
+            // Other paid/claimable sources must not silently settle an empty batch.
+            if (rewards == null || rewards.size() > 10_000
+                    || (rewards.isEmpty() && key.source() != Source.TRANSPOINT)) {
                 throw new IllegalArgumentException("Invalid reward batch");
             }
             if (debits == null || debits.size() > 10_000) {

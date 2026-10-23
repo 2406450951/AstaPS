@@ -143,6 +143,10 @@ public class Player implements PlayerHook, FieldFetch {
     @Getter @Setter private Map<Integer, Set<Integer>> unlockedScenePoints;
     /** Separate first-entry reward receipts; handbook unlocks do not establish discovery. */
     private Map<Integer, Set<Integer>> rewardedDungeonEntries;
+    /** First activations whose independent LootCSS reward has not been settled. */
+    private Map<Integer, Set<Integer>> pendingTransPointRewards;
+    /** Frozen first-activation payouts, keyed by scene.point; an empty map is intentional zero. */
+    private Map<String, Map<Integer, Integer>> transPointRewardSnapshots;
     /** Debug/test: points forced locked even if GetScenePointRsp would otherwise unlock-all. */
     @Getter @Setter private Map<Integer, Set<Integer>> forceLockedScenePoints;
     @Getter @Setter private List<Integer> chatEmojiIdList;
@@ -308,6 +312,8 @@ public class Player implements PlayerHook, FieldFetch {
         this.unlockedSceneAreas = new HashMap<>();
         this.unlockedScenePoints = new HashMap<>();
         this.rewardedDungeonEntries = new HashMap<>();
+        this.pendingTransPointRewards = new HashMap<>();
+        this.transPointRewardSnapshots = new HashMap<>();
         this.forceLockedScenePoints = new HashMap<>();
         this.chatEmojiIdList = new ArrayList<>();
         this.playerProgress = new PlayerProgress();
@@ -607,6 +613,22 @@ public class Player implements PlayerHook, FieldFetch {
 
     public Set<Integer> getUnlockedScenePoints(int sceneId) {
         return this.unlockedScenePoints.computeIfAbsent(sceneId, i -> new CopyOnWriteArraySet<>());
+    }
+
+    public Map<Integer, Set<Integer>> getPendingTransPointRewards() {
+        if (this.pendingTransPointRewards == null) {
+            this.pendingTransPointRewards = new HashMap<>();
+        }
+        return this.pendingTransPointRewards;
+    }
+
+    public Map<String, Map<Integer, Integer>> getTransPointRewardSnapshots() {
+        if (this.transPointRewardSnapshots == null) this.transPointRewardSnapshots = new HashMap<>();
+        return this.transPointRewardSnapshots;
+    }
+
+    public Set<Integer> getPendingTransPointRewards(int sceneId) {
+        return getPendingTransPointRewards().computeIfAbsent(sceneId, i -> new CopyOnWriteArraySet<>());
     }
 
     public Set<Integer> getRewardedDungeonEntries(int sceneId) {

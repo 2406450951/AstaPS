@@ -320,6 +320,10 @@ public class AbilityModifier implements Serializable {
 
         public String target;
 
+        // "Normal" is a real death, "Disappear" is the entity fading out or flying away: wildlife and
+        // timed-out gadgets use it, and it must not be handled as a kill.
+        public String killSelfType;
+
         @JsonAdapter(NullSafeStringAdapter.class)
         @SerializedName(value = "animatorParamName", alternate = {"triggerID", "boolID", "intID", "floatID"})
         public String animatorParamName;

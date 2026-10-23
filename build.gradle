@@ -323,8 +323,14 @@ javadoc {
 // a resource, not embedded into a generated Java constant.
 def buildVersion = project.version.toString()
 def buildConfigSource = layout.projectDirectory.file('src/main/java/emu/grasscutter/BuildConfig.java')
+def buildDateTime = providers.provider {
+    java.time.Instant.now()
+        .truncatedTo(java.time.temporal.ChronoUnit.SECONDS)
+        .toString()
+}
 tasks.register('generateBuildConfig') {
     inputs.property('version', buildVersion)
+    inputs.property('buildDatetime', buildDateTime)
     outputs.file(buildConfigSource)
 
     doLast {
@@ -337,6 +343,7 @@ import java.util.Properties;
 public final class BuildConfig {
     public static final String VERSION = "${buildVersion}";
     public static final String GIT_HASH = readGitHash();
+    public static final String BUILD_DATETIME = "${buildDateTime.get()}";
 
     private BuildConfig() {}
 
