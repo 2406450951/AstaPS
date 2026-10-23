@@ -5,6 +5,7 @@ import emu.grasscutter.game.entity.EntityGadget;
 import emu.grasscutter.game.entity.EntityMonster;
 import emu.grasscutter.game.entity.GameEntity;
 import emu.grasscutter.game.world.Scene;
+import emu.grasscutter.server.packet.send.PacketSceneEntityDisappearNotify;
 import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import java.util.*;
 import java.util.function.ToIntFunction;
@@ -52,16 +53,36 @@ final class BlossomSummonCleanup {
         return 0;
     }
 
-    static int remove(Scene scene, Set<Integer> encounterMonsterIds) {
-        var spawned = descendants(
-                new ArrayList<>(scene.getEntities().values()),
-                encounterMonsterIds,
-                GameEntity::getId,
-                BlossomSummonCleanup::parentId);
-        if (!spawned.isEmpty()) {
-            // No kill rewards, quest progress or death callbacks for temporary ability summons.
-            scene.removeEntities(spawned, VisionType.VisionType_VISION_REMOVE);
+    static List<GameEntity> find(Scene scene, Collection<Integer> ownerIds) {
+        return descendants(new ArrayList<>(scene.getEntities().values()), ownerIds,
+                GameEntity::getId, BlossomSummonCleanup::parentId);
+    }
+
+    record Removal(int live, int stale) {}
+
+    static Removal remove(Scene scene, Collection<GameEntity> remembered) {
+        var live = new ArrayList<GameEntity>();
+        var stale = new ArrayList<GameEntity>();
+        for (var summon : remembered) {
+            if (scene.getEntityById(summon.getId()) == summon) {
+                live.add(summon);
+            } else {
+                // The entity previously disappeared with VISION_DIE. Some 7.1 SkillObjs
+                // continue rendering until an explicit VISION_REMOVE arrives.
+                stale.add(summon);
+            }
+            if (summon instanceof EntityClientGadget client) {
+                client.getOwner().getTeamManager().getGadgets().remove(client);
+            }
         }
-        return spawned.size();
+        if (!live.isEmpty()) {
+            // No death reward, quest progress or callbacks for temporary ability summons.
+            scene.removeEntities(live, VisionType.VisionType_VISION_REMOVE);
+        }
+        if (!stale.isEmpty()) {
+            scene.broadcastPacket(new PacketSceneEntityDisappearNotify(
+                    stale, VisionType.VisionType_VISION_REMOVE));
+        }
+        return new Removal(live.size(), stale.size());
     }
 }

@@ -45,6 +45,19 @@ final class BlossomSummonCleanupTest {
     }
 
     @Test
+    void aSummonChainCanStillBeResolvedAfterItsIntermediateOwnerDisappears() {
+        var child = new Link(201, 101);
+        var grandchild = new Link(301, 201);
+        var first = BlossomSummonCleanup.descendants(
+                List.of(child), Set.of(101), Link::id, Link::parentId);
+        assertEquals(List.of(child), first);
+        // The server has removed entity 201; only its recorded ID keeps entity 301 linked.
+        var second = BlossomSummonCleanup.descendants(
+                List.of(grandchild), Set.of(101, 201), Link::id, Link::parentId);
+        assertEquals(List.of(grandchild), second);
+    }
+
+    @Test
     void skipsUnlinkedEntitiesAndCyclesOutsideTheEncounter() {
         var unrelatedA = new Link(500, 501);
         var unrelatedB = new Link(501, 500);
