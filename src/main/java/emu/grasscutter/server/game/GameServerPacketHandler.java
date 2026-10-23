@@ -150,6 +150,8 @@ public final class GameServerPacketHandler {
 
     public void handle(GameSession session, int opcode, byte[] header, byte[] payload) {
         PacketHandler handler = this.handlers.get(opcode);
+        // Capture the received wire packet even when no handler or protobuf definition exists.
+        DecodedPacketLogger.logDecodedPacket(session, "RECV", opcode, payload, handler);
 
         if (handler != null) {
             try {
@@ -187,9 +189,6 @@ public final class GameServerPacketHandler {
                 event.call();
                 if (!event.isCanceled()) {
                     byte[] handledPayload = event.getPacketData();
-
-                    DecodedPacketLogger.logDecodedPacket(session, "RECV", opcode, handledPayload,
-                            handler);
 
                     handler.handle(session, header, handledPayload);
                 }
