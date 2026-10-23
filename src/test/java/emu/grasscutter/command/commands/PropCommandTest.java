@@ -40,7 +40,7 @@ public final class PropCommandTest {
 
         for (String[] args : new String[][] {
                 {"worldlevel"}, {"godmode"}, {"bplevel"},
-                {"player_resin"}, {"dive"}, {"abyss"}
+                {"player_resin"}, {"player_level"}, {"dive"}, {"abyss"}
         }) {
             assertDoesNotThrow(() -> command().parseArgs(args), String.join(" ", args));
         }
@@ -48,7 +48,8 @@ public final class PropCommandTest {
         for (String[] args : new String[][] {
                 {"worldlevel", "8"}, {"godmode", "on"},
                 {"godmode", "toggle"},
-                {"bp", "50"}, {"dive", "off"}, {"player_resin", "160"}
+                {"bp", "50"}, {"dive", "off"}, {"player_level", "7"},
+                {"player_level", "8"}, {"player_level", "12"}, {"player_resin", "160"}
         }) {
             assertDoesNotThrow(() -> command().parseArgs(args), String.join(" ", args));
         }

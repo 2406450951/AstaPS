@@ -73,6 +73,7 @@ public class Scene {
     @Getter @Setter DungeonManager dungeonManager;
     @Getter Int2ObjectMap<Route> sceneRoutes;
     private Set<SpawnDataEntry.GridBlockId> loadedGridBlocks;
+    private int loadedBlossomRevision;
     @Getter @Setter private boolean dontDestroyWhenEmpty;
     @Getter private final SceneScriptManager scriptManager;
     @Getter @Setter private WorldChallenge challenge;
@@ -115,7 +116,7 @@ public class Scene {
         this.loadedGridBlocks = new HashSet<>();
         this.npcBornEntrySet = ConcurrentHashMap.newKeySet();
         this.scriptManager = new SceneScriptManager(this);
-        this.blossomManager = new BlossomManager(this);
+        this.blossomManager = getSceneType() == SceneType.SCENE_WORLD ? new BlossomManager(this) : null;
         this.unlockedForces = new HashSet<>();
         this.sceneEntity = new EntityScene(this);
         this.scheduler = new ServerTaskScheduler();
@@ -846,7 +847,9 @@ public class Scene {
                     } else e.onTick(sceneTime);
                 });
 
-        blossomManager.onTick();
+        if (getSceneType() == SceneType.SCENE_WORLD) {
+            blossomManager.onTick();
+        }
 
         // Remote Player may not carry this hook; settle delayed Q BoL clear from the scene tick.
         for (Player player : this.getPlayers()) {
@@ -1060,11 +1063,14 @@ public class Scene {
         if (!leavingBlocks.isEmpty()) {
             this.getDeadSpawnedEntities().removeIf(entry -> leavingBlocks.contains(entry.getBlockId()));
         }
-        if (this.loadedGridBlocks.containsAll(
-                loadedGridBlocks)) {
+        int blossomRevision = getSceneType() == SceneType.SCENE_WORLD
+                ? blossomManager.getActiveSetRevision() : 0;
+        if (this.loadedGridBlocks.equals(loadedGridBlocks)
+                && loadedBlossomRevision == blossomRevision) {
             return;
         }
         this.loadedGridBlocks = loadedGridBlocks;
+        this.loadedBlossomRevision = blossomRevision;
         var spawnLists = GameDepot.getSpawnLists();
         Set<SpawnDataEntry> visible = new HashSet<>();
         for (var block : loadedGridBlocks) {
@@ -1072,6 +1078,10 @@ public class Scene {
             if (spawns != null) {
                 visible.addAll(spawns);
             }
+        }
+
+        if (getSceneType() == SceneType.SCENE_WORLD) {
+            visible.removeIf(entry -> !blossomManager.isActiveSpawn(entry));
         }
 
         WorldLevelData worldLevelData = GameData.getWorldLevelDataMap().get(getWorld().getWorldLevel());
@@ -1136,7 +1146,9 @@ public class Scene {
                     gadget.setFightProperty(FightProperty.FIGHT_PROP_MAX_HP, Float.POSITIVE_INFINITY);
 
                     entity = gadget;
-                    blossomManager.initBlossom(gadget);
+                    if (getSceneType() == SceneType.SCENE_WORLD) {
+                        blossomManager.initBlossom(gadget);
+                    }
                 }
 
                 if (entity == null) continue;
@@ -1150,7 +1162,9 @@ public class Scene {
             var spawnEntry = entity.getSpawnEntry();
             if (spawnEntry != null
                     && !(entity instanceof EntityWeapon)
-                    && !visible.contains(spawnEntry)) {
+                    && !visible.contains(spawnEntry)
+                    && !(getSceneType() == SceneType.SCENE_WORLD
+                            && blossomManager.isNativeCampSpawn(spawnEntry))) {
                 toRemove.add(entity);
                 spawnedEntities.remove(spawnEntry);
             }
@@ -1165,7 +1179,9 @@ public class Scene {
             toRemove.forEach(this::removeEntityDirectly);
             this.broadcastPacket(
                     new PacketSceneEntityDisappearNotify(toRemove, VisionType.VisionType_VISION_REMOVE));
-            blossomManager.recycleGadgetEntity(toRemove);
+            if (getSceneType() == SceneType.SCENE_WORLD) {
+                blossomManager.recycleGadgetEntity(toRemove);
+            }
         }
     }
 
@@ -1257,7 +1273,9 @@ public class Scene {
             emu.grasscutter.Grasscutter.getLogger()
                     .error("OfferingSpawnHelper nearby check failed", __t);
         }
-        blossomManager.ensureScriptedSpawns();
+        if (getSceneType() == SceneType.SCENE_WORLD) {
+            blossomManager.ensureScriptedSpawns();
+        }
         emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.tick(this);
     }
 
@@ -1430,6 +1448,9 @@ public class Scene {
             toRemove.forEach(this::removeEntityDirectly);
             this.broadcastPacket(
                     new PacketSceneEntityDisappearNotify(toRemove, VisionType.VisionType_VISION_REMOVE));
+            if (getSceneType() == SceneType.SCENE_WORLD) {
+                blossomManager.recycleGadgetEntity(toRemove);
+            }
         }
 
         var group =

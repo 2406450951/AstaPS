@@ -33,7 +33,6 @@ public final class BlossomActivity {
 
     private final List<EntityMonster> activeMonsters = new ArrayList<>();
     private final Queue<Integer> candidateMonsters = new ArrayDeque<>();
-    private static final int BLOOMING_GADGET_ID = 70210109;
 
     public BlossomActivity(
             EntityGadget entityGadget, List<Integer> monsters, int timeout, int worldLevel) {
@@ -63,8 +62,9 @@ public final class BlossomActivity {
         return this.challenge;
     }
 
-    public void setMonsters(List<EntityMonster> monsters) {
-        this.activeMonsters.clear();
+    public void addMonsters(List<EntityMonster> monsters) {
+        // Earlier waves can still have living enemies when the next wave appears.
+        this.activeMonsters.removeIf(monster -> !monster.isAlive());
         this.activeMonsters.addAll(monsters);
         for (EntityMonster monster : monsters) {
             monster.setGroupId(this.tempSceneGroup.id);
@@ -74,7 +74,8 @@ public final class BlossomActivity {
     public int getAliveMonstersCount() {
         int count = 0;
         for (EntityMonster monster : activeMonsters) {
-            if (monster.isAlive()) {
+            if (monster.isAlive()
+                    && monster.getScene().getEntityById(monster.getId()) == monster) {
                 count++;
             }
         }
@@ -89,10 +90,29 @@ public final class BlossomActivity {
         challenge.start();
     }
 
+    /** A completed kill challenge is authoritative even if a monster reference remains alive. */
+    static boolean encounterComplete(int goal, int generated, int alive, int kills) {
+        return kills >= goal || (generated >= goal && alive == 0);
+    }
+
     public void onTick() {
+        if (pass) return;
+        if (challenge.isSuccess()) {
+            pass = true;
+            return;
+        }
+        if (!challenge.inProgress()) return;
+
         Scene scene = gadget.getScene();
         Position pos = gadget.getPosition();
-        if (getAliveMonstersCount() <= 2) {
+        int alive = getAliveMonstersCount();
+        int kills = challenge.getScore().get();
+        if (encounterComplete(goal, generatedCount, alive, kills)) {
+            challenge.done();
+            pass = true;
+            return;
+        }
+        if (alive <= 2) {
             if (generatedCount < goal) {
                 step++;
 
@@ -119,12 +139,7 @@ public final class BlossomActivity {
                     scene.addEntity(entity);
                     newMonsters.add(entity);
                 }
-                setMonsters(newMonsters);
-            } else {
-                if (getAliveMonstersCount() == 0) {
-                    this.pass = true;
-                    this.challenge.done();
-                }
+                addMonsters(newMonsters);
             }
         }
     }
@@ -136,7 +151,9 @@ public final class BlossomActivity {
     public EntityGadget getChest() {
         if (chest == null) {
             EntityGadget rewardGadget =
-                    new EntityGadget(gadget.getScene(), BLOOMING_GADGET_ID, gadget.getPosition());
+                    new EntityGadget(gadget.getScene(),
+                            BlossomType.valueOf(gadget.getGadgetId()).getRewardChestGadgetId(),
+                            gadget.getPosition());
             SceneGadget metaGadget = new SceneGadget();
             metaGadget.boss_chest = new SceneBossChest();
             metaGadget.boss_chest.resin = 20;

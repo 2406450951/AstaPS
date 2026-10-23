@@ -21,6 +21,7 @@ import emu.grasscutter.game.entity.GameEntity;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.EntityType;
 import emu.grasscutter.game.props.FightProperty;
+import emu.grasscutter.game.props.SceneType;
 import emu.grasscutter.game.world.Position;
 import emu.grasscutter.game.world.Scene;
 import emu.grasscutter.scripts.data.SceneGroup;
@@ -227,7 +228,9 @@ public final class SpawnCommand implements CommandHandler {
         if (param.state != -1) gadget.setState(param.state);
         // Spawned ley-line gadgets need a worktop option and challenge callback.
         // Scene spawn loading does this already; /spawn must do it too.
-        param.scene.getBlossomManager().initBlossom(gadget);
+        if (param.scene.getSceneType() == SceneType.SCENE_WORLD) {
+            param.scene.getBlossomManager().initBlossom(gadget);
+        }
         return gadget;
     }
 

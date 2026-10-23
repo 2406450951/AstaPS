@@ -229,17 +229,17 @@ public final class RewardConfiguration {
         }
     }
 
-    /** One independent roll per 20 resin; condensed resin executes two rolls. */
+    /** Each paid reward set is rolled independently, including Luna I triple claims. */
     public Map<Integer, Integer> rollBlossom(
-            String type, int worldLevel, boolean condensed, RandomGenerator random) {
+            String type, int worldLevel, int rolls, RandomGenerator random) {
         if (!("wealth".equals(type) || "revelation".equals(type))
-                || worldLevel < 0 || worldLevel > 9) {
+                || worldLevel < 0 || worldLevel > 9 || rolls < 1 || rolls > 3) {
             throw new IllegalArgumentException(
                     "Unknown blossom type/world level: " + type + "/" + worldLevel);
         }
         var attrs = Map.of("type", (Object) type, "WR", (Object) worldLevel);
         var total = new java.util.TreeMap<Integer, Integer>();
-        for (int i = 0; i < (condensed ? 2 : 1); i++) {
+        for (int i = 0; i < rolls; i++) {
             roll("blossom", attrs, random).forEach(
                     (id, count) -> total.merge(id, count, Math::addExact));
         }
