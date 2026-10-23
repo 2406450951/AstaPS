@@ -6,8 +6,10 @@ import emu.grasscutter.data.GameData;
 import emu.grasscutter.data.binout.ScriptSceneData;
 import emu.grasscutter.data.excels.DailyTaskData;
 import emu.grasscutter.game.entity.*;
+import emu.grasscutter.game.managers.blossom.BlossomManager;
 import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.props.FightProperty;
+import emu.grasscutter.game.props.SceneType;
 import emu.grasscutter.game.world.*;
 import emu.grasscutter.net.packet.BasePacket;
 import emu.grasscutter.scripts.SceneScriptManager;
@@ -142,6 +144,7 @@ public final class DailyTaskGroupLifecycleTest {
         set(Scene.class, scene, "entities", scene.entities);
         set(Scene.class, scene, "players", scene.players);
         set(Scene.class, scene, "scriptManager", scripts);
+        set(Scene.class, scene, "blossomManager", new BlossomManager(scene));
         var manager = new M(owner);
         owner.manager = manager;
         set(DailyTaskManager.class, manager, "lastGenerationDate", 20261016);
@@ -749,6 +752,11 @@ public final class DailyTaskGroupLifecycleTest {
         @Override
         public int getId() {
             return 3;
+        }
+
+        @Override
+        public SceneType getSceneType() {
+            return SceneType.SCENE_WORLD;
         }
 
         @Override

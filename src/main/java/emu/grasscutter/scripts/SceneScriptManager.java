@@ -13,6 +13,7 @@ import emu.grasscutter.database.DatabaseHelper;
 import emu.grasscutter.game.entity.*;
 import emu.grasscutter.game.entity.gadget.platform.BaseRoute;
 import emu.grasscutter.game.props.EntityIdType;
+import emu.grasscutter.game.props.SceneType;
 import emu.grasscutter.game.quest.*;
 import emu.grasscutter.game.world.*;
 import emu.grasscutter.net.proto.VisionTypeOuterClass;
@@ -1278,6 +1279,9 @@ public class SceneScriptManager {
 
     public EntityGadget createGadget(int groupId, int blockId, SceneGadget g, int state) {
         if (!emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.maySpawn(this, groupId)) return null;
+        if (scene.getSceneType() == SceneType.SCENE_WORLD
+                && !scene.getBlossomManager().isActiveAuthoredGadget(groupId, g.config_id, g.gadget_id))
+            return null;
         if (g.isOneoff) {
             var hasEntity =
                     getScene().getEntities().values().stream()

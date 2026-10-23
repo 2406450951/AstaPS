@@ -232,6 +232,7 @@ public final class ProtocolJavaGenerator {
      */
     private static FileDescriptorProto applyRecoveredProtocolPatches(FileDescriptorProto file) {
         return switch (file.getName()) {
+            case "BlossomBriefInfoNotify.proto" -> patchBlossomBriefListField(file);
             case "AvatarInfo.proto" ->
                     replaceMessageField(
                             file,
@@ -287,6 +288,35 @@ public final class ProtocolJavaGenerator {
                                     .build());
             default -> file;
         };
+    }
+
+    /**
+     * Global 7.1 original client: ABJOMOIIDHH (CmdId 6743) reads its repeated
+     * MFOACFDAOID element from protobuf field 10 (tag 0x52). The imported
+     * server descriptor has the corresponding field at 13.
+     * See Genshin-Reverse/versions/7.1.0-global/windows-x64/analyses/blossom-map-markers.
+     */
+    private static FileDescriptorProto patchBlossomBriefListField(FileDescriptorProto file) {
+        var fileBuilder = file.toBuilder();
+        for (int i = 0; i < fileBuilder.getMessageTypeCount(); i++) {
+            if (!fileBuilder.getMessageType(i).getName().equals("BlossomBriefInfoNotify")) continue;
+            var message = fileBuilder.getMessageTypeBuilder(i);
+            for (int j = 0; j < message.getFieldCount(); j++) {
+                var field = message.getField(j);
+                if (!field.getName().equals("brief_info_list")) continue;
+                if (field.getNumber() != 13
+                        || field.getLabel() != FieldDescriptorProto.Label.LABEL_REPEATED
+                        || field.getType() != FieldDescriptorProto.Type.TYPE_MESSAGE
+                        || !field.getTypeName().equals(".BlossomBriefInfo")) {
+                    throw new IllegalStateException(
+                            "Unexpected imported BlossomBriefInfoNotify.brief_info_list shape");
+                }
+                message.setField(j, field.toBuilder().setNumber(10).build());
+                return fileBuilder.build();
+            }
+        }
+        throw new IllegalStateException(
+                "Cannot find imported BlossomBriefInfoNotify.brief_info_list in " + file.getName());
     }
 
     private static FieldDescriptorProto repeatedMessageField(

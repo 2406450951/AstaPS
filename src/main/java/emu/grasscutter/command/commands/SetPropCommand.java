@@ -158,7 +158,9 @@ public final class SetPropCommand implements CommandHandler {
                         case GOD_MODE, UNLIMITED_STAMINA, UNLIMITED_ENERGY ->
                                 setBool(sender, targetPlayer, prop.pseudoProp, value);
                         case CAN_DIVE -> canDive(targetPlayer, value);
-                        default -> targetPlayer.setProperty(prop.prop, value);
+                        default -> prop.prop == PlayerProperty.PROP_PLAYER_LEVEL
+                                ? targetPlayer.setLevel(value)
+                                : targetPlayer.setProperty(prop.prop, value);
                     };
 
             if (success) {

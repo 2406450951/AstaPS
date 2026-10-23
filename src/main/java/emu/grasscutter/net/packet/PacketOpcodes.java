@@ -2710,7 +2710,7 @@ public final class PacketOpcodes {
     public static final int ChangeTeamNameReq = 27436;
     public static final int _GetStreamingVideoUrlReq = 1978;
     // public static final int AGEHCBMBIFF = 1982;
-    public static final int BlossomBriefInfoNotify = 0; // 7.1 CmdId unknown (7.0: 28497)
+    public static final int BlossomBriefInfoNotify = 6743; // Global 7.1 original GetCmdId, native list field 10
     // public static final int ODGGANGFEIF = 24988;
     public static final int FriendInfoChangeNotify = 26065;
     // public static final int ILKDPODJODM = 6486;

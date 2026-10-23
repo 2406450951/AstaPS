@@ -44,27 +44,29 @@ class BlossomRewardsTest {
     }
 
     @Test
-    void wealthIsFixedAtEveryWorldLevelAndCondensedDoublesEverything() throws IOException {
+    void wealthSupportsSingleDoubleAndTripleClaims() throws IOException {
         var config = rewards();
         int[] mora = {12000, 20000, 28000, 36000, 44000, 52000, 60000, 60000, 60000, 60000};
         int[] friendship = {10, 15, 15, 15, 15, 20, 20, 20, 20, 20};
         for (int wl = 0; wl <= 9; wl++) {
             assertEquals(Map.of(102, 100, 105, friendship[wl], 202, mora[wl]),
-                    config.rollBlossom("wealth", wl, false, new Random(wl)));
+                    config.rollBlossom("wealth", wl, 1, new Random(wl)));
             assertEquals(Map.of(102, 200, 105, friendship[wl] * 2, 202, mora[wl] * 2),
-                    config.rollBlossom("wealth", wl, true, new Random(wl)));
+                    config.rollBlossom("wealth", wl, 2, new Random(wl)));
+            assertEquals(Map.of(102, 300, 105, friendship[wl] * 3, 202, mora[wl] * 3),
+                    config.rollBlossom("wealth", wl, 3, new Random(wl)));
         }
     }
 
     @Test
-    void revelationUsesSeparateRangesAndIndependentCondensedRolls() throws IOException {
+    void revelationUsesIndependentTripleRolls() throws IOException {
         var config = rewards();
         int[][] advice = {{7,8}, {10,12}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}};
         int[][] adventurer = {{3,4}, {5,6}, {10,11}, {13,14}, {6,7}, {6,7}, {6,7}};
         int[][] hero = {{0,0}, {0,0}, {0,0}, {0,0}, {2,3}, {3,4}, {4,5}};
         for (int wl = 0; wl <= 9; wl++) {
             int tier = Math.min(wl, 6);
-            var result = config.rollBlossom("revelation", wl, false, new Random(wl));
+            var result = config.rollBlossom("revelation", wl, 1, new Random(wl));
             assertEquals(100, result.get(102));
             assertTrue(result.get(105) > 0);
             assertFalse(result.containsKey(202));
@@ -74,12 +76,12 @@ class BlossomRewardsTest {
                 assertTrue(count >= interval[0] && count <= interval[1],
                         "WL" + wl + " id=" + expected[0] + " count=" + count);
             }
-            var doubled = config.rollBlossom("revelation", wl, true, new Random(wl));
-            assertEquals(200, doubled.get(102));
+            var tripled = config.rollBlossom("revelation", wl, 3, new Random(wl));
+            assertEquals(300, tripled.get(102));
             for (var expected : new Object[][]{{104001, advice[tier]}, {104002, adventurer[tier]}, {104003, hero[tier]}}) {
-                int count = doubled.getOrDefault((int) expected[0], 0);
+                int count = tripled.getOrDefault((int) expected[0], 0);
                 int[] interval = (int[]) expected[1];
-                assertTrue(count >= interval[0] * 2 && count <= interval[1] * 2);
+                assertTrue(count >= interval[0] * 3 && count <= interval[1] * 3);
             }
         }
     }
@@ -90,9 +92,9 @@ class BlossomRewardsTest {
         for (int wl : new int[]{0, 1, 4, 5, 9}) {
             int expected = wl == 0 ? 10 : wl <= 4 ? 15 : 20;
             assertEquals(expected, config.rollBlossom(
-                    "wealth", wl, false, new Random(1)).get(105));
+                    "wealth", wl, 1, new Random(1)).get(105));
             assertEquals(expected, config.rollBlossom(
-                    "revelation", wl, false, new Random(1)).get(105));
+                    "revelation", wl, 1, new Random(1)).get(105));
         }
     }
 
@@ -109,8 +111,8 @@ class BlossomRewardsTest {
                     () -> config.roll("blossom", attrs, new Random(1)), attrs.toString());
         }
         assertThrows(IllegalArgumentException.class,
-                () -> config.rollBlossom("wealth", 10, false, new Random(1)));
+                () -> config.rollBlossom("wealth", 10, 1, new Random(1)));
         assertThrows(IllegalArgumentException.class,
-                () -> config.rollBlossom("unknown", 5, false, new Random(1)));
+                () -> config.rollBlossom("unknown", 5, 1, new Random(1)));
     }
 }
