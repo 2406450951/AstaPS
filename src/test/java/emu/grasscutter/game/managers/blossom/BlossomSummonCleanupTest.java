@@ -1,0 +1,58 @@
+package emu.grasscutter.game.managers.blossom;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
+
+final class BlossomSummonCleanupTest {
+    private record Link(int id, int parentId) {}
+
+    @Test
+    void removesTransitiveSummonsEvenWhenChildrenPrecedeTheirOwners() {
+        var grandchild = new Link(301, 201);
+        var unrelated = new Link(500, 999);
+        var child = new Link(201, 101);
+        var encounterRoot = new Link(101, 0);
+        var otherPlayersGadget = new Link(501, 500);
+        var anotherEncounterRoot = new Link(102, 0);
+
+        var owned = BlossomSummonCleanup.descendants(
+                List.of(grandchild, unrelated, child, encounterRoot, otherPlayersGadget,
+                        anotherEncounterRoot),
+                Set.of(101, 102),
+                Link::id,
+                Link::parentId);
+
+        assertEquals(Set.of(child, grandchild), Set.copyOf(owned));
+        assertFalse(owned.contains(encounterRoot));
+        assertFalse(owned.contains(unrelated));
+        assertFalse(owned.contains(otherPlayersGadget));
+    }
+
+    @Test
+    void recognizesSummonsFromAnEarlierWaveEvenWhenTheCasterHasDespawned() {
+        var earlierWaveSummon = new Link(230, 110);
+        var laterWaveSummon = new Link(240, 120);
+        var unrelatedSkill = new Link(250, 1000);
+        var owned = BlossomSummonCleanup.descendants(
+                List.of(earlierWaveSummon, laterWaveSummon, unrelatedSkill),
+                Set.of(110, 120),
+                Link::id,
+                Link::parentId);
+        assertEquals(Set.of(earlierWaveSummon, laterWaveSummon), Set.copyOf(owned));
+    }
+
+    @Test
+    void skipsUnlinkedEntitiesAndCyclesOutsideTheEncounter() {
+        var unrelatedA = new Link(500, 501);
+        var unrelatedB = new Link(501, 500);
+        var unowned = new Link(502, 0);
+        assertTrue(BlossomSummonCleanup.descendants(
+                List.of(unrelatedA, unrelatedB, unowned),
+                Set.of(101),
+                Link::id,
+                Link::parentId).isEmpty());
+    }
+}

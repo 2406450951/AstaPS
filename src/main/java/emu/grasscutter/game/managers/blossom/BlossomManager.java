@@ -327,6 +327,7 @@ public class BlossomManager {
                 var active = it.next();
                 active.onTick();
                 if (active.getPass()) {
+                    active.clearEncounterSummons();
                     EntityGadget chest = active.getChest();
                     scene.addEntity(chest);
                     Grasscutter.getLogger().info(

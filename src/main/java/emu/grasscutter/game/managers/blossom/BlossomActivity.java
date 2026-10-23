@@ -32,6 +32,8 @@ public final class BlossomActivity {
     void resetUnpaidReward(int uid) { rewardOperations.remove(uid); }
 
     private final List<EntityMonster> activeMonsters = new ArrayList<>();
+    // Keep every encounter root, including monsters already dead or pruned between waves.
+    private final Set<Integer> encounterMonsterIds = new HashSet<>();
     private final Queue<Integer> candidateMonsters = new ArrayDeque<>();
 
     public BlossomActivity(
@@ -68,6 +70,7 @@ public final class BlossomActivity {
         this.activeMonsters.addAll(monsters);
         for (EntityMonster monster : monsters) {
             monster.setGroupId(this.tempSceneGroup.id);
+            encounterMonsterIds.add(monster.getId());
         }
     }
 
@@ -141,6 +144,16 @@ public final class BlossomActivity {
                 }
                 addMonsters(newMonsters);
             }
+        }
+    }
+
+    /** Remove summons owned by this encounter before publishing its reward flower. */
+    void clearEncounterSummons() {
+        int removed = BlossomSummonCleanup.remove(gadget.getScene(), encounterMonsterIds);
+        if (removed != 0) {
+            emu.grasscutter.Grasscutter.getLogger().info(
+                    "Ley-line encounter summons cleared source={} removed={}",
+                    gadget.getId(), removed);
         }
     }
 
