@@ -221,6 +221,11 @@ public class ActionCreateGadget extends AbilityActionHandler {
                         CampTargetType.getTypeByName(action.campTargetType).getValue(),
                         false);
         entityCreated.setOwner(owner);
+        // Ability initialization may immediately create a nested gadget and then delete it.
+        // Register this parent before those callbacks so a completed ley-line can retire the
+        // entire summon chain even if one intermediate link vanishes before the next tick.
+        var blossomManager = entity.getScene().getBlossomManager();
+        if (blossomManager != null) blossomManager.onSceneEntityCreated(entityCreated);
         entityCreated.initAbilities();
 
         // Nothing on this side runs the summon's own KillSelf, so without this every charged attack
