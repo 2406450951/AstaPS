@@ -315,6 +315,13 @@ public class BlossomManager {
         this.scene = scene;
     }
 
+    /** Track ability summons at creation, including ones removed before the next world tick. */
+    public void onSceneEntityCreated(GameEntity entity) {
+        synchronized (blossomActivities) {
+            for (var activity : blossomActivities) activity.onSceneEntityCreated(entity);
+        }
+    }
+
     public void onTick() {
         activeScriptedSpawns();
         // Scene.checkGroups() already loads nearby authored outcrops in script mode.
@@ -327,6 +334,7 @@ public class BlossomManager {
                 var active = it.next();
                 active.onTick();
                 if (active.getPass()) {
+                    active.clearEncounterSummons();
                     EntityGadget chest = active.getChest();
                     scene.addEntity(chest);
                     Grasscutter.getLogger().info(

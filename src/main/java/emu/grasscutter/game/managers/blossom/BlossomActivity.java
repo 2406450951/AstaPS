@@ -32,6 +32,11 @@ public final class BlossomActivity {
     void resetUnpaidReward(int uid) { rewardOperations.remove(uid); }
 
     private final List<EntityMonster> activeMonsters = new ArrayList<>();
+    // Keep every encounter root, including monsters already dead or pruned between waves.
+    private final Set<Integer> encounterMonsterIds = new HashSet<>();
+    // Death removes summoned entities from Scene before the claimable flower appears.
+    // Retain their identities so the client also receives a final VISION_REMOVE.
+    private final Map<Integer, GameEntity> encounterSummons = new LinkedHashMap<>();
     private final Queue<Integer> candidateMonsters = new ArrayDeque<>();
 
     public BlossomActivity(
@@ -68,6 +73,17 @@ public final class BlossomActivity {
         this.activeMonsters.addAll(monsters);
         for (EntityMonster monster : monsters) {
             monster.setGroupId(this.tempSceneGroup.id);
+            encounterMonsterIds.add(monster.getId());
+        }
+        observeSummons();
+    }
+
+    /** Called immediately when Scene registers an entity, before its onCreate abilities run. */
+    void onSceneEntityCreated(GameEntity entity) {
+        int parent = BlossomSummonCleanup.parentId(entity);
+        if (BlossomSummonCleanup.isEncounterChild(
+                parent, encounterMonsterIds, encounterSummons.keySet())) {
+            encounterSummons.putIfAbsent(entity.getId(), entity);
         }
     }
 
@@ -97,6 +113,7 @@ public final class BlossomActivity {
 
     public void onTick() {
         if (pass) return;
+        observeSummons();
         if (challenge.isSuccess()) {
             pass = true;
             return;
@@ -136,12 +153,37 @@ public final class BlossomActivity {
                     var level = scene.getEntityLevel(1, worldLevelOverride);
                     var entity =
                             new EntityMonster(scene, monsterData, pos.nearby2d(4f), Position.ZERO, level);
-                    scene.addEntity(entity);
                     newMonsters.add(entity);
                 }
+                // Register roots before Scene.addEntity invokes onCreate/ability callbacks.
                 addMonsters(newMonsters);
+                for (EntityMonster monster : newMonsters) scene.addEntity(monster);
             }
         }
+    }
+
+    /**
+     * Remember both living summons and summons that the server already removed via a death
+     * notification. Their owners can also have disappeared in an earlier wave.
+     */
+    private void observeSummons() {
+        var owners = new HashSet<>(encounterMonsterIds);
+        owners.addAll(encounterSummons.keySet());
+        for (var spawned : BlossomSummonCleanup.find(gadget.getScene(), owners)) {
+            encounterSummons.putIfAbsent(spawned.getId(), spawned);
+        }
+    }
+
+    /** Finish the complete summon lifecycle before publishing the reward flower. */
+    void clearEncounterSummons() {
+        observeSummons();
+        var result = BlossomSummonCleanup.remove(gadget.getScene(), encounterSummons.values());
+        if (result.live() != 0 || result.stale() != 0) {
+            emu.grasscutter.Grasscutter.getLogger().info(
+                    "Ley-line encounter summons cleared source={} live={} stale={}",
+                    gadget.getId(), result.live(), result.stale());
+        }
+        encounterSummons.clear();
     }
 
     public EntityGadget getGadget() {
