@@ -37,7 +37,7 @@ public class PacketGetProfilePictureDataRsp extends BasePacket {
             }
         }
         this.setData(out.toByteArray());
-        Grasscutter.getLogger().info("ProfilePicProbe opcode={} fields={} entries={} bytes={}", opcode, java.util.Arrays.toString(repFields), list.size(), out.size());
+        Grasscutter.getLogger().debug("ProfilePicProbe opcode={} fields={} entries={} bytes={}", opcode, java.util.Arrays.toString(repFields), list.size(), out.size());
     }
 
     public PacketGetProfilePictureDataRsp(Player player, int opcode, int clientSequence) {
@@ -74,6 +74,6 @@ public class PacketGetProfilePictureDataRsp extends BasePacket {
             data = new byte[] {0x50, 0x00};
         }
         this.setData(data);
-        Grasscutter.getLogger().info("ProfilePictureRsp opcode={} seq={} entries={} bytes={}", opcode, clientSequence, count, data.length);
+        Grasscutter.getLogger().debug("ProfilePictureRsp opcode={} seq={} entries={} bytes={}", opcode, clientSequence, count, data.length);
     }
 }

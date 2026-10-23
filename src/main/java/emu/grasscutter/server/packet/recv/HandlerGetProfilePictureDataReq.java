@@ -37,13 +37,13 @@ public class HandlerGetProfilePictureDataReq extends PacketHandler {
         }
         session.send(new PacketListProbe(player, MIAO_PROFILE_RSP, 4, 15, 9, avatarSeqList(), frameIdList()));
         Grasscutter.getLogger()
-                .info(
+                .debug(
                         "MIAO nameCardList size={} list={}",
                         player.getNameCardList().size(),
                         new java.util.TreeSet<>(player.getNameCardList()));
         session.send(new PacketGetAllUnlockNameCardRsp(player));
         try { session.send(new emu.grasscutter.server.packet.send.PacketBeyondProfilePictureDataNotify(player)); } catch (Throwable t) { emu.grasscutter.Grasscutter.getLogger().warn("MIAO 6326 fail: {}", t.toString()); }
-        Grasscutter.getLogger().info("MIAO {} -> reply {} uid={}", tag, MIAO_PROFILE_RSP, player.getUid());
+        Grasscutter.getLogger().debug("MIAO {} -> reply {} uid={}", tag, MIAO_PROFILE_RSP, player.getUid());
     }
     @Override
     public void handle(GameSession session, byte[] header, byte[] payload) throws Exception {

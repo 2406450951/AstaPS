@@ -21,6 +21,6 @@ public class PacketGetBeyondPlayerInfoRsp extends BasePacket {
             data = new byte[0];
         }
         this.setData(data);
-        Grasscutter.getLogger().info("GetBeyondPlayerInfoRsp opcode=9779 type={} seq={} bytes={}", queryType, clientSequence, data.length);
+        Grasscutter.getLogger().debug("GetBeyondPlayerInfoRsp opcode=9779 type={} seq={} bytes={}", queryType, clientSequence, data.length);
     }
 }

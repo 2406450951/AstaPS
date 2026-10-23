@@ -19,7 +19,7 @@ public class HandlerMiao5683 extends PacketHandler {
             try { Thread.sleep(400); } catch (InterruptedException ignored) {}
             try {
                 session.send(new PacketGetAllUnlockNameCardRsp(player));
-                Grasscutter.getLogger().info("MIAO 5683(+400ms) -> reply 4400(名片) uid={}", player.getUid());
+                Grasscutter.getLogger().debug("MIAO 5683(+400ms) -> reply 4400(名片) uid={}", player.getUid());
             } catch (Throwable t) {
                 Grasscutter.getLogger().warn("MIAO 5683 send 4400 failed: {}", t.toString());
             }

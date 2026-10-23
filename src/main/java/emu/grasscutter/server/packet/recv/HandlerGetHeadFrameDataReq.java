@@ -12,7 +12,7 @@ import emu.grasscutter.server.game.GameSession;
 public class HandlerGetHeadFrameDataReq extends PacketHandler {
     @Override
     public void handle(GameSession session, byte[] header, byte[] payload) throws Exception {
-        Grasscutter.getLogger().info("MIAO 4179 HeadFrame -> refresh 22477 in 400ms");
+        Grasscutter.getLogger().debug("MIAO 4179 HeadFrame -> refresh 22477 in 400ms");
         new Thread(() -> {
             try { Thread.sleep(400); } catch (InterruptedException ignored) {}
             try {

@@ -129,6 +129,6 @@ public class PacketBeyondFull extends BasePacket {
             data = new byte[0];
         }
         this.setData(data);
-        Grasscutter.getLogger().info("BeyondFull opcode={} bytes={}", opcode, data.length);
+        Grasscutter.getLogger().debug("BeyondFull opcode={} bytes={}", opcode, data.length);
     }
 }

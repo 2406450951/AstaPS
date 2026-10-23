@@ -23,7 +23,7 @@ public class PacketGetPlayerSocialDetailRsp extends BasePacket {
         }
         this.setData(proto);
         Grasscutter.getLogger()
-                .info(
+                .debug(
                         "SocialDetailRsp seq={} hasDetail={} bytes={}",
                         clientSequence,
                         detail != null,

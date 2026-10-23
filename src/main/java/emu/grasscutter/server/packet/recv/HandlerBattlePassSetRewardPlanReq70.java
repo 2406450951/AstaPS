@@ -46,7 +46,7 @@ public class HandlerBattlePassSetRewardPlanReq70 extends PacketHandler {
         }
         if (player != null) {
             BattlePassCompatHelper.setSelectedPlan(player, plan);
-            Grasscutter.getLogger().info("SetRewardPlan uid={} plan={} noRemind={}", player.getUid(), plan, noRemind);
+            Grasscutter.getLogger().debug("SetRewardPlan uid={} plan={} noRemind={}", player.getUid(), plan, noRemind);
         }
         var rsp = _BattlePassSetRewardPlanRsp.newBuilder().setBattlePassPlan(plan);
         for (int tier = 1; tier <= 5; ++tier) rsp.addAffectedTierIdList(tier);

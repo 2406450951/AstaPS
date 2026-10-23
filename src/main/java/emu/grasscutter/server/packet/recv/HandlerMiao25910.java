@@ -19,12 +19,12 @@ public class HandlerMiao25910 extends PacketHandler {
             }
         } catch (Throwable ignored) {
         }
-        Grasscutter.getLogger().info("MIAO 25910 recv len={} seq={} uid={}", payload == null ? -1 : payload.length, seq, session.getPlayer().getUid());
+        Grasscutter.getLogger().debug("MIAO 25910 recv len={} seq={} uid={}", payload == null ? -1 : payload.length, seq, session.getPlayer().getUid());
         try {
             var rsp = new emu.grasscutter.server.packet.send.PacketBeyondPlayerDetailRsp(session.getPlayer());
             rsp.setHeader(PacketHead.newBuilder().setClientSequenceId(seq).setSentMs(System.currentTimeMillis()).build().toByteArray());
             session.send(rsp);
-            Grasscutter.getLogger().info("MIAO 25910 -> reply 4162 seq={}", seq);
+            Grasscutter.getLogger().debug("MIAO 25910 -> reply 4162 seq={}", seq);
         } catch (Throwable t) {
             Grasscutter.getLogger().warn("MIAO 25910 reply fail: {}", t.toString());
         }

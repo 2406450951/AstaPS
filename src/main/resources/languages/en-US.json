@@ -467,6 +467,51 @@
     },
     "debug": {
       "description": "Useful debugging commands for developers."
+    },
+    "barrier": {
+      "description": "Remove or restore the starter-region barrier for an online player."
+    },
+    "dailytask": {
+      "description": "Inspect and manage a player's daily commissions, including task groups, region, progress, and rewards."
+    },
+    "dps": {
+      "description": "Start or stop a timed damage-per-second test for an online player."
+    },
+    "kill": {
+      "description": "Kill the target player's active character or all entities in a scene."
+    },
+    "mail": {
+      "description": "Send or manage player and system mail, including attachments."
+    },
+    "namecard": {
+      "description": "Change the target player's profile namecard."
+    },
+    "proto": {
+      "description": "Configure live packet logging or inspect an opcode's protobuf message structure."
+    },
+    "restore": {
+      "description": "Restore the target player's HP, elemental energy, or both."
+    },
+    "sgv": {
+      "description": "Set a server global value for the target player."
+    },
+    "statue": {
+      "description": "Manage Statue of The Seven levels and scene point lock, unlock, and status."
+    },
+    "switchelement": {
+      "description": "Change the Traveler's element and optionally set a constellation level."
+    },
+    "tps": {
+      "description": "Manage third-person shooter weapons, equipment, and ammunition."
+    },
+    "trackmat": {
+      "description": "Mark a material's gathering points on the target player's world map."
+    },
+    "waypoints": {
+      "description": "Unlock or list teleport waypoints, optionally filtered by area."
+    },
+    "windy": {
+      "description": "Send client-side Lua scripts or apply supported client presentation settings."
     }
   },
   "gacha": {
