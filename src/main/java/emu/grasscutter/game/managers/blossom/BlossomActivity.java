@@ -78,6 +78,15 @@ public final class BlossomActivity {
         observeSummons();
     }
 
+    /** Called immediately when Scene registers an entity, before its onCreate abilities run. */
+    void onSceneEntityCreated(GameEntity entity) {
+        int parent = BlossomSummonCleanup.parentId(entity);
+        if (BlossomSummonCleanup.isEncounterChild(
+                parent, encounterMonsterIds, encounterSummons.keySet())) {
+            encounterSummons.putIfAbsent(entity.getId(), entity);
+        }
+    }
+
     public int getAliveMonstersCount() {
         int count = 0;
         for (EntityMonster monster : activeMonsters) {
@@ -144,10 +153,11 @@ public final class BlossomActivity {
                     var level = scene.getEntityLevel(1, worldLevelOverride);
                     var entity =
                             new EntityMonster(scene, monsterData, pos.nearby2d(4f), Position.ZERO, level);
-                    scene.addEntity(entity);
                     newMonsters.add(entity);
                 }
+                // Register roots before Scene.addEntity invokes onCreate/ability callbacks.
                 addMonsters(newMonsters);
+                for (EntityMonster monster : newMonsters) scene.addEntity(monster);
             }
         }
     }
@@ -174,6 +184,13 @@ public final class BlossomActivity {
                     gadget.getId(), result.live(), result.stale());
         }
         encounterSummons.clear();
+        var remaining = BlossomSummonCleanup.nearbyGadgets(
+                gadget.getScene(), gadget.getPosition(), 15);
+        if (!remaining.isEmpty()) {
+            emu.grasscutter.Grasscutter.getLogger().info(
+                    "Ley-line nearby gadgets after settle source={} gadgets={}",
+                    gadget.getId(), remaining);
+        }
     }
 
     public EntityGadget getGadget() {

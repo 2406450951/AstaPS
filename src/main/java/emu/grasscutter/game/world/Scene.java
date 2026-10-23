@@ -340,6 +340,7 @@ public class Scene {
 
     private void addEntityDirectly(GameEntity entity) {
         getEntities().put(entity.getId(), entity);
+        if (blossomManager != null) blossomManager.onSceneEntityCreated(entity);
         entity.onCreate();
     }
 

@@ -58,6 +58,14 @@ final class BlossomSummonCleanupTest {
     }
 
     @Test
+    void entityCreationImmediatelyRecordsEncounterChildrenAndNestedSummons() {
+        assertTrue(BlossomSummonCleanup.isEncounterChild(101, Set.of(101), Set.of()));
+        assertTrue(BlossomSummonCleanup.isEncounterChild(201, Set.of(101), Set.of(201)));
+        assertFalse(BlossomSummonCleanup.isEncounterChild(999, Set.of(101), Set.of(201)));
+        assertFalse(BlossomSummonCleanup.isEncounterChild(0, Set.of(101), Set.of(201)));
+    }
+
+    @Test
     void skipsUnlinkedEntitiesAndCyclesOutsideTheEncounter() {
         var unrelatedA = new Link(500, 501);
         var unrelatedB = new Link(501, 500);
