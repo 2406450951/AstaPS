@@ -184,13 +184,6 @@ public final class BlossomActivity {
                     gadget.getId(), result.live(), result.stale());
         }
         encounterSummons.clear();
-        var remaining = BlossomSummonCleanup.nearbyGadgets(
-                gadget.getScene(), gadget.getPosition(), 15);
-        if (!remaining.isEmpty()) {
-            emu.grasscutter.Grasscutter.getLogger().info(
-                    "Ley-line nearby gadgets after settle source={} gadgets={}",
-                    gadget.getId(), remaining);
-        }
     }
 
     public EntityGadget getGadget() {

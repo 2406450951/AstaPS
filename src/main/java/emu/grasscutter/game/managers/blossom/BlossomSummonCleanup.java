@@ -5,7 +5,6 @@ import emu.grasscutter.game.entity.EntityGadget;
 import emu.grasscutter.game.entity.EntityMonster;
 import emu.grasscutter.game.entity.GameEntity;
 import emu.grasscutter.game.world.Scene;
-import emu.grasscutter.game.world.Position;
 import emu.grasscutter.server.packet.send.PacketSceneEntityDisappearNotify;
 import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import java.util.*;
@@ -62,21 +61,6 @@ final class BlossomSummonCleanup {
     static List<GameEntity> find(Scene scene, Collection<Integer> ownerIds) {
         return descendants(new ArrayList<>(scene.getEntities().values()), ownerIds,
                 GameEntity::getId, BlossomSummonCleanup::parentId);
-    }
-
-    /** Diagnostic only: never remove unowned gadgets just because they are nearby. */
-    static List<String> nearbyGadgets(Scene scene, Position center, double range) {
-        return scene.getEntities().values().stream()
-                .filter(entity -> entity instanceof EntityGadget
-                        || entity instanceof EntityClientGadget)
-                .filter(entity -> entity.getPosition().computeDistance(center) <= range)
-                .limit(30)
-                .map(entity -> entity.getId() + ":"
-                        + (entity instanceof EntityGadget gadget ? gadget.getGadgetId()
-                            : ((EntityClientGadget) entity).getGadgetId())
-                        + "(parent=" + parentId(entity)
-                        + ",class=" + entity.getClass().getSimpleName() + ")")
-                .toList();
     }
 
     record Removal(int live, int stale) {}
