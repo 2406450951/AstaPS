@@ -54,9 +54,10 @@ when switching deployments.
   `ExcelBinOutput/`, scene points, and scripts. In particular, AstaPS reads
   `Server/DropTableExcelConfigData.json` **from the resource pack**, not
   `data/Server/`.
-- `config/`: owner-editable policy, e.g. first-unlock rewards and future
-  drop-rate/schedule rules. These must not silently compete with legacy
-  `data/` tables.
+- `rewards/`: operator-editable LootCSS and YAML reward rules. They own
+  chest, scene-point, ley-line, and boss payout policy; `data/` must not
+  introduce a competing reward configuration.
+- `config/`: other server settings, separate from drop and reward tables.
 - `src/main/resources/defaults/data/`: defaults maintained by the server
   source and included in the JAR.
 
