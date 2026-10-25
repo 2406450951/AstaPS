@@ -9,6 +9,7 @@ import emu.grasscutter.game.entity.EntityGadget;
 import emu.grasscutter.game.entity.GameEntity;
 import emu.grasscutter.game.entity.gadget.chest.BossChestInteractHandler;
 import emu.grasscutter.game.entity.gadget.chest.ChestInteractHandler;
+import emu.grasscutter.game.entity.gadget.chest.ChestTypeResolver;
 import emu.grasscutter.game.entity.gadget.chest.WorldChestLootHelper;
 import emu.grasscutter.game.inventory.GameItem;
 import emu.grasscutter.game.player.Player;
@@ -307,7 +308,9 @@ public class GadgetChest extends GadgetContent {
                 return true;
             }
         }
-        String identity = gadget.getGroupId() > 0 && gadget.getConfigId() > 0
+        boolean permanent = ChestTypeResolver.resolve(gadget) != null
+                || (meta != null && meta.isOneoff);
+        String identity = permanent && gadget.getGroupId() > 0 && gadget.getConfigId() > 0
                 ? gadget.getScene().getId() + "." + gadget.getGroupId() + "." + gadget.getConfigId()
                 : "spawn." + ordinarySpawnId;
         return WorldChestLootHelper.grant(player, gadget, "chest." + identity,
@@ -391,6 +394,17 @@ public class GadgetChest extends GadgetContent {
 
     private void finishOpen(Player player, SceneGadget sceneGadget, boolean credit) {
         EntityGadget entityGadget = getGadget();
+        // Boss flowers are repeatable encounters. Ordinary authored chests and pickups
+        // are consumed independently of the Lua oneoff/persistent flag combination.
+        if (entityGadget.getScene().getSceneType() == SceneType.SCENE_WORLD
+                && (sceneGadget == null || sceneGadget.boss_chest == null)
+                && (ChestTypeResolver.resolve(entityGadget) != null
+                        || (sceneGadget != null && sceneGadget.isOneoff))
+                && entityGadget.getGroupId() > 0 && entityGadget.getConfigId() > 0) {
+            var instance = entityGadget.getScene().getScriptManager()
+                    .getGroupInstanceById(entityGadget.getGroupId());
+            if (instance != null) instance.markGadgetConsumed(entityGadget.getConfigId());
+        }
         entityGadget.updateState(CHEST_OPENED_STATE);
         player.sendPacket(
                 new PacketGadgetInteractRsp(
@@ -414,7 +428,9 @@ public class GadgetChest extends GadgetContent {
         } catch (Throwable ignored) {
         }
         if (credit) {
-            creditChestOpen(player);
+            if (!ChestTypeResolver.isNativeInteract(entityGadget)) {
+                creditChestOpen(player);
+            }
         }
     }
 
