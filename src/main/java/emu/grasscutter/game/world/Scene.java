@@ -1421,9 +1421,9 @@ public class Scene {
                 groupInstance = cachedInstance;
             }
 
-            emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.refresh(
+            emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.load(
                     this.getScriptManager(), groupInstance,
-                    emu.grasscutter.game.quest.LiyueSceneGroupRecovery.selectSuite(this, groupInstance), false);
+                    emu.grasscutter.game.quest.LiyueSceneGroupRecovery.selectSuite(this, groupInstance));
 
             this.loadedGroups.add(group);
         }
