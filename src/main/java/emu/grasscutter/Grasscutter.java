@@ -343,7 +343,7 @@ public final class Grasscutter {
         return Grasscutter.runModeOverride != null ? Grasscutter.runModeOverride : SERVER.runMode;
     }
 
-    public static LineReader getConsole() {
+    public static synchronized LineReader getConsole() {
         if (consoleLineReader == null) {
             Terminal terminal = null;
             try {

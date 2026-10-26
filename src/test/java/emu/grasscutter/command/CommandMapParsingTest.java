@@ -10,6 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.jline.reader.Candidate;
+import org.jline.reader.LineReader;
+import org.jline.reader.Parser;
+import org.jline.reader.Reference;
+import org.jline.reader.impl.LineReaderImpl;
+import emu.grasscutter.Grasscutter;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
@@ -103,14 +109,31 @@ public final class CommandMapParsingTest {
     }
 
     @Test
+    public void tabCompletionUsesTheActiveConsoleReader() {
+        var map = new CommandMap(false);
+        map.registerCommand("probe", new ProbeCommand());
+        map.installConsoleCompleter();
+
+        var reader = (LineReaderImpl) Grasscutter.getConsole();
+        var tab = reader.getKeyMaps().get(LineReader.MAIN).getBound("\t");
+        assertTrue(tab instanceof Reference);
+        assertEquals(LineReader.COMPLETE_WORD, ((Reference) tab).name());
+
+        var candidates = new ArrayList<Candidate>();
+        var parsed = reader.getParser().parse("pro", 3, Parser.ParseContext.COMPLETE);
+        reader.getCompleter().complete(reader, parsed, candidates);
+        assertTrue(candidates.stream().anyMatch(candidate -> candidate.value().equals("probe")));
+    }
+
+    @Test
     public void parameterErrorsIncludeBothCauseAndSubcommandUsage() {
         var dungeon = new emu.grasscutter.command.commands.EnterDungeonCommand()
                 .createCommandLine(null, null);
         var invalidId = assertThrows(CommandLine.ParameterException.class,
                 () -> dungeon.parseArgs("not-an-integer"));
         var converted = CommandMap.parameterErrorMessages(invalidId);
-        assertEquals(2, converted.size());
-        assertTrue(converted.get(1).contains("<dungeonId>"));
+        assertEquals(1, converted.size());
+        assertTrue(converted.getFirst().contains("not-an-integer"));
 
         var teleport = new emu.grasscutter.command.commands.TeleportCommand()
                 .createCommandLine(null, null);
@@ -119,6 +142,10 @@ public final class CommandMapParsingTest {
         var messages = CommandMap.parameterErrorMessages(missing);
         assertEquals(2, messages.size());
         assertTrue(messages.get(1).contains("<z>"));
+
+        var extra = assertThrows(CommandLine.UnmatchedArgumentException.class,
+                () -> teleport.parseArgs("pos", "1", "2", "3", "4", "5"));
+        assertEquals(2, CommandMap.parameterErrorMessages(extra).size());
     }
 
     @Test

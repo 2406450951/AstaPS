@@ -18,6 +18,8 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executor;
+import org.jline.reader.LineReader;
+import org.jline.reader.Reference;
 import org.jline.reader.Parser;
 import org.jline.reader.SyntaxError;
 import org.jline.reader.impl.DefaultParser;
@@ -263,7 +265,7 @@ public final class CommandMap {
         return target;
     }
 
-    /** Always pair a Picocli input error with the relevant command or subcommand syntax. */
+    /** Show usage for structural syntax errors, but keep invalid values to one clear message. */
     static List<String> parameterErrorMessages(CommandLine.ParameterException exception) {
         Throwable cause = exception.getCause();
         String detail = cause instanceof CommandLine.TypeConversionException conversion
@@ -271,6 +273,9 @@ public final class CommandMap {
                         && !conversion.getMessage().isBlank()
                 ? conversion.getMessage()
                 : exception.getMessage();
+        boolean syntaxError = exception instanceof CommandLine.MissingParameterException
+                || exception instanceof CommandLine.UnmatchedArgumentException;
+        if (!syntaxError) return detail == null || detail.isBlank() ? List.of() : List.of(detail);
         String syntax = exception.getCommandLine().getUsageMessage().stripTrailing();
         return detail == null || detail.isBlank() ? List.of(syntax) : List.of(detail, syntax);
     }
@@ -331,9 +336,11 @@ public final class CommandMap {
         }
     }
 
-    private void installConsoleCompleter() {
+    void installConsoleCompleter() {
         var reader = Grasscutter.getConsole();
         if (reader instanceof LineReaderImpl lineReader) {
+            lineReader.getKeyMaps().get(LineReader.MAIN)
+                    .bind(new Reference(LineReader.COMPLETE_WORD), "\t");
             lineReader.setCompleter(
                     (currentReader, parsedLine, candidates) -> {
                         synchronized (this.picocliLock) {
@@ -719,7 +726,6 @@ public final class CommandMap {
 
         Command.TargetRequirement targetRequirement = annotation.targetRequirement();
         if (!targetUsable(targetRequirement, targetPlayer)) {
-            handler.sendUsageMessage(player);
             sendUnavailableTarget(player, targetPlayer == null
                     ? Command.TargetRequirement.PLAYER : targetRequirement);
             return;
