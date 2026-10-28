@@ -207,10 +207,32 @@ void pollLoop() {
     }
 }
 
+// Percent-encode a query string, keeping '&' and '=' as separators. The menu writes values that
+// can contain spaces (e.g. a raw command "give 201 x10"), and WinHTTP refuses spaces in a URL.
+static std::string encodeQuery(const std::string& in) {
+    static const char* hex = "0123456789ABCDEF";
+    std::string out;
+    out.reserve(in.size() + 16);
+    for (unsigned char c : in) {
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') ||
+            c == '-' || c == '_' || c == '.' || c == '~' || c == '&' || c == '=') {
+            out.push_back((char)c);
+        } else {
+            out.push_back('%');
+            out.push_back(hex[c >> 4]);
+            out.push_back(hex[c & 0xF]);
+        }
+    }
+    return out;
+}
+
 void sendLoop(std::string verb_and_path, std::string query) {
+    // The plugin reads parameters from the URI query (HttpExchange.getRequestURI().getRawQuery()),
+    // so the query has to travel in the URL, not in the POST body.
+    if (!query.empty()) verb_and_path += "?" + encodeQuery(query);
     std::wstring wpath(verb_and_path.begin(), verb_and_path.end());
     std::string out;
-    httpRequest(L"POST", wpath.c_str(), query, out);
+    httpRequest(L"POST", wpath.c_str(), std::string(), out);
 }
 
 std::thread g_thread;

@@ -117,8 +117,11 @@ public final class CheatApi {
     // ---------------------------------------------------------------- per tick
 
     /** Applies the overlay's state to every online player and drains queued actions. */
+    public static long tickCount;
+
     public static void tick(CheatMenu owner) {
         if (owner == null) return;
+        tickCount++;
         long now = System.currentTimeMillis();
 
         List<Player> players = owner.onlinePlayers();
@@ -215,16 +218,31 @@ public final class CheatApi {
             case "time" -> {
                 int h = (int) f(q, "h", timeH);
                 int m = (int) f(q, "m", timeM);
-                if (actor.getWorld() != null) actor.getWorld().changeTime(h, m);
+                if (actor.getWorld() != null) {
+                    // A world saved with locked time ignores every clock change, which makes the
+                    // menu look broken. Clear the lock the first time we touch the clock.
+                    if (actor.getWorld().isTimeLocked()) actor.getWorld().lockTime(false);
+                    actor.getWorld().changeTime(h, m);
+                }
                 timeH = h;
                 timeM = m;
                 lastAction = String.format(Locale.ROOT, "time: %02d:%02d", h, m);
             }
             case "weather" -> {
                 int id = (int) f(q, "id", 0);
+                if (actor.getWorld() != null && actor.getWorld().isTimeLocked())
+                    actor.getWorld().lockTime(false);
                 actor.setWeather(id);
                 weather = id;
                 lastAction = "weather: " + id;
+            }
+            case "unlock" -> {
+                if (actor.getWorld() != null) {
+                    actor.getWorld().lockTime(false);
+                    lastAction = "time unlocked";
+                } else {
+                    lastAction = "no world";
+                }
             }
             case "give" -> {
                 int id = (int) f(q, "id", 202);
@@ -364,6 +382,7 @@ public final class CheatApi {
 
         sb.append("v 1\n");
         sb.append("up ").append(now - lastStartMs()).append('\n');
+        sb.append("tick ").append(tickCount).append('\n');
 
         List<Player> players = owner == null ? List.of() : owner.onlinePlayers();
         Player me = players.isEmpty() ? null : players.get(0);
@@ -474,9 +493,19 @@ public final class CheatApi {
 
     // ---------------------------------------------------------------- helpers
 
+    /**
+     * Parameters arrive in the URI query. Older overlay builds put them in the POST body instead,
+     * so fall back to the body when the URL carries nothing — keeps both sides working.
+     */
     private static String rawQuery(HttpExchange ex) {
         String q = ex.getRequestURI().getRawQuery();
-        return q == null ? "" : q;
+        if (q != null && !q.isEmpty()) return q;
+        try {
+            byte[] body = ex.getRequestBody().readAllBytes();
+            return body.length == 0 ? "" : new String(body, StandardCharsets.UTF_8);
+        } catch (Throwable ignored) {
+            return "";
+        }
     }
 
     private static Map<String, String> parseQuery(String raw) {
