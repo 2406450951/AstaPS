@@ -1,98 +1,90 @@
-# 原神 7.1 私服 + 游戏内作弊菜单
-
-基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
-外加一个自己写的游戏内菜单。服务端权威执行作弊，客户端只负责发指令。
-
-> 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
-
+# 鍘熺 7.1 绉佹湇 + 娓告垙鍐呬綔寮婅彍鍗?
+鍩轰簬 [AstaPS](https://github.com/MeChen618/AstaPS)锛圙rasscutter 鐨?7.1.0 鍒嗘敮锛夋惌鐨勪竴濂?Windows 鍗曟満鐜锛?澶栧姞涓€涓嚜宸卞啓鐨勬父鎴忓唴鑿滃崟銆傛湇鍔＄鏉冨▉鎵ц浣滃紛锛屽鎴风鍙礋璐ｅ彂鎸囦护銆?
+> 鐮旂┒鍜屼釜浜哄瓨妗ｇ敤閫旓紝涓庣背鍝堟父 / HoYoverse 鏃犲叧锛屼笉鍙晢鐢ㄣ€?
 ## Requirements
 
-| 组件 | 版本 | 必需 | 说明 |
+| 缁勪欢 | 鐗堟湰 | 蹇呴渶 | 璇存槑 |
 |---|---|---|---|
-| 原神客户端 | **7.1.0 国际服** | 是 | 国服客户端进世界 40~85 秒后必崩，见 [docs/troubleshooting.md](docs/troubleshooting.md) |
-| JDK | 21 | 是 | 服务端运行时与构建都用 21 |
-| MongoDB | 7.x Community | 是 | 账号与存档 |
-| Python | 3.11（带 tkinter） | 是 | 本地 TLS 前置、校验脚本 |
-| 资源包 | 7.1.0 | 是 | 约 1.6 GB，从 [AstaPS-Resource](https://github.com/MeChen618/AstaPS-Resource) 下载，解压到 `server/resources/` |
-| MSYS2 / mingw64 | gcc 16 及以上 | 否 | 只在要重新编译菜单 DLL 时需要 |
-| Rust | cargo 1.99 及以上 | 否 | 只在要重新编译客户端补丁时需要 |
-| .NET Desktop Runtime | 8 | 否 | 只有用外置帧率解锁工具时需要（它带自包含版可免装） |
+| 鍘熺瀹㈡埛绔?| **7.1.0 鍥介檯鏈?* | 鏄?| 鍥芥湇瀹㈡埛绔繘涓栫晫 40~85 绉掑悗蹇呭穿锛岃 [docs/troubleshooting.md](docs/troubleshooting.md) |
+| JDK | 21 | 鏄?| 鏈嶅姟绔繍琛屾椂涓庢瀯寤洪兘鐢?21 |
+| MongoDB | 7.x Community | 鏄?| 璐﹀彿涓庡瓨妗?|
+| Python | 3.11锛堝甫 tkinter锛?| 鏄?| 鏈湴 TLS 鍓嶇疆銆佹牎楠岃剼鏈?|
+| 璧勬簮鍖?| 7.1.0 | 鏄?| 绾?1.6 GB锛屼粠 [AstaPS-Resource](https://github.com/MeChen618/AstaPS-Resource) 涓嬭浇锛岃В鍘嬪埌 `server/resources/` |
+| MSYS2 / mingw64 | gcc 16 鍙婁互涓?| 鍚?| 鍙湪瑕侀噸鏂扮紪璇戣彍鍗?DLL 鏃堕渶瑕?|
+| Rust | cargo 1.99 鍙婁互涓?| 鍚?| 鍙湪瑕侀噸鏂扮紪璇戝鎴风琛ヤ竵鏃堕渶瑕?|
+| .NET Desktop Runtime | 8 | 鍚?| 鍙湁鐢ㄥ缃抚鐜囪В閿佸伐鍏锋椂闇€瑕侊紙瀹冨甫鑷寘鍚増鍙厤瑁咃級 |
 
-## 快速开始
-
+## 蹇€熷紑濮?
 ```powershell
-# 1) 放资源包
-#    下载 AstaPS-Resource 的 7.1.0，解压到 server/resources/
+# 1) 鏀捐祫婧愬寘
+#    涓嬭浇 AstaPS-Resource 鐨?7.1.0锛岃В鍘嬪埌 server/resources/
 
-# 2) 起服务端
+# 2) 璧锋湇鍔＄
 powershell -ExecutionPolicy Bypass -File server/start-server.ps1
 
-# 3) 起本地 TLS 前置（截获 SDK 登录，转发给服务端）
-powershell -ExecutionPolicy Bypass -File scripts/起TLS前置.ps1
+# 3) 璧锋湰鍦?TLS 鍓嶇疆锛堟埅鑾?SDK 鐧诲綍锛岃浆鍙戠粰鏈嶅姟绔級
+powershell -ExecutionPolicy Bypass -File scripts/璧稵LS鍓嶇疆.ps1
 
-# 4) 清客户端本地登录痕迹（否则会拿旧 token 反复自检）
-powershell -ExecutionPolicy Bypass -File scripts/重置登录状态.ps1
+# 4) 娓呭鎴风鏈湴鐧诲綍鐥曡抗锛堝惁鍒欎細鎷挎棫 token 鍙嶅鑷锛?powershell -ExecutionPolicy Bypass -File scripts/閲嶇疆鐧诲綍鐘舵€?ps1
 
-# 5) 部署两个 DLL 到客户端目录（名字固定，游戏只认这两个）
-Copy-Item <构建产物>\Gs71Menu.dll   "<客户端目录>\Astrolabe.dll"  -Force
-Copy-Item <构建产物>\ext.dll        "<客户端目录>\hk4e-patch.dll" -Force
+# 5) 閮ㄧ讲涓や釜 DLL 鍒板鎴风鐩綍锛堝悕瀛楀浐瀹氾紝娓告垙鍙杩欎袱涓級
+Copy-Item <鏋勫缓浜х墿>\Gs71Menu.dll   "<瀹㈡埛绔洰褰?\Astrolabe.dll"  -Force
+Copy-Item <鏋勫缓浜х墿>\ext.dll        "<瀹㈡埛绔洰褰?\hk4e-patch.dll" -Force
 ```
 
-启动游戏 → 登录页随便输账号密码（勾协议）→ 进世界 → 按 `INSERT` 呼出菜单。
-
-日常用 `scripts/启动.bat` 一条命令走完全部五步；它和 `scripts/只起服务端.bat` 的区别见
-[docs/deploy.md](docs/deploy.md)。
-
-## 目录结构
+鍚姩娓告垙 鈫?鐧诲綍椤甸殢渚胯緭璐﹀彿瀵嗙爜锛堝嬀鍗忚锛夆啋 杩涗笘鐣?鈫?鎸?`INSERT` 鍛煎嚭鑿滃崟銆?
+鏃ュ父鐢?`scripts/鍚姩.bat` 涓€鏉″懡浠よ蛋瀹屽叏閮ㄤ簲姝ワ紱瀹冨拰 `scripts/鍙捣鏈嶅姟绔?bat` 鐨勫尯鍒
+[docs/deploy.md](docs/deploy.md)銆?
+## 鐩綍缁撴瀯
 
 ```
 .
-├── server/                     服务端
-│   ├── config.json             主配置（端口、账号策略、游戏选项）
-│   ├── start-server.ps1        起停脚本，自动拉起 MongoDB
-│   └── plugin/                 作弊插件（Java，AstaPS 插件形式加载）
-│       ├── build.ps1           编译成 server/plugins/CheatMenu.jar
-│       └── src/cheatmenu/      CheatCommand / CheatApi / Bridge / SdkRouter …
-│
-├── client/                     客户端一侧
-│   ├── overlay/                游戏内菜单（C++ / ImGui / MinHook，D3D11 Present 钩子）
-│   ├── patch/                  客户端补丁（Rust，hk4e-patch-universal 改写版）
-│   └── tools/                  TLS 前置脚本、帧率变量定位、PE 分析等小工具
-│
-├── scripts/                    启动、自检、登录链测试、稳定性测试
-└── docs/                       部署、差异、故障排查
-```
+鈹溾攢鈹€ server/                     鏈嶅姟绔?鈹?  鈹溾攢鈹€ config.json             涓婚厤缃紙绔彛銆佽处鍙风瓥鐣ャ€佹父鎴忛€夐」锛?鈹?  鈹溾攢鈹€ start-server.ps1        璧峰仠鑴氭湰锛岃嚜鍔ㄦ媺璧?MongoDB
+鈹?  鈹斺攢鈹€ plugin/                 浣滃紛鎻掍欢锛圝ava锛孉staPS 鎻掍欢褰㈠紡鍔犺浇锛?鈹?      鈹溾攢鈹€ build.ps1           缂栬瘧鎴?server/plugins/CheatMenu.jar
+鈹?      鈹斺攢鈹€ src/cheatmenu/      CheatCommand / CheatApi / Bridge / SdkRouter 鈥?鈹?鈹溾攢鈹€ client/                     瀹㈡埛绔竴渚?鈹?  鈹溾攢鈹€ overlay/                娓告垙鍐呰彍鍗曪紙C++ / ImGui / MinHook锛孌3D11 Present 閽╁瓙锛?鈹?  鈹溾攢鈹€ patch/                  瀹㈡埛绔ˉ涓侊紙Rust锛宧k4e-patch-universal 鏀瑰啓鐗堬級
+鈹?  鈹斺攢鈹€ tools/                  TLS 鍓嶇疆鑴氭湰銆佸抚鐜囧彉閲忓畾浣嶃€丳E 鍒嗘瀽绛夊皬宸ュ叿
+鈹?鈹溾攢鈹€ scripts/                    鍚姩銆佽嚜妫€銆佺櫥褰曢摼娴嬭瘯銆佺ǔ瀹氭€ф祴璇?鈹斺攢鈹€ docs/                       閮ㄧ讲銆佸樊寮傘€佹晠闅滄帓鏌?```
 
-仓库不含二进制产物、资源包、第三方 vendored 源码，构建方式见 [docs/deploy.md](docs/deploy.md)。
+浠撳簱涓嶅惈浜岃繘鍒朵骇鐗┿€佽祫婧愬寘銆佺涓夋柟 vendored 婧愮爜锛屾瀯寤烘柟寮忚 [docs/deploy.md](docs/deploy.md)銆?
+## 閰嶇疆
 
-## 配置
-
-| 文件 | 作用 | 常改项 |
+| 鏂囦欢 | 浣滅敤 | 甯告敼椤?|
 |---|---|---|
-| `server/config.json` | 服务端主配置 | `http.bindPort`（默认 8088）、`game.bindPort`（22101/UDP）、`account.autoCreate`、`game.gameOptions.newAccountIntro.enabled` |
-| `hk4e-patch.cfg`（可选，放客户端目录） | 客户端补丁行为 | `target`（服务端地址）、`modules`（启用模块）、`dnslog`（打印 DNS 解析）、`block`（屏蔽域名） |
-| `gs71_menu.cfg`（自动生成，放客户端目录） | 菜单开关与参数 | 作弊项默认全关，首次运行自动生成，改动即时写回 |
-| `client/tools/mitm_sdk.py` | TLS 前置 | `LISTEN_PORT`（443）、`UPSTREAM`（转发目标） |
+| `server/config.json` | 鏈嶅姟绔富閰嶇疆 | `http.bindPort`锛堥粯璁?8088锛夈€乣game.bindPort`锛?2101/UDP锛夈€乣account.autoCreate`銆乣game.gameOptions.newAccountIntro.enabled` |
+| `hk4e-patch.cfg`锛堝彲閫夛紝鏀惧鎴风鐩綍锛?| 瀹㈡埛绔ˉ涓佽涓?| `target`锛堟湇鍔＄鍦板潃锛夈€乣modules`锛堝惎鐢ㄦā鍧楋級銆乣dnslog`锛堟墦鍗?DNS 瑙ｆ瀽锛夈€乣block`锛堝睆钄藉煙鍚嶏級 |
+| `gs71_menu.cfg`锛堣嚜鍔ㄧ敓鎴愶紝鏀惧鎴风鐩綍锛?| 鑿滃崟寮€鍏充笌鍙傛暟 | 浣滃紛椤归粯璁ゅ叏鍏筹紝棣栨杩愯鑷姩鐢熸垚锛屾敼鍔ㄥ嵆鏃跺啓鍥?|
+| `client/tools/mitm_sdk.py` | TLS 鍓嶇疆 | `LISTEN_PORT`锛?43锛夈€乣UPSTREAM`锛堣浆鍙戠洰鏍囷級 |
 
-放在系统里、不随仓库走的三处：hosts 重定向、自签根证书、443 端口占用，详见
-[docs/deploy.md](docs/deploy.md) 第 4 节。
+鏀惧湪绯荤粺閲屻€佷笉闅忎粨搴撹蛋鐨勪笁澶勶細hosts 閲嶅畾鍚戙€佽嚜绛炬牴璇佷功銆?43 绔彛鍗犵敤锛岃瑙?[docs/deploy.md](docs/deploy.md) 绗?4 鑺傘€?
+## 鏂囨。
 
-## 文档
+- [docs/deploy.md](docs/deploy.md) 鈥?浠庨浂閮ㄧ讲锛氱幆澧冦€佽祫婧愬寘銆佺郴缁熺骇鏀瑰姩銆佺紪璇戙€侀獙璇?- [docs/differences.md](docs/differences.md) 鈥?涓庝笂娓?AstaPS 鐨勫樊寮傦紙閫愭枃浠讹級
+- [docs/troubleshooting.md](docs/troubleshooting.md) 鈥?甯歌鏁呴殰銆佸浗鏈嶅鎴风宕╂簝鍘熷洜銆佸凡鐭ラ檺鍒?
+## 璁稿彲
 
-- [docs/deploy.md](docs/deploy.md) — 从零部署：环境、资源包、系统级改动、编译、验证
-- [docs/differences.md](docs/differences.md) — 与上游 AstaPS 的差异（逐文件）
-- [docs/troubleshooting.md](docs/troubleshooting.md) — 常见故障、国服客户端崩溃原因、已知限制
+鏈嶅姟绔熀浜?Grasscutter / AstaPS锛岄伒寰?**GPL-3.0**锛堣 [LICENSE](LICENSE)锛夈€?瀹㈡埛绔ˉ涓佹潵鑷?[hk4e-patch-universal](https://github.com/KitsukiDev/hk4e-patch-universal)锛?鍘熶綔鑰?xeondev銆乷ureveryday銆乧apyb2222锛屼繚鐣欏叾鍘熷璁稿彲銆?
+## 鑷磋阿
 
-## 许可
+- [Grasscutter](https://github.com/Grasscutters/Grasscutter) 鈥?鏈嶅姟绔師鍨?- [AstaPS](https://github.com/MeChen618/AstaPS) 鈥?7.1.0 鍒嗘敮锛屾湰椤圭洰鐨勬湇鍔＄鍩虹
+- [hk4e-patch-universal](https://github.com/KitsukiDev/hk4e-patch-universal) 鈥?瀹㈡埛绔ˉ涓佸熀纭€
+- [genshin-fps-unlock](https://github.com/34736384/genshin-fps-unlock) 鈥?甯х巼涓婇檺鍙橀噺鐨勫畾浣嶆柟娉?- [ImGui](https://github.com/ocornut/imgui)銆乕MinHook](https://github.com/TsudaKageyu/minhook) 鈥?鑿滃崟鐣岄潰涓庨挬瀛?
+## 直接拿来用（不编译）
 
-服务端基于 Grasscutter / AstaPS，遵循 **GPL-3.0**（见 [LICENSE](LICENSE)）。
-客户端补丁来自 [hk4e-patch-universal](https://github.com/KitsukiDev/hk4e-patch-universal)，
-原作者 xeondev、oureveryday、capyb2222，保留其原始许可。
+仓库只放源码。要用现成的二进制，需要下面四个文件，把它们放到对应位置即可：
 
-## 致谢
+| 文件 | 放到哪 | 说明 |
+|---|---|---|
+| `Astrolabe.dll` | `<客户端目录>` | 菜单本体（由 `client/overlay` 构建，原名 `Gs71Menu.dll`） |
+| `hk4e-patch.dll` | `<客户端目录>` | 客户端补丁（由 `client/patch` 构建，原名 `ext.dll`） |
+| `CheatMenu.jar` | `server/plugins/` | 作弊插件（由 `server/plugin` 构建） |
+| `resources/` | `server/resources/` | 7.1.0 资源包，1.6 GB |
 
-- [Grasscutter](https://github.com/Grasscutters/Grasscutter) — 服务端原型
-- [AstaPS](https://github.com/MeChen618/AstaPS) — 7.1.0 分支，本项目的服务端基础
-- [hk4e-patch-universal](https://github.com/KitsukiDev/hk4e-patch-universal) — 客户端补丁基础
-- [genshin-fps-unlock](https://github.com/34736384/genshin-fps-unlock) — 帧率上限变量的定位方法
-- [ImGui](https://github.com/ocornut/imgui)、[MinHook](https://github.com/TsudaKageyu/minhook) — 菜单界面与钩子
+前三个都是构建产物、不入库。作者打包好的版本见 Releases。
+
+## 用之前要知道的
+
+- 客户端必须是 **7.1.0 国际服**，国服会崩（见 [docs/troubleshooting.md](docs/troubleshooting.md)）。
+- 本机 **443 端口**要给 TLS 前置用，被占用会起不来。
+- 账号密码随便输都能进同一个本地账号（国服那把私钥拿不到，只能回落固定账号）。
+- 天气只改气候（晴/阴/雨/雷/雪），不会触发蒙德城的暴风雨剧情；这是故意的，改成天气区域会让客户端崩。
+- 帧率靠外置工具，不在菜单里，原因见 troubleshooting。
