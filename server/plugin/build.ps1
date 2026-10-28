@@ -1,11 +1,11 @@
-# CheatMenu build — javac straight against grasscutter.jar, no gradle/maven needed.
+﻿# CheatMenu build — javac straight against grasscutter.jar, no gradle/maven needed.
 #   .\build.ps1
 # Output: E:\dsh_code\gcsrv\plugins\CheatMenu.jar
 $ErrorActionPreference = 'Stop'
 
 $jdk    = $null
 foreach ($c in @(
-        'D:\Programs\gs71-runtime\jdk21\bin\java.exe',
+        $env:JAVA_HOME + '\bin\javac.exe',
         'C:\Program Files\Eclipse Adoptium\jdk-21*\bin\java.exe',
         'C:\Program Files\Java\jdk-21*\bin\java.exe',
         'C:\Program Files\Microsoft\jdk-21*\bin\java.exe')) {

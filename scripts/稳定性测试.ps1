@@ -4,9 +4,10 @@
 
 param([int]$Minutes = 5)
 
+. "$PSScriptRoot\paths.ps1"
 $ErrorActionPreference = 'SilentlyContinue'
 $gs71   = $PSScriptRoot
-$game   = 'D:\Program Files\miHoYo Launcher_cn\miHoYo Launcher\games\Genshin Impact Game'
+$game   = $GameDir
 $astLog = Join-Path $game 'Astrolabe.log'
 $dmp    = Join-Path $game 'Astrolabe.crash.dmp'
 $outLog = 'C:\Users\Administrator\AppData\LocalLow\miHoYo\原神\output_log.txt'

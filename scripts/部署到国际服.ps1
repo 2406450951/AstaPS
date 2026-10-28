@@ -1,5 +1,5 @@
 ﻿# 把私服补丁部署到"国际服"客户端目录
-#   powershell -ExecutionPolicy Bypass -File .\部署到国际服.ps1 -GameDir "D:\Program Files\HoYoPlay\games\Genshin Impact game"
+#   powershell -ExecutionPolicy Bypass -File .\部署到国际服.ps1 -GameDir "<客户端目录>"
 # 做的事：复制 Astrolabe.dll（菜单）+ hk4e-patch.dll（dispatch/登录补丁），并检查版本与 hosts。
 
 param(

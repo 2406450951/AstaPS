@@ -1,10 +1,11 @@
-﻿# 起本地 TLS 前置（截获 SDK 发往 passport-api.mihoyo.com 的 HTTPS 登录，转成明文给私服）
+﻿. "$PSScriptRoot\paths.ps1"
+# 起本地 TLS 前置（截获 SDK 发往 passport-api.mihoyo.com 的 HTTPS 登录，转成明文给私服）
 #   powershell -ExecutionPolicy Bypass -File .\起TLS前置.ps1
 # 已在监听则直接返回；启动后等最多 8 秒确认端口真的起来了。
 
 $ErrorActionPreference = 'SilentlyContinue'
 $cp = Join-Path (Split-Path -Parent $PSScriptRoot) 'clientpatch'
-$py = 'D:\Programs\gs71-runtime\python311\python.exe'
+$py = $PythonExe
 $script = Join-Path $cp 'mitm_sdk.py'
 
 function Port443() {

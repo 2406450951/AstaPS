@@ -8,8 +8,8 @@ $results = New-Object System.Collections.ArrayList
 
 $entry = $PSScriptRoot                                   # ...\genshi\GS71
 $gs    = Join-Path (Split-Path -Parent $entry) 'gcsrv'   # ...\genshi\gcsrv
-$rt    = 'D:\Programs\gs71-runtime'
-$game  = 'D:\Program Files\miHoYo Launcher_cn\miHoYo Launcher\games\Genshin Impact Game'
+$rt    = $env:GS71_RUNTIME
+$game  = $GameDir
 
 function Add-Result($name, $ok, $detail, $fix) {
     [void]$results.Add([pscustomobject]@{ Name = $name; Ok = [bool]$ok; Detail = $detail; Fix = $fix })
@@ -20,7 +20,7 @@ $java = Join-Path $rt 'jdk21\bin\java.exe'
 if (Test-Path $java) {
     # java -version 写 stderr，在 PS 5.1 里不好抓，直接读文件版本更稳
     $ver = (Get-Item $java).VersionInfo.ProductVersion
-    Add-Result 'JDK 21' ($ver -match '^21') "$java  $ver" '重新解压 JDK21 到 D:\Programs\gs71-runtime\jdk21'
+    Add-Result 'JDK 21' ($ver -match '^21') "$java  $ver" '安装 JDK21 并设好 JAVA_HOME'
 } else {
     Add-Result 'JDK 21' $false 'missing' "把 OpenJDK21 解压到 $rt\jdk21"
 }

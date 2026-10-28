@@ -1,4 +1,5 @@
-﻿# 自检：一次性验证 服务端 / 插件 / 覆盖层 / 数据通道 是否全部活着
+﻿. "$PSScriptRoot\paths.ps1"
+# 自检：一次性验证 服务端 / 插件 / 覆盖层 / 数据通道 是否全部活着
 #   powershell -ExecutionPolicy Bypass -File .\自检.ps1
 # 每项打印 PASS / FAIL，最后给总结。退出码 0 = 全过。
 
@@ -11,7 +12,7 @@ function Add-R($name, $ok, $detail) {
 $gs71 = $PSScriptRoot
 $CP = Join-Path (Split-Path -Parent $gs71) 'clientpatch'
 $gcsrv = Join-Path (Split-Path -Parent $gs71) 'gcsrv'
-$game = 'D:\Program Files\miHoYo Launcher_cn\miHoYo Launcher\games\Genshin Impact Game'
+$game = $GameDir
 
 # ---------------------------------------------------------------- 1. 服务端
 try {

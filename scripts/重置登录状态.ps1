@@ -4,13 +4,16 @@
 
 $ErrorActionPreference = 'SilentlyContinue'
 
-$clients = @(
-    @{ Name = '国际服'; Exe = 'D:\Program Files\HoYoPlay\games\Genshin Impact game\GenshinImpact.exe';
-       Data = 'GenshinImpact_Data'; RegKey = 'HKCU:\SOFTWARE\miHoYo\Genshin Impact' },
-    @{ Name = '国服';   Exe = 'D:\Program Files\miHoYo Launcher_cn\miHoYo Launcher\games\Genshin Impact Game\YuanShen.exe';
-       Data = 'YuanShen_Data';       RegKey = 'HKCU:\SOFTWARE\miHoYo\原神' }
-)
-
+# 客户端目录由 paths.ps1 解析（环境变量 GS71_GAME 或常见安装位置）
+$clients = @()
+if ($GameDir) {
+    $dataDir = if ($GameExe -eq 'GenshinImpact.exe') { 'GenshinImpact_Data' } else { 'YuanShen_Data' }
+    $regKey  = if ($GameExe -eq 'GenshinImpact.exe') { 'HKCU:\SOFTWARE\miHoYo\Genshin Impact' }
+               else { 'HKCU:\SOFTWARE\miHoYo\原神' }
+    $clients += @{ Name = '当前客户端'; Exe = (Join-Path $GameDir $GameExe); Data = $dataDir; RegKey = $regKey }
+} else {
+    Write-Host '  没找到客户端目录：设环境变量 GS71_GAME 指向它' -ForegroundColor Yellow
+}
 $done = @()
 
 foreach ($c in $clients) {

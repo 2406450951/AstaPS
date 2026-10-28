@@ -5,7 +5,7 @@
 param([string]$Account = 'admin', [string]$Password = 'admin')
 
 $ErrorActionPreference = 'SilentlyContinue'
-$log = 'D:\dsh_workspace\dsh_code\genshi\clientpatch\_autologin.log'
+$log = (Join-Path $LocalDir 'autologin.log')
 function L($m) { $m | Tee-Object -FilePath $log -Append | Out-Null; Write-Host $m }
 
 Remove-Item $log -Force
@@ -119,9 +119,9 @@ Start-Sleep -Seconds 6
 $b=[System.Windows.Forms.SystemInformation]::VirtualScreen
 $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height
 $gr=[System.Drawing.Graphics]::FromImage($bmp); $gr.CopyFromScreen($b.Left,$b.Top,0,0,$bmp.Size); $gr.Dispose()
-$bmp.Save('D:\dsh_workspace\dsh_code\genshi\clientpatch\_shots\autologin.png',[System.Drawing.Imaging.ImageFormat]::Png); $bmp.Dispose()
+$bmp.Save((Join-Path $LocalDir 'autologin.png'),[System.Drawing.Imaging.ImageFormat]::Png); $bmp.Dispose()
 
 # 3) 服务端是否收到登录
-$hit = @(Select-String -Path 'D:\dsh_workspace\dsh_code\genshi\gcsrv\server.log' -Pattern 'ma-passport|logged in|已连接' | Select-Object -Last 3)
+$hit = @(Select-String -Path (Join-Path $ServerDir 'server.log') -Pattern 'ma-passport|logged in|已连接' | Select-Object -Last 3)
 if ($hit.Count -gt 0) { foreach ($h2 in $hit) { L ('SRV ' + $h2.Line.Substring(0, [Math]::Min(140, $h2.Line.Length))) } }
 else { L 'SRV no login seen' }

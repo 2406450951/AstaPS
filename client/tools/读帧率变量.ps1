@@ -3,8 +3,9 @@
 
 param([string]$Out = 'fps_before.txt')
 
+. "$PSScriptRoot\paths.ps1"
 $ErrorActionPreference = 'Stop'
-$cand = 'D:\dsh_workspace\dsh_code\genshi\clientpatch\fps_candidates.txt'
+$cand = (Join-Path $PSScriptRoot "fps_candidates.txt")
 if (-not (Test-Path $cand)) { Write-Host "缺少 $cand，先跑 fpsfind.py scan" -ForegroundColor Red; exit 1 }
 
 Add-Type @"

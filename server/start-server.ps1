@@ -19,7 +19,7 @@ $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
 
 # 运行时目录（JDK / Mongo / Python 都在这儿）。可用环境变量覆盖。
-$RuntimeRoot = if ($env:GS71_RUNTIME) { $env:GS71_RUNTIME } else { 'D:\Programs\gs71-runtime' }
+$RuntimeRoot = if ($env:GS71_RUNTIME) { $env:GS71_RUNTIME } else { '' }
 
 $jar = Join-Path $root 'grasscutter.jar'
 $log = Join-Path $root 'server.log'
