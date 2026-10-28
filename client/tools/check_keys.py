@@ -1,8 +1,9 @@
+import os
 import base64, re, os
 from cryptography.hazmat.primitives import serialization
 
-base = r'D:\dsh_workspace\dsh_code\genshi\gcsrv\_src\AstaPS-main\src\main\resources\keys'
-xml_path = r'D:\dsh_workspace\dsh_code\genshi\clientpatch\src\hk4e-patch-universal-main\sdk_public_key.xml'
+base = os.environ.get('GS71_SERVER', '.')
+xml_path = ros.environ.get('GS71_ROOT', '.')
 xml = open(xml_path).read()
 m = re.search(r'<Modulus>(.*?)</Modulus>', xml)
 e = re.search(r'<Exponent>(.*?)</Exponent>', xml)
