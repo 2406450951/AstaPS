@@ -418,20 +418,38 @@ public final class CheatMenu extends Plugin {
      * <p>服务端的 teleport 是权威操作，客户端会直接跟随，**不经过碰撞检测**，
      * 所以连续小步传送就等于穿墙飞行。这是"灵魂出窍/自由移动"在服务端这一侧能做到的替代品。
      */
-    public boolean flyStep(Player player, float speed, int vertical, int dirSign, float dtSec) {
+    /**
+     * 飞行一步。
+     *
+     * <p>客户端对自己的角色是权威的，服务端发 EntityMove 会被无视（实测），所以这里还是得用
+     * teleport。但 teleport 内部是 transferPlayerToScene，**高频调用会让客户端进加载页卡死**，
+     * 因此调用方必须控制频率（800ms 一次、一步 6~8 米），做成"跳跃式"飞行。
+     */
+    public boolean flyStep(Player player, float meters) {
         try {
             Position pos = player.getPosition();
             if (pos == null) return false;
-            double yaw = Math.toRadians(player.getRotation() == null ? 0 : player.getRotation().getY());
-            // Genshin 的朝向：yaw 0 面向 +Z，顺时针增加
-            float fx = (float) (-Math.sin(yaw)) * speed * dtSec * dirSign;
-            float fz = (float) (-Math.cos(yaw)) * speed * dtSec * dirSign;
-            float fy = vertical * speed * dtSec;
-            Position target = new Position(pos.getX() + fx, pos.getY() + fy, pos.getZ() + fz);
+            double yaw =
+                    Math.toRadians(player.getRotation() == null ? 0 : player.getRotation().getY());
+            float fx = (float) (-Math.sin(yaw)) * meters;
+            float fz = (float) (-Math.cos(yaw)) * meters;
+            Position target = new Position(pos.getX() + fx, pos.getY(), pos.getZ() + fz);
             player.teleport(target);
             return true;
         } catch (Throwable t) {
             this.getLogger().debug("[CheatMenu] fly failed: {}", t.toString());
+            return false;
+        }
+    }
+
+    /** 垂直升降一步（不用朝向，直接改 Y）。 */
+    public boolean flyLift(Player player, float meters) {
+        try {
+            Position pos = player.getPosition();
+            if (pos == null) return false;
+            player.teleport(new Position(pos.getX(), pos.getY() + meters, pos.getZ()));
+            return true;
+        } catch (Throwable t) {
             return false;
         }
     }

@@ -207,18 +207,17 @@ public final class CheatApi {
             }
         }
 
-        if (flyOn && !players.isEmpty() && now - lastFlyMs >= 120L) {
-            float dt = (now - lastFlyMs) / 1000f;
+        if (flyOn && !players.isEmpty() && now - lastFlyMs >= 800L) {
             lastFlyMs = now;
-            if (dt <= 0f || dt > 0.6f) dt = 0.12f;
+            // 800ms 一步，步长 = 速度 × 0.8，手感是"跳跃式飞行"
+            float meters = Math.max(2f, Math.min(60f, flySpeed * 0.8f));
             for (Player player : players) {
                 try {
-                    owner.flyStep(player, flySpeed, flyUp, flyDir, dt);
+                    if (flyUp != 0) owner.flyLift(player, flyUp > 0 ? 6f : -6f);
+                    else owner.flyStep(player, meters * flyDir);
                 } catch (Throwable ignored) {
                 }
             }
-        } else if (flyOn) {
-            lastFlyMs = now;
         }
 
         if (speedOn && !players.isEmpty() && now - lastSpeedMs >= 1000L) {
