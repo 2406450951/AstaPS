@@ -45,7 +45,15 @@ float g_timeH = 12.f;
 float g_timeM = 0.f;
 bool g_speedOn = false;
 float g_speedRatio = 1.5f;
-char g_cmd[160] = "give 201 1000";
+int g_avatarId = 10000002;
+int g_avatarLvl = 90;
+int g_propId = 100;
+float g_propVal = 1.f;
+int g_questId = 20001;
+int g_dungeonId = 2001;
+int g_uid = 1;
+char g_msg[120] = "";
+char g_itemCustom[16] = "";
 
 void push(const char* fmt, ...) {
     char buf[512];
@@ -294,57 +302,145 @@ void tabTeleport(const Snapshot& s) {
 }
 
 void tabGM(const Snapshot& s) {
-
-    sectionHeader("命令行（服务端 GM）");
-    ImGui::SetNextItemWidth(360);
-    if (ImGui::InputText("##gmcmd", g_cmd, sizeof(g_cmd), ImGuiInputTextFlags_EnterReturnsTrue))
-        action("c=command&text=%s", g_cmd);
+    if (ImGui::Button("解锁全部地图点", ImVec2(200, 0))) action("c=command&text=unlock all");
     ImGui::SameLine();
-    if (ImGui::Button("执行", ImVec2(80, 0))) action("c=command&text=%s", g_cmd);
-    ImGui::TextDisabled("启动游戏后输入 /help 能看到全部命令；这里直接输名字就行，不带斜杠");
-    if (ImGui::Button("give 201 1000", ImVec2(150, 0))) action("c=command&text=give 201 1000");
+    if (ImGui::Button("解锁（含任务保护点）", ImVec2(210, 0)))
+        action("c=command&text=unlock all --force");
     ImGui::SameLine();
-    if (ImGui::Button("give 202 100000", ImVec2(150, 0))) action("c=command&text=give 202 100000");
-    ImGui::SameLine();
-    if (ImGui::Button("unlockall", ImVec2(100, 0))) action("c=command&text=unlockall");
-    if (ImGui::Button("waypoints", ImVec2(150, 0))) action("c=command&text=waypoints");
-    ImGui::SameLine();
-    if (ImGui::Button("setprop 100 1", ImVec2(150, 0))) action("c=command&text=setprop 100 1");
-    ImGui::SameLine();
-    if (ImGui::Button("clear weapons", ImVec2(140, 0))) action("c=command&text=clear weapons");
-
-    sectionHeader("地图 / 传送点");
-    actionQuery("解锁全部地图点", "c=raw&text=unlock");
-    actionQuery("解锁（含任务保护点）", "c=raw&text=unlock --force");
-    actionQuery("解锁全部传送点", "c=raw&text=waypoints");
+    if (ImGui::Button("解锁全部传送点", ImVec2(170, 0))) action("c=command&text=waypoints");
 
     ImGui::Spacing();
-    sectionHeader("背包 / 资源");
-    actionQuery("清空背包（全部）", "c=raw&text=clear all");
-    actionQuery("清空武器", "c=raw&text=clear weapons");
-    actionQuery("清空圣遗物", "c=raw&text=clear artifacts");
-    ImGui::Spacing();
+    sectionHeader("物品");
+    ImGui::SetNextItemWidth(120);
+    ImGui::InputInt("物品 ID", &g_giveId, 0, 0);
+    ImGui::SameLine();
     ImGui::SetNextItemWidth(140);
-    ImGui::InputInt("摩拉数量", &g_giveCount, 100000, 1000000);
-    if (ImGui::Button("刷摩拉（202）", ImVec2(-1, 0))) {
-        action("c=give&id=202&n=%d", g_giveCount);
-    }
-    if (ImGui::Button("刷原石（201）", ImVec2(-1, 0))) {
-        action("c=give&id=201&n=%d", g_giveCount);
-    }
+    ImGui::InputInt("数量", &g_giveCount, 1000, 100000);
+    if (ImGui::Button("give 发放", ImVec2(120, 0)))
+        action("c=command&text=give %d x%d", g_giveId, g_giveCount);
+    ImGui::SameLine();
+    if (ImGui::Button("原石 201", ImVec2(95, 0)))
+        action("c=command&text=give 201 x%d", g_giveCount);
+    ImGui::SameLine();
+    if (ImGui::Button("摩拉 202", ImVec2(95, 0)))
+        action("c=command&text=give 202 x%d", g_giveCount);
+    ImGui::SameLine();
+    if (ImGui::Button("纠缠之缘 223", ImVec2(120, 0)))
+        action("c=command&text=give 223 x%d", g_giveCount);
+
+    if (ImGui::Button("清空背包", ImVec2(120, 0))) action("c=command&text=clear all");
+    ImGui::SameLine();
+    if (ImGui::Button("清空武器", ImVec2(120, 0))) action("c=command&text=clear weapons");
+    ImGui::SameLine();
+    if (ImGui::Button("清空圣遗物", ImVec2(120, 0))) action("c=command&text=clear artifacts");
+    ImGui::SameLine();
+    if (ImGui::Button("重置商店限购", ImVec2(130, 0))) action("c=command&text=resetShopLimit");
 
     ImGui::Spacing();
-    sectionHeader("副本 / 场景");
+    sectionHeader("角色");
     ImGui::SetNextItemWidth(140);
-    ImGui::InputInt("副本 ID", &g_sceneId, 1, 100);
-    if (ImGui::Button("传送到副本", ImVec2(-1, 0))) {
-        action("c=raw&text=dungeon %d", g_sceneId);
-    }
+    ImGui::InputInt("角色 ID", &g_avatarId, 0, 0);
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(90);
+    ImGui::InputInt("等级", &g_avatarLvl, 1, 10);
+    if (ImGui::Button("添加角色", ImVec2(110, 0)))
+        action("c=command&text=avatar add %d lv%d", g_avatarId, g_avatarLvl);
+    ImGui::SameLine();
+    if (ImGui::Button("替换出场角色", ImVec2(140, 0)))
+        action("c=command&text=avatar set %d", g_avatarId);
+    ImGui::SameLine();
+    if (ImGui::Button("加入队伍", ImVec2(110, 0)))
+        action("c=command&text=team add %d", g_avatarId);
+    ImGui::SameLine();
+    if (ImGui::Button("满血", ImVec2(80, 0))) action("c=command&text=restore");
+
+    ImGui::SetNextItemWidth(120);
+    ImGui::InputInt("属性 ID", &g_propId, 0, 0);
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(120);
+    ImGui::InputFloat("值", &g_propVal, 0.1f, 1.f, "%.2f");
+    ImGui::SameLine();
+    if (ImGui::Button("prop 设置属性", ImVec2(140, 0)))
+        action("c=command&text=prop %d %.2f", g_propId, g_propVal);
+    ImGui::SameLine();
+    if (ImGui::Button("切换元素", ImVec2(110, 0))) action("c=command&text=switchelement 1");
 
     ImGui::Spacing();
-    sectionHeader("说明");
-    ImGui::TextDisabled("这些按钮走服务端 GM 命令，权限已是 *（全开）");
-    ImGui::Text("最近动作：%s", s.lastAction.empty() ? "-" : s.lastAction.c_str());
+    sectionHeader("世界 / 刷怪 / 传送");
+    ImGui::SetNextItemWidth(150);
+    ImGui::InputInt("怪物 ID", &g_spawnId, 0, 0);
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(90);
+    ImGui::InputInt("等级##m", &g_spawnLvl, 1, 10);
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(90);
+    ImGui::InputInt("数量##m", &g_spawnCount, 1, 10);
+    if (ImGui::Button("spawn 刷怪", ImVec2(130, 0)))
+        action("c=command&text=spawn %d %d %d", g_spawnId, g_spawnLvl, g_spawnCount);
+    ImGui::SameLine();
+    if (ImGui::Button("kill all 清怪", ImVec2(130, 0))) action("c=command&text=kill all");
+    ImGui::SameLine();
+    if (ImGui::Button("回七天神像", ImVec2(120, 0))) action("c=command&text=statue");
+
+    ImGui::SetNextItemWidth(130);
+    ImGui::InputInt("副本 ID", &g_dungeonId, 0, 0);
+    ImGui::SameLine();
+    if (ImGui::Button("进入副本", ImVec2(110, 0)))
+        action("c=command&text=dungeon %d", g_dungeonId);
+    ImGui::SameLine();
+    if (ImGui::Button("晴##w", ImVec2(50, 0))) action("c=weather&id=1&area=1");
+    ImGui::SameLine();
+    if (ImGui::Button("阴##w", ImVec2(50, 0))) action("c=weather&id=2&area=1");
+    ImGui::SameLine();
+    if (ImGui::Button("雨##w", ImVec2(50, 0))) action("c=weather&id=3&area=1");
+    ImGui::SameLine();
+    if (ImGui::Button("雷##w", ImVec2(50, 0))) action("c=weather&id=4&area=1");
+    ImGui::SameLine();
+    if (ImGui::Button("雪##w", ImVec2(50, 0))) action("c=weather&id=5&area=1");
+
+    ImGui::Spacing();
+    sectionHeader("进度");
+    ImGui::SetNextItemWidth(130);
+    ImGui::InputInt("任务 ID", &g_questId, 0, 0);
+    ImGui::SameLine();
+    if (ImGui::Button("quest 完成", ImVec2(110, 0)))
+        action("c=command&text=quest %d finish", g_questId);
+    ImGui::SameLine();
+    if (ImGui::Button("成就全领", ImVec2(110, 0))) action("c=command&text=achievement");
+    ImGui::SameLine();
+    if (ImGui::Button("每日任务", ImVec2(110, 0))) action("c=command&text=dailytask");
+
+    ImGui::Spacing();
+    sectionHeader("管理 / 聊天");
+    ImGui::SetNextItemWidth(300);
+    ImGui::InputText("消息", g_msg, sizeof(g_msg));
+    if (ImGui::Button("全服公告", ImVec2(110, 0)))
+        action("c=command&text=announce %s", g_msg);
+    ImGui::SameLine();
+    if (ImGui::Button("说话", ImVec2(90, 0))) action("c=command&text=say %s", g_msg);
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(90);
+    ImGui::InputInt("UID", &g_uid, 0, 0);
+    ImGui::SameLine();
+    if (ImGui::Button("踢下线", ImVec2(90, 0))) action("c=command&text=kick %d", g_uid);
+    ImGui::SameLine();
+    if (ImGui::Button("封禁", ImVec2(80, 0))) action("c=command&text=ban %d", g_uid);
+    ImGui::SameLine();
+    if (ImGui::Button("解封", ImVec2(80, 0))) action("c=command&text=unban %d", g_uid);
+    if (ImGui::Button("热重载", ImVec2(110, 0))) action("c=command&text=reload");
+
+    ImGui::Spacing();
+    sectionHeader("其余命令（点一下直接执行）");
+    const char* others[] = {"barrier", "coop", "cutscene", "debug", "entity",   "group",
+                            "info",    "language", "lookup", "name", "namecard", "npc",
+                            "permission", "player", "position", "proto", "setSceneTag",
+                            "sgv",     "sound", "support", "teapot", "trackmat", "trial",
+                            "windy",   "dps",  "help", "account", "battlepass", "openstate"};
+    for (int i = 0; i < (int)(sizeof(others) / sizeof(others[0])); ++i) {
+        if (ImGui::Button(others[i], ImVec2(118, 0))) action("c=command&text=%s", others[i]);
+        if ((i + 1) % 4 != 0) ImGui::SameLine();
+    }
+    (void)s;
 }
 
 void tabSettings(const Snapshot& s) {

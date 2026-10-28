@@ -1,11 +1,25 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.3.0**
+**版本 1.4.0**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
+
+## 1.4.0
+
+- GM 页重做：不再是一个命令输入框，而是把服务端 59 个命令**按用途做成控件**
+  - 物品：give（物品 ID + 数量）、原石/摩拉/纠缠之缘 一键、清空背包/武器/圣遗物、重置商店限购
+  - 角色：avatar add/set（ID + 等级）、team add、prop 设属性、满血、切换元素
+  - 世界：spawn 刷怪（ID/等级/数量）、kill all、回七天神像、进副本、天气五档
+  - 进度：quest 完成、成就全领、每日任务
+  - 管理：全服公告、说话、踢人/封禁/解封、热重载
+  - 其余 29 个命令（barrier / coop / cutscene / debug / entity / group / info / language /
+    lookup / name / namecard / npc / permission / player / position / proto / setSceneTag /
+    sgv / sound / support / teapot / trackmat / trial / windy / dps / help / account /
+    battlepass / openstate）各一个按钮，点一下直接执行
+- 移动速度：Animator_MoveSpeedRatio modifier，1.1x~4x
 
 ## 1.3.0 新增
 
