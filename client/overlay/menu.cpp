@@ -216,20 +216,15 @@ void tabPlayer(const Snapshot& s) {
     sliderRowF("伤害倍率", &g_st.mult, 1.f, 1000.f, "x%.1f", "mult");
 
     ImGui::Spacing();
-    sectionHeader("移动速度（服务端模改器）");
-    if (ImGui::Checkbox("开启加速", &g_speedOn)) {
-        if (g_speedOn) action("c=speed&r=%.2f", g_speedRatio);
+    sectionHeader("移动速度（原生移速药）");
+    if (ImGui::Checkbox("开启 +30%（数据内置值）", &g_speedOn)) {
+        if (g_speedOn) action("c=speed&r=1.3");
         else action("c=speed&on=0");
     }
-    ImGui::SameLine();
-    ImGui::SetNextItemWidth(170);
-    if (ImGui::SliderFloat("##speedr", &g_speedRatio, 1.1f, 4.f, "x%.2f") && g_speedOn)
-        action("c=speed&r=%.2f", g_speedRatio);
-    ImGui::TextDisabled("卡面发送 Animator_MoveSpeedRatio，不改内存");
-    ImGui::TextDisabled("1 = 原版，100 = 基本秒杀，1000 = 见谁秒谁");
+    ImGui::TextDisabled("走游戏原生 buff（170201 移速增加药品），客户端只认数据里的 0.3；");
+    ImGui::TextDisabled("自定义倍数需要客户端接受改值，暂时做不到");
 
-    ImGui::Spacing();
-    sectionHeader("状态");
+sectionHeader("状态");
     ImGui::Text("UID      %d", s.uid);
     ImGui::Text("昵称     %s", s.nick.empty() ? "-" : s.nick.c_str());
     ImGui::Text("场景     %d", s.scene);
