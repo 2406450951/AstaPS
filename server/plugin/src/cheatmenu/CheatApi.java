@@ -1,5 +1,9 @@
 package cheatmenu;
 
+import emu.grasscutter.net.packet.BasePacket;
+import emu.grasscutter.net.packet.PacketOpcodes;
+import emu.grasscutter.net.proto.SceneAreaWeatherNotifyOuterClass.SceneAreaWeatherNotify;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import emu.grasscutter.Grasscutter;
@@ -229,12 +233,22 @@ public final class CheatApi {
                 lastAction = String.format(Locale.ROOT, "time: %02d:%02d", h, m);
             }
             case "weather" -> {
-                int id = (int) f(q, "id", 0);
+                // The menu's 1/2/3 are climate slots (sunny / cloudy / rain), NOT weather areas.
+                // Areas 1..3 are Mondstadt's storm-gadget areas: changing to them makes the server
+                // send a gadget id the client then has to mount, and that mount is what crashed the
+                // client. Send a climate-only notify with no weather area and no gadget instead.
+                int climate = (int) f(q, "id", 1);
                 if (actor.getWorld() != null && actor.getWorld().isTimeLocked())
                     actor.getWorld().lockTime(false);
-                actor.setWeather(id);
-                weather = id;
-                lastAction = "weather: " + id;
+                var notify = SceneAreaWeatherNotify.newBuilder()
+                        .setWeatherAreaId(0)
+                        .setClimateType(climate)
+                        .build();
+                BasePacket packet = new BasePacket(PacketOpcodes.SceneAreaWeatherNotify);
+                packet.setData(notify);
+                actor.sendPacket(packet);
+                weather = climate;
+                lastAction = "climate: " + climate;
             }
             case "unlock" -> {
                 if (actor.getWorld() != null) {
