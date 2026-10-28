@@ -152,6 +152,25 @@ void tabWorld(const Snapshot& s) {
     toggleRow("自动拾取 (Auto Loot)", &g_st.loot, "loot");
     sliderRowF("拾取半径", &g_st.lootR, 2.f, 120.f, "%.0f m", "lootr");
     actionQuery("立刻捡一圈", "c=lootnow");
+    ImGui::Spacing();
+    sectionHeader("怪物吸附 / 大招");
+    if (ImGui::Checkbox("怪物吸附 (Mob Vacuum)", &g_cfg.mobVac))
+        push("mobvac=%d", g_cfg.mobVac ? 1 : 0);
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(150);
+    if (ImGui::SliderFloat("##mobvarr", &g_cfg.mobVacR, 5.f, 80.f, "%.0f m") && ImGui::IsItemDeactivatedAfterEdit())
+        push("mobvarr=%.0f", g_cfg.mobVacR);
+    actionQuery("吸附一次 (Pull Once)", "c=mobvacnow");
+    if (ImGui::Checkbox("无限大招 (Infinite Burst)", &g_cfg.burst))
+        push("burst=%d", g_cfg.burst ? 1 : 0);
+    if (ImGui::Checkbox("技能可用 (Skill Ready)", &g_cfg.skillReady))
+        push("skillready=%d", g_cfg.skillReady ? 1 : 0);
+
+    ImGui::Spacing();
+    sectionHeader("地图标点传送");
+    actionQuery("传送到最远标点 (Map Pin)", "c=mapgo");
+    ImGui::TextDisabled("在大地图上扎一根针，按这个按钮过去");
+
 
     ImGui::Spacing();
     sectionHeader("杀意光环");
@@ -172,11 +191,11 @@ void tabWorld(const Snapshot& s) {
         push("timeh=%d", g_st.timeH);
         action("c=time&h=%d&m=%d", g_st.timeH, g_st.timeM);
     }
-    if (ImGui::Button("晴", ImVec2(70, 0))) { action("c=weather&id=1"); g_st.weather = 1; }
+    if (ImGui::Button("晴", ImVec2(70, 0))) { action("c=weather&id=1&area=1"); g_st.weather = 1; }
     ImGui::SameLine();
-    if (ImGui::Button("夜/阴", ImVec2(70, 0))) { action("c=weather&id=2"); g_st.weather = 2; }
+    if (ImGui::Button("夜/阴", ImVec2(70, 0))) { action("c=weather&id=2&area=1"); g_st.weather = 2; }
     ImGui::SameLine();
-    if (ImGui::Button("雨", ImVec2(70, 0))) { action("c=weather&id=3"); g_st.weather = 3; }
+    if (ImGui::Button("雨", ImVec2(70, 0))) { action("c=weather&id=3&area=1"); g_st.weather = 3; }
 
     ImGui::Spacing();
     sectionHeader("刷怪 / 给物品");
@@ -401,6 +420,10 @@ static void saveConfig() {
     fprintf(f, "hudScale=%.3f\n", g_cfg.hudScale);
     fprintf(f, "espMaxDist=%.1f\n", g_cfg.espMaxDist);
     fprintf(f, "theme=%d\n", g_cfg.theme);
+    fprintf(f, "mobvac=%d\n", g_cfg.mobVac ? 1 : 0);
+    fprintf(f, "mobvarr=%.1f\n", g_cfg.mobVacR);
+    fprintf(f, "burst=%d\n", g_cfg.burst ? 1 : 0);
+    fprintf(f, "skillready=%d\n", g_cfg.skillReady ? 1 : 0);
     fprintf(f, "accent=%.3f %.3f %.3f\n", g_cfg.accent[0], g_cfg.accent[1], g_cfg.accent[2]);
     fprintf(f, "god=%d\n", g_st.god ? 1 : 0);
     fprintf(f, "fall=%d\n", g_st.fall ? 1 : 0);
@@ -443,6 +466,10 @@ static bool loadConfig() {
         else if (!strcmp(k, "hudScale")) g_cfg.hudScale = (float)atof(v);
         else if (!strcmp(k, "espMaxDist")) g_cfg.espMaxDist = (float)atof(v);
         else if (!strcmp(k, "theme")) g_cfg.theme = atoi(v);
+        else if (!strcmp(k, "mobvac")) g_cfg.mobVac = isOn(v);
+        else if (!strcmp(k, "mobvarr")) g_cfg.mobVacR = (float)atof(v);
+        else if (!strcmp(k, "burst")) g_cfg.burst = isOn(v);
+        else if (!strcmp(k, "skillready")) g_cfg.skillReady = isOn(v);
         else if (!strcmp(k, "accent")) sscanf(v, "%f %f %f", &g_cfg.accent[0], &g_cfg.accent[1], &g_cfg.accent[2]);
         else if (!strcmp(k, "god")) g_st.god = isOn(v);
         else if (!strcmp(k, "fall")) g_st.fall = isOn(v);
@@ -503,6 +530,10 @@ void draw() {
     }
     if (cfgState == 1 && bridge::connected()) {
         pushState();
+        bridge::set("mobvac=" + std::string(g_cfg.mobVac ? "1" : "0"));
+        push("mobvarr=%.0f", g_cfg.mobVacR);
+        bridge::set("burst=" + std::string(g_cfg.burst ? "1" : "0"));
+        bridge::set("skillready=" + std::string(g_cfg.skillReady ? "1" : "0"));
         cfgState = 2;
     }
     // "menuopen.on" next to the game exe forces the menu open at launch; the normal path is the

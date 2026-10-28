@@ -1,4 +1,11 @@
 package cheatmenu;
+import emu.grasscutter.net.packet.*;
+import emu.grasscutter.net.proto.MotionInfoOuterClass.MotionInfo;
+import emu.grasscutter.net.proto.MotionStateOuterClass.MotionState;
+import emu.grasscutter.net.proto.EntityMoveInfoOuterClass.EntityMoveInfo;
+import emu.grasscutter.server.packet.send.PacketSceneEntityMoveNotify;
+import emu.grasscutter.server.packet.send.PacketAvatarFightPropUpdateNotify;
+import emu.grasscutter.server.packet.send.PacketCanUseSkillNotify;
 
 import emu.grasscutter.game.entity.EntityAvatar;
 import emu.grasscutter.game.entity.EntityGadget;
@@ -283,6 +290,91 @@ public final class CheatMenu extends Plugin {
         return out;
     }
 
+    // ---------------------------------------------------------------- 新增：吸附 / 大招 / 标点
+    /** 把范围内的怪物拉到玩家身边，并通知客户端它们移动了。 */
+    public int mobVacuum(Player player, double radius) {
+        Scene scene = player.getScene();
+        if (scene == null || scene.getEntities() == null) return 0;
+        Position origin = player.getPosition();
+        if (origin == null) return 0;
+
+        int moved = 0;
+        double r2 = radius * radius;
+        for (GameEntity entity : new ArrayList<>(scene.getEntities().values())) {
+            if (!(entity instanceof EntityMonster)) continue;
+            Position pos = entity.getPosition();
+            if (pos == null) continue;
+            double d2 = distance2(origin, pos);
+            if (d2 <= 9.0 || d2 > r2) continue;
+            try {
+                double angle = Math.random() * Math.PI * 2;
+                double dist = 1.2 + Math.random() * 1.5;
+                Position target = new Position(
+                        (float) (origin.getX() + Math.cos(angle) * dist),
+                        origin.getY(),
+                        (float) (origin.getZ() + Math.sin(angle) * dist));
+                pos.set(target);
+
+                var motion = MotionInfo.newBuilder()
+                        .setPos(target.toProto())
+                        .setState(MotionState.MotionState_MOTION_NONE)
+                        .build();
+                var info = EntityMoveInfo.newBuilder()
+                        .setEntityId(entity.getId())
+                        .setMotionInfo(motion)
+                        .build();
+                player.sendPacket(new PacketSceneEntityMoveNotify(info));
+                moved++;
+            } catch (Throwable t) {
+                this.getLogger().debug("[CheatMenu] mobvac skip {}: {}", entity.getId(), t.toString());
+            }
+        }
+        return moved;
+    }
+
+    /** 取当前场景里离玩家最远的地图标点（就是刚在图上扎的那根针）。 */
+    public Position mapPinPosition(Player player) {
+        if (player.getMapMarksManager() == null) return null;
+        var marks = player.getMapMarksManager().getMapMarks();
+        if (marks == null || marks.isEmpty()) return null;
+
+        Position origin = player.getPosition();
+        Position best = null;
+        double bestD = -1;
+        for (var mark : marks.values()) {
+            if (mark.getSceneId() != player.getSceneId()) continue;
+            Position p = mark.getPosition();
+            if (p == null) continue;
+            double d = origin == null ? 0 : distance2(origin, p);
+            if (d > bestD) {
+                bestD = d;
+                best = p;
+            }
+        }
+        return best;
+    }
+
+    /** 把出战队伍的元素能量拉满，客户端就能一直放大招。 */
+    public int refillBurst(Player player) {
+        int n = 0;
+        for (EntityAvatar entity : player.getTeamManager().getActiveTeam()) {
+            try {
+                if (entity == null || entity.getAvatar() == null) continue;
+                var avatar = entity.getAvatar();
+                avatar.setCurrentEnergy(99999f);   // 内部会按角色上限裁剪
+                player.sendPacket(new PacketAvatarFightPropUpdateNotify(avatar, avatar.getFightProperties()));
+                n++;
+            } catch (Throwable t) {
+                this.getLogger().debug("[CheatMenu] burst skip: {}", t.toString());
+            }
+        }
+        return n;
+    }
+
+    /** 告诉客户端"技能可以用"，用来顶掉战技冷却的表现。 */
+    public void pingSkillReady(Player player) {
+        player.sendPacket(new PacketCanUseSkillNotify(true));
+    }
     public int killAll(Player player) {
         Scene scene = player.getScene();
         if (scene == null) return 0;

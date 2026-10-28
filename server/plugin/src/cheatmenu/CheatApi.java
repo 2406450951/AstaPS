@@ -68,6 +68,15 @@ public final class CheatApi {
     private static volatile String lastAction = "ready";
     private static volatile long lastActionAt = 0L;
 
+    // 吸附怪物 / 无限大招 / 技能可用
+    public static boolean mobVac = false;
+    public static float mobVacRadius = 20f;
+    public static boolean burst = false;
+    public static boolean skillReady = false;
+    private static long lastMobVacMs = 0L;
+    private static long lastBurstMs = 0L;
+    private static long lastSkillMs = 0L;
+
     private static long lastLootMs = 0L;
     private static long lastTimeMs = 0L;
     private static long lastHealMs = 0L;
@@ -170,6 +179,36 @@ public final class CheatApi {
             }
         }
 
+        if (mobVac && !players.isEmpty() && now - lastMobVacMs >= 400L) {
+            lastMobVacMs = now;
+            for (Player player : players) {
+                try {
+                    owner.mobVacuum(player, mobVacRadius);
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        if (burst && !players.isEmpty() && now - lastBurstMs >= 1000L) {
+            lastBurstMs = now;
+            for (Player player : players) {
+                try {
+                    owner.refillBurst(player);
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        if (skillReady && !players.isEmpty() && now - lastSkillMs >= 500L) {
+            lastSkillMs = now;
+            for (Player player : players) {
+                try {
+                    owner.pingSkillReady(player);
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
         String[] action;
         int budget = 16;
         while (budget-- > 0 && (action = ACTIONS.poll()) != null) {
@@ -233,23 +272,35 @@ public final class CheatApi {
                 lastAction = String.format(Locale.ROOT, "time: %02d:%02d", h, m);
             }
             case "weather" -> {
-                // The menu's 1/2/3 are climate slots (sunny / cloudy / rain), NOT weather areas.
-                // Areas 1..3 are Mondstadt's storm-gadget areas: changing to them makes the server
-                // send a gadget id the client then has to mount, and that mount is what crashed the
-                // client. Send a climate-only notify with no weather area and no gadget instead.
+                // Two independent knobs:
+                //   id   = climate (1 sunny / 2 cloudy / 3 rain / 4 storm / 5 snow)
+                //   area = weather area id (1..4 are Mondstadt); 0 means "do not touch the area"
+                // The area changes sky and lighting. Its weather GADGET is deliberately never sent:
+                // mounting that gadget is what used to crash the client.
                 int climate = (int) f(q, "id", 1);
+                int area = (int) f(q, "area", 0);
                 if (actor.getWorld() != null && actor.getWorld().isTimeLocked())
                     actor.getWorld().lockTime(false);
                 var notify = SceneAreaWeatherNotify.newBuilder()
-                        .setWeatherAreaId(0)
+                        .setWeatherAreaId(area)
                         .setClimateType(climate)
                         .build();
                 BasePacket packet = new BasePacket(PacketOpcodes.SceneAreaWeatherNotify);
                 packet.setData(notify);
                 actor.sendPacket(packet);
                 weather = climate;
-                lastAction = "climate: " + climate;
+                lastAction = "weather: climate=" + climate + " area=" + area;
+            }            case "mapgo" -> {
+                Position pin = owner.mapPinPosition(actor);
+                if (pin == null) {
+                    lastAction = "mapgo: no pin in this scene";
+                } else {
+                    actor.teleport(pin);
+                    lastAction = String.format(Locale.ROOT, "mapgo: %.1f %.1f %.1f",
+                            pin.getX(), pin.getY(), pin.getZ());
+                }
             }
+            case "mobvacnow" -> lastAction = "mobvac: " + owner.mobVacuum(actor, mobVacRadius);
             case "unlock" -> {
                 if (actor.getWorld() != null) {
                     actor.getWorld().lockTime(false);
@@ -367,6 +418,10 @@ public final class CheatApi {
                 case "timem" -> timeM = clamp((int) fl(v, timeM), 0, 59);
                 case "weather" -> weather = (int) fl(v, weather);
                 case "lootr" -> lootRadius = Math.max(1f, Math.min(120f, fl(v, lootRadius)));
+                case "mobvac" -> mobVac = b(v);
+                case "mobvarr" -> mobVacRadius = Math.max(5f, Math.min(80f, fl(v, mobVacRadius)));
+                case "burst" -> burst = b(v);
+                case "skillready" -> skillReady = b(v);
                 case "mult" -> {
                     if (owner != null) owner.mult = Math.max(0.1f, Math.min(10000f, fl(v, owner.mult)));
                 }

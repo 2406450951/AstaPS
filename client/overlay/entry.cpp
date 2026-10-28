@@ -234,12 +234,19 @@ std::atomic<int> g_rawPackets{0};
 UINT WINAPI hkGetRawInputData(HRAWINPUT hRaw, UINT cmd, LPVOID data, PUINT size, UINT hdrSize) {
     const UINT ret = g_origRawInputData(hRaw, cmd, data, size, hdrSize);
     if (ret != (UINT)-1 && data && cmd == RID_INPUT && hdrSize == sizeof(RAWINPUTHEADER)) {
-        const RAWINPUT* raw = (const RAWINPUT*)data;
+        RAWINPUT* raw = (RAWINPUT*)data;   // writable: the menu zeroes the deltas below
         if (raw->header.dwType == RIM_TYPEMOUSE &&
             (raw->data.mouse.usFlags & MOUSE_MOVE_ABSOLUTE) == 0) {
             g_rawDx.fetch_add(raw->data.mouse.lLastX);
             g_rawDy.fetch_add(raw->data.mouse.lLastY);
             g_rawPackets.fetch_add(1);
+            // While the menu is up the game must not see the movement, otherwise the camera spins
+            // behind the window. Zero the deltas in the caller's buffer: we keep our copy for the
+            // software cursor, the game gets nothing.
+            if (menu::isOpen()) {
+                raw->data.mouse.lLastX = 0;
+                raw->data.mouse.lLastY = 0;
+            }
         }
     }
     return ret;
@@ -490,17 +497,12 @@ void pollHotkeys() {
                     ClipCursor(nullptr);
                     if (cursorRefs++ == 0) {
                         ShowCursor(TRUE);
-                        // Genshin only frees the cursor while the "show cursor" modifier is held
-                        // (Alt by default). Hold it for the user so the pointer is usable without
-                        // them having to keep a finger on the key.
-                        keybd_event(VK_MENU, 0, 0, 0);
-                        logLine("cursor mode: alt held");
+                        logLine("menu opened: cursor released, game mouse input muted");
                     }
                 } else {
                     if (cursorRefs > 0 && --cursorRefs == 0) {
                         ShowCursor(FALSE);
-                        keybd_event(VK_MENU, 0, KEYEVENTF_KEYUP, 0);
-                        logLine("cursor mode: alt released");
+                        logLine("menu closed: input handed back to the game");
                     }
                 }
             } else if (g_hotkeys[i] == VK_F2) {
