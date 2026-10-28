@@ -301,8 +301,15 @@ void feedInput() {
         g_cursorSeeded = true;
     }
     const bool ours = g_hwnd && GetForegroundWindow() == g_hwnd;
-    const int ddx = g_rawDx.exchange(0);
-    const int ddy = g_rawDy.exchange(0);
+    int ddx = g_rawDx.exchange(0);
+    int ddy = g_rawDy.exchange(0);
+    // A single frame can carry a huge backlog (alt-tab, device wake). Cap it so the cursor cannot
+    // teleport across the screen or run off to absurd coordinates.
+    const int kMaxStep = 300;
+    if (ddx > kMaxStep) ddx = kMaxStep;
+    if (ddx < -kMaxStep) ddx = -kMaxStep;
+    if (ddy > kMaxStep) ddy = kMaxStep;
+    if (ddy < -kMaxStep) ddy = -kMaxStep;
     // Hybrid: if the OS cursor actually moves (game not locking it) trust it; if it is pinned
     // (gameplay locks it to the window centre) integrate the raw deltas instead.
     static POINT lastOs{INT_MIN, INT_MIN};
@@ -323,10 +330,23 @@ void feedInput() {
         lastLog = nowTick;
         logLine("cursor: raw delta=%d,%d pos=%.0f,%.0f", ddx, ddy, mx, my);
     }
+    // Clamp against the real client rect; DisplaySize can be 0 early on, which used to drive the
+    // cursor to -1 and leave it there.
+    float limitX = io.DisplaySize.x;
+    float limitY = io.DisplaySize.y;
+    if (limitX < 2.f || limitY < 2.f) {
+        RECT rc{};
+        if (g_hwnd && GetClientRect(g_hwnd, &rc)) {
+            limitX = (float)(rc.right - rc.left);
+            limitY = (float)(rc.bottom - rc.top);
+        }
+    }
+    if (limitX < 2.f) limitX = 1920.f;
+    if (limitY < 2.f) limitY = 1080.f;
     if (mx < 0.f) mx = 0.f;
     if (my < 0.f) my = 0.f;
-    if (mx > io.DisplaySize.x - 1.f) mx = io.DisplaySize.x - 1.f;
-    if (my > io.DisplaySize.y - 1.f) my = io.DisplaySize.y - 1.f;
+    if (mx > limitX - 1.f) mx = limitX - 1.f;
+    if (my > limitY - 1.f) my = limitY - 1.f;
     io.AddMousePosEvent(mx, my);
     io.AddMouseButtonEvent(0, (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0);
     io.AddMouseButtonEvent(1, (GetAsyncKeyState(VK_RBUTTON) & 0x8000) != 0);
