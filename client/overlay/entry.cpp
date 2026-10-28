@@ -18,6 +18,8 @@
 #include <tlhelp32.h>
 #include <psapi.h>
 
+#include <atomic>
+#include <cmath>
 #include <cstdio>
 #include <string>
 
@@ -160,11 +162,114 @@ void initImGui(IDXGISwapChain* swap) {
     logLine("imgui ready (hwnd=%p)", (void*)g_hwnd);
 }
 
+// ---------------------------------------------------------------- raw mouse input
+//
+// Genshin locks the OS cursor to the middle of the window during gameplay (Unity's
+// Cursor.lockState = Locked), so GetCursorPos barely moves and the menu is unusable. A window
+// registered with RIDEV_INPUTSINK still receives WM_INPUT while another window is in the
+// foreground, so we track the physical mouse ourselves and drive ImGui from that.
+bool g_cursorSeeded = false;
+std::atomic<int> g_rawDx{0};
+std::atomic<int> g_rawDy{0};
+HWND g_rawWnd = nullptr;
+
+LRESULT CALLBACK rawProc(HWND h, UINT msg, WPARAM wp, LPARAM lp) {
+    if (msg == WM_INPUT) {
+        UINT size = sizeof(RAWINPUT);
+        RAWINPUT raw{};
+        if (GetRawInputData((HRAWINPUT)lp, RID_INPUT, &raw, &size, sizeof(RAWINPUTHEADER)) != (UINT)-1 &&
+            raw.header.dwType == RIM_TYPEMOUSE) {
+            const RAWMOUSE& m = raw.data.mouse;
+            if ((m.usFlags & MOUSE_MOVE_ABSOLUTE) == 0) {
+                g_rawDx.fetch_add(m.lLastX);
+                g_rawDy.fetch_add(m.lLastY);
+            }
+        }
+        return 0;
+    }
+    return DefWindowProcW(h, msg, wp, lp);
+}
+
+// The window has to live on a thread with its own message loop, otherwise WM_INPUT is queued and
+// never dispatched (which is exactly what happened the first time).
+DWORD WINAPI rawThread(LPVOID) {
+    WNDCLASSEXW wc{};
+    wc.cbSize = sizeof(wc);
+    wc.lpfnWndProc = rawProc;
+    wc.hInstance = GetModuleHandleW(nullptr);
+    wc.lpszClassName = L"GS71RawInput";
+    RegisterClassExW(&wc);
+    g_rawWnd = CreateWindowExW(0, wc.lpszClassName, L"", WS_POPUP, 0, 0, 0, 0, nullptr, nullptr,
+                               wc.hInstance, nullptr);
+    if (!g_rawWnd) {
+        logLine("raw input window creation failed (err=%lu)", GetLastError());
+        return 0;
+    }
+
+    RAWINPUTDEVICE rid{};
+    rid.usUsagePage = 0x01;          // generic desktop
+    rid.usUsage = 0x02;              // mouse
+    rid.dwFlags = RIDEV_INPUTSINK;   // keep receiving while the game owns the foreground
+    rid.hwndTarget = g_rawWnd;
+    if (RegisterRawInputDevices(&rid, 1, sizeof(rid)))
+        logLine("raw mouse input registered");
+    else
+        logLine("raw mouse input registration failed (err=%lu)", GetLastError());
+
+    MSG msg;
+    while (GetMessageW(&msg, nullptr, 0, 0) > 0) {
+        TranslateMessage(&msg);
+        DispatchMessageW(&msg);
+    }
+    return 0;
+}
+
+// A second RIDEV_INPUTSINK registration does not receive anything while the game keeps the mouse
+// captured, so mirror the deltas the game itself reads: hook GetRawInputData and copy each mouse
+// packet into our accumulator. Works regardless of who owns the mouse.
+using GetRawInputDataFn = UINT(WINAPI*)(HRAWINPUT, UINT, LPVOID, PUINT, UINT);
+GetRawInputDataFn g_origRawInputData = nullptr;
+std::atomic<int> g_rawPackets{0};
+
+UINT WINAPI hkGetRawInputData(HRAWINPUT hRaw, UINT cmd, LPVOID data, PUINT size, UINT hdrSize) {
+    const UINT ret = g_origRawInputData(hRaw, cmd, data, size, hdrSize);
+    if (ret != (UINT)-1 && data && cmd == RID_INPUT && hdrSize == sizeof(RAWINPUTHEADER)) {
+        const RAWINPUT* raw = (const RAWINPUT*)data;
+        if (raw->header.dwType == RIM_TYPEMOUSE &&
+            (raw->data.mouse.usFlags & MOUSE_MOVE_ABSOLUTE) == 0) {
+            g_rawDx.fetch_add(raw->data.mouse.lLastX);
+            g_rawDy.fetch_add(raw->data.mouse.lLastY);
+            g_rawPackets.fetch_add(1);
+        }
+    }
+    return ret;
+}
+
+void installRawInputHook() {
+    if (g_origRawInputData) return;
+    MH_Initialize();   // hookSwapChain() may not have run yet
+    if (MH_CreateHookApi(L"user32.dll", "GetRawInputData", (LPVOID)hkGetRawInputData,
+                         (LPVOID*)&g_origRawInputData) == MH_OK &&
+        MH_EnableHook(MH_ALL_HOOKS) == MH_OK) {
+        logLine("GetRawInputData hooked");
+    } else {
+        logLine("GetRawInputData hook failed");
+    }
+}
+
+void createRawInputWindow() {
+    static bool started = false;
+    if (started) return;
+    started = true;
+    CreateThread(nullptr, 0, rawThread, nullptr, 0, nullptr);
+}
+
 void feedInput() {
     ImGuiIO& io = ImGui::GetIO();
     if (!menu::isOpen()) {
         io.MouseDrawCursor = false;
         io.AddMousePosEvent(-FLT_MAX, -FLT_MAX);
+        g_cursorSeeded = false;
         io.AddMouseButtonEvent(0, false);
         io.AddMouseButtonEvent(1, false);
         return;
@@ -182,10 +287,47 @@ void feedInput() {
     }
     io.MouseDrawCursor = true;
 
-    POINT p;
-    GetCursorPos(&p);
-    if (g_hwnd) ScreenToClient(g_hwnd, &p);
-    io.AddMousePosEvent((float)p.x, (float)p.y);
+    // Cursor position is maintained by us: seed from the OS position when the menu opens, then
+    // integrate the raw deltas. This keeps working even if the game pins the OS cursor.
+    static float mx = -1.f, my = -1.f;
+    if (!g_cursorSeeded) {
+        POINT p;
+        GetCursorPos(&p);
+        if (g_hwnd) ScreenToClient(g_hwnd, &p);
+        mx = (float)p.x;
+        my = (float)p.y;
+        g_rawDx.exchange(0);
+        g_rawDy.exchange(0);
+        g_cursorSeeded = true;
+    }
+    const bool ours = g_hwnd && GetForegroundWindow() == g_hwnd;
+    const int ddx = g_rawDx.exchange(0);
+    const int ddy = g_rawDy.exchange(0);
+    // Hybrid: if the OS cursor actually moves (game not locking it) trust it; if it is pinned
+    // (gameplay locks it to the window centre) integrate the raw deltas instead.
+    static POINT lastOs{INT_MIN, INT_MIN};
+    POINT os;
+    GetCursorPos(&os);
+    if (g_hwnd) ScreenToClient(g_hwnd, &os);
+    if (os.x != lastOs.x || os.y != lastOs.y) {
+        mx = (float)os.x;
+        my = (float)os.y;
+        lastOs = os;
+    } else if (ours) {
+        mx += (float)ddx;
+        my += (float)ddy;
+    }
+    static DWORD lastLog = 0;
+    const DWORD nowTick = GetTickCount();
+    if ((ddx || ddy) && nowTick - lastLog > 2000) {
+        lastLog = nowTick;
+        logLine("cursor: raw delta=%d,%d pos=%.0f,%.0f", ddx, ddy, mx, my);
+    }
+    if (mx < 0.f) mx = 0.f;
+    if (my < 0.f) my = 0.f;
+    if (mx > io.DisplaySize.x - 1.f) mx = io.DisplaySize.x - 1.f;
+    if (my > io.DisplaySize.y - 1.f) my = io.DisplaySize.y - 1.f;
+    io.AddMousePosEvent(mx, my);
     io.AddMouseButtonEvent(0, (GetAsyncKeyState(VK_LBUTTON) & 0x8000) != 0);
     io.AddMouseButtonEvent(1, (GetAsyncKeyState(VK_RBUTTON) & 0x8000) != 0);
 
@@ -933,6 +1075,8 @@ DWORD WINAPI boot(LPVOID) {
     SetUnhandledExceptionFilter(crashFilter);
     AddVectoredExceptionHandler(1, vehLog);
     logLine("overlay booting (crash filter armed)");
+    createRawInputWindow();
+    installRawInputHook();
 
     // Windows 10 + DPI: keep the ImGui coordinates in real pixels.
     SetProcessDPIAware();
