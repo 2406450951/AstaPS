@@ -43,6 +43,9 @@ char g_bookmark[64] = "home";
 int g_weatherId = 1;
 float g_timeH = 12.f;
 float g_timeM = 0.f;
+bool g_speedOn = false;
+float g_speedRatio = 1.5f;
+char g_cmd[160] = "give 201 1000";
 
 void push(const char* fmt, ...) {
     char buf[512];
@@ -130,6 +133,18 @@ void tabPlayer(const Snapshot& s) {
     ImGui::Spacing();
     sectionHeader("战斗");
     sliderRowF("伤害倍率", &g_st.mult, 1.f, 1000.f, "x%.1f", "mult");
+
+    ImGui::Spacing();
+    sectionHeader("移动速度（服务端模改器）");
+    if (ImGui::Checkbox("开启加速", &g_speedOn)) {
+        if (g_speedOn) action("c=speed&r=%.2f", g_speedRatio);
+        else action("c=speed&on=0");
+    }
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(170);
+    if (ImGui::SliderFloat("##speedr", &g_speedRatio, 1.1f, 4.f, "x%.2f") && g_speedOn)
+        action("c=speed&r=%.2f", g_speedRatio);
+    ImGui::TextDisabled("卡面发送 Animator_MoveSpeedRatio，不改内存");
     ImGui::TextDisabled("1 = 原版，100 = 基本秒杀，1000 = 见谁秒谁");
 
     ImGui::Spacing();
@@ -279,6 +294,25 @@ void tabTeleport(const Snapshot& s) {
 }
 
 void tabGM(const Snapshot& s) {
+
+    sectionHeader("命令行（服务端 GM）");
+    ImGui::SetNextItemWidth(360);
+    if (ImGui::InputText("##gmcmd", g_cmd, sizeof(g_cmd), ImGuiInputTextFlags_EnterReturnsTrue))
+        action("c=command&text=%s", g_cmd);
+    ImGui::SameLine();
+    if (ImGui::Button("执行", ImVec2(80, 0))) action("c=command&text=%s", g_cmd);
+    ImGui::TextDisabled("启动游戏后输入 /help 能看到全部命令；这里直接输名字就行，不带斜杠");
+    if (ImGui::Button("give 201 1000", ImVec2(150, 0))) action("c=command&text=give 201 1000");
+    ImGui::SameLine();
+    if (ImGui::Button("give 202 100000", ImVec2(150, 0))) action("c=command&text=give 202 100000");
+    ImGui::SameLine();
+    if (ImGui::Button("unlockall", ImVec2(100, 0))) action("c=command&text=unlockall");
+    if (ImGui::Button("waypoints", ImVec2(150, 0))) action("c=command&text=waypoints");
+    ImGui::SameLine();
+    if (ImGui::Button("setprop 100 1", ImVec2(150, 0))) action("c=command&text=setprop 100 1");
+    ImGui::SameLine();
+    if (ImGui::Button("clear weapons", ImVec2(140, 0))) action("c=command&text=clear weapons");
+
     sectionHeader("地图 / 传送点");
     actionQuery("解锁全部地图点", "c=raw&text=unlock");
     actionQuery("解锁（含任务保护点）", "c=raw&text=unlock --force");

@@ -1,24 +1,26 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.2.0**
+**版本 1.3.0**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
 
+## 1.3.0 新增
+
+- **移动速度**：给客户端发一个带 `Animator_MoveSpeedRatio` 的 modifier（属性名取自
+  `resources/BinOutput` 的技能数据），1.1x~4x 可调。改的是服务端下发的属性，不碰客户端内存
+- **GM 命令行**：菜单 GM 页多了一个输入框，直接敲服务端命令（不带斜杠），比如 `give 201 1000`、
+  `unlockall`、`waypoints`、`clear weapons`；旁边还有几个常用按钮
+- 服务端一共 60 个 GM 命令，游戏里输 `/help` 能看到全部
+
 ## 1.2.0 修正
 
 - 自动拾取：补上 `ItemAddHintNotify`，客户端终于会显示 +物品；`/snap` 增加 `loot 扫描数 拾取数`
 - 怪物吸附：`MotionInfo` 补全 rot / speed / state，`EntityMoveInfo` 补 sceneTime / reliableSeq，
   否则 7.1 客户端直接忽略这个移动包；`/snap` 增加 `mob 累计拉取数`
-- 服务端日志会打 `auto-loot: N item(s), scanned M`，方便确认到底扫到了什么
-
-## 1.1.1 修正
-
-- 菜单不再假装按住 Alt：鼠标原始输入在菜单打开时被截下来，镜头不再跟着转
-- 天气恢复可用：区域和气候一起发，但不发 weather gadget，所以不闪退
-- 修菜单指针漂移：单帧位移限幅 + 按客户区裁剪
+- 服务端日志会打 `auto-loot: N item(s), scanned M`
 
 ## Requirements
 

@@ -73,9 +73,12 @@ public final class CheatApi {
     public static float mobVacRadius = 20f;
     public static boolean burst = false;
     public static boolean skillReady = false;
+    public static boolean speedOn = false;
+    public static float speedRatio = 1.5f;
     private static long lastMobVacMs = 0L;
     private static long lastBurstMs = 0L;
     private static long lastSkillMs = 0L;
+    private static long lastSpeedMs = 0L;
 
     private static long lastLootMs = 0L;
     private static long lastTimeMs = 0L;
@@ -199,6 +202,16 @@ public final class CheatApi {
             }
         }
 
+        if (speedOn && !players.isEmpty() && now - lastSpeedMs >= 1000L) {
+            lastSpeedMs = now;
+            for (Player player : players) {
+                try {
+                    owner.applyMoveSpeed(player, speedRatio - 1.0f);
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
         if (skillReady && !players.isEmpty() && now - lastSkillMs >= 500L) {
             lastSkillMs = now;
             for (Player player : players) {
@@ -290,7 +303,14 @@ public final class CheatApi {
                 actor.sendPacket(packet);
                 weather = climate;
                 lastAction = "weather: climate=" + climate + " area=" + area;
-            }            case "mapgo" -> {
+            }            case "speed" -> {
+                speedRatio = Math.max(1.0f, Math.min(5.0f, f(q, "r", speedRatio)));
+                speedOn = !"0".equals(q.getOrDefault("on", "1"));
+                boolean ok = speedOn && owner.applyMoveSpeed(actor, speedRatio - 1.0f);
+                lastAction = "speed: " + (speedOn ? "+" + Math.round((speedRatio - 1f) * 100) + "%" : "off")
+                        + (ok ? "" : " (no avatar?)");
+            }
+            case "mapgo" -> {
                 Position pin = owner.mapPinPosition(actor);
                 if (pin == null) {
                     lastAction = "mapgo: no pin in this scene";

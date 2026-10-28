@@ -1,5 +1,14 @@
 package cheatmenu;
 
+import emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString;
+import emu.grasscutter.net.proto.ModifierPropertyOuterClass.ModifierProperty;
+import emu.grasscutter.net.proto.AbilityMetaModifierChangeOuterClass.AbilityMetaModifierChange;
+import emu.grasscutter.net.proto.AbilityInvokeEntryHeadOuterClass.AbilityInvokeEntryHead;
+import emu.grasscutter.net.proto.AbilityInvokeEntryOuterClass.AbilityInvokeEntry;
+import emu.grasscutter.net.proto.AbilityInvokeArgumentOuterClass.AbilityInvokeArgument;
+import emu.grasscutter.net.proto.ForwardTypeOuterClass.ForwardType;
+import emu.grasscutter.server.packet.send.PacketAbilityInvocationsNotify;
+
 import emu.grasscutter.game.props.ActionReason;
 import emu.grasscutter.server.packet.send.PacketItemAddHintNotify;
 import emu.grasscutter.net.proto.VectorOuterClass.Vector;
@@ -318,6 +327,42 @@ public final class CheatMenu extends Plugin {
         }
         return out;
     }
+
+    /**
+     * 移动速度：给客户端发一个带 Animator_MoveSpeedRatio 属性的 modifier。
+     * 属性名来自 resources/BinOutput 的技能数据（0.25 = +25%），客户端自己按比例跑，不碰内存。
+     */
+    public boolean applyMoveSpeed(Player player, float ratio) {
+        EntityAvatar avatar = player.getTeamManager().getCurrentAvatarEntity();
+        if (avatar == null) return false;
+        try {
+            var key = AbilityString.newBuilder().setStr("Animator_MoveSpeedRatio").build();
+            var prop = ModifierProperty.newBuilder().setKey(key).setValue(ratio).build();
+            var change = AbilityMetaModifierChange.newBuilder()
+                    .setParentAbilityName(AbilityString.newBuilder().setStr("GS71_MoveSpeed"))
+                    .setModifierLocalId(0)
+                    .setServerBuffUid(1)
+                    .addProperties(prop)
+                    .build();
+            var head = AbilityInvokeEntryHead.newBuilder().setInstancedAbilityId(0).build();
+            var entry = AbilityInvokeEntry.newBuilder()
+                    .setEntityId(avatar.getId())
+                    .setArgumentType(
+                            AbilityInvokeArgument.AbilityInvokeArgument_ABILITY_META_MODIFIER_CHANGE)
+                    .setForwardType(ForwardType.ForwardType_FORWARD_TO_ALL)
+                    .setHead(head)
+                    .setAbilityData(change.toByteString())
+                    .build();
+            player.sendPacket(new PacketAbilityInvocationsNotify(entry));
+            this.lastSpeedSent = ratio;
+            return true;
+        } catch (Throwable t) {
+            this.getLogger().debug("[CheatMenu] speed failed: {}", t.toString());
+            return false;
+        }
+    }
+
+    public float lastSpeedSent = 0f;
 
     // ---------------------------------------------------------------- 新增：吸附 / 大招 / 标点
     /** 把范围内的怪物拉到玩家身边，并通知客户端它们移动了。 */
