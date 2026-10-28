@@ -1,11 +1,20 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.4.0**
+**版本 1.5.0**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
+
+## 1.5.0 修正
+
+- **自动拾取**：之前只处理怪物掉落的 EntityItem，而地图上的日落果/树莓这类是
+  GadgetGatherObject（采集点），所以站在日落果旁边也没反应。现在对范围内的采集点直接调它自己的
+  onInteract，走的是正常采集流程（拿物品、播采集表现、处理刷新）
+- **移动速度**：客户端不认自造的 ability 名，改用数据里真实存在的
+  LevelEntity_EffigyChallenge_MoveSpeed：先把 ability 挂到角色上，再发
+  Animator_MoveSpeedRatio 属性
 
 ## 1.4.0
 

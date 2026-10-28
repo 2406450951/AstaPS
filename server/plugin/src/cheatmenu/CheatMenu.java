@@ -1,5 +1,8 @@
 package cheatmenu;
 
+import emu.grasscutter.game.entity.gadget.GadgetGatherObject;
+import emu.grasscutter.net.proto.GadgetInteractReqOuterClass.GadgetInteractReq;
+
 import emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString;
 import emu.grasscutter.net.proto.ModifierPropertyOuterClass.ModifierProperty;
 import emu.grasscutter.net.proto.AbilityMetaModifierChangeOuterClass.AbilityMetaModifierChange;
@@ -288,8 +291,30 @@ public final class CheatMenu extends Plugin {
             } catch (Throwable ignored) {
             }
         }
+        // 地图上的采集物（日落果、树莓这些）是 GadgetGatherObject，不是 EntityItem。
+        // 它们有公开的 onInteract，直接调就是正常采集一遍（发物品、播采集表现、处理刷新）。
+        int gathered = 0;
+        for (GameEntity entity : new ArrayList<>(scene.getEntities().values())) {
+            if (!(entity instanceof EntityGadget gadget)) continue;
+            if (!(gadget.getContent() instanceof GadgetGatherObject gather)) continue;
+            Position pos = gadget.getPosition();
+            if (pos == null) continue;
+            if (radius > 0 && origin != null && distance2(origin, pos) > radius * radius) continue;
+            scanned++;
+            try {
+                if (gather.onInteract(player, GadgetInteractReq.newBuilder().build())) {
+                    scene.removeEntity(gadget, VisionType.VisionType_VISION_REMOVE);
+                    gathered++;
+                }
+            } catch (Throwable t) {
+                this.getLogger().debug("[CheatMenu] gather skip {}: {}", gadget.getConfigId(),
+                        t.toString());
+            }
+        }
+        moved += gathered;
+
         this.lastLootScanned = scanned;
-        this.lastLootPicked = picked.size();
+        this.lastLootPicked = picked.size() + gathered;
         return moved;
     }
 
@@ -338,8 +363,14 @@ public final class CheatMenu extends Plugin {
         try {
             var key = AbilityString.newBuilder().setStr("Animator_MoveSpeedRatio").build();
             var prop = ModifierProperty.newBuilder().setKey(key).setValue(ratio).build();
+            // 客户端只认它自己数据里的 ability 名，所以先把它挂上去，再用这个名字发属性。
+            String abilityName = "LevelEntity_EffigyChallenge_MoveSpeed";
+            try {
+                player.getAbilityManager().addAbilityToEntity(avatar, abilityName);
+            } catch (Throwable ignored) {
+            }
             var change = AbilityMetaModifierChange.newBuilder()
-                    .setParentAbilityName(AbilityString.newBuilder().setStr("GS71_MoveSpeed"))
+                    .setParentAbilityName(AbilityString.newBuilder().setStr(abilityName))
                     .setModifierLocalId(0)
                     .setServerBuffUid(1)
                     .addProperties(prop)
