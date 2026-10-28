@@ -1,0 +1,34 @@
+# 构建产物与运行数据
+server/*.jar
+server/plugins/
+server/resources/
+server/logs/
+server/data/
+server/.run/
+server/cache/
+server/keystore.p12
+server/plugin/build/
+server/plugin/*.jar
+
+# 客户端补丁构建产物
+client/overlay/build/
+client/overlay/vendor/
+client/patch/target/
+
+# 证书私钥（绝不入库）
+*_key.pem
+*.key
+*.pfx
+*.p12
+
+# 本地运行痕迹
+*.log
+*.dmp
+*.zip
+*.png
+__pycache__/
+
+# 系统垃圾
+Thumbs.db
+desktop.ini
+.DS_Store

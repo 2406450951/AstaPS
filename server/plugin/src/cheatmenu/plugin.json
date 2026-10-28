@@ -1,0 +1,8 @@
+{
+  "name": "CheatMenu",
+  "description": "Akebi-style server-side cheat menu for the local 7.1 private server: god mode, fall control, auto loot, kill aura, damage multiplier, teleport/chest/bookmarks, time/weather, entity feed for the radar panel.",
+  "version": "2.0.0",
+  "mainClass": "cheatmenu.CheatMenu",
+  "api": 2,
+  "authors": ["YG"]
+}

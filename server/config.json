@@ -1,0 +1,312 @@
+{
+    "folderStructure":  {
+                            "resources":  "./resources/",
+                            "data":  "./data/",
+                            "packets":  "./packets/",
+                            "scripts":  "resources:Scripts/",
+                            "plugins":  "./plugins/",
+                            "cache":  "./cache/"
+                        },
+    "databaseInfo":  {
+                         "server":  {
+                                        "connectionUri":  "mongodb://localhost:27017",
+                                        "collection":  "grasscutter"
+                                    },
+                         "game":  {
+                                      "connectionUri":  "mongodb://localhost:27017",
+                                      "collection":  "grasscutter"
+                                  }
+                     },
+    "language":  {
+                     "language":  "zh_CN",
+                     "fallback":  "zh_CN",
+                     "document":  "EN"
+                 },
+    "account":  {
+                    "autoCreate":  true,
+                    "EXPERIMENTAL_RealPassword":  false,
+                    "useIntegrationPassword":  false,
+                    "defaultPermissions":  [
+                                               "*"
+                                           ],
+                    "maxPlayer":  8
+                },
+    "server":  {
+                   "debugWhitelist":  [
+
+                                      ],
+                   "debugBlacklist":  [
+
+                                      ],
+                   "runMode":  "HYBRID",
+                   "logCommands":  false,
+                   "fastRequire":  true,
+                   "http":  {
+                                "startImmediately":  false,
+                                "bindAddress":  "0.0.0.0",
+                                "bindPort":  8088,
+                                "accessAddress":  "127.0.0.1",
+                                "accessPort":  0,
+                                "encryption":  {
+                                                   "useEncryption":  false,
+                                                   "useInRouting":  false,
+                                                   "keystore":  "./keystore.p12",
+                                                   "keystorePassword":  "123456"
+                                               },
+                                "policies":  {
+                                                 "cors":  {
+                                                              "enabled":  true,
+                                                              "allowedOrigins":  [
+                                                                                     "*"
+                                                                                 ]
+                                                          }
+                                             },
+                                "files":  {
+                                              "indexFile":  "./index.html"
+                                          },
+                                "webConsole":  {
+                                                   "enabled":  true,
+                                                   "sessionHours":  12
+                                               }
+                            },
+                   "game":  {
+                                "watchdog":  {
+                                                 "enableDatabaseMonitor":  true,
+                                                 "databaseCheckIntervalSeconds":  10,
+                                                 "enableAutoRestart":  false,
+                                                 "autoRestartIntervalHours":  24
+                                             },
+                                "bindAddress":  "0.0.0.0",
+                                "bindPort":  22101,
+                                "accessAddress":  "127.0.0.1",
+                                "accessPort":  0,
+                                "useUniquePacketKey":  true,
+                                "useXorEncryption":  true,
+                                "loadEntitiesForPlayerRange":  300,
+                                "enableScriptInBigWorld":  true,
+                                "enableConsole":  true,
+                                "asyncLogin":  true,
+                                "tickRateMs":  200,
+                                "kcpInterval":  20,
+                                "logPackets":  "NONE",
+                                "isShowPacketPayload":  false,
+                                "isShowLoopPackets":  false,
+                                "cacheSceneEntitiesEveryRun":  false,
+                                "gameOptions":  {
+                                                    "inventoryLimits":  {
+                                                                            "weapons":  2000,
+                                                                            "relics":  2000,
+                                                                            "materials":  2000,
+                                                                            "furniture":  2000,
+                                                                            "all":  30000
+                                                                        },
+                                                    "avatarLimits":  {
+                                                                         "singlePlayerTeam":  4,
+                                                                         "multiplayerTeam":  4
+                                                                     },
+                                                    "sceneEntityLimit":  1000,
+                                                    "isPreventEntityError":  true,
+                                                    "watchGachaConfig":  false,
+                                                    "enableShopItems":  false,
+                                                    "unlockAllOpenStatesOnLogin":  false,
+                                                    "mapFogEnabled":  true,
+                                                    "artifactShop":  {
+                                                                         "enabled":  true,
+                                                                         "shopId":  1004,
+                                                                         "costMora":  20000,
+                                                                         "costPrimogems":  0,
+                                                                         "costItemId":  0,
+                                                                         "costItemCount":  0,
+                                                                         "buyLimit":  0,
+                                                                         "artifactLevel":  20,
+                                                                         "critWeight":  8.0,
+                                                                         "damageWeight":  3.0,
+                                                                         "highRollBias":  3.0
+                                                                     },
+                                                    "staminaUsage":  true,
+                                                    "energyUsage":  true,
+                                                    "fishhookTeleport":  true,
+                                                    "trialCostumes":  false,
+                                                    "firstLoginCutscene":  0,
+                                                    "disableCutscenes":  false,
+                                                    "newAccountIntro":  {
+                                                                            "enabled":  true,
+                                                                            "doSetPlayerBornDataNotify":  0,
+                                                                            "setPlayerBornDataRsp":  0,
+                                                                            "fallbackSeconds":  0
+                                                                        },
+                                                    "questing":  {
+                                                                     "enabled":  true,
+                                                                     "triggerAllOnLogin":  false
+                                                                 },
+                                                    "resinOptions":  {
+                                                                         "resinUsage":  false,
+                                                                         "cap":  1600,
+                                                                         "rechargeTime":  180
+                                                                     },
+                                                    "rates":  {
+                                                                  "adventureExp":  1.0,
+                                                                  "mora":  1.0
+                                                              },
+                                                    "tower":  {
+                                                                  "scheduleId":  0,
+                                                                  "rotate":  false,
+                                                                  "rotationPool":  12,
+                                                                  "skipEntranceFloors":  true
+                                                              },
+                                                    "handbook":  {
+                                                                     "enable":  false,
+                                                                     "allowCommands":  true,
+                                                                     "limits":  {
+                                                                                    "enabled":  true,
+                                                                                    "interval":  3,
+                                                                                    "maxRequests":  10,
+                                                                                    "maxEntities":  25
+                                                                                },
+                                                                     "server":  {
+                                                                                    "enforced":  false,
+                                                                                    "address":  "127.0.0.1",
+                                                                                    "port":  443,
+                                                                                    "canChange":  true
+                                                                                }
+                                                                 },
+                                                    "birthdayMail":  {
+                                                                         "enabled":  true,
+                                                                         "expireDays":  7,
+                                                                         "gifts":  [
+                                                                                       {
+                                                                                           "itemId":  202,
+                                                                                           "count":  10000000
+                                                                                       },
+                                                                                       {
+                                                                                           "itemId":  201,
+                                                                                           "count":  600000
+                                                                                       }
+                                                                                   ]
+                                                                     },
+                                                    "watermark":  {
+                                                                      "cmdId":  0,
+                                                                      "payloadField":  0
+                                                                  }
+                                                },
+                                "joinOptions":  {
+                                                    "welcomeEmotes":  [
+                                                                          2007,
+                                                                          1002,
+                                                                          4010
+                                                                      ],
+                                                    "welcomeMessage":  "Welcome to the Chiori test server",
+                                                    "welcomeMail":  {
+                                                                        "title":  "Welcome to LunaGC 6.6.0",
+                                                                        "content":  "Hi there!\r\nWelcome to LunaGC!\n",
+                                                                        "sender":  "Kei-Luna and pmagixc",
+                                                                        "items":  [
+
+                                                                                  ]
+                                                                    }
+                                                },
+                                "serverAccount":  {
+                                                      "avatarId":  10000007,
+                                                      "nameCardId":  210001,
+                                                      "adventureRank":  1,
+                                                      "worldLevel":  0,
+                                                      "nickName":  "LunaGC",
+                                                      "signature":  "Welcome to LunaGC"
+                                                  },
+                                "dpsAccount":  {
+                                                   "avatarId":  10000007,
+                                                   "nameCardId":  210001,
+                                                   "adventureRank":  60,
+                                                   "worldLevel":  0,
+                                                   "nickName":  "DPS",
+                                                   "signature":  "Send dps30 to start, dpsstop to end early"
+                                               },
+                                "visionOptions":  [
+                                                      {
+                                                          "name":  "VISION_LEVEL_NORMAL",
+                                                          "visionRange":  80,
+                                                          "gridWidth":  20
+                                                      },
+                                                      {
+                                                          "name":  "VISION_LEVEL_LITTLE_REMOTE",
+                                                          "visionRange":  16,
+                                                          "gridWidth":  40
+                                                      },
+                                                      {
+                                                          "name":  "VISION_LEVEL_REMOTE",
+                                                          "visionRange":  1000,
+                                                          "gridWidth":  250
+                                                      },
+                                                      {
+                                                          "name":  "VISION_LEVEL_SUPER",
+                                                          "visionRange":  4000,
+                                                          "gridWidth":  1000
+                                                      },
+                                                      {
+                                                          "name":  "VISION_LEVEL_NEARBY",
+                                                          "visionRange":  40,
+                                                          "gridWidth":  20
+                                                      },
+                                                      {
+                                                          "name":  "VISION_LEVEL_SUPER_NEARBY",
+                                                          "visionRange":  20,
+                                                          "gridWidth":  20
+                                                      }
+                                                  ]
+                            },
+                   "threadPools":  {
+                                       "enabled":  true,
+                                       "pools":  {
+                                                     "DATABASE_GROUP":  {
+                                                                            "coreThreads":  -1,
+                                                                            "maxThreads":  -1,
+                                                                            "queueCapacity":  -1,
+                                                                            "keepAliveSeconds":  -1
+                                                                        },
+                                                     "DATABASE_ACCOUNT":  {
+                                                                              "coreThreads":  -1,
+                                                                              "maxThreads":  -1,
+                                                                              "queueCapacity":  -1,
+                                                                              "keepAliveSeconds":  -1
+                                                                          },
+                                                     "DATABASE_ITEM":  {
+                                                                           "coreThreads":  -1,
+                                                                           "maxThreads":  -1,
+                                                                           "queueCapacity":  -1,
+                                                                           "keepAliveSeconds":  -1
+                                                                       },
+                                                     "DATABASE_DEFAULT":  {
+                                                                              "coreThreads":  -1,
+                                                                              "maxThreads":  -1,
+                                                                              "queueCapacity":  -1,
+                                                                              "keepAliveSeconds":  -1
+                                                                          }
+                                                 }
+                                   },
+                   "dispatch":  {
+                                    "regions":  [
+
+                                                ],
+                                    "dispatchUrl":  "ws://127.0.0.1:1111",
+                                    "encryptionKey":  "FonHGT3Bhph19m6PSpJkhwD3YhaA6BUdiWMTcE5coM4=",
+                                    "dispatchKey":  "e+eIUPTq8pwvrpyl47Lj3VNsVL6UKWZ/6TKXddUSpoI=",
+                                    "defaultName":  "Grasscutter",
+                                    "logRequests":  "ALL"
+                                },
+                   "debugMode":  {
+                                     "serverLoggerLevel":  {
+                                                               "levelInt":  10000,
+                                                               "levelStr":  "DEBUG"
+                                                           },
+                                     "servicesLoggersLevel":  {
+                                                                  "levelInt":  20000,
+                                                                  "levelStr":  "INFO"
+                                                              },
+                                     "logPackets":  "ALL",
+                                     "isShowPacketPayload":  false,
+                                     "isShowLoopPackets":  false,
+                                     "logRequests":  "ALL"
+                                 }
+               },
+    "version":  18
+}
