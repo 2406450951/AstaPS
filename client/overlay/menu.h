@@ -29,6 +29,16 @@ struct ClientConfig {
     bool glow = true;
     float accent[3] = {0.62f, 0.45f, 0.98f};
     int theme = 0;
+    // 新增：服务端侧的三个开关，存进 gs71_menu.cfg
+    bool mobVac = false;
+    float mobVacR = 20.0f;
+    bool burst = false;
+    bool skillReady = false;
+
+    // 每项作弊的快捷键（0 = 未绑定）
+    int hkGod = 0, hkFall = 0, hkLoot = 0, hkStamina = 0, hkAutoheal = 0;
+    int hkAura = 0, hkFreeze = 0, hkEsp = 0, hkMobVac = 0, hkBurst = 0;
+    int hkSkill = 0, hkSpeed = 0;
 };
 ClientConfig& config();
 

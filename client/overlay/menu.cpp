@@ -73,6 +73,79 @@ void action(const char* fmt, ...) {
     bridge::cmd(buf);
 }
 
+
+// ---------------------------------------------------------------- 作弊快捷键
+//
+// 表里每行：显示名、绑定到哪个 VK 字段、切换哪个开关、下发给服务端时用哪个字段名。
+struct CheatHotkey {
+    const char* name;
+    int* vk;
+    bool* value;
+    const char* field;
+};
+
+CheatHotkey g_hotkeys_cheat[] = {
+    {"无敌", &g_cfg.hkGod, &g_st.god, "god"},
+    {"无摔落", &g_cfg.hkFall, &g_st.fall, "fall"},
+    {"自动拾取", &g_cfg.hkLoot, &g_st.loot, "loot"},
+    {"无限体力", &g_cfg.hkStamina, &g_st.stamina, "stamina"},
+    {"自动回血", &g_cfg.hkAutoheal, &g_st.autoheal, "autoheal"},
+    {"杀意光环", &g_cfg.hkAura, &g_st.aura, "aura"},
+    {"冻结时间", &g_cfg.hkFreeze, &g_st.freeze, "freeze"},
+    {"实体数据流", &g_cfg.hkEsp, &g_st.esp, "esp"},
+    {"怪物吸附", &g_cfg.hkMobVac, &g_cfg.mobVac, "mobvac"},
+    {"无限大招", &g_cfg.hkBurst, &g_cfg.burst, "burst"},
+    {"技能可用", &g_cfg.hkSkill, &g_cfg.skillReady, "skillready"},
+};
+const int g_hotkeyCount = (int)(sizeof(g_hotkeys_cheat) / sizeof(g_hotkeys_cheat[0]));
+
+const char* vkName(int vk) {
+    static char buf[24];
+    if (vk == 0) return "未绑定";
+    if (vk >= VK_F1 && vk <= VK_F12) {
+        static char f[8];
+        snprintf(f, sizeof(f), "F%d", vk - VK_F1 + 1);
+        return f;
+    }
+    if ((vk >= '0' && vk <= '9') || (vk >= 'A' && vk <= 'Z')) {
+        buf[0] = (char)vk;
+        buf[1] = 0;
+        return buf;
+    }
+    if (vk == VK_INSERT) return "Insert";
+    if (vk == VK_DELETE) return "Delete";
+    if (vk == VK_HOME) return "Home";
+    if (vk == VK_END) return "End";
+    if (vk == VK_PRIOR) return "PageUp";
+    if (vk == VK_NEXT) return "PageDown";
+    if (vk == VK_NUMPAD0 + (vk - VK_NUMPAD0) && vk >= VK_NUMPAD0 && vk <= VK_NUMPAD9) {
+        static char n[8];
+        snprintf(n, sizeof(n), "Num%d", vk - VK_NUMPAD0);
+        return n;
+    }
+    snprintf(buf, sizeof(buf), "0x%02X", vk);
+    return buf;
+}
+
+void pollCheatHotkeys() {
+    for (int i = 0; i < g_hotkeyCount; ++i) {
+        int vk = *g_hotkeys_cheat[i].vk;
+        if (vk == 0) continue;
+        bool down = (GetAsyncKeyState(vk) & 0x8000) != 0;
+        static bool was[32] = {false};
+        if (down && !was[i]) {
+            *g_hotkeys_cheat[i].value = !*g_hotkeys_cheat[i].value;
+            bool on = *g_hotkeys_cheat[i].value;
+            push("%s=%d", g_hotkeys_cheat[i].field, on ? 1 : 0);
+            if (!strcmp(g_hotkeys_cheat[i].field, "mobvac")) {
+                // 这两个是本地开关，服务端字段名不同，单独补一条
+                push("mobvac=%d", on ? 1 : 0);
+            }
+        }
+        was[i] = down;
+    }
+}
+
 void syncFromServer(const Snapshot& s) {
     if (!g_stInit && s.valid) {
         g_st = s.st;
@@ -444,6 +517,45 @@ void tabGM(const Snapshot& s) {
 }
 
 void tabSettings(const Snapshot& s) {
+    static int binding = -1;   // 正在等按键的那一行
+    sectionHeader("作弊快捷键（点“绑定”后按任意键，Esc 取消）");
+    for (int i = 0; i < g_hotkeyCount; ++i) {
+        ImGui::Text("%s", g_hotkeys_cheat[i].name);
+        ImGui::SameLine(150);
+        ImGui::TextDisabled("%s", vkName(*g_hotkeys_cheat[i].vk));
+        ImGui::SameLine(250);
+        char idb[32];
+        snprintf(idb, sizeof(idb), "绑定##%d", i);
+        if (binding == i) {
+            if (ImGui::Button("按键中...##cancel", ImVec2(120, 0))) binding = -1;
+        } else if (ImGui::Button(idb, ImVec2(120, 0))) {
+            binding = i;
+        }
+        ImGui::SameLine();
+        char idc[32];
+        snprintf(idc, sizeof(idc), "清除##%d", i);
+        if (ImGui::Button(idc, ImVec2(80, 0))) {
+            *g_hotkeys_cheat[i].vk = 0;
+            if (binding == i) binding = -1;
+        }
+        if (binding == i) {
+            for (int vk = 1; vk < 256; ++vk) {
+                if (vk == VK_LBUTTON || vk == VK_RBUTTON || vk == VK_MBUTTON) continue;
+                if ((GetAsyncKeyState(vk) & 0x8000) == 0) continue;
+                if (vk == VK_ESCAPE) {
+                    binding = -1;
+                } else {
+                    *g_hotkeys_cheat[i].vk = vk;
+                    binding = -1;
+                }
+                break;
+            }
+        }
+        if ((i + 1) % 1 == 0) ImGui::Separator();
+    }
+
+    sectionHeader("界面");
+
     sectionHeader("菜单");
     ImGui::Text("呼出按键");
     ImGui::SetNextItemWidth(-1);
@@ -550,6 +662,18 @@ static void saveConfig() {
     fprintf(f, "hudScale=%.3f\n", g_cfg.hudScale);
     fprintf(f, "espMaxDist=%.1f\n", g_cfg.espMaxDist);
     fprintf(f, "theme=%d\n", g_cfg.theme);
+    fprintf(f, "hkgod=%d\n", g_cfg.hkGod);
+    fprintf(f, "hkfall=%d\n", g_cfg.hkFall);
+    fprintf(f, "hkloot=%d\n", g_cfg.hkLoot);
+    fprintf(f, "hkstamina=%d\n", g_cfg.hkStamina);
+    fprintf(f, "hkautoheal=%d\n", g_cfg.hkAutoheal);
+    fprintf(f, "hkaura=%d\n", g_cfg.hkAura);
+    fprintf(f, "hkfreeze=%d\n", g_cfg.hkFreeze);
+    fprintf(f, "hkesp=%d\n", g_cfg.hkEsp);
+    fprintf(f, "hkmobvac=%d\n", g_cfg.hkMobVac);
+    fprintf(f, "hkburst=%d\n", g_cfg.hkBurst);
+    fprintf(f, "hkskill=%d\n", g_cfg.hkSkill);
+    fprintf(f, "hkspeed=%d\n", g_cfg.hkSpeed);
     fprintf(f, "mobvac=%d\n", g_cfg.mobVac ? 1 : 0);
     fprintf(f, "mobvarr=%.1f\n", g_cfg.mobVacR);
     fprintf(f, "burst=%d\n", g_cfg.burst ? 1 : 0);
@@ -596,6 +720,19 @@ static bool loadConfig() {
         else if (!strcmp(k, "hudScale")) g_cfg.hudScale = (float)atof(v);
         else if (!strcmp(k, "espMaxDist")) g_cfg.espMaxDist = (float)atof(v);
         else if (!strcmp(k, "theme")) g_cfg.theme = atoi(v);
+        else if (!strcmp(k, "hkgod")) g_cfg.hkGod = atoi(v);
+        else if (!strcmp(k, "hkfall")) g_cfg.hkFall = atoi(v);
+        else if (!strcmp(k, "hkloot")) g_cfg.hkLoot = atoi(v);
+        else if (!strcmp(k, "hkstamina")) g_cfg.hkStamina = atoi(v);
+        else if (!strcmp(k, "hkautoheal")) g_cfg.hkAutoheal = atoi(v);
+        else if (!strcmp(k, "hkaura")) g_cfg.hkAura = atoi(v);
+        else if (!strcmp(k, "hkfreeze")) g_cfg.hkFreeze = atoi(v);
+        else if (!strcmp(k, "hkresp")) g_cfg.hkEsp = atoi(v);
+        else if (!strcmp(k, "hkesp")) g_cfg.hkEsp = atoi(v);
+        else if (!strcmp(k, "hkmobvac")) g_cfg.hkMobVac = atoi(v);
+        else if (!strcmp(k, "hkburst")) g_cfg.hkBurst = atoi(v);
+        else if (!strcmp(k, "hkskill")) g_cfg.hkSkill = atoi(v);
+        else if (!strcmp(k, "hkspeed")) g_cfg.hkSpeed = atoi(v);
         else if (!strcmp(k, "mobvac")) g_cfg.mobVac = isOn(v);
         else if (!strcmp(k, "mobvarr")) g_cfg.mobVacR = (float)atof(v);
         else if (!strcmp(k, "burst")) g_cfg.burst = isOn(v);
@@ -684,6 +821,8 @@ void draw() {
             }
         }
     }
+
+    pollCheatHotkeys();
 
     Snapshot s = bridge::get();
     syncFromServer(s);

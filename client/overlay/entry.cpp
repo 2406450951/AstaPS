@@ -115,6 +115,46 @@ void createRenderTarget(IDXGISwapChain* swap) {
     }
 }
 
+
+// ---------------------------------------------------------------- 输入隔离
+//
+// 菜单打开时，鼠标点击必须只给 ImGui，不能落到游戏里（否则点按钮就等于攻击一下）。
+// 我们自己的输入是轮询 GetAsyncKeyState/GetCursorPos，所以直接把窗口消息吞掉即可。
+WNDPROC g_origWndProc = nullptr;
+
+LRESULT CALLBACK hkWndProc(HWND h, UINT msg, WPARAM wp, LPARAM lp) {
+    if (menu::isOpen()) {
+        switch (msg) {
+            case WM_LBUTTONDOWN:
+            case WM_LBUTTONUP:
+            case WM_LBUTTONDBLCLK:
+            case WM_RBUTTONDOWN:
+            case WM_RBUTTONUP:
+            case WM_RBUTTONDBLCLK:
+            case WM_MBUTTONDOWN:
+            case WM_MBUTTONUP:
+            case WM_MOUSEWHEEL:
+            case WM_MOUSEHWHEEL:
+            case WM_XBUTTONDOWN:
+            case WM_XBUTTONUP:
+                return 0;
+            default:
+                break;
+        }
+    }
+    return CallWindowProcW(g_origWndProc, h, msg, wp, lp);
+}
+
+void installWndProcHook() {
+    if (!g_hwnd || g_origWndProc) return;
+    g_origWndProc =
+            (WNDPROC)SetWindowLongPtrW(g_hwnd, GWLP_WNDPROC, (LONG_PTR)hkWndProc);
+    if (g_origWndProc)
+        logLine("window proc hooked (mouse isolated while menu is open)");
+    else
+        logLine("window proc hook failed (err=%lu)", GetLastError());
+}
+
 void initImGui(IDXGISwapChain* swap) {
     if (FAILED(swap->GetDevice(__uuidof(ID3D11Device), (void**)&g_device)) || !g_device) {
         logLine("GetDevice(ID3D11Device) failed - the game is probably not on D3D11");
@@ -156,6 +196,7 @@ void initImGui(IDXGISwapChain* swap) {
     }
 
     ImGui_ImplWin32_Init(g_hwnd);
+    installWndProcHook();
     ImGui_ImplDX11_Init(g_device, g_context);
 
     g_imguiReady = true;
