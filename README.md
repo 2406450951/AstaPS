@@ -1,11 +1,18 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.5.0**
+**版本 1.6.0**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
+
+## 1.6.0 修正
+
+- **移动速度**改用游戏原生的 buff 通道：先挂上 BuffExcel 里的「移速增加药品」
+  （serverBuffId=170201，ability MoveSpeed_lv2_1，数据上就是 +30%），客户端认识这套数据；
+  再用同一个 ability 名把 Animator_MoveSpeedRatio 覆盖成用户要的倍数。关加速时移除该 buff
+- **自动拾取**支持采集点（日落果、树莓这类 GadgetGatherObject），验证通过
 
 ## 1.5.0 修正
 

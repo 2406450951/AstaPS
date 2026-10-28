@@ -306,7 +306,8 @@ public final class CheatApi {
             }            case "speed" -> {
                 speedRatio = Math.max(1.0f, Math.min(5.0f, f(q, "r", speedRatio)));
                 speedOn = !"0".equals(q.getOrDefault("on", "1"));
-                boolean ok = speedOn && owner.applyMoveSpeed(actor, speedRatio - 1.0f);
+                boolean ok = speedOn ? owner.applyMoveSpeed(actor, speedRatio - 1.0f)
+                                     : owner.clearMoveSpeed(actor);
                 lastAction = "speed: " + (speedOn ? "+" + Math.round((speedRatio - 1f) * 100) + "%" : "off")
                         + (ok ? "" : " (no avatar?)");
             }

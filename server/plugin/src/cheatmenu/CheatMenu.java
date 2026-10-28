@@ -357,22 +357,28 @@ public final class CheatMenu extends Plugin {
      * 移动速度：给客户端发一个带 Animator_MoveSpeedRatio 属性的 modifier。
      * 属性名来自 resources/BinOutput 的技能数据（0.25 = +25%），客户端自己按比例跑，不碰内存。
      */
+    /**
+     * 移动速度。
+     *
+     * <p>先挂上游戏原生的「移速增加药品」buff（BuffExcel 里 serverBuffId=170201，
+     * ability=MoveSpeed_lv2_1，默认 +30%），客户端认识这套数据，一定会生效；
+     * 然后再用同样的 ability 名把属性覆盖成用户要的倍数。
+     */
     public boolean applyMoveSpeed(Player player, float ratio) {
         EntityAvatar avatar = player.getTeamManager().getCurrentAvatarEntity();
         if (avatar == null) return false;
         try {
+            // 1) 原生 buff（groupId 21 = 移速增加药品）
+            if (!player.getBuffManager().hasBuff(21)) {
+                player.getBuffManager().addBuff(170201, 600f, avatar.getAvatar());
+            }
+            // 2) 用真实 ability 名覆盖属性值
             var key = AbilityString.newBuilder().setStr("Animator_MoveSpeedRatio").build();
             var prop = ModifierProperty.newBuilder().setKey(key).setValue(ratio).build();
-            // 客户端只认它自己数据里的 ability 名，所以先把它挂上去，再用这个名字发属性。
-            String abilityName = "LevelEntity_EffigyChallenge_MoveSpeed";
-            try {
-                player.getAbilityManager().addAbilityToEntity(avatar, abilityName);
-            } catch (Throwable ignored) {
-            }
             var change = AbilityMetaModifierChange.newBuilder()
-                    .setParentAbilityName(AbilityString.newBuilder().setStr(abilityName))
+                    .setParentAbilityName(AbilityString.newBuilder().setStr("MoveSpeed_lv2_1"))
                     .setModifierLocalId(0)
-                    .setServerBuffUid(1)
+                    .setServerBuffUid(170201)
                     .addProperties(prop)
                     .build();
             var head = AbilityInvokeEntryHead.newBuilder().setInstancedAbilityId(0).build();
@@ -389,6 +395,17 @@ public final class CheatMenu extends Plugin {
             return true;
         } catch (Throwable t) {
             this.getLogger().debug("[CheatMenu] speed failed: {}", t.toString());
+            return false;
+        }
+    }
+
+    /** 关掉加速：把移速药 buff 移除（groupId 21）。 */
+    public boolean clearMoveSpeed(Player player) {
+        try {
+            player.getBuffManager().removeBuff(21);
+            this.lastSpeedSent = 0f;
+            return true;
+        } catch (Throwable t) {
             return false;
         }
     }
