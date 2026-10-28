@@ -1,4 +1,8 @@
 package cheatmenu;
+
+import emu.grasscutter.game.props.ActionReason;
+import emu.grasscutter.server.packet.send.PacketItemAddHintNotify;
+import emu.grasscutter.net.proto.VectorOuterClass.Vector;
 import emu.grasscutter.net.packet.*;
 import emu.grasscutter.net.proto.MotionInfoOuterClass.MotionInfo;
 import emu.grasscutter.net.proto.MotionStateOuterClass.MotionState;
@@ -6,7 +10,6 @@ import emu.grasscutter.net.proto.EntityMoveInfoOuterClass.EntityMoveInfo;
 import emu.grasscutter.server.packet.send.PacketSceneEntityMoveNotify;
 import emu.grasscutter.server.packet.send.PacketAvatarFightPropUpdateNotify;
 import emu.grasscutter.server.packet.send.PacketCanUseSkillNotify;
-
 import emu.grasscutter.game.entity.EntityAvatar;
 import emu.grasscutter.game.entity.EntityGadget;
 import emu.grasscutter.game.entity.EntityItem;
@@ -28,10 +31,12 @@ import emu.grasscutter.server.event.entity.EntityDeathEvent;
 import emu.grasscutter.server.event.game.ServerTickEvent;
 import emu.grasscutter.server.event.player.PlayerJoinEvent;
 import emu.grasscutter.server.event.player.PlayerQuitEvent;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+
+
 
 /**
  * CheatMenu — the server-side half of Akebi-GC.
@@ -167,7 +172,12 @@ public final class CheatMenu extends Plugin {
             for (Player player : players) {
                 Flags.PlayerFlags f = this.flags.of(player.getUid());
                 if (f.god || f.fall) needHeal = true;
-                if (f.loot && this.tickCounter % 2 == 0) this.vacuum(player, LOOT_RADIUS);
+                if (f.loot && this.tickCounter % 2 == 0) {
+                    int got = this.vacuum(player, LOOT_RADIUS);
+                    if (got > 0 && this.tickCounter % 10 == 0)
+                        this.getLogger().info("[CheatMenu] auto-loot: {} item(s), scanned {}",
+                                got, this.lastLootScanned);
+                }
                 if (this.aura && this.tickCounter % 2 == 0) this.auraTick(player);
             }
 
@@ -229,12 +239,15 @@ public final class CheatMenu extends Plugin {
         if (origin == null) return 0;
 
         List<GameEntity> picked = new ArrayList<>();
+        List<GameItem> gained = new ArrayList<>();
+        int scanned = 0;
         int moved = 0;
 
         for (GameEntity entity : new ArrayList<>(scene.getEntities().values())) {
             if (!(entity instanceof EntityItem drop)) continue;
+            scanned++;
             Position pos = drop.getPosition();
-            if (pos == null || distance2(origin, pos) > radius * radius) continue;
+            if (pos != null && radius > 0 && distance2(origin, pos) > radius * radius) continue;
 
             GameItem item = drop.getItem();
             if (item == null) continue;
@@ -244,6 +257,7 @@ public final class CheatMenu extends Plugin {
                 if (itemId <= 0) continue;
                 if (!player.getInventory().addItem(itemId, count)) continue;
                 moved += count;
+                gained.add(new GameItem(itemId, count));
                 picked.add(drop);
             } catch (Throwable t) {
                 this.getLogger().debug("[CheatMenu] loot skip {}: {}", item.getItemId(), t.toString());
@@ -256,8 +270,23 @@ public final class CheatMenu extends Plugin {
             } catch (Throwable ignored) {
             }
         }
+
+        // Without this the client never shows the "+item" hint, which is why auto-loot looked dead
+        // even when the inventory did change.
+        if (!gained.isEmpty()) {
+            try {
+                player.sendPacket(new PacketItemAddHintNotify(gained, ActionReason.Gather));
+            } catch (Throwable ignored) {
+            }
+        }
+        this.lastLootScanned = scanned;
+        this.lastLootPicked = picked.size();
         return moved;
     }
+
+    public int lastMobPulled = 0;
+    public int lastLootScanned = 0;
+    public int lastLootPicked = 0;
 
     /** KillAura: every tick, hit everything alive around the player. */
     public int auraTick(Player player) {
@@ -315,15 +344,26 @@ public final class CheatMenu extends Plugin {
                         (float) (origin.getZ() + Math.sin(angle) * dist));
                 pos.set(target);
 
+                // A bare pos-only MotionInfo gets ignored by the 7.1 client: it wants rotation,
+                // speed and a valid motion state, plus sceneTime/reliableSeq on the wrapper.
+                var rot = Vector.newBuilder().setX(0f).setY(0f).setZ(0f).build();
+                var speed = Vector.newBuilder().setX(0f).setY(0f).setZ(0f).build();
                 var motion = MotionInfo.newBuilder()
                         .setPos(target.toProto())
-                        .setState(MotionState.MotionState_MOTION_NONE)
+                        .setRot(rot)
+                        .setSpeed(speed)
+                        .setState(MotionState.MotionState_MOTION_STANDBY)
                         .build();
+                int sceneTime = player.getWorld() == null ? 0 : player.getWorld().getGameTime();
                 var info = EntityMoveInfo.newBuilder()
                         .setEntityId(entity.getId())
                         .setMotionInfo(motion)
+                        .setSceneTime(sceneTime)
+                        .setIsReliable(false)
+                        .setReliableSeq(0)
                         .build();
                 player.sendPacket(new PacketSceneEntityMoveNotify(info));
+                this.lastMobPulled++;
                 moved++;
             } catch (Throwable t) {
                 this.getLogger().debug("[CheatMenu] mobvac skip {}: {}", entity.getId(), t.toString());

@@ -452,6 +452,11 @@ public final class CheatApi {
         sb.append("v 1\n");
         sb.append("up ").append(now - lastStartMs()).append('\n');
         sb.append("tick ").append(tickCount).append('\n');
+        if (plugin != null) {
+            sb.append("loot ").append(plugin.lastLootScanned).append(' ')
+              .append(plugin.lastLootPicked).append('\n');
+            sb.append("mob ").append(plugin.lastMobPulled).append('\n');
+        }
 
         List<Player> players = owner == null ? List.of() : owner.onlinePlayers();
         Player me = players.isEmpty() ? null : players.get(0);

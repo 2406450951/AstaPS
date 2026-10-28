@@ -1,25 +1,24 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.1.1**
+**版本 1.2.0**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
 
+## 1.2.0 修正
+
+- 自动拾取：补上 `ItemAddHintNotify`，客户端终于会显示 +物品；`/snap` 增加 `loot 扫描数 拾取数`
+- 怪物吸附：`MotionInfo` 补全 rot / speed / state，`EntityMoveInfo` 补 sceneTime / reliableSeq，
+  否则 7.1 客户端直接忽略这个移动包；`/snap` 增加 `mob 累计拉取数`
+- 服务端日志会打 `auto-loot: N item(s), scanned M`，方便确认到底扫到了什么
+
 ## 1.1.1 修正
 
-- 菜单不再假装按住 Alt：鼠标原始输入在菜单打开时被截下来，镜头不再跟着转，也不用你按 Alt
-- 天气恢复可用：区域和气候一起发（天空/光照会变），但**不发 weather gadget**，所以不闪退
+- 菜单不再假装按住 Alt：鼠标原始输入在菜单打开时被截下来，镜头不再跟着转
+- 天气恢复可用：区域和气候一起发，但不发 weather gadget，所以不闪退
 - 修菜单指针漂移：单帧位移限幅 + 按客户区裁剪
-
-## 1.1.0 新增
-
-- 怪物吸附：范围内的怪物被拉到身边（半径可调，默认关）
-- 无限大招：出战角色的元素能量持续拉满
-- 技能可用：持续下发 `CanUseSkillNotify`，顶掉战技冷却的表现
-- 地图标点传送：在大地图扎一根针，菜单里点一下传送到该标点
-- 菜单鼠标：软件光标 + hook `GetRawInputData`，游戏锁光标时也能操作
 
 ## Requirements
 
