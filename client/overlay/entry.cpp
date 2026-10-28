@@ -128,6 +128,9 @@ void initImGui(IDXGISwapChain* swap) {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    // Genshin hides and re-locks the OS cursor every frame during gameplay. Let ImGui draw its own
+    // software cursor instead of trying to change the system one.
+    io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
     io.IniFilename = nullptr;
 
     ImFontConfig fc;
@@ -160,11 +163,24 @@ void initImGui(IDXGISwapChain* swap) {
 void feedInput() {
     ImGuiIO& io = ImGui::GetIO();
     if (!menu::isOpen()) {
+        io.MouseDrawCursor = false;
         io.AddMousePosEvent(-FLT_MAX, -FLT_MAX);
         io.AddMouseButtonEvent(0, false);
         io.AddMouseButtonEvent(1, false);
         return;
     }
+
+    // The game calls ShowCursor(FALSE) and ClipCursor every frame while in gameplay, so a one-shot
+    // ShowCursor(TRUE) when the menu opens is undone immediately. Redo it every frame, and let ImGui
+    // draw its own cursor so the pointer stays visible even if the game wins the fight.
+    ClipCursor(nullptr);
+    CURSORINFO ci{};
+    ci.cbSize = sizeof(ci);
+    for (int i = 0; i < 8; ++i) {
+        if (GetCursorInfo(&ci) && (ci.flags & CURSOR_SHOWING)) break;
+        if (ShowCursor(TRUE) >= 0) break;
+    }
+    io.MouseDrawCursor = true;
 
     POINT p;
     GetCursorPos(&p);
@@ -310,9 +326,20 @@ void pollHotkeys() {
                 logLine("hotkey: menu %s", menu::isOpen() ? "opened" : "closed");
                 if (menu::isOpen()) {
                     ClipCursor(nullptr);
-                    if (cursorRefs++ == 0) ShowCursor(TRUE);
+                    if (cursorRefs++ == 0) {
+                        ShowCursor(TRUE);
+                        // Genshin only frees the cursor while the "show cursor" modifier is held
+                        // (Alt by default). Hold it for the user so the pointer is usable without
+                        // them having to keep a finger on the key.
+                        keybd_event(VK_MENU, 0, 0, 0);
+                        logLine("cursor mode: alt held");
+                    }
                 } else {
-                    if (cursorRefs > 0 && --cursorRefs == 0) ShowCursor(FALSE);
+                    if (cursorRefs > 0 && --cursorRefs == 0) {
+                        ShowCursor(FALSE);
+                        keybd_event(VK_MENU, 0, KEYEVENTF_KEYUP, 0);
+                        logLine("cursor mode: alt released");
+                    }
                 }
             } else if (g_hotkeys[i] == VK_F2) {
                 logLine("hotkey: F2 stack dump requested");
