@@ -1,3 +1,4 @@
+import os
 """Locate the frame-rate globals in GenshinImpact.exe without touching the running game.
 
     python fpsfind.py scan                      # static scan of the exe -> fps_candidates.txt
@@ -11,9 +12,9 @@ import ctypes
 import ctypes.wintypes as wt
 import sys
 
-EXE = r"D:\Program Files\HoYoPlay\games\Genshin Impact game\GenshinImpact.exe"
+EXE = os.environ.get("GS71_GAME_EXE", r"<客户端目录>\GenshinImpact.exe")
 PROC = "GenshinImpact.exe"
-CANDIDATES_TXT = r"D:\dsh_workspace\dsh_code\genshi\clientpatch\fps_candidates.txt"
+CANDIDATES_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fps_candidates.txt")
 
 
 def scan():

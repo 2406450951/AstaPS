@@ -1,3 +1,4 @@
+import os
 """Logging reverse proxy for dispatch debugging.
 
 Listens on 127.0.0.1:LISTEN and forwards every request to 127.0.0.1:UPSTREAM,
@@ -11,7 +12,7 @@ from http.server import BaseHTTPRequestHandler
 
 LISTEN = int(sys.argv[1]) if len(sys.argv) > 1 else 8089
 UPSTREAM = int(sys.argv[2]) if len(sys.argv) > 2 else 8088
-LOGFILE = sys.argv[3] if len(sys.argv) > 3 else r"D:\dsh_workspace\dsh_code\genshi\clientpatch\proxy.log"
+LOGFILE = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "proxy.log")
 
 
 def log(msg):
