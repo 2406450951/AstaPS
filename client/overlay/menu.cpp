@@ -1,6 +1,9 @@
 // menu.cpp - the in-game menu. Akebi-style tab layout, all state routed to the server plugin.
 #include "menu.h"
 
+void Gs71CamProbeStart();
+void Gs71CamProbeCompare();
+
 #include <imgui.h>
 #include <imgui_internal.h>
 
@@ -44,6 +47,10 @@ int g_weatherId = 1;
 float g_timeH = 12.f;
 float g_timeM = 0.f;
 bool g_speedOn = false;
+bool g_flyOn = false;
+float g_flySpeed = 8.f;
+int g_flyUp = 0;
+int g_flyDir = 1;
 float g_speedRatio = 1.5f;
 int g_avatarId = 10000002;
 int g_avatarLvl = 90;
@@ -223,6 +230,37 @@ void tabPlayer(const Snapshot& s) {
     }
     ImGui::TextDisabled("走游戏原生 buff（170201 移速增加药品），客户端只认数据里的 0.3；");
     ImGui::TextDisabled("自定义倍数需要客户端接受改值，暂时做不到");
+
+    ImGui::Spacing();
+    sectionHeader("飞行 / 穿墙（传送式）");
+    if (ImGui::Checkbox("开启飞行", &g_flyOn)) {
+        if (g_flyOn) action("c=fly&on=1&speed=%.1f&dir=%d&up=%d", g_flySpeed, g_flyDir, g_flyUp);
+        else action("c=fly&on=0");
+    }
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(170);
+    if (ImGui::SliderFloat("##flyspd", &g_flySpeed, 2.f, 40.f, "%.0f m/s") && g_flyOn)
+        action("c=fly&on=1&speed=%.1f&dir=%d&up=%d", g_flySpeed, g_flyDir, g_flyUp);
+    if (ImGui::Button("上升", ImVec2(70, 0))) {
+        g_flyUp = 1;
+        action("c=fly&on=1&speed=%.1f&dir=%d&up=1", g_flySpeed, g_flyDir);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("下降", ImVec2(70, 0))) {
+        g_flyUp = -1;
+        action("c=fly&on=1&speed=%.1f&dir=%d&up=-1", g_flySpeed, g_flyDir);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("不升不降", ImVec2(100, 0))) {
+        g_flyUp = 0;
+        action("c=fly&on=1&speed=%.1f&dir=%d&up=0", g_flySpeed, g_flyDir);
+    }
+    ImGui::SameLine();
+    if (ImGui::Button(g_flyDir > 0 ? "向前" : "向后", ImVec2(80, 0))) {
+        g_flyDir = -g_flyDir;
+        action("c=fly&on=1&speed=%.1f&dir=%d&up=%d", g_flySpeed, g_flyDir, g_flyUp);
+    }
+    ImGui::TextDisabled("按当前朝向每 120ms 传送一步，绕过碰撞；朝向不对就点“向后”");
 
 sectionHeader("状态");
     ImGui::Text("UID      %d", s.uid);
@@ -548,6 +586,14 @@ void tabSettings(const Snapshot& s) {
         }
         if ((i + 1) % 1 == 0) ImGui::Separator();
     }
+
+    sectionHeader("相机探测（灵魂出窍第一步，只读）");
+    ImGui::TextDisabled("1) 站着别动点采集  2) 只转视角  3) 点对比  然后看 Astrolabe.log");
+    if (ImGui::Button("1. 采集候选", ImVec2(150, 0))) Gs71CamProbeStart();
+    ImGui::SameLine();
+    if (ImGui::Button("2. 转完视角后对比", ImVec2(190, 0))) Gs71CamProbeCompare();
+    ImGui::SameLine();
+    ImGui::TextDisabled("候选数：由日志查看");
 
     sectionHeader("界面");
 

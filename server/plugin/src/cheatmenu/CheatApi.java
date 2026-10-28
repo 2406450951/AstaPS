@@ -75,10 +75,15 @@ public final class CheatApi {
     public static boolean skillReady = false;
     public static boolean speedOn = false;
     public static float speedRatio = 1.5f;
+    public static boolean flyOn = false;
+    public static float flySpeed = 8f;
+    public static int flyUp = 0;
+    public static int flyDir = 1;
     private static long lastMobVacMs = 0L;
     private static long lastBurstMs = 0L;
     private static long lastSkillMs = 0L;
     private static long lastSpeedMs = 0L;
+    private static long lastFlyMs = 0L;
 
     private static long lastLootMs = 0L;
     private static long lastTimeMs = 0L;
@@ -202,6 +207,20 @@ public final class CheatApi {
             }
         }
 
+        if (flyOn && !players.isEmpty() && now - lastFlyMs >= 120L) {
+            float dt = (now - lastFlyMs) / 1000f;
+            lastFlyMs = now;
+            if (dt <= 0f || dt > 0.6f) dt = 0.12f;
+            for (Player player : players) {
+                try {
+                    owner.flyStep(player, flySpeed, flyUp, flyDir, dt);
+                } catch (Throwable ignored) {
+                }
+            }
+        } else if (flyOn) {
+            lastFlyMs = now;
+        }
+
         if (speedOn && !players.isEmpty() && now - lastSpeedMs >= 1000L) {
             lastSpeedMs = now;
             for (Player player : players) {
@@ -303,7 +322,15 @@ public final class CheatApi {
                 actor.sendPacket(packet);
                 weather = climate;
                 lastAction = "weather: climate=" + climate + " area=" + area;
-            }            case "speed" -> {
+            }            case "fly" -> {
+                flyOn = !"0".equals(q.getOrDefault("on", "1"));
+                flySpeed = Math.max(1f, Math.min(60f, f(q, "speed", flySpeed)));
+                if (q.containsKey("up")) flyUp = (int) f(q, "up", flyUp);
+                if (q.containsKey("dir")) flyDir = ((int) f(q, "dir", flyDir)) >= 0 ? 1 : -1;
+                lastAction = "fly: " + (flyOn ? "on" : "off") + " speed=" + Math.round(flySpeed)
+                        + " up=" + flyUp + " dir=" + flyDir;
+            }
+            case "speed" -> {
                 speedRatio = Math.max(1.0f, Math.min(5.0f, f(q, "r", speedRatio)));
                 speedOn = !"0".equals(q.getOrDefault("on", "1"));
                 boolean ok = speedOn ? owner.applyMoveSpeed(actor, speedRatio - 1.0f)

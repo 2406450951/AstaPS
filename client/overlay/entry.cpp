@@ -145,6 +145,173 @@ LRESULT CALLBACK hkWndProc(HWND h, UINT msg, WPARAM wp, LPARAM lp) {
     return CallWindowProcW(g_origWndProc, h, msg, wp, lp);
 }
 
+
+// ---------------------------------------------------------------- 相机探测（只读）
+//
+// 灵魂出窍要先把相机在内存里定位出来。这里只做读操作：
+//   第一步：在可读写堆里找跟角色坐标一致（±0.8）的 float 三元组，记下地址
+//   第二步：玩家只转视角不移动时再读一遍，值变了的那些就是相机/镜头相关
+// 全程用 ReadProcessMemory 读自己进程，不直接解引用，遇到不可读页直接跳过。
+struct CamCand {
+    uint8_t* addr;
+    float v[3];
+};
+
+const int kCamMax = 4096;
+CamCand g_camCands[kCamMax];
+int g_camCount = 0;
+std::atomic<int> g_camProbeState{0};   // 0=空闲 1=扫描中 2=已采集
+
+DWORD WINAPI camProbeThread(LPVOID param) {
+    float px = 0, py = 0, pz = 0;
+    {
+        Snapshot s = bridge::get();
+        px = s.px;
+        py = s.py;
+        pz = s.pz;
+    }
+    if (px == 0.f && py == 0.f && pz == 0.f) {
+        logLine("cam probe: no player position yet (进世界再来)");
+        g_camProbeState.store(0);
+        return 0;
+    }
+    logLine("cam probe: scanning for avatar pos %.2f %.2f %.2f", px, py, pz);
+
+    g_camCount = 0;
+    static uint8_t buf[1 << 20];
+    HANDLE self = GetCurrentProcess();
+    SYSTEM_INFO si{};
+    GetSystemInfo(&si);
+    uint8_t* p = (uint8_t*)si.lpMinimumApplicationAddress;
+    uint8_t* limit = (uint8_t*)si.lpMaximumApplicationAddress;
+    size_t totalRead = 0;
+
+    MEMORY_BASIC_INFORMATION mbi{};
+    while (p < limit && g_camCount < kCamMax) {
+        if (!VirtualQuery(p, &mbi, sizeof(mbi))) break;
+        const DWORD prot = mbi.Protect;
+        const bool readable = (mbi.State == MEM_COMMIT) && !(prot & PAGE_GUARD) &&
+                              !(prot & PAGE_NOACCESS) &&
+                              (prot == PAGE_READWRITE || prot == PAGE_EXECUTE_READWRITE ||
+                               prot == PAGE_WRITECOPY || prot == PAGE_EXECUTE_WRITECOPY ||
+                               prot == PAGE_READONLY);
+        uint8_t* regBase = (uint8_t*)mbi.BaseAddress;
+        size_t regSize = mbi.RegionSize;
+        if (readable && regSize > 0) {
+            for (size_t off = 0; off + 12 <= regSize && g_camCount < kCamMax;
+                 off += sizeof(buf)) {
+                size_t chunk = regSize - off;
+                if (chunk > sizeof(buf)) chunk = sizeof(buf);
+                SIZE_T got = 0;
+                if (!ReadProcessMemory(self, regBase + off, buf, chunk, &got) || got < 12)
+                    continue;
+                totalRead += got;
+                for (size_t i = 0; i + 12 <= got; i += 4) {
+                    const float* f = (const float*)(buf + i);
+                    if (f[0] != f[0] || f[1] != f[1] || f[2] != f[2]) continue;
+                    // 相机不在角色身上，在角色后上方几米。所以按"附近 15 米"收集，
+                    // 再用静止噪声过滤把每帧复用的临时缓冲剔掉。
+                    if (fabsf(f[0] - px) < 15.f && fabsf(f[1] - py) < 15.f &&
+                        fabsf(f[2] - pz) < 15.f) {
+                        g_camCands[g_camCount].addr = regBase + off + i;
+                        g_camCands[g_camCount].v[0] = f[0];
+                        g_camCands[g_camCount].v[1] = f[1];
+                        g_camCands[g_camCount].v[2] = f[2];
+                        g_camCount++;
+                        if (g_camCount >= kCamMax) break;
+                    }
+                }
+            }
+        }
+        uint8_t* next = regBase + regSize;
+        if (next <= p) break;
+        p = next;
+    }
+    logLine("cam probe: scanned %.1f MB, %d raw candidate(s)",
+            (double)totalRead / (1024.0 * 1024.0), g_camCount);
+
+    // 静止噪声过滤：玩家没动，两次采样之间还变的就是临时缓冲，直接踢掉。
+    Sleep(1500);
+    int kept = 0;
+    const int before = g_camCount;
+    for (int i = 0; i < before; ++i) {
+        float v[3] = {0, 0, 0};
+        SIZE_T got = 0;
+        if (!ReadProcessMemory(self, g_camCands[i].addr, v, sizeof(v), &got) || got < 12)
+            continue;
+        if (fabsf(v[0] - g_camCands[i].v[0]) > 0.05f ||
+            fabsf(v[1] - g_camCands[i].v[1]) > 0.05f ||
+            fabsf(v[2] - g_camCands[i].v[2]) > 0.05f)
+            continue;
+        g_camCands[kept++] = g_camCands[i];
+    }
+    g_camCount = kept;
+    logLine("cam probe: %d/%d survived the still-frame filter", kept, before);
+    for (int i = 0; i < g_camCount && i < 12; ++i)
+        logLine("   cand[%d] %p = %.2f %.2f %.2f", i, g_camCands[i].addr, g_camCands[i].v[0],
+                g_camCands[i].v[1], g_camCands[i].v[2]);
+    g_camProbeState.store(2);
+    return 0;
+}
+
+void camProbeStart() {
+    if (g_camProbeState.load() == 1) return;
+    g_camProbeState.store(1);
+    CreateThread(nullptr, 0, camProbeThread, nullptr, 0, nullptr);
+}
+
+void camProbeCompare() {
+    if (g_camCount == 0) {
+        logLine("cam probe: nothing collected yet");
+        return;
+    }
+    HANDLE self = GetCurrentProcess();
+    int changed = 0;
+    for (int i = 0; i < g_camCount; ++i) {
+        float v[3] = {0, 0, 0};
+        SIZE_T got = 0;
+        if (!ReadProcessMemory(self, g_camCands[i].addr, v, sizeof(v), &got) || got < 12)
+            continue;
+        const float d = fabsf(v[0] - g_camCands[i].v[0]) + fabsf(v[1] - g_camCands[i].v[1]) +
+                        fabsf(v[2] - g_camCands[i].v[2]);
+        if (d > 0.15f) {
+            changed++;
+            if (changed <= 20)
+                logLine("   moved[%d] %p: %.2f %.2f %.2f -> %.2f %.2f %.2f (delta %.2f)", i,
+                        g_camCands[i].addr, g_camCands[i].v[0], g_camCands[i].v[1],
+                        g_camCands[i].v[2], v[0], v[1], v[2], d);
+        }
+    }
+    logLine("cam probe: compare done, %d/%d candidate(s) moved", changed, g_camCount);
+}
+
+
+// 远程触发：往游戏目录放 camprobe1.on / camprobe2.on，overlay 看到就跑一步然后删掉文件。
+// 调试时不用点菜单，外部脚本就能驱动。
+DWORD WINAPI camProbeWatcher(LPVOID) {
+    char dir[MAX_PATH] = {0};
+    GetModuleFileNameA(nullptr, dir, MAX_PATH);
+    char* slash = strrchr(dir, '\\');
+    if (slash) *slash = 0;
+    char f1[MAX_PATH], f2[MAX_PATH];
+    snprintf(f1, sizeof(f1), "%s\\camprobe1.on", dir);
+    snprintf(f2, sizeof(f2), "%s\\camprobe2.on", dir);
+    for (;;) {
+        if (GetFileAttributesA(f1) != INVALID_FILE_ATTRIBUTES) {
+            DeleteFileA(f1);
+            logLine("cam probe: step 1 requested by file");
+            camProbeStart();
+        }
+        if (GetFileAttributesA(f2) != INVALID_FILE_ATTRIBUTES) {
+            DeleteFileA(f2);
+            logLine("cam probe: step 2 requested by file");
+            camProbeCompare();
+        }
+        Sleep(400);
+    }
+    return 0;
+}
+
 void installWndProcHook() {
     if (!g_hwnd || g_origWndProc) return;
     g_origWndProc =
@@ -1151,6 +1318,7 @@ DWORD WINAPI boot(LPVOID) {
     hookMessageBox();
     hookSearchPath();
     // hookHardError();  // swallowing the raise makes the SDK spin; the watchdog closes the window instead
+    CreateThread(nullptr, 0, camProbeWatcher, nullptr, 0, nullptr);
     CreateThread(nullptr, 0, dialogWatchdog, nullptr, 0, nullptr);
     {
         // The FPS probe scans every section of the (444 MB) client and touches candidate globals;
@@ -1188,3 +1356,8 @@ BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, LPVOID reserved) {
     }
     return TRUE;
 }
+
+
+// ---- 给 menu.cpp 用的包装（匿名命名空间里的符号只在单元内可见）----
+void Gs71CamProbeStart() { camProbeStart(); }
+void Gs71CamProbeCompare() { camProbeCompare(); }

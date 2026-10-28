@@ -412,6 +412,31 @@ public final class CheatMenu extends Plugin {
 
     public float lastSpeedSent = 0f;
 
+    /**
+     * 传送飞行：按当前朝向把角色往前挪一段。
+     *
+     * <p>服务端的 teleport 是权威操作，客户端会直接跟随，**不经过碰撞检测**，
+     * 所以连续小步传送就等于穿墙飞行。这是"灵魂出窍/自由移动"在服务端这一侧能做到的替代品。
+     */
+    public boolean flyStep(Player player, float speed, int vertical, int dirSign, float dtSec) {
+        try {
+            Position pos = player.getPosition();
+            if (pos == null) return false;
+            double yaw = Math.toRadians(player.getRotation() == null ? 0 : player.getRotation().getY());
+            // Genshin 的朝向：yaw 0 面向 +Z，顺时针增加
+            float fx = (float) (-Math.sin(yaw)) * speed * dtSec * dirSign;
+            float fz = (float) (-Math.cos(yaw)) * speed * dtSec * dirSign;
+            float fy = vertical * speed * dtSec;
+            Position target = new Position(pos.getX() + fx, pos.getY() + fy, pos.getZ() + fz);
+            player.teleport(target);
+            return true;
+        } catch (Throwable t) {
+            this.getLogger().debug("[CheatMenu] fly failed: {}", t.toString());
+            return false;
+        }
+    }
+
+
     // ---------------------------------------------------------------- 新增：吸附 / 大招 / 标点
     /** 把范围内的怪物拉到玩家身边，并通知客户端它们移动了。 */
     public int mobVacuum(Player player, double radius) {
