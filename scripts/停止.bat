@@ -1,6 +1,5 @@
 @echo off
-chcp 936 >nul
-title Í£Ö¹·þÎñ¶Ë
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0..\gcsrv\start-server.ps1" -Stop
-echo ÒÑÍ£Ö¹¡£
+title GS71 - stop
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0..\server\start-server.ps1" -Stop
+echo Stopped.
 ping -n 3 127.0.0.1 >nul
