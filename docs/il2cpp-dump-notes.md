@@ -129,3 +129,63 @@ Select-String -Path 6.6dump.cs.part -Pattern '方法名\('
 
 已用它确认过：`SpringMagicBone` 的碰撞开关、`MonoWallCollisionHelper` 的回调表、
 `MonoEntityLayerCollisionHelper` 的层控制、`MonoCameraWorldShiftHelper` 的浮点原点。
+
+---
+
+## 七、7.1 运行时探针结果（2026-10-30 23:24）
+
+在 7.1 客户端里开机自动扫内存，**四个目标类型名全部命中明文**：
+
+```
+MonoEntityLayerCollisionHelper    str = 0x000001e2b9d27788
+MonoWallCollisionHelper           str = 0x000001e2b17b2ada
+CameraStateMgr                    str = 0x000001e2b9ee1a48
+MonoCameraWorldShiftHelper        str = 0x000001e2b9d23c88
+```
+
+同时找到 8 个"指向类型名字符串"的 qword，其中三个带不重复的元数据字段：
+
+```
+nameField=0x1e2b7320ec0  classCand=0x1e2b7320ec0-0x10  image=0x1b128    (CameraStateMgr)
+nameField=0x1e2b77563b0  ...                            image=0x28558    (MonoCameraWorldShiftHelper)
+nameField=0x1e2b7775230  ...                            image=0x28dd0    (MonoEntityLayerCollisionHelper)
+```
+
+### 这推翻了之前的假设
+
+之前扫 `0xFAB11BAF` 扫不到，得出的结论是"内存里也加密"。**实际不是**：
+
+- 整份 metadata 从不以明文整体存在（所以魔数扫不到）
+- 但**类型名字符串表是明文的**（所以名字能扫到）
+
+**这意味着"按名字找类"这条路是通的**，不需要先解密整份 metadata。
+
+### 下一步（继续时的第一件事）
+
+```
+1. 确认 Il2CppType / Il2CppClass 在当前 Unity 版本的确切布局
+   （Il2CppClass: image / gc_desc / name / namespaze / byval_arg ...，
+     字段偏移随版本变化，需要拿 nameField 前后做交叉验证）
+2. 从类对象找到 static_fields 或 vtable
+3. 全堆扫"klass 指针 == 该类地址"的对象 → 就是场景里的实例
+4. 读 MonoEntityLayerCollisionHelper.type（6.6 dump 里是 +0x18）
+5. 改成"不参与碰撞"的层 → 穿墙
+```
+
+### 已知的坑
+
+- 探针里 `classCand = nameField - 0x10` 只是**假设**；从 `image=0x1b128` 这种值看，
+  命中的可能是 `Il2CppType` 而不是 `Il2CppClass`，需要按真实布局校正
+- 那 8 个命中里有 5 个来自同一块连续区域（0x1d65eff890 起，8 字节间隔），
+  那是**字符串指针数组**，不是类对象——判据还要收紧
+
+---
+
+## 八、踩过的坑（本次会话）
+
+| 坑 | 教训 |
+|---|---|
+| Map/Unmap 钩子里做数值扫描 | 每秒百万次回调 + 加锁，直接把 144 fps 拖死。**渲染线程里绝不做重活** |
+| 常量缓冲里找"玩家附近的坐标" | 原神用浮点原点（`MonoCameraWorldShiftHelper`），相机矩阵在相对空间，判据全失效 |
+| 用文本替换脚本大段搬代码 | 把 entry.cpp 搞成两份拷贝（`SizeSlot` 重复定义、链接失败）。**动大段代码前先备份**（这次留了 `.bak`） |
+| 命令空间位置 | `Gs71*` 包装函数必须在 `namespace {}` **外面**，内部实现可以叫任何名字 |
