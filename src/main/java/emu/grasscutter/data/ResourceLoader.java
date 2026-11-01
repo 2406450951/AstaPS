@@ -15,7 +15,6 @@ import emu.grasscutter.data.custom.*;
 import emu.grasscutter.data.excels.trial.TrialAvatarActivityDataData;
 import emu.grasscutter.data.server.*;
 import emu.grasscutter.game.activity.ActivityManager;
-import emu.grasscutter.game.managers.blossom.BlossomConfig;
 import emu.grasscutter.game.quest.*;
 import emu.grasscutter.game.world.*;
 import emu.grasscutter.game.world.SpawnDataEntry.*;
@@ -105,7 +104,6 @@ public final class ResourceLoader {
         loadHomeworldDefaultSaveData();
         loadNpcBornData();
         loadRoutes();
-        loadBlossomResources();
         cacheTalentLevelSets();
 
         ActivityManager.loadActivityConfigData();
@@ -886,15 +884,6 @@ public final class ResourceLoader {
             reportConfigLoad(className, folderPath, targetMap.size());
         } catch (IOException e) {
             Grasscutter.getLogger().error("Failed to load {} folder.", className);
-        }
-    }
-
-    private static void loadBlossomResources() {
-        try {
-            GameDepot.setBlossomConfig(DataLoader.loadClass("BlossomConfig.json", BlossomConfig.class));
-            Grasscutter.getLogger().debug("Loaded BlossomConfig.");
-        } catch (IOException e) {
-            Grasscutter.getLogger().warn("Failed to load BlossomConfig.");
         }
     }
 

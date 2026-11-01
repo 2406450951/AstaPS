@@ -83,6 +83,9 @@ public class GadgetChest extends GadgetContent {
                                 InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_START));
                 return false;
             }
+            if (!emu.grasscutter.game.managers.blossom.BlossomManager.isClaimFinish(req)) {
+                return false;
+            }
             var rewards = blossomManager.claimReward(player, getGadget(),
                     req, () -> claimedBossUids.add(player.getUid()));
             if (rewards != null) {
@@ -284,10 +287,12 @@ public class GadgetChest extends GadgetContent {
                         .filter(bossUids::contains)
                         .allMatch(claimedBossUids::contains);
         if (allClaimed) {
+            // Finish the original Group/config interaction before retiring its
+            // Lua group; retiring first can despawn this reward entity too soon.
+            finishOpen(player, meta, credit);
             if (getGadget().getScene().getSceneType() == SceneType.SCENE_WORLD) {
                 getGadget().getScene().getBlossomManager().retireChest(getGadget());
             }
-            finishOpen(player, meta, credit);
             WorldBossSpawnHelper.onBossChestClaimed(getGadget());
         }
         return allClaimed;
@@ -540,10 +545,16 @@ public class GadgetChest extends GadgetContent {
         return present;
     }
 
+    /** Native Lua blossom markers omit boss_chest; the generated reward owns its claim metadata. */
+    static boolean keepSpawnedChestMeta(SceneGadget meta) {
+        return meta != null && meta.boss_chest != null
+                && (meta.is_blossom_chest || meta.drop_tag != null);
+    }
+
     private SceneGadget resolveChestMeta() {
         EntityGadget entityGadget = getGadget();
         SceneGadget meta = entityGadget.getMetaGadget();
-        if (meta != null && meta.boss_chest != null && meta.drop_tag != null) {
+        if (keepSpawnedChestMeta(meta)) {
             return meta;
         }
         if (entityGadget.getScene() == null) {

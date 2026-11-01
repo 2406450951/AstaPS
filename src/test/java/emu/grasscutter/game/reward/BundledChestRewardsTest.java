@@ -70,7 +70,7 @@ class BundledChestRewardsTest {
     }
 
     static String chestYaml() throws Exception {
-        String source = resource("/rewards/loot.yaml");
+        String source = resource("/rewards/loot.yaml").replace("\r\n", "\n");
         // The contents list names this section too. Use its final heading.
         return source.substring(0, source.lastIndexOf("\n# 2. World Boss artifacts\n"));
     }

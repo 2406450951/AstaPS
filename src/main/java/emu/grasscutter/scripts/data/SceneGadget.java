@@ -17,6 +17,8 @@ public class SceneGadget extends SceneObject {
     /** Source-backed grade, when the imported marker actually identifies one. */
     public String chestGrade;
     public boolean showcutscene;
+    /** Identifies the source Lua reward marker for CreateBlossomChestByGroupId. */
+    public boolean is_blossom_chest;
     boolean persistence;
     public int state;
 

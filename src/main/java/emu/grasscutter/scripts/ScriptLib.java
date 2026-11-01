@@ -111,13 +111,19 @@ public class ScriptLib {
 
     /** Entity callbacks need the same scene and group context as scene-script triggers. */
     public <T> T withEntityContext(GameEntity entity, Supplier<T> callback) {
+        return withEntityContext(entity, null, callback);
+    }
+
+    /** The authored group supplies context when it is not in scene-block metadata. */
+    public <T> T withEntityContext(
+            GameEntity entity, SceneGroup authoredGroup, Supplier<T> callback) {
         var previousManager = sceneScriptManager.getIfExists();
         var previousGroup = currentGroup.getIfExists();
         var previousEntity = currentEntity.getIfExists();
         var manager = entity.getScene().getScriptManager();
         var instance = manager.getGroupInstanceById(entity.getGroupId());
         sceneScriptManager.set(manager);
-        currentGroup.set(instance != null ? instance.getLuaGroup() : null);
+        currentGroup.set(instance != null ? instance.getLuaGroup() : authoredGroup);
         currentEntity.set(entity);
         try {
             return callback.get();
@@ -139,14 +145,18 @@ public class ScriptLib {
 
     private GameEntity createGadget(int configId, SceneGroup group) {
         var gadget = group.gadgets.get(configId);
-        var entity = getSceneScriptManager().createGadget(group.id, group.block_id, gadget);
-        if (entity == null) {
-            logger.warn("[LUA] Create gadget null with cid: {} gid: {} bid: {}", configId, group.id, group.block_id);
-            return null;
+        // A GROUP_REFRESH event can race the native-camp loader. Check and publish
+        // both creation paths under the same scene monitor to prevent duplicate flowers.
+        synchronized (getSceneScriptManager().getScene()) {
+            var entity = getSceneScriptManager().createGadget(group.id, group.block_id, gadget);
+            if (entity == null) {
+                logger.debug("[LUA] Create gadget skipped cid={} gid={} bid={}",
+                        configId, group.id, group.block_id);
+                return null;
+            }
+            getSceneScriptManager().addEntity(entity);
+            return entity;
         }
-
-        getSceneScriptManager().addEntity(entity);
-        return entity;
     }
 
     @Nullable
@@ -297,10 +307,31 @@ public class ScriptLib {
         return 0;
     }
 
-    public int AddBlossomScheduleProgressByGroupId(int groupId) {
-        logger.warn("[LUA] Call unimplemented AddBlossomScheduleProgressByGroupId with {}", groupId);
+    /** Original camp-type query used by the Lua GROUP_REFRESH handler (1=gold, 3=blue). */
+    public Integer GetBlossomRefreshTypeByGroupId(int groupId) {
+        var manager = sceneScriptManager.getIfExists();
+        if (manager == null || manager.getScene().getBlossomManager() == null) return null;
+        return manager.getScene().getBlossomManager().getBlossomRefreshTypeByGroupId(groupId);
+    }
 
-        return 0;
+    /** Stage read used by original GROUP_REFRESH and GADGET_CREATE triggers. */
+    public Integer GetBlossomScheduleStateByGroupId(int groupId) {
+        var group = currentGroup.getIfExists();
+        int resolved = groupId == 0 && group != null ? group.id : groupId;
+        var manager = sceneScriptManager.getIfExists();
+        if (manager == null || manager.getScene().getBlossomManager() == null) return null;
+        return manager.getScene().getBlossomManager().blossomScheduleState(resolved);
+    }
+
+    /** Original Lua reports monster progress; the last report queues its finish event. */
+    public int AddBlossomScheduleProgressByGroupId(int groupId) {
+        var manager = sceneScriptManager.getIfExists();
+        if (manager == null || manager.getScene().getBlossomManager() == null) return 1;
+        var group = currentGroup.getIfExists();
+        if (group == null || group.id != groupId) return 1;
+        var death = callParams.getIfExists();
+        if (death == null || group.monsters == null || !group.monsters.containsKey(death.param1)) return 0;
+        return manager.getScene().getBlossomManager().addNativeScheduleProgress(groupId);
     }
 
     public int AddExtraGroupSuite(int groupId, int suite) {
@@ -505,10 +536,15 @@ public class ScriptLib {
         return 0;
     }
 
-    public int CreateBlossomChestByGroupId(int groupId, int var2) {
-        logger.warn("[LUA] Call unimplemented CreateBlossomChestByGroupId with {} {}", groupId, var2);
-
-        return 0;
+    /** Original Lua names its reward config; Java owns the reward entity and receipt. */
+    public int CreateBlossomChestByGroupId(int groupId, int configId) {
+        var group = currentGroup.getIfExists();
+        if (group == null || group.id != groupId || group.gadgets == null) return 1;
+        var reward = group.gadgets.get(configId);
+        if (reward == null || !reward.is_blossom_chest) return 1;
+        var manager = sceneScriptManager.getIfExists();
+        if (manager == null || manager.getScene().getBlossomManager() == null) return 1;
+        return manager.getScene().getBlossomManager().completeLuaEncounter(groupId, reward) ? 0 : 1;
     }
 
     public int CreateChannellerSlabCampRewardGadget(int configId) {
@@ -539,19 +575,36 @@ public class ScriptLib {
         logger.debug("[LUA] Call CreateGadget with {}", printTable(table));
         var configId = table.get("config_id").toint();
 
-        if (configId == 0) {
-            Grasscutter.getLogger().warn("Tried to CreateGadget with config_id 0: {}", printTable(table));
-            return 0;
-        }
-
-        var group = getCurrentGroup();
-
-        if (group.isEmpty()) {
+        if (configId <= 0) {
+            Grasscutter.getLogger().warn("Invalid CreateGadget config_id: {}", printTable(table));
             return 1;
         }
-        createGadget(configId, group.get());
 
-        return 0;
+        var group = currentGroup.getIfExists();
+        if (group == null || group.gadgets == null || !group.gadgets.containsKey(configId)) {
+            return 1;
+        }
+        var definition = group.gadgets.get(configId);
+        var scene = getSceneScriptManager().getScene();
+        // A restored reward keeps the authored Group active without recreating the worktop.
+        if (scene.getBlossomManager() != null
+                && scene.getBlossomManager().isAuthoredWorktop(group.id, definition.gadget_id)
+                && scene.getBlossomManager().isRewardPending(group.id)) return 0;
+        var existing = scene.getEntityByConfigId(configId, group.id);
+        if (existing instanceof EntityGadget live && live.getGadgetId() == definition.gadget_id) {
+            return 0;
+        }
+        if (createGadget(configId, group) != null) return 0;
+        Grasscutter.getLogger().warn(
+                "Lua CreateGadget failed scene={} group={} config={}",
+                scene.getId(), group.id, configId);
+        // Original blossom scripts ignore this function's return value, so
+        // abort the trigger if the selected worktop could not be produced.
+        if (scene.getBlossomManager() != null
+                && scene.getBlossomManager().isAuthoredWorktop(group.id, definition.gadget_id)) {
+            throw new LuaError("Failed to create selected ley-line gadget " + configId);
+        }
+        return 1;
     }
 
     public int CreateGroupTimerEvent(int groupID, String source, double time) {
@@ -790,20 +843,29 @@ public class ScriptLib {
         return getSceneScriptManager().getScene().getWorld().getGameTimeHours();
     }
 
-    public int GetGroupMonsterCount() {
-        int returnValue = (int) getSceneScriptManager().getScene().getEntities().values().stream()
-                .filter(e -> e instanceof EntityMonster && e.getGroupId() == currentGroup.get().id)
+    private int groupMonsterCount(int groupId) {
+        var manager = getSceneScriptManager();
+        var scene = manager.getScene();
+        var authored = scene.getBlossomManager() != null
+                && scene.getBlossomManager().isNativeCampGroup(groupId)
+                ? manager.getGroupById(groupId) : null;
+        return (int) scene.getEntities().values().stream()
+                .filter(entity -> entity instanceof EntityMonster && entity.getGroupId() == groupId)
+                .filter(entity -> authored == null || authored.monsters == null
+                        || authored.monsters.containsKey(entity.getConfigId()))
                 .count();
-        logger.debug("[LUA] Call GetGroupMonsterCount = {}", returnValue);
-        return returnValue;
+    }
+
+    public int GetGroupMonsterCount() {
+        int count = groupMonsterCount(currentGroup.get().id);
+        logger.debug("[LUA] Call GetGroupMonsterCount = {}", count);
+        return count;
     }
 
     public int GetGroupMonsterCountByGroupId(int groupId) {
-        int returnValue = (int) getSceneScriptManager().getScene().getEntities().values().stream()
-                .filter(e -> e instanceof EntityMonster && e.getGroupId() == groupId)
-                .count();
-        logger.debug("[LUA] Call GetGroupMonsterCountByGroupId with {} = {}", groupId, returnValue);
-        return returnValue;
+        int count = groupMonsterCount(groupId);
+        logger.debug("[LUA] Call GetGroupMonsterCountByGroupId with {} = {}", groupId, count);
+        return count;
     }
 
     public int GetGroupSuite(int groupId) {
@@ -1116,23 +1178,40 @@ public class ScriptLib {
     }
 
     public void PrintContextLog(String msg) {
-        printLog("PrintContextLog", msg);
+        var group = currentGroup.getIfExists();
+        var manager = sceneScriptManager.getIfExists();
+        if (msg != null && msg.contains("LUA_WARNING") && group != null && manager != null
+                && manager.getScene().getBlossomManager() != null
+                && manager.getScene().getBlossomManager().isNativeCampGroup(group.id)) {
+            logger.warn("Ley-line Lua warning group={} {}", group.id, msg);
+        } else {
+            printLog("PrintContextLog", msg);
+        }
     }
 
     public void PrintLog(String msg) {
         printLog("PrintLog", msg);
     }
 
+    /** The reward is rolled and charged once by Java at claim time. */
     public int RefreshBlossomDropRewardByGroupId(int groupId) {
-        logger.warn("[LUA] Call unimplemented RefreshBlossomDropRewardByGroupId with {}", groupId);
-
-        return 0;
+        var group = currentGroup.getIfExists();
+        return group != null && group.id == groupId ? 0 : 1;
     }
 
-    public int RefreshBlossomGroup(LuaTable var1) {
-        logger.warn("[LUA] Call unimplemented RefreshBlossomGroup with {}", printTable(var1));
-
-        return 0;
+    /** Route the original blossom suite refresh through the existing scene group engine. */
+    public int RefreshBlossomGroup(LuaTable table) {
+        var manager = sceneScriptManager.getIfExists();
+        var group = currentGroup.getIfExists();
+        if (manager == null || group == null) return 1;
+        int requested = table.get("group_id").optint(0);
+        int groupId = requested == 0 ? group.id : requested;
+        int suite = table.get("suite").optint(0);
+        var instance = manager.getGroupInstanceById(groupId);
+        if (instance == null || instance.getLuaGroup() == null
+                || instance.getLuaGroup().getSuiteByIndex(suite) == null) return 1;
+        return manager.refreshGroup(instance, suite,
+                table.get("exclude_prev").optboolean(false)) == 0 ? 1 : 0;
     }
 
     public int RefreshGroup(LuaTable table) {
@@ -1232,10 +1311,10 @@ public class ScriptLib {
         return 0;
     }
 
-    public int SetBlossomScheduleStateByGroupId(int groupId, int scene) {
-        logger.warn("[LUA] Call unimplemented SetBlossomScheduleStateByGroupId with {} {}", groupId, scene);
-
-        return 0;
+    public int SetBlossomScheduleStateByGroupId(int groupId, int state) {
+        var manager = sceneScriptManager.getIfExists();
+        if (manager == null || manager.getScene().getBlossomManager() == null) return 1;
+        return manager.getScene().getBlossomManager().setBlossomScheduleState(groupId, state);
     }
 
     public int SetEntityServerGlobalValueByConfigId(int cfgId, String sgvName, int value) {

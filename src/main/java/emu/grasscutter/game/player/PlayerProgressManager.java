@@ -188,6 +188,14 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         return this.player.getOpenStates().getOrDefault(openState, 0);
     }
 
+    private void notifyBlossom(int sceneId) {
+        if (this.player.getScene() != null
+                && this.player.getSceneId() == sceneId
+                && this.player.getScene().getBlossomManager() != null) {
+            this.player.getScene().getBlossomManager().notifyIcon();
+        }
+    }
+
     private void setOpenState(int openState, int value, boolean sendNotify) {
         int previousValue = this.player.getOpenStates().getOrDefault(openState, -1 /* non-existent */);
 
@@ -201,6 +209,7 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             if (sendNotify) {
                 player.getSession().send(new PacketOpenStateChangeNotify(openState, value));
             }
+            if (openState == 53 && sendNotify) notifyBlossom(3);
         }
     }
 
@@ -1167,7 +1176,8 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
 
     public void unlockSceneArea(int sceneId, int areaId) {
         // Add the area to the list of unlocked areas in its scene.
-        this.player.getUnlockedSceneAreas(sceneId).add(areaId);
+        boolean changed = this.player.getUnlockedSceneAreas(sceneId).add(areaId);
+        if (changed) notifyBlossom(sceneId);
 
         // A quest may request area 1 before statue (3,7) is activated.
         // Preserve quest progress but do not reveal the area on the client yet.
@@ -1233,6 +1243,7 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
             } catch (Throwable ignored) {
             }
         }
+        if (!newly.isEmpty()) notifyBlossom(sceneId);
     }
 
     /**
@@ -1269,6 +1280,7 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
         }
 
         var areas = this.player.getUnlockedSceneAreas(sceneId);
+        boolean changed = !areas.equals(justified);
         areas.clear();
         areas.addAll(justified);
         this.player.save();
@@ -1281,6 +1293,7 @@ public final class PlayerProgressManager extends BasePlayerDataManager {
                         this.player.getUid(),
                         sceneId,
                         justified.size());
+        if (changed) notifyBlossom(sceneId);
     }
 
     /** Give replace costume to player (Amber, Jean, Mona, Rosaria) */

@@ -3,7 +3,6 @@ package emu.grasscutter.data;
 import emu.grasscutter.Grasscutter;
 import emu.grasscutter.data.ResourceLoader.AvatarConfig;
 import emu.grasscutter.data.excels.reliquary.*;
-import emu.grasscutter.game.managers.blossom.BlossomConfig;
 import emu.grasscutter.game.world.SpawnDataEntry;
 import emu.grasscutter.utils.objects.WeightedList;
 import it.unimi.dsi.fastutil.ints.*;
@@ -28,8 +27,6 @@ public class GameDepot {
     @Getter
     private static HashMap<SpawnDataEntry.GridBlockId, ArrayList<SpawnDataEntry>> spawnLists =
             new HashMap<>();
-
-    @Getter @Setter private static BlossomConfig blossomConfig;
 
     public static void load() {
         for (ReliquaryMainPropData data : GameData.getReliquaryMainPropDataMap().values()) {
