@@ -242,6 +242,10 @@ public class LuaSerializer implements Serializer {
         if (fieldName == null || fieldName.length() == 0) {
             return null;
         }
+        // Lombok treats boolean is_foo as a property named _foo.
+        if (fieldName.startsWith("is_")) {
+            return "set" + fieldName.substring(2);
+        }
         if (fieldName.length() == 1) {
             return "set" + fieldName.toUpperCase();
         }
