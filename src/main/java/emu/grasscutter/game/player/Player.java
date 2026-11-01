@@ -129,6 +129,20 @@ public class Player implements PlayerHook, FieldFetch {
     @Getter private Map<Integer, ActiveCookCompoundData> activeCookCompounds;
     @Getter private Map<Integer, Integer> questGlobalVariables;
     @Getter private Map<Integer, Integer> openStates;
+    /** One durable incarnation for each native ley-line refresh. */
+    private Map<String, BlossomRunState> blossomRuns = new HashMap<>();
+    /** Claim retries are scoped to host UID / refresh ID / incarnation. */
+    private Map<String, Integer> blossomClaimAttempts = new HashMap<>();
+
+    @Entity(useDiscriminator = false)
+    public static class BlossomRunState {
+        public int campId;
+        public long incarnation;
+        public boolean rewardReady;
+        public boolean consumed;
+
+        public BlossomRunState() {}
+    }
     // TPS ammunition reserve, keyed by TpsAmmunitionExcelConfigData id.
     private Map<Integer, Integer> tpsAmmunition;
     // TPS weapons the TPS traveler wears; it is a trial avatar and is never saved itself.
@@ -1526,10 +1540,16 @@ public class Player implements PlayerHook, FieldFetch {
         }
 
         this.setResinBuyCount(0);
+        // Expired, already-claimed ley lines must become eligible again.
+        // Earned, unclaimed flowers retain their claim identity across reset.
+        this.resetConsumedBlossomsForNewDay();
 
         BirthdayMailSystem.checkAndSend(this, currentDate);
 
         this.setLastDailyReset(currentTime);
+        if (this.scene != null && this.scene.getBlossomManager() != null) {
+            this.scene.getBlossomManager().notifyIcon();
+        }
     }
 
     public void resetSendPlayerLocTime() {
@@ -1569,6 +1589,99 @@ public class Player implements PlayerHook, FieldFetch {
             this.tpsAmmunition = new HashMap<>();
         }
         return this.tpsAmmunition;
+    }
+
+    private static String blossomSlot(int refreshId, int slot) {
+        return refreshId + ":" + slot;
+    }
+
+    public synchronized int getBlossomCampId(int refreshId, int slot) {
+        var run = blossomRuns == null ? null : blossomRuns.get(blossomSlot(refreshId, slot));
+        return run == null ? 0 : run.campId;
+    }
+
+    public synchronized long getBlossomIncarnation(int refreshId, int slot) {
+        var run = blossomRuns == null ? null : blossomRuns.get(blossomSlot(refreshId, slot));
+        return run == null ? 0 : run.incarnation;
+    }
+
+    public synchronized boolean isBlossomRewardReady(int refreshId, int slot) {
+        var run = blossomRuns == null ? null : blossomRuns.get(blossomSlot(refreshId, slot));
+        return run != null && run.rewardReady;
+    }
+
+    public synchronized boolean isBlossomConsumed(int refreshId, int slot) {
+        var run = blossomRuns == null ? null : blossomRuns.get(blossomSlot(refreshId, slot));
+        return run != null && run.consumed;
+    }
+
+    /** Initial selection reuses an unchanged run; a claimed rotation starts a new epoch. */
+    public synchronized void setBlossomCampId(int refreshId, int slot, int campId) {
+        enterBlossomCamp(refreshId, slot, campId, false);
+    }
+
+    public synchronized void advanceBlossomCampId(int refreshId, int slot, int campId) {
+        enterBlossomCamp(refreshId, slot, campId, true);
+    }
+
+    private void enterBlossomCamp(int refreshId, int slot, int campId, boolean advance) {
+        if (blossomRuns == null) blossomRuns = new HashMap<>();
+        String key = blossomSlot(refreshId, slot);
+        var previous = blossomRuns.get(key);
+        if (!advance && previous != null && previous.campId == campId) return;
+        var run = new BlossomRunState();
+        run.campId = campId;
+        run.incarnation = previous == null ? 1
+                : previous.incarnation + (previous.campId == 0 && !advance ? 0 : 1);
+        blossomRuns.put(key, run);
+        save();
+    }
+
+    /**
+     * Only completed and exhausted flowers reset with the daily boundary.
+     * In-progress or earned unclaimed rewards keep their existing receipt identity.
+     * Exhausted runs clear their previous camp for a new section-head selection.
+     * The daily boundary starts exactly one new claim epoch.
+     */
+    public synchronized boolean resetConsumedBlossomsForNewDay() {
+        if (blossomRuns == null || blossomRuns.isEmpty()) return false;
+        boolean changed = false;
+        for (var run : blossomRuns.values()) {
+            if (run == null || !run.consumed) continue;
+            run.incarnation++;
+            run.campId = 0;
+            run.rewardReady = false;
+            run.consumed = false;
+            changed = true;
+        }
+        if (changed) save();
+        return changed;
+    }
+
+    /** Persist the reward phase before presenting its claimable entity. */
+    public synchronized void setBlossomRewardReady(int refreshId, int slot) {
+        var run = blossomRuns.get(blossomSlot(refreshId, slot));
+        if (run == null || run.rewardReady) return;
+        run.rewardReady = true;
+        save();
+    }
+
+    public synchronized void setBlossomConsumed(int refreshId, int slot) {
+        var run = blossomRuns.get(blossomSlot(refreshId, slot));
+        if (run == null || run.consumed) return;
+        run.consumed = true;
+        save();
+    }
+
+    public synchronized int getBlossomClaimAttempt(String runId) {
+        return blossomClaimAttempts == null ? 0 : blossomClaimAttempts.getOrDefault(runId, 0);
+    }
+
+    /** A definitely unpaid journal attempt can be retried with a fresh operation identity. */
+    public synchronized void advanceBlossomClaimAttempt(String runId) {
+        if (blossomClaimAttempts == null) blossomClaimAttempts = new HashMap<>();
+        blossomClaimAttempts.merge(runId, 1, Integer::sum);
+        save();
     }
 
     public void save() {

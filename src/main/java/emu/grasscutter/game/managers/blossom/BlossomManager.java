@@ -5,8 +5,14 @@ import emu.grasscutter.database.RewardGrantJournal;
 import emu.grasscutter.game.reward.RewardClaimFlow;
 import emu.grasscutter.config.Configuration;
 import emu.grasscutter.data.*;
+import emu.grasscutter.data.excels.BlossomCampData;
 import emu.grasscutter.data.excels.BlossomRefreshExcelConfigData;
-import emu.grasscutter.data.excels.CityData;
+import emu.grasscutter.game.managers.blossom.BlossomGraph.CampNode;
+import emu.grasscutter.game.managers.blossom.BlossomGraph.CityGraph;
+import emu.grasscutter.game.props.FightProperty;
+import emu.grasscutter.scripts.data.SceneBossChest;
+import emu.grasscutter.scripts.data.SceneGadget;
+import emu.grasscutter.scripts.data.SceneGroup;
 import emu.grasscutter.game.inventory.InventoryAddPolicy;
 import emu.grasscutter.game.props.ActionReason;
 import emu.grasscutter.game.reward.RewardConfiguration;
@@ -18,335 +24,552 @@ import emu.grasscutter.game.player.Player;
 import emu.grasscutter.game.world.*;
 import emu.grasscutter.net.proto.*;
 import emu.grasscutter.server.packet.send.PacketBlossomBriefInfoNotify;
-import emu.grasscutter.utils.Utils;
-import it.unimi.dsi.fastutil.ints.*;
 import java.util.*;
 
 public class BlossomManager {
-    private static final Set<BlossomType> MISSING_TYPES_REPORTED =
-            java.util.concurrent.ConcurrentHashMap.newKeySet();
+    static final class Blossom {
+        /** Native ley-line kinds. Country availability and counts remain in native Excel. */
+        public enum Type {
+            WEALTH("BLOSSOM_REFRESH_SCOIN", 1, 70360056, 70210109, "wealth"),
+            REVELATION("BLOSSOM_REFRESH_EXP", 3, 70360057, 70210110, "revelation");
 
+            private final String refreshType;
+            private final int refreshTypeId;
+            private final int gadgetId;
+            private final int rewardChestGadgetId;
+            private final String rewardKind;
+
+            Type(String refreshType, int refreshTypeId, int gadgetId, int rewardChestGadgetId, String rewardKind) {
+                this.refreshType = refreshType;
+                this.refreshTypeId = refreshTypeId;
+                this.gadgetId = gadgetId;
+                this.rewardChestGadgetId = rewardChestGadgetId;
+                this.rewardKind = rewardKind;
+            }
+
+            public String refreshType() { return refreshType; }
+            public int refreshTypeId() { return refreshTypeId; }
+            public int gadgetId() { return gadgetId; }
+            public int rewardChestGadgetId() { return rewardChestGadgetId; }
+            public String rewardKind() { return rewardKind; }
+
+            public static Type fromRefresh(String refreshType) {
+                for (var type : values()) if (type.refreshType.equals(refreshType)) return type;
+                return null;
+            }
+
+            public static Type fromGadget(int gadgetId) {
+                for (var type : values()) if (type.gadgetId == gadgetId) return type;
+                return null;
+            }
+        }
+
+        enum State { IDLE, FIGHTING, REWARD }
+
+        final Type type;
+        final int slot;
+        State state = State.IDLE;
+
+        Blossom(Type type, int slot) {
+            this.type = type;
+            this.slot = slot;
+        }
+    }
+
+    private static final Set<Integer> NATIVE_REFRESH_TYPES = Arrays.stream(Blossom.Type.values())
+            .map(Blossom.Type::refreshTypeId)
+            .collect(java.util.stream.Collectors.toUnmodifiableSet());
+
+    private final Map<Integer, CityGraph> graphs = new HashMap<>();
+    private volatile Set<Integer> blossomGroupIds;
+    private final Map<RefreshKey, Integer> refreshIds;
+
+    private record RefreshKey(int cityId, Blossom.Type type) {}
+
+    /** Index the native refresh configurations once when the manager is created. */
+    private static Map<RefreshKey, Integer> indexRefreshIds() {
+        var indexed = new HashMap<RefreshKey, Integer>();
+        for (var refresh : GameData.getBlossomRefreshExcelConfigDataMap().values()) {
+            var type = Blossom.Type.fromRefresh(refresh.getRefreshType());
+            if (type == null) continue;
+            var key = new RefreshKey(refresh.getCityId(), type);
+            if (indexed.putIfAbsent(key, refresh.getId()) != null)
+                throw new IllegalStateException("Duplicate blossom refresh " + key);
+        }
+        return Map.copyOf(indexed);
+    }
+
+    int refreshId(CampNode node) {
+        var id = refreshIds.get(new RefreshKey(node.graph.cityId, node.blossom.type));
+        if (id == null) throw new IllegalStateException("Missing blossom refresh for " + node.campId);
+        return id;
+    }
+
+    private CityGraph graphFor(int cityId) {
+        return graphs.computeIfAbsent(cityId, city ->
+                new CityGraph(city, GameData.getBlossomCampDataMap().values(), NATIVE_REFRESH_TYPES));
+    }
+
+    private boolean canUseCamp(CampNode node, Blossom.Type kind) {
+        return node.blossom == null && resolveCampGadget(node.campId, kind) != null;
+    }
+
+    /** Add only missing slots; never move a surviving flower when eligibility changes. */
+    private void selectInitialCamps(
+            Scene scene, CityGraph graph, BlossomRefreshExcelConfigData refresh,
+            Blossom.Type kind, Collection<Integer> unlockedAreas,
+            List<CampNode> selected) {
+        var host = scene.getWorld().getHost();
+        var starts = new ArrayList<>(graph.initialCamps);
+        Collections.shuffle(starts);
+        for (int slot = 0; slot < refresh.getRefreshCount(); slot++) {
+            // An existing saved run owns its slot even if its Lua resources are unavailable.
+            if (host.isBlossomConsumed(refresh.getId(), slot)
+                    || host.getBlossomCampId(refresh.getId(), slot) != 0) continue;
+            while (!starts.isEmpty()) {
+                var chosen = starts.remove(starts.size() - 1);
+                if (chosen.blossom != null) continue;
+                var gadget = resolveCampGadget(chosen.campId, kind);
+                if (gadget == null || gadget.area_id <= 0
+                        || !unlockedAreas.contains(gadget.area_id)) continue;
+                chosen.blossom = new Blossom(kind, slot);
+                selected.add(chosen);
+                host.setBlossomCampId(refresh.getId(), slot, chosen.campId);
+                break;
+            }
+        }
+    }
+
+    /** Reconcile persisted flowers and initialize only the missing slots. */
+    List<CampNode> selectCamps(Scene scene, int rank, Collection<Integer> unlockedAreas) {
+        var host = scene.getWorld().getHost();
+        var refreshes = GameData.getBlossomRefreshExcelConfigDataMap().values().stream()
+                .filter(refresh -> {
+                    var type = Blossom.Type.fromRefresh(refresh.getRefreshType());
+                    var city = GameData.getCityDataMap().get(refresh.getCityId());
+                    return type != null && refresh.getRefreshCount() > 0
+                            && BlossomManager.refreshEligible(refresh, rank)
+                            && city != null && city.getSceneId() == scene.getId();
+                })
+                .sorted(Comparator.comparingInt(BlossomRefreshExcelConfigData::getCityId)
+                        .thenComparingInt(BlossomRefreshExcelConfigData::getId))
+                .toList();
+        var selected = new ArrayList<CampNode>();
+
+        for (var refresh : refreshes) {
+            var graph = graphFor(refresh.getCityId());
+            var kind = Blossom.Type.fromRefresh(refresh.getRefreshType());
+            for (int slot = 0; slot < refresh.getRefreshCount(); slot++) {
+                if (host.isBlossomConsumed(refresh.getId(), slot)) continue;
+                int savedId = host.getBlossomCampId(refresh.getId(), slot);
+                if (savedId == 0) continue;
+                var node = graph.nodes.get(savedId);
+                if (node == null) continue;
+                var gadget = resolveCampGadget(savedId, kind);
+                if (gadget == null) continue;
+                if (node.blossom == null) {
+                    node.blossom = new Blossom(kind, slot);
+                    if (host.isBlossomRewardReady(refresh.getId(), slot))
+                        node.blossom.state = Blossom.State.REWARD;
+                }
+                if (node.blossom.type != kind || node.blossom.slot != slot) continue;
+                selected.add(node);
+            }
+        }
+
+        for (var refresh : refreshes)
+            selectInitialCamps(scene, graphFor(refresh.getCityId()), refresh,
+                    Blossom.Type.fromRefresh(refresh.getRefreshType()), unlockedAreas, selected);
+
+        selected.sort(Comparator.comparingInt((CampNode node) -> refreshId(node))
+                .thenComparingInt(node -> node.blossom.slot));
+        return selected;
+    }
+
+    boolean containsGroup(int groupId) {
+        var indexed = blossomGroupIds;
+        if (indexed == null) {
+            indexed = GameData.getBlossomCampDataMap().values().stream()
+                    .filter(camp -> camp.getRefreshTypeVec() != null
+                            && camp.getRefreshTypeVec().stream().anyMatch(NATIVE_REFRESH_TYPES::contains))
+                    .filter(camp -> camp.getNewGroupVec() != null)
+                    .flatMap(camp -> camp.getNewGroupVec().stream())
+                    .collect(java.util.stream.Collectors.toUnmodifiableSet());
+            blossomGroupIds = indexed;
+        }
+        return indexed.contains(groupId);
+    }
+
+    /** Move an existing flower; successors do not have to be in unlocked regions. */
+    boolean advanceCamp(Scene scene, CampNode source) {
+        var graph = source.graph;
+        if (source.blossom == null || source.next.isEmpty()) {
+            source.blossom = null;
+            return false;
+        }
+
+        int refreshId = refreshId(source);
+        var blossom = source.blossom;
+        source.blossom = null;
+        var chosen = graph.findNextCamps(source.next).stream()
+                .filter(node -> canUseCamp(node, blossom.type))
+                .findFirst().orElse(null);
+        if (chosen == null) {
+            Grasscutter.getLogger().warn(
+                    "No valid ley-line successor city={} kind={} camp={} slot={}",
+                    graph.cityId, blossom.type, source.campId, blossom.slot);
+            return false;
+        }
+
+        blossom.state = Blossom.State.IDLE;
+        chosen.blossom = blossom;
+        scene.getWorld().getHost().advanceBlossomCampId(
+                refreshId, blossom.slot, chosen.campId);
+        Grasscutter.getLogger().info("Ley-line camp advanced city={} type={} slot={} {} -> {}",
+                graph.cityId, blossom.type, blossom.slot, source.campId, chosen.campId);
+        return true;
+    }
     private final Scene scene;
-    private final BlossomNativeCamps nativeCamps = new BlossomNativeCamps();
+    private record CampGadgetKey(int campId, int nativeType) {}
+    private final Map<CampGadgetKey, SceneGadget> worktopCache = new HashMap<>();
     private final List<BlossomActivity> blossomActivities = new ArrayList<>();
-    private final List<BlossomActivity> activeChests = new ArrayList<>();
-    private final List<EntityGadget> createdEntity = new ArrayList<>();
-
-    private final List<SpawnDataEntry> blossomConsumed = new ArrayList<>();
-    private List<SpawnDataEntry> scriptedSpawnCandidates;
-    private final Set<SpawnDataEntry> scriptedSpawned = new HashSet<>();
-    private List<SpawnDataEntry> activeSpawnCache;
+    private final Map<EntityGadget, CampNode> createdEntity = new IdentityHashMap<>();
+    private final Set<CampNode> scriptedLoadedCamps = new HashSet<>();
+    private List<CampNode> activeCampCache;
     private int cachedAdventureRank = -1;
-    private int cachedConsumedCount = -1;
+    private int cachedDailyReset = -1;
     private Set<Integer> cachedUnlockedAreas = Set.of();
     private int activeSetRevision;
     private boolean mapMarkersDirty;
     private static final double SCRIPTED_SPAWN_RANGE = 400;
-    private static final float OVERLAP_RANGE = 2.5f;
 
-    /** The regular spawn grid is bypassed while Lua scene groups are active.
-     * Populate the legacy ley-line outcrops from their authored spawn records in both modes.
-     */
+    /** Resolve the native worktop. */
+    SceneGadget resolveCampGadget(int campId, Blossom.Type kind) {
+        var data = GameData.getBlossomCampDataMap().get(campId);
+        if (data == null || data.getRefreshTypeVec() == null
+                || !data.getRefreshTypeVec().contains(kind.refreshTypeId())
+                || data.getNewGroupVec() == null || data.getNewGroupVec().isEmpty()) return null;
+        return findWorktop(data, kind);
+    }
+
+    /** Resolve original Lua data on demand. */
+    private SceneGadget gadget(CampNode node) {
+        return resolveCampGadget(node.campId, node.blossom.type);
+    }
+
+    /** Lua owns worktop placement; entity creation follows the original script. */
+    private SceneGadget findWorktop(BlossomCampData camp, Blossom.Type kind) {
+        var key = new CampGadgetKey(camp.getId(), kind.refreshTypeId());
+        var cached = worktopCache.get(key);
+        if (cached != null) return cached;
+        for (int groupId : camp.getNewGroupVec()) {
+            SceneGroup group = SceneGroup.of(groupId).load(scene.getId());
+            if (group == null || group.gadgets == null) continue;
+            var gadget = group.gadgets.values().stream()
+                    .filter(item -> item.gadget_id == kind.gadgetId())
+                    .min(Comparator.comparingInt(item -> item.config_id)).orElse(null);
+            if (gadget != null) {
+                worktopCache.put(key, gadget);
+                return gadget;
+            }
+        }
+        return null;
+    }
+
+    /** Spawn only the camps chosen by BlossomGroups and backed by a real Lua gadget. */
     public void ensureScriptedSpawns() {
         removeInactiveAuthoredOutcrops();
-        for (SpawnDataEntry spawn : activeScriptedSpawns()) {
-            if (scriptedSpawned.contains(spawn)) continue;
-            boolean nearby = scene.getPlayers().stream()
-                    .anyMatch(player -> player.getPosition().computeDistance(spawn.getPos())
-                            <= SCRIPTED_SPAWN_RANGE);
-            if (!nearby) continue;
+        for (var spawn : activeCamps()) {
+            if (scriptedLoadedCamps.contains(spawn)) continue;
+            if (scene.getPlayers().stream().noneMatch(player ->
+                    player.getPosition().computeDistance(gadget(spawn).pos) <= SCRIPTED_SPAWN_RANGE))
+                continue;
 
-            EntityGadget existing = scene.getEntities().values().stream()
-                    .filter(entity -> entity instanceof EntityGadget)
-                    .map(entity -> (EntityGadget) entity)
-                    .filter(entity -> BlossomType.valueOf(entity.getGadgetId()) != null)
-                    .filter(entity -> entity.getPosition().computeDistance(spawn.getPos())
-                            <= OVERLAP_RANGE)
+            var group = gadget(spawn).group;
+            if (group == null) continue;
+            restoreClaimableReward(spawn, group);
+            // Only the original Lua GROUP_LOAD -> GROUP_REFRESH -> CreateGadget path
+            // creates a worktop. The entity-created hook below attaches its camp.
+            scene.getScriptManager().ensureBlossomGroup(group);
+            scriptedLoadedCamps.add(spawn);
+        }
+    }
+
+    /**
+     * Rebuild the earned reward from the original Lua marker after a process restart.
+     * The source worktop is a private identity holder, never added to the scene.
+     */
+    private void restoreClaimableReward(CampNode spawn, emu.grasscutter.scripts.data.SceneGroup group) {
+        int refreshId = refreshId(spawn);
+        if (!scene.getWorld().getHost().isBlossomRewardReady(refreshId, spawn.blossom.slot)) return;
+        synchronized (blossomActivities) {
+            if (blossomActivities.stream().anyMatch(activity ->
+                    activity.getGadget().getGroupId() == group.id)) return;
+            var source = gadget(spawn);
+            var reward = group.gadgets.values().stream()
+                    .filter(g -> g.is_blossom_chest)
                     .findFirst().orElse(null);
-            if (existing != null) {
-                // An already-loaded script gadget at the same position owns this outcrop.
-                // Only adopt metadata when it identifies the exact authored source.
-                if (existing.getGroupId() != spawn.getGroup().getGroupId()
-                        || existing.getConfigId() != spawn.getConfigId()
-                        || existing.getGadgetId() != spawn.getGadgetId()) {
-                    // A different gadget occupies this location; it does not own this spawn.
-                    continue;
-                }
-                existing.setSpawnEntry(spawn);
-                initBlossom(existing);
-                scene.broadcastPacket(new emu.grasscutter.server.packet.send.PacketSceneEntityAppearNotify(
-                        existing, VisionTypeOuterClass.VisionType.VisionType_VISION_REFRESH, 0));
-            } else {
-                var gadget = new EntityGadget(
-                        scene, spawn.getGadgetId(), spawn.getPos(), spawn.getRot());
-                gadget.setGroupId(spawn.getGroup().getGroupId());
-                gadget.setConfigId(spawn.getConfigId());
-                gadget.setSpawnEntry(spawn);
-                if (spawn.getGadgetState() > 0) gadget.setState(spawn.getGadgetState());
-                initBlossom(gadget);
-                scene.addEntity(gadget);
+            if (reward == null) {
+                throw new IllegalStateException("Cannot restore earned ley-line group " + group.id);
             }
-            scriptedSpawned.add(spawn);
-            scene.getSpawnedEntities().add(spawn);
+            var identity = new EntityGadget(scene, source.gadget_id, source.pos);
+            identity.setGroupId(group.id);
+            identity.setConfigId(source.config_id);
+            identity.setMetaGadget(source);
+            var activity = new BlossomActivity(identity, spawn);
+            if (!activity.restoreFromLua(reward)) {
+                throw new IllegalStateException("Invalid earned ley-line group " + group.id);
+            }
+            blossomActivities.add(activity);
         }
     }
 
-    /** Remove script-owned outcrops excluded by the city's current native refresh set. */
+    /** A previously selected, but no longer active, camp cannot leave an interactive gadget. */
     private void removeInactiveAuthoredOutcrops() {
-        var loaded = scene.getEntities().values().stream()
-                .filter(entity -> entity instanceof EntityGadget)
-                .map(entity -> (EntityGadget) entity)
-                // A /spawn gadget has group 0 and must remain under operator control.
-                .filter(entity -> entity.getGroupId() != 0)
-                .filter(entity -> BlossomType.valueOf(entity.getGadgetId()) != null)
-                .sorted(java.util.Comparator
-                        .comparingInt((EntityGadget entity) ->
-                                entity.getGadgetId() == BlossomType.BLUE.getGadgetId() ? 0 : 1)
-                        .thenComparingInt(EntityGadget::getGroupId)
-                        .thenComparingInt(EntityGadget::getConfigId))
-                .toList();
-        var kept = new ArrayList<EntityGadget>();
-        var removed = new ArrayList<GameEntity>();
-        for (var gadget : loaded) {
-            boolean inactive = !isActiveAuthoredGadget(
+        var seen = new HashSet<String>();
+        var toRemove = new ArrayList<GameEntity>();
+        for (var entity : List.copyOf(scene.getEntities().values())) {
+            if (!(entity instanceof EntityGadget gadget)
+                    || !isAuthoredWorktop(gadget.getGroupId(), gadget.getGadgetId())) continue;
+            boolean active = isActiveAuthoredGadget(
                     gadget.getGroupId(), gadget.getConfigId(), gadget.getGadgetId());
-            boolean duplicate = kept.stream().anyMatch(other ->
-                    other.getPosition().computeDistance(gadget.getPosition()) <= OVERLAP_RANGE);
-            if (inactive || duplicate) {
-                Grasscutter.getLogger().debug(
-                        "Ley-line authored outcrop suppressed group={} config={} gadget={} reason={}",
-                        gadget.getGroupId(), gadget.getConfigId(), gadget.getGadgetId(),
-                        inactive ? "inactive" : "overlap");
-                scene.removeEntity(gadget,
-                        VisionTypeOuterClass.VisionType.VisionType_VISION_REMOVE);
-                removed.add(gadget);
-            } else {
-                kept.add(gadget);
+            String identity = gadget.getGroupId() + ":" + gadget.getConfigId() + ":" + gadget.getGadgetId();
+            if (!active || !seen.add(identity)) {
+                scene.removeEntity(gadget, VisionTypeOuterClass.VisionType.VisionType_VISION_REMOVE);
+                toRemove.add(gadget);
             }
         }
-        recycleGadgetEntity(removed);
+        recycleGadgetEntity(toRemove);
     }
-
-    /** Use existing spawn coordinates and gadget IDs, never synthetic ley-line positions. */
-    static List<SpawnDataEntry> scriptedCandidates(
-            Map<SpawnDataEntry.GridBlockId, ? extends List<SpawnDataEntry>> spawnLists,
-            int sceneId) {
-        var source = spawnLists.entrySet().stream()
-                .filter(entry -> entry.getKey().getSceneId() == sceneId)
-                .flatMap(entry -> entry.getValue().stream())
-                .filter(entry -> BlossomType.valueOf(entry.getGadgetId()) != null)
-                .distinct()
-                // Prefer the earlier-unlocked Revelation outcrop when two source
-                // entries occupy the same physical location.
-                .sorted(java.util.Comparator
-                        .comparingInt((SpawnDataEntry entry) ->
-                                entry.getGadgetId() == BlossomType.BLUE.getGadgetId() ? 0 : 1)
-                        .thenComparingInt(entry -> entry.getGroup().getGroupId())
-                        .thenComparingInt(SpawnDataEntry::getConfigId))
-                .toList();
-        var distinct = new ArrayList<SpawnDataEntry>();
-        for (var entry : source) {
-            if (distinct.stream().noneMatch(other ->
-                    other.getGadgetId() == entry.getGadgetId()
-                            && other.getPos().computeDistance(entry.getPos()) <= OVERLAP_RANGE)) {
-                distinct.add(entry);
-            }
-        }
-        return distinct;
-    }
-
 
     /** The normal world grid and Lua group loader must obey the same selection. */
     public boolean isActiveSpawn(SpawnDataEntry entry) {
-        return BlossomType.valueOf(entry.getGadgetId()) == null
-                || activeScriptedSpawns().contains(entry);
+        // Legacy Spawns.json bloom entries are never a second source of camps.
+        return Blossom.Type.fromGadget(entry.getGadgetId()) == null;
     }
 
-    /** Operator-created gadgets with no authored group are outside this policy. */
-    /** Native camp instances are not part of the legacy Spawns.json grid. */
-    public boolean isNativeCampSpawn(SpawnDataEntry entry) {
-        return nativeCamps.owns(entry);
+    /** Report the selected camp's native refresh type to its authored Lua group. */
+    public Integer getBlossomRefreshTypeByGroupId(int groupId) {
+        for (var spawn : activeCamps()) {
+            if (gadget(spawn).group.id != groupId) continue;
+            return luaRefreshType(Blossom.Type.fromGadget(gadget(spawn).gadget_id));
+        }
+        return null;
+    }
+
+    static Integer luaRefreshType(Blossom.Type type) {
+        if (type == null) return null;
+        return type.refreshTypeId();
+    }
+
+    /** Lua reports completion; the Java ledger owns the reward and camp rotation. */
+    public boolean completeLuaEncounter(int groupId, emu.grasscutter.scripts.data.SceneGadget reward) {
+        synchronized (blossomActivities) {
+            for (var activity : blossomActivities) {
+                if (activity.getGadget().getGroupId() != groupId) continue;
+                if (!activity.completeFromLua(reward)) return false;
+                scene.getWorld().getHost().setBlossomRewardReady(
+                        refreshId(activity.source()), activity.blossom().slot);
+                Grasscutter.getLogger().info("Ley-line completed scene={} group={} kills={}/{}",
+                        scene.getId(), groupId, activity.nativeKills(), activity.nativeGoal());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** The original Lua trigger route uses the same activity and reward owner. */
+    public boolean beginNativeEncounter(EntityGadget source, int monsterGoal) {
+        synchronized (blossomActivities) {
+            for (var activity : blossomActivities) {
+                if (activity.getGadget() != source) continue;
+                activity.beginNative(monsterGoal);
+                Grasscutter.getLogger().debug("Ley-line encounter prepared scene={} group={} goal={} sceneScriptInit={}",
+                        scene.getId(), source.getGroupId(), monsterGoal, scene.getScriptManager().isInit());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** One event per native group monster death, with one final Lua progress event. */
+    public int addNativeScheduleProgress(int groupId) {
+        synchronized (blossomActivities) {
+            for (var activity : blossomActivities) {
+                if (activity.getGadget().getGroupId() != groupId) continue;
+                boolean finished = activity.addNativeProgress();
+                Grasscutter.getLogger().info("Ley-line progress scene={} group={} kills={}/{} finished={}",
+                        scene.getId(), groupId, activity.nativeKills(), activity.nativeGoal(), finished);
+                if (finished) {
+                    scene.getScriptManager().callEvent(new emu.grasscutter.scripts.data.ScriptArgs(
+                            groupId, emu.grasscutter.scripts.constants.EventType.EVENT_BLOSSOM_PROGRESS_FINISH));
+                }
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    public int blossomScheduleState(int groupId) {
+        synchronized (blossomActivities) {
+            return blossomActivities.stream()
+                    .filter(activity -> activity.getGadget().getGroupId() == groupId)
+                    .mapToInt(BlossomActivity::scheduleState).findFirst().orElse(1);
+        }
+    }
+
+    public int setBlossomScheduleState(int groupId, int state) {
+        if (state < 1 || state > 3) return 1;
+        boolean selected = activeCamps().stream()
+                .anyMatch(spawn -> gadget(spawn).group.id == groupId);
+        if (!selected) return 1;
+        synchronized (blossomActivities) {
+            var activity = blossomActivities.stream()
+                    .filter(current -> current.getGadget().getGroupId() == groupId)
+                    .findFirst().orElse(null);
+            // The native Lua requests the transition. The actual phase was
+            // already established by encounter start or completion.
+            if (state == 1) return activity == null || activity.scheduleState() == 3 ? 0 : 1;
+            return activity != null && activity.scheduleState() == state ? 0 : 1;
+        }
+    }
+
+    private emu.grasscutter.scripts.data.SceneGroup scriptGroupFor(EntityGadget gadget) {
+        // Reuse the same Lua environment as the live scene triggers when available.
+        var group = scene.getScriptManager().getGroupById(gadget.getGroupId());
+        var source = createdEntity.get(gadget);
+        return group != null ? group : source == null ? null : gadget(source).group;
+    }
+
+    public boolean isNativeCampGroup(int groupId) {
+        return groupId != 0 && containsGroup(groupId);
+    }
+
+    public boolean isAuthoredWorktop(int groupId, int gadgetId) {
+        return isNativeCampGroup(groupId) && Blossom.Type.fromGadget(gadgetId) != null;
+    }
+
+    /** Other SceneGroups are never governed by the blossom camp selection. */
+    public boolean isActiveAuthoredGroup(int groupId) {
+        return !containsGroup(groupId) || activeCamps().stream()
+                .anyMatch(spawn -> gadget(spawn).group.id == groupId);
+    }
+
+    /** The durable claimable reward excludes another worktop at the same camp. */
+    public boolean isRewardPending(int groupId) {
+        return activeCamps().stream().anyMatch(spawn ->
+                gadget(spawn).group.id == groupId
+                        && scene.getWorld().getHost().isBlossomRewardReady(
+                                refreshId(spawn), spawn.blossom.slot));
     }
 
     public boolean isActiveAuthoredGadget(int groupId, int configId, int gadgetId) {
-        if (BlossomType.valueOf(gadgetId) == null || groupId == 0) return true;
-        return activeScriptedSpawns().stream().anyMatch(entry ->
-                entry.getGroup().getGroupId() == groupId
-                        && entry.getConfigId() == configId
-                        && entry.getGadgetId() == gadgetId);
-    }
-
-    private List<SpawnDataEntry> authoredCandidates() {
-        if (scriptedSpawnCandidates == null) {
-            scriptedSpawnCandidates = scriptedCandidates(GameDepot.getSpawnLists(), scene.getId());
-            long gold = scriptedSpawnCandidates.stream()
-                    .filter(entry -> BlossomType.valueOf(entry.getGadgetId()) == BlossomType.GOLD)
-                    .count();
-            Grasscutter.getLogger().info(
-                    "Ley-line outcrop sources scene={} wealth={} revelation={}",
-                    scene.getId(), gold, scriptedSpawnCandidates.size() - gold);
+        if (!isAuthoredWorktop(groupId, gadgetId)) return true;
+        if (isRewardPending(groupId)) return false;
+        boolean selected = activeCamps().stream().anyMatch(entry ->
+                gadget(entry).group.id == groupId
+                        && gadget(entry).config_id == configId
+                        && gadget(entry).gadget_id == gadgetId);
+        if (!selected) return false;
+        // A delayed GROUP_REFRESH must not recreate the interactive flower
+        // while its single encounter is running or its reward remains unclaimed.
+        synchronized (blossomActivities) {
+            return blossomActivities.stream().noneMatch(activity ->
+                    activity.getGadget().getGroupId() == groupId
+                            && activity.getGadget().getConfigId() == configId
+                            && activity.getGadget().getGadgetId() == gadgetId);
         }
-        return scriptedSpawnCandidates;
     }
 
-    private List<SpawnDataEntry> activeScriptedSpawns() {
+    private List<CampNode> activeCamps() {
         var host = scene.getWorld().getHost();
         int rank = host.getLevel();
         var unlocked = host.getUnlockedSceneAreas(scene.getId());
-        if (activeSpawnCache != null && cachedAdventureRank == rank
-                && cachedConsumedCount == blossomConsumed.size()
+        if (activeCampCache != null && cachedAdventureRank == rank
+                && cachedDailyReset == host.getLastDailyReset()
                 && cachedUnlockedAreas.equals(unlocked)) {
-            return activeSpawnCache;
+            return activeCampCache;
         }
 
-        var old = activeSpawnCache;
-        var areaIndex = WorldAreaIndex.forScene(scene.getId());
-        // Native BlossomGroups supplies many more locations than the imported grid:
-        // its newGroupVec resolves directly to original Scene Lua gadgets.
-        var nativeSelected = nativeCamps.select(scene, rank, unlocked);
-        var selected = nativeSelected.isEmpty()
-                ? (areaIndex.isEmpty() ? List.<SpawnDataEntry>of()
-                    : selectActiveSpawns(authoredCandidates().stream()
-                            .filter(entry -> !blossomConsumed.contains(entry)).toList(),
-                            rank, unlocked,
-                            GameData.getCityDataMap().values(),
-                            GameData.getBlossomRefreshExcelConfigDataMap().values(),
-                            entry -> areaIndex.level1AreaAt(entry.getPos().getX(), entry.getPos().getZ())))
-                : nativeSelected;
+        var old = activeCampCache;
+        var selected = selectCamps(scene, rank, unlocked);
 
-        activeSpawnCache = selected;
+        activeCampCache = selected;
         cachedAdventureRank = rank;
+        cachedDailyReset = host.getLastDailyReset();
         cachedUnlockedAreas = Set.copyOf(unlocked);
-        cachedConsumedCount = blossomConsumed.size();
         if (old == null || !old.equals(selected)) {
             activeSetRevision++;
             if (old != null) mapMarkersDirty = true;
-            Grasscutter.getLogger().info(
-                    "Ley-line active scene={} rank={} blue={} gold={} originalCamps={}",
-                    scene.getId(), rank,
-                    selected.stream().filter(e -> e.getGadgetId() == BlossomType.BLUE.getGadgetId()).count(),
-                    selected.stream().filter(e -> e.getGadgetId() == BlossomType.GOLD.getGadgetId()).count(),
-                    !nativeSelected.isEmpty());
+        }
+        Grasscutter.getLogger().info(
+                "Ley-line active scene={} rank={} areas={} camps={} kinds={}",
+                scene.getId(), rank, unlocked, selected.size(),
+                selected.stream().map(source -> refreshId(source)).distinct().count());
+        if (selected.isEmpty() && rank >= 8) {
+            for (var refresh : GameData.getBlossomRefreshExcelConfigDataMap().values()) {
+                var kind = Blossom.Type.fromRefresh(refresh.getRefreshType());
+                var city = GameData.getCityDataMap().get(refresh.getCityId());
+                if (kind == null || city == null || city.getSceneId() != scene.getId()
+                        || !refreshEligible(refresh, rank)) continue;
+                var starts = graphFor(refresh.getCityId()).initialCamps;
+                var gadgets = starts.stream().map(node -> resolveCampGadget(node.campId, kind))
+                        .filter(Objects::nonNull).toList();
+                Grasscutter.getLogger().info(
+                        "Ley-line candidates refresh={} type={} heads={} gadgets={} unlockedGadgets={} gadgetAreas={}",
+                        refresh.getId(), kind, starts.size(), gadgets.size(),
+                        gadgets.stream().filter(g -> unlocked.contains(g.area_id)).count(),
+                        gadgets.stream().map(g -> g.area_id).distinct().toList());
+            }
         }
         return selected;
     }
 
     /** Used by the normal grid loader to notice eligibility changes without player movement. */
     public int getActiveSetRevision() {
-        activeScriptedSpawns();
+        activeCamps();
         return activeSetRevision;
     }
 
-    /** Select up to refreshCount entries for each native (cityId, refreshType) pair. */
-    static List<SpawnDataEntry> selectActiveSpawns(
-            List<SpawnDataEntry> candidates, int adventureRank, Collection<Integer> unlockedAreas,
-            Collection<CityData> cities, Collection<BlossomRefreshExcelConfigData> refreshes,
-            java.util.function.ToIntFunction<SpawnDataEntry> areaAt) {
-        record Key(int cityId, String type) {}
-        var areaToCity = new HashMap<Integer, Integer>();
-        var ambiguous = new HashSet<Integer>();
-        for (var city : cities) {
-            if (city.getAreaIdVec() == null) continue;
-            for (int area : city.getAreaIdVec()) {
-                var previous = areaToCity.putIfAbsent(area, city.getCityId());
-                if (previous != null && previous != city.getCityId()) ambiguous.add(area);
-            }
-        }
-
-        var refreshByKey = new HashMap<Key, BlossomRefreshExcelConfigData>();
-        for (var config : refreshes) {
-            if (config.getRefreshCount() <= 0) continue;
-            if (!BlossomType.GOLD.refreshType().equals(config.getRefreshType())
-                    && !BlossomType.BLUE.refreshType().equals(config.getRefreshType())) continue;
-            refreshByKey.put(new Key(config.getCityId(), config.getRefreshType()), config);
-        }
-
-        var selected = new ArrayList<SpawnDataEntry>();
-        var counts = new HashMap<Integer, Integer>();
-        for (var entry : candidates) {
-            var type = BlossomType.valueOf(entry.getGadgetId());
-            if (type == null) continue;
-            int area = areaAt.applyAsInt(entry);
-            if (area == 0 || ambiguous.contains(area)) continue;
-            Integer cityId = areaToCity.get(area);
-            if (cityId == null) continue;
-            var refresh = refreshByKey.get(new Key(cityId, type.refreshType()));
-            if (refresh == null || !refreshEligible(refresh, adventureRank, unlockedAreas, cities)) continue;
-            if (counts.getOrDefault(refresh.getId(), 0) >= refresh.getRefreshCount()) continue;
-            if (selected.stream().anyMatch(other ->
-                    other.getPos().computeDistance(entry.getPos()) <= OVERLAP_RANGE)) continue;
-            selected.add(entry);
-            counts.merge(refresh.getId(), 1, Integer::sum);
-        }
-        return selected;
-    }
-
-    static boolean refreshEligible(
-            BlossomRefreshExcelConfigData refresh, int adventureRank,
-            Collection<Integer> unlockedAreas, Collection<CityData> cities) {
-        if (refresh.getRefreshCondVec() == null) return false;
-        for (var condition : refresh.getRefreshCondVec()) {
-            if (condition == null || condition.getType() == null) continue;
-            var params = condition.getParam();
-            if (params == null || params.isEmpty()) return false;
-            switch (condition.getType()) {
-                case "BLOSSOM_REFRESH_COND_PLAYER_LEVEL_EQUAL_GREATER" -> {
-                    if (adventureRank < params.get(0)) return false;
-                }
-                case "BLOSSOM_REFRESH_COND_UNLOCK_ANY_AREA_IN_CITY" -> {
-                    if (params.get(0) != refresh.getCityId()) return false;
-                    boolean anyUnlocked = cities.stream()
-                            .filter(city -> city.getCityId() == refresh.getCityId())
-                            .filter(city -> city.getAreaIdVec() != null)
-                            .anyMatch(city -> city.getAreaIdVec().stream()
-                                    .anyMatch(unlockedAreas::contains));
-                    if (!anyUnlocked) return false;
-                }
-                default -> {
-                    // Unknown conditions must be verified before enabling their entries.
-                    return false;
-                }
-            }
-        }
-        return true;
+    /** Temporary adventure-rank gates for Mondstadt and Liyue. */
+    static boolean refreshEligible(BlossomRefreshExcelConfigData refresh, int adventureRank) {
+        return switch (refresh.getCityId()) {
+            case 1 -> adventureRank >= (Blossom.Type.fromRefresh(refresh.getRefreshType())
+                    == Blossom.Type.WEALTH ? 12 : 8);
+            case 2 -> adventureRank >= 18;
+            default -> true;
+        };
     }
 
     public BlossomManager(Scene scene) {
         this.scene = scene;
+        this.refreshIds = indexRefreshIds();
     }
 
-    /** Track ability summons at creation, including ones removed before the next world tick. */
+    /** Attach selected native worktops when they enter the scene. */
     public void onSceneEntityCreated(GameEntity entity) {
-        synchronized (blossomActivities) {
-            for (var activity : blossomActivities) activity.onSceneEntityCreated(entity);
+        if (entity instanceof EntityGadget gadget
+                && isAuthoredWorktop(gadget.getGroupId(), gadget.getGadgetId())) {
+            initBlossom(gadget);
         }
     }
 
     public void onTick() {
-        activeScriptedSpawns();
+        activeCamps();
         // Scene.checkGroups() already loads nearby authored outcrops in script mode.
         // The normal spawn-grid path needs the same loader.
         if (!scene.getScriptManager().isInit()) ensureScriptedSpawns();
         if (mapMarkersDirty) notifyIcon();
         synchronized (blossomActivities) {
-            var it = blossomActivities.iterator();
-            while (it.hasNext()) {
-                var active = it.next();
-                active.onTick();
-                if (active.getPass()) {
-                    active.clearEncounterSummons();
-                    EntityGadget chest = active.getChest();
-                    scene.addEntity(chest);
-                    Grasscutter.getLogger().info(
-                            "Ley-line reward flower spawned scene={} gadget={} source={} kills={}/{}",
-                            scene.getId(), chest.getGadgetId(),
-                            active.getGadget().getGadgetId(),
-                            active.getChallenge().getScore().get(),
-                            active.getChallenge().getGoal());
-                    scene.setChallenge(null);
-                    activeChests.add(active);
-                    it.remove();
-                }
+            for (var active : blossomActivities) {
+                if (!active.rewardReady()) continue;
+                EntityGadget chest = active.getChest();
+                scene.addEntity(chest);
+                Grasscutter.getLogger().info(
+                        "Ley-line reward flower spawned scene={} gadget={} source={} nativeKills={}/{}",
+                        scene.getId(), chest.getGadgetId(),
+                        active.getGadget().getGadgetId(),
+                        active.nativeKills(), active.nativeGoal());
             }
         }
     }
@@ -355,83 +578,94 @@ public class BlossomManager {
     public void recycleGadgetEntity(List<GameEntity> entities) {
         for (var entity : entities) {
             if (!(entity instanceof EntityGadget gadget)
-                    || BlossomType.valueOf(gadget.getGadgetId()) == null) continue;
-            createdEntity.remove(gadget);
-            var spawn = gadget.getSpawnEntry();
-            if (spawn == null) continue;
-            scriptedSpawned.remove(spawn);
-            scene.getSpawnedEntities().remove(spawn);
+                    || Blossom.Type.fromGadget(gadget.getGadgetId()) == null) continue;
+            var source = createdEntity.remove(gadget);
+            if (source != null) scriptedLoadedCamps.remove(source);
         }
     }
 
+    private long nativeLiveMonsterCount(int groupId, emu.grasscutter.scripts.data.SceneGroup group) {
+        return scene.getEntities().values().stream()
+                .filter(entity -> entity instanceof emu.grasscutter.game.entity.EntityMonster
+                        && entity.getGroupId() == groupId
+                        && (group == null || group.monsters == null
+                                || group.monsters.containsKey(entity.getConfigId())))
+                .count();
+    }
+
     public void initBlossom(EntityGadget gadget) {
-        if (createdEntity.contains(gadget)) {
-            return;
-        }
-        if (blossomConsumed.contains(gadget.getSpawnEntry())) {
+        if (createdEntity.containsKey(gadget)) {
             return;
         }
         var id = gadget.getGadgetId();
-        if (BlossomType.valueOf(id) == null) {
+        if (Blossom.Type.fromGadget(id) == null) {
             return;
         }
+        var camp = activeCamps().stream()
+                .filter(source -> gadget(source).group.id == gadget.getGroupId()
+                        && gadget(source).config_id == gadget.getConfigId()
+                        && gadget(source).gadget_id == gadget.getGadgetId())
+                .findFirst().orElse(null);
+        if (camp == null) return;
         // Source gadget rows may carry a generic type under 7.1; a ley-line outcrop
         // always needs a worktop to start its combat challenge.
         GadgetWorktop gadgetWorktop = gadget.getContent() instanceof GadgetWorktop worktop
                 ? worktop : new GadgetWorktop(gadget);
         gadget.replaceContent(gadgetWorktop);
         gadget.setState(204);
-        int worldLevel = getWorldLevel();
         gadgetWorktop.addWorktopOptions(new int[] {187});
         gadgetWorktop.setOnSelectWorktopOptionEvent(
                 (GadgetWorktop context, int option) -> {
-                    BlossomActivity activity;
-                    EntityGadget entityGadget = context.getGadget();
+                    if (option != 187) return false;
+                    EntityGadget source = context.getGadget();
+                    BlossomActivity activity = new BlossomActivity(source, camp);
                     synchronized (blossomActivities) {
-                        for (BlossomActivity i : this.blossomActivities) {
-                            if (i.getGadget() == entityGadget) {
-                                return false;
-                            }
-                        }
-
-                        int volume = 0;
-                        IntList monsters = new IntArrayList();
-                        while (true) {
-                            var remain = GameDepot.getBlossomConfig().getMonsterFightingVolume() - volume;
-                            if (remain <= 0) {
-                                break;
-                            }
-                            var rand = Utils.randomRange(1, 100);
-                            if (rand > 85 && remain >= 50) { // 15% ,generate strong monster
-                                monsters.addAll(getRandomMonstersID(2, 1));
-                                volume += 50;
-                            } else if (rand > 50 && remain >= 20) { // 35% ,generate normal monster
-                                monsters.addAll(getRandomMonstersID(1, 1));
-                                volume += 20;
-                            } else { // 50% ,generate weak monster
-                                monsters.addAll(getRandomMonstersID(0, 1));
-                                volume += 10;
-                            }
-                        }
-
-                        Grasscutter.getLogger().info("Blossom Monsters:" + monsters);
-
-                        activity = new BlossomActivity(entityGadget, monsters, -1, worldLevel);
+                        if (blossomActivities.stream().anyMatch(current ->
+                                current.getGadget() == source)) return false;
                         blossomActivities.add(activity);
                     }
-                    entityGadget.updateState(201);
-                    scene.setChallenge(activity.getChallenge());
-                    scene.removeEntity(entityGadget, VisionTypeOuterClass.VisionType.VisionType_VISION_REMOVE);
-                    activity.start();
+
+                    // Dispatch only the original scene's select trigger.
+                    // Keep the worktop available if the native script fails.
+                    var group = scriptGroupFor(source);
+                    int monsterGoal = group == null || group.monsters == null ? 0 : group.monsters.size();
+                    boolean prepared = beginNativeEncounter(source, monsterGoal);
+                    boolean selected = prepared && scene.getScriptManager().dispatchBlossomSelect(
+                            source.getGroupId(), source.getConfigId(), option);
+                    if (!selected) {
+                        Grasscutter.getLogger().warn(
+                                "Ley-line encounter rejected scene={} group={} config={} prepared={} liveMonsters={}",
+                                scene.getId(), source.getGroupId(), source.getConfigId(), prepared,
+                                nativeLiveMonsterCount(source.getGroupId(), group));
+                        activity.abort();
+
+                        synchronized (blossomActivities) {
+                            blossomActivities.remove(activity);
+                        }
+                        // The activity owns its transient Lua schedule state.
+                        source.updateState(204);
+                        context.addWorktopOptions(new int[] {187});
+                        return false;
+                    }
+                    Grasscutter.getLogger().info(
+                            "Ley-line encounter active scene={} group={} config={} liveMonsters={} deathTriggers={}",
+                            scene.getId(), source.getGroupId(), source.getConfigId(),
+                            nativeLiveMonsterCount(source.getGroupId(), group),
+                            scene.getScriptManager().getTriggersByEvent(
+                                    emu.grasscutter.scripts.constants.EventType.EVENT_ANY_MONSTER_DIE).stream()
+                                    .filter(trigger -> trigger.getCurrentGroup().id == source.getGroupId())
+                                    .count());
+                    source.updateState(201);
+                    // Scene.selectWorktopOptionWith removes the selected gadget exactly once.
                     return true;
                 });
-        createdEntity.add(gadget);
+        createdEntity.put(gadget, camp);
         notifyIcon();
     }
 
     /** Each player receives only the outcrops unlocked at their current Adventure Rank. */
     public void notifyIcon() {
-        activeScriptedSpawns();
+        activeCamps();
         mapMarkersDirty = false;
         scene.getPlayers().forEach(this::notifyIcon);
     }
@@ -441,34 +675,29 @@ public class BlossomManager {
         player.sendPacket(new PacketBlossomBriefInfoNotify(buildBriefInfos(player)));
     }
 
-    // These progression thresholds are gameplay observations; original-client
-    // protobuf wire identities are verified separately in Genshin-Reverse.
-    static boolean unlockedAtRank(BlossomType type, int adventureRank) {
-        return type != null && adventureRank >= (type == BlossomType.BLUE ? 8 : 12);
-    }
-
     private List<BlossomBriefInfoOuterClass.BlossomBriefInfo> buildBriefInfos(Player player) {
         final int wl = getWorldLevel();
         final int worldLevel = (wl < 0) ? 0 : ((wl > 9) ? 9 : wl);
         final var worldLevelData = GameData.getWorldLevelDataMap().get(worldLevel);
         final int monsterLevel = (worldLevelData != null) ? worldLevelData.getMonsterLevel() : 1;
         var blossoms = new ArrayList<BlossomBriefInfoOuterClass.BlossomBriefInfo>();
-        for (var spawn : activeScriptedSpawns()) {
-            if (blossomConsumed.contains(spawn)) continue;
-            var type = BlossomType.valueOf(spawn.getGadgetId());
-            if (!unlockedAtRank(type, player.getLevel())) continue;
-            Integer previewReward = getPreviewReward(type, worldLevel);
-            if (previewReward == null) continue;
+        for (var spawn : activeCamps()) {
+            var type = Blossom.Type.fromGadget(gadget(spawn).gadget_id);
+            int refreshId = refreshId(spawn);
+            int campId = spawn.campId;
+            var refresh = GameData.getBlossomRefreshExcelConfigDataMap().get(refreshId);
+            if (type == null || refresh == null
+                    || !refreshEligible(refresh, player.getLevel()))
+                continue;
+            int previewReward = getPreviewReward(refresh, worldLevel);
             blossoms.add(BlossomBriefInfoOuterClass.BlossomBriefInfo.newBuilder()
                     .setSceneId(scene.getId())
-                    .setPos(spawn.getPos().toProto())
+                    .setPos(gadget(spawn).pos.toProto())
                     .setResin(20)
                     .setMonsterLevel(monsterLevel)
                     .setRewardId(previewReward)
-                    .setCircleCampId(nativeCamps.campId(spawn) == 0
-                            ? type.getCircleCampId() : nativeCamps.campId(spawn))
-                    .setRefreshId(nativeCamps.refreshId(spawn) == 0
-                            ? type.getBlossomChestId() : nativeCamps.refreshId(spawn))
+                    .setCircleCampId(campId)
+                    .setRefreshId(refreshId)
                     .build());
         }
         return blossoms;
@@ -478,65 +707,55 @@ public class BlossomManager {
         return scene.getWorld().getWorldLevel();
     }
 
-    private static Integer getPreviewReward(BlossomType type, int worldLevel) {
-        if (type == null || worldLevel < 0 || worldLevel > 9) {
-            throw new IllegalArgumentException(
-                    "Unsupported blossom type/world level: " + type + "/" + worldLevel);
+    /** Read the map preview from this flower's own country-specific refresh row. */
+    static int getPreviewReward(BlossomRefreshExcelConfigData refresh, int worldLevel) {
+        if (refresh == null || worldLevel < 0 || worldLevel > 9) {
+            throw new IllegalArgumentException("Invalid blossom refresh or world level");
         }
-        // Both kinds have blossomChestId=1 in the native Excel rows. The actual
-        // distinction is refreshType (SCOIN vs EXP), shared across cities.
-        Integer previewId = null;
-        for (var data : GameData.getBlossomRefreshExcelConfigDataMap().values()) {
-            if (!type.refreshType().equals(data.getRefreshType())) continue;
-            var drops = data.getDropVec();
-            // Native Excel has 9 preview tiers (WL0..WL8); WL9 shares the capped WL8 preview.
-            int index = worldLevel == 9 ? 8 : worldLevel;
-            if (drops == null || drops.length <= index || drops[index] == null
-                    || drops[index].getPreviewReward() <= 0) {
-                throw new IllegalStateException(
-                        "Missing native blossom preview: " + type + " WL" + worldLevel
-                                + " refresh=" + data.getId());
-            }
-            int candidate = drops[index].getPreviewReward();
-            if (previewId != null && previewId != candidate) {
-                throw new IllegalStateException(
-                        "Conflicting native blossom previews: " + type + " WL" + worldLevel);
-            }
-            previewId = candidate;
+        // Native Excel has WL0..WL8 previews; WL9 uses the capped WL8 value.
+        int index = Math.min(worldLevel, 8);
+        var drops = refresh.getDropVec();
+        if (drops == null || drops.length <= index || drops[index] == null
+                || drops[index].getPreviewReward() <= 0) {
+            throw new IllegalStateException(
+                    "Missing blossom preview: city=" + refresh.getCityId()
+                            + " refresh=" + refresh.getId() + " WL" + worldLevel);
         }
-        if (previewId == null && MISSING_TYPES_REPORTED.add(type)) {
-            Grasscutter.getLogger().error(
-                    "Missing native blossom refresh type {} for {}", type.refreshType(), type);
-        }
-        return previewId;
+        return drops[index].getPreviewReward();
     }
 
     public boolean hasRewardChest(EntityGadget chest) {
-        synchronized (activeChests) {
-            return activeChests.stream().anyMatch(active -> active.getChest() == chest);
+        synchronized (blossomActivities) {
+            return blossomActivities.stream().anyMatch(active -> active.isClaimableChest(chest));
         }
     }
 
     /** Called once the reward chest is fully claimed; ignores chests this manager doesn't own. */
     public void retireChest(EntityGadget chest) {
-        synchronized (activeChests) {
-            var it = activeChests.iterator();
+        synchronized (blossomActivities) {
+            var it = blossomActivities.iterator();
             while (it.hasNext()) {
                 var active = it.next();
-                if (active.getChest() == chest) {
-                    it.remove();
-                    // Debug-spawned outcrops have no authored SpawnDataEntry. Never
-                    // mark null as consumed, or later /spawn outcrops all get skipped.
-                    var source = active.getGadget().getSpawnEntry();
+                if (active.isClaimableChest(chest)) {
+                    var source = active.source();
                     if (source != null) {
-                        if (nativeCamps.advance(source, scene.getWorld().getHost().getLevel())) {
-                            activeSpawnCache = null;
-                            activeSetRevision++;
-                        } else {
-                            blossomConsumed.add(source);
+                        int refreshId = refreshId(active.source());
+                        int slot = active.blossom().slot;
+                        if (!advanceCamp(scene, source)) {
+                            scene.getWorld().getHost().setBlossomConsumed(refreshId, slot);
                         }
+                        activeCampCache = null;
+                        activeSetRevision++;
+                        // Unregister the completed group's Lua triggers before entering its next camp.
+                        if (scene.getScriptManager().getGroupInstanceById(
+                                active.getGadget().getGroupId()) != null)
+                            scene.unloadGroup(null, active.getGadget().getGroupId());
                     }
-                    recycleGadgetEntity(List.of(active.getGadget()));
+                    it.remove();
+                    createdEntity.remove(active.getGadget());
+                    // A restored reward uses a private identity gadget with no live worktop.
+                    // Its native camp must still be released when the claim rotates.
+                    if (source != null) scriptedLoadedCamps.remove(source);
                     ensureScriptedSpawns();
                     notifyIcon();
                     return;
@@ -572,6 +791,15 @@ public class BlossomManager {
         };
     }
 
+    /** Only a completed gadget interaction can authorize a resin charge or payout. */
+    public static boolean isClaimFinish(GadgetInteractReqOuterClass.GadgetInteractReq req) {
+        // Global 7.1 encodes FINISH as the proto3 default op type. A missing
+        // op field alone cannot distinguish FINISH from an empty request.
+        // Require the target entity as well; an empty payload is never a claim.
+        return req != null && req.getGadgetEntityId() > 0 && req.getOpType()
+                == InterOpTypeOuterClass.InterOpType.InterOpType_INTER_OP_FINISH;
+    }
+
     /** Global 7.1 original-resin amount selector: GadgetInteractReq field 14. */
     static int normalClaimCount(GadgetInteractReqOuterClass.GadgetInteractReq req) {
         return (int) req.getField(req.getDescriptorForType().findFieldByNumber(14));
@@ -579,13 +807,14 @@ public class BlossomManager {
 
     public List<GameItem> claimReward(Player player, EntityGadget chest,
             GadgetInteractReqOuterClass.GadgetInteractReq req, Runnable confirmed) {
-        synchronized (activeChests) {
-            BlossomActivity active = activeChests.stream()
-                    .filter(candidate -> candidate.getChest() == chest)
+        if (!isClaimFinish(req)) return null;
+        synchronized (blossomActivities) {
+            BlossomActivity active = blossomActivities.stream()
+                    .filter(candidate -> candidate.isClaimableChest(chest))
                     .findFirst().orElse(null);
             if (active == null || active.rewardClaimed(player.getUid())) return null;
 
-            BlossomType type = BlossomType.valueOf(active.getGadget().getGadgetId());
+            Blossom.Type type = Blossom.Type.fromGadget(active.getGadget().getGadgetId());
             if (type == null) throw new IllegalStateException("Unknown claimed blossom type");
             var costType = req.getResinCostType();
             int normalClaimCount = normalClaimCount(req);
@@ -597,6 +826,24 @@ public class BlossomManager {
                 return null;
             }
             int resinBefore = player.getProperty(emu.grasscutter.game.props.PlayerProperty.PROP_PLAYER_RESIN);
+            int refreshId = refreshId(active.source());
+            var host = scene.getWorld().getHost();
+            // BSON-safe key also identifies the claim attempt in the player's persisted record.
+            String runId = host.getUid() + ":" + refreshId + ":" + active.blossom().slot + ":"
+                    + host.getBlossomIncarnation(refreshId, active.blossom().slot);
+            var resin = player.getResinManager();
+            var journal = new RewardGrantJournal();
+            var key = new RewardGrantJournal.Key(RewardGrantJournal.Source.BLOSSOM, player.getUid(),
+                    "flower." + scene.getId() + "." + active.getGadget().getGroupId() + "."
+                            + active.getGadget().getConfigId() + "." + runId + "."
+                            + player.getBlossomClaimAttempt(runId));
+            if (journal.completed(key)) {
+                // A previous delivery survived while the scene/group was reloaded.
+                // Retire it without charging resin or announcing another reward.
+                active.confirmReward(player.getUid());
+                confirmed.run();
+                return List.of();
+            }
             int worldLevel = getWorldLevel();
             Map<Integer, Integer> rolled = RewardConfiguration.current().rollBlossom(
                     type.rewardKind(), worldLevel, cost.rolls(),
@@ -604,11 +851,6 @@ public class BlossomManager {
             var items = rolled.entrySet().stream()
                     .map(entry -> new GameItem(entry.getKey(), entry.getValue()))
                     .toList();
-            var resin = player.getResinManager();
-            var journal = new RewardGrantJournal();
-            var key = new RewardGrantJournal.Key(RewardGrantJournal.Source.BLOSSOM, player.getUid(),
-                    "flower." + scene.getId() + "." + active.getGadget().getGroupId() + "."
-                            + active.getGadget().getConfigId() + "." + active.rewardOperation(player.getUid()));
             var snapshot = items.stream().map(item -> new RewardGrantJournal.Reward(
                     item.getItemId(), item.getCount(), item.getLevel())).toList();
             var debits = Configuration.GAME_OPTIONS.resinOptions.resinUsage
@@ -633,7 +875,7 @@ public class BlossomManager {
                     () -> {
                         active.confirmReward(player.getUid());
                         confirmed.run();
-                    }, () -> active.resetUnpaidReward(player.getUid()));
+                    }, () -> player.advanceBlossomClaimAttempt(runId));
             if (!accepted) {
                 Grasscutter.getLogger().warn("Ley-line claim refused uid={} kind={} receipt={}",
                         player.getUid(), type, key.storageId());
@@ -649,13 +891,120 @@ public class BlossomManager {
         }
     }
 
-    public static IntList getRandomMonstersID(int difficulty, int count) {
-        IntList result = new IntArrayList();
-        List<Integer> monsters =
-                GameDepot.getBlossomConfig().getMonsterIdsPerDifficulty().get(difficulty);
-        for (int i = 0; i < count; i++) {
-            result.add((int) monsters.get(Utils.randomRange(0, monsters.size() - 1)));
+
+    /** Per-encounter server entities and reward receipt, driven by Lua events. */
+    static final class BlossomActivity {
+        private final EntityGadget gadget;
+        private final CampNode source;
+        private final Blossom blossom;
+        private int nativeMonsterGoal;
+        private int nativeMonsterProgress;
+        private boolean nativeProgressReported;
+        private EntityGadget chest;
+        private SceneGadget nativeRewardGadget;
+        private final Set<Integer> rewardClaimants = new HashSet<>();
+
+        boolean rewardClaimed(int uid) { return rewardClaimants.contains(uid); }
+        void confirmReward(int uid) { rewardClaimants.add(uid); }
+
+        public BlossomActivity(EntityGadget gadget, CampNode source) {
+            this.gadget = gadget;
+            this.source = source;
+            this.blossom = source.blossom;
         }
-        return result;
+
+        CampNode source() { return source; }
+        Blossom blossom() { return blossom; }
+        private Blossom.State state() { return blossom.state; }
+
+        boolean rewardReady() {
+            return state() == Blossom.State.REWARD && chest == null;
+        }
+        boolean isClaimableChest(EntityGadget entity) {
+            return state() == Blossom.State.REWARD && chest == entity;
+        }
+        /** Lua's schedule stage is a projection of the flower lifecycle. */
+        int scheduleState() {
+            return switch (state()) {
+                case IDLE -> 1;
+                case FIGHTING -> 2;
+                case REWARD -> 3;
+            };
+        }
+
+        /** Use the native Lua group monster definitions as its scripted progress target. */
+        void beginNative(int monsterGoal) {
+            blossom.state = Blossom.State.FIGHTING;
+            nativeMonsterGoal = monsterGoal;
+            nativeMonsterProgress = 0;
+            nativeProgressReported = false;
+        }
+
+        /** Native Lua reports each group monster death; complete the progress event once. */
+        boolean addNativeProgress() {
+            if (nativeMonsterGoal <= 0 || nativeProgressReported || state() != Blossom.State.FIGHTING) return false;
+            if (++nativeMonsterProgress < nativeMonsterGoal) return false;
+            nativeProgressReported = true;
+            return true;
+        }
+
+        void abort() {
+            blossom.state = Blossom.State.IDLE;
+        }
+
+        int nativeKills() { return nativeMonsterProgress; }
+        int nativeGoal() { return nativeMonsterGoal; }
+
+        /** Restore a previously earned reward from its original Lua marker. */
+        boolean restoreFromLua(SceneGadget rewardDefinition) {
+            if (state() != Blossom.State.REWARD
+                    || rewardDefinition == null || !rewardDefinition.is_blossom_chest) return false;
+            nativeRewardGadget = rewardDefinition;
+            return true;
+        }
+
+        /** Mark completion once, after the Lua script has reached its own success condition. */
+        boolean completeFromLua(SceneGadget rewardDefinition) {
+            if (state() != Blossom.State.FIGHTING || rewardDefinition == null
+                    || !rewardDefinition.is_blossom_chest) return false;
+            nativeRewardGadget = rewardDefinition;
+            blossom.state = Blossom.State.REWARD;
+            return true;
+        }
+
+        public EntityGadget getGadget() {
+            return gadget;
+        }
+
+        /** Build the claimable flower using the Lua reward marker and configured chest type. */
+        public EntityGadget getChest() {
+            if (chest == null) {
+                if (nativeRewardGadget == null || state() != Blossom.State.REWARD) {
+                    throw new IllegalStateException("Native Lua has not declared a blossom reward");
+                }
+                EntityGadget rewardGadget = new EntityGadget(
+                        gadget.getScene(),
+                        Blossom.Type.fromGadget(gadget.getGadgetId()).rewardChestGadgetId(),
+                        nativeRewardGadget.pos);
+                rewardGadget.setGroupId(gadget.getGroupId());
+                rewardGadget.setConfigId(nativeRewardGadget.config_id);
+                rewardGadget.getRotation().set(nativeRewardGadget.rot);
+                SceneGadget metaGadget = new SceneGadget();
+                metaGadget.config_id = nativeRewardGadget.config_id;
+                metaGadget.pos = nativeRewardGadget.pos;
+                metaGadget.rot = nativeRewardGadget.rot;
+                metaGadget.group = nativeRewardGadget.group;
+                metaGadget.is_blossom_chest = true;
+                metaGadget.boss_chest = new SceneBossChest();
+                metaGadget.boss_chest.resin = 20;
+                rewardGadget.setFightProperty(FightProperty.FIGHT_PROP_BASE_HP, Float.POSITIVE_INFINITY);
+                rewardGadget.setFightProperty(FightProperty.FIGHT_PROP_CUR_HP, Float.POSITIVE_INFINITY);
+                rewardGadget.setFightProperty(FightProperty.FIGHT_PROP_MAX_HP, Float.POSITIVE_INFINITY);
+                rewardGadget.setMetaGadget(metaGadget);
+                rewardGadget.buildContent();
+                chest = rewardGadget;
+            }
+            return chest;
+        }
     }
 }

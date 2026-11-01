@@ -86,6 +86,37 @@ final class GadgetChestBossClaimTest {
     }
 
     @Test
+    void nativeLeyLineFlowerKeepsItsGeneratedClaimMetadata() {
+        // The Lua reward marker identifies the flower but carries no boss_chest or drop_tag.
+        var authored = new SceneGadget();
+        authored.is_blossom_chest = true;
+        authored.config_id = 374006;
+        assertFalse(GadgetChest.keepSpawnedChestMeta(authored));
+
+        var generated = new SceneGadget();
+        generated.is_blossom_chest = true;
+        generated.config_id = 374006;
+        generated.boss_chest = new SceneBossChest();
+        generated.boss_chest.resin = 20;
+        assertNull(generated.drop_tag);
+        assertTrue(GadgetChest.keepSpawnedChestMeta(generated));
+
+        flower.setMetaGadget(generated);
+        var info = info();
+        assertEquals(20, info.getResin());
+        assertTrue(info.getQualifyUidListList().contains(a.getUid()));
+    }
+
+    @Test
+    void untaggedWorldBossMetadataStillUsesAuthoredLookup() {
+        var boss = new SceneGadget();
+        boss.boss_chest = new SceneBossChest();
+        assertFalse(GadgetChest.keepSpawnedChestMeta(boss));
+        boss.drop_tag = "verified_native_tag";
+        assertTrue(GadgetChest.keepSpawnedChestMeta(boss));
+    }
+
+    @Test
     void eachEligiblePlayerClaimsOnceAndTheFlowerOpensAfterTheLast() {
         claim(a);
         claim(a);

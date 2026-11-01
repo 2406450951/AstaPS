@@ -10,8 +10,6 @@ import emu.grasscutter.data.excels.DropTableData;
 import emu.grasscutter.data.excels.ItemData;
 import emu.grasscutter.game.systems.TestPlayers;
 import emu.grasscutter.scripts.data.SceneGadget;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,8 +25,12 @@ class NativeInteractDropTest {
         var gson = new Gson();
         try {
             tables.clear();
-            for (var row : JsonParser.parseString(Files.readString(
-                    Path.of("src/test/resources/native-snapshots/DropTableExcelConfigData.json"))).getAsJsonArray()) {
+            var fixture = NativeInteractDropTest.class.getResourceAsStream(
+                    "/native-snapshots/DropTableExcelConfigData.json");
+            assertNotNull(fixture);
+            for (var row : JsonParser.parseString(new String(
+                    fixture.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8))
+                    .getAsJsonArray()) {
                 var table = gson.fromJson(row, DropTableData.class);
                 tables.put(table.getId(), table);
             }

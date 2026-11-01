@@ -37,17 +37,20 @@ public class HandlerSelectWorktopOptionReq extends PacketHandler {
                 return;
             }
 
-            session.getPlayer().getScene().selectWorktopOptionWith(req);
-            session
-                    .getPlayer()
-                    .getScene()
-                    .getScriptManager()
-                    .callEvent(
-                            new ScriptArgs(
-                                    entity.getGroupId(),
-                                    EventType.EVENT_SELECT_OPTION,
-                                    entity.getConfigId(),
-                                    req.getOptionId()));
+            var scene = session.getPlayer().getScene();
+            // Ley-line encounters dispatch their original EVENT_SELECT_OPTION once.
+            // Do not also deliver the legacy EVENT_SELECT_OPTION trigger.
+            boolean notifyLua = !(entity instanceof EntityGadget flower
+                    && scene.getBlossomManager() != null
+                    && scene.getBlossomManager().isAuthoredWorktop(
+                            flower.getGroupId(), flower.getGadgetId())
+                    && req.getOptionId() == 187);
+            scene.selectWorktopOptionWith(req);
+            if (notifyLua) {
+                scene.getScriptManager().callEvent(
+                        new ScriptArgs(entity.getGroupId(), EventType.EVENT_SELECT_OPTION,
+                                entity.getConfigId(), req.getOptionId()));
+            }
             session
                     .getPlayer()
                     .getQuestManager()
