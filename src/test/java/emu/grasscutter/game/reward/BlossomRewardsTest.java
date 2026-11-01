@@ -112,7 +112,7 @@ class BlossomRewardsTest {
         }
         assertThrows(IllegalArgumentException.class,
                 () -> config.rollBlossom("wealth", 10, 1, new Random(1)));
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalStateException.class,
                 () -> config.rollBlossom("unknown", 5, 1, new Random(1)));
     }
 }
