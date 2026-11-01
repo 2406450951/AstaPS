@@ -184,19 +184,17 @@ public final class RewardConfiguration {
     static void requireBlossomRewardKeys(
             CssRewards.KeySelection selected, Map<String, ?> properties) {
         Object type = properties.get("type");
-        boolean experience = selected.items().getOrDefault("genshin.experience.adventure", 0) > 0;
-        boolean companionship = selected.items().getOrDefault("genshin.experience.companionship", 0) > 0;
-        boolean wealth = selected.items().getOrDefault("genshin.currency.mora", 0) > 0;
-        boolean books = java.util.Set.of(
-                "genshin.avatar_up.wanderers_advice",
-                "genshin.avatar_up.adventurers_experience",
-                "genshin.avatar_up.heros_wit").stream()
-                .anyMatch(key -> selected.items().getOrDefault(key, 0) > 0
-                        || selected.rangedItems().containsKey(key));
-        boolean usesLoot = !selected.loot().isEmpty() || !selected.rangedLoot().isEmpty();
-        if (!experience || !companionship || usesLoot
-                || !("wealth".equals(type) && wealth && !books
-                    || "revelation".equals(type) && books && !wealth)) {
+        boolean kindReward = selected.items().entrySet().stream()
+                .anyMatch(item -> item.getValue() > 0
+                        && !java.util.Set.of(
+                            "genshin.experience.adventure",
+                            "genshin.experience.companionship").contains(item.getKey()))
+                || !selected.rangedItems().isEmpty()
+                || selected.loot().values().stream().anyMatch(count -> count > 0)
+                || !selected.rangedLoot().isEmpty();
+        // The shared blossom rule grants experience only. Each configured kind
+        // must supply an additional reward through Loot CSS.
+        if (!(type instanceof String kind) || kind.isBlank() || !kindReward) {
             throw new IllegalStateException("No complete blossom reward configured for " + properties);
         }
     }
@@ -211,28 +209,10 @@ public final class RewardConfiguration {
         }
     }
 
-    /** Refuse unconfigured or partially configured ley-line rewards. */
-    static void requireBlossomReward(
-            CssRewards.Selection selected, Map<String, ?> properties) {
-        Object type = properties.get("type");
-        boolean experience = selected.items().getOrDefault(102, 0) > 0;
-        boolean companionship = selected.items().getOrDefault(105, 0) > 0;
-        boolean wealth = selected.items().getOrDefault(202, 0) > 0;
-        boolean books = java.util.Set.of(104001, 104002, 104003).stream()
-                .anyMatch(id -> selected.items().getOrDefault(id, 0) > 0
-                        || selected.rangedItems().containsKey(id));
-        boolean usesLoot = !selected.loot().isEmpty() || !selected.rangedLoot().isEmpty();
-        if (!experience || !companionship || usesLoot
-                || !("wealth".equals(type) && wealth && !books
-                    || "revelation".equals(type) && books && !wealth)) {
-            throw new IllegalStateException("No complete blossom reward configured for " + properties);
-        }
-    }
-
     /** Each paid reward set is rolled independently, including Luna I triple claims. */
     public Map<Integer, Integer> rollBlossom(
             String type, int worldLevel, int rolls, RandomGenerator random) {
-        if (!("wealth".equals(type) || "revelation".equals(type))
+        if (type == null || type.isBlank()
                 || worldLevel < 0 || worldLevel > 9 || rolls < 1 || rolls > 3) {
             throw new IllegalArgumentException(
                     "Unknown blossom type/world level: " + type + "/" + worldLevel);
