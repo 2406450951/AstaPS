@@ -34,3 +34,10 @@ desktop.ini
 .DS_Store
 
 dist/
+
+# 只在本地保留的技术文档，不进仓库
+docs/
+
+# 除 README.md 外的一切 markdown 都不上传
+*.md
+!README.md
