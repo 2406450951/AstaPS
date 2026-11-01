@@ -50,6 +50,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.LongSupplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import lombok.*;
@@ -69,7 +70,9 @@ public class Scene {
     @Getter @Setter private transient emu.grasscutter.game.dailytask.DailyTaskGroupLifecycle.State dailyTaskGroups;
     @Getter private final BlossomManager blossomManager;
     private final HashSet<Integer> unlockedForces;
-    private final long startWorldTime;
+    private final LongSupplier sceneTimeSource;
+    private long lastSceneTimeNanos;
+    private long elapsedSceneTimeNanos;
     @Getter @Setter DungeonManager dungeonManager;
     @Getter Int2ObjectMap<Route> sceneRoutes;
     private Set<SpawnDataEntry.GridBlockId> loadedGridBlocks;
@@ -98,6 +101,12 @@ public class Scene {
     private final Map<Integer, Long> arlecchinoNaBoLReduceMs = new ConcurrentHashMap<>();
 
     public Scene(World world, SceneData sceneData) {
+        this(world, sceneData, System::nanoTime);
+    }
+
+    Scene(World world, SceneData sceneData, LongSupplier sceneTimeSource) {
+        this.sceneTimeSource = sceneTimeSource;
+        this.lastSceneTimeNanos = sceneTimeSource.getAsLong();
         this.world = world;
         this.sceneData = sceneData;
         this.players = new CopyOnWriteArrayList<>();
@@ -106,8 +115,6 @@ public class Scene {
 
         this.prevScene = 3;
         this.sceneRoutes = GameData.getSceneRoutes(getId());
-
-        this.startWorldTime = world.getWorldTime();
 
         this.spawnedEntities = ConcurrentHashMap.newKeySet();
         this.deadSpawnedEntities = ConcurrentHashMap.newKeySet();
@@ -188,13 +195,20 @@ public class Scene {
 
     public void setPaused(boolean paused) {
         if (this.isPaused != paused) {
+            this.getSceneTime(); // Account for elapsed scene time before changing pause state.
             this.isPaused = paused;
             this.broadcastPacket(new PacketSceneTimeNotify(this));
         }
     }
 
-    public int getSceneTime() {
-        return (int) (this.getWorld().getWorldTime() - this.startWorldTime);
+    /** Scene animation and combat time continue while a quest locks the in-game clock. */
+    public synchronized int getSceneTime() {
+        long now = this.sceneTimeSource.getAsLong();
+        if (!this.isPaused) {
+            this.elapsedSceneTimeNanos += now - this.lastSceneTimeNanos;
+        }
+        this.lastSceneTimeNanos = now;
+        return (int) (this.elapsedSceneTimeNanos / 1_000_000L);
     }
 
     public int getSceneTimeSeconds() {
@@ -874,7 +888,7 @@ public class Scene {
 
     /**
      * Reports the handful of flags that stop the client's world dead while its menus keep working:
-     * a paused world or scene, locked game time, a scene time that is not advancing, or a player
+     * a paused world or scene, a scene time that is not advancing, or a player
      * stuck short of {@link Player.SceneLoadState#LOADED}. Any of these looks identical in game -
      * the avatar will not walk and everything else stands still - and none of them logs anything on
      * its own, so say so here rather than leaving it to be guessed at.
@@ -890,7 +904,7 @@ public class Scene {
         var notLoaded =
                 this.players.stream()
                         .anyMatch(p -> p.getSceneLoadState() != Player.SceneLoadState.LOADED);
-        var frozen = this.isPaused || world.isPaused() || world.isTimeLocked() || stalled || notLoaded;
+        var frozen = this.isPaused || world.isPaused() || stalled || notLoaded;
 
         var line =
                 "Scene {} tick: sceneTime={} ({}), scenePaused={}, worldPaused={}, timeLocked={},"
