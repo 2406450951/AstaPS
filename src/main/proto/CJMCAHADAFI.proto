@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CJMCAHADAFIOuterClass";
+import "GAKAAEIBBHO.proto";
+
+message CJMCAHADAFI {
+  repeated GAKAAEIBBHO item_list = 501;
+  int32 IEFFGLPDCHA = 502;
+}

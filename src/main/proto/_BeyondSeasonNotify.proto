@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondSeasonNotifyOuterClass";
+import "_BeyondSeasonPhase.proto";
+
+// 7.2 CmdId 5155
+message _BeyondSeasonNotify {
+  uint32 EIEJJCNNDME = 7;
+  _BeyondSeasonPhase _season_phase = 9;
+  uint32 CKDPKBPFFFB = 12;
+  uint32 IBBLLLGCGOC = 14;
+}

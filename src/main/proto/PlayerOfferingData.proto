@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_OfferingPariDetailData.proto";
+
+message PlayerOfferingData {
+  repeated uint32 taken_level_reward_list = 15;
+  map<uint32, uint32> taken_random_level_reward_map = 20000;
+  uint32 level = 11;
+  uint32 offering_id = 7;
+  bool is_first_interact = 5;
+  bool is_new_max_level = 14;
+  oneof detail {
+    _OfferingPariDetailData offering_pari_detail_data = 571;
+  }
+}

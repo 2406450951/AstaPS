@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetGameplayRecommendationReqOuterClass";
+import "GameplayRecommendationElementReliquaryRequest.proto";
+import "GameplayRecommendationReliquaryRequest.proto";
+import "GameplayRecommendationSkillRequest.proto";
+import "_GameplayRecommendationElementReliquarySetRequest.proto";
+import "_GameplayRecommendationElementWeaponRequest.proto";
+import "_GameplayRecommendationReliquarySetRequest.proto";
+import "_GameplayRecommendationWeaponRequest.proto";
+
+// 7.2 CmdId 3515
+message GetGameplayRecommendationReq {
+  uint32 type = 6;
+  uint32 avatar_id = 11;
+  oneof detail {
+    GameplayRecommendationElementReliquaryRequest ElementReliquaryRequest = 776;
+    _GameplayRecommendationReliquarySetRequest ReliquarySetRequest = 802;
+    _GameplayRecommendationElementWeaponRequest ElementWeaponRequest = 989;
+    GameplayRecommendationSkillRequest SkillRequest = 1304;
+    GameplayRecommendationReliquaryRequest ReliquaryRequest = 1529;
+    _GameplayRecommendationWeaponRequest WeaponRequest = 1901;
+    _GameplayRecommendationElementReliquarySetRequest ElementReliquarySetRequest = 1929;
+  }
+}

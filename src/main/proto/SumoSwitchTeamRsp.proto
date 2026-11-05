@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SumoSwitchTeamRspOuterClass";
+import "SumoDungeonTeam.proto";
+
+message SumoSwitchTeamRsp {
+  int32 retcode = 1;
+  uint32 activity_id = 2;
+  uint32 stage_id = 3;
+  uint32 CMGCHFPOKKE = 4;
+  repeated SumoDungeonTeam dungeon_team_list = 5;
+  uint32 NKGJJBJLDCI = 6;
+}

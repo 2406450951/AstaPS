@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Retcode.proto";
+
+message DelBackupAvatarTeamRsp {
+  uint32 backup_avatar_team_id = 2;
+  int32 retcode = 20000;
+}

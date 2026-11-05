@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "WorldRoutineTypeCloseNotifyOuterClass";
+// 7.2 CmdId 28414
+message WorldRoutineTypeCloseNotify {
+  uint32 routine_type = 12;
+}

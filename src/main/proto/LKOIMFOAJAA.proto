@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LKOIMFOAJAAOuterClass";
+import "EADKDFKJENC.proto";
+
+message LKOIMFOAJAA {
+  EADKDFKJENC offset = 501;
+  EADKDFKJENC EJKDAPKHBKM = 502;
+  int32 CNAEHHJMLML = 503;
+  int32 BNAAFLIPNGM = 504;
+}

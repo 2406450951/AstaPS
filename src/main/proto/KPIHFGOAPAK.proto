@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KPIHFGOAPAKOuterClass";
+import "BKEMDKCPMIF.proto";
+import "MCGIBANKONN.proto";
+
+message KPIHFGOAPAK {
+  repeated BKEMDKCPMIF BJMNBBHJAKK = 1;
+  repeated MCGIBANKONN LIODJHAAKPK = 501;
+}

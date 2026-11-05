@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinRaycastSelectTargetOuterClass";
+message AbilityMixinRaycastSelectTarget {
+  repeated uint32 ability_param_list = 7;
+}

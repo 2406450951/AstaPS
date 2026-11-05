@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatGetTrialAvatarRspOuterClass";
+import "AvatarInfo.proto";
+
+// 7.2 CmdId 25789
+message RoleCombatGetTrialAvatarRsp {
+  repeated AvatarInfo avatar_info_list = 3;
+  map<uint32, float> avatar_score_map = 6;
+  int32 retcode = 12;
+}

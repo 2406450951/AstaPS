@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGStartChallengeByCheckRewardRspOuterClass";
+import "GCGLevelType.proto";
+
+// 7.2 CmdId 730
+message GCGStartChallengeByCheckRewardRsp {
+  GCGLevelType level_type = 2;
+  repeated uint32 KMFKANJGJFJ = 3;
+  uint32 config_id = 4;
+  uint32 level_id = 5;
+  repeated uint32 JPMIEKCNJIK = 6;
+  int32 retcode = 9;
+}

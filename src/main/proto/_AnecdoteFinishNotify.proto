@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteFinishNotifyOuterClass";
+import "_AnecdoteFinishInfo.proto";
+
+// 7.2 CmdId 28396
+message _AnecdoteFinishNotify {
+  repeated _AnecdoteFinishInfo _anecdode_finish_info_list = 13;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message HomeSceneJumpRsp {
+  int32 retcode = 12;
+  bool is_enter_room_scene = 13;
+}

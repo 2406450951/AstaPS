@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KNMKJGPGPDBOuterClass";
+import "CHGNKGDAGIC.proto";
+import "INACLKMNDEF.proto";
+
+message KNMKJGPGPDB {
+  repeated CHGNKGDAGIC MHKKOMINPCC = 2;
+  repeated INACLKMNDEF GDOAOLABHDH = 3;
+}

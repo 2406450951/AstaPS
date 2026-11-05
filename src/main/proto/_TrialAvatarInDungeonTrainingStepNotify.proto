@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TrialAvatarInDungeonTrainingStepNotifyOuterClass";
+// 7.2 CmdId 26598
+message _TrialAvatarInDungeonTrainingStepNotify {
+  uint32 trial_avatar_index_id = 4;
+  uint32 _training_step = 6;
+}

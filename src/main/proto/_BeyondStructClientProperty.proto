@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondStructClientPropertyOuterClass";
+import "ODCKNOOPBCD.proto";
+
+message _BeyondStructClientProperty {
+  ODCKNOOPBCD CPOCDJDECKL = 1;
+  ODCKNOOPBCD DAOIDIAMLBK = 2;
+}

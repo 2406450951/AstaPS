@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TakeBeyondBattlePassRewardReqOuterClass";
+import "_BeyondBattlePassRewardTakeOption.proto";
+
+// 7.2 CmdId 3847
+message _TakeBeyondBattlePassRewardReq {
+  repeated _BeyondBattlePassRewardTakeOption take_option_list = 2;
+}

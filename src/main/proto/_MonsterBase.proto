@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DJNNMCLAEBL.proto";
+
+message _MonsterBase {
+  repeated DJNNMCLAEBL EPPLNKCAPHJ = 20000;
+  uint32 NLACIAJDIGD = 20001;
+  uint32 GNHNOINLCFC = 20002;
+  float NDAPJMNKOGL = 20003;
+}

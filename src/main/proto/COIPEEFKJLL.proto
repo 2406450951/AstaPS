@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "COEBLNIFMOB.proto";
+import "MathQuaternion.proto";
+
+message COIPEEFKJLL {
+  COEBLNIFMOB MACBLCOGECN = 1;
+  MathQuaternion MLMLPOHCFEI = 2;
+}

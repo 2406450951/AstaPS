@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LIFBHMPNFNLOuterClass";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+
+message LIFBHMPNFNL {
+  int32 index = 1;
+  int32 DPDHBEPEHEL = 2;
+  int32 KGMPIFLANKH = 3;
+  float KHDJPMOELBN = 4;
+  bool DBIAONGEALF = 5;
+  float HDAEDIBLCLJ = 6;
+  bool JBAGGOHKFBF = 7;
+  bool BEPNJOLHKCI = 8;
+  float LNJKBEKLDBG = 9;
+  string NCBGMIIIDJB = 10;
+  FAGMGLAJFNL LOOHDNJOPJO = 11;
+  HHEDHCFPEKM DHNLOFJPNMO = 12;
+  string JDNFCBBKMCK = 501;
+  uint32 OPGNEJPKPJE = 502;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ActivityClientPlayGetFriendRecordListReqOuterClass";
+// 7.2 CmdId 23316
+message _ActivityClientPlayGetFriendRecordListReq {
+  uint32 schedule_id = 4;
+  uint32 level_id = 6;
+}

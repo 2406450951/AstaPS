@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EIHOFHPLHMH.proto";
+
+message AJKHPLDCLEO {
+  repeated EIHOFHPLHMH BMJDALKAMOO = 20000;
+  bool is_open = 2;
+  bool is_finish = 3;
+  uint32 score = 4;
+  uint32 level_id = 1;
+}

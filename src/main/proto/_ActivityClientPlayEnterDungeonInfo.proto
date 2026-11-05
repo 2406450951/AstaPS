@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ActivityClientPlayEnterDungeonInfoOuterClass";
+import "_AquariumDivingEnterInfo.proto";
+import "_AquariumFishingEnterInfo.proto";
+import "_BubbleDramaBattleEnterInfo.proto";
+import "_DiversityBattleEnterInfo.proto";
+import "_HolidayResortBattleEnterInfo.proto";
+import "_LanternRiteV6BattleEnterInfo.proto";
+import "_LoliBattleEnterInfo.proto";
+import "_RankedMatchSnowBallEnterInfo.proto";
+import "_RogueBallEnterInfo.proto";
+import "_ShortVideoEnterInfo.proto";
+import "_SnowRaceCombatEnterInfo.proto";
+import "_SumeruAdventureGoalFightingEnterInfo.proto";
+import "_SummonBattleEnterInfo.proto";
+import "_TeyvatDispatchEnterInfo.proto";
+import "_TradeShowBattleEnterInfo.proto";
+import "_VineManRunEnterInfo.proto";
+
+message _ActivityClientPlayEnterDungeonInfo {
+  oneof detail {
+    _VineManRunEnterInfo VineManRunEnterInfo = 2844;
+    _AquariumDivingEnterInfo AquariumDivingEnterInfo = 3499;
+    _TradeShowBattleEnterInfo TradeShowBattleEnterInfo = 4535;
+    _TeyvatDispatchEnterInfo TeyvatDispatchEnterInfo = 7141;
+    _HolidayResortBattleEnterInfo HolidayResortBattleEnterInfo = 8287;
+    _BubbleDramaBattleEnterInfo BubbleDramaBattleEnterInfo = 10640;
+    _LoliBattleEnterInfo LoliBattleEnterInfo = 11584;
+    _RankedMatchSnowBallEnterInfo RankedMatchSnowBallEnterInfo = 11806;
+    _SummonBattleEnterInfo SummonBattleEnterInfo = 13082;
+    _RogueBallEnterInfo RogueBallEnterInfo = 13614;
+    _ShortVideoEnterInfo ShortVideoEnterInfo = 14338;
+    _DiversityBattleEnterInfo DiversityBattleEnterInfo = 15058;
+    _SumeruAdventureGoalFightingEnterInfo SumeruAdventureGoalFightingEnterInfo = 15534;
+    _AquariumFishingEnterInfo AquariumFishingEnterInfo = 16914;
+    _LanternRiteV6BattleEnterInfo LanternRiteV6BattleEnterInfo = 17047;
+    _SnowRaceCombatEnterInfo SnowRaceCombatEnterInfo = 17372;
+  }
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FurnitureMakeSlot.proto";
+import "ItemParam.proto";
+
+message TakeFurnitureMakeRsp {
+  repeated ItemParam return_item_list = 20000;
+  FurnitureMakeSlot furniture_make_slot = 6;
+  repeated ItemParam output_item_list = 20001;
+  int32 retcode = 9;
+  uint32 make_id = 11;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGPlayerGCGStateOuterClass";
+message GCGPlayerGCGState {
+  uint32 uid = 2;
+  bool FCJPKMLGLGG = 6;
+  bool GFDAMIDFCNP = 15;
+}

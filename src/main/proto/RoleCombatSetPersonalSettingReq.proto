@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatSetPersonalSettingReqOuterClass";
+// 7.2 CmdId 6462
+message RoleCombatSetPersonalSettingReq {
+  oneof detail {
+    bool IsShowBriefCardEventCase = 26;
+    uint32 BgmId = 675;
+    uint32 RedPoint = 1439;
+    bool IsShowAnimation = 1705;
+    bool IsShowDetailBuild = 1867;
+  }
+}

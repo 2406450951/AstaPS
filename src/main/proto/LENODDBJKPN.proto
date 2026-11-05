@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LENODDBJKPNOuterClass";
+message LENODDBJKPN {
+  int32 FGKDHACCBKG = 501;
+  uint32 HEHIFJNAKPL = 502;
+}

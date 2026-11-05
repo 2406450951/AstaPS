@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanternRiteV6DanmakuSettleInfoOuterClass";
+import "Uint32Pair.proto";
+
+message _LanternRiteV6DanmakuSettleInfo {
+  uint32 HMIHJHMGJIO = 1;
+  bool is_new_record = 2;
+  uint32 _round_num = 3;
+  bool _is_level_finished = 4;
+  uint32 EMFELAIEBKP = 5;
+  uint32 BKDKLLAEHBG = 6;
+  repeated Uint32Pair _danmaku_stat_list = 7;
+  uint32 JBMOLNILIAJ = 8;
+  uint32 CMLOLBPAKEA = 9;
+  uint32 IHAFMFBIPEA = 10;
+  uint32 JIBLMHBCNNF = 11;
+  uint32 kill_num = 12;
+  uint32 JJFAAIEAGCC = 13;
+  uint32 PONADEEONGM = 14;
+  uint32 LEHDGCOOCCC = 15;
+}

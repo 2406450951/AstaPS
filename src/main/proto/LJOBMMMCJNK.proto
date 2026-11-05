@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LJOBMMMCJNKOuterClass";
+import "DFJCEGIFJFC.proto";
+
+message LJOBMMMCJNK {
+  int32 GOMEMIHOALH = 1;
+  float CGFFJIKOOHI = 2;
+  repeated DFJCEGIFJFC LKKNIECDBGA = 3;
+}

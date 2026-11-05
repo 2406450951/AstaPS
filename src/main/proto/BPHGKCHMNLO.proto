@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BPHGKCHMNLOOuterClass";
+import "FFGFGDKJNNC.proto";
+import "MOGKADDKMIE.proto";
+import "PPHMMIAHJBE.proto";
+
+message BPHGKCHMNLO {
+  int32 KOAOELLDNDI = 1;
+  oneof detail {
+    MOGKADDKMIE EffectClip = 11;
+    FFGFGDKJNNC AlertEffectClip = 12;
+    PPHMMIAHJBE SoundEffectClip = 13;
+  }
+}

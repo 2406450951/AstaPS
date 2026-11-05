@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BreakoutSnapShot.proto";
+import "LJGEHMILKEM.proto";
+import "MassivePropSyncInfo.proto";
+import "MixinRecoverDrawPlayInfo.proto";
+import "_DrawPlayInfo.proto";
+import "_FilmfestBallGameSnapShot.proto";
+
+message AbilityMixinRecoverInfo {
+  _FilmfestBallGameSnapShot _filmfest_ball_game_snap_shot = 8;
+  repeated MassivePropSyncInfo massive_prop_list = 6;
+  BreakoutSnapShot breakout_snap_shot = 7;
+  MixinRecoverDrawPlayInfo ICHAPPFECHA = 9;
+  repeated float BEGNLOGJPIF = 11;
+  repeated uint32 data_list = 4;
+  uint32 local_id = 3;
+  LJGEHMILKEM FPDAONBEBHK = 10;
+  oneof source {
+    uint32 instanced_ability_id = 1;
+    uint32 instanced_modifier_id = 2;
+  }
+  oneof info {
+    _DrawPlayInfo draw_play_info = 100;
+  }
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ChessPlayerInfoOuterClass";
+import "ChessNormalCardInfo.proto";
+
+message ChessPlayerInfo {
+  uint32 uid = 1;
+  uint32 building_points = 2;
+  uint32 JPAIMBCHDMK = 3;
+  uint32 FFDFPIEKNNI = 4;
+  repeated ChessNormalCardInfo candidate_card_info_list = 5;
+  uint32 IKAPKKMGHKC = 6;
+  uint32 LKAGADMGICA = 7;
+}

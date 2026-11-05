@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AISnapshotEntityDataOuterClass";
+import "AISnapshotEntitySkillCycle.proto";
+
+message AISnapshotEntityData {
+  float MAEBLFAHNBD = 1;
+  float ELCFBLPGAHN = 2;
+  map<uint32, uint32> hitting_avatars = 4;
+  uint32 AJKJPKLBEBK = 5;
+  uint32 CPBCJHHOONF = 7;
+  uint32 KEAHGFLIAMB = 8;
+  float JDBCMKBGKOG = 9;
+  uint32 BCFNMBJCBKK = 10;
+  repeated AISnapshotEntitySkillCycle finished_skill_cycles = 12;
+  uint32 entity_id = 13;
+  float OELALNPOOMD = 14;
+  uint32 attack_target_id = 15;
+}

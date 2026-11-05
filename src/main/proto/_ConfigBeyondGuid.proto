@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ConfigBeyondGuidOuterClass";
+message _ConfigBeyondGuid {
+  uint32 JHNBEMPDKJN = 1;
+  uint32 BOGBGGGHEJK = 2;
+  uint32 BIMHGABOPBD = 3;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneAvatarStaminaStepRspOuterClass";
+import "Vector.proto";
+
+// 7.2 CmdId 23102
+message SceneAvatarStaminaStepRsp {
+  bool use_client_rot = 1;
+  int32 retcode = 7;
+  Vector rot = 10;
+}

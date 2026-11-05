@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGMessagePackNotifyOuterClass";
+import "GCGMessagePack.proto";
+
+// 7.2 CmdId 24089
+message GCGMessagePackNotify {
+  repeated GCGMessagePack msg_pack_list = 10;
+  uint32 server_seq = 14;
+}

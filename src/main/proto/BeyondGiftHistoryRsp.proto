@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondGiftHistoryRspOuterClass";
+import "FriendBrief.proto";
+import "NIHABLEAIKB.proto";
+
+// 7.2 CmdId 997
+message BeyondGiftHistoryRsp {
+  uint32 param = 1;
+  int32 retcode = 3;
+  FriendBrief brief = 4;
+  NIHABLEAIKB KEMNHCJNGFM = 6;
+}

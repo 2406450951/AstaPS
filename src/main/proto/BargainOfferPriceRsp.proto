@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BargainResultType.proto";
+
+message BargainOfferPriceRsp {
+  uint32 result_param = 10;
+  int32 cur_mood = 14;
+  BargainResultType bargain_result = 3;
+  int32 retcode = 12;
+}

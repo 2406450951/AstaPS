@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "VisionType.proto";
+
+message SceneEntityDisappearNotify {
+  repeated uint32 entity_list = 1;
+  uint32 param = 8;
+  VisionType disappear_type = 4;
+}

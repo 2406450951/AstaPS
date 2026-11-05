@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MpPlayPrepareNotifyOuterClass";
+// 7.2 CmdId 7073
+message MpPlayPrepareNotify {
+  uint32 mp_play_id = 6;
+  uint32 prepare_end_time = 15;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IGMFPLEOKJEOuterClass";
+import "BLEMFOBEGLK.proto";
+import "JGPKDJMJOGO.proto";
+
+message IGMFPLEOKJE {
+  int32 CJMBPAEMABJ = 501;
+  BLEMFOBEGLK EIIKCOBLMGK = 502;
+  JGPKDJMJOGO GFKOKBOJIKA = 503;
+  uint32 data_version = 504;
+}

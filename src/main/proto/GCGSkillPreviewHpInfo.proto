@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGSkillPreviewHpInfoOuterClass";
+import "GCGSkillHpChangeType.proto";
+
+message GCGSkillPreviewHpInfo {
+  GCGSkillHpChangeType change_type = 8;
+  bool OEPIEOOJLLG = 9;
+  uint32 hp_change_value = 10;
+}

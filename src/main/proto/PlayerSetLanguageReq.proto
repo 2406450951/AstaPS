@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerSetLanguageReqOuterClass";
+// 7.2 CmdId 9823
+message PlayerSetLanguageReq {
+  uint32 language_type = 5;
+}

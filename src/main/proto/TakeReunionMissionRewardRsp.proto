@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TakeReunionMissionRewardRspOuterClass";
+import "ReunionMissionInfo.proto";
+
+// 7.2 CmdId 26498
+message TakeReunionMissionRewardRsp {
+  ReunionMissionInfo mission_info = 6;
+  int32 retcode = 7;
+  uint32 reward_index = 9;
+  uint32 reward_id = 11;
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _TowerDefenseDetailInfo {
+  repeated uint32 _unlocked_skill_id_list = 2;
+}

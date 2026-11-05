@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DraftTwiceConfirmResultNotifyOuterClass";
+// 7.2 CmdId 9206
+message DraftTwiceConfirmResultNotify {
+  uint32 draft_id = 2;
+  bool is_all_argee = 3;
+}

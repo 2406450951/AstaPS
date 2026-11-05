@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HOKMKHGAHIAOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message HOKMKHGAHIA {
+  uint32 JFBIDBBFBPG = 1;
+  HHEDHCFPEKM position = 2;
+  HHEDHCFPEKM rotation = 3;
+  uint32 EFIBCGLGEDN = 5;
+  uint32 BELNKALGCOD = 6;
+  uint32 PIJAAKAOJMK = 7;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LuaEnvironmentEffectNotifyOuterClass";
+// 7.2 CmdId 25685
+message LuaEnvironmentEffectNotify {
+  repeated int32 int_param_list = 4;
+  repeated float float_param_list = 9;
+  uint32 type = 10;
+  string effect_alias = 14;
+}

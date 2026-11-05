@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeBlockNotifyOuterClass";
+// 7.2 CmdId 28011
+message HomeBlockNotify {
+  uint32 end_time = 4;
+}

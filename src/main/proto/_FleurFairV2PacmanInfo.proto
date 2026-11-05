@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_FleurFairV2PacmanInfoOuterClass";
+message _FleurFairV2PacmanInfo {
+  bool CIKPBJKPAHL = 1;
+}

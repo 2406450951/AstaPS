@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatGetRentalAvatarInfoRspOuterClass";
+import "ShowAvatarInfo.proto";
+
+// 7.2 CmdId 29943
+message RoleCombatGetRentalAvatarInfoRsp {
+  repeated uint32 DGFBLDCBFFN = 1;
+  bool is_for_selection = 3;
+  int32 retcode = 9;
+  repeated ShowAvatarInfo show_avatar_info_list = 10;
+}

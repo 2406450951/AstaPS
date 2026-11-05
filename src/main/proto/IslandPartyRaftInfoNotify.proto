@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IslandPartyRaftInfoNotifyOuterClass";
+message IslandPartyRaftInfoNotify {
+  uint32 GFGFPMMBCLJ = 1;
+  uint32 HAOCGAOJNJO = 2;
+  uint32 point_id = 3;
+  uint32 coin = 4;
+}

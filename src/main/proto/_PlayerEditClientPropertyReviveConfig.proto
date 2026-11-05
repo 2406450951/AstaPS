@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_PlayerEditClientPropertyReviveConfigOuterClass";
+import "FAGMGLAJFNL.proto";
+
+message _PlayerEditClientPropertyReviveConfig {
+  FAGMGLAJFNL IHIDLFPOONM = 1;
+  float LJJLNLJBHPL = 2;
+  float GENGGNCLLJL = 3;
+  bool KFCDKOFKPAE = 4;
+  bool DHKICBICGCB = 5;
+  int32 revive_count = 6;
+  int32 GBOMDAFFIDN = 7;
+  bool NHPGODJJPOJ = 8;
+  bool PDIBBCAPPEN = 9;
+  repeated int32 AAAMFEANIGO = 10;
+}

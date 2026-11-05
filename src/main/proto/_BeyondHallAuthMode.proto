@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondHallAuthModeOuterClass";
+enum _BeyondHallAuthMode {
+  _BEYOND_HALL_AUTH_MODE_HALL_AUTH_MODE_NONE = 0;
+  _BEYOND_HALL_AUTH_MODE_HALL_AUTH_MODE_ONLY_INVITE = 1;
+  _BEYOND_HALL_AUTH_MODE_HALL_AUTH_MODE_NEED_PASSCODE = 2;
+  _BEYOND_HALL_AUTH_MODE_HALL_AUTH_MODE_FREEDOM = 3;
+}

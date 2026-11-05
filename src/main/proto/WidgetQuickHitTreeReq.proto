@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "WidgetQuickHitTreeReqOuterClass";
+import "HitTreeInfo.proto";
+
+// 7.2 CmdId 7605
+message WidgetQuickHitTreeReq {
+  repeated HitTreeInfo hit_tree_info_list = 12;
+}

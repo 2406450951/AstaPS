@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMetaUpdateResourceGlobalValueOuterClass";
+import "_AbilityUpdateResourceGlobalValue.proto";
+
+message AbilityMetaUpdateResourceGlobalValue {
+  repeated _AbilityUpdateResourceGlobalValue _update_value_list = 8;
+}

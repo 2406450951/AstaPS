@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message DJBEAHLAPPI {
+  bool is_open = 6;
+  uint32 level_id = 7;
+  uint32 max_score = 2;
+}

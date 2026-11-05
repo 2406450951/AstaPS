@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JAJJENPKBFOOuterClass";
+import "OEJONGMLDME.proto";
+
+message JAJJENPKBFO {
+  string name = 1;
+  int32 NPFMHKIMICA = 2;
+  int32 GADCBBBPIKG = 3;
+  float DOOHFKABDPL = 4;
+  OEJONGMLDME PKINIBADINO = 5;
+  OEJONGMLDME HPHAOOHJOPE = 6;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LAGNKDOBLAPOuterClass";
+import "PEONONJBFAI.proto";
+
+message LAGNKDOBLAP {
+  uint32 LKBPIMEBCAE = 1;
+  repeated PEONONJBFAI OAJNHLFAAHJ = 2;
+}

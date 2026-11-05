@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ResinCardDataUpdateNotifyOuterClass";
+import "ResinCardData.proto";
+
+// 7.2 CmdId 5721
+message ResinCardDataUpdateNotify {
+  uint32 today_start_time = 3;
+  repeated ResinCardData card_data_list = 4;
+}

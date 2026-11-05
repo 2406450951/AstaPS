@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LuminanceStoneChallengeGallerySettleInfoOuterClass";
+import "GalleryStopReason.proto";
+
+message LuminanceStoneChallengeGallerySettleInfo {
+  uint32 kill_monster_count = 3;
+  uint32 final_score = 5;
+  uint32 kill_special_monster_count = 7;
+  uint32 clean_mud_count = 9;
+  uint32 gallery_id = 11;
+  GalleryStopReason reason = 13;
+}

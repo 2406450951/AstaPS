@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Uint32Pair.proto";
+
+message _LanternRiteV6DanmakuTechInfo {
+  repeated Uint32Pair _tech_node_id_level_list = 13;
+  repeated uint32 _unlocked_tech_group_id_list = 14;
+  uint32 _boss_coin_num = 15;
+  uint32 coin_num = 1;
+}

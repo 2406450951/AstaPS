@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KMLNJENCMDBOuterClass";
+import "JAIAPDILDKK.proto";
+
+message KMLNJENCMDB {
+  repeated JAIAPDILDKK CPOCDJDECKL = 1;
+  repeated uint32 NBBGBFOIEDH = 2;
+}

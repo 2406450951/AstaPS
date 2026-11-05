@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UpgradeOpOuterClass";
+message _UpgradeOp {
+  uint32 entity_id = 2;
+  bool _is_add_mod = 4;
+  repeated uint32 _tower_mod_id_list = 10;
+}

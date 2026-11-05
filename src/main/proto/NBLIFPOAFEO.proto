@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NBLIFPOAFEOOuterClass";
+message NBLIFPOAFEO {
+  string JCIAHNCHMLN = 7;
+  bool IOANLCJOCEJ = 8;
+  bool JPBLOILHDOF = 9;
+}

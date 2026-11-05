@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LCJIHBGHKOMOuterClass";
+message LCJIHBGHKOM {
+  string CJBBBJCEGAG = 1;
+  uint32 DFPHDLBAMKI = 2;
+  bool LNNLOCHGMGM = 3;
+  uint32 MAPIFODEMHG = 4;
+  uint32 PGHKDPAEHFG = 5;
+  uint32 IJKGJHENLOA = 6;
+  uint32 HFHCKENIGAI = 7;
+}

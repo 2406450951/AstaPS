@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BomberV3SettleInfoOuterClass";
+import "GLFHFINPHDL.proto";
+import "HHEKGPHBFHK.proto";
+
+message _BomberV3SettleInfo {
+  uint32 KDBLHFFGAJL = 1;
+  bool is_succ = 2;
+  map<uint32, HHEKGPHBFHK> NGMJFDHLKAF = 3;
+  map<uint32, uint32> IDCFMEEIIKL = 4;
+  uint32 _current_score = 5;
+  GLFHFINPHDL LPKJJFPMNGP = 6;
+}

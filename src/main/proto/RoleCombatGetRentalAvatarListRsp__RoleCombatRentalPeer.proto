@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatGetRentalAvatarListRsp__RoleCombatRentalPeerOuterClass";
+import "FriendBrief.proto";
+import "OIDJPAPMPEH.proto";
+import "RoleCombatRentalAvatarBrief.proto";
+
+message RoleCombatGetRentalAvatarListRsp__RoleCombatRentalPeer {
+  FriendBrief _friend_brief = 3;
+  repeated RoleCombatRentalAvatarBrief show_avatar_info_list = 12;
+  OIDJPAPMPEH reason = 15;
+}

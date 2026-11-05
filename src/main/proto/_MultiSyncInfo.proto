@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "IHPAJHCDDIF.proto";
+
+message _MultiSyncInfo {
+  repeated IHPAJHCDDIF KBMGLOPGOHF = 20000;
+}

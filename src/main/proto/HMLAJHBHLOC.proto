@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HMLAJHBHLOCOuterClass";
+import "DLEEHOLOJKM.proto";
+import "KCIAPDNPNHE.proto";
+import "KEDIEGLJIMC.proto";
+
+message HMLAJHBHLOC {
+  bool OKAMAEKCEHL = 1;
+  KCIAPDNPNHE DAGHAJIBDPA = 2;
+  KEDIEGLJIMC AIAFEGAILDI = 3;
+  DLEEHOLOJKM KFPHCDOLFLO = 4;
+}

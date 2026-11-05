@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterSteerByCvPosOuterClass";
+message _MonsterSteerByCvPos {
+  float PEKLOOCKKEO = 1;
+  float IEMALPEJCHE = 2;
+  string ENEIMDCKDOL = 3;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GroupLinkAllNotifyOuterClass";
+import "GroupLinkBundle.proto";
+
+// 7.2 CmdId 4929
+message GroupLinkAllNotify {
+  repeated GroupLinkBundle bundle_list = 14;
+}

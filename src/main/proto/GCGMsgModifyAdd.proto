@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGMsgModifyAddOuterClass";
+import "GCGReason.proto";
+
+message GCGMsgModifyAdd {
+  uint32 pos = 1;
+  uint32 controller_id = 2;
+  GCGReason reason = 4;
+  uint32 owner_card_guid = 8;
+  repeated uint32 card_guid_list = 15;
+}

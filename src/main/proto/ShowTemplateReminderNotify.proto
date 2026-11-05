@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ShowTemplateReminderNotifyOuterClass";
+// 7.2 CmdId 23631
+message ShowTemplateReminderNotify {
+  uint32 template_reminder_id = 5;
+  repeated uint32 param_uid_list = 8;
+  bool is_need_cache = 12;
+  repeated int32 param_list = 14;
+  bool is_revoke = 15;
+}

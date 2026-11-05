@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DungeonChatChannelDataNotifyOuterClass";
+import "ChatChannelInfo.proto";
+import "_ChatChannelPlayerInfo.proto";
+
+// 7.2 CmdId 25590
+message _DungeonChatChannelDataNotify {
+  repeated ChatChannelInfo channel_info_list = 7;
+  uint32 dungeon_id = 10;
+  repeated _ChatChannelPlayerInfo _channel_player_info_list = 14;
+}

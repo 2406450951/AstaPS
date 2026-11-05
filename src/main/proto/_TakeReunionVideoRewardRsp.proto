@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TakeReunionVideoRewardRspOuterClass";
+import "_ReunionVideoInfo.proto";
+
+// 7.2 CmdId 23774
+message _TakeReunionVideoRewardRsp {
+  _ReunionVideoInfo _video_info = 1;
+  int32 retcode = 13;
+}

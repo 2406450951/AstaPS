@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondProfileTagListUpdateRspOuterClass";
+import "_BeyondProfileTag.proto";
+
+// 7.2 CmdId 4215
+message _BeyondProfileTagListUpdateRsp {
+  int32 retcode = 4;
+  repeated _BeyondProfileTag _profile_tag_list = 7;
+}

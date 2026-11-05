@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtCombatForceSetPosInfoOuterClass";
+import "Vector.proto";
+
+message EvtCombatForceSetPosInfo {
+  uint32 GAJBKPDCLPG = 1;
+  uint32 entity_id = 3;
+  uint32 JGHICKGPMBK = 7;
+  Vector target_pos = 9;
+}

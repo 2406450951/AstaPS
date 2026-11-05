@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DPBGJGHKDAFOuterClass";
+import "EJIEHJMIPEO.proto";
+
+message DPBGJGHKDAF {
+  uint32 id = 501;
+  string name = 502;
+  EJIEHJMIPEO state = 503;
+}

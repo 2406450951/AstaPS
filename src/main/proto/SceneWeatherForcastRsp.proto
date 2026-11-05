@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneWeatherForcastRspOuterClass";
+// 7.2 CmdId 2833
+message SceneWeatherForcastRsp {
+  int32 retcode = 10;
+  uint64 next_climate_time = 11;
+  repeated uint32 forcast_climate_list = 13;
+}

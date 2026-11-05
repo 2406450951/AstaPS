@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EditUgcDungeonNotifyOuterClass";
+import "_UgcDungeon.proto";
+
+// 7.2 CmdId 20041
+message EditUgcDungeonNotify {
+  repeated uint32 BJPFEJPEDHH = 7;
+  _UgcDungeon _ugc_dungeon = 10;
+  uint32 EPENICHJBLM = 11;
+}

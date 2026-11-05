@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGStartChallengeRspOuterClass";
+import "GCGLevelType.proto";
+
+// 7.2 CmdId 20162
+message GCGStartChallengeRsp {
+  GCGLevelType level_type = 3;
+  int32 retcode = 4;
+  uint32 config_id = 9;
+  uint32 level_id = 11;
+}

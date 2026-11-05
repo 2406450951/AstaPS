@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeUpdateFishFarmingInfoReqOuterClass";
+import "HomeFishFarmingInfo.proto";
+
+// 7.2 CmdId 7256
+message HomeUpdateFishFarmingInfoReq {
+  HomeFishFarmingInfo fish_farming_info = 2;
+}

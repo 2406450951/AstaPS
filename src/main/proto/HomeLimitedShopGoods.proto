@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeLimitedShopGoodsOuterClass";
+import "ItemParam.proto";
+
+message HomeLimitedShopGoods {
+  uint32 EKBDOJOIBCM = 3;
+  uint32 bought_num = 4;
+  ItemParam goods_item = 6;
+  repeated ItemParam cost_item_list = 7;
+  uint32 LEPBNNPODAK = 8;
+  uint32 goods_id = 13;
+}

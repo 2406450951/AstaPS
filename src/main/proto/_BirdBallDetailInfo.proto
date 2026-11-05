@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "KOCMFKMIOLG.proto";
+
+message _BirdBallDetailInfo {
+  repeated KOCMFKMIOLG KCOEGOOMHFF = 20000;
+  repeated KOCMFKMIOLG HBAJAHIMHEA = 20001;
+  uint32 GAKBBPPDPEG = 20002;
+}

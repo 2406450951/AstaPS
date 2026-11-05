@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerCompoundMaterialBoostRspOuterClass";
+import "CompoundBoostTakeStatusType.proto";
+import "CompoundQueueData.proto";
+import "ItemParam.proto";
+
+// 7.2 CmdId 23127
+message PlayerCompoundMaterialBoostRsp {
+  int32 retcode = 9;
+  repeated ItemParam take_item_list = 10;
+  repeated CompoundQueueData compound_que_data_list = 11;
+  CompoundBoostTakeStatusType take_status = 15;
+}

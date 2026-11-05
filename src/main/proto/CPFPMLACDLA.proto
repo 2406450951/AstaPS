@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CPFPMLACDLAOuterClass";
+enum CPFPMLACDLA {
+  CPFPMLACDLA_OFFICIAL = 0;
+  CPFPMLACDLA_CUSTOM = 1;
+  CPFPMLACDLA_SUB_BLUEPRINT = 2;
+}

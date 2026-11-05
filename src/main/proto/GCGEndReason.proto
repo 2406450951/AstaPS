@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGEndReasonOuterClass";
+enum GCGEndReason {
+  GCGEND_REASON_DEFAULT = 0;
+  GCGEND_REASON_DIE = 1;
+  GCGEND_REASON_SURRENDER = 2;
+  GCGEND_REASON_DISCONNECTED = 3;
+  GCGEND_REASON_ROUND_LIMIT = 4;
+  GCGEND_REASON_GM = 5;
+  GCGEND_REASON_NO_PLAYER = 6;
+  GCGEND_REASON_GIVE_UP = 7;
+  GCGEND_REASON_INIT_TIMEOUT = 8;
+  GCGEND_REASON_EFFECT = 9;
+  GCGEND_REASON_EXPIRE_TIMEOUT = 10;
+}

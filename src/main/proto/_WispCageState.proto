@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum _WispCageState {
+  _WispCageState_WISP_CAGE_STATE_NOT_EXIST = 0;
+  _WispCageState_WISP_CAGE_STATE_CREATED = 1;
+  _WispCageState_WISP_CAGE_STATE_MATERIAL_DELIVERED = 2;
+  _WispCageState_WISP_CAGE_STATE_NOT_TAKE_REWARD = 3;
+}

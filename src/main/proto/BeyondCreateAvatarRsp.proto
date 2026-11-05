@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondCreateAvatarRspOuterClass";
+import "AvatarRenameCooldownInfo.proto";
+
+// 7.2 CmdId 3043
+message BeyondCreateAvatarRsp {
+  string avatar_name = 7;
+  int32 retcode = 8;
+  bool OFAINFHFGEH = 9;
+  uint32 avatar_id = 13;
+  AvatarRenameCooldownInfo rename_cooldown_info = 14;
+}

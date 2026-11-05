@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FishPoolDataNotifyOuterClass";
+// 7.2 CmdId 4435
+message FishPoolDataNotify {
+  uint32 today_fish_num = 11;
+  uint32 entity_id = 15;
+}

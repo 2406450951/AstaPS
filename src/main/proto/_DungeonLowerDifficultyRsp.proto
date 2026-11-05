@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DungeonLowerDifficultyRspOuterClass";
+// 7.2 CmdId 3121
+message _DungeonLowerDifficultyRsp {
+  int32 retcode = 7;
+  uint32 dungeon_id = 10;
+  uint32 GBKNBHKPLCE = 15;
+}

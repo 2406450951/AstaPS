@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BossChestActivateNotifyOuterClass";
+// 7.2 CmdId 8678
+message BossChestActivateNotify {
+  uint32 entity_id = 9;
+  repeated uint32 qualify_uid_list = 15;
+}

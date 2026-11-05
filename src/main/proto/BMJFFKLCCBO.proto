@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BMJFFKLCCBOOuterClass";
+message BMJFFKLCCBO {
+  uint32 language_type = 1;
+  string GNADMIBPMBG = 2;
+}

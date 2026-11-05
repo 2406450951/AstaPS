@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ElectroherculesBattleSettleNotifyOuterClass";
+message ElectroherculesBattleSettleNotify {
+  uint32 stage_id = 1;
+  uint32 diffculty = 2;
+  uint32 gallery_id = 3;
+  uint32 finish_time = 4;
+  bool is_new_record = 5;
+  bool is_succ = 6;
+  bool is_activity_finish = 7;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGDuelChallengeOuterClass";
+message GCGDuelChallenge {
+  uint32 cur_progress = 6;
+  uint32 total_progress = 9;
+  uint32 challenge_id = 14;
+}

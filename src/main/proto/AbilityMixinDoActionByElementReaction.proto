@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinDoActionByElementReactionOuterClass";
+message AbilityMixinDoActionByElementReaction {
+  uint32 reaction_type = 1;
+  repeated uint32 NGFEAKFMEIG = 8;
+  uint32 target_entity_id = 13;
+}

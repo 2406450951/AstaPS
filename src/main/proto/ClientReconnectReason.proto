@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ClientReconnectReasonOuterClass";
+enum ClientReconnectReason {
+  CLIENT_RECONNECT_REASON_CLIENT_RECONNNECT_NONE = 0;
+  CLIENT_RECONNECT_REASON_CLIENT_RECONNNECT_QUIT_MP = 1;
+  CLIENT_RECONNECT_REASON_CLIENT_RECONNNECT_SCENE_TIME_CHECK_FAIL = 2;
+  CLIENT_RECONNECT_REASON_CLIENT_RECONNNECT_ENTER_QUEST_FOCUS = 3;
+}

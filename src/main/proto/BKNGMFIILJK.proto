@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BKNGMFIILJKOuterClass";
+import "HHEDHCFPEKM.proto";
+import "PCPIPOPCCBF.proto";
+
+message BKNGMFIILJK {
+  bool OIAHDOHEOPC = 1;
+  int32 IEEDILFDHCL = 2;
+  bool NFINMHDHEDG = 3;
+  float radius = 4;
+  float height = 5;
+  float GBGLGNFAJIL = 6;
+  float width = 7;
+  float AGPHJLHNHAB = 8;
+  float JCFHCPKGMMM = 9;
+  PCPIPOPCCBF CCPJFGFJJFP = 10;
+  PCPIPOPCCBF HEEJFJNAHCN = 11;
+  PCPIPOPCCBF NGCDJPAPPEF = 12;
+  PCPIPOPCCBF OCPDPLKIGOP = 13;
+  PCPIPOPCCBF CAPFOOHJOED = 14;
+  int32 EMCJBDJHKFH = 15;
+  int32 NICMNPKJPNL = 16;
+  float LOJLDEAJFLK = 17;
+  HHEDHCFPEKM offset = 18;
+}

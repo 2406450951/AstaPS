@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AEABNGOMPECOuterClass";
+import "EBCEHFCHJJO.proto";
+
+message AEABNGOMPEC {
+  float JPHOKPMPPEP = 1;
+  EBCEHFCHJJO KOIMDNMELMO = 2;
+  bool NLLEFPIPMPE = 3;
+  bool IJFECNEHHLE = 4;
+  uint32 NILJFDBJBAJ = 5;
+  bool ECGNJOKAPFM = 6;
+  bool DFCCOLOFIJG = 7;
+  float MNFGJJEGKGD = 8;
+  float COAOFGDDBLN = 9;
+  bool NJAFMOMEEIK = 10;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinBreakoutOuterClass";
+import "BreakoutSyncAction.proto";
+import "BreakoutSyncCreateConnect.proto";
+import "BreakoutSyncFinishGame.proto";
+import "BreakoutSyncPing.proto";
+import "BreakoutSyncSnapShot.proto";
+import "SyncType.proto";
+
+message AbilityMixinBreakout {
+  int32 retcode = 7;
+  SyncType sync_type = 12;
+  oneof DLACDGFBDBM {
+    BreakoutSyncAction SyncAction = 3;
+    BreakoutSyncPing SyncPing = 4;
+    BreakoutSyncCreateConnect SyncCreateConnect = 5;
+    BreakoutSyncSnapShot SyncSnapShot = 10;
+    BreakoutSyncFinishGame SyncFinishGame = 15;
+  }
+}

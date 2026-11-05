@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EPAGFCBCCGNOuterClass";
+enum EPAGFCBCCGN {
+  EPAGFCBCCGN_INDIVIDUAL = 0;
+  EPAGFCBCCGN_GROUP = 1;
+}

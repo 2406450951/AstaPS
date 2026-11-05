@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeLimitedShopInfoRspOuterClass";
+import "HomeLimitedShopInfo.proto";
+
+// 7.2 CmdId 22429
+message HomeLimitedShopInfoRsp {
+  int32 retcode = 3;
+  HomeLimitedShopInfo shop_info = 8;
+}

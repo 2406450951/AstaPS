@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KFGDFNGHGMPOuterClass";
+message KFGDFNGHGMP {
+  uint32 group_id = 1;
+  float cd = 2;
+  float NAMLCCLPDHF = 3;
+  bool OKAMAEKCEHL = 4;
+  uint32 skill_type = 5;
+  float ENIJCLEMPKJ = 6;
+  float MOOFHGMJHEA = 7;
+}

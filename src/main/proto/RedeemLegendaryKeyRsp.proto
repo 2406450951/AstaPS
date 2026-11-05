@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RedeemLegendaryKeyRspOuterClass";
+// 7.2 CmdId 25939
+message RedeemLegendaryKeyRsp {
+  int32 retcode = 2;
+  uint32 legendary_key_count = 12;
+}

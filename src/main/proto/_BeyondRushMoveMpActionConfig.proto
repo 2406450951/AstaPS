@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondRushMoveMpActionConfigOuterClass";
+message _BeyondRushMoveMpActionConfig {
+  float time_range = 1;
+  bool BNOLKLLFDHN = 2;
+  float IBPNODCPKFH = 3;
+  float LDCNNHOKFLI = 4;
+  float GEBJADFGFMJ = 5;
+}

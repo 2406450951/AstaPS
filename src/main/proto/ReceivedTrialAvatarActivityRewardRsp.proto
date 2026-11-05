@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ReceivedTrialAvatarActivityRewardRsp {
+  int32 retcode = 5;
+  uint32 activity_id = 8;
+  uint32 trial_avatar_index_id = 10;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SetWidgetSettingReqOuterClass";
+import "Uint32Pair.proto";
+
+// 7.2 CmdId 268
+message _SetWidgetSettingReq {
+  repeated Uint32Pair _widget_setting_list = 14;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "UgcDungeonOpStarredRoomRspOuterClass";
+// 7.2 CmdId 1100
+message UgcDungeonOpStarredRoomRsp {
+  uint32 room_id = 1;
+  uint64 dungeon_guid = 3;
+  int32 retcode = 6;
+  bool is_add = 8;
+}

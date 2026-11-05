@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ReliquaryReforgeRecordOuterClass";
+message ReliquaryReforgeRecord {
+  uint64 guid = 5;
+  repeated uint32 FPNMGADKMFA = 7;
+  repeated uint32 append_prop_id_list = 10;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HEEENDPMDPA.proto";
+
+message LDFIMPJCMDI {
+  uint32 target_id = 5;
+  HEEENDPMDPA state = 6;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BulletTriggerBulletOuterClass";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+
+message _BulletTriggerBullet {
+  FAGMGLAJFNL PEHPNKIJIPO = 1;
+  HHEDHCFPEKM offset = 2;
+  HHEDHCFPEKM OEPBPEKNNKP = 3;
+  uint32 JFBIDBBFBPG = 4;
+}

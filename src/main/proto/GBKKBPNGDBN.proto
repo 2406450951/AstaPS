@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GBKKBPNGDBNOuterClass";
+import "HIEHDDNHLEI.proto";
+import "JDAILJFFOGJ.proto";
+
+message GBKKBPNGDBN {
+  int32 HDFKDHPPLLK = 1;
+  int32 PPECEHIEOIA = 2;
+  uint64 PJDHLMFGCGJ = 3;
+  JDAILJFFOGJ LCIBPEMAOBH = 4;
+  string NDNMPFPECDA = 5;
+  bool LAGONIMHPHG = 6;
+  int32 KEEHNILAIOE = 7;
+  HIEHDDNHLEI offset = 8;
+  float NILBBNBJKGD = 9;
+  uint32 id = 10;
+  int32 HPOMPHLIBCM = 11;
+}

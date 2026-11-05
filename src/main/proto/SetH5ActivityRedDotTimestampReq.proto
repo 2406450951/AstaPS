@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SetH5ActivityRedDotTimestampReqOuterClass";
+// 7.2 CmdId 4759
+message SetH5ActivityRedDotTimestampReq {
+  uint32 client_red_dot_timestamp = 10;
+}

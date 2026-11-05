@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GPMLENFHPBOOuterClass";
+enum GPMLENFHPBO {
+  GPMLENFHPBO_NONE = 0;
+  GPMLENFHPBO_NODE_CONFIG = 1;
+}

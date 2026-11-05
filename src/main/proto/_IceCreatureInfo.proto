@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_IceCreatureInfoOuterClass";
+import "EINIIJLJBCN.proto";
+import "ProfilePicture.proto";
+import "Vector.proto";
+
+message _IceCreatureInfo {
+  Vector pos = 1;
+  string creator_nickname = 2;
+  EINIIJLJBCN detail = 3;
+  uint32 KKDMPFNDEKM = 4;
+  uint32 like_num = 5;
+  uint32 _map_layer_id = 6;
+  fixed32 create_time = 7;
+  uint32 area_id = 8;
+  uint32 entity_id = 9;
+  uint32 _creator_uid = 10;
+  ProfilePicture _creator_profile_picture = 11;
+  uint32 gadget_id = 12;
+  string _xbox_gamertag = 13;
+  string online_id = 14;
+  uint64 guid = 15;
+  uint32 scene_id = 739;
+  bool JCNJDMFCMHM = 1249;
+  bool is_hidden = 1637;
+}

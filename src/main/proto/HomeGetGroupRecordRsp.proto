@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeGetGroupRecordRspOuterClass";
+import "HomeGroupRecord.proto";
+
+// 7.2 CmdId 20025
+message HomeGetGroupRecordRsp {
+  int32 retcode = 1;
+  HomeGroupRecord group_record = 3;
+  uint32 record_type = 10;
+}

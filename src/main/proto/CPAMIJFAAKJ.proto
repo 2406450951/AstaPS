@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CPAMIJFAAKJOuterClass";
+message CPAMIJFAAKJ {
+  bool JFMECNHPDFH = 1;
+  float MHAFGCPCADN = 2;
+  float NPPAHJFNPJI = 3;
+  float GCBENCMGKLN = 4;
+  float CLLHMHEIOBI = 5;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _MonsterChessV2CombatDetail {
+  uint32 NOMLLIOOACN = 20000;
+  uint32 DBMMFDFAHHL = 20001;
+  uint32 _cur_round_num = 2;
+  uint32 MBCDJGNPNIL = 20002;
+  uint32 BMOMAEIJNKG = 20003;
+  bool _is_infinite = 9;
+  uint32 HOBDHKJKLEG = 20004;
+}

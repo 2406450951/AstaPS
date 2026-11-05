@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AELIBNHFODD.proto";
+import "AvatarDisturberComp.proto";
+import "BulletMoveComp.proto";
+import "CameraComp.proto";
+import "ClientTriggerComp.proto";
+import "CollisionComp.proto";
+import "CountDownComp.proto";
+import "CustomSkillComp.proto";
+import "CustomValueComp.proto";
+import "DropGatherComp.proto";
+import "EffectComp.proto";
+import "EnmityComp.proto";
+import "EquipStuffBagComp.proto";
+import "FollowMoveComp.proto";
+import "HitDetectionComp.proto";
+import "HitboxComp.proto";
+import "LightGroupComp.proto";
+import "MinimapMarkComp.proto";
+import "MonsterAiComp.proto";
+import "MonsterPatrolComp.proto";
+import "MoveComp.proto";
+import "NameplateComp.proto";
+import "OptionComp.proto";
+import "RoleStatusComp.proto";
+import "ScanEntityComp.proto";
+import "SoundEffectComp.proto";
+import "StuffBagComp.proto";
+import "TalkComp.proto";
+import "TimerComp.proto";
+import "VehicleComp.proto";
+import "_LevelStateMachineComp.proto";
+import "_SubSwitchComp.proto";
+
+message KEGLGHJKEGP {
+  AELIBNHFODD NHGKKKAOKMN = 2;
+  bool is_active = 1;
+  oneof detail {
+    CustomValueComp custom_value_comp = 11;
+    TimerComp timer_comp = 13;
+    MoveComp move_comp = 14;
+    ClientTriggerComp client_trigger_comp = 15;
+    EffectComp effect_comp = 16;
+    CollisionComp collision_comp = 18;
+    FollowMoveComp follow_move_comp = 19;
+    BulletMoveComp bullet_move_comp = 21;
+    HitDetectionComp hit_detection_comp = 22;
+    CameraComp camera_comp = 23;
+    RoleStatusComp role_status_comp = 24;
+    AvatarDisturberComp avatar_disturber_comp = 25;
+    CountDownComp count_down_comp = 26;
+    OptionComp option_comp = 27;
+    HitboxComp hitbox_comp = 28;
+    CustomSkillComp custom_skill_comp = 29;
+    EnmityComp enmity_comp = 31;
+    NameplateComp nameplate_comp = 32;
+    TalkComp talk_comp = 33;
+    SoundEffectComp sound_effect_comp = 34;
+    MonsterPatrolComp monster_patrol_comp = 35;
+    _LevelStateMachineComp level_state_machine_comp = 36;
+    MinimapMarkComp minimap_mark_comp = 37;
+    StuffBagComp stuff_bag_comp = 38;
+    EquipStuffBagComp equip_stuff_bag_comp = 39;
+    DropGatherComp drop_gather_comp = 40;
+    LightGroupComp light_group_comp = 41;
+    ScanEntityComp scan_entity_comp = 42;
+    _SubSwitchComp sub_switch_comp = 43;
+    MonsterAiComp monster_ai_comp = 44;
+    VehicleComp vehicle_comp = 45;
+  }
+}

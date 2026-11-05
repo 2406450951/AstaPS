@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _SpecialStateDoSkill {
+  bool BOIHOPPLALD = 20000;
+  bool GLKCHOEPIMG = 20001;
+  bool IEJPCJBKNKB = 20002;
+  bool ANNOAJOENIO = 20003;
+  bool GFFLMACGCPO = 20004;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGDuelCompareNotifyOuterClass";
+// 7.2 CmdId 6861
+message GCGDuelCompareNotify {
+  bool is_success = 5;
+  string FALCOPLPMGJ = 7;
+  string HAGBAFMIGCF = 8;
+}

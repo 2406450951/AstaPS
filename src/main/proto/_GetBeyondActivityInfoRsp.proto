@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GetBeyondActivityInfoRspOuterClass";
+import "_BeyondActivityInfo.proto";
+
+// 7.2 CmdId 39820
+message _GetBeyondActivityInfoRsp {
+  int32 retcode = 6;
+  repeated _BeyondActivityInfo activity_info_list = 9;
+}

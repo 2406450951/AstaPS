@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PILOKMNFGDIOuterClass";
+enum PILOKMNFGDI {
+  PILOKMNFGDI_EBEYOND_ASSISTANT_EDITOR_REPAIR_ON_IMPORT_TYPE_NONE = 0;
+  PILOKMNFGDI_EBEYOND_ASSISTANT_EDITOR_REPAIR_ON_IMPORT_TYPE_BEYOND_GUID = 1;
+}

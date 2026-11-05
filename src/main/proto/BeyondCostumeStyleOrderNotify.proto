@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondCostumeStyleOrderNotifyOuterClass";
+import "Uint32Pair.proto";
+
+// 7.2 CmdId 27945
+message BeyondCostumeStyleOrderNotify {
+  uint64 avatar_guid = 11;
+  repeated Uint32Pair style_order_list = 15;
+}

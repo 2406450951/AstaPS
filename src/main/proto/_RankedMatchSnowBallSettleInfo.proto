@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GalleryStopReason.proto";
+
+message _RankedMatchSnowBallSettleInfo {
+  uint32 item_num = 10;
+  bool is_new_record = 8;
+  GalleryStopReason reason = 5;
+  uint32 score = 3;
+  uint32 level_id = 2;
+}

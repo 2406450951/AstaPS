@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LFKKJBBOILMOuterClass";
+import "EHJDBFDKGGO.proto";
+
+message LFKKJBBOILM {
+  repeated int32 JGKCPMONNAO = 1;
+  float GBCEJOIPDGP = 2;
+  EHJDBFDKGGO MGDJHEAPELH = 3;
+  float ACJJPDBNDOK = 4;
+  float HELBBCOBDHI = 5;
+  bool LFNABPMENFF = 7;
+  bool JIIBKOAHLLI = 10;
+  bool DLFKDCOFONN = 11;
+  bool AIDOJLNAMPL = 12;
+  bool HJFCALFKABP = 13;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TpsDefenseBuildTrapReqOuterClass";
+import "Vector.proto";
+
+// 7.2 CmdId 29413
+message _TpsDefenseBuildTrapReq {
+  Vector rot = 11;
+  uint32 _trap_id = 12;
+  uint32 _grid_index = 14;
+}

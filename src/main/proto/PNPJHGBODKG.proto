@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PNPJHGBODKGOuterClass";
+enum PNPJHGBODKG {
+  PNPJHGBODKG_NONE = 0;
+  PNPJHGBODKG_SWITCH_CONTROL = 1;
+  PNPJHGBODKG_SHOOT_TIMEOUT = 2;
+  PNPJHGBODKG_RUNNING_TIMEOUT = 3;
+  PNPJHGBODKG_RUNNING_RECONNECT = 4;
+}

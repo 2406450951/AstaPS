@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MistTrialSettleNotifyOuterClass";
+import "MistTrialBestAvatar.proto";
+
+// 7.2 CmdId 1059
+message MistTrialSettleNotify {
+  map<uint32, uint32> KOMHNJBJMHG = 2;
+  uint32 first_pass_time = 3;
+  map<uint32, uint32> AEPNMCBDFGM = 7;
+  MistTrialBestAvatar best_hit_avatar = 9;
+  repeated MistTrialBestAvatar best_avatar_list = 10;
+  uint32 dungeon_scene_id = 13;
+}

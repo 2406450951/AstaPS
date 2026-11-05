@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ItemRenameAvatarRspOuterClass";
+import "AvatarRenameCooldownInfo.proto";
+
+// 7.2 CmdId 29499
+message ItemRenameAvatarRsp {
+  uint32 cd_time = 7;
+  int32 retcode = 12;
+  uint32 rename_id = 14;
+  AvatarRenameCooldownInfo HMJFJHJGFHK = 15;
+}

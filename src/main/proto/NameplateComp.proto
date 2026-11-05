@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_CurrentPhase.proto";
+
+message NameplateComp {
+  repeated int32 HEMLPIJAGIL = 1;
+  repeated _CurrentPhase KBNICINGGBH = 2;
+}

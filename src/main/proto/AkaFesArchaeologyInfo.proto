@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AkaFesArchaeologyStageInfo.proto";
+
+message AkaFesArchaeologyInfo {
+  repeated AkaFesArchaeologyStageInfo stage_info_list = 15;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CJFJKNNKJEIOuterClass";
+import "JDAILJFFOGJ.proto";
+
+message CJFJKNNKJEI {
+  int32 BEMPKIOFLIM = 501;
+  JDAILJFFOGJ score = 502;
+}

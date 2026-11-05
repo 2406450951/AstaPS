@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LeyLineChallengeAvatarSelectionOuterClass";
+message LeyLineChallengeAvatarSelection {
+  uint32 difficulty = 6;
+  repeated uint32 avatar_id_list = 7;
+  uint32 KDBLHFFGAJL = 14;
+}

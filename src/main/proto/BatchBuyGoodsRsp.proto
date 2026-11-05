@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BatchBuyGoodsRspOuterClass";
+import "BuyGoodsParam.proto";
+import "ShopGoods.proto";
+
+// 7.2 CmdId 1773
+message BatchBuyGoodsRsp {
+  repeated ShopGoods goods_list = 1;
+  int32 retcode = 4;
+  uint32 shop_type = 6;
+  uint32 DBLDIPEKDLE = 10;
+  repeated BuyGoodsParam buy_goods_list = 12;
+}

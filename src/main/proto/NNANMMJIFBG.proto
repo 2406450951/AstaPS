@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NNANMMJIFBGOuterClass";
+enum NNANMMJIFBG {
+  NNANMMJIFBG_NONE = 0;
+  NNANMMJIFBG_CREATE_NODE = 1;
+  NNANMMJIFBG_MODIFY_VALUE = 2;
+  NNANMMJIFBG_CREATE_CONNECTION = 3;
+  NNANMMJIFBG_CREATE_COMPOUND_CONNECTION = 4;
+}

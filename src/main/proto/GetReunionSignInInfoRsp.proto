@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetReunionSignInInfoRspOuterClass";
+import "ReunionSignInInfo.proto";
+
+// 7.2 CmdId 23256
+message GetReunionSignInInfoRsp {
+  int32 retcode = 7;
+  ReunionSignInInfo sign_in_info = 13;
+}

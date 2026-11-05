@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterChessSettleNotifyOuterClass";
+import "ExhibitionDisplayInfo.proto";
+
+// 7.2 CmdId 24652
+message _MonsterChessSettleNotify {
+  uint32 cur_score = 6;
+  bool is_win = 7;
+  uint32 _cur_round_num = 8;
+  repeated uint32 _win_round_list = 9;
+  repeated ExhibitionDisplayInfo score_list = 12;
+  uint32 score_limit = 14;
+}

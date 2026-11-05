@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IBHGMJABINLOuterClass";
+import "HGGCDKJPLEK.proto";
+
+message IBHGMJABINL {
+  HGGCDKJPLEK MMPBBDMHOCB = 1;
+  uint32 JKLFCLPGAMI = 2;
+}

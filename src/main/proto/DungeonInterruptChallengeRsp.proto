@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DungeonInterruptChallengeRspOuterClass";
+// 7.2 CmdId 20455
+message DungeonInterruptChallengeRsp {
+  uint32 group_id = 1;
+  uint32 challenge_index = 6;
+  int32 retcode = 12;
+  uint32 challenge_id = 15;
+}

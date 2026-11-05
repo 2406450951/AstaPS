@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FLFDJLOOFNDOuterClass";
+import "EHJDBFDKGGO.proto";
+
+message FLFDJLOOFND {
+  float GBCEJOIPDGP = 1;
+  bool NHFMHEDGBCK = 2;
+  float ACJJPDBNDOK = 3;
+  EHJDBFDKGGO MGDJHEAPELH = 4;
+  bool LFNABPMENFF = 5;
+}

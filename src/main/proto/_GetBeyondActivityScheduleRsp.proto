@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GetBeyondActivityScheduleRspOuterClass";
+import "_BeyondActivityScheduleInfo.proto";
+
+// 7.2 CmdId 32663
+message _GetBeyondActivityScheduleRsp {
+  repeated _BeyondActivityScheduleInfo activity_schedule_list = 3;
+  int32 retcode = 11;
+}

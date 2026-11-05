@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MapMarkTipsInfoOuterClass";
+import "MapMarkTipsType.proto";
+
+message MapMarkTipsInfo {
+  MapMarkTipsType tips_type = 1;
+  repeated uint32 point_id_list = 2;
+}

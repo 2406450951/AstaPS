@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondCustomSkillConfigTemplateOuterClass";
+import "EHIOKJCEKGE.proto";
+import "FPNLKHKFMEP.proto";
+
+message _BeyondCustomSkillConfigTemplate {
+  FPNLKHKFMEP LHAMGAGDCFH = 1;
+  EHIOKJCEKGE LCGHEODCNLP = 2;
+  repeated uint32 PLHLMCHAJAK = 3;
+}

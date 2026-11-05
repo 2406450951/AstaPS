@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AdventurerStatueThrowDriftBottleReqOuterClass";
+import "_AdventurerStatueDriftBottleCardDetail.proto";
+
+// 7.2 CmdId 5415
+message _AdventurerStatueThrowDriftBottleReq {
+  _AdventurerStatueDriftBottleCardDetail _drift_bottle_card_detail = 2;
+  uint32 _drift_bottle_card_time = 7;
+}

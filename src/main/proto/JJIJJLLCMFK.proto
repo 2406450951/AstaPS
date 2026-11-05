@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JJIJJLLCMFKOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message JJIJJLLCMFK {
+  HHEDHCFPEKM DLIFPAGHDHE = 1;
+}

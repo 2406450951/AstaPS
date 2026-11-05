@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGZoneTypeOuterClass";
+enum GCGZoneType {
+  GCGZONE_TYPE_GCG_ZONE_INVALID = 0;
+  GCGZONE_TYPE_GCG_ZONE_DECK = 1;
+  GCGZONE_TYPE_GCG_ZONE_HAND = 2;
+  GCGZONE_TYPE_GCG_ZONE_CHARACTER = 3;
+  GCGZONE_TYPE_GCG_ZONE_MODIFY = 4;
+  GCGZONE_TYPE_GCG_ZONE_SUMMON = 5;
+  GCGZONE_TYPE_GCG_ZONE_ASSIST = 7;
+  GCGZONE_TYPE_GCG_ZONE_ONSTAGE = 8;
+  GCGZONE_TYPE_GCG_ZONE_RULE = 9;
+}

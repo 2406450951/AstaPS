@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TakeBackGivingItemReqOuterClass";
+// 7.2 CmdId 9292
+message TakeBackGivingItemReq {
+  uint32 giving_id = 8;
+}

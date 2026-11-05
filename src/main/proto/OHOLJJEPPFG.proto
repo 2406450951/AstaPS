@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OHOLJJEPPFGOuterClass";
+enum OHOLJJEPPFG {
+  OHOLJJEPPFG_NONE = 0;
+  OHOLJJEPPFG_STRUCT = 1;
+  OHOLJJEPPFG_KVPAIR = 2;
+}

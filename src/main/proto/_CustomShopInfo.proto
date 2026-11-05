@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_CustomShopInfoOuterClass";
+import "CELPAKGPCCM.proto";
+import "IJGLKMANAFK.proto";
+
+message _CustomShopInfo {
+  repeated uint32 JINMNBEIAHI = 1;
+  repeated IJGLKMANAFK ECOGBFDGCDB = 2;
+  repeated CELPAKGPCCM IIELJPGKCOE = 3;
+}

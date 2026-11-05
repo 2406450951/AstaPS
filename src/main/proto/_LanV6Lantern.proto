@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV6LanternOuterClass";
+import "_LanV6CardDetail.proto";
+import "_LanV6LanternGift.proto";
+
+message _LanV6Lantern {
+  _LanV6CardDetail card = 1;
+  _LanV6LanternGift _gift = 2;
+  fixed64 LBOBCAOJCPE = 3;
+}

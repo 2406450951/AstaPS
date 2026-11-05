@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LDJPMCAFDCDOuterClass";
+import "DAIIIONIACF.proto";
+import "FBCJPFKIGLF.proto";
+import "HCOFOHJOPBJ.proto";
+import "JACNJPKCFKF.proto";
+import "JADBAKKFJEI.proto";
+import "JIFHPKNOKMH.proto";
+import "ODHDHHKIEAF.proto";
+
+message LDJPMCAFDCD {
+  DAIIIONIACF BIPBPKIBIKI = 1;
+  JACNJPKCFKF ACPKENKNAAE = 502;
+  oneof detail {
+    FBCJPFKIGLF VectorMoverData = 11;
+    ODHDHHKIEAF RotateMoverData = 12;
+    JIFHPKNOKMH RouteMoverData = 13;
+    HCOFOHJOPBJ RotateToDirMoverData = 14;
+    JADBAKKFJEI FixedPosRotMoverData = 15;
+  }
+}

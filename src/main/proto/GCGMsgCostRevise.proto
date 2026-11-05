@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGMsgCostReviseOuterClass";
+import "GCGCostReviseInfo.proto";
+
+message GCGMsgCostRevise {
+  GCGCostReviseInfo cost_revise = 2;
+  uint32 controller_id = 13;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LeyLineChallengeDetailOuterClass";
+message _LeyLineChallengeDetail {
+  uint32 KDBLHFFGAJL = 4;
+  uint32 difficulty = 11;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_EditUgcDungeonStateOuterClass";
+enum _EditUgcDungeonState {
+  _EDIT_UGC_DUNGEON_STATE_EDIT_UGC_DUNGEON_EDIT = 0;
+  _EDIT_UGC_DUNGEON_STATE_EDIT_UGC_DUNGEON_AUDIT = 1;
+  _EDIT_UGC_DUNGEON_STATE_EDIT_UGC_DUNGEON_PUBLISHED = 2;
+}

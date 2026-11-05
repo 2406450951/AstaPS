@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EKHCFKDPMHEOuterClass";
+import "GEDLFKBHODF.proto";
+
+message EKHCFKDPMHE {
+  string LKLDOIHKGDL = 1;
+  uint32 DJCLKHIIMAM = 2;
+  GEDLFKBHODF skill_type = 3;
+  bool AGKCPPFGMNO = 4;
+  bool AIEGFHEKHNI = 5;
+  bool AMHNNDPAPBF = 6;
+  uint32 HHEMLPDOHIJ = 7;
+}

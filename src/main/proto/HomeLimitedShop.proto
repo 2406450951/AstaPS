@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeLimitedShopOuterClass";
+import "HomeLimitedShopGoods.proto";
+
+message HomeLimitedShop {
+  repeated HomeLimitedShopGoods goods_list = 14;
+}

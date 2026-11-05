@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryVintageHuntingSettleNotifyOuterClass";
+import "VintageHuntingFirstStageSettleInfo.proto";
+import "VintageHuntingSecondStageSettleInfo.proto";
+import "VintageHuntingThirdStageSettleInfo.proto";
+
+message SceneGalleryVintageHuntingSettleNotify {
+  uint32 stage_id = 1;
+  bool is_new_record = 2;
+  bool has_new_watcher = 3;
+  uint32 MGIJJFMMJDO = 4;
+  uint32 EJHCMLHKFEM = 5;
+  oneof info {
+    VintageHuntingFirstStageSettleInfo FirstStageInfo = 10;
+    VintageHuntingSecondStageSettleInfo SecondStageInfo = 11;
+    VintageHuntingThirdStageSettleInfo ThirdStageInfo = 12;
+  }
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatStagePhaseOuterClass";
+enum RoleCombatStagePhase {
+  ROLE_COMBAT_STAGE_PHASE_NONE = 0;
+  ROLE_COMBAT_STAGE_PHASE_READY_SELECT_AVATAR = 1;
+  ROLE_COMBAT_STAGE_PHASE_READY_SELECT_CARD = 2;
+  ROLE_COMBAT_STAGE_PHASE_READY_ENTER_FIGHT = 3;
+  ROLE_COMBAT_STAGE_PHASE_ALL_FINISH = 4;
+  ROLE_COMBAT_STAGE_PHASE_WAIT_ALL_FINISH = 5;
+}

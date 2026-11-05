@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGallerySandwormInfoOuterClass";
+import "_SceneGallerySandwormCannonSpecialEffectType.proto";
+
+message _SceneGallerySandwormInfo {
+  uint32 HAHEMFBJBDI = 1;
+  uint32 MGFPMGPGGNJ = 2;
+  _SceneGallerySandwormCannonSpecialEffectType _special_effect_type = 3;
+  bool _is_sandworm_appear = 4;
+}

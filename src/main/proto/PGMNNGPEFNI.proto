@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PGMNNGPEFNIOuterClass";
+import "DNAFBEBJCAG.proto";
+
+message PGMNNGPEFNI {
+  repeated DNAFBEBJCAG HOMGMPJODHO = 1;
+  uint32 LBDPICJIDGO = 2;
+  uint32 HDDEFAHFNOP = 3;
+  uint32 PNJOHMCAHEI = 4;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ReliquaryPromoteRspOuterClass";
+// 7.2 CmdId 22089
+message ReliquaryPromoteRsp {
+  uint32 JINHCIFMKCE = 2;
+  repeated uint32 PENKCPCPLEK = 5;
+  repeated uint32 BCBHMOIHDHH = 6;
+  int32 retcode = 7;
+  uint32 IKPCFNGGBFN = 11;
+  uint64 target_reliquary_guid = 13;
+}

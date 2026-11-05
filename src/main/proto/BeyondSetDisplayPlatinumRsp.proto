@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondSetDisplayPlatinumRspOuterClass";
+// 7.2 CmdId 25394
+message BeyondSetDisplayPlatinumRsp {
+  repeated uint64 BNANPEKPFLF = 3;
+  int32 retcode = 12;
+}

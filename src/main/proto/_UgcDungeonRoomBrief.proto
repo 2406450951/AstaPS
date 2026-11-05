@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonRoomBriefOuterClass";
+import "_UgcDungeonRoomDisplayData.proto";
+import "_UgcDungeonRoomSetting.proto";
+
+message _UgcDungeonRoomBrief {
+  _UgcDungeonRoomSetting _room_setting = 7;
+  _UgcDungeonRoomDisplayData _room_display_data = 12;
+  uint32 _room_config_id = 14;
+  uint32 room_id = 15;
+}

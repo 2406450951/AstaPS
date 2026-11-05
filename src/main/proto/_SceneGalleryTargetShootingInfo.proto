@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryTargetShootingInfoOuterClass";
+import "BCANJCKIFND.proto";
+
+message _SceneGalleryTargetShootingInfo {
+  uint32 PJJAKADFODK = 1;
+  uint32 HFBEFDLKCKL = 2;
+  repeated BCANJCKIFND ANFCEANGLEM = 3;
+}

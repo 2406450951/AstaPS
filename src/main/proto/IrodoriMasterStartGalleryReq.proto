@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IrodoriMasterStartGalleryReqOuterClass";
+// 7.2 CmdId 2142
+message IrodoriMasterStartGalleryReq {
+  uint32 difficulty = 13;
+  uint32 level_id = 14;
+}

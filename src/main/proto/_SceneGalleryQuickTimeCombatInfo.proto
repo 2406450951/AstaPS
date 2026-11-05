@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryQuickTimeCombatInfoOuterClass";
+message _SceneGalleryQuickTimeCombatInfo {
+  uint32 total_score = 1;
+  uint32 cur_round = 2;
+  uint32 GPIFCNFPLKL = 3;
+  string MJJKICDEGIH = 4;
+  repeated uint32 buff_id_list = 5;
+  uint32 DMPOEDOPGOI = 6;
+}

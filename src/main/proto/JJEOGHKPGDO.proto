@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JJEOGHKPGDOOuterClass";
+import "AKHPKDNNEOG.proto";
+
+message JJEOGHKPGDO {
+  repeated AKHPKDNNEOG FHAJFGACAMA = 7;
+  uint32 cost_time = 9;
+  uint32 timestamp = 12;
+}

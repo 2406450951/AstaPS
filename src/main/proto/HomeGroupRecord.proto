@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeGroupRecordOuterClass";
+import "HomeBalloonRecord.proto";
+import "HomeRacingRecord.proto";
+import "HomeSeekFurnitureAllRecord.proto";
+import "HomeStakeRecord.proto";
+import "_HomeExplosionRecord.proto";
+
+message HomeGroupRecord {
+  uint32 group_id = 9;
+  oneof detail {
+    _HomeExplosionRecord ExplosionInfo = 130;
+    HomeSeekFurnitureAllRecord SeekFurnitureGalleryInfo = 1251;
+    HomeStakeRecord StakePlayInfo = 1262;
+    HomeBalloonRecord BalloonGalleryInfo = 1431;
+    HomeRacingRecord RacingGalleryInfo = 1978;
+  }
+}

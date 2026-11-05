@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetReliquaryOfferingRspOuterClass";
+import "ItemParam.proto";
+
+// 7.2 CmdId 28301
+message GetReliquaryOfferingRsp {
+  uint32 FBKFCNJJBGP = 4;
+  repeated ItemParam item_list = 7;
+  repeated uint64 IIPNNKAODJM = 14;
+  int32 retcode = 15;
+}

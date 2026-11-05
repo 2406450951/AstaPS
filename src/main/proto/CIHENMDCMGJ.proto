@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "NHLNPMELFHM.proto";
+
+message CIHENMDCMGJ {
+  uint32 MBHKNKHKKCK = 14;
+  int32 local_id = 2;
+  uint32 EKDNPKHMJIE = 4;
+  uint32 DLLKGHINFBJ = 13;
+  uint32 instanced_ability_id = 10;
+  uint32 BNBBLJCDMPJ = 12;
+  NHLNPMELFHM DDEOCNGLKPN = 9;
+}

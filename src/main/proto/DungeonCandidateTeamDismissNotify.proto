@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DungeonCandidateTeamDismissNotifyOuterClass";
+import "DungeonCandidateTeamDismissReason.proto";
+
+// 7.2 CmdId 4876
+message DungeonCandidateTeamDismissNotify {
+  DungeonCandidateTeamDismissReason reason = 1;
+  uint32 player_uid = 8;
+}

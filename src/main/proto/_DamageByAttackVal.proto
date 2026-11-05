@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DamageByAttackValOuterClass";
+import "EDMDLDCEJDM.proto";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+import "HIIODIODMDK.proto";
+import "MOJGAGEDKCO.proto";
+
+message _DamageByAttackVal {
+  string AKEAINMJDHL = 1;
+  HHEDHCFPEKM offset = 2;
+  HHEDHCFPEKM OEPBPEKNNKP = 3;
+  EDMDLDCEJDM CBFFMGHDCGL = 4;
+  MOJGAGEDKCO CHECPDOLJNP = 5;
+  FAGMGLAJFNL PEHPNKIJIPO = 6;
+  HIIODIODMDK KBHOFJMDLPH = 7;
+}

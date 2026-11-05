@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "InvestigationMonster.proto";
+
+message GetInvestigationMonsterRsp {
+  repeated InvestigationMonster monster_list = 5;
+  bool is_for_mark = 9;
+  int32 retcode = 4;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondGachaItemOuterClass";
+import "ItemParam.proto";
+import "_BeyondGachaTransferItem.proto";
+
+message _BeyondGachaItem {
+  bool _is_beyond_gacha_item_new = 7;
+  ItemParam item_param = 9;
+  repeated _BeyondGachaTransferItem transfer_item_list = 10;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ChallengeRecordNotifyOuterClass";
+import "ChallengeRecord.proto";
+
+// 7.2 CmdId 28097
+message ChallengeRecordNotify {
+  repeated ChallengeRecord challenge_record_list = 2;
+  uint32 group_id = 4;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestSceneryStateOuterClass";
+enum _QuestSceneryState {
+  _QUEST_SCENERY_STATE_QUEST_SCENERY_STATE_NONE = 0;
+  _QUEST_SCENERY_STATE_QUEST_SCENERY_STATE_PAUSING = 1;
+  _QUEST_SCENERY_STATE_QUEST_SCENERY_STATE_RUNNING = 2;
+  _QUEST_SCENERY_STATE_QUEST_SCENERY_STATE_FINISH = 3;
+}

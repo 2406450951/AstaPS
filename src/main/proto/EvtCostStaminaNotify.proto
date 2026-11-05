@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtCostStaminaNotifyOuterClass";
+// 7.2 CmdId 131
+message EvtCostStaminaNotify {
+  float cost_stamina = 2;
+  uint32 skill_id = 10;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DiversityBattleEnterInfoOuterClass";
+import "FPFLLDHMCIB.proto";
+
+message _DiversityBattleEnterInfo {
+  bool _is_restart = 1;
+  uint32 difficulty_id = 2;
+  bool JDACJEILAEN = 4;
+  repeated FPFLLDHMCIB team_list = 7;
+  uint32 FOOJAIKBPIM = 11;
+}

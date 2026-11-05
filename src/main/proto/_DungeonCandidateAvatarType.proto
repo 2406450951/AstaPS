@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DungeonCandidateAvatarTypeOuterClass";
+enum _DungeonCandidateAvatarType {
+  _DUNGEON_CANDIDATE_AVATAR_TYPE_DUNGEON_CANDIDATE_AVATAR_TYPE_NONE = 0;
+  _DUNGEON_CANDIDATE_AVATAR_TYPE_DUNGEON_CANDIDATE_AVATAR_TYPE_FORMAL = 1;
+  _DUNGEON_CANDIDATE_AVATAR_TYPE_DUNGEON_CANDIDATE_AVATAR_TYPE_UGC = 2;
+}

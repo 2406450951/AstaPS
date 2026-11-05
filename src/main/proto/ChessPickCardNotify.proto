@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ChessPickCardNotifyOuterClass";
+import "ChessNormalCardInfo.proto";
+
+message ChessPickCardNotify {
+  ChessNormalCardInfo normal_card_info = 1;
+  uint32 curse_card_id = 2;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PSPlayerApplyEnterMpRspOuterClass";
+// 7.2 CmdId 24896
+message PSPlayerApplyEnterMpRsp {
+  uint32 param = 2;
+  int32 retcode = 3;
+  string target_psn_id = 5;
+}

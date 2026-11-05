@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ChatReportInfoOuterClass";
+import "_BeyondChatIndex.proto";
+
+message _ChatReportInfo {
+  _BeyondChatIndex _report_index = 1;
+  string _report_text = 5;
+  uint32 target_uid = 7;
+  uint32 _report_chat_time = 12;
+}

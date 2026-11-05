@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NIHABLEAIKBOuterClass";
+import "IPIDKFCELHI.proto";
+import "_BeyondGachaGift.proto";
+import "_BeyondShopGift.proto";
+
+message NIHABLEAIKB {
+  string MKHJKMHCKDF = 1;
+  IPIDKFCELHI DKNBCJFCIKH = 5;
+  uint32 template_id = 10;
+  bool HCFHDFGKDLH = 13;
+  uint64 CBPIPDFPBHN = 15;
+  oneof AKIJHMLDCBF {
+    _BeyondGachaGift BeyondGachaGift = 207;
+    _BeyondShopGift BeyondShopGift = 362;
+  }
+}

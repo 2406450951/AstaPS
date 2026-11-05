@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FleurFairMusicGameStartRspOuterClass";
+// 7.2 CmdId 5000
+message FleurFairMusicGameStartRsp {
+  uint32 music_basic_id = 4;
+  int32 retcode = 15;
+}

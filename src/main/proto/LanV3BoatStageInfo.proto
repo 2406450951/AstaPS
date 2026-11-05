@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LanV3BoatStageInfoOuterClass";
+message LanV3BoatStageInfo {
+  uint32 map_id = 1;
+  bool is_single = 2;
+  repeated uint32 player_uid_list = 3;
+  uint32 match_id = 4;
+}

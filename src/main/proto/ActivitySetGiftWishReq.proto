@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivitySetGiftWishReqOuterClass";
+// 7.2 CmdId 29519
+message ActivitySetGiftWishReq {
+  map<uint32, uint32> gift_num_map = 5;
+  uint32 schedule_id = 6;
+}

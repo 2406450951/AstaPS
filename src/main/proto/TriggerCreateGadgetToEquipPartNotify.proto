@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TriggerCreateGadgetToEquipPartNotifyOuterClass";
+// 7.2 CmdId 23663
+message TriggerCreateGadgetToEquipPartNotify {
+  uint32 gadget_id = 3;
+  string equip_part = 5;
+  uint32 gadget_entity_id = 6;
+  uint32 entity_id = 9;
+}

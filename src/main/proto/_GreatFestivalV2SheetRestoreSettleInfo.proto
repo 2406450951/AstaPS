@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GreatFestivalV2SheetRestoreSettleInfoOuterClass";
+import "KFMJDMIBEAD.proto";
+
+message _GreatFestivalV2SheetRestoreSettleInfo {
+  uint32 finish_time = 1;
+  repeated KFMJDMIBEAD PJPOFLBHEKO = 2;
+  uint32 FNBJEFCCABE = 3;
+  bool NNMFDEDNIAJ = 4;
+}

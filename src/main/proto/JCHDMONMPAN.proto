@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JCHDMONMPANOuterClass";
+import "DIPNFFOKOKE.proto";
+import "HPKHLBICODN.proto";
+import "LBNHOFECCDP.proto";
+import "MKNHKHMILCG.proto";
+import "PMGOKGNBMMH.proto";
+
+message JCHDMONMPAN {
+  MKNHKHMILCG KBPNCLFKHFO = 1;
+  bool is_show = 2;
+  string AKEAINMJDHL = 3;
+  oneof detail {
+    HPKHLBICODN BoxData = 11;
+    DIPNFFOKOKE SphereData = 12;
+    PMGOKGNBMMH CapsuleData = 13;
+    LBNHOFECCDP CylinderData = 14;
+  }
+}

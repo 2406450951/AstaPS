@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DungeonTeamBuilderOperationOuterClass";
+import "_InviteOp.proto";
+import "_KickOp.proto";
+import "_LeaveOp.proto";
+import "_ReplyOp.proto";
+import "_SetPlayerStateOp.proto";
+import "_SetTeamOp.proto";
+
+message _DungeonTeamBuilderOperation {
+  oneof op {
+    _InviteOp InviteOp = 1;
+    _LeaveOp LeaveOp = 2;
+    _KickOp KickOp = 3;
+    _ReplyOp ReplyOp = 4;
+    _SetTeamOp SetTeamOp = 5;
+    _SetPlayerStateOp SetPlayerStateOp = 6;
+  }
+}

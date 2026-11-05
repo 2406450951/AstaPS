@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OGNKCKDMKMCOuterClass";
+import "PCONPKGOMGA.proto";
+
+message OGNKCKDMKMC {
+  bool CMMLOBCEPGD = 1;
+  PCONPKGOMGA JMKNGGHBCMF = 2;
+  int32 NEHHBNEAEHN = 3;
+  repeated PCONPKGOMGA CCIOIFCNILK = 4;
+  int32 JDHHJEKAPBB = 5;
+  repeated PCONPKGOMGA LHCIBCGHCFP = 6;
+  bool KIPFAGAPHCG = 7;
+  PCONPKGOMGA IIAPJNEHIPB = 8;
+  int32 BPAIMJMDGPK = 9;
+  repeated PCONPKGOMGA OEBIJGHKIAB = 10;
+  bool MEFPBFJCNNO = 11;
+  PCONPKGOMGA FABBCBFCKDI = 12;
+}

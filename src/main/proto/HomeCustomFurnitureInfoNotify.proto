@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeCustomFurnitureInfoNotifyOuterClass";
+import "HomeCustomFurnitureInfo.proto";
+
+// 7.2 CmdId 22966
+message HomeCustomFurnitureInfoNotify {
+  map<uint32, uint32> used_sub_furniture_count_map = 5;
+  repeated uint32 delete_custom_furniture_list = 6;
+  repeated HomeCustomFurnitureInfo custom_furniture_info_list = 14;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EOBIFPMFLBLOuterClass";
+import "EJIEHJMIPEO.proto";
+
+message EOBIFPMFLBL {
+  EJIEHJMIPEO GCDEIMBDMEA = 501;
+  uint32 id = 505;
+  string name = 506;
+}

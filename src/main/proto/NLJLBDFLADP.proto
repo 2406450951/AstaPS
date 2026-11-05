@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NLJLBDFLADPOuterClass";
+import "OFNEDBDCCMC.proto";
+import "OGCDCHPAJKL.proto";
+import "PlatformType.proto";
+import "_BeyondRoomMemberExtraInfo.proto";
+import "_BeyondTeamMemberExtraInfo.proto";
+
+message NLJLBDFLADP {
+  uint32 GIIMPGOJAOH = 1;
+  string LCLANKBHPAI = 2;
+  PlatformType platform_type = 3;
+  bool AABONDDGIHJ = 4;
+  bool GHBBLJBMAPD = 5;
+  OGCDCHPAJKL OLFJBFJHOFG = 6;
+  OFNEDBDCCMC LMDJDCAJMLE = 7;
+  repeated uint32 KFNFPPOOHIC = 8;
+  oneof IHOINCNOOKO {
+    _BeyondTeamMemberExtraInfo BeyondTeamMemberExtraInfo = 11;
+    _BeyondRoomMemberExtraInfo BeyondRoomMemberExtraInfo = 12;
+  }
+}

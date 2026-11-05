@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV6TakeLanternGiftRspOuterClass";
+// 7.2 CmdId 413
+message _LanV6TakeLanternGiftRsp {
+  fixed64 guid = 3;
+  int32 retcode = 13;
+}

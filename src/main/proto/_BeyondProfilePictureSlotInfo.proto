@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondProfilePictureSlotInfoOuterClass";
+message _BeyondProfilePictureSlotInfo {
+  uint32 index = 1;
+  string GIDGEHPNFIK = 2;
+  string OCMHGDEAIMN = 3;
+  uint32 CBEBPHHOEEG = 4;
+  bool HEMLOGOEFCH = 5;
+}

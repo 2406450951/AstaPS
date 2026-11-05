@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_UgcV2OfficialLevelData.proto";
+
+message _UgcV2DetailInfo {
+  repeated _UgcV2OfficialLevelData _official_level_data_list = 2;
+  bool IEIJBECPIKD = 20000;
+  bool AIKDBBNMIJB = 20001;
+}

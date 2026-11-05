@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_WitchNicoleRoomInfoOuterClass";
+message _WitchNicoleRoomInfo {
+  bool _is_room_open = 1;
+  uint32 next_refresh_time = 11;
+  uint32 uid = 15;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryVintageHuntingInfoOuterClass";
+import "VintageHuntingFirstStageInfo.proto";
+import "VintageHuntingSecondStageInfo.proto";
+import "VintageHuntingThirdStageInfo.proto";
+
+message SceneGalleryVintageHuntingInfo {
+  uint32 stage_id = 1;
+  oneof info {
+    VintageHuntingFirstStageInfo FirstStageInfo = 10;
+    VintageHuntingSecondStageInfo SecondStageInfo = 11;
+    VintageHuntingThirdStageInfo ThirdStageInfo = 12;
+  }
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DPEEOGGEECK.proto";
+import "MLLGCECGGME.proto";
+
+message _ArenaChallengeV5DetailInfo {
+  repeated DPEEOGGEECK level_list = 14;
+  repeated MLLGCECGGME level_info_list = 15;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SetSceneWeatherAreaReqOuterClass";
+// 7.2 CmdId 27051
+message SetSceneWeatherAreaReq {
+  uint32 weather_gadget_id = 4;
+  map<uint32, string> weather_value_map = 15;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ConfigIntByMultiComboBoxOuterClass";
+import "ENHIOFOIIFP.proto";
+
+message _ConfigIntByMultiComboBox {
+  repeated string IKJPIBENJNB = 1;
+  repeated ENHIOFOIIFP DKHMPCDJBIN = 2;
+}

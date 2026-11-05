@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondMonsterTemplateOuterClass";
+import "PIIJIMGDJIM.proto";
+
+message _BeyondMonsterTemplate {
+  PIIJIMGDJIM CHNIFJHOOCL = 1;
+}

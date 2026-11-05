@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_HallInvitationOuterClass";
+message _HallInvitation {
+  uint32 OIFOGAIDDNN = 3;
+  uint64 IPPDEHFEPHI = 6;
+  repeated uint32 HNHNHHEDKAG = 9;
+  uint32 JEIIOJDBOEE = 10;
+  uint32 music_basic_id = 11;
+  uint32 HOFALNEAOLK = 12;
+  uint64 EKMLDMIELLP = 13;
+}

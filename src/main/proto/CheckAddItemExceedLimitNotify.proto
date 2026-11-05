@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CheckAddItemExceedLimitNotifyOuterClass";
+import "ItemExceedLimitMsgType.proto";
+
+// 7.2 CmdId 23995
+message CheckAddItemExceedLimitNotify {
+  repeated uint32 JPMIEKCNJIK = 5;
+  bool is_drop = 6;
+  uint32 reason = 7;
+  repeated uint32 KMFKANJGJFJ = 9;
+  ItemExceedLimitMsgType msg_type = 13;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LHJGIDFKJONOuterClass";
+message LHJGIDFKJON {
+  uint32 OPGPLPNAALP = 501;
+  bool MALHKHDKJJH = 502;
+  bool EAICALIOLCI = 503;
+}

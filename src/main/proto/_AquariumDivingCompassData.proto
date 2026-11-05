@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AquariumDivingCompassDataOuterClass";
+import "Vector.proto";
+
+message _AquariumDivingCompassData {
+  bool PNABMHHGKBD = 2;
+  uint32 level = 5;
+  Vector pos = 6;
+  Vector EAKFHCMAMMB = 13;
+}

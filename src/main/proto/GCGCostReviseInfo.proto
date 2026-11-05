@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGCostReviseInfoOuterClass";
+import "EFJGFIDEFOD.proto";
+import "GCGSelectOnStageCostInfo.proto";
+import "KGOKCJIOJDM.proto";
+import "MJLIGNONKMK.proto";
+import "Uint32Pair.proto";
+
+message GCGCostReviseInfo {
+  repeated uint32 AHNFFEJMCDN = 1;
+  repeated MJLIGNONKMK GHDNBCIOFOB = 2;
+  repeated uint32 FKCNKPMJFAP = 3;
+  repeated uint32 LMKGOHNHGKK = 4;
+  repeated Uint32Pair ADIOKKKLKCM = 6;
+  repeated uint32 KGAKFJLFLDA = 7;
+  bool is_can_attack = 8;
+  repeated EFJGFIDEFOD EMAJCEAANNO = 9;
+  repeated uint32 KBIEBIHGANM = 10;
+  repeated KGOKCJIOJDM DOCPENDHBLC = 11;
+  repeated uint32 PCCCFDAEDGF = 13;
+  repeated GCGSelectOnStageCostInfo select_on_stage_cost_list = 14;
+}

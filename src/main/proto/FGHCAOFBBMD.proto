@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FGHCAOFBBMDOuterClass";
+import "NLHFKMECIEO.proto";
+
+message FGHCAOFBBMD {
+  repeated NLHFKMECIEO IMNOGOLEKNA = 1;
+}

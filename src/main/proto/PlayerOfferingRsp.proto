@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ItemParam.proto";
+import "PlayerOfferingData.proto";
+
+message PlayerOfferingRsp {
+  repeated ItemParam item_list = 10;
+  PlayerOfferingData offering_data = 14;
+  int32 retcode = 2;
+}

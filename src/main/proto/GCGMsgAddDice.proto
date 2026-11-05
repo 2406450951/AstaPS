@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGMsgAddDiceOuterClass";
+import "GCGDiceSideType.proto";
+import "GCGReason.proto";
+
+message GCGMsgAddDice {
+  map<uint32, GCGDiceSideType> BKDBEKKJJKI = 2;
+  GCGReason reason = 3;
+  uint32 controller_id = 6;
+  int32 change_count = 9;
+  map<uint32, GCGDiceSideType> HLMMMMKFGDC = 11;
+}

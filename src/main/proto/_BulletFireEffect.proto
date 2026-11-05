@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BulletFireEffectOuterClass";
+import "FAGMGLAJFNL.proto";
+import "HGGCDKJPLEK.proto";
+import "HHEDHCFPEKM.proto";
+
+message _BulletFireEffect {
+  int32 ALBAIFHPDNC = 1;
+  FAGMGLAJFNL born_type = 2;
+  float JGNCOMDHHGJ = 3;
+  HHEDHCFPEKM LAIKKIOHFPB = 4;
+  HHEDHCFPEKM GCPFIKFNMLC = 5;
+  HGGCDKJPLEK AGOKNMPKDEE = 6;
+  bool FGHDEAGKOMM = 7;
+}

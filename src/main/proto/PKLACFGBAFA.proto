@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message PKLACFGBAFA {
+  map<uint32, uint32> LHCKKICIDIP = 2;
+  bool is_open = 5;
+  uint32 HAPFBMBBCBK = 11;
+  uint32 PIHNDCEGCNO = 13;
+}

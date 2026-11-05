@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NDKMJEPFBBMOuterClass";
+enum NDKMJEPFBBM {
+  NDKMJEPFBBM_NONE = 0;
+  NDKMJEPFBBM_BUNDLE_GOODS = 1;
+  NDKMJEPFBBM_COSTUME_SUIT = 2;
+  NDKMJEPFBBM_ALREADY_BOUGHT = 3;
+}

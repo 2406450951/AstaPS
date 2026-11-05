@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ServerUpdateGlobalValueNotifyOuterClass";
+import "UpdateType.proto";
+
+// 7.2 CmdId 26688
+message ServerUpdateGlobalValueNotify {
+  uint32 key_hash = 2;
+  uint32 entity_id = 10;
+  float delta = 11;
+  UpdateType update_type = 12;
+  float value = 15;
+}

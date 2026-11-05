@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TeyvatDispatchLevelInfoOuterClass";
+import "PLJMMJOELMK.proto";
+import "_ActivityAvatarInfo.proto";
+
+message _TeyvatDispatchLevelInfo {
+  repeated _ActivityAvatarInfo avatar_list = 1;
+  repeated uint32 BNCHCPLDCAP = 10;
+  repeated PLJMMJOELMK OEBJEEBEMBB = 14;
+}

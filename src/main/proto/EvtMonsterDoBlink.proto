@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtMonsterDoBlinkOuterClass";
+import "Vector.proto";
+
+message EvtMonsterDoBlink {
+  Vector target_pos = 2;
+  uint32 entity_id = 8;
+  Vector target_rot = 14;
+}

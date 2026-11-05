@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OCHOBGBKBPNOuterClass";
+import "_Beacon.proto";
+import "_Decorate.proto";
+
+message OCHOBGBKBPN {
+  oneof detail {
+    _Beacon Beacon = 1;
+    _Decorate Decorate = 2;
+  }
+}

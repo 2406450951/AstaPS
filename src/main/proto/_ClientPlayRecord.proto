@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ClientPlayRecordOuterClass";
+import "_AdShootingSocialBrief.proto";
+import "_AutochessRecordSocialBrief.proto";
+import "_DiversityBattleSocialBrief.proto";
+import "_EffigyChallengeV5Brief.proto";
+import "_FishingJoySocialBrief.proto";
+import "_GamblingChessSocialBrief.proto";
+import "_LoliRunSocialBrief.proto";
+import "_RankedMatchTrainSocialBrief.proto";
+import "_RogueBallSocialBrief.proto";
+import "_TowerChallengeSocialBrief.proto";
+import "_TowerDefenseSocialBrief.proto";
+
+message _ClientPlayRecord {
+  uint32 level_id = 11;
+  oneof brief {
+    _TowerChallengeSocialBrief TowerChallengeSocialBrief = 22;
+    _AdShootingSocialBrief AdShootingSocialBrief = 34;
+    _DiversityBattleSocialBrief DiversityBattleSocialBrief = 348;
+    _RogueBallSocialBrief RogueBallSocialBrief = 352;
+    _FishingJoySocialBrief FishingJoySocialBrief = 362;
+    _LoliRunSocialBrief LoliRunSocialBrief = 786;
+    _AutochessRecordSocialBrief AutochessRecordSocialBrief = 831;
+    _TowerDefenseSocialBrief TowerDefenseSocialBrief = 1190;
+    _GamblingChessSocialBrief GamblingChessSocialBrief = 1552;
+    _EffigyChallengeV5Brief EffigyChallengeV5Brief = 1884;
+    _RankedMatchTrainSocialBrief RankedMatchTrainSocialBrief = 1978;
+  }
+}

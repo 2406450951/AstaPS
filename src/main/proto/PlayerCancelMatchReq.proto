@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerCancelMatchReqOuterClass";
+import "MatchType.proto";
+
+// 7.2 CmdId 2937
+message PlayerCancelMatchReq {
+  MatchType match_type = 15;
+}

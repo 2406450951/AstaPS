@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message FMCJAEEPDAE {
+  bool is_open = 14;
+  bool is_finish = 9;
+  uint32 level_id = 12;
+}

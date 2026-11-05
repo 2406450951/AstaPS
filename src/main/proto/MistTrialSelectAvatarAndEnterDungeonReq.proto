@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MistTrialSelectAvatarAndEnterDungeonReqOuterClass";
+import "SelectAvatarIndex.proto";
+
+// 7.2 CmdId 9887
+message MistTrialSelectAvatarAndEnterDungeonReq {
+  repeated SelectAvatarIndex select_avatar_index_list = 1;
+  uint32 enter_point_id = 2;
+  repeated uint32 select_trial_avatar_id_list = 7;
+  uint32 trial_id = 10;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KOEOADNEAGOOuterClass";
+import "EBDJNMGFBCM.proto";
+
+message KOEOADNEAGO {
+  int32 AMIFHEMBDGC = 1;
+  repeated EBDJNMGFBCM PFODBOKNBEN = 2;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_PullStrangerChatReqOuterClass";
+// 7.2 CmdId 1838
+message _PullStrangerChatReq {
+  uint32 target_uid = 9;
+  uint32 pull_num = 14;
+}

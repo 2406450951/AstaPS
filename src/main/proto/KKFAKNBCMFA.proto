@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KKFAKNBCMFAOuterClass";
+import "ANPNCGFPLFF.proto";
+import "EOCJPOAOGFP.proto";
+import "_InstanceData.proto";
+import "_PrefabData.proto";
+
+message KKFAKNBCMFA {
+  uint32 guid = 1;
+  uint32 LKEPCJCGMFO = 2;
+  bool LDFOCCEPICN = 3;
+  repeated ANPNCGFPLFF KHOACFNELOP = 4;
+  repeated EOCJPOAOGFP LIPAEIDEIBG = 5;
+  oneof detail {
+    _PrefabData PrefabData = 11;
+    _InstanceData InstanceData = 12;
+  }
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HIJNDLJGDEDOuterClass";
+message HIJNDLJGDED {
+  bool LMBBAPIKABC = 501;
+  uint32 CPHDAFGJMAD = 502;
+  uint32 EKIGCHADCGO = 503;
+  bool EPKMNDHPKNO = 504;
+}

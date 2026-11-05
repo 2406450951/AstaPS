@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ChapterState.proto";
+
+message ChapterStateNotify {
+  message HFLGKINJOGD {
+    bool is_limit = 14;
+    uint32 BFCBJEKKPFC = 4;
+  }
+  message BLGJCHOIHMH {
+    bool is_limit = 1;
+    uint32 KNBEAIBAMLB = 4;
+  }
+  ChapterStateNotify.HFLGKINJOGD MLBMNAKEEOM = 20000;
+  ChapterStateNotify.BLGJCHOIHMH EHKKFCAGELK = 20001;
+  ChapterState chapter_state = 1;
+  uint32 chapter_id = 5;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ResVersionConfig {
+  string next_script_version = 7;
+  string version_suffix = 5;
+  string branch = 6;
+  string release_total_size = 4;
+  string md5 = 3;
+  bool relogin = 2;
+  uint32 version = 1;
+}

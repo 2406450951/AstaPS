@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message BPCBGKJBBMO {
+  bool is_open = 3;
+  bool is_finished = 2;
+  uint32 JBOONGMFCAO = 20000;
+  uint32 stage_id = 1;
+  uint32 difficulty = 5;
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _LimitedRegionInfo {
+  repeated uint32 _limited_region_list = 10;
+}

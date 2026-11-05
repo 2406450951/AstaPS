@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OKOGOBMEPHAOuterClass";
+import "HAPDCHIOCGB.proto";
+import "OGLOOCNIAIP.proto";
+
+message OKOGOBMEPHA {
+  OGLOOCNIAIP AHLKFLFCKFD = 1;
+  HAPDCHIOCGB KNCGGHCPAOK = 2;
+}

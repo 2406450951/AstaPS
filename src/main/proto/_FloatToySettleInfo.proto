@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_FloatToySettleInfoOuterClass";
+message _FloatToySettleInfo {
+  int32 FGCFLHCAPJJ = 1;
+  uint32 result = 2;
+  uint32 score = 4;
+  uint32 HCDCMOJMCJA = 6;
+  uint32 cost_time = 8;
+  bool is_new_record = 10;
+  bool is_succ = 13;
+  uint32 FIELHHOCKPN = 14;
+  uint32 EAGFIBGHGLP = 15;
+}

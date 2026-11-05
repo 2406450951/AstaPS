@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DACMDDCLPNH.proto";
+import "GKOENKALADA.proto";
+import "OEHOLOIDPEF.proto";
+
+message NNGBNNMJABP {
+  repeated GKOENKALADA IMGAIHFOHFJ = 5;
+  repeated OEHOLOIDPEF ELEPHHGAEMM = 13;
+  DACMDDCLPNH BPIHKBCGHJA = 14;
+  uint32 level = 15;
+  uint32 JKOEGDMOGON = 9;
+  bool FJKGOLJBKIM = 3;
+  bool OICODBBMDAO = 11;
+}

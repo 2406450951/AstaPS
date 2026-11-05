@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ScenePlayGuestReplyNotifyOuterClass";
+// 7.2 CmdId 5176
+message ScenePlayGuestReplyNotify {
+  uint32 play_id = 3;
+  bool is_agree = 8;
+  uint32 guest_uid = 9;
+}

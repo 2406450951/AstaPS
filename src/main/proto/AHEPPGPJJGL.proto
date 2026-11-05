@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AHEPPGPJJGLOuterClass";
+enum AHEPPGPJJGL {
+  AHEPPGPJJGL_UNSPECIFIED = 0;
+  AHEPPGPJJGL_TOP10_RATE = 1;
+  AHEPPGPJJGL__7_DTOP100 = 2;
+  AHEPPGPJJGL__7_DTOP10_RATE = 3;
+}

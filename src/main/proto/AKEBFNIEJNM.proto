@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message AKEBFNIEJNM {
+  uint32 option_id = 11;
+  int32 IMLNLBGFANE = 20000;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DungeonDieOptionRspOuterClass";
+import "PlayerDieOption.proto";
+
+// 7.2 CmdId 9224
+message DungeonDieOptionRsp {
+  PlayerDieOption die_option = 4;
+  int32 retcode = 6;
+  uint32 revive_count = 10;
+}

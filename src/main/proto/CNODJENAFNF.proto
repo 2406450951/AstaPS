@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CNODJENAFNFOuterClass";
+import "CPDJFCPDHJK.proto";
+import "FLFDJLOOFND.proto";
+import "HNLFNPAIFIB.proto";
+import "OLAHINMAKFL.proto";
+import "ONNBJMPFLIJ.proto";
+
+message CNODJENAFNF {
+  FLFDJLOOFND PNCLPKEMPKP = 1;
+  ONNBJMPFLIJ JNFLDCGCNOI = 2;
+  OLAHINMAKFL POPAONNNANM = 3;
+  HNLFNPAIFIB JLHLMPDFOOL = 4;
+  uint32 init_pose_id = 5;
+  uint32 FADCCNMBGIM = 6;
+  CPDJFCPDHJK DJNNDLLHFPA = 8;
+}

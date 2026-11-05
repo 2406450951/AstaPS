@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinModifyDamageOuterClass";
+message AbilityMixinModifyDamage {
+  uint32 BKHCIIHABLF = 8;
+  uint32 IGBEKEHFCAP = 10;
+  bool EGIENFMFHNP = 11;
+}

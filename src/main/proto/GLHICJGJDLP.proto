@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EPBLMMLPIND.proto";
+import "JAGCAMGLGDP.proto";
+
+message GLHICJGJDLP {
+  map<uint32, EPBLMMLPIND> COICCEMLBOD = 4;
+  map<uint32, JAGCAMGLGDP> MIJCCHLCPBA = 3;
+  uint32 DIKAJGKLPGO = 1;
+  uint32 section_id = 2;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_FlowerLandReputationStateOuterClass";
+enum _FlowerLandReputationState {
+  _FLOWER_LAND_REPUTATION_STATE_NONE = 0;
+  _FLOWER_LAND_REPUTATION_STATE_DAMESELETTE_LEAVE = 1;
+  _FLOWER_LAND_REPUTATION_STATE_NO_AVAILABLE_TASK = 2;
+}

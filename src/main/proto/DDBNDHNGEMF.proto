@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "JLHFIDHPJMF.proto";
+import "LNHPDECBPMO.proto";
+
+message DDBNDHNGEMF {
+  LNHPDECBPMO ILLJNLJAADM = 10;
+  repeated JLHFIDHPJMF team_info_list = 15;
+  repeated uint64 equip_guid_list = 3;
+  uint32 cost_time = 1;
+  bool is_finished = 9;
+  uint32 AAKAOLKKNGC = 14;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MpBlockNotifyOuterClass";
+// 7.2 CmdId 27836
+message MpBlockNotify {
+  bool CGJCKHKNKOC = 4;
+  uint32 end_time = 7;
+}

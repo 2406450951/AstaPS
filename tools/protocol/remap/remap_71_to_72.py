@@ -76,7 +76,8 @@ def base_type(t):
     return t.split('.')[-1]
 
 
-def main(server_desc, kitkat, r72, opcodes_file, out_desc, report_file):
+def compute_maps(server_desc, kitkat, r72, opcodes_file):
+    """Returns (fds, S, K, R, kcmd, rcmd, ops, s2k, k2r, alias_sk)."""
     K, kcmd = parse_proto(kitkat)
     R, rcmd = parse_proto(r72)
     k_by_cmd = {v: k for k, v in kcmd.items()}
@@ -93,9 +94,11 @@ def main(server_desc, kitkat, r72, opcodes_file, out_desc, report_file):
 
     ops = {}
     for line in open(opcodes_file):
-        m = re.match(r'\s*public static final int (\w+) = (\d+);', line)
-        if m and int(m.group(2)) > 0:
-            ops[m.group(1)] = int(m.group(2))
+        m = re.match(r'\s*public static final int (\w+) = (\d+);(?:.*7\.1: (\d+))?', line)
+        if m:
+            value = int(m.group(3) or m.group(2))
+            if value > 0:
+                ops[m.group(1)] = value
 
     # Explicit renames the dumps cannot reach by themselves.
     alias_sk = {'WindSeedType1Notify': '_PlayerNormalLuaShellNotify'}
@@ -158,6 +161,14 @@ def main(server_desc, kitkat, r72, opcodes_file, out_desc, report_file):
                         k2r[kt] = rt
                         changed = True
 
+    return fds, S, K, R, kcmd, rcmd, ops, s2k, k2r, alias_sk
+
+
+def main(server_desc, kitkat, r72, opcodes_file, out_desc, report_file):
+    fds, S, K, R, kcmd, rcmd, ops, s2k, k2r, alias_sk = compute_maps(
+        server_desc, kitkat, r72, opcodes_file)
+    k_by_cmd = {v: k for k, v in kcmd.items()}
+    k_by_num = {m: {f[0]: (n, f[1]) for n, f in fs.items()} for m, fs in K.items()}
     report = {'messages_mapped': 0, 'messages_unmapped': [], 'fields_lost': {},
               'fields_total': 0, 'fields_mapped': 0, 'cmd': {}}
     PARK = 20000

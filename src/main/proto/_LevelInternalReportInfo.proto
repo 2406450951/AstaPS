@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LevelInternalReportInfoOuterClass";
+import "Vector.proto";
+
+message _LevelInternalReportInfo {
+  Vector cur_pos = 3;
+  Vector DDNIMBFMNAG = 14;
+}

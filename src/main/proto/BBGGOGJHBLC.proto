@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BBGGOGJHBLCOuterClass";
+message BBGGOGJHBLC {
+  int32 GGINAJLGIIG = 501;
+  repeated int32 value = 502;
+}

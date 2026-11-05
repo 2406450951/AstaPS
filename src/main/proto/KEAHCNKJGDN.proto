@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KEAHCNKJGDNOuterClass";
+message KEAHCNKJGDN {
+  int32 AKEBJDBOBHD = 1;
+  int32 MLFLDOPJNCJ = 2;
+}

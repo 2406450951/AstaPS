@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV6CardCreateReqOuterClass";
+import "Vector.proto";
+import "_LanV6Lantern.proto";
+
+// 7.2 CmdId 28956
+message _LanV6CardCreateReq {
+  Vector pos = 10;
+  Vector rot = 13;
+  oneof detail {
+    _LanV6Lantern LanV6Lantern = 2523;
+  }
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeSeekFurnitureOneRecordOuterClass";
+import "HomeSeekFurniturePlayerScore.proto";
+
+message HomeSeekFurnitureOneRecord {
+  repeated HomeSeekFurniturePlayerScore engaged_player_score_list = 4;
+  uint32 timestamp = 11;
+}

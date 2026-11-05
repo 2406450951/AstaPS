@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UseTreasureKeyRspOuterClass";
+import "_TreasureKeyMarkPoint.proto";
+
+// 7.2 CmdId 29907
+message _UseTreasureKeyRsp {
+  int32 retcode = 2;
+  _TreasureKeyMarkPoint _mark_point = 9;
+}

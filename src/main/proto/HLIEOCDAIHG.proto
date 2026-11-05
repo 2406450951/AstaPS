@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HLIEOCDAIHGOuterClass";
+import "IIMKAGBHPCK.proto";
+
+message HLIEOCDAIHG {
+  bool CMBAGFMBCAE = 1;
+  repeated IIMKAGBHPCK JPPFFENMIGO = 2;
+  repeated bool PBKGHGLJANC = 501;
+  bool BMBJIAEJLFE = 502;
+}

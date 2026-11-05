@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_CustomGalleryScoreBoardInfoOuterClass";
+import "_CustomGalleryCountdownScoreBoard.proto";
+import "_CustomGalleryNormalScoreBoard.proto";
+import "_CustomGalleryScoreBoardType.proto";
+import "_CustomGalleryTimerScoreBoard.proto";
+
+message _CustomGalleryScoreBoardInfo {
+  uint32 target_score = 2;
+  _CustomGalleryScoreBoardType type = 10;
+  uint32 _current_score = 11;
+  repeated uint32 _progress_id_list = 12;
+  string name = 14;
+  oneof detail {
+    _CustomGalleryTimerScoreBoard Timer = 212;
+    _CustomGalleryNormalScoreBoard Normal = 1327;
+    _CustomGalleryCountdownScoreBoard Countdown = 1725;
+  }
+}

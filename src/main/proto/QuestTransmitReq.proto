@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message QuestTransmitReq {
+  uint32 point_id = 11;
+  bool NCEIBFLFIPM = 20000;
+  uint32 quest_id = 12;
+  uint32 _template_loading_id = 2;
+}

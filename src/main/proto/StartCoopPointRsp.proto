@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "MainCoop.proto";
+
+message StartCoopPointRsp {
+  MainCoop start_main_coop = 3;
+  int32 retcode = 4;
+  bool is_start = 9;
+  uint32 coop_point = 6;
+}

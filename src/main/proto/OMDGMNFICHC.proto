@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OMDGMNFICHCOuterClass";
+enum OMDGMNFICHC {
+  OMDGMNFICHC_SELF_DEFINE_AVATAR = 0;
+  OMDGMNFICHC_PRIMITIVE_AVATAR = 1;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "MathQuaternion.proto";
+import "OLDIEOFBBML.proto";
+import "Vector.proto";
+
+message MoveComp {
+  MathQuaternion BOGKEFMDADE = 7;
+  Vector MOFGCKLDPPJ = 6;
+  repeated OLDIEOFBBML ACOLLKOJOBP = 1;
+  Vector FHFMKBHBEEI = 3;
+  MathQuaternion KNFKNLCHLMB = 8;
+  Vector init_pos = 5;
+  Vector FOLGPJCEEML = 4;
+  uint64 DLPEJGHPIIO = 2;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IFGOLHNOHNIOuterClass";
+import "HGGCDKJPLEK.proto";
+import "HKJJEKMPNAH.proto";
+import "HKPEAJFLKLL.proto";
+import "IICEHBMKNHC.proto";
+import "MNDFOGDKPCH.proto";
+import "NOLCMBAOEBG.proto";
+import "OMHANDMBGOD.proto";
+
+message IFGOLHNOHNI {
+  IICEHBMKNHC IKBPMAEPIKI = 1;
+  HKJJEKMPNAH PLOJJBNODFN = 2;
+  OMHANDMBGOD GOMEMIHOALH = 3;
+  NOLCMBAOEBG ACJFLOKEPCC = 4;
+  float NNDJJDLJDJA = 5;
+  MNDFOGDKPCH IMAGBDJKACI = 6;
+  string ODADJMJJHKE = 7;
+  HGGCDKJPLEK HLBFLGNHAPN = 8;
+  HKPEAJFLKLL IEMAGAEIIOM = 501;
+  bool PEMDFPFJKLK = 502;
+}

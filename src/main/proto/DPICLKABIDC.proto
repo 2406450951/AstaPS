@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_DetailAbilityInfo.proto";
+
+message DPICLKABIDC {
+  oneof detail_info {
+    _DetailAbilityInfo detail_ability_info = 13;
+  }
+}

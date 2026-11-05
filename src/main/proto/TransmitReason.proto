@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TransmitReasonOuterClass";
+enum TransmitReason {
+  TRANSMIT_REASON_TRANSMIT_NONE = 0;
+  TRANSMIT_REASON_TRANSMIT_QUEST = 1;
+}

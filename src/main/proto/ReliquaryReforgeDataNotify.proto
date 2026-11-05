@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ReliquaryReforgeDataNotifyOuterClass";
+import "ReliquaryReforgeRecord.proto";
+
+// 7.2 CmdId 229
+message ReliquaryReforgeDataNotify {
+  uint32 cur_progress = 1;
+  repeated ReliquaryReforgeRecord reforge_record_list = 4;
+}

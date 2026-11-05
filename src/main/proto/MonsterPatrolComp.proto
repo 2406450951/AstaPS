@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message MonsterPatrolComp {
+  int32 JJAJJAMGHLA = 2;
+  int32 EFNELBEGNJO = 1;
+  int32 HEIOKEEONME = 3;
+}

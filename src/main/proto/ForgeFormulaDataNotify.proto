@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ForgeFormulaDataNotify {
+  uint32 forge_id = 5;
+  bool is_locked = 12;
+}

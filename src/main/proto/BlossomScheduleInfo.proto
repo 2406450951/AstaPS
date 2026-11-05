@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BlossomScheduleInfoOuterClass";
+message BlossomScheduleInfo {
+  uint32 finish_progress = 4;
+  uint32 progress = 6;
+  uint32 state = 9;
+  uint32 circle_camp_id = 12;
+  uint32 round = 13;
+  uint32 refresh_id = 15;
+}

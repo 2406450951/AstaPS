@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LHNANPGEBDFOuterClass";
+import "CMDNGAFMBBJ.proto";
+import "EPAGFCBCCGN.proto";
+import "FAGMGLAJFNL.proto";
+import "JBHKJPNOMCJ.proto";
+
+message LHNANPGEBDF {
+  EPAGFCBCCGN AMCEBCPDNHK = 1;
+  JBHKJPNOMCJ APMILLKAGAE = 3;
+  CMDNGAFMBBJ HGNEMFCPNPK = 4;
+  FAGMGLAJFNL PMPDGFFNOLE = 5;
+}

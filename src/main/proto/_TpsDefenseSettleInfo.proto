@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _TpsDefenseSettleInfo {
+  uint32 score = 15;
+  uint32 max_hp = 12;
+  uint32 kill_num = 9;
+  bool is_new_record = 6;
+  uint32 hp = 11;
+}

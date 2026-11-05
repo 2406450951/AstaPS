@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeSetBlueprintSlotOptionReqOuterClass";
+// 7.2 CmdId 4917
+message HomeSetBlueprintSlotOptionReq {
+  bool is_allow_copy = 1;
+  uint32 slot_id = 12;
+}

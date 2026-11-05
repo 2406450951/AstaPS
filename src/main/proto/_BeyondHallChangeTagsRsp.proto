@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondHallChangeTagsRspOuterClass";
+// 7.2 CmdId 7021
+message _BeyondHallChangeTagsRsp {
+  int32 retcode = 14;
+  repeated uint32 tag_list = 15;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PBNavMeshTileOuterClass";
+import "PBNavMeshPoly.proto";
+import "Vector.proto";
+
+message PBNavMeshTile {
+  repeated PBNavMeshPoly polys = 3;
+  repeated Vector vecs = 6;
+}

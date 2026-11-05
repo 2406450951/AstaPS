@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "KFBPPANOKHA.proto";
+
+message PPOBOBDKPHI {
+  repeated KFBPPANOKHA BFCKJBCPFLF = 14;
+  uint32 schedule_id = 6;
+}

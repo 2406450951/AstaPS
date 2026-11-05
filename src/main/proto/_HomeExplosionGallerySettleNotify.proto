@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_HomeExplosionGallerySettleNotifyOuterClass";
+import "_ExplosionGallerySettleInfo.proto";
+
+// 7.2 CmdId 9602
+message _HomeExplosionGallerySettleNotify {
+  bool is_new_record = 6;
+  repeated _ExplosionGallerySettleInfo _settle_list = 11;
+  uint32 rank = 12;
+  uint32 cost_time = 15;
+}

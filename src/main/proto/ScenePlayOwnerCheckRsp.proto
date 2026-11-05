@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ScenePlayOwnerCheckRspOuterClass";
+// 7.2 CmdId 1868
+message ScenePlayOwnerCheckRsp {
+  uint32 play_id = 4;
+  repeated uint32 param_list = 6;
+  int32 retcode = 8;
+  bool is_skip_match = 10;
+  uint32 wrong_uid = 13;
+}

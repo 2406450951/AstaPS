@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_RankedMatchTrainSocialBriefOuterClass";
+message _RankedMatchTrainSocialBrief {
+  uint32 OOHPGIHICOI = 4;
+  uint32 use_time = 7;
+  uint32 score = 9;
+}

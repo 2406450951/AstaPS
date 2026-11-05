@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityCondStateChangeNotifyOuterClass";
+import "Uint32Pair.proto";
+
+// 7.2 CmdId 26073
+message ActivityCondStateChangeNotify {
+  uint32 activity_id = 1;
+  repeated Uint32Pair disable_transfer_point_interaction_list = 2;
+  repeated uint32 activated_sale_id_list = 4;
+  repeated uint32 OLAEGPPFDPI = 6;
+  uint32 schedule_id = 8;
+  repeated uint32 BHNEODJHIJF = 11;
+}

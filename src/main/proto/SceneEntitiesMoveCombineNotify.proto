@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneEntitiesMoveCombineNotifyOuterClass";
+import "EntityMoveInfo.proto";
+
+// 7.2 CmdId 3922
+message SceneEntitiesMoveCombineNotify {
+  uint32 client_sequence_id = 2;
+  repeated EntityMoveInfo entity_move_info_list = 7;
+}

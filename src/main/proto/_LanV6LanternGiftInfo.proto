@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV6LanternGiftInfoOuterClass";
+message _LanV6LanternGiftInfo {
+  uint32 material_id = 1;
+  bool _is_claimed = 2;
+}

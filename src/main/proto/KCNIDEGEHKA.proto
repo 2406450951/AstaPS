@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KCNIDEGEHKAOuterClass";
+enum KCNIDEGEHKA {
+  KCNIDEGEHKA_DROP = 0;
+  KCNIDEGEHKA_DESTROY = 1;
+  KCNIDEGEHKA_RETAIN = 2;
+  KCNIDEGEHKA_DROP_BY_STUFF_CONFIG = 3;
+}

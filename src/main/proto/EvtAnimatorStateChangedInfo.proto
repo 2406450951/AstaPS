@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtAnimatorStateChangedInfoOuterClass";
+import "Vector.proto";
+
+message EvtAnimatorStateChangedInfo {
+  int32 KAECBAPHFJM = 1;
+  Vector ref_pos = 2;
+  Vector pos = 3;
+  bool CHNGGHHMOHM = 4;
+  uint32 DEOFPLAMHOF = 5;
+  uint32 ref_id = 6;
+  int32 face_angle_compact = 7;
+  float fade_duration = 8;
+  uint32 MNFOFCOGDMD = 9;
+  uint32 KMMLNDMEIDD = 10;
+  int32 IPBPAIFIKBE = 11;
+  bool JBHANICEBPN = 12;
+  uint32 normalized_time_compact = 13;
+  uint32 entity_id = 14;
+  int32 sync_type = 15;
+  int32 PBDMBFMKMJK = 1232;
+  bool KIMINICIKCA = 1620;
+  int32 JPOAMLIKCPH = 1671;
+}

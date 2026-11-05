@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ServerDisconnectClientNotifyOuterClass";
+// 7.2 CmdId 94
+message ServerDisconnectClientNotify {
+  uint32 data = 6;
+}

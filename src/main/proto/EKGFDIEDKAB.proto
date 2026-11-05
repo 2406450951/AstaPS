@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EKGFDIEDKABOuterClass";
+import "HIEHDDNHLEI.proto";
+
+message EKGFDIEDKAB {
+  bool GJIBAAEKNNO = 501;
+  HIEHDDNHLEI JKPOBLPNEOI = 502;
+  HIEHDDNHLEI FMGBJHNEPCL = 503;
+  bool ANJEOBBDOLA = 504;
+  HIEHDDNHLEI KMELBKMIOJC = 505;
+  HIEHDDNHLEI JIBIGDBFMCK = 506;
+  uint32 DHCMLEIGHCK = 507;
+  int32 IOHLJIJBJBO = 508;
+  int32 GGFAPLEFNOE = 509;
+  bool OANGDLMDGKM = 510;
+}

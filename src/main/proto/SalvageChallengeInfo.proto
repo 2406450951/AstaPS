@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "SalvageBundleChallengeInfo.proto";
+import "SalvageScoreChallengeInfo.proto";
+
+message SalvageChallengeInfo {
+  bool is_unlock = 2;
+  uint32 challenge_type = 1;
+  oneof challenge_detail {
+    SalvageBundleChallengeInfo bundle_info = 10;
+    SalvageScoreChallengeInfo score_challenge_info = 11;
+    uint32 boss_challenge_id = 12;
+  }
+}

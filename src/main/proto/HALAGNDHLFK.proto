@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message HALAGNDHLFK {
+  repeated uint32 HALONGEGOEJ = 5;
+  bool _is_reward_claimed = 4;
+  uint32 _beatmap_id = 11;
+  uint32 max_score = 10;
+}

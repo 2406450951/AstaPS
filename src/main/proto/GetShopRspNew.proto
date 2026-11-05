@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message GetShopRspNew {
+  repeated uint32 DGINCLDAKFI = 10;
+  int32 retcode = 7;
+  uint32 param = 11;
+}

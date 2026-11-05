@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGMsgDiceRollOuterClass";
+import "GCGDiceSideType.proto";
+
+message GCGMsgDiceRoll {
+  uint32 dice_num = 2;
+  repeated GCGDiceSideType dice_side_list = 5;
+  uint32 controller_id = 12;
+}

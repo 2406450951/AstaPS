@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ItemParam.proto";
+import "WinterCampRaceStageInfo.proto";
+import "WinterCampStageInfo.proto";
+
+message WinterCampActivityDetailInfo {
+  WinterCampStageInfo explore_info = 2;
+  repeated WinterCampRaceStageInfo race_info_list = 4;
+  WinterCampStageInfo battle_info = 3;
+  repeated uint32 LFFBHOJNFDO = 20000;
+  repeated uint32 PGGALHOEMKP = 20001;
+  repeated ItemParam used_item_list = 8;
+  repeated uint32 CNLIGPFPPDC = 20002;
+  bool is_content_closed = 1;
+}

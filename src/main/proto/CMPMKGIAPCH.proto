@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "LIBEGKHPMPN.proto";
+import "_CurrentPhase.proto";
+import "_EquipStuff.proto";
+import "_NormalStuff.proto";
+
+message CMPMKGIAPCH {
+  _CurrentPhase KDPEFOBKJON = 1;
+  LIBEGKHPMPN OHBGNHAAMIB = 2;
+  uint32 guid = 3;
+  oneof detail {
+    _NormalStuff normal_stuff = 100;
+    _EquipStuff equip_stuff = 101;
+  }
+}

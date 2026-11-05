@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ItemParam.proto";
+import "Vector.proto";
+import "_WispCageState.proto";
+
+message _WispCageData {
+  Vector pos = 14;
+  repeated ItemParam _last_used_material_list = 15;
+  Vector rot = 13;
+  uint32 gadget_entity_id = 6;
+  uint32 _collect_finish_time = 3;
+  _WispCageState state = 7;
+  uint32 scene_id = 9;
+}

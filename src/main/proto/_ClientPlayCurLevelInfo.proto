@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ClientPlayType.proto";
+
+message _ClientPlayCurLevelInfo {
+  uint32 level_id = 6;
+  _ClientPlayType _client_play_type = 2;
+}

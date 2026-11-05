@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FMNIDHLNOBBOuterClass";
+message FMNIDHLNOBB {
+  bool CBJIEFEPGEO = 1;
+  string name = 2;
+  bool EAHDGNLGNFM = 3;
+  uint32 MDGDHLNEAEK = 4;
+  bool FGFHNCIICAP = 5;
+}

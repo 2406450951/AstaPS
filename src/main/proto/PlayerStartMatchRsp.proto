@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerStartMatchRspOuterClass";
+import "BFLEIKJJMLD.proto";
+import "GDHEEODAOHA.proto";
+import "MatchType.proto";
+
+// 7.2 CmdId 21663
+message PlayerStartMatchRsp {
+  uint32 match_id = 1;
+  int32 retcode = 3;
+  MatchType match_type = 5;
+  uint32 dungeon_id = 8;
+  uint32 mp_play_id = 11;
+  uint32 punish_end_time = 14;
+  uint32 param = 15;
+  BFLEIKJJMLD BMNOHPMILKM = 964;
+  repeated GDHEEODAOHA MJDIICDFLLE = 1160;
+}

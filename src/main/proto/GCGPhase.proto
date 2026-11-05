@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGPhaseOuterClass";
+import "GCGPhaseType.proto";
+import "ILGMKAJCGEO.proto";
+
+message GCGPhase {
+  map<uint32, uint32> allow_controller_map = 2;
+  ILGMKAJCGEO FCBPDPIFDBM = 6;
+  GCGPhaseType phase_type = 12;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EnterCurveNotifyOuterClass";
+import "IBEBEACHNJD.proto";
+
+// 7.2 CmdId 2865
+message EnterCurveNotify {
+  uint32 point_id = 5;
+  IBEBEACHNJD FFFNMAFGAMC = 11;
+  float speed = 12;
+  uint32 EEILJPNIHDL = 15;
+}

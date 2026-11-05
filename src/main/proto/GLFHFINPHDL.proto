@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GLFHFINPHDLOuterClass";
+import "CHFNKDHJOKI.proto";
+import "KNJNKODPNOG.proto";
+
+message GLFHFINPHDL {
+  repeated KNJNKODPNOG JJMEEPBKJDH = 1;
+  map<uint32, CHFNKDHJOKI> IOKAOFINGMH = 2;
+}

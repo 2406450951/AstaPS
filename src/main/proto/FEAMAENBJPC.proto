@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FJFKBKCECBC.proto";
+import "Vector.proto";
+import "_CurrentPhase.proto";
+
+message FEAMAENBJPC {
+  Vector rot = 7;
+  repeated int32 POGPHDLNFFL = 10;
+  _CurrentPhase NECKOCPCNAB = 9;
+  FJFKBKCECBC PNFMAMOFHHN = 11;
+  _CurrentPhase HGDAMCKDNDN = 12;
+  string MIKFCHLALBN = 3;
+  Vector MPCANOANMNM = 6;
+  float OLIPGCONBJC = 8;
+  int32 GOKMKDKPBEK = 2;
+  bool BAFDBADGIKI = 5;
+  bool DKKGNMHFHOI = 4;
+  bool MCGOLBFHCJI = 13;
+  int32 KPEOPGPENGN = 1;
+}

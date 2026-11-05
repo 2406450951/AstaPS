@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _LanV5CardSocial {
+  uint32 like_num = 12;
+}

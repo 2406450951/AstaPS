@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SetWidgetQuickSlotListReqOuterClass";
+// 7.2 CmdId 7927
+message _SetWidgetQuickSlotListReq {
+  repeated uint32 _material_id_list = 3;
+  uint32 _current_slot_num = 9;
+}

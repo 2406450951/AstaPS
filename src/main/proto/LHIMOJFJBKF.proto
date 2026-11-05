@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LHIMOJFJBKFOuterClass";
+enum LHIMOJFJBKF {
+  LHIMOJFJBKF_ABILITY_DRAG_FORCE_DIR_ABS = 0;
+  LHIMOJFJBKF_ABILITY_DRAG_FORCE_DIR_RELATE_CHARACTER = 1;
+}

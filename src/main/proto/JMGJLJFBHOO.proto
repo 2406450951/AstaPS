@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JMGJLJFBHOOOuterClass";
+import "FJOAOGALIIJ.proto";
+import "FMIGCKIIDKC.proto";
+import "MKNHKHMILCG.proto";
+import "NNADJMJHEBA.proto";
+import "PLCNLFDMGEI.proto";
+
+message JMGJLJFBHOO {
+  MKNHKHMILCG KBPNCLFKHFO = 1;
+  bool is_show = 2;
+  string AKEAINMJDHL = 3;
+  string JEHGKAFLHBL = 502;
+  int32 index = 503;
+  oneof detail {
+    FJOAOGALIIJ BoxData = 11;
+    PLCNLFDMGEI SphereData = 12;
+    FMIGCKIIDKC CapsuleData = 13;
+    NNADJMJHEBA CylinderData = 14;
+  }
+}

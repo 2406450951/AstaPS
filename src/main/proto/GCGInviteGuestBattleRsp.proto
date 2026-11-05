@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGInviteGuestBattleRspOuterClass";
+// 7.2 CmdId 27960
+message GCGInviteGuestBattleRsp {
+  uint32 festival_mode_type = 2;
+  int32 retcode = 3;
+  uint32 uid = 8;
+  uint32 punish_end_time = 12;
+  uint32 confirm_end_time = 15;
+}

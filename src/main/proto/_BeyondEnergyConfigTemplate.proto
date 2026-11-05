@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondEnergyConfigTemplateOuterClass";
+import "PFJLHHGDILP.proto";
+
+message _BeyondEnergyConfigTemplate {
+  string EFFGCDCBFDE = 1;
+  float OIHBIAFGHPN = 2;
+  PFJLHHGDILP JCMHDNJLEPO = 3;
+  uint32 AHPNNHGLOGH = 4;
+}

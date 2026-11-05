@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FungusFighterTrainingInfoNotifyOuterClass";
+message FungusFighterTrainingInfoNotify {
+  uint32 GDLICFFOICG = 1;
+  uint32 GMLFIHNJEPF = 2;
+  uint32 HJHDJBHKGIH = 3;
+  uint32 max_monster_count = 5;
+  uint32 ABIBOKCKLKM = 6;
+  uint32 NBMDJDJJDMF = 7;
+  uint32 buff_id = 8;
+}

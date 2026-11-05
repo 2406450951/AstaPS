@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AkaFesArchaeologyInfo.proto";
+import "AkaFesAstrolabeInfo.proto";
+import "DOAKNFOOGMH.proto";
+import "EPNAGILGGHB.proto";
+import "GHEKEDLIEDP.proto";
+import "MENHFPBEHLL.proto";
+
+message _AkaFesDetailInfo {
+  AkaFesAstrolabeInfo astrolabe_info = 20000;
+  AkaFesArchaeologyInfo archaeology_info = 20001;
+  DOAKNFOOGMH NJACKJJLCHN = 20002;
+  MENHFPBEHLL GFIMJAILAFF = 20003;
+  GHEKEDLIEDP NNADFEPJILG = 20004;
+  EPNAGILGGHB FPCNHHHBHPF = 20005;
+}

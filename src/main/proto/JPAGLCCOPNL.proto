@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JPAGLCCOPNLOuterClass";
+enum JPAGLCCOPNL {
+  JPAGLCCOPNL_NONE = 0;
+  JPAGLCCOPNL_IN_PIN = 1;
+  JPAGLCCOPNL_OUT_PIN = 2;
+  JPAGLCCOPNL_IN_PARAM = 3;
+  JPAGLCCOPNL_OUT_PARAM = 4;
+  JPAGLCCOPNL_EXTRA_PARAM = 5;
+}

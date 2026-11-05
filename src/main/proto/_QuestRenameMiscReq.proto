@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestRenameMiscReqOuterClass";
+import "_MiscRenameInfo.proto";
+
+// 7.2 CmdId 9338
+message _QuestRenameMiscReq {
+  _MiscRenameInfo _misc_rename_info = 3;
+  bool AKEBBJGDNKI = 11;
+}

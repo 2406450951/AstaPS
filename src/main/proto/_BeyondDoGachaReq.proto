@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondDoGachaReqOuterClass";
+import "ItemParam.proto";
+
+// 7.2 CmdId 21263
+message _BeyondDoGachaReq {
+  uint32 gacha_times = 1;
+  ItemParam OAOMOMBCAFE = 2;
+  ItemParam GIOPAIBKFCB = 3;
+  uint32 _beyond_gacha_type = 11;
+  uint32 verify_code = 12;
+  ItemParam IGPFJLHLBJG = 13;
+  uint32 schedule_id = 14;
+  uint32 MJCAEJEEANO = 15;
+}

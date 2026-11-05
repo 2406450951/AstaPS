@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtSyncEntityPositionInfoOuterClass";
+import "Vector.proto";
+
+message EvtSyncEntityPositionInfo {
+  Vector pos = 1;
+  uint32 normalized_time_compact = 8;
+  uint32 state_hash = 9;
+  uint32 entity_id = 10;
+  int32 face_angle_compact = 13;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_WidgetSorushInfoOuterClass";
+import "Vector.proto";
+
+message _WidgetSorushInfo {
+  bool JAJDFMLFGAA = 2;
+  uint32 slot = 5;
+  bool ECKABPENGJP = 8;
+  Vector pos = 9;
+  bool PFDIFJJNBCJ = 11;
+  Vector rot = 12;
+}

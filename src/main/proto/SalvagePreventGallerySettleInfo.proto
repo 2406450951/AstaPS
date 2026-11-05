@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SalvagePreventGallerySettleInfoOuterClass";
+import "SalvagePreventStopReason.proto";
+
+message SalvagePreventGallerySettleInfo {
+  uint32 monster_count = 1;
+  uint32 time_remain = 2;
+  uint32 final_score = 3;
+  SalvagePreventStopReason reason = 4;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message PlayerPreEnterMpNotify {
+  enum State {
+    State_INVALID = 0;
+    State_START = 1;
+    State_TIMEOUT = 2;
+  }
+  string nickname = 3;
+  PlayerPreEnterMpNotify.State state = 11;
+  uint32 uid = 10;
+}

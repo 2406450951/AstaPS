@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EEKBJIODHJE.proto";
+
+message EIKPBFHDENP {
+  repeated EEKBJIODHJE level_info_list = 4;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ADPBBAPNAEIOuterClass";
+message ADPBBAPNAEI {
+  float LBFCLBHKEML = 1;
+  float CFGOHFMGNPE = 2;
+  float ODBEJCFBEOM = 3;
+  float CMBPJKEHMBM = 4;
+  float ODCCKLBAIHF = 5;
+  float IOHFHNCICED = 6;
+  float FHPMKAGKNOD = 7;
+  bool AJCLCFAGFFA = 501;
+  bool INLHLOHCEHP = 502;
+  float PMCENFLPPHF = 503;
+}

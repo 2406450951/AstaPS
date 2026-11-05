@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _SummonBattleSettleInfo {
+  bool is_new_record = 3;
+  uint32 OADBBPOMHAN = 20000;
+  uint32 score = 12;
+  uint32 level_id = 1;
+  uint32 difficulty = 15;
+}

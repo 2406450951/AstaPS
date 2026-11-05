@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MainCoopFailNotifyOuterClass";
+// 7.2 CmdId 22035
+message MainCoopFailNotify {
+  uint32 chapter_id = 3;
+  string textmap_id = 8;
+}

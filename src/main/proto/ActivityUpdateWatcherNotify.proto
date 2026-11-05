@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ActivityWatcherInfo.proto";
+
+message ActivityUpdateWatcherNotify {
+  ActivityWatcherInfo watcher_info = 6;
+  uint32 activity_id = 3;
+}

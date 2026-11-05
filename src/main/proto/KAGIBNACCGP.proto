@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KAGIBNACCGPOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message KAGIBNACCGP {
+  float time = 1;
+  float IKDCCPPAEAJ = 2;
+  HHEDHCFPEKM GHMAPIFLGOK = 3;
+}

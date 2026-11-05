@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HuntingStartNotifyOuterClass";
+import "HuntingPair.proto";
+import "Vector.proto";
+
+// 7.2 CmdId 9151
+message HuntingStartNotify {
+  uint32 fail_time = 1;
+  HuntingPair hunting_pair = 4;
+  bool is_final = 5;
+  Vector clue_position = 7;
+}

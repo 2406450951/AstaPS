@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondDlcItemQualityOuterClass";
+enum _BeyondDlcItemQuality {
+  _BEYOND_DLC_ITEM_QUALITY_GRAY = 0;
+  _BEYOND_DLC_ITEM_QUALITY_GREEN = 1;
+  _BEYOND_DLC_ITEM_QUALITY_BLUE = 2;
+  _BEYOND_DLC_ITEM_QUALITY_PURPLE = 3;
+  _BEYOND_DLC_ITEM_QUALITY_ORANGE = 4;
+}

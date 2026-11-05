@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HPKHLBICODNOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message HPKHLBICODN {
+  HHEDHCFPEKM center = 1;
+  HHEDHCFPEKM NILBBNBJKGD = 2;
+  HHEDHCFPEKM MNJAHHAFCJB = 3;
+}

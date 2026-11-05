@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondChatChannelUpdateNotifyOuterClass";
+import "NBLIFPOAFEO.proto";
+import "_BeyondChatIndex.proto";
+
+// 7.2 CmdId 20104
+message _BeyondChatChannelUpdateNotify {
+  repeated uint32 uid_list = 1;
+  NBLIFPOAFEO ANGEDNMEHNL = 5;
+  bool GBGJOPELMKE = 7;
+  bool NPBCJIIBGME = 8;
+  _BeyondChatIndex index = 9;
+  bool MLHANDEIPMN = 11;
+  bool is_shield = 13;
+  string JCIAHNCHMLN = 14;
+}

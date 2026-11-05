@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "MathQuaternion.proto";
+import "Vector.proto";
+
+message _FixedMoverInfo {
+  Vector IMFDIHLBFEN = 20000;
+  MathQuaternion MGIHDBMCCPK = 20001;
+  Vector OHMBANGLFIJ = 20002;
+  float LAIKIBMMJKD = 20003;
+}

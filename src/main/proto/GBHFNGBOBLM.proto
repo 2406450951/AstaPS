@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GBHFNGBOBLMOuterClass";
+message GBHFNGBOBLM {
+  float FPDNFFLDOHE = 1;
+  float OBGOOKCOIPB = 2;
+  string MAFBELENHFF = 3;
+  bool EMLLGFDOAKN = 4;
+}

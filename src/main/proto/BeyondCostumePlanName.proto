@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondCostumePlanNameOuterClass";
+message BeyondCostumePlanName {
+  uint32 _data_index = 12;
+  string name = 13;
+}

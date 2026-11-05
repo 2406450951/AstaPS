@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NGJBCALIMJOOuterClass";
+message NGJBCALIMJO {
+  uint32 level = 1;
+  uint32 promote_level = 2;
+  map<uint32, uint32> affix_map = 3;
+  bool MNCFEDPDEAG = 4;
+}

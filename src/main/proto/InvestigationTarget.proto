@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message InvestigationTarget {
+  enum State {
+    State_INVALID = 0;
+    State_IN_PROGRESS = 1;
+    State_COMPLETE = 2;
+    State_REWARD_TAKEN = 3;
+  }
+  uint32 quest_id = 8;
+  InvestigationTarget.State state = 9;
+  uint32 investigation_id = 1;
+  uint32 total_progress = 12;
+  uint32 progress = 11;
+}

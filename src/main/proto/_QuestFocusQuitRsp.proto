@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestFocusQuitRspOuterClass";
+import "_QuitFocusReason.proto";
+
+// 7.2 CmdId 27014
+message _QuestFocusQuitRsp {
+  _QuitFocusReason reason = 4;
+  repeated uint32 ELDJOEIMEMH = 8;
+  int32 retcode = 14;
+}

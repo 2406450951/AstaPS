@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinMonsterFixedWarpingOuterClass";
+import "Vector.proto";
+
+message AbilityMixinMonsterFixedWarping {
+  Vector BLPALKPAKDL = 3;
+  Vector target_pos = 14;
+}

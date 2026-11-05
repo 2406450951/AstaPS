@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AddAvatarTalentNotifyOuterClass";
+import "_AddAvatarTalentTransferItem.proto";
+
+// 7.2 CmdId 8626
+message _AddAvatarTalentNotify {
+  uint32 item_id = 3;
+  uint32 reason = 10;
+  uint32 avatar_id = 13;
+  repeated _AddAvatarTalentTransferItem transfer_item_list = 14;
+}

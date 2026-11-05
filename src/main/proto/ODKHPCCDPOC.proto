@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ODKHPCCDPOCOuterClass";
+message ODKHPCCDPOC {
+  bool JLOOFCEGCIP = 501;
+  repeated uint32 LMBNBHGLEDC = 502;
+  uint32 MCLDIPHHBLE = 503;
+  uint32 PLFNBJLPGCF = 504;
+  uint32 AELAMKNGMFB = 505;
+}

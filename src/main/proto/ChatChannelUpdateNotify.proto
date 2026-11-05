@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ChatChannelUpdateNotifyOuterClass";
+import "ChatChannelInfo.proto";
+import "_ChatChannelPlayerInfo.proto";
+
+// 7.2 CmdId 22493
+message ChatChannelUpdateNotify {
+  bool is_create = 7;
+  _ChatChannelPlayerInfo _channel_player_info = 8;
+  uint32 channel_id = 13;
+  ChatChannelInfo channel_info = 15;
+}

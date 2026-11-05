@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AquariumSellSettleInfoOuterClass";
+import "Uint32Pair.proto";
+
+message _AquariumSellSettleInfo {
+  uint32 AIMLONCEAEA = 2;
+  uint32 KGIBLHILCBP = 5;
+  repeated Uint32Pair OGHPBBEOKCH = 7;
+  uint32 HLBFKAPHMKI = 11;
+  bool NBGOCAFMDEK = 12;
+  uint32 OADPFACBIGE = 13;
+  uint32 time_cost = 14;
+}

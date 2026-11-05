@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GDDHMAMMOJPOuterClass";
+import "NHGNELNNFBP.proto";
+
+message GDDHMAMMOJP {
+  int32 KOAOELLDNDI = 1;
+  float IMEILDCIOAM = 501;
+  float CDHGFLIFHKG = 502;
+  float JIMJGNMNAGC = 503;
+  bool PINFMCAEIME = 504;
+  bool CCFFGIFAACN = 505;
+  oneof detail {
+    NHGNELNNFBP Effect = 11;
+  }
+}

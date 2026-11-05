@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum LunaRiteHintPointType {
+  LunaRiteHintPointType_LUNA_RITE_HINT_TYPE_NONE = 0;
+  LunaRiteHintPointType_LUNA_RITE_HINT_TYPE_RUNE = 1;
+  LunaRiteHintPointType_LUNA_RITE_HINT_TYPE_CHEST = 2;
+}

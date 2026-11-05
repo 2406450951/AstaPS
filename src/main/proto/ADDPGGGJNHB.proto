@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ADDPGGGJNHBOuterClass";
+import "HHEDHCFPEKM.proto";
+import "LHIMOJFJBKF.proto";
+
+message ADDPGGGJNHB {
+  LHIMOJFJBKF OCEIHGGKKFB = 1;
+  HHEDHCFPEKM OEPBPEKNNKP = 2;
+  HHEDHCFPEKM PCCKLEAGIFL = 3;
+  float velocity = 4;
+}

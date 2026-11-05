@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TakeCoopRewardRspOuterClass";
+// 7.2 CmdId 3619
+message TakeCoopRewardRsp {
+  uint32 reward_config_id = 1;
+  int32 retcode = 6;
+}

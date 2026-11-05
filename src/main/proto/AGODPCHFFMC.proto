@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AGODPCHFFMCOuterClass";
+enum AGODPCHFFMC {
+  AGODPCHFFMC_NONE = 0;
+  AGODPCHFFMC_GENERICS_SERVER_PARAM_DICTIONARY = 1;
+}

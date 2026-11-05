@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LLIJNHLPMODOuterClass";
+import "FCBMIHFCCLF.proto";
+
+message LLIJNHLPMOD {
+  string name = 501;
+  int32 NPFMHKIMICA = 502;
+  int32 GADCBBBPIKG = 503;
+  float DOOHFKABDPL = 504;
+  FCBMIHFCCLF PKINIBADINO = 505;
+  FCBMIHFCCLF HPHAOOHJOPE = 506;
+}

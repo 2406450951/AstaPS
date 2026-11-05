@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HJPJAPIBMDIOuterClass";
+message HJPJAPIBMDI {
+  uint32 _aquarium_diving_task_id = 4;
+  repeated uint32 member_list = 5;
+  bool is_finished = 10;
+}

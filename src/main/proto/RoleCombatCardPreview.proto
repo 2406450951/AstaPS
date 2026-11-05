@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatCardPreviewOuterClass";
+import "RoleCombatLevelInfo.proto";
+
+message RoleCombatCardPreview {
+  uint32 AICODEJHJHC = 2;
+  uint32 NMJFLNNFDAC = 4;
+  repeated RoleCombatLevelInfo level_list = 7;
+  bool LBBEGINGGGL = 11;
+}

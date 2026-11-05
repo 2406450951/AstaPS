@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _MapMarkRecord {
+  uint32 score = 2;
+  float _distance = 15;
+  uint32 _survey_count = 12;
+}

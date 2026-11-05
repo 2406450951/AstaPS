@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LDMIFCNJHAOOuterClass";
+message LDMIFCNJHAO {
+  int32 LBDDCPLEONC = 1;
+  int32 MAABBEMEOJL = 2;
+  float IHPIGMLBMND = 3;
+}

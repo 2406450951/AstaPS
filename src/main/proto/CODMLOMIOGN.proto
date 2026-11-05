@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CODMLOMIOGNOuterClass";
+import "ADDPGGGJNHB.proto";
+import "BKBOMIKGHNM.proto";
+import "CBIEMFJPEKJ.proto";
+import "FKFIMHEFIGA.proto";
+import "GPOJILFFDHI.proto";
+import "HMEJEGBHBDG.proto";
+import "KFIPPMEHBPP.proto";
+import "OGCBNKGPOJK.proto";
+import "_AttachPreInputComboJumpEffect.proto";
+import "_AttachShootHelperBydEffect.proto";
+import "_BydCheckGround.proto";
+import "_EnterFocus.proto";
+import "_MonsterSteerByAiTarget.proto";
+import "_MonsterSteerByCvPos.proto";
+import "_SpecialCanDoSkill.proto";
+
+message CODMLOMIOGN {
+  FKFIMHEFIGA PKMPDBMLMPA = 1;
+  oneof detail {
+    OGCBNKGPOJK AttachEffect = 11;
+    KFIPPMEHBPP AvatarLevitate = 12;
+    GPOJILFFDHI AvatarSteerByCamera = 13;
+    _EnterFocus EnterFocus = 14;
+    BKBOMIKGHNM AimUi = 15;
+    _AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;
+    _AttachPreInputComboJumpEffect AttachPreInputComboJumpEffect = 17;
+    _MonsterSteerByAiTarget MonsterSteerByAiTarget = 18;
+    _MonsterSteerByCvPos MonsterSteerByCvPos = 19;
+    _SpecialCanDoSkill SpecialCanDoSkill = 20;
+    CBIEMFJPEKJ ModifyCastSpeedRatio = 21;
+    _BydCheckGround BydCheckGround = 22;
+    ADDPGGGJNHB AbilityDragForce = 23;
+    HMEJEGBHBDG PreTargeting = 24;
+  }
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GlobalBuildingInfoNotifyOuterClass";
+import "BuildingInfo.proto";
+
+message GlobalBuildingInfoNotify {
+  repeated BuildingInfo building_list = 1;
+  uint32 current_num = 2;
+  uint32 max_num = 3;
+}

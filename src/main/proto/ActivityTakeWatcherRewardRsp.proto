@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ActivityTakeWatcherRewardRsp {
+  int32 retcode = 3;
+  uint32 watcher_id = 6;
+  uint32 activity_id = 13;
+}

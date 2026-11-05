@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetActivityScheduleRspOuterClass";
+import "ActivityScheduleInfo.proto";
+
+// 7.2 CmdId 3417
+message GetActivityScheduleRsp {
+  repeated ActivityScheduleInfo activity_schedule_list = 2;
+  uint32 remain_fly_sea_lamp_num = 5;
+  int32 retcode = 10;
+}

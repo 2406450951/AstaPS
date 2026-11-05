@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OpActivityStateNotifyOuterClass";
+import "OpActivityTagBriefInfo.proto";
+
+// 7.2 CmdId 20380
+message OpActivityStateNotify {
+  repeated uint32 finished_bonus_activity_id_list = 1;
+  repeated OpActivityTagBriefInfo opened_op_activity_info_list = 8;
+}

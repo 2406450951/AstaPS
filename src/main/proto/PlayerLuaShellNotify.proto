@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerLuaShellNotifyOuterClass";
+import "LuaShellType.proto";
+
+// 7.2 CmdId 5054
+message PlayerLuaShellNotify {
+  LuaShellType shell_type = 6;
+  uint32 id = 7;
+  bytes lua_shell = 8;
+  uint32 use_type = 11;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AbilityAttachedModifier.proto";
+import "AbilityString.proto";
+import "ModifierAction.proto";
+import "ModifierProperty.proto";
+
+message AbilityMetaModifierChange {
+  repeated ModifierProperty properties = 1;
+  AbilityString parent_ability_override = 10;
+  AbilityAttachedModifier attached_instanced_modifier = 8;
+  AbilityString parent_ability_name = 6;
+  float MFBDIICANOF = 20000;
+  uint32 server_buff_uid = 7;
+  int32 modifier_local_id = 14;
+  bool NBBGHMGOALL = 20001;
+  bool PKJMOLPCEBG = 20002;
+  bool is_attached_parent_ability = 12;
+  uint32 apply_entity_id = 15;
+  ModifierAction action = 9;
+  uint64 OCAMKBCONED = 20003;
+}

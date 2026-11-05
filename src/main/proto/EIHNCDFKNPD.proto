@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EIHNCDFKNPDOuterClass";
+enum EIHNCDFKNPD {
+  EIHNCDFKNPD_NONE = 0;
+  EIHNCDFKNPD_RANK_LIST = 1;
+  EIHNCDFKNPD_TIER = 2;
+  EIHNCDFKNPD_PLATINUM_ACHIEVEMENT = 3;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetRecentMpPlayerListRspOuterClass";
+import "FriendBrief.proto";
+
+// 7.2 CmdId 20871
+message GetRecentMpPlayerListRsp {
+  repeated FriendBrief recent_mp_player_brief_list = 5;
+  int32 retcode = 6;
+  repeated uint32 _recent_beyond_player_uid_list = 11;
+}

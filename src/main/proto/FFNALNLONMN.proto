@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FFNALNLONMNOuterClass";
+import "IKGEHKIAFPH.proto";
+import "ONKDJGPMCMK.proto";
+
+message FFNALNLONMN {
+  int32 content_type = 501;
+  IKGEHKIAFPH KKLJPGAGCPF = 502;
+  ONKDJGPMCMK icon = 503;
+  int32 index = 505;
+}

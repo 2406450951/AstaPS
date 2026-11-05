@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MCOEBFMAFKPOuterClass";
+import "FAGMGLAJFNL.proto";
+
+message MCOEBFMAFKP {
+  bool CFBADKELMJM = 1;
+  bool BCKMFONFCAN = 2;
+  uint32 GGNIECNGCAB = 3;
+  float PLMDBCHCCMH = 4;
+  int32 NHMGAHONMIP = 5;
+  FAGMGLAJFNL CPLKPKCFGNB = 6;
+  bool NDCGLAAGHAK = 7;
+  bool HJBPJNGLJAP = 8;
+  FAGMGLAJFNL NOPGICBKAAE = 9;
+}

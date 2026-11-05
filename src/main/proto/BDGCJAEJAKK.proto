@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BDGCJAEJAKKOuterClass";
+import "EJIEHJMIPEO.proto";
+
+message BDGCJAEJAKK {
+  EJIEHJMIPEO GCDEIMBDMEA = 501;
+  EJIEHJMIPEO BMOGBJNELBF = 502;
+  EJIEHJMIPEO ILGHJKAADFO = 503;
+  EJIEHJMIPEO KAKFPNCALPK = 504;
+}

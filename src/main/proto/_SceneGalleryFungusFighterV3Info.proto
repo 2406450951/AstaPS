@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryFungusFighterV3InfoOuterClass";
+import "KGONKJPPGCA.proto";
+
+message _SceneGalleryFungusFighterV3Info {
+  uint32 HKPDOODFLOJ = 1;
+  uint32 MKKCMDHAPIH = 2;
+  repeated KGONKJPPGCA KIBAFLLLMKJ = 3;
+  float HCGDAPJKHIG = 4;
+  uint64 JEFABAACFIP = 5;
+  string transaction = 6;
+  uint32 OFDNCCFLPJG = 7;
+  uint32 BPOEEPBBNNA = 8;
+  uint32 PDDOFPOEBNM = 9;
+}

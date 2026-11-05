@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JKKANLOJNHIOuterClass";
+enum JKKANLOJNHI {
+  JKKANLOJNHI_NONE = 0;
+  JKKANLOJNHI_CUSTOM = 1;
+  JKKANLOJNHI_TIER = 2;
+  JKKANLOJNHI_ACHIEVEMENT = 3;
+  JKKANLOJNHI_DLC = 4;
+  JKKANLOJNHI_LEVEL_OBJECTIVE = 5;
+}

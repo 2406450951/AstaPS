@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GIOHLDNNKGHOuterClass";
+message GIOHLDNNKGH {
+  string title = 502;
+  uint32 card_id = 503;
+  uint32 PJDHLMFGCGJ = 504;
+  bool JAFOFAMOMJJ = 505;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV6CardSourceOuterClass";
+import "_LanV6CardSourceNpc.proto";
+import "_LanV6CardSourcePlayer.proto";
+
+message _LanV6CardSource {
+  oneof detail {
+    _LanV6CardSourceNpc Npc = 1;
+    _LanV6CardSourcePlayer Player = 5;
+  }
+}

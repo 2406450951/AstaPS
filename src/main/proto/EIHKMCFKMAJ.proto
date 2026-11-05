@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EIHKMCFKMAJOuterClass";
+import "HGGCDKJPLEK.proto";
+
+message EIHKMCFKMAJ {
+  uint32 PJDHLMFGCGJ = 3;
+  repeated HGGCDKJPLEK KOPFIPFIAEL = 4;
+  string GBFCKKOKMIC = 5;
+}

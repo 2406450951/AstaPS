@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "OLNDJCHOPMC.proto";
+import "ProfilePicture.proto";
+import "Uint32Pair.proto";
+import "Vector.proto";
+
+message FHDOGFCDKDK {
+  string online_id = 14;
+  string _xbox_gamertag = 4;
+  repeated OLNDJCHOPMC PDNALAKIIKL = 5;
+  repeated OLNDJCHOPMC KJIJEGKMFIE = 12;
+  Vector HAAJBIJNMCJ = 6;
+  string nick_name = 7;
+  ProfilePicture profile_picture = 3;
+  repeated Uint32Pair AABFCMMGMKE = 9;
+  uint32 progress = 1;
+  uint32 FPDGAPADCDK = 8;
+  uint32 score = 13;
+  uint32 finish_time = 10;
+  uint32 HBCLKADPLED = 2;
+  uint32 uid = 15;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JLIELMODABCOuterClass";
+import "JOJKJCPIMCA.proto";
+import "LFIACOFKELF.proto";
+
+message JLIELMODABC {
+  uint32 id = 1;
+  JOJKJCPIMCA KMDOGJMAFDF = 2;
+  bool BDICOOEJGMH = 3;
+  bool IMMAMEPHMFL = 5;
+  bool DLNDEGEAKIP = 6;
+  float cd = 10;
+  float ODMFENNGHLK = 11;
+  float JMEKFLIJCFP = 12;
+  float MENEDELEBCC = 13;
+  LFIACOFKELF DMLOFPCCCNA = 14;
+  repeated int32 HMKFHCFKJIL = 18;
+}

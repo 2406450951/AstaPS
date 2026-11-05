@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterChessV2TeamInfoOuterClass";
+message _MonsterChessV2TeamInfo {
+  uint32 _flag_guid = 3;
+  uint32 team_id = 7;
+  repeated uint32 _selected_card_guid_list = 12;
+}

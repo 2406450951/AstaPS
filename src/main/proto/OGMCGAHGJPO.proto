@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OGMCGAHGJPOOuterClass";
+import "ItemParam.proto";
+
+message OGMCGAHGJPO {
+  repeated ItemParam MNMHAIGPNIF = 2;
+  uint32 GDEGEDFBKJN = 13;
+}

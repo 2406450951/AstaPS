@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MIKNKMIFHMJOuterClass";
+import "IGKCHCDMPPD.proto";
+import "MLPDAKDNKIP.proto";
+import "_ConfigBeyondGuidReferenceOnExport.proto";
+import "_ConfigCustomizedControlType.proto";
+import "_ConfigEnableEditList.proto";
+import "_ConfigGeneralSearch.proto";
+import "_ConfigRef.proto";
+import "_ConfigRepairOnImport.proto";
+import "_ConfigTagSearch.proto";
+
+message MIKNKMIFHMJ {
+  MLPDAKDNKIP IOPLOKOOAPN = 1;
+  bool LMMNNCKGGNP = 2;
+  oneof OFJOIOHJGNA {
+    _ConfigTagSearch ConfigTagSearch = 101;
+    _ConfigRef ConfigRef = 102;
+    _ConfigRepairOnImport ConfigRepairOnImport = 103;
+    IGKCHCDMPPD ConfigFunction = 104;
+    _ConfigEnableEditList ConfigEnableEditList = 105;
+    _ConfigBeyondGuidReferenceOnExport ConfigBeyondGuidReferenceOnExport = 106;
+    _ConfigGeneralSearch ConfigGeneralSearch = 107;
+    _ConfigCustomizedControlType ConfigCustomizedControlType = 108;
+  }
+}

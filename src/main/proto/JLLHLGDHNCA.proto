@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JLLHLGDHNCAOuterClass";
+import "_PinName.proto";
+
+message JLLHLGDHNCA {
+  oneof content {
+    string RawStr = 1;
+    _PinName PinName = 2;
+  }
+}

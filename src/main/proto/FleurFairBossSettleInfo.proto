@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FleurFairBossSettleInfoOuterClass";
+message FleurFairBossSettleInfo {
+  uint32 LADKEJHJLFA = 1;
+  uint32 OJMOMGCDCJM = 2;
+  uint32 cost_time = 3;
+}

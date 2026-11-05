@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "JGMPOFADACG.proto";
+
+message PBDNAHFDJDA {
+  repeated JGMPOFADACG JFCGNHPCFED = 7;
+  repeated uint32 affix_list = 13;
+  uint32 BFMIKLCCDLD = 10;
+  uint32 _chess_level_up_id = 11;
+  uint32 _auto_chess_chess_id = 2;
+  uint32 index = 5;
+}

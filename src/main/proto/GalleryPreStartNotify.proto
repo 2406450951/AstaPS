@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GalleryPreStartNotifyOuterClass";
+// 7.2 CmdId 28914
+message GalleryPreStartNotify {
+  uint32 gallery_id = 3;
+  uint32 pre_start_end_time = 5;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActivityAvatarInfo.proto";
+
+message NHKBDCPGNMN {
+  repeated _ActivityAvatarInfo select_avatar_list = 1;
+  uint32 max_score = 13;
+  bool is_open = 6;
+  bool is_finish = 3;
+  uint32 level_id = 10;
+}

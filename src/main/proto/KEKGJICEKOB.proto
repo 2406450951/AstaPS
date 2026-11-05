@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KEKGJICEKOBOuterClass";
+import "DNIAIKENJJL.proto";
+import "LANEGOMNKFO.proto";
+import "OHLOEKDEMEK.proto";
+import "_PinName.proto";
+
+message KEKGJICEKOB {
+  string name = 1;
+  bool DFJEEJDKNOD = 2;
+  _PinName HJOAODKJMLM = 3;
+  LANEGOMNKFO PGMOOIGIHCE = 4;
+  repeated DNIAIKENJJL GHIBJCLCKKE = 5;
+  repeated OHLOEKDEMEK EBCEMJICFCB = 6;
+  uint32 FKJIOIKBGHK = 7;
+  uint32 version = 8;
+  uint32 JILGMLFHPNK = 9;
+}

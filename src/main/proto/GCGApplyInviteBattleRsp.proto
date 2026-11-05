@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGApplyInviteBattleRspOuterClass";
+// 7.2 CmdId 2160
+message GCGApplyInviteBattleRsp {
+  uint32 punish_end_time = 7;
+  int32 retcode = 10;
+}

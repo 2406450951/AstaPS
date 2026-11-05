@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BDOGLANHECHOuterClass";
+import "FAGMGLAJFNL.proto";
+import "JOJKJCPIMCA.proto";
+
+message BDOGLANHECH {
+  repeated FAGMGLAJFNL GAEACGMIOGA = 1;
+  uint32 filter_type = 2;
+  JOJKJCPIMCA filter = 3;
+  bool DBIAONGEALF = 4;
+  uint32 BGILCALGEHC = 5;
+  float DGKGKLMDFMK = 6;
+  float KBEBKOHKOGJ = 7;
+  bool HGDFNPBKLHK = 8;
+}

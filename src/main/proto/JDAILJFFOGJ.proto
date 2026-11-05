@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JDAILJFFOGJOuterClass";
+message JDAILJFFOGJ {
+  int32 BEMPKIOFLIM = 501;
+  string JMKLDOJOIMM = 502;
+  int32 FGKDHACCBKG = 503;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteWishInfoUpdateNotifyOuterClass";
+import "_AnecdoteWishInfo.proto";
+
+// 7.2 CmdId 7241
+message _AnecdoteWishInfoUpdateNotify {
+  _AnecdoteWishInfo _anecdote_wish_info = 5;
+}

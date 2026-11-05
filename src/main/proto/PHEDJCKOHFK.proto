@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PHEDJCKOHFKOuterClass";
+import "BALBMACAPLI.proto";
+import "BFIBDEFODFH.proto";
+import "CFILNIDGAEK.proto";
+import "JDAJJDPJLJN.proto";
+import "MIKNKMIFHMJ.proto";
+import "NJONFFDJIHJ.proto";
+import "OBMACANFHLH.proto";
+import "OKBEMBBLBEF.proto";
+import "_ValueBool.proto";
+import "_ValueEnum.proto";
+import "_ValueUint.proto";
+import "_ValueVector.proto";
+
+message PHEDJCKOHFK {
+  OBMACANFHLH GOMEMIHOALH = 1;
+  bool is_dirty = 2;
+  repeated MIKNKMIFHMJ GHIBJCLCKKE = 3;
+  OKBEMBBLBEF EKNABBJLKDF = 4;
+  repeated JDAJJDPJLJN LAODLMHNBFK = 5;
+  oneof detail {
+    _ValueUint ValueUint = 101;
+    NJONFFDJIHJ ValueInt = 102;
+    _ValueBool ValueBool = 103;
+    CFILNIDGAEK ValueFloat = 104;
+    BFIBDEFODFH ValueString = 105;
+    _ValueEnum ValueEnum = 106;
+    _ValueVector ValueVector = 107;
+    _ValueStruct ValueStruct = 108;
+    _ValueList ValueList = 109;
+    _ValueGenerics ValueGenerics = 110;
+    _ValueServerParamKVPair ValueServerParamKVPair = 111;
+    _ValueServerParamDictionary ValueServerParamDictionary = 112;
+  }
+}
+
+message _ValueGenerics {
+  int32 LPJABIHDKKI = 1;
+  PHEDJCKOHFK value = 2;
+  BALBMACAPLI PIIFFONFJNN = 5;
+}
+
+message _ValueList {
+  repeated PHEDJCKOHFK value = 1;
+}
+
+message _ValueServerParamDictionary {
+  repeated PHEDJCKOHFK value = 1;
+}
+
+message _ValueServerParamKVPair {
+  PHEDJCKOHFK key = 1;
+  PHEDJCKOHFK value = 2;
+}
+
+message _ValueStruct {
+  repeated PHEDJCKOHFK value = 1;
+}

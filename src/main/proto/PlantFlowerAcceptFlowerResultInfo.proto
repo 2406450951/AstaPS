@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlantFlowerAcceptFlowerResultInfoOuterClass";
+message PlantFlowerAcceptFlowerResultInfo {
+  uint32 uid = 1;
+  map<uint32, uint32> MFCGPMOCCDC = 2;
+  map<uint32, uint32> LBADPCALKAL = 3;
+}

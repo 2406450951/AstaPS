@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryHomeSeekFurnitureInfoOuterClass";
+message SceneGalleryHomeSeekFurnitureInfo {
+  uint32 cur_tide_duration_time = 3;
+  uint32 LGAAKDJNEPJ = 6;
+  map<uint32, uint32> player_score_map = 10;
+  uint32 ELIPCNEJAJG = 14;
+}

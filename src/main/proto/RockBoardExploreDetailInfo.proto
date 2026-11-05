@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "RockBoardExploreStageData.proto";
+
+message RockBoardExploreDetailInfo {
+  repeated RockBoardExploreStageData stage_data_list = 1;
+}

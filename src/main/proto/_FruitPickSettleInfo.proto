@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_FruitPickSettleInfoOuterClass";
+message _FruitPickSettleInfo {
+  repeated uint32 EJONNBACLLO = 3;
+  repeated uint32 EKLFGGNOABM = 4;
+  uint32 LMCKMIOAOOC = 5;
+  uint32 ENKBKOFMKOE = 7;
+  uint32 FOGMFOKKIDM = 8;
+  uint32 OMMHHJPNKMP = 9;
+  uint32 reason = 11;
+  repeated uint32 DHMAJDKMENL = 12;
+  repeated uint32 NMGDDNLOBBD = 13;
+}

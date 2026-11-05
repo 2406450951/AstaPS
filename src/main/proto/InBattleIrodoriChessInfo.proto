@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "InBattleIrodoriChessInfoOuterClass";
+import "IrodoriChessMysteryInfo.proto";
+
+message InBattleIrodoriChessInfo {
+  uint32 building_points = 1;
+  uint32 left_monsters = 2;
+  IrodoriChessMysteryInfo mystery_info = 3;
+  repeated uint32 selected_card_id_list = 4;
+  uint32 settle_score = 5;
+}

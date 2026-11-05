@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_FlowControlConfigOuterClass";
+message _FlowControlConfig {
+  int32 EIHGOOIJNHH = 1;
+  int32 ECDCOAMPIHA = 2;
+  int32 KCBBOGDFDCO = 3;
+  int32 JMGAJONCOKP = 4;
+}

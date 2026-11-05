@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryAutoTimeStopInfoOuterClass";
+message _SceneGalleryAutoTimeStopInfo {
+  uint32 HAHEMFBJBDI = 1;
+  uint32 score = 2;
+  uint32 NKACCKMAEFK = 3;
+  uint32 EFEJEIHFIFE = 4;
+  uint32 buff_id = 5;
+  uint64 FECCICBCDGH = 6;
+  uint64 PMJJAGFFHKG = 7;
+}

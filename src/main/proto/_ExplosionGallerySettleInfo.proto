@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ExplosionGallerySettleInfoOuterClass";
+import "HomeGroupPlayerInfo.proto";
+
+message _ExplosionGallerySettleInfo {
+  uint32 count = 5;
+  HomeGroupPlayerInfo player_info = 10;
+}

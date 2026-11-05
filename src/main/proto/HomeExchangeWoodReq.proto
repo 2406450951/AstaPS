@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeExchangeWoodReqOuterClass";
+// 7.2 CmdId 25790
+message HomeExchangeWoodReq {
+  uint32 wood_id = 2;
+  map<uint32, uint32> material_count_map = 13;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PGOABJNJDNAOuterClass";
+enum PGOABJNJDNA {
+  PGOABJNJDNA_BEYOND_TEAM_MEMBER_MATCH_NONE = 0;
+  PGOABJNJDNA_BEYOND_TEAM_MEMBER_MATCH_AGREED = 1;
+  PGOABJNJDNA_BEYOND_TEAM_MEMBER_MATCH_READY = 2;
+  PGOABJNJDNA_BEYOND_TEAM_MEMBER_MATCH_REFUSE = 3;
+}

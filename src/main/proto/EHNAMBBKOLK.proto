@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EHNAMBBKOLKOuterClass";
+import "EJIEHJMIPEO.proto";
+
+message EHNAMBBKOLK {
+  EJIEHJMIPEO GCDEIMBDMEA = 501;
+  EJIEHJMIPEO BMOGBJNELBF = 502;
+  EJIEHJMIPEO ILGHJKAADFO = 503;
+  EJIEHJMIPEO HAEKLNLHLID = 504;
+  uint32 id = 505;
+  string name = 506;
+}

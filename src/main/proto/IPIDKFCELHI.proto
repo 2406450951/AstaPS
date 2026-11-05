@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IPIDKFCELHIOuterClass";
+import "_BeyondGachaGiftFriendBriefHistory.proto";
+import "_BeyondGiftType.proto";
+
+message IPIDKFCELHI {
+  uint32 JPGHMHALJGJ = 3;
+  uint64 KOCCLGHJCPE = 4;
+  string transaction = 7;
+  _BeyondGiftType _beyond_gift_type = 14;
+  oneof detail {
+    _BeyondGachaGiftFriendBriefHistory BeyondGachaGiftFriendBriefHistory = 561;
+  }
+}

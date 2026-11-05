@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NMOBNPPBJDPOuterClass";
+message NMOBNPPBJDP {
+  float duration = 3;
+  float EEDCOHLKBBI = 7;
+  float HAFCGBMCMBF = 13;
+}

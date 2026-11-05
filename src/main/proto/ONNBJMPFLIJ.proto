@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ONNBJMPFLIJOuterClass";
+import "DMKJDEOFHNO.proto";
+
+message ONNBJMPFLIJ {
+  bool OLFNCCJOLKK = 1;
+  DMKJDEOFHNO DOABLAFPALK = 2;
+  float APNMHONICAC = 3;
+  float OPGCFGDMNGM = 4;
+}

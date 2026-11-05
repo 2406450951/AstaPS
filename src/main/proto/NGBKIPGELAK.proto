@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NGBKIPGELAKOuterClass";
+import "DIKBFLLLCGK.proto";
+
+message NGBKIPGELAK {
+  bool HIPELBGOKBM = 1;
+  float COAOFGDDBLN = 2;
+  int32 EHOFGBEFECD = 3;
+  int32 NBODANPALIK = 4;
+  DIKBFLLLCGK BLKNHKKLKFD = 5;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_LanV6CardDetail.proto";
+import "_LanV6LanternGiftDetail.proto";
+
+message _LanternRiteV6CardInfo {
+  repeated _LanV6LanternGiftDetail _card_gift_list = 9;
+  repeated _LanV6CardDetail _card_template_list = 7;
+  uint32 _claimed_gift_num = 4;
+}

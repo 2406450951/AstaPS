@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CGAMFEGGCJHOuterClass";
+import "AECMHIGEHBA.proto";
+import "HHEDHCFPEKM.proto";
+
+message CGAMFEGGCJH {
+  HHEDHCFPEKM COHBONNEHEA = 1;
+  float acceleration = 2;
+  float accelerate_time = 3;
+  uint32 OKDGCJCGILF = 4;
+  float PLHDBIMNDME = 5;
+  bool PEHFKHGLJEM = 6;
+  float BMOGKEHIFHI = 7;
+  string EPJLBPACNBC = 8;
+  float NNGBFHPAMCJ = 9;
+  float GNECDONBEDJ = 10;
+  AECMHIGEHBA PAPBMJLNKIH = 11;
+  bool CLNCPHMHONB = 1002;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OGCBNKGPOJKOuterClass";
+import "HHEDHCFPEKM.proto";
+import "JOJKJCPIMCA.proto";
+
+message OGCBNKGPOJK {
+  int32 ALBAIFHPDNC = 1;
+  string DCGHDODJAKL = 2;
+  HHEDHCFPEKM offset = 3;
+  HHEDHCFPEKM BEBNOECGEBI = 4;
+  float NILBBNBJKGD = 5;
+  bool AJADNOOICOE = 6;
+  bool HAPCFNMFCOA = 7;
+  JOJKJCPIMCA PEDCMMLNGFH = 8;
+  bool FGHDEAGKOMM = 9;
+}

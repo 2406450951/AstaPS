@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetEffigyChallengeV5SelectDifficultyRspOuterClass";
+// 7.2 CmdId 25163
+message GetEffigyChallengeV5SelectDifficultyRsp {
+  bool DDACFBOEILG = 5;
+  int32 retcode = 10;
+}

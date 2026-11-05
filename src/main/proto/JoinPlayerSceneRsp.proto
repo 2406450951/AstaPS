@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JoinPlayerSceneRspOuterClass";
+// 7.2 CmdId 5538
+message JoinPlayerSceneRsp {
+  int32 retcode = 11;
+}

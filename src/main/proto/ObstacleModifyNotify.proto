@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ObstacleModifyNotifyOuterClass";
+import "ObstacleInfo.proto";
+
+// 7.2 CmdId 2330
+message ObstacleModifyNotify {
+  repeated int32 COKEKMJJHJN = 6;
+  repeated int32 NDECIMFFBHL = 7;
+  uint32 scene_id = 11;
+  repeated ObstacleInfo add_obstacles = 14;
+  repeated int32 remove_obstacle_ids = 15;
+}

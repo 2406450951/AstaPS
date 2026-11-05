@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonRoomSettingOuterClass";
+message _UgcDungeonRoomSetting {
+  uint32 KLIKPOPMJFN = 5;
+  bool KKDKKLCPHHB = 6;
+  bool HHADFONNAFF = 7;
+  uint32 DEPNNIKOGID = 8;
+  bool BIPHFJMBEDG = 14;
+}

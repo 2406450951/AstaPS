@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KMEFECFMEKNOuterClass";
+import "PLIDNIOEBMF.proto";
+
+message KMEFECFMEKN {
+  uint32 OKFKMGPCGCD = 9;
+  repeated PLIDNIOEBMF MBCFHCEMHOI = 11;
+}

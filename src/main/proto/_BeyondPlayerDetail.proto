@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondPlayerDetailOuterClass";
+import "ANBLPIHNHIG.proto";
+import "LAHDFELEMKC.proto";
+import "_BeyondPlayerSocialInfo.proto";
+import "_CostumeInfo.proto";
+
+message _BeyondPlayerDetail {
+  _BeyondPlayerSocialInfo _beyond_player_social_info = 1;
+  int64 FEDBGONMAGI = 100;
+  repeated LAHDFELEMKC OIGLEGCIKJJ = 103;
+  repeated ANBLPIHNHIG EFIIHABGOOC = 104;
+  repeated uint64 DCBNEENLHLK = 105;
+  repeated _CostumeInfo _costume_info_list = 106;
+}

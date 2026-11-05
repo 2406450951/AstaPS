@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHADKHGOCPL.proto";
+import "IEJOILPHGBN.proto";
+
+message CDHMHGIAMGM {
+  HHADKHGOCPL BDLEHOMBIGO = 502;
+  IEJOILPHGBN KINJAEDIIBB = 501;
+}

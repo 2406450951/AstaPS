@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SetLevelNameOpOuterClass";
+message _SetLevelNameOp {
+  string _level_name = 4;
+  bool OOPGHCJDHHH = 11;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IrodoriMasterGallerySettleInfoOuterClass";
+message IrodoriMasterGallerySettleInfo {
+  uint32 finish_time = 3;
+  uint32 difficult = 9;
+  bool is_finish = 14;
+}

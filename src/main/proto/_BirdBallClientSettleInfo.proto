@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BirdBallClientSettleInfoOuterClass";
+message _BirdBallClientSettleInfo {
+  uint32 score = 1;
+  uint32 OPKNDIJDPFL = 2;
+}

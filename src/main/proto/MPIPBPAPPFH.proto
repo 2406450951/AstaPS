@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MPIPBPAPPFHOuterClass";
+import "JMGJLJFBHOO.proto";
+
+message MPIPBPAPPFH {
+  int32 id = 1;
+  bool is_active = 2;
+  repeated JMGJLJFBHOO FLEECBHABOA = 3;
+  string JEHGKAFLHBL = 502;
+}

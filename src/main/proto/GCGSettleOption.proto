@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGSettleOptionOuterClass";
+enum GCGSettleOption {
+  GCGSETTLE_OPTION_GCG_SETTLE_OPT_NONE = 0;
+  GCGSETTLE_OPTION_GCG_SETTLE_OPT_EXIT = 1;
+  GCGSETTLE_OPTION_GCG_SETTLE_OPT_CONTINUE = 2;
+  GCGSETTLE_OPTION_GCG_SETTLE_OPT_RESTART = 3;
+}

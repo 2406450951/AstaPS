@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BADPMAEAJPAOuterClass";
+import "BFKOJEOFEBM.proto";
+
+message BADPMAEAJPA {
+  BFKOJEOFEBM DOMJELBKHOD = 1;
+  bool KNGEEIKIMLG = 2;
+}

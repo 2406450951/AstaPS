@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GBDMLIOONCOOuterClass";
+import "DJKGLLAGNIO.proto";
+
+message GBDMLIOONCO {
+  uint32 PPEIKPNNLJC = 1;
+  repeated DJKGLLAGNIO DCDPDKKBGFA = 2;
+}

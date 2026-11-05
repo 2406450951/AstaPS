@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JPMPNMDOBHEOuterClass";
+import "KGMKOMECCJG.proto";
+
+message JPMPNMDOBHE {
+  KGMKOMECCJG CCGCNDEODIK = 1;
+  repeated KGMKOMECCJG MOAJNMAIMOE = 2;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NGLPCPEGEPAOuterClass";
+enum NGLPCPEGEPA {
+  NGLPCPEGEPA_BEYOND_TEAM_NONE = 0;
+  NGLPCPEGEPA_BEYOND_TEAM_PREPARE_MATCH = 1;
+  NGLPCPEGEPA_BEYOND_TEAM_WAIT_MATCH = 2;
+  NGLPCPEGEPA_BEYOND_TEAM_MATCHING = 3;
+}

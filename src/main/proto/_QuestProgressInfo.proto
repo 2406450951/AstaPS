@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _QuestProgressInfo {
+  uint32 param = 14;
+  uint32 content_type = 8;
+  uint32 add_progress = 6;
+}

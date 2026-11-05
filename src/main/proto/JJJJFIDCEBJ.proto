@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JJJJFIDCEBJOuterClass";
+enum JJJJFIDCEBJ {
+  JJJJFIDCEBJ_AUTO = 0;
+  JJJJFIDCEBJ_INTERACT = 1;
+  JJJJFIDCEBJ_OPEN_INTERACT_UI = 2;
+  JJJJFIDCEBJ_ADHESIVE = 3;
+}

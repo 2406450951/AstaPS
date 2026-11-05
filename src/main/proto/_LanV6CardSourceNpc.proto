@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV6CardSourceNpcOuterClass";
+message _LanV6CardSourceNpc {
+  uint32 npc_id = 4;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BartenderLevelInfo.proto";
+import "BartenderTaskInfo.proto";
+
+message BartenderActivityDetailInfo {
+  repeated uint32 PCPKHLCPABB = 20000;
+  repeated BartenderLevelInfo unlock_level_list = 4;
+  repeated BartenderTaskInfo unlock_task_list = 3;
+  repeated uint32 ENBFJNEEJNP = 20001;
+  bool is_develop_module_open = 5;
+  bool is_content_closed = 6;
+}

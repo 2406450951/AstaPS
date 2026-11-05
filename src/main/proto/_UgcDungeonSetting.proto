@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonSettingOuterClass";
+import "_UgcDungeonSettleType.proto";
+
+message _UgcDungeonSetting {
+  uint32 JBPIIANOKMN = 1;
+  repeated uint32 HHDEFONPJNM = 2;
+  uint32 EJAGMBLEJOC = 4;
+  uint32 CMFHENCOEID = 5;
+  uint32 target_score = 6;
+  uint32 HKPMFAENBHK = 10;
+  uint32 HKFPFEDDEHD = 11;
+  bool _is_ban_skill = 13;
+  _UgcDungeonSettleType _settle_type = 14;
+  repeated uint32 KBPHNDJFAKA = 15;
+}

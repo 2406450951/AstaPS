@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetOpActivityInfoRspOuterClass";
+import "OpActivityInfo.proto";
+
+// 7.2 CmdId 8609
+message GetOpActivityInfoRsp {
+  repeated OpActivityInfo op_activity_info_list = 3;
+  int32 retcode = 9;
+}

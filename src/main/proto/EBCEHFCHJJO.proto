@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EBCEHFCHJJOOuterClass";
+import "CPFPMLACDLA.proto";
+
+message EBCEHFCHJJO {
+  CPFPMLACDLA EMNNKLLNMBG = 1;
+  uint32 KCKGGMJHAGE = 2;
+  int32 HEMPLINLPIJ = 501;
+}

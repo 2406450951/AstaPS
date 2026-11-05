@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGallerySandwormCannonSpecialEffectTypeOuterClass";
+enum _SceneGallerySandwormCannonSpecialEffectType {
+  _SCENE_GALLERY_SANDWORM_CANNON_SPECIAL_EFFECT_TYPE_SANDWORM_CANNON_NONE_EFFECT = 0;
+  _SCENE_GALLERY_SANDWORM_CANNON_SPECIAL_EFFECT_TYPE_SANDWORM_CANNON_WEAK_EFFECT = 1;
+  _SCENE_GALLERY_SANDWORM_CANNON_SPECIAL_EFFECT_TYPE_SANDWORM_CANNON_STRONG_EFFECT = 2;
+}

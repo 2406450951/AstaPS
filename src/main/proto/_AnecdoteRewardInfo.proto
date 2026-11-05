@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteRewardInfoOuterClass";
+message _AnecdoteRewardInfo {
+  repeated uint32 _completed_anecdote_id_list = 1;
+  bool FNGKFGFAJOG = 2;
+  uint32 MDFOMODDEGE = 3;
+  uint32 progress = 6;
+  uint32 reward_id = 7;
+  uint32 reward_index = 11;
+  bool is_finished = 13;
+}

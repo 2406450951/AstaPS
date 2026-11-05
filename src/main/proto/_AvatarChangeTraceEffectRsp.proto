@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _AvatarChangeTraceEffectRsp {
+  int32 retcode = 15;
+  uint32 _trace_effect_id = 14;
+  uint64 avatar_guid = 10;
+}

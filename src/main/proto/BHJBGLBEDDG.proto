@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BHJBGLBEDDGOuterClass";
+import "DABPLIMCDJL.proto";
+import "DMJICBFBDMH.proto";
+import "JAFNPEKLBNO.proto";
+import "NELIEEMCNMN.proto";
+
+message BHJBGLBEDDG {
+  uint64 guid = 4;
+  uint32 JGGDGLEPOMM = 5;
+  DMJICBFBDMH PPEBFILBPMM = 6;
+  JAFNPEKLBNO MPAPALBOKFE = 8;
+  DABPLIMCDJL LKJGNPHGLCK = 9;
+  NELIEEMCNMN OIDECAGCGEA = 15;
+}

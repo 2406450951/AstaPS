@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KDODPDMJKKHOuterClass";
+import "DKIGIEJCHKG.proto";
+import "FBNABJOKDAP.proto";
+import "LLOJMNHHKAK.proto";
+
+message KDODPDMJKKH {
+  DKIGIEJCHKG PCPOGDNHABC = 501;
+  FBNABJOKDAP JJLPAGDNAAL = 502;
+  int32 item_id = 503;
+  bool FELDCBLDLEE = 504;
+  LLOJMNHHKAK HICPLNGJCNF = 505;
+}

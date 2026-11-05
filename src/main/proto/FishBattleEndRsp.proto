@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FishBattleEndRspOuterClass";
+import "FishBattleResult.proto";
+import "FishNoRewardReason.proto";
+import "ItemParam.proto";
+
+// 7.2 CmdId 2697
+message FishBattleEndRsp {
+  repeated ItemParam talent_item_list = 2;
+  repeated ItemParam drop_item_list = 6;
+  FishNoRewardReason no_reward_reason = 8;
+  bool is_got_reward = 11;
+  int32 retcode = 13;
+  FishBattleResult battle_result = 14;
+  repeated ItemParam reward_item_list = 15;
+}

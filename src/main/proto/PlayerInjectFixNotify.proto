@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerInjectFixNotifyOuterClass";
+// 7.2 CmdId 29154
+message PlayerInjectFixNotify {
+  uint32 id = 6;
+  bytes inject_fix = 14;
+}

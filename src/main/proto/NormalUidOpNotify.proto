@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NormalUidOpNotifyOuterClass";
+// 7.2 CmdId 8577
+message NormalUidOpNotify {
+  repeated uint32 param_list = 6;
+  uint32 duration = 8;
+  repeated uint32 param_uid_list = 13;
+  uint32 param_index = 14;
+}

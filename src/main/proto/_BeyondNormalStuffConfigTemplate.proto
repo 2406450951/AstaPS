@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondNormalStuffConfigTemplateOuterClass";
+import "FCFBNCAGOGE.proto";
+import "JOJKJCPIMCA.proto";
+
+message _BeyondNormalStuffConfigTemplate {
+  FCFBNCAGOGE FIAMMIIJPGI = 1;
+  uint32 LMIGMCJLKDB = 2;
+  bool KPJEOPCNAAP = 3;
+  bool PLJAGKDGCNK = 4;
+  bool JMOGMBNDMAH = 5;
+  float LIPPENGFELF = 6;
+  float MGPLDDPHFFC = 7;
+  repeated JOJKJCPIMCA JAFDOIMHHOA = 8;
+}

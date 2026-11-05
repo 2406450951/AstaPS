@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CityReputationSimpleInfoOuterClass";
+message CityReputationSimpleInfo {
+  uint32 city_id = 5;
+  uint32 level = 13;
+}

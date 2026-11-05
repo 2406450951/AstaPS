@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeBalloonGalleryScoreNotifyOuterClass";
+// 7.2 CmdId 6303
+message HomeBalloonGalleryScoreNotify {
+  uint32 cur_score = 1;
+  uint32 add_score = 6;
+  uint32 trigger_entity_id = 8;
+  uint32 gallery_id = 10;
+}

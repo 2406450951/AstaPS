@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EIKPBFHDENP.proto";
+import "LPDPPPHCNLA.proto";
+import "NMGCANGGNKB.proto";
+
+message _LanternRiteV4DetailInfo {
+  EIKPBFHDENP MIMIPBMJFEK = 20000;
+  LPDPPPHCNLA BMMIHMMPHDD = 20001;
+  NMGCANGGNKB IOLIBNOCBBB = 20002;
+}

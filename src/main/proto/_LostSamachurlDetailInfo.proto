@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "IFDOHNNKCLK.proto";
+import "OHMNJODDFIP.proto";
+
+message _LostSamachurlDetailInfo {
+  repeated OHMNJODDFIP ILIOIFMBIKB = 20000;
+  repeated IFDOHNNKCLK DMKKMACCMBF = 20001;
+}

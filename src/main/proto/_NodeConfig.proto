@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_NodeConfigOuterClass";
+import "FMNIDHLNOBB.proto";
+import "LKGNJBKJAGP.proto";
+
+message _NodeConfig {
+  LKGNJBKJAGP data = 1;
+  FMNIDHLNOBB LMMKKOLCDJK = 2;
+}

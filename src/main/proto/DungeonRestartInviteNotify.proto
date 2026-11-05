@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DungeonRestartInviteNotifyOuterClass";
+// 7.2 CmdId 452
+message DungeonRestartInviteNotify {
+  uint32 dungeon_id = 4;
+  uint32 cd = 10;
+  uint32 point_id = 14;
+  uint32 player_uid = 15;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_PrintNodeInfoOuterClass";
+message _PrintNodeInfo {
+  uint64 dungeon_guid = 1;
+  string DEOMAKDAECJ = 2;
+}

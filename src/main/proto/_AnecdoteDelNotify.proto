@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteDelNotifyOuterClass";
+import "_AnecdoteDeleteReason.proto";
+
+// 7.2 CmdId 3545
+message _AnecdoteDelNotify {
+  _AnecdoteDeleteReason reason = 3;
+  repeated uint32 _anecdote_id_list = 14;
+}

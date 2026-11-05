@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message FMNPNEKAICI {
+  uint32 best_score = 4;
+  bool ODDFFNIOBLN = 10;
+  bool KLGNBKEEEIE = 3;
+  uint32 level_id = 7;
+}

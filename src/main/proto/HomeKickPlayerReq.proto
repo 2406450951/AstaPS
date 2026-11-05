@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message HomeKickPlayerReq {
+  uint32 target_uid = 11;
+  bool is_kick_all = 9;
+}

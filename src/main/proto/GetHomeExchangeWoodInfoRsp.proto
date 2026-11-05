@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetHomeExchangeWoodInfoRspOuterClass";
+import "HomeExchangeWoodInfo.proto";
+
+// 7.2 CmdId 25452
+message GetHomeExchangeWoodInfoRsp {
+  repeated HomeExchangeWoodInfo wood_info_list = 5;
+  int32 retcode = 9;
+}

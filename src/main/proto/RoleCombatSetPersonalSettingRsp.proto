@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatSetPersonalSettingRspOuterClass";
+// 7.2 CmdId 7142
+message RoleCombatSetPersonalSettingRsp {
+  int32 retcode = 15;
+  oneof detail {
+    uint32 RedPoint = 177;
+    bool IsShowBriefCardEventCase = 549;
+    bool IsShowAnimation = 945;
+    uint32 BgmId = 960;
+    bool IsShowDetailBuild = 1198;
+  }
+}

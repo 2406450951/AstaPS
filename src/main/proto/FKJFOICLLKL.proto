@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FKJFOICLLKLOuterClass";
+import "GCGSkillPreviewInfo.proto";
+
+message FKJFOICLLKL {
+  uint32 EIAOOGNBKHO = 1;
+  uint32 BJGKGNHPJBB = 3;
+  GCGSkillPreviewInfo FAEPAMGEGKO = 4;
+}

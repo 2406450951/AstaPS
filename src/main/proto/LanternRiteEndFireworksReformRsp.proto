@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LanternRiteEndFireworksReformRspOuterClass";
+message LanternRiteEndFireworksReformRsp {
+  int32 retcode = 1;
+  uint32 stage_id = 2;
+  uint32 challenge_id = 3;
+  uint32 final_score = 4;
+  bool is_new_record = 5;
+  bool FGIHPIPBMBE = 6;
+  bool NAIBAMOIBCA = 7;
+  bool CJJHNFOEMAJ = 8;
+  bool is_full_score = 9;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterSteerByAiTargetOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message _MonsterSteerByAiTarget {
+  float PEKLOOCKKEO = 1;
+  float IEMALPEJCHE = 2;
+  string DCGHDODJAKL = 3;
+  HHEDHCFPEKM offset = 4;
+}

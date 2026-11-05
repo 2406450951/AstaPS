@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ABHHEEKPLPKOuterClass";
+import "JMGJLJFBHOO.proto";
+
+message ABHHEEKPLPK {
+  int32 id = 1;
+  bool is_active = 2;
+  bool ILCHJAPKPOK = 3;
+  repeated JMGJLJFBHOO EFMFLGNEDAM = 4;
+  bool LEKANJPLMAJ = 5;
+  string JEFOJPMMFOF = 502;
+}

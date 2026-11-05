@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum LunaRiteHintStatusType {
+  LunaRiteHintStatusType_LUNA_RITE_HINT_STATUS_DEFAULT = 0;
+  LunaRiteHintStatusType_LUNA_RITE_HINT_STATUS_NO_COUNT = 1;
+  LunaRiteHintStatusType_LUNA_RITE_HINT_STATUS_FINISH = 2;
+}

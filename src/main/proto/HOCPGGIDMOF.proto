@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HOCPGGIDMOFOuterClass";
+message HOCPGGIDMOF {
+  string JCFBALEJOMK = 1;
+  string CCLMHHJHDMM = 2;
+  string BLIGHAJFIDA = 3;
+  int32 id = 501;
+  uint32 IBHIBIJFMCD = 502;
+}

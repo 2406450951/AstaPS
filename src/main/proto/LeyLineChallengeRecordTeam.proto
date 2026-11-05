@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LeyLineChallengeRecordTeamOuterClass";
+import "SocialShowAvatarInfo.proto";
+
+message LeyLineChallengeRecordTeam {
+  repeated SocialShowAvatarInfo avatar_info_list = 6;
+  uint32 uid = 13;
+  bool DJDOGLMCBAN = 15;
+}

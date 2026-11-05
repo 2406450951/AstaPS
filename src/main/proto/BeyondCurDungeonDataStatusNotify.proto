@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondCurDungeonDataStatusNotifyOuterClass";
+import "BDFEKNPJBGJ.proto";
+import "HIGIKLLJCHJ.proto";
+
+// 7.2 CmdId 6211
+message BeyondCurDungeonDataStatusNotify {
+  string HJIKNBGAPKE = 2;
+  bool is_trial = 3;
+  string CHLGKOLGMAB = 4;
+  repeated uint32 CPHPCELFCNP = 6;
+  string CFKCADIKFKG = 7;
+  HIGIKLLJCHJ dungeon_info = 8;
+  repeated BDFEKNPJBGJ GAECIBOCHJL = 12;
+}

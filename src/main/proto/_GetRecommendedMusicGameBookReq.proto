@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GetRecommendedMusicGameBookReqOuterClass";
+// 7.2 CmdId 24163
+message _GetRecommendedMusicGameBookReq {
+  uint32 language_type = 3;
+  bool is_refresh = 12;
+}

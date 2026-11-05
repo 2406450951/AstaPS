@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EOCJPOAOGFPOuterClass";
+import "AEIJCMEGHIM.proto";
+import "ALEBHLNFGKN.proto";
+import "ANHNOAOHNKI.proto";
+import "CGMOPPLHLLD.proto";
+import "CNODJENAFNF.proto";
+import "DHLIIBGHMKG.proto";
+import "EAKFFGGKOBM.proto";
+import "EJAHPEHGHOP.proto";
+import "EKEGMBMDDHB.proto";
+import "EMACAOCGFGC.proto";
+import "GCFEKMJGPMC.proto";
+import "GNIAINPCKCG.proto";
+import "HLIEOCDAIHG.proto";
+import "HMBFCMDGHJI.proto";
+import "KOAHIHJEEKL.proto";
+import "LBMKEANEDNL.proto";
+import "LDAINICLGMJ.proto";
+import "MCOEBFMAFKP.proto";
+import "NKKGKCNADCA.proto";
+import "OAOPFEKDBFF.proto";
+import "OCJGAONILID.proto";
+import "PIDKDABDMHL.proto";
+
+message EOCJPOAOGFP {
+  OAOPFEKDBFF FGKDHACCBKG = 1;
+  oneof detail {
+    AEIJCMEGHIM DeploymentProperty = 11;
+    HMBFCMDGHJI DefaultDefinedStateProperty = 12;
+    DHLIIBGHMKG BlueprintReferenceProperty = 13;
+    EJAHPEHGHOP DefaultBornProperty = 14;
+    ALEBHLNFGKN CollisionProperty = 15;
+    CGMOPPLHLLD ArmyProperty = 16;
+    PIDKDABDMHL CombatProperty = 17;
+    ANHNOAOHNKI ModeVisibilityProperty = 18;
+    CNODJENAFNF UgcMonsterAiProperty = 19;
+    LDAINICLGMJ AttachPointProperty = 21;
+    EMACAOCGFGC VisionParamProperty = 22;
+    LBMKEANEDNL EnmityProperty = 23;
+    EKEGMBMDDHB MultiModelAccessoryProperty = 24;
+    GCFEKMJGPMC DefaultTierConfigProperty = 25;
+    GNIAINPCKCG BindParamProperty = 26;
+    OCJGAONILID EntityTagProperty = 27;
+    KOAHIHJEEKL SoundEffectProperty = 29;
+    NKKGKCNADCA ClientOptimizationParamProperty = 30;
+    EAKFFGGKOBM MonsterDefinedStateProperty = 31;
+    MCOEBFMAFKP ModelColorMaterialProperty = 32;
+    HLIEOCDAIHG NativePushColliderProperty = 33;
+  }
+}

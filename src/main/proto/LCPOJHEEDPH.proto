@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LCPOJHEEDPHOuterClass";
+message LCPOJHEEDPH {
+  uint32 LIFPLAKHAGN = 1;
+  uint32 HJBGOKNCKDM = 2;
+  uint32 EIIFOJNNIEI = 3;
+  float ENMJEOMDAIH = 4;
+}

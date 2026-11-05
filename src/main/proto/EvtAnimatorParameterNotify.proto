@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtAnimatorParameterNotifyOuterClass";
+import "EvtAnimatorParameterInfo.proto";
+import "ForwardType.proto";
+
+// 7.2 CmdId 29059
+message EvtAnimatorParameterNotify {
+  ForwardType forward_type = 1;
+  EvtAnimatorParameterInfo animator_param_info = 11;
+}

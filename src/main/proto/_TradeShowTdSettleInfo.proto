@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _TradeShowTdSettleInfo {
+  uint32 level_id = 15;
+  bool is_new_record = 13;
+  uint32 OOEGJHCJDKI = 20000;
+}

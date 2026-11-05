@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _PlayerWorldAnchorPointInfo {
+  bool is_valid = 1;
+  uint32 anchor_point_id = 2;
+}

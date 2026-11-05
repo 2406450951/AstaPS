@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KNEGKPEPLOBOuterClass";
+import "JMGJLJFBHOO.proto";
+
+message KNEGKPEPLOB {
+  int32 id = 1;
+  bool is_active = 2;
+  repeated JMGJLJFBHOO ANAEAEFJMOL = 3;
+  string JEFOJPMMFOF = 502;
+}

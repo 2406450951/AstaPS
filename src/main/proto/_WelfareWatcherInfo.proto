@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_WelfareWatcherInfoOuterClass";
+message _WelfareWatcherInfo {
+  uint32 watcher_id = 6;
+  uint32 taken_reward_count = 13;
+}

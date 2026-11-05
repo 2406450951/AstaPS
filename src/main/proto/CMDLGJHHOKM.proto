@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CMDLGJHHOKMOuterClass";
+import "FJPNEIHOPPL.proto";
+
+message CMDLGJHHOKM {
+  uint32 EMIBKALPIGP = 1;
+  uint32 OFBDCDHBLCN = 2;
+  int32 KLDEHFCLMGB = 3;
+  uint32 GGCICMBIFMC = 4;
+  uint32 MIGHLFBIBAF = 5;
+  repeated FJPNEIHOPPL ECDNLDKHPPO = 6;
+}

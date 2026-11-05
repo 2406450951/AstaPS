@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JHBPMKLKAIFOuterClass";
+import "BDGCJAEJAKK.proto";
+import "HGMPCLONGGF.proto";
+
+message JHBPMKLKAIF {
+  int32 CJMBPAEMABJ = 501;
+  HGMPCLONGGF EIIKCOBLMGK = 502;
+  BDGCJAEJAKK GFKOKBOJIKA = 503;
+  uint32 data_version = 504;
+}

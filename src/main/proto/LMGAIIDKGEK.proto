@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LMGAIIDKGEKOuterClass";
+message LMGAIIDKGEK {
+  uint32 CMKODENLDFL = 4;
+  uint32 OFOMHOHMOGB = 10;
+  uint32 DKIIFFNHOOG = 11;
+  uint32 _cur_round_num = 12;
+}

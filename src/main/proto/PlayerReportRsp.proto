@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerReportRspOuterClass";
+// 7.2 CmdId 6611
+message PlayerReportRsp {
+  int32 retcode = 3;
+  uint32 cd_time = 5;
+  uint32 target_uid = 9;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_CustomGalleryTimerScoreBoardOuterClass";
+message _CustomGalleryTimerScoreBoard {
+  uint32 start_time = 2;
+  int32 _passed_time = 6;
+  bool is_paused = 8;
+}

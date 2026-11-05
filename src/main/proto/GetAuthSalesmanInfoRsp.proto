@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetAuthSalesmanInfoRspOuterClass";
+// 7.2 CmdId 9824
+message GetAuthSalesmanInfoRsp {
+  int32 retcode = 3;
+  uint32 schedule_id = 7;
+  uint32 day_reward_id = 9;
+}

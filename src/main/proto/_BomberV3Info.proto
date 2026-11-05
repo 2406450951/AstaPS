@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BomberV3InfoOuterClass";
+import "NPAKCEFBAOM.proto";
+
+message _BomberV3Info {
+  uint32 level_id = 1;
+  uint32 JJEBAKDLDLA = 5;
+  uint32 cur_round = 9;
+  repeated NPAKCEFBAOM player_info_list = 11;
+  uint32 _current_score = 13;
+}

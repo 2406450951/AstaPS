@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ILGMKAJCGEOOuterClass";
+import "_Discover.proto";
+
+message ILGMKAJCGEO {
+  oneof FCBPDPIFDBM {
+    _Discover Discover = 6;
+  }
+}

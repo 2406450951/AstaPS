@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MBHMCOCAKHKOuterClass";
+import "HMIBPIGGEHA.proto";
+
+message MBHMCOCAKHK {
+  uint32 ADCIFHLDMJI = 1;
+  uint32 progress = 2;
+  HMIBPIGGEHA status = 3;
+}

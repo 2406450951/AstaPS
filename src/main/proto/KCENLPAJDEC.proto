@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message KCENLPAJDEC {
+  uint32 level_id = 6;
+  bool is_finish = 9;
+  bool is_open = 5;
+}

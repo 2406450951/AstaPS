@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _TowerDefenseSettleInfo {
+  bool is_succ = 7;
+  bool is_new_record = 12;
+  uint32 _succ_wave = 13;
+  uint32 _left_hp = 3;
+  uint32 kill_num = 2;
+  uint32 level_id = 8;
+  uint32 _max_wave = 11;
+  uint32 max_hp = 5;
+}

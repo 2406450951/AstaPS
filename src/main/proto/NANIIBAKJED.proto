@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NANIIBAKJEDOuterClass";
+import "GAKAKPGOFKG.proto";
+import "HHEDHCFPEKM.proto";
+import "LCEEDIANCKM.proto";
+import "PMEMGBANOKI.proto";
+
+message NANIIBAKJED {
+  int32 MCNKKDBMPJE = 1;
+  repeated LCEEDIANCKM HIJBGEABLPE = 2;
+  uint32 DMNLMGNKFFB = 3;
+  bool EEIIOEKLIPL = 4;
+  int32 KBPNCLFKHFO = 5;
+  HHEDHCFPEKM center_pos = 6;
+  HHEDHCFPEKM EJKDAPKHBKM = 7;
+  float GKMNIPJPCAL = 9;
+  float IAGCBBCKIDO = 10;
+  float JMGDPMNIOMA = 11;
+  GAKAKPGOFKG POKMGHNDPMA = 12;
+  string DCLCMLMODFD = 13;
+  uint32 _type_guid = 14;
+  repeated PMEMGBANOKI PGCBBLBHJHK = 15;
+  bool MGKEOCMEPBD = 16;
+}

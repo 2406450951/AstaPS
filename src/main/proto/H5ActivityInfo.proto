@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "H5ActivityInfoOuterClass";
+message H5ActivityInfo {
+  uint32 content_close_time = 1;
+  bool is_entrance_open = 2;
+  uint32 end_time = 3;
+  uint32 begin_time = 4;
+  string prefab_path = 5;
+  uint32 OPHMCALOAFI = 8;
+  uint32 MFKJCADLEHL = 10;
+  string url = 13;
+}

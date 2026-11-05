@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BCFOEMEOBNF.proto";
+import "HJFEGHPLBDI.proto";
+import "IKFFPHHDHJJ.proto";
+import "MCBCGPMDIFI.proto";
+import "OPOHILFOCHP.proto";
+
+message _LanternRiteV5DetailInfo {
+  OPOHILFOCHP AMKDIHKLMNC = 20000;
+  MCBCGPMDIFI GLOHDCCHBIH = 20001;
+  HJFEGHPLBDI PENBJIKKHHJ = 20002;
+  IKFFPHHDHJJ IMJFLALPKCM = 20003;
+  BCFOEMEOBNF OJDCBKDNBHB = 20004;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LoliBattleEnterInfoOuterClass";
+import "_ActivityAvatarInfo.proto";
+
+message _LoliBattleEnterInfo {
+  bool _is_restart = 1;
+  repeated _ActivityAvatarInfo BEJMAEANBBB = 4;
+  uint32 difficulty_id = 6;
+  repeated _ActivityAvatarInfo OAOGLCONMNH = 14;
+}

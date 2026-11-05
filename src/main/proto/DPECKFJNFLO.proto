@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DPECKFJNFLOOuterClass";
+import "FLMLGIKNGDC.proto";
+
+message DPECKFJNFLO {
+  uint32 level_id = 3;
+  uint32 GEOHMHKBKIM = 4;
+  uint32 _stop_reason = 7;
+  repeated FLMLGIKNGDC HGBBLGPJMOK = 9;
+  repeated uint32 JFDEILGBNJE = 11;
+  bool is_gallery_succ = 13;
+  repeated uint32 ADODBJCAPJP = 15;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BirdBallInfoOuterClass";
+import "BIICACIEFCB.proto";
+import "IANBNMFNOCM.proto";
+
+message _BirdBallInfo {
+  uint32 _cur_round_num = 1;
+  uint32 LLCPGCOMJKI = 2;
+  uint32 DGFLNMOKGAC = 3;
+  repeated uint32 player_uid_list = 4;
+  uint32 PJDEPGMKHJP = 5;
+  IANBNMFNOCM snapshot = 6;
+  uint64 OJOCJOJJGDM = 7;
+  IANBNMFNOCM EHDKIMKDNOO = 8;
+  repeated BIICACIEFCB player_info_list = 9;
+  uint32 match_id = 10;
+}

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MEIGDKPIDMAOuterClass";
+import "HCPGHLHIHLB.proto";
+import "HHEDHCFPEKM.proto";
+
+message MEIGDKPIDMA {
+  HHEDHCFPEKM MPLFNDGAPJG = 1;
+  float POFBEBCELKI = 2;
+  float IJKJCOEKMOO = 3;
+  float speed = 4;
+  HCPGHLHIHLB GMGEHOABOJI = 5;
+  bool OPILEOKNFEC = 6;
+  bool BDHOCHDKMJD = 7;
+  bool PJGFJNCMFPJ = 8;
+  bool NGCAMLAJCKO = 9;
+  bool GAECIFEDDMP = 10;
+  bool HMHKKBKJOOB = 11;
+  float radius = 12;
+  bool JJLFPEJHALP = 13;
+  HHEDHCFPEKM DLIFPAGHDHE = 506;
+  bool BGDKCLGJBJF = 507;
+  bool NLJLOAJBDGI = 508;
+}

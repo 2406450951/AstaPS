@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MiracleRingDeliverItemRspOuterClass";
+import "InterOpType.proto";
+import "InteractType.proto";
+
+// 7.2 CmdId 5706
+message MiracleRingDeliverItemRsp {
+  InteractType interact_type = 2;
+  int32 retcode = 5;
+  uint32 gadget_entity_id = 8;
+  uint32 gadget_id = 9;
+  InterOpType op_type = 12;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteConflictOtherOuterClass";
+message _AnecdoteConflictOther {
+  repeated uint32 BCOEGAMAKGL = 3;
+  uint32 _anecdote_id = 6;
+  repeated uint32 PPANJHBAIEH = 11;
+}

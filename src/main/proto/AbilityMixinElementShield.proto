@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinElementShieldOuterClass";
+message AbilityMixinElementShield {
+  bool is_shield_broken = 2;
+  uint32 player_num = 4;
+  float max_shield = 9;
+  uint32 absorb_type = 10;
+  float sub_shield = 12;
+  float shield = 13;
+}

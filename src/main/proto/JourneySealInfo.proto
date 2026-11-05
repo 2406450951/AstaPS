@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message JourneySealInfo {
+  repeated uint32 OGFGBDPCGJF = 12;
+  repeated uint32 JPHJJAPDIFP = 6;
+  repeated uint32 IGILGKHCLKI = 7;
+}

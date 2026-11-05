@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IPACHDJDFLBOuterClass";
+enum IPACHDJDFLB {
+  IPACHDJDFLB_WHITE = 0;
+  IPACHDJDFLB_GREEN = 1;
+  IPACHDJDFLB_BLUE = 2;
+  IPACHDJDFLB_PURPLE = 3;
+  IPACHDJDFLB_ORANGE = 4;
+  IPACHDJDFLB_GRAY = 5;
+  IPACHDJDFLB_BROWN = 6;
+  IPACHDJDFLB_BLACK = 7;
+  IPACHDJDFLB_RED = 9;
+}

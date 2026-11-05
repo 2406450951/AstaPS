@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PANGLDDPLFHOuterClass";
+import "DAPIKIHAGEF.proto";
+import "_Battle.proto";
+import "_Event.proto";
+
+message PANGLDDPLFH {
+  uint32 DEBGCEBFKND = 1;
+  uint32 state = 4;
+  oneof detail {
+    _Event Event = 307;
+    DAPIKIHAGEF Shop = 1351;
+    _Battle Battle = 1784;
+  }
+}

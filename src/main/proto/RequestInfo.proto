@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RequestInfoOuterClass";
+message RequestInfo {
+  bool is_taken_reward = 5;
+  uint32 request_id = 11;
+  uint32 quest_id = 12;
+}

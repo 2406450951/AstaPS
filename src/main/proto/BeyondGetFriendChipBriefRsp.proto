@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondGetFriendChipBriefRspOuterClass";
+import "BIIBMCEDBFC.proto";
+
+// 7.2 CmdId 3751
+message BeyondGetFriendChipBriefRsp {
+  int32 retcode = 2;
+  uint64 _level_guid = 3;
+  repeated BIIBMCEDBFC EIAMNBGBGLE = 4;
+  uint32 param = 14;
+}

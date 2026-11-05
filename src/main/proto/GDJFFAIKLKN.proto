@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GDJFFAIKLKNOuterClass";
+import "_UintArray.proto";
+
+message GDJFFAIKLKN {
+  uint32 controller_id = 9;
+  uint32 type = 10;
+  uint32 id = 12;
+  bool INHBIFKNFJG = 14;
+  oneof value {
+    uint32 UintValue = 1;
+    _UintArray UintArray = 13;
+  }
+}

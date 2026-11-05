@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatCardPoolOuterClass";
+import "RoleCombatCard.proto";
+import "RoleCombatCardEvent.proto";
+
+message RoleCombatCardPool {
+  repeated RoleCombatCard selected_card_info_list = 4;
+  repeated RoleCombatCardEvent event_list = 5;
+  int32 selected_index = 10;
+  uint32 refresh_count = 11;
+}

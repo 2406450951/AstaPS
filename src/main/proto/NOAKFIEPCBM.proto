@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NOAKFIEPCBMOuterClass";
+enum NOAKFIEPCBM {
+  NOAKFIEPCBM_NONE = 0;
+  NOAKFIEPCBM_ADD = 1;
+  NOAKFIEPCBM_SUB = 2;
+  NOAKFIEPCBM_MUL = 3;
+  NOAKFIEPCBM_DIV = 4;
+  NOAKFIEPCBM_MOD = 5;
+  NOAKFIEPCBM_LESS = 6;
+  NOAKFIEPCBM_LESS_OR_EQUAL = 7;
+  NOAKFIEPCBM_GREATER = 8;
+  NOAKFIEPCBM_GREATER_OR_EQUAL = 9;
+  NOAKFIEPCBM_EQUAL = 10;
+}

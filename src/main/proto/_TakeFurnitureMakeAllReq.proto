@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TakeFurnitureMakeAllReqOuterClass";
+import "_TakeFurnitureMakeOption.proto";
+
+// 7.2 CmdId 29927
+message _TakeFurnitureMakeAllReq {
+  repeated _TakeFurnitureMakeOption _take_furniture_option_list = 13;
+}

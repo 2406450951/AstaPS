@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CLENLAEABNPOuterClass";
+import "DGLHHLJBEOE.proto";
+import "FDMFLCIINDG.proto";
+import "GPAEAPOIJFP.proto";
+import "JOJKJCPIMCA.proto";
+import "JOLCLBKNLAB.proto";
+import "LADGEECHCMK.proto";
+import "LDMIFCNJHAO.proto";
+
+message CLENLAEABNP {
+  int32 index = 1;
+  bool is_active = 2;
+  JOJKJCPIMCA JGMONGCMPOL = 3;
+  string EIAHNMKIGNL = 4;
+  bool AEHBALKFMID = 5;
+  bool KDJNGNNGKEA = 6;
+  int32 PKGLEGPDJFK = 7;
+  int32 KHNHFKIEEDD = 8;
+  FDMFLCIINDG DEPNEOGHBCC = 9;
+  LDMIFCNJHAO CIBJAAMFCPE = 10;
+  LADGEECHCMK FBJIJHHPJAC = 11;
+  JOLCLBKNLAB JJFJFLEBPFO = 12;
+  DGLHHLJBEOE LJEGAPOMNAK = 13;
+  bool FLLMILKFPNO = 14;
+  bool CAJCIBONFHP = 15;
+  GPAEAPOIJFP OGIHMLOLJKA = 16;
+}

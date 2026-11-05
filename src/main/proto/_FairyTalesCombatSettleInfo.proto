@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "NMBMNBEAFOB.proto";
+
+message _FairyTalesCombatSettleInfo {
+  NMBMNBEAFOB IEAJFKDOABH = 20000;
+  uint32 total_score = 4;
+  uint32 difficulty = 3;
+  bool is_new_record = 2;
+  uint32 level_id = 1;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AnchorPointOpRspOuterClass";
+// 7.2 CmdId 3964
+message AnchorPointOpRsp {
+  uint32 anchor_point_id = 9;
+  int32 retcode = 10;
+  uint32 anchor_point_op_type = 12;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_HolidayResortAdventureSettleInfoOuterClass";
+message _HolidayResortAdventureSettleInfo {
+  bool is_succ = 4;
+  bool DOHKCBNCDEO = 9;
+  uint32 FLLLJBHBLFE = 11;
+  uint32 progress = 15;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _SnowRaceCombatSettleInfo {
+  uint32 score = 4;
+  uint32 difficulty = 7;
+  uint32 use_time = 3;
+  uint32 level_id = 11;
+  bool is_new_record = 14;
+}

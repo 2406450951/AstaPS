@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EBADNHGKAAP.proto";
+
+message BeyondParamValueConfigReferenceList {
+  repeated EBADNHGKAAP value_list = 1;
+}

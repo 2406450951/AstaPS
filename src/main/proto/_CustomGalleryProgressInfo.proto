@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_CustomGalleryProgressInfoOuterClass";
+message _CustomGalleryProgressInfo {
+  uint32 POHMPCFECBK = 1;
+  uint32 KOLABFPMCNO = 4;
+  repeated string _score_board_list = 6;
+  repeated uint32 uid_list = 13;
+  uint32 GMGPOJIGPAK = 14;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PCDFGMALAHBOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message PCDFGMALAHB {
+  uint32 JFBIDBBFBPG = 1;
+  float HAGPHFNDOEH = 2;
+  HHEDHCFPEKM ABDBBJPAKEH = 3;
+  HHEDHCFPEKM NKPPNNGLDJG = 4;
+  HHEDHCFPEKM ACNOJCIALIJ = 5;
+  HHEDHCFPEKM DMMJBLIPCNO = 6;
+  HHEDHCFPEKM DNIMOBKOHJM = 7;
+  HHEDHCFPEKM DHOBODGFMOM = 8;
+  float FAAAMOPIJHB = 9;
+  float FONEJAMEAOP = 10;
+  string name = 11;
+  float PJLIIFMFMEN = 12;
+}

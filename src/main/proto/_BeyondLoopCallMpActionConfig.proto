@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondLoopCallMpActionConfigOuterClass";
+message _BeyondLoopCallMpActionConfig {
+  int32 MAFLJCJKICK = 1;
+  int32 EJAFJIKBPAO = 2;
+}

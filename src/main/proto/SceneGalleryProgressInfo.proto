@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryProgressInfoOuterClass";
+message SceneGalleryProgressInfo {
+  string key = 2;
+  repeated uint32 progress_stage_list = 9;
+  uint32 progress = 12;
+  uint32 ui_form = 14;
+}

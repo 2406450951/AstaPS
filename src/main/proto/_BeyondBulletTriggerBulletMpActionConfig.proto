@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondBulletTriggerBulletMpActionConfigOuterClass";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+import "JHMDEHJDKEN.proto";
+
+message _BeyondBulletTriggerBulletMpActionConfig {
+  uint32 JFBIDBBFBPG = 1;
+  FAGMGLAJFNL PEHPNKIJIPO = 2;
+  HHEDHCFPEKM offset = 3;
+  HHEDHCFPEKM OEPBPEKNNKP = 4;
+  JHMDEHJDKEN FLOOBJJIHGF = 5;
+  uint32 CDLPMJHGCIJ = 6;
+}

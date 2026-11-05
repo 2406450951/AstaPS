@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ILMJPBJBCLJOuterClass";
+import "HGGCDKJPLEK.proto";
+import "HHEDHCFPEKM.proto";
+
+message ILMJPBJBCLJ {
+  int32 DNHFCENGABH = 1;
+  string AKEAINMJDHL = 2;
+  bool AJADNOOICOE = 3;
+  bool HAPCFNMFCOA = 4;
+  HHEDHCFPEKM FHOMCJMOFKJ = 5;
+  HHEDHCFPEKM rot = 6;
+  float NILBBNBJKGD = 7;
+  HGGCDKJPLEK GPEPAHLHNDM = 8;
+  repeated int32 LEGEJLDAFJD = 9;
+  HGGCDKJPLEK PEDCMMLNGFH = 10;
+  bool FGHDEAGKOMM = 11;
+  uint32 PAEBCHGFAOP = 501;
+  uint32 item_id = 502;
+  string JDNFCBBKMCK = 503;
+  bool LDNMHMEDOHF = 504;
+  bool OGKPBBIJILN = 505;
+  bool BKLPJMFNNPD = 506;
+  int32 filter_type = 507;
+  int32 CFFJKIEHOIC = 508;
+}

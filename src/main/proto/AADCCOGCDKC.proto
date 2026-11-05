@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AADCCOGCDKCOuterClass";
+message AADCCOGCDKC {
+  uint32 CDDMNCKBHOL = 1;
+  uint32 NPABPCBAAFB = 2;
+  uint32 CDOONEJNAPD = 3;
+  uint32 JCPLGKHLEGH = 4;
+  uint32 GPJJCKIDJOH = 5;
+  bool FOOKGBNPPFA = 6;
+}

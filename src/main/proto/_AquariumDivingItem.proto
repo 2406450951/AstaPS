@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Uint32Pair.proto";
+
+message _AquariumDivingItem {
+  Uint32Pair pos = 8;
+  uint32 item_id = 7;
+  uint32 entity_id = 10;
+  uint32 rot = 1;
+}

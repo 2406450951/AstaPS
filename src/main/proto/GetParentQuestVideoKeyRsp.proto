@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetParentQuestVideoKeyRspOuterClass";
+// 7.2 CmdId 9768
+message GetParentQuestVideoKeyRsp {
+  string MGKAKJNCIEI = 3;
+  string IGLPPIEKGMH = 4;
+  uint32 parent_quest_id = 5;
+  int32 retcode = 14;
+}

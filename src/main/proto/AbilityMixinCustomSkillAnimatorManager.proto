@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinCustomSkillAnimatorManagerOuterClass";
+import "OKEMKODPPMD.proto";
+import "_MultiSyncInfo.proto";
+import "_NormalSyncInfo.proto";
+
+message AbilityMixinCustomSkillAnimatorManager {
+  OKEMKODPPMD sync_type = 12;
+  oneof detail {
+    _MultiSyncInfo MultiSyncInfo = 7;
+    _NormalSyncInfo NormalSyncInfo = 14;
+  }
+}

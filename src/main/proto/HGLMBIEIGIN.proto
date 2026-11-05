@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ICELADLJBHM.proto";
+
+message HGLMBIEIGIN {
+  repeated ICELADLJBHM GBPNNKAHOEM = 20000;
+  bool is_open = 2;
+  bool is_finished = 3;
+  uint32 stage_id = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondShopGiftInfoOuterClass";
+import "IEGGDJJDLGI.proto";
+
+message _BeyondShopGiftInfo {
+  repeated uint32 DBHIHOMHLHL = 5;
+  repeated uint32 NPPHCJJCKEH = 6;
+  uint32 PONIMKJNHPC = 9;
+  bool DPJBMEDJEAK = 12;
+  uint32 EEEMOBABPMO = 13;
+  repeated IEGGDJJDLGI LAJHLJGOMPH = 14;
+}

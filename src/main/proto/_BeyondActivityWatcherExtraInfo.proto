@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondActivityWatcherExtraInfoOuterClass";
+import "_BeyondActivityWatcherVar.proto";
+
+message _BeyondActivityWatcherExtraInfo {
+  repeated _BeyondActivityWatcherVar var_list = 5;
+  uint32 KMDNIGONBOB = 8;
+}

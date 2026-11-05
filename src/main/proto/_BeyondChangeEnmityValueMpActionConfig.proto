@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondChangeEnmityValueMpActionConfigOuterClass";
+message _BeyondChangeEnmityValueMpActionConfig {
+  int32 GDMPLJMCCJF = 1;
+  int32 AELLGAKIMBH = 2;
+}

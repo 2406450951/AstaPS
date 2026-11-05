@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PhotoActivityFinishRspOuterClass";
+// 7.2 CmdId 25286
+message PhotoActivityFinishRsp {
+  int32 retcode = 4;
+  uint32 pos_id = 12;
+}

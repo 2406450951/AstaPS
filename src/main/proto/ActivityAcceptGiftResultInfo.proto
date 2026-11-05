@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityAcceptGiftResultInfoOuterClass";
+message ActivityAcceptGiftResultInfo {
+  map<uint32, uint32> GHNLHDPHLDL = 6;
+  uint32 uid = 14;
+  map<uint32, uint32> ILEOOABDMIO = 15;
+}

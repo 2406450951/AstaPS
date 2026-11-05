@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ToTheMoonQueryPathRspOuterClass";
+import "ToTheMoonQueryPathRsp__PathStatusType.proto";
+import "Vector.proto";
+
+// 7.2 CmdId 6156
+message ToTheMoonQueryPathRsp {
+  repeated Vector corners = 4;
+  repeated int64 index = 6;
+  int32 query_id = 8;
+  int32 retcode = 13;
+  ToTheMoonQueryPathRsp__PathStatusType query_status = 14;
+  repeated int32 level = 15;
+}

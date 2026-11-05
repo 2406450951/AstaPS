@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonSocialOuterClass";
+message _UgcDungeonSocial {
+  uint32 KDJICIFDFGC = 4;
+  uint32 GINCBMFADNB = 5;
+  uint32 PMDAFAKNBJC = 9;
+  uint32 _win_count = 10;
+}

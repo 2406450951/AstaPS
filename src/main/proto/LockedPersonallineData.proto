@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message LockedPersonallineData {
+  message _QuestParam {
+    uint32 chapter_id = 1;
+    uint32 quest_id = 9;
+  }
+  enum LockReason {
+    LockReason_LEVEL = 0;
+    LockReason_QUEST = 1;
+  }
+  LockedPersonallineData.LockReason lock_reason = 11;
+  uint32 personal_line_id = 12;
+  oneof param {
+    uint32 chapter_id = 1;
+    uint32 level = 3;
+    LockedPersonallineData._QuestParam quest_param = 10;
+  }
+}

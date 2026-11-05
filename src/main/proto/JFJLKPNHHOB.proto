@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JFJLKPNHHOBOuterClass";
+import "LFIACOFKELF.proto";
+
+message JFJLKPNHHOB {
+  float DMIFGOLOHHO = 1;
+  float FHMBEHIMKNI = 2;
+  float DEFIAODLPBD = 3;
+  float OJINMMICPFD = 4;
+  int32 JCKFDIDBFAM = 5;
+  int32 AIAKKAIACEA = 6;
+  bool IGMJEAECJNG = 7;
+  bool BDEIFDALAFB = 8;
+  LFIACOFKELF DMLOFPCCCNA = 9;
+}

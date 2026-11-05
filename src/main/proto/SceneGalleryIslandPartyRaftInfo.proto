@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryIslandPartyRaftInfoOuterClass";
+import "GalleryStartSource.proto";
+
+message SceneGalleryIslandPartyRaftInfo {
+  uint32 coin = 2;
+  uint32 HAOCGAOJNJO = 4;
+  uint32 point_id = 9;
+  GalleryStartSource start_source = 11;
+  uint32 CLJEDGONFDP = 14;
+  uint32 GFGFPMMBCLJ = 15;
+}

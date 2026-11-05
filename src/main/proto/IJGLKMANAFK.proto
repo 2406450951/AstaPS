@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IJGLKMANAFKOuterClass";
+import "JJOEECFPENH.proto";
+import "JOJKJCPIMCA.proto";
+
+message IJGLKMANAFK {
+  uint32 MHKHICOLEIO = 1;
+  JOJKJCPIMCA BOGBJOJKAIJ = 2;
+  uint32 AAHHCNFMADB = 3;
+  bool GOIMHKHACBC = 4;
+  repeated JJOEECFPENH GPJFJPAONMB = 5;
+  uint32 FJGHCJMLBGM = 6;
+  bool JPJKPMFBMCL = 7;
+  uint32 PEBJFNLNHME = 8;
+}

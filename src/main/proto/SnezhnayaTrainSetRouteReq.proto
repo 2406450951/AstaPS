@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message SnezhnayaTrainSetRouteReq {
+  uint32 source_id = 2;
+  repeated uint32 station_list = 4;
+  uint32 dest_station_id = 6;
+  repeated SnezhnayaTrainRoute route_list = 7;
+}
+
+message SnezhnayaTrainRoute {
+  repeated uint32 point_list = 1;
+}

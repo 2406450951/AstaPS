@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGSelectOnStageCostInfoOuterClass";
+import "Uint32Pair.proto";
+
+message GCGSelectOnStageCostInfo {
+  repeated Uint32Pair cost_list = 2;
+  uint32 card_guid = 4;
+}

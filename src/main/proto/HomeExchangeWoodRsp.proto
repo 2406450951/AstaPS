@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeExchangeWoodRspOuterClass";
+// 7.2 CmdId 5942
+message HomeExchangeWoodRsp {
+  uint32 exchanged_count = 7;
+  uint32 wood_id = 8;
+  int32 retcode = 13;
+  uint32 wood_count = 15;
+}

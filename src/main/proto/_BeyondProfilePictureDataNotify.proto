@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondProfilePictureDataNotifyOuterClass";
+import "_BeyondProfilePicture.proto";
+import "_BeyondProfilePictureSlotInfo.proto";
+
+// 7.2 CmdId 3237
+message _BeyondProfilePictureDataNotify {
+  _BeyondProfilePicture _beyond_profile_picture = 1;
+  repeated _BeyondProfilePictureSlotInfo slot_info_list = 5;
+  bool HEMLOGOEFCH = 8;
+  uint32 KAIAMCHIIOE = 15;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityBannerClearRspOuterClass";
+// 7.2 CmdId 28239
+message ActivityBannerClearRsp {
+  uint32 schedule_id = 2;
+  int32 retcode = 3;
+  uint32 activity_id = 7;
+}

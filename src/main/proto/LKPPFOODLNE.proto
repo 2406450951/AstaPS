@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LKPPFOODLNEOuterClass";
+import "NAOHCGHAJCG.proto";
+
+message LKPPFOODLNE {
+  repeated NAOHCGHAJCG item_list = 11;
+}

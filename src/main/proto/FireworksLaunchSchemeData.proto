@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FireworksLaunchParam.proto";
+
+message FireworksLaunchSchemeData {
+  repeated FireworksLaunchParam launch_param_list = 7;
+  repeated uint32 fireworks_id_list = 8;
+  uint32 scheme_id = 4;
+}

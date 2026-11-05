@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_NormalAchievementOuterClass";
+message _NormalAchievement {
+  int32 LCIHMJAOAGE = 1;
+  string EMFLFLBCEMG = 2;
+  int32 MNKDOGMCJGK = 3;
+  uint32 FOHFGIIMFCE = 7;
+  bool is_hidden = 11;
+}

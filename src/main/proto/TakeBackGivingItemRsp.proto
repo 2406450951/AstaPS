@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TakeBackGivingItemRspOuterClass";
+// 7.2 CmdId 29228
+message TakeBackGivingItemRsp {
+  uint32 giving_id = 2;
+  int32 retcode = 7;
+}

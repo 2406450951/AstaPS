@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AquariumDivingCompassInfoOuterClass";
+import "_AquariumDivingCompassData.proto";
+
+message _AquariumDivingCompassInfo {
+  repeated _AquariumDivingCompassData _aquarium_diving_compass_data_list = 9;
+}

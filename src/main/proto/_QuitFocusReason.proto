@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuitFocusReasonOuterClass";
+enum _QuitFocusReason {
+  _QUIT_FOCUS_REASON_QUIT_FOCUS_DEFAULT = 0;
+  _QUIT_FOCUS_REASON_QUIT_FOCUS_MUTUAL = 1;
+}

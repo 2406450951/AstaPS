@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _DiversityBattleDetailInfo {
+  uint32 last_difficulty_id = 5;
+}

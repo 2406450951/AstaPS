@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LANEGOMNKFOOuterClass";
+import "BAFNBLHFDLP.proto";
+import "JOEGMMLJHCI.proto";
+import "MIKNKMIFHMJ.proto";
+import "OBMACANFHLH.proto";
+import "PHEDJCKOHFK.proto";
+import "_ConfigEnum.proto";
+import "_ConfigStruct.proto";
+
+message LANEGOMNKFO {
+  OBMACANFHLH GOMEMIHOALH = 1;
+  PHEDJCKOHFK KJMLDBFCONN = 2;
+  uint32 HFCLLBACJLJ = 3;
+  uint32 DFPHDLBAMKI = 4;
+  repeated JOEGMMLJHCI BBNKFOLHEGH = 5;
+  bool CDKFGEDICHN = 6;
+  repeated MIKNKMIFHMJ GHIBJCLCKKE = 7;
+  uint32 CFEJOCJKMNH = 8;
+  oneof KAICNIDMOBE {
+    _ConfigEnum ConfigEnum = 101;
+    _ConfigList ConfigList = 102;
+    _ConfigGenerics ConfigGenerics = 103;
+    _ConfigStruct ConfigStruct = 104;
+    BAFNBLHFDLP ConfigServerParamDictionary = 105;
+  }
+}
+
+message _ConfigGenerics {
+  repeated LANEGOMNKFO IOKONFFACAP = 1;
+  bool KBPMBADNBJK = 2;
+}
+
+message _ConfigList {
+  LANEGOMNKFO LABIMABBNFM = 1;
+}

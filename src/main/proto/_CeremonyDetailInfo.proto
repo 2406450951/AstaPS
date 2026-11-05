@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EJIGDIIFDBI.proto";
+import "MHENKMCEHHJ.proto";
+import "PDKKLGIEJCN.proto";
+
+message _CeremonyDetailInfo {
+  EJIGDIIFDBI MFNFNCFKEHO = 20000;
+  MHENKMCEHHJ battle_info = 12;
+  PDKKLGIEJCN PMPNJDABMKM = 20001;
+}

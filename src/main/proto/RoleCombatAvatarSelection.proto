@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatAvatarSelectionOuterClass";
+message RoleCombatAvatarSelection {
+  bool is_init = 4;
+  oneof detail {
+    uint32 TrialConfigId = 2;
+    uint32 AvatarId = 5;
+    uint32 RentAvatarId = 11;
+  }
+}

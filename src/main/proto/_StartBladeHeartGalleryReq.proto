@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_StartBladeHeartGalleryReqOuterClass";
+// 7.2 CmdId 20371
+message _StartBladeHeartGalleryReq {
+  bool _is_cutscene_viewed = 9;
+}

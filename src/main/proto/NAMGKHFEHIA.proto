@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message NAMGKHFEHIA {
+  repeated uint32 tag_list = 506;
+  int32 KAODIFBHJLO = 502;
+  bool PPJIFKBIKIL = 508;
+  bool LILACDAABJH = 507;
+  int32 JOFDFLCFCNJ = 504;
+  uint32 target_count = 503;
+  int32 OOOFHOMGHBJ = 501;
+  int32 NIEHOJOMPHD = 505;
+}

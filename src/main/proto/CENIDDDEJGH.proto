@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CENIDDDEJGHOuterClass";
+enum CENIDDDEJGH {
+  CENIDDDEJGH_NONE = 0;
+  CENIDDDEJGH_DEFAULT = 1;
+  CENIDDDEJGH_INVALID = 2;
+}

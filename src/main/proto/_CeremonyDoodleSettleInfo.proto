@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_CeremonyDoodleSettleInfoOuterClass";
+message _CeremonyDoodleSettleInfo {
+  bool is_new_record = 13;
+  uint32 use_time = 15;
+}

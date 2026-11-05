@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DungeonDataNotifyOuterClass";
+import "_BladeHeartDungeonInfo.proto";
+import "_DiversityBattleDungeonInfo.proto";
+import "_LanternRiteV6BattleDungeonInfo.proto";
+import "_RankedMatchSnowBallDungeonInfo.proto";
+import "_ShortVideoDungeonInfo.proto";
+import "_SnowRaceCombatDungeonInfo.proto";
+import "_SumeruAdventureGoalFightingDungeonInfo.proto";
+import "_SummonBattleDungeonInfo.proto";
+import "_TpsMercenariesDungeonInfo.proto";
+import "_TradeShowBattleDungeonInfo.proto";
+import "_TrialAvatarActivityDungeonInfo.proto";
+
+// 7.2 CmdId 29727
+message DungeonDataNotify {
+  map<uint32, uint32> dungeon_data_map = 10;
+  oneof detail {
+    _SumeruAdventureGoalFightingDungeonInfo SumeruAdventureGoalFightingDungeonInfo = 2424;
+    _TradeShowBattleDungeonInfo TradeShowBattleDungeonInfo = 2954;
+    _BladeHeartDungeonInfo BladeHeartDungeonInfo = 3523;
+    _LanternRiteV6BattleDungeonInfo LanternRiteV6BattleDungeonInfo = 4466;
+    _SnowRaceCombatDungeonInfo SnowRaceCombatDungeonInfo = 5224;
+    _TpsMercenariesDungeonInfo TpsMercenariesDungeonInfo = 8689;
+    _RankedMatchSnowBallDungeonInfo RankedMatchSnowBallDungeonInfo = 12561;
+    _TrialAvatarActivityDungeonInfo TrialAvatarActivityDungeonInfo = 16451;
+    _SummonBattleDungeonInfo SummonBattleDungeonInfo = 17003;
+    _DiversityBattleDungeonInfo DiversityBattleDungeonInfo = 17473;
+    _ShortVideoDungeonInfo ShortVideoDungeonInfo = 17690;
+  }
+}

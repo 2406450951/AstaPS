@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PBJJOGALKHBOuterClass";
+import "CJNDDHOGKLO.proto";
+import "OHPMKKFCBHF.proto";
+
+message PBJJOGALKHB {
+  CJNDDHOGKLO DMCLPLJLAEK = 1;
+  CJNDDHOGKLO CDHEPOFGOBJ = 2;
+  repeated OHPMKKFCBHF FDKNHICGCOF = 3;
+  CJNDDHOGKLO NFMDAAKEIMK = 4;
+  uint32 version = 5;
+}

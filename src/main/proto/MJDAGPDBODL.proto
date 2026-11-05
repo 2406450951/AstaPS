@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "KDIBMDNOKDB.proto";
+
+message MJDAGPDBODL {
+  repeated KDIBMDNOKDB level_info_list = 1;
+  repeated uint32 JIKILCKLNBG = 11;
+}

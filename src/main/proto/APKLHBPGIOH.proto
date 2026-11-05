@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "APKLHBPGIOHOuterClass";
+import "HGGCDKJPLEK.proto";
+
+message APKLHBPGIOH {
+  HGGCDKJPLEK ENPBODOCBKM = 1;
+  uint32 count = 2;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityTakeAllScoreRewardRspOuterClass";
+// 7.2 CmdId 5544
+message ActivityTakeAllScoreRewardRsp {
+  uint32 activity_id = 3;
+  int32 retcode = 5;
+  repeated uint32 reward_config_list = 10;
+}

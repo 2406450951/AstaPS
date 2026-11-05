@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGMsgNoDamageSkillResultOuterClass";
+import "GCGDamageDetail.proto";
+
+message GCGMsgNoDamageSkillResult {
+  uint32 DBKLCGNKPFA = 2;
+  uint32 DOJGMAMMBPJ = 3;
+  uint32 EIAOOGNBKHO = 4;
+  uint32 LBOLPEHLECF = 5;
+  uint32 skill_id = 6;
+  uint32 HIIDCIGJPOB = 7;
+  repeated GCGDamageDetail detail_list = 14;
+}

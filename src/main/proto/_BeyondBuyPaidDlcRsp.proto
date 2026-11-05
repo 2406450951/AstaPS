@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondBuyPaidDlcRspOuterClass";
+import "CKDAGFBHONE.proto";
+
+// 7.2 CmdId 25729
+message _BeyondBuyPaidDlcRsp {
+  uint64 dungeon_guid = 1;
+  int32 retcode = 5;
+  bool DKCOFFLOJIB = 10;
+  uint32 DJLKLNNCENO = 12;
+  uint32 DEJOJANOABA = 13;
+  CKDAGFBHONE OHMMCGNHPOP = 15;
+}

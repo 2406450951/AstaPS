@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MpPlayOwnerInviteNotifyOuterClass";
+// 7.2 CmdId 29602
+message MpPlayOwnerInviteNotify {
+  bool is_remain_reward = 1;
+  uint32 cd = 4;
+  uint32 mp_play_id = 7;
+}

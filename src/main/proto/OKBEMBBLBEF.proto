@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OKBEMBBLBEFOuterClass";
+import "FFFOLCKEGDE.proto";
+import "_FrogParamTypeInfo.proto";
+import "_ServerParamTypeInfo.proto";
+
+message OKBEMBBLBEF {
+  FFFOLCKEGDE PFODKANNBAE = 1;
+  oneof MBHHCPINKND {
+    _ServerParamTypeInfo ServerParamTypeInfo = 100;
+    _FrogParamTypeInfo FrogParamTypeInfo = 101;
+  }
+}

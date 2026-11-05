@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IrodoriChessPlayerInfoOuterClass";
+message IrodoriChessPlayerInfo {
+  uint32 uid = 1;
+  uint32 building_points = 2;
+  uint32 settle_score = 3;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestMutualContinueReqOuterClass";
+// 7.2 CmdId 5848
+message _QuestMutualContinueReq {
+  repeated uint32 _continue_quest_id_list = 14;
+}

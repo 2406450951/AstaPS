@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MonsterChessTriggerArtifactNotifyOuterClass";
+// 7.2 CmdId 22732
+message MonsterChessTriggerArtifactNotify {
+  repeated uint32 _artifact_id_list = 5;
+  uint32 _monster_chess_team_num = 10;
+}

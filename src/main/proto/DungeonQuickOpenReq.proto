@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DungeonQuickOpenReqOuterClass";
+// 7.2 CmdId 24777
+message DungeonQuickOpenReq {
+  uint32 dungeon_entry_config_id = 13;
+}

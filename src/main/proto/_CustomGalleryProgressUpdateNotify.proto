@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_CustomGalleryProgressUpdateNotifyOuterClass";
+import "_CustomGalleryProgressInfo.proto";
+
+// 7.2 CmdId 5902
+message _CustomGalleryProgressUpdateNotify {
+  _CustomGalleryProgressInfo progress = 4;
+  uint32 gallery_id = 15;
+}

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NADJHIGFEJPOuterClass";
+import "EMCFMNEKDED.proto";
+import "HGGCDKJPLEK.proto";
+import "HKPEAJFLKLL.proto";
+import "KEGIHAJBOEE.proto";
+import "KKCCKPCBPIH.proto";
+import "MDPJDLPDPFA.proto";
+import "PIGPPHAIKNG.proto";
+
+message NADJHIGFEJP {
+  int32 index = 501;
+  bool is_active = 502;
+  HGGCDKJPLEK JGMONGCMPOL = 503;
+  string EIAHNMKIGNL = 504;
+  bool AEHBALKFMID = 505;
+  bool KDJNGNNGKEA = 506;
+  int32 PKGLEGPDJFK = 507;
+  int32 KHNHFKIEEDD = 508;
+  KEGIHAJBOEE DEPNEOGHBCC = 509;
+  KKCCKPCBPIH CIBJAAMFCPE = 510;
+  PIGPPHAIKNG FBJIJHHPJAC = 511;
+  EMCFMNEKDED JJFJFLEBPFO = 512;
+  MDPJDLPDPFA LJEGAPOMNAK = 513;
+  bool FLLMILKFPNO = 514;
+  bool CAJCIBONFHP = 515;
+  HKPEAJFLKLL OGIHMLOLJKA = 516;
+  string name = 517;
+}

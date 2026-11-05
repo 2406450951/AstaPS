@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "CHOGKFOPCHI.proto";
+import "Uint32Pair.proto";
+
+message HPKLMGOJCBG {
+  repeated Uint32Pair DJAMIIDPPPJ = 20000;
+  repeated CHOGKFOPCHI level_info_list = 9;
+  repeated uint32 JIKILCKLNBG = 20001;
+}

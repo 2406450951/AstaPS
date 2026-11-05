@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "TowerTeam.proto";
+
+message TowerCurLevelRecord {
+  repeated TowerTeam tower_team_list = 1;
+  repeated uint32 buff_id_list = 9;
+  uint32 cur_level_index = 20000;
+  uint32 cur_floor_id = 20001;
+  bool is_empty = 7;
+  bool is_upper_part = 2;
+}

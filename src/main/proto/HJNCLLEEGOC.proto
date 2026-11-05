@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HJNCLLEEGOCOuterClass";
+import "GBKKBPNGDBN.proto";
+
+message HJNCLLEEGOC {
+  repeated GBKKBPNGDBN LHFIPMIEPAJ = 501;
+  float BGMFBPCLPOE = 502;
+}

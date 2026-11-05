@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ODFGDFPPPGOOuterClass";
+enum ODFGDFPPPGO {
+  ODFGDFPPPGO_NONE = 0;
+  ODFGDFPPPGO_SERVER_PARAM = 1;
+  ODFGDFPPPGO_FROG_PARAM = 2;
+  ODFGDFPPPGO_GENERAL_VALUE_TYPE = 3;
+}

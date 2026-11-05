@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message RogueDiaryDungeonRecord {
+  uint32 max_round = 3;
+  uint32 difficulty = 1;
+  uint32 finish_time = 4;
+  bool is_finish = 2;
+}

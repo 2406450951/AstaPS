@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EJIEHJMIPEOOuterClass";
+import "BLAEPOPBOHE.proto";
+import "HHEDHCFPEKM.proto";
+import "HIEHDDNHLEI.proto";
+
+message EJIEHJMIPEO {
+  BLAEPOPBOHE BEEFNEMHAOH = 501;
+  HIEHDDNHLEI NGPLMHOHJBI = 502;
+  HIEHDDNHLEI KBMFFPIIKEN = 503;
+  HIEHDDNHLEI CBKCLMKMPEC = 504;
+  HHEDHCFPEKM CIINAHHMGDI = 505;
+  int32 LFDNHOENLOK = 1006;
+}

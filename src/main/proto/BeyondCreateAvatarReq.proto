@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondCreateAvatarReqOuterClass";
+import "_BeyondCostumeSetInfo.proto";
+
+// 7.2 CmdId 23245
+message BeyondCreateAvatarReq {
+  uint32 DICDDABOMPL = 1;
+  uint32 JLHJEOJBCCM = 5;
+  string avatar_name = 8;
+  uint32 AHAJBLEAJDD = 9;
+  _BeyondCostumeSetInfo avatar_costume_set = 10;
+  uint32 KOCMBKHLPKO = 12;
+  uint32 avatar_id = 14;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message AvatarDieAnimationEndRsp {
+  uint64 die_guid = 3;
+  uint32 skill_id = 2;
+  int32 retcode = 14;
+}

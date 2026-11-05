@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondActivityWatcherInfoOuterClass";
+import "JPMPNMDOBHE.proto";
+import "_BeyondActivityWatcherExtraInfo.proto";
+
+message _BeyondActivityWatcherInfo {
+  uint32 total_progress = 3;
+  uint32 EPIBNEIPOIM = 4;
+  uint32 cur_progress = 6;
+  uint32 watcher_id = 8;
+  bool is_taken_reward = 12;
+  _BeyondActivityWatcherExtraInfo extra_info = 13;
+  JPMPNMDOBHE watcher_info = 14;
+}

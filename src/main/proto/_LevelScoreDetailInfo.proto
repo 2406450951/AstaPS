@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LevelScoreDetailInfoOuterClass";
+import "_LevelScoreLevelInfo.proto";
+
+message _LevelScoreDetailInfo {
+  repeated uint64 LBKLCACKBFN = 1;
+  uint32 MGDEHPJLGHI = 2;
+  repeated _LevelScoreLevelInfo BDDLDAEFDLL = 6;
+  repeated _LevelScoreLevelInfo level_list = 13;
+}

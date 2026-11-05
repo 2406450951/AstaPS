@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "InBattleMechanicusCardResultNotifyOuterClass";
+import "InBattleMechanicusCardInfo.proto";
+
+message InBattleMechanicusCardResultNotify {
+  uint32 play_index = 1;
+  uint32 group_id = 2;
+  uint64 wait_begin_time_us = 3;
+  uint32 wait_seconds = 4;
+  repeated InBattleMechanicusCardInfo card_list = 5;
+  map<uint32, uint32> player_confirmed_card_map = 6;
+}

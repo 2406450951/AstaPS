@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FHNGLNCPHKA.proto";
+import "GAGPIICGHOF.proto";
+
+message _ThemeParkSimDetailInfo {
+  repeated uint32 LOAEMCLFDDF = 20000;
+  GAGPIICGHOF PFPHDJPACAF = 20001;
+  FHNGLNCPHKA PHGDGOKPMEF = 20002;
+  repeated uint32 FDFPADCAGKJ = 20003;
+}

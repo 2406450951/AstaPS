@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AONPAENJADL.proto";
+
+message BMJNJLKCODG {
+  repeated AONPAENJADL BCOFNPNHJCI = 7;
+  uint64 start_time = 1;
+  uint32 EEFABNDBKCO = 2;
+  bool is_started = 6;
+  bool OOPEGAGEENC = 8;
+  float DEEKKONIOPE = 4;
+  uint32 HMHCGLCNBMK = 3;
+  uint32 start_index = 11;
+  float speed = 5;
+  uint32 LGIDIOIEGCI = 10;
+  uint32 AKEMOJAMLEK = 9;
+}

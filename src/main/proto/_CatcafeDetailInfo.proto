@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HKGHMIFOALH.proto";
+import "PIPGMGPIKIP.proto";
+
+message _CatcafeDetailInfo {
+  repeated HKGHMIFOALH FIOPDPIHANO = 20000;
+  repeated PIPGMGPIKIP EBPDFPJCIGE = 20001;
+}

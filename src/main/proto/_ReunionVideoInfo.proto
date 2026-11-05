@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ReunionVideoInfoOuterClass";
+message _ReunionVideoInfo {
+  string MGKAKJNCIEI = 4;
+  string IGLPPIEKGMH = 5;
+  repeated uint32 IHHACDJDFON = 7;
+  bool _is_video_reward_taken = 10;
+  uint32 HEBEEGHHLGJ = 14;
+}

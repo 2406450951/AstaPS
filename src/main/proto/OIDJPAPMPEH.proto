@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OIDJPAPMPEHOuterClass";
+enum OIDJPAPMPEH {
+  OIDJPAPMPEH_RENT_SUCC = 0;
+  OIDJPAPMPEH_RENT_LIMIT = 1;
+  OIDJPAPMPEH_RENT_REPEATED = 2;
+}

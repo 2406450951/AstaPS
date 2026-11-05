@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LeyLineChallengeScheduleRecordOuterClass";
+import "LeyLineChallengePlayer.proto";
+import "LeyLineChallengeRecord.proto";
+
+message LeyLineChallengeScheduleRecord {
+  fixed64 timestamp = 6;
+  repeated LeyLineChallengePlayer player_info_list = 7;
+  repeated LeyLineChallengeRecord OEBJEEBEMBB = 10;
+  uint32 schedule_id = 11;
+  bool IELFCKJIONP = 14;
+  uint32 difficulty = 15;
+}

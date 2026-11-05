@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "UnlockCoopChapterRspOuterClass";
+// 7.2 CmdId 27010
+message UnlockCoopChapterRsp {
+  uint32 chapter_id = 1;
+  int32 retcode = 12;
+}

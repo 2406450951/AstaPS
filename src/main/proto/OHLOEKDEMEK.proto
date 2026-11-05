@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OHLOEKDEMEKOuterClass";
+import "KDCLIKIKFCC.proto";
+import "PHEDJCKOHFK.proto";
+
+message OHLOEKDEMEK {
+  PHEDJCKOHFK value = 1;
+  repeated KDCLIKIKFCC action_list = 2;
+}

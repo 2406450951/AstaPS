@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CityReputationHuntInfoOuterClass";
+message CityReputationHuntInfo {
+  uint32 cur_week_finish_num = 7;
+  bool has_reward = 9;
+  bool is_open = 15;
+}

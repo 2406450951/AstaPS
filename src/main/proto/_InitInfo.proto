@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_InitInfoOuterClass";
+import "KBHCJDGLPAH.proto";
+import "NLJLBDFLADP.proto";
+import "_RoomExtraInfo.proto";
+import "_TeamExtraInfo.proto";
+
+message _InitInfo {
+  uint64 DAACALBMHNB = 1;
+  uint32 NALLCPBBKJH = 2;
+  uint32 BDBEDOHHMFP = 3;
+  uint32 HKEOABAJBEG = 4;
+  repeated NLJLBDFLADP member_list = 5;
+  KBHCJDGLPAH FFOHAJEJENA = 6;
+  uint32 version = 20;
+  oneof IHOINCNOOKO {
+    _TeamExtraInfo TeamExtraInfo = 101;
+    _RoomExtraInfo RoomExtraInfo = 102;
+  }
+}

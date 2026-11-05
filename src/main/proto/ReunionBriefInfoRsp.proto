@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ReunionBriefInfoRspOuterClass";
+import "ReunionBriefInfo.proto";
+
+// 7.2 CmdId 20945
+message ReunionBriefInfoRsp {
+  ReunionBriefInfo reunion_brief_info = 2;
+  int32 retcode = 3;
+  bool is_activate = 4;
+}

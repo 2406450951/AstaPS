@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FDFFCLFJDCOOuterClass";
+import "HHEDHCFPEKM.proto";
+import "NOLCMBAOEBG.proto";
+
+message FDFFCLFJDCO {
+  bool OIAHDOHEOPC = 501;
+  int32 IEEDILFDHCL = 502;
+  bool NFINMHDHEDG = 503;
+  float radius = 504;
+  float height = 505;
+  float GBGLGNFAJIL = 506;
+  float width = 507;
+  float AGPHJLHNHAB = 508;
+  float JCFHCPKGMMM = 509;
+  NOLCMBAOEBG CCPJFGFJJFP = 510;
+  NOLCMBAOEBG HEEJFJNAHCN = 511;
+  NOLCMBAOEBG NGCDJPAPPEF = 512;
+  NOLCMBAOEBG OCPDPLKIGOP = 513;
+  NOLCMBAOEBG CAPFOOHJOED = 514;
+  int32 EMCJBDJHKFH = 515;
+  int32 NICMNPKJPNL = 516;
+  float LOJLDEAJFLK = 517;
+  HHEDHCFPEKM offset = 518;
+  bool FPEBPLMGODE = 519;
+}

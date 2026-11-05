@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MGNIBEBOABNOuterClass";
+enum MGNIBEBOABN {
+  MGNIBEBOABN_NONE = 0;
+  MGNIBEBOABN_MODIFY_NODE_TYPE = 1;
+}

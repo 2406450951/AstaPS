@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityGiveFriendGiftReqOuterClass";
+// 7.2 CmdId 27167
+message ActivityGiveFriendGiftReq {
+  uint32 uid = 3;
+  uint32 schedule_id = 6;
+  map<uint32, uint32> gift_num_map = 13;
+}

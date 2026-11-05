@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message SnezhnayaTrainCallNotify {
+  uint32 station_id = 8;
+}

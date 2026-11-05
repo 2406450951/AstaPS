@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ProjectorOptionReqOuterClass";
+// 7.2 CmdId 1140
+message ProjectorOptionReq {
+  uint32 entity_id = 4;
+  uint32 op_type = 10;
+}

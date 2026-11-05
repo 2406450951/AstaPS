@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetBonusActivityRewardReqOuterClass";
+// 7.2 CmdId 4668
+message GetBonusActivityRewardReq {
+  uint32 _hexenzirkel_reward_index = 1;
+  uint32 bonus_activity_id = 3;
+}

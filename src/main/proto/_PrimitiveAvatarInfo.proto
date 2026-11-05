@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_PrimitiveAvatarInfoOuterClass";
+message _PrimitiveAvatarInfo {
+  uint32 costume_id = 3;
+  uint32 avatar_id = 4;
+  uint32 _avatar_element_type = 11;
+}

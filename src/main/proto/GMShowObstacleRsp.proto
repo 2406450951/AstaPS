@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GMShowObstacleRspOuterClass";
+import "GMObstacleInfo.proto";
+
+// 7.2 CmdId 2370
+message GMShowObstacleRsp {
+  int32 retcode = 9;
+  repeated GMObstacleInfo obstacles = 15;
+}

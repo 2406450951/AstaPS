@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonSaveDataReqOuterClass";
+import "_UgcDungeonRoom.proto";
+import "_UgcDungeonSetting.proto";
+
+// 7.2 CmdId 23285
+message _UgcDungeonSaveDataReq {
+  uint64 guid = 1;
+  bool PBLBNFJNBLI = 2;
+  bool AIKELDHPCKB = 5;
+  _UgcDungeonSetting _dungeon_setting = 6;
+  repeated _UgcDungeonRoom room_list = 11;
+}

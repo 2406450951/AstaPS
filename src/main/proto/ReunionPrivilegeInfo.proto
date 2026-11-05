@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ReunionPrivilegeInfoOuterClass";
+import "JGJDGNCAPOE.proto";
+
+message ReunionPrivilegeInfo {
+  uint32 DLJDIHPCAKD = 2;
+  repeated JGJDGNCAPOE NIMGMALFCPM = 4;
+  uint32 CJBPFKMFCCI = 7;
+  uint32 privilege_id = 10;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NBFBPOJHBFFOuterClass";
+import "CJJPLPIMLIA.proto";
+import "CJMDFPONKPM.proto";
+import "HLNJDLCOEBO.proto";
+import "MABAGFGPEHJ.proto";
+import "NAHKGGFDCCG.proto";
+import "PPNBEEOLLKO.proto";
+
+message NBFBPOJHBFF {
+  int32 content_type = 1;
+  CJMDFPONKPM KKLJPGAGCPF = 2;
+  HLNJDLCOEBO icon = 3;
+  NAHKGGFDCCG MLPGHNKOLBD = 4;
+  PPNBEEOLLKO FCPGJHFKCGN = 5;
+  MABAGFGPEHJ PLHFKIPDPKC = 6;
+  CJJPLPIMLIA BNIKLMMJAPM = 7;
+}

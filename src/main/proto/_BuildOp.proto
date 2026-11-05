@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BuildOpOuterClass";
+message _BuildOp {
+  uint32 _grid_index = 10;
+  uint32 _tower_gadget_id = 11;
+  uint32 _tower_mod_id = 12;
+}

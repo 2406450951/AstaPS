@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message LKEKPAMJHDK {
+  repeated uint32 EALCNKHEMHE = 7;
+  bool is_finish = 14;
+  bool is_open = 15;
+  bool MNGLBAEBKDA = 1;
+}

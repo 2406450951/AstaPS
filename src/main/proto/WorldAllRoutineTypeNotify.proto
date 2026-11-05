@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "WorldAllRoutineTypeNotifyOuterClass";
+import "WorldRoutineTypeInfo.proto";
+
+// 7.2 CmdId 8889
+message WorldAllRoutineTypeNotify {
+  repeated WorldRoutineTypeInfo world_routine_type_list = 5;
+}

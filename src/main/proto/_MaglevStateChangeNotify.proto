@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MaglevStateChangeNotifyOuterClass";
+// 7.2 CmdId 5118
+message _MaglevStateChangeNotify {
+  uint32 state = 6;
+  bool GGGFLLEHPKH = 7;
+  uint32 EEILJPNIHDL = 13;
+}

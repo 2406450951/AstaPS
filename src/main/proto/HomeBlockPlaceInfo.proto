@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Vector.proto";
+
+message HomeBlockPlaceInfo {
+  Vector rot = 2;
+  Vector pos = 1;
+  uint32 block_id = 3;
+}

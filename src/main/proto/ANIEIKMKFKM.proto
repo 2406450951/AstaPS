@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ANIEIKMKFKMOuterClass";
+message ANIEIKMKFKM {
+  int32 group_id = 1;
+  float GJIKPEMLHNN = 2;
+  float MLEIJLOEEAE = 3;
+}

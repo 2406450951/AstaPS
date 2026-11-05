@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KHENODPKHOIOuterClass";
+import "FAGMGLAJFNL.proto";
+
+message KHENODPKHOI {
+  int32 NLKAJFAOFML = 1;
+  float time = 2;
+  FAGMGLAJFNL point_type = 3;
+  bool NPIKJJOCLEJ = 4;
+  bool FFGBMMEABEF = 1001;
+}

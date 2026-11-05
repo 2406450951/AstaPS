@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ClientTransmitReqOuterClass";
+import "TransmitReason.proto";
+import "Vector.proto";
+
+// 7.2 CmdId 9473
+message ClientTransmitReq {
+  uint32 scene_id = 5;
+  TransmitReason reason = 10;
+  Vector rot = 14;
+  Vector pos = 15;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ExecuteGadgetLuaReq {
+  int32 param1 = 5;
+  int32 param3 = 11;
+  uint32 source_entity_id = 4;
+  int32 param2 = 1;
+}

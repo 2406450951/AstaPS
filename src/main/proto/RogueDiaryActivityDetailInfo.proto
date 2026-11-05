@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "RogueDiaryProgress.proto";
+import "RogueDiaryStageInfo.proto";
+
+message RogueDiaryActivityDetailInfo {
+  repeated RogueDiaryStageInfo stage_list = 2;
+  RogueDiaryProgress cur_progress = 4;
+  bool is_have_progress = 3;
+  bool is_content_closed = 1;
+}

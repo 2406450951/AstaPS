@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_RogueBallSnapshot.proto";
+
+message _RogueBallLevelInfo {
+  _RogueBallSnapshot snapshot = 10;
+  _RogueBallSnapshot best_snapshot = 15;
+  bool is_finish = 12;
+  uint32 best_cost_time = 7;
+  uint32 best_score = 2;
+  uint32 _auto_chess_equip_id = 6;
+}

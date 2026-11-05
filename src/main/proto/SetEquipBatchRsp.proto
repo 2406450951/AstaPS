@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SetEquipBatchRspOuterClass";
+// 7.2 CmdId 7622
+message SetEquipBatchRsp {
+  int32 retcode = 13;
+}

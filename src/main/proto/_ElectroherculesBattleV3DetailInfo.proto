@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "LBFLDOEMDHP.proto";
+
+message _ElectroherculesBattleV3DetailInfo {
+  repeated LBFLDOEMDHP level_info_list = 9;
+  repeated uint32 open_stage_list = 2;
+}

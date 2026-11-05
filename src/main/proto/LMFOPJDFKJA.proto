@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LMFOPJDFKJAOuterClass";
+import "KNMKJGPGPDB.proto";
+import "NMOGGLJCILE.proto";
+import "_ConfigBreakStruct.proto";
+import "_ConfigFireSignal.proto";
+import "_ConfigMakeStruct.proto";
+import "_ConfigPinVisibilityController.proto";
+import "_ConfigPinVisibilityControllerV2.proto";
+import "_ConfigSetStructMember.proto";
+import "_ConfigSignalEvent.proto";
+import "_ConfigToScriptFireSignal.proto";
+
+message LMFOPJDFKJA {
+  NMOGGLJCILE IOPLOKOOAPN = 1;
+  bool LMMNNCKGGNP = 2;
+  oneof OFJOIOHJGNA {
+    _ConfigPinVisibilityController ConfigPinVisibilityController = 100;
+    _ConfigFireSignal ConfigFireSignal = 101;
+    _ConfigSignalEvent ConfigSignalEvent = 102;
+    KNMKJGPGPDB ConfigFunction = 103;
+    _ConfigMakeStruct ConfigMakeStruct = 104;
+    _ConfigBreakStruct ConfigBreakStruct = 105;
+    _ConfigSetStructMember ConfigSetStructMember = 106;
+    _ConfigPinVisibilityControllerV2 ConfigPinVisibilityControllerV2 = 107;
+    _ConfigToScriptFireSignal ConfigToScriptFireSignal = 108;
+  }
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetAllH5ActivityInfoRspOuterClass";
+import "H5ActivityInfo.proto";
+
+// 7.2 CmdId 20074
+message GetAllH5ActivityInfoRsp {
+  uint32 client_red_dot_timestamp = 3;
+  int32 retcode = 4;
+  repeated H5ActivityInfo h5_activity_info_list = 13;
+}

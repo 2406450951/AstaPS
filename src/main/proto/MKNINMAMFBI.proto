@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MKNINMAMFBIOuterClass";
+message MKNINMAMFBI {
+  uint32 level = 1;
+  uint32 exp = 2;
+}

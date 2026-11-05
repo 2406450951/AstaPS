@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGControllerShowInfoOuterClass";
+import "ProfilePicture.proto";
+
+message GCGControllerShowInfo {
+  string online_id = 3;
+  string psn_id = 7;
+  ProfilePicture profile_picture = 8;
+  string nick_name = 9;
+  string _xbox_gamertag = 11;
+  uint32 controller_id = 13;
+}

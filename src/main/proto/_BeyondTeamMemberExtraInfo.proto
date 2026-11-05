@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondTeamMemberExtraInfoOuterClass";
+import "PGOABJNJDNA.proto";
+
+message _BeyondTeamMemberExtraInfo {
+  uint32 IBNBGDMMJKJ = 1;
+  PGOABJNJDNA FHHGBICKIHG = 2;
+  uint32 CLAHCBMGCHC = 3;
+}

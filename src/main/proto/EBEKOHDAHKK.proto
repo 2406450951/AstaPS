@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EBEKOHDAHKKOuterClass";
+import "HOFKFKOFBFF.proto";
+
+message EBEKOHDAHKK {
+  bool is_active = 1;
+  repeated HOFKFKOFBFF APMACEEEGAG = 2;
+  string AABBLBKCAFK = 3;
+  uint32 OJMONNFBEFK = 4;
+  string HJBDLNBDBIA = 501;
+  bool LGILHBHJLID = 502;
+  string ENFIAFJHAKH = 503;
+}

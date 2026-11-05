@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DuelHeartSettleNotifyOuterClass";
+message DuelHeartSettleNotify {
+  uint32 cost_time = 1;
+  bool is_succ = 2;
+  bool is_new_record = 3;
+}

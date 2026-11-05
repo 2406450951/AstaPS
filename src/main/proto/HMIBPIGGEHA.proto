@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HMIBPIGGEHAOuterClass";
+enum HMIBPIGGEHA {
+  HMIBPIGGEHA_NONE = 0;
+  HMIBPIGGEHA_COMPLETE_NOT_FETCH_REWARD = 1;
+  HMIBPIGGEHA_COMPLETE_AND_FETCH_REWARD = 2;
+}

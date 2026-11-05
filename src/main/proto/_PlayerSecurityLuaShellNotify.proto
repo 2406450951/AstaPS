@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_PlayerSecurityLuaShellNotifyOuterClass";
+// 7.2 CmdId 6852
+message _PlayerSecurityLuaShellNotify {
+  uint32 config_id = 4;
+  bytes _payload = 5;
+}

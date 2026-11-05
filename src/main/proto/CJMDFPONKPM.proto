@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CJMDFPONKPMOuterClass";
+import "BIOCOIFOGDE.proto";
+import "GPAEAPOIJFP.proto";
+
+message CJMDFPONKPM {
+  string name = 1;
+  int32 LAGFLOMMPKO = 2;
+  BIOCOIFOGDE EJKDAPKHBKM = 3;
+  GPAEAPOIJFP content = 4;
+  BIOCOIFOGDE offset = 5;
+  int32 BBFEPLDBPGD = 6;
+  int32 NDNDABBLPAF = 7;
+  int32 FOKEFLOFOGJ = 8;
+  bool LNOMKKDNIML = 9;
+  int32 JECJFPHMLIA = 10;
+}

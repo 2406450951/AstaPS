@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondAvatarCostumeDataOuterClass";
+import "BeyondCostumeDisplayInfo.proto";
+import "BeyondCostumePlanName.proto";
+import "Uint32Pair.proto";
+import "_BeyondCostumeSetInfo.proto";
+import "_BeyondExpressionInfo.proto";
+
+message BeyondAvatarCostumeData {
+  uint32 OBNGHILBAGG = 1;
+  uint64 avatar_guid = 2;
+  repeated BeyondCostumePlanName plan_name_list = 3;
+  uint32 BCBABNKEGGF = 4;
+  BeyondCostumeDisplayInfo display_info = 6;
+  repeated _BeyondExpressionInfo EOCDEFCJCME = 7;
+  uint32 JLHJEOJBCCM = 10;
+  repeated Uint32Pair style_order_list = 11;
+  repeated _BeyondCostumeSetInfo costume_set_list = 12;
+}

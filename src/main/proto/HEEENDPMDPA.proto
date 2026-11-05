@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum HEEENDPMDPA {
+  HEEENDPMDPA_NONE = 0;
+  HEEENDPMDPA_HINT = 1;
+  HEEENDPMDPA_FINISH = 2;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ItemParam.proto";
+import "_AdventurerStatuePhotoGoalInfo.proto";
+
+message _AdventurerStatueDetailInfo {
+  repeated ItemParam GPBHPMHGEIJ = 20000;
+  repeated uint32 open_stage_list = 5;
+  repeated _AdventurerStatuePhotoGoalInfo _photo_goal_info_list = 10;
+  repeated ItemParam LHPCAMJGPPN = 20001;
+  uint32 DLKAPMLCIGN = 20002;
+  uint32 MLJLLMKIAEK = 20003;
+  uint32 HAEEPFDNNIJ = 20004;
+}

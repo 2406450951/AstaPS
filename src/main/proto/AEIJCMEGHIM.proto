@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AEIJCMEGHIMOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message AEIJCMEGHIM {
+  HHEDHCFPEKM pos = 1;
+  HHEDHCFPEKM rot = 2;
+  HHEDHCFPEKM NILBBNBJKGD = 3;
+  float DOOHFKABDPL = 4;
+  uint32 PAEBCHGFAOP = 501;
+}

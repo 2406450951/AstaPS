@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_WorldWatcherInfoUpdateNotifyOuterClass";
+import "_WorldWatcherInfo.proto";
+
+// 7.2 CmdId 6688
+message _WorldWatcherInfoUpdateNotify {
+  repeated _WorldWatcherInfo watcher_info_list = 1;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcTriggerActionChangeGadgetStateOuterClass";
+message _UgcTriggerActionChangeGadgetState {
+  uint32 gadget_state = 6;
+  uint32 _gadget_guid = 15;
+}

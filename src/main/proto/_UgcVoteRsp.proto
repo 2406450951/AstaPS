@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcVoteRspOuterClass";
+import "UgcType.proto";
+import "_UgcVote.proto";
+
+// 7.2 CmdId 26007
+message _UgcVoteRsp {
+  UgcType ugc_type = 7;
+  int32 retcode = 9;
+  uint64 ugc_guid = 13;
+  _UgcVote _ugc_vote = 15;
+}

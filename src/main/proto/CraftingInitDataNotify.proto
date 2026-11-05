@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CraftingInitDataNotifyOuterClass";
+import "BHJBGLBEDDG.proto";
+
+// 7.2 CmdId 22036
+message CraftingInitDataNotify {
+  repeated BHJBGLBEDDG FNLAMNCLBPB = 15;
+}

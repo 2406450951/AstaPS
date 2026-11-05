@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KMECPPOINEFOuterClass";
+import "DPIDMHAOEPD.proto";
+import "GDDHMAMMOJP.proto";
+
+message KMECPPOINEF {
+  repeated DPIDMHAOEPD GJHILLJCLHB = 1;
+  bool CKOCPGBDDAL = 2;
+  float GIMMNLNECMK = 3;
+  uint32 config_id = 4;
+  GDDHMAMMOJP PPGONCCAPFJ = 5;
+}

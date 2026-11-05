@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BomberV3SnapshotOuterClass";
+import "BOHOAAAJCCI.proto";
+import "JBNDKPLPOAJ.proto";
+import "PPMGJDKKHCH.proto";
+import "_BoxExtent.proto";
+
+message _BomberV3Snapshot {
+  int32 JIJGIBIBCLL = 2;
+  uint32 _current_score = 3;
+  uint32 DHKJLEJBKJO = 4;
+  int32 MADHPJMLJKC = 5;
+  map<uint32, BOHOAAAJCCI> FPLKGEIJLGE = 6;
+  map<uint32, uint32> LEEMAMABCOO = 7;
+  map<uint32, PPMGJDKKHCH> KHDJPLKBMKA = 8;
+  map<uint32, _BoxExtent> EOAFEOKPGBE = 9;
+  map<uint32, JBNDKPLPOAJ> EMADCMEBNAH = 10;
+  sfixed64 MCIDKEEIKAM = 11;
+  int32 JMJMOFHLALP = 12;
+  map<uint32, _BoxExtent> EOLEPNDFEBC = 14;
+}

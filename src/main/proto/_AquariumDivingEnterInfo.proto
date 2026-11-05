@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AquariumDivingEnterInfoOuterClass";
+message _AquariumDivingEnterInfo {
+  uint32 _use_weapon_id = 6;
+  bool _is_start_in_danger_phase = 8;
+}

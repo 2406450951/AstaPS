@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ConfigPinVisibilityControllerV2OuterClass";
+import "_PinName.proto";
+
+message _ConfigPinVisibilityControllerV2 {
+  _PinName MFDOEJKMKCK = 1;
+  uint32 GHEOJHGHEPH = 2;
+  uint32 FKPEFFJCOFM = 3;
+  uint32 MIKOPLBHMPM = 4;
+  uint32 BFENGIJECPH = 5;
+}

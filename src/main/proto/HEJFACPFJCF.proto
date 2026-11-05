@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HEJFACPFJCFOuterClass";
+message HEJFACPFJCF {
+  string EDJHLPLKDMN = 1;
+  string DDAHEGCBOEL = 2;
+  int32 DHEMJEJCCPI = 3;
+  int32 JNAPGGPCNMO = 4;
+  uint32 CJBCLAFOFDG = 5;
+}

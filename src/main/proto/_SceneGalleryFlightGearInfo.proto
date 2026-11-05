@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryFlightGearInfoOuterClass";
+message _SceneGalleryFlightGearInfo {
+  uint32 _collected_coin_num = 1;
+  uint32 total_coin_num = 2;
+}

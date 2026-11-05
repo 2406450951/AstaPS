@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "JHJLAHGFBEN.proto";
+
+message _DiversityBattleSocialBrief {
+  repeated JHJLAHGFBEN team_list = 2;
+  uint32 difficulty_id = 13;
+  uint32 score = 9;
+}

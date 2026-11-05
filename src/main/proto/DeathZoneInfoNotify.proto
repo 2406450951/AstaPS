@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DeathZoneInfoNotifyOuterClass";
+import "DeathZoneInfo.proto";
+
+// 7.2 CmdId 6911
+message DeathZoneInfoNotify {
+  repeated DeathZoneInfo death_zone_info_list = 6;
+}

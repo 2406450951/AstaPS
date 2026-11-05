@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _SumeruAdventureTrainingSettleInfo {
+  uint32 level_id = 3;
+  uint32 play_type = 4;
+  uint32 use_time = 2;
+  uint32 score = 5;
+  bool is_new_record = 11;
+  uint32 collect_num = 6;
+  uint32 difficulty = 10;
+}

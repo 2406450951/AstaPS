@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BABNNDPCHCGOuterClass";
+enum BABNNDPCHCG {
+  BABNNDPCHCG_NONE = 0;
+  BABNNDPCHCG_OFFLINE = 1;
+  BABNNDPCHCG_LOADING = 2;
+  BABNNDPCHCG_ENTERED = 3;
+  BABNNDPCHCG_LEFT = 4;
+}

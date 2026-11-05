@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SubmitQuestEventsGivingRspOuterClass";
+// 7.2 CmdId 22623
+message _SubmitQuestEventsGivingRsp {
+  int32 retcode = 4;
+  uint32 _quest_events_giving_id = 11;
+  uint32 _quest_events_item_id = 15;
+}

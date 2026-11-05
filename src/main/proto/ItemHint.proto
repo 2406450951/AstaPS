@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "OBLGMFAIFCM.proto";
+
+message ItemHint {
+  repeated OBLGMFAIFCM JFCPGMBKDDO = 5;
+  bool is_new = 3;
+  uint32 item_id = 1;
+  uint64 guid = 4;
+  uint32 count = 2;
+}

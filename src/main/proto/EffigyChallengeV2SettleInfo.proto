@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message EffigyChallengeV2SettleInfo {
+  uint32 EEKKHPMNEJO = 20000;
+  uint32 JGOODOMJLLJ = 20001;
+  uint32 MMBMGOKCLJI = 20002;
+  bool DACBILBGHCK = 20003;
+  bool CIKPIBCMPMB = 20004;
+  uint32 challenge_mode_difficulty = 20005;
+}

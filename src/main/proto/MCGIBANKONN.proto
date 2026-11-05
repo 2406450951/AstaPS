@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MCGIBANKONNOuterClass";
+import "HGGCDKJPLEK.proto";
+import "LLIJNHLPMOD.proto";
+
+message MCGIBANKONN {
+  HGGCDKJPLEK KHMNBHPFHLK = 5;
+  int32 index = 501;
+  string name = 502;
+  bool JAHJLPCJAOE = 503;
+  repeated LLIJNHLPMOD JAJFJNAAEOL = 504;
+}

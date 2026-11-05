@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SealBattleProgressNotifyOuterClass";
+// 7.2 CmdId 7291
+message SealBattleProgressNotify {
+  uint32 max_progress = 3;
+  uint32 seal_entity_id = 5;
+  uint32 progress = 11;
+  uint32 end_time = 12;
+  uint32 seal_radius = 13;
+}

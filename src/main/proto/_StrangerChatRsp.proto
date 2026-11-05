@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_StrangerChatRspOuterClass";
+import "ChatInfo.proto";
+
+// 7.2 CmdId 20909
+message _StrangerChatRsp {
+  ChatInfo chat_info = 2;
+  uint32 target_uid = 6;
+  uint32 chat_forbidden_endtime = 7;
+  int32 retcode = 8;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActivityAvatarInfo.proto";
+
+message LPGFAFGCFKO {
+  repeated _ActivityAvatarInfo GPMEFKHPBFK = 9;
+  bool is_finish = 12;
+  bool is_open = 1;
+  uint32 best_score = 5;
+  uint32 level_id = 6;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PNHCFCFPAOGOuterClass";
+message PNHCFCFPAOG {
+  uint32 CDDMNCKBHOL = 1;
+  uint32 JCPLGKHLEGH = 2;
+  uint32 DNKDIKMEEJF = 3;
+  uint32 BNGIILAJJEG = 4;
+  string HJBDLNBDBIA = 501;
+  uint32 FOIMFGKGBND = 502;
+  bool LKGFKADKLPJ = 503;
+  uint32 FDMCMCAGONK = 504;
+  uint32 CEGELHFOGKC = 505;
+  bool DCGLPJNMFGP = 506;
+}

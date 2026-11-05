@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HJINLJALMOP.proto";
+import "NFCFJEMPKJE.proto";
+
+message OFBGCMDEAAL {
+  HJINLJALMOP GFNNDOHGMCB = 502;
+  NFCFJEMPKJE DOEMEJMDLMI = 501;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GetRecommendedMusicGameBookRspOuterClass";
+import "_MusicBriefInfo.proto";
+
+// 7.2 CmdId 24629
+message _GetRecommendedMusicGameBookRsp {
+  repeated _MusicBriefInfo brief_info_list = 4;
+  int32 retcode = 8;
+}

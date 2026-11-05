@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondActivityTakeWatcherRewardBatchRspOuterClass";
+import "ItemParam.proto";
+
+// 7.2 CmdId 33224
+message BeyondActivityTakeWatcherRewardBatchRsp {
+  repeated uint32 watcher_id_list = 1;
+  int32 retcode = 12;
+  repeated ItemParam item_list = 13;
+  uint32 activity_id = 15;
+}

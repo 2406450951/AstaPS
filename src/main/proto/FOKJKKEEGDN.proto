@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FOKJKKEEGDNOuterClass";
+import "GEDLFKBHODF.proto";
+
+message FOKJKKEEGDN {
+  uint32 DJCLKHIIMAM = 1;
+  GEDLFKBHODF skill_type = 2;
+  uint32 BEMJJLHLGCF = 3;
+  uint32 ELIIFNOGFML = 4;
+}

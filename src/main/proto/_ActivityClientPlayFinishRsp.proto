@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ActivityClientPlayFinishRspOuterClass";
+import "_AquariumSellSettleInfo.proto";
+import "_BirdBallSettleInfo.proto";
+import "_CeremonyDoodleSettleInfo.proto";
+import "_ClientPlayType.proto";
+import "_FairyTalesFlyppyHatSettleInfo.proto";
+import "_FilmfestShootingSettleInfo.proto";
+import "_FloatToySettleInfo.proto";
+import "_FruitPickSettleInfo.proto";
+import "_GreatFestivalV2SheetRestoreSettleInfo.proto";
+import "_HolidayResortAdventureSettleInfo.proto";
+import "_LanternRiteV6DanmakuSettleInfo.proto";
+import "_LoliJumpSettleInfo.proto";
+import "_NatlanDrillCollectSettleInfo.proto";
+
+// 7.2 CmdId 3299
+message _ActivityClientPlayFinishRsp {
+  uint32 activity_id = 1;
+  _ClientPlayType _client_play_type = 7;
+  uint32 cost_time = 8;
+  uint32 level_id = 9;
+  int32 retcode = 13;
+  bool _is_interrupt = 14;
+  oneof detail {
+    _FilmfestShootingSettleInfo FilmfestShootingInfo = 36;
+    _BirdBallSettleInfo BirdBallInfo = 163;
+    _FloatToySettleInfo FloatToyInfo = 182;
+    _FairyTalesFlyppyHatSettleInfo FairyTalesFlyppyHatInfo = 563;
+    _CeremonyDoodleSettleInfo CeremonyDoodleInfo = 649;
+    _HolidayResortAdventureSettleInfo HolidayResortAdventureInfo = 832;
+    _LanternRiteV6DanmakuSettleInfo LanternRiteV6DanmakuInfo = 1075;
+    _AquariumSellSettleInfo AquariumSellInfo = 1148;
+    _LoliJumpSettleInfo LoliJumpInfo = 1449;
+    _NatlanDrillCollectSettleInfo NatlanDrillCollectInfo = 1820;
+    _FruitPickSettleInfo FruitPickInfo = 1913;
+    _GreatFestivalV2SheetRestoreSettleInfo GreatFestivalV2SheetRestoreInfo = 2008;
+  }
+}

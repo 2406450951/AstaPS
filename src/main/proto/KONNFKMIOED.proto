@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KONNFKMIOEDOuterClass";
+import "CJNDDHOGKLO.proto";
+import "IEEDBOFBFKE.proto";
+
+message KONNFKMIOED {
+  bool IIKBFIBOKFB = 1;
+  repeated CJNDDHOGKLO NOJEKKHAPLC = 2;
+  repeated IEEDBOFBFKE KHMOLHHJNFN = 3;
+}

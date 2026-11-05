@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _LoliRunDungeonSettleInfo {
+  uint32 collect_num = 15;
+  uint32 DOCOKIPMPKN = 20000;
+  uint32 score = 13;
+  uint32 level_id = 3;
+  bool is_new_record = 12;
+  uint32 hit_point = 11;
+}

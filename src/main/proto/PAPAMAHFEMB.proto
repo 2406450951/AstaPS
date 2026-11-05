@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PAPAMAHFEMBOuterClass";
+import "CJFJKNNKJEI.proto";
+import "OPCGPNLPNEL.proto";
+
+message PAPAMAHFEMB {
+  int32 PGBDGIIAHBF = 501;
+  int32 PKJIFIMCOBI = 502;
+  int32 MBELFALOGHL = 503;
+  int32 PELPEMLFJGN = 504;
+  bool GFLDFKDCLNI = 505;
+  bool KJNCCCPOIAN = 506;
+  bool FMBOFAOLBEJ = 507;
+  bool AFAOOCPKOHL = 508;
+  bool KHHEHEMGNJD = 509;
+  repeated CJFJKNNKJEI LICBAHIEOEF = 510;
+  repeated OPCGPNLPNEL EBFABEBNJMJ = 511;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HGGENKNHBNHOuterClass";
+import "_BoxExtent.proto";
+
+message HGGENKNHBNH {
+  sfixed64 OBELNIIMNKJ = 8;
+  _BoxExtent NGPLMHOHJBI = 12;
+  oneof detail {
+    _BoxExtent BoxExtent = 1732;
+    sfixed64 CircleRadius = 1755;
+  }
+}

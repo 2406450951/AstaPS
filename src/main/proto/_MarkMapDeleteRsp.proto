@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MarkMapDeleteRspOuterClass";
+import "MapMarkPoint.proto";
+
+// 7.2 CmdId 25002
+message _MarkMapDeleteRsp {
+  int32 retcode = 3;
+  repeated MapMarkPoint mark_list = 5;
+}

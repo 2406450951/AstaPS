@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OpenBlossomCircleCampGuideNotifyOuterClass";
+// 7.2 CmdId 26611
+message OpenBlossomCircleCampGuideNotify {
+  repeated uint32 circle_camp_id_list = 4;
+  uint32 refresh_id = 14;
+}

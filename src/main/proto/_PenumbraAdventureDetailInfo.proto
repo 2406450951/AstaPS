@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "APGNMMCFCPD.proto";
+import "GBAOLFCECGM.proto";
+import "PKLEFDLHINI.proto";
+import "_PenumbraAdventureFlightGearInfo.proto";
+import "_PenumbraAdventureTargetShootingInfo.proto";
+
+message _PenumbraAdventureDetailInfo {
+  APGNMMCFCPD CLJOHONMNEH = 20000;
+  GBAOLFCECGM LLHAEBMBODJ = 20001;
+  PKLEFDLHINI FBHDPNAJDJO = 20002;
+  _PenumbraAdventureFlightGearInfo _flight_gear_info = 5;
+  _PenumbraAdventureTargetShootingInfo _target_shooting_info = 1;
+}

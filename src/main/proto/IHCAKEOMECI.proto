@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IHCAKEOMECIOuterClass";
+message IHCAKEOMECI {
+  float radius = 1;
+  float height = 2;
+}

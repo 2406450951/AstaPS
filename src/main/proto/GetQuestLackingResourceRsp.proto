@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetQuestLackingResourceRspOuterClass";
+import "_LackingResourceInfo.proto";
+
+// 7.2 CmdId 1667
+message GetQuestLackingResourceRsp {
+  int32 retcode = 4;
+  uint32 quest_id = 7;
+  _LackingResourceInfo _lacking_resource_info = 13;
+}

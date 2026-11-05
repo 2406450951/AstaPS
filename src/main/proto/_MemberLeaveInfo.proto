@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MemberLeaveInfoOuterClass";
+import "NLJLBDFLADP.proto";
+import "PCIFJFODDEK.proto";
+
+message _MemberLeaveInfo {
+  NLJLBDFLADP KMDMFHEJPFN = 1;
+  PCIFJFODDEK EOBDNMPCDAA = 2;
+}

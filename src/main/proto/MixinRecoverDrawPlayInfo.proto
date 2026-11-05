@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_MultiSyncInfo.proto";
+import "_NormalSyncInfo.proto";
+
+message MixinRecoverDrawPlayInfo {
+  _MultiSyncInfo LDNDILCMPPJ = 2;
+  _NormalSyncInfo JAMAELGONGI = 1;
+}

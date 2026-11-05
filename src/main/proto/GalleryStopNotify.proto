@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GalleryStopNotifyOuterClass";
+import "GalleryStopReason.proto";
+
+// 7.2 CmdId 20042
+message GalleryStopNotify {
+  uint32 gallery_id = 9;
+  GalleryStopReason _stop_reason = 14;
+}

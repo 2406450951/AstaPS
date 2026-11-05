@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonSettleTypeOuterClass";
+enum _UgcDungeonSettleType {
+  _UGC_DUNGEON_SETTLE_TYPE_NONE = 0;
+  _UGC_DUNGEON_SETTLE_TYPE_REACH_SCORE = 1;
+  _UGC_DUNGEON_SETTLE_TYPE_TIME_UP = 2;
+}

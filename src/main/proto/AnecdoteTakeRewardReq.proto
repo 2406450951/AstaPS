@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AnecdoteTakeRewardReqOuterClass";
+// 7.2 CmdId 5173
+message AnecdoteTakeRewardReq {
+  uint32 reward_index = 2;
+}

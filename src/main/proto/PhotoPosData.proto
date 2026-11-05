@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Vector.proto";
+
+message PhotoPosData {
+  Vector center = 5;
+  repeated uint32 MNLKHICGNNH = 20000;
+  uint32 pos_id = 13;
+  uint32 open_time = 11;
+  bool is_open = 4;
+  bool is_view = 15;
+}

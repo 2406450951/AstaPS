@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondDlcShelveRspOuterClass";
+// 7.2 CmdId 2778
+message BeyondDlcShelveRsp {
+  uint32 EJMGAJMAFID = 4;
+  repeated uint64 PDACCIMHLCE = 8;
+  int32 retcode = 11;
+}

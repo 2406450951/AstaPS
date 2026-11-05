@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message IKJLKLMCEHM {
+  uint32 level_id = 1;
+  bool is_open = 2;
+  bool is_finish = 3;
+  uint32 score = 4;
+}

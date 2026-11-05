@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _AdventurerStatueDungeonSettleInfo {
+  uint32 level_id = 6;
+  uint32 score = 1;
+  bool is_succ = 12;
+  bool is_new_record = 10;
+}

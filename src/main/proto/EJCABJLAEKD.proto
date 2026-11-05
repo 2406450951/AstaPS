@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EJCABJLAEKDOuterClass";
+import "DBOEONNJMCC.proto";
+
+message EJCABJLAEKD {
+  repeated DBOEONNJMCC NMDMNMOMJJB = 1;
+}

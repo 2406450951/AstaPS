@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CrystalLinkEnterDungeonRspOuterClass";
+import "CrystalLinkTeamInfo.proto";
+
+message CrystalLinkEnterDungeonRsp {
+  int32 retcode = 1;
+  uint32 level_id = 2;
+  uint32 difficulty_id = 3;
+  repeated CrystalLinkTeamInfo team_info_list = 4;
+}

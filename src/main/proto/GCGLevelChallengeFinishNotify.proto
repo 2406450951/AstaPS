@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGLevelChallengeFinishNotifyOuterClass";
+// 7.2 CmdId 7313
+message GCGLevelChallengeFinishNotify {
+  repeated uint32 finished_challenge_id_list = 9;
+  uint32 level_id = 11;
+}

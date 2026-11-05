@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SorushWidgetDataNotifyOuterClass";
+import "_SorushWidgetData.proto";
+
+// 7.2 CmdId 5225
+message _SorushWidgetDataNotify {
+  _SorushWidgetData _sorush_widget_data = 3;
+}

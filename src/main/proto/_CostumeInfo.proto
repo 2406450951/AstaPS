@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_CostumeInfoOuterClass";
+import "_BeyondCostumeSetInfo.proto";
+
+message _CostumeInfo {
+  uint32 avatar_id = 1;
+  _BeyondCostumeSetInfo _costume_set_detail = 2;
+}

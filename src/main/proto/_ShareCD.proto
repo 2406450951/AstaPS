@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _ShareCD {
+  uint32 HABMJKBLIMA = 20000;
+  uint64 _cd_end_time = 8;
+}

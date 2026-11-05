@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ServerParamDictionaryInfoOuterClass";
+import "ODFGDFPPPGO.proto";
+
+message _ServerParamDictionaryInfo {
+  uint32 HOAIHCMEAJC = 1;
+  uint32 CKELCNODEJJ = 2;
+  uint32 KBDJBLIAEAN = 3;
+  bool PINCDEJCJDJ = 4;
+  ODFGDFPPPGO APPNNKCIKDC = 5;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JADBAKKFJEIOuterClass";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+
+message JADBAKKFJEI {
+  HHEDHCFPEKM target_pos = 1;
+  HHEDHCFPEKM target_rot = 2;
+  FAGMGLAJFNL FJLNFAJMCMO = 3;
+  float speed = 4;
+  bool LIHHBDHHPFB = 5;
+  FAGMGLAJFNL HMDJEFBLFCD = 6;
+  float time = 7;
+}

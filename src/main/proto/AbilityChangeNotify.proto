@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AbilityControlBlock.proto";
+
+message AbilityChangeNotify {
+  AbilityControlBlock ability_control_block = 11;
+  uint32 entity_id = 3;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DMNOHBAMMDEOuterClass";
+import "OFHGKLAKEJM.proto";
+
+message DMNOHBAMMDE {
+  repeated OFHGKLAKEJM data_list = 1;
+  uint32 OCJEEGKNJPO = 2;
+  repeated uint32 JGIEKIKOLDE = 3;
+}

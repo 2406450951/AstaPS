@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AAPDAKIGNINOuterClass";
+message AAPDAKIGNIN {
+  float PPFMJKDAPOB = 1;
+  float KMHDIFIAGEK = 2;
+  float GEBAHHOKAEF = 3;
+  uint32 BBDLGIIMECF = 4;
+  float JCOPLBMIAGD = 5;
+  uint32 LFHJLGHMFCG = 501;
+}

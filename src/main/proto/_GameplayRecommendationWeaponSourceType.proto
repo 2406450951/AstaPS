@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GameplayRecommendationWeaponSourceTypeOuterClass";
+enum _GameplayRecommendationWeaponSourceType {
+  _GAMEPLAY_RECOMMENDATION_WEAPON_SOURCE_TYPE_NONE = 0;
+  _GAMEPLAY_RECOMMENDATION_WEAPON_SOURCE_TYPE_IN_BAG = 1;
+  _GAMEPLAY_RECOMMENDATION_WEAPON_SOURCE_TYPE_CAN_FORGE = 2;
+}

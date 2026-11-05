@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondClientFrogprintConfigTemplateOuterClass";
+import "BDPDHNFCKJG.proto";
+import "MIPIKCMEMPE.proto";
+
+message _BeyondClientFrogprintConfigTemplate {
+  uint32 NBEBAPFONGE = 1;
+  repeated MIPIKCMEMPE node_list = 2;
+  repeated MIPIKCMEMPE LOGOAFFEAJE = 3;
+  float MJHEBJPPDGL = 4;
+  BDPDHNFCKJG type = 5;
+}

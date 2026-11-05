@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _WeaponSkinInfo {
+  uint64 expire_time = 2;
+  repeated uint64 equipped_avatar_guid_list = 3;
+  uint32 weapon_skin_id = 10;
+}
+
+message _AvatarWeaponSkinDataNotify {
+  repeated _WeaponSkinInfo info_list = 2;
+  repeated uint32 record_id_list = 14;
+  uint64 timestamp = 20000;
+}

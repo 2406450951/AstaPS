@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EFCIJPIOILIOuterClass";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+
+message EFCIJPIOILI {
+  HHEDHCFPEKM offset = 1;
+  float JDLEJHOEBJP = 2;
+  float PLNMMMHNMCD = 3;
+  FAGMGLAJFNL GBDLBKMOLNM = 4;
+  HHEDHCFPEKM IOPOFGCOLLD = 5;
+  float speed = 6;
+  float acceleration = 7;
+  float BJJCPFMONHA = 8;
+  bool GDBEOJLPHNF = 9;
+  float LHOOGBMLCGP = 10;
+  bool KMJOCNHKBBO = 11;
+  int32 HNPELODOJJJ = 501;
+  int32 MCOCJIDMJLL = 502;
+}

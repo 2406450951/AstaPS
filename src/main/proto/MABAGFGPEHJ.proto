@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MABAGFGPEHJOuterClass";
+import "BIOCOIFOGDE.proto";
+
+message MABAGFGPEHJ {
+  int32 MLNDHJDEPEO = 1;
+  BIOCOIFOGDE offset = 2;
+  BIOCOIFOGDE EJKDAPKHBKM = 3;
+  int32 BLGDIBNBNHJ = 4;
+  int32 OCEDGNJNLAF = 5;
+  int32 ILFAPCHOHIC = 6;
+  bool OMMKPHDCFLN = 7;
+  float GHGJPMFLJCG = 8;
+}

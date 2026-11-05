@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FriendInfoChangeNotifyOuterClass";
+// 7.2 CmdId 25416
+message FriendInfoChangeNotify {
+  uint32 uid = 2;
+  string _xbox_gamertag = 3;
+  string online_id = 9;
+}

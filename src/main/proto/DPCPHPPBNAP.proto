@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DPCPHPPBNAPOuterClass";
+import "EBCEHFCHJJO.proto";
+import "FAGMGLAJFNL.proto";
+import "JDAILJFFOGJ.proto";
+import "NOLCMBAOEBG.proto";
+
+message DPCPHPPBNAP {
+  int32 OLJKBMALDAJ = 501;
+  bool NFINMHDHEDG = 502;
+  float radius = 503;
+  float height = 504;
+  float JCFHCPKGMMM = 505;
+  NOLCMBAOEBG CCPJFGFJJFP = 506;
+  NOLCMBAOEBG HEEJFJNAHCN = 507;
+  bool MLOJOELLKBC = 508;
+  bool GAJJKBMPMBD = 509;
+  repeated FAGMGLAJFNL KBKPLIGIFBJ = 510;
+  float HCNPGEJOOEN = 511;
+  int32 IACFIKBMLIK = 512;
+  uint32 PIBHLHEEEEJ = 513;
+  bool GHJFDLLOACO = 514;
+  EBCEHFCHJJO MHFJOIEHAAA = 515;
+  JDAILJFFOGJ CIJICNJIENM = 516;
+  bool AGFDMOGLPGJ = 517;
+}

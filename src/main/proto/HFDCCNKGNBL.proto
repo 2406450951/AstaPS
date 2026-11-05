@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HFDCCNKGNBLOuterClass";
+import "KAACEKJMODH.proto";
+
+message HFDCCNKGNBL {
+  KAACEKJMODH MIJHIMGEGNB = 1;
+  float HNCMGPNMICJ = 2;
+  float FNEHAFNNFFJ = 3;
+  float PIEPOHKEACB = 4;
+  uint32 MKGAOEBNHEN = 5;
+}

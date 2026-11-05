@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetBonusActivityRewardRspOuterClass";
+import "BonusActivityInfo.proto";
+
+// 7.2 CmdId 8909
+message GetBonusActivityRewardRsp {
+  int32 retcode = 10;
+  BonusActivityInfo bonus_activity_info_list = 12;
+}

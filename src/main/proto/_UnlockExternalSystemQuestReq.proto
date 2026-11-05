@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UnlockExternalSystemQuestReqOuterClass";
+// 7.2 CmdId 5776
+message _UnlockExternalSystemQuestReq {
+  uint32 parent_quest_id = 12;
+  uint32 _external_system_unlock_type = 13;
+}

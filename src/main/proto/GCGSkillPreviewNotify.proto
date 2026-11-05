@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGSkillPreviewNotifyOuterClass";
+import "DNOJKNFJBKP.proto";
+import "FKJFOICLLKL.proto";
+import "GCGChangeOnstageInfo.proto";
+import "GCGSkillPreviewInfo.proto";
+import "MGHICEOFFDB.proto";
+
+// 7.2 CmdId 20893
+message GCGSkillPreviewNotify {
+  repeated DNOJKNFJBKP FGMIBFALHLF = 1;
+  uint32 onstage_card_guid = 2;
+  uint32 controller_id = 7;
+  repeated GCGChangeOnstageInfo change_onstage_preview_list = 10;
+  repeated MGHICEOFFDB LPBDAKMNBAF = 11;
+  repeated FKJFOICLLKL NOHCIFAAEEG = 13;
+  repeated GCGSkillPreviewInfo skill_preview_list = 14;
+}

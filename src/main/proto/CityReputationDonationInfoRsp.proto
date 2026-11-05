@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CityReputationDonationInfoRspOuterClass";
+import "BAJPGKGFGMH.proto";
+
+// 7.2 CmdId 20272
+message CityReputationDonationInfoRsp {
+  uint32 total_accept_request_num = 1;
+  uint32 city_id = 5;
+  repeated BAJPGKGFGMH PLFMPJNLIMA = 6;
+  int32 retcode = 8;
+  uint32 _transform_level_reward_list = 11;
+  uint32 next_refresh_time = 14;
+}

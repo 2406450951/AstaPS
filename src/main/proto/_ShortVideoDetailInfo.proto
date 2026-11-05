@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ShortVideoLevelData.proto";
+import "_ShortVideoVoteRecord.proto";
+
+message _ShortVideoDetailInfo {
+  repeated _ShortVideoVoteRecord _vote_record_list = 15;
+  repeated _ShortVideoLevelData level_data_list = 8;
+}

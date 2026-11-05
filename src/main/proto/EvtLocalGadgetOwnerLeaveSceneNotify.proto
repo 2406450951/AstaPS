@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtLocalGadgetOwnerLeaveSceneNotifyOuterClass";
+import "_LifeByOwnerType.proto";
+
+// 7.2 CmdId 9176
+message EvtLocalGadgetOwnerLeaveSceneNotify {
+  repeated _LifeByOwnerType _life_by_owner_type_list = 2;
+  uint32 entity_id = 3;
+}

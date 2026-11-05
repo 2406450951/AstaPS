@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _SumeruAdventureTrainingDetailInfo {
+  uint32 NCIGAJNBCHN = 20000;
+}

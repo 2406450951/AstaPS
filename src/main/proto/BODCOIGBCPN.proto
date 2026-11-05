@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BODCOIGBCPNOuterClass";
+import "JCHDMONMPAN.proto";
+
+message BODCOIGBCPN {
+  int32 id = 1;
+  bool is_active = 2;
+  bool ILCHJAPKPOK = 3;
+  repeated JCHDMONMPAN EFMFLGNEDAM = 4;
+  bool LEKANJPLMAJ = 5;
+}

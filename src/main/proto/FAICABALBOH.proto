@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FAICABALBOHOuterClass";
+import "EBDJNMGFBCM.proto";
+import "JBMCEJAEKLI.proto";
+
+message FAICABALBOH {
+  int32 BMILPCNKMMJ = 1;
+  bool JBANCDKDCFG = 2;
+  int32 KMDELIHJNPJ = 3;
+  int32 ABFOALJDOOC = 4;
+  repeated EBDJNMGFBCM IGPKBDPFIDP = 5;
+  repeated EBDJNMGFBCM EDGBOEIJPHI = 6;
+  EBDJNMGFBCM DDIJJOHCJFF = 7;
+  repeated float NHFHELBANOL = 8;
+  repeated JBMCEJAEKLI OFPILAKNELK = 9;
+  bool BINDCCDEBOF = 10;
+  float ECHALDACNDC = 11;
+}

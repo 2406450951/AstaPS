@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BBCMJPJKHPCOuterClass";
+message BBCMJPJKHPC {
+  uint32 BLBGCOPEJAP = 1;
+  uint32 IDKCJCOJKLA = 2;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "WidgetUpdateExtraCDRspOuterClass";
+import "WidgetCoolDownData.proto";
+import "WidgetExtraCdType.proto";
+
+// 7.2 CmdId 2955
+message WidgetUpdateExtraCDRsp {
+  int32 retcode = 2;
+  uint32 cd_group = 3;
+  WidgetExtraCdType extra_cd_type = 7;
+  WidgetCoolDownData cool_data = 10;
+  uint32 material_id = 12;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGSkillPreviewTokenChangeInfoOuterClass";
+import "GCGSkillPreviewTokenInfo.proto";
+
+message GCGSkillPreviewTokenChangeInfo {
+  repeated GCGSkillPreviewTokenInfo token_change_list = 13;
+}

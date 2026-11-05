@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HIIODIODMDKOuterClass";
+import "FAGMGLAJFNL.proto";
+
+message HIIODIODMDK {
+  float DIGGBILPKIM = 1;
+  FAGMGLAJFNL CNALGHMLLLI = 3;
+  int32 ELOLAGJIPMF = 4;
+}

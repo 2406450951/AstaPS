@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "NDPGIKHKOHF.proto";
+
+message _AcrobaticsBattleDetailInfo {
+  repeated NDPGIKHKOHF stage_info_list = 1;
+}

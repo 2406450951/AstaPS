@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "VintageHuntingSecondStageSettleInfoOuterClass";
+message VintageHuntingSecondStageSettleInfo {
+  uint32 capture_animal_num = 1;
+  uint32 total_num = 2;
+  map<uint32, uint32> animal_count_map = 3;
+}

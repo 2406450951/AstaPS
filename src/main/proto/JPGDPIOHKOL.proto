@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message JPGDPIOHKOL {
+  bool is_finish = 10;
+  bool is_open = 8;
+  uint32 level_id = 9;
+  uint64 ugc_guid = 2;
+}

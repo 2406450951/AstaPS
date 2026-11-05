@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BattlePassMission.proto";
+
+message BattlePassMissionUpdateNotify {
+  repeated BattlePassMission mission_list = 4;
+}

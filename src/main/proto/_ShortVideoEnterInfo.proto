@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ShortVideoEnterInfoOuterClass";
+import "_ActivityAvatarInfo.proto";
+
+message _ShortVideoEnterInfo {
+  bool _is_restart = 3;
+  repeated string _replay_config_name_list = 6;
+  repeated _ActivityAvatarInfo avatar_list = 10;
+  repeated uint32 avatar_id_list = 13;
+}

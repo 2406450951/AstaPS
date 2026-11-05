@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondCreateHallReqOuterClass";
+import "_BeyondHallAuthMode.proto";
+
+// 7.2 CmdId 1807
+message _BeyondCreateHallReq {
+  uint32 CKOMAKMKPCH = 1;
+  uint64 HLHLDIFEEMA = 5;
+  uint32 HPCIHIGCEBE = 8;
+  string _create_hall_description = 10;
+  repeated uint32 _hall_tag_id_list = 12;
+  _BeyondHallAuthMode _auth_mode = 15;
+}

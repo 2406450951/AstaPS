@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AHOBNOMKDKOOuterClass";
+import "LIGOKCGOLLI.proto";
+
+message AHOBNOMKDKO {
+  uint32 CKIDKGLDJFF = 1;
+  bool EOBKCKELGDG = 2;
+  bool IKGNIELDCKI = 3;
+  string name = 4;
+  LIGOKCGOLLI NJJBAHHCHMN = 5;
+  uint32 BPEACNGEJKL = 6;
+  uint32 LHJPBJBMKBK = 7;
+  bool NOBNHBNLCNJ = 8;
+}

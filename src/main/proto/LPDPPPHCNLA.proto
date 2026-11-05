@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EAPNMDHADGP.proto";
+
+message LPDPPPHCNLA {
+  repeated EAPNMDHADGP level_info_list = 1;
+  bool MIPKLFHBMFK = 15;
+}

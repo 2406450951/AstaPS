@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_RogueBallSocialBriefOuterClass";
+import "_RogueBallSnapshot.proto";
+
+message _RogueBallSocialBrief {
+  uint32 best_score = 5;
+  _RogueBallSnapshot best_snapshot = 14;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ElectroherculesBattleV3InfoOuterClass";
+message _ElectroherculesBattleV3Info {
+  uint32 level_id = 7;
+  bool is_single = 8;
+  uint32 match_id = 10;
+}

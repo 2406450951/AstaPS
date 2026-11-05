@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "InBattleMechanicusSettleNotifyOuterClass";
+import "PNPJHGBODKG.proto";
+
+message InBattleMechanicusSettleNotify {
+  PNPJHGBODKG MHNLKGEDHLB = 1;
+  uint64 scene_time_ms = 2;
+}

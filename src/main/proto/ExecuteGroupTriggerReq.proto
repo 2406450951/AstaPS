@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ExecuteGroupTriggerReq {
+  string source_name = 10;
+  int32 param1 = 11;
+  uint32 source_entity_id = 4;
+  int32 param2 = 1;
+  uint32 target_entity_id = 2;
+  int32 param3 = 3;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "StoreUgcRspOuterClass";
+import "UgcType.proto";
+
+// 7.2 CmdId 1814
+message StoreUgcRsp {
+  bool HLIEOEFALNF = 6;
+  UgcType ugc_type = 7;
+  uint64 ugc_guid = 9;
+  int32 retcode = 11;
+}

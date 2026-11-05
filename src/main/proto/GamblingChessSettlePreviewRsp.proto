@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GamblingChessSettlePreviewRspOuterClass";
+import "KPLOFPALHEP.proto";
+
+// 7.2 CmdId 20680
+message GamblingChessSettlePreviewRsp {
+  int32 retcode = 2;
+  uint32 stage_id = 3;
+  repeated KPLOFPALHEP AFEGJMNIFBK = 4;
+}

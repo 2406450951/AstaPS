@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _RechargeDiskSettleInfo {
+  repeated uint32 score_list = 2;
+  bool is_new_record = 3;
+  uint32 difficulty = 5;
+  uint32 level_id = 1;
+  uint32 NNOCIHNFLNI = 20000;
+}

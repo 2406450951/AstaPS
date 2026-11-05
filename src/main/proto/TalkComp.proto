@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_CurrentPhase.proto";
+
+message TalkComp {
+  _CurrentPhase GEKGLENKCJA = 2;
+  repeated uint32 IMNCDNIEBIH = 3;
+  int32 talk_id = 1;
+}

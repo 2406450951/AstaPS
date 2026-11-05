@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OBKKMPALDGNOuterClass";
+import "PILOKMNFGDI.proto";
+import "_ConfigBeyondGuid.proto";
+
+message OBKKMPALDGN {
+  uint32 config_id = 1;
+  string JCFBALEJOMK = 2;
+  PILOKMNFGDI EIINHOLHFKO = 3;
+  oneof OFJOIOHJGNA {
+    _ConfigBeyondGuid ConfigBeyondGuid = 100;
+  }
+}

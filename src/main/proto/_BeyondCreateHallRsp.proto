@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondCreateHallRspOuterClass";
+// 7.2 CmdId 9131
+message _BeyondCreateHallRsp {
+  bool JGMLLFKLPDI = 7;
+  int32 retcode = 8;
+  uint64 _created_hall_guid = 13;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SaveUgcRecommendParamRspOuterClass";
+import "UgcType.proto";
+import "_UgcFilterParam.proto";
+
+// 7.2 CmdId 1975
+message SaveUgcRecommendParamRsp {
+  UgcType ugc_type = 1;
+  repeated _UgcFilterParam param_list = 3;
+  int32 retcode = 12;
+}

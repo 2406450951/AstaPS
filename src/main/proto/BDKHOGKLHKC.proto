@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BDKHOGKLHKCOuterClass";
+import "CPFPMLACDLA.proto";
+
+message BDKHOGKLHKC {
+  CPFPMLACDLA value = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "INIEGDOKJFHOuterClass";
+import "EGKCOBDNAKD.proto";
+import "FGFPGFFHKBH.proto";
+
+message INIEGDOKJFH {
+  EGKCOBDNAKD HGNICLOBBEN = 1;
+  FGFPGFFHKBH NNGFPLJCAMD = 2;
+}

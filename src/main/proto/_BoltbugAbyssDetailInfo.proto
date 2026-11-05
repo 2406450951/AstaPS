@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "MNKIILLGHDC.proto";
+
+message _BoltbugAbyssDetailInfo {
+  repeated MNKIILLGHDC level_info_list = 5;
+}

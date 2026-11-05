@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BallGameInfoOuterClass";
+import "BBDKFLHCIKB.proto";
+import "MDGGBHGAKGN.proto";
+
+message _BallGameInfo {
+  uint32 match_id = 1;
+  uint32 level_id = 2;
+  repeated MDGGBHGAKGN player_info_list = 3;
+  repeated BBDKFLHCIKB BMNCNDGABMB = 4;
+}

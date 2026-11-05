@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityFriendGiftWishDataOuterClass";
+import "ProfilePicture.proto";
+
+message ActivityFriendGiftWishData {
+  uint32 uid = 2;
+  string remark_name = 5;
+  map<uint32, uint32> gift_num_map = 6;
+  string nickname = 7;
+  ProfilePicture profile_picture = 10;
+  bool ILJJMNCJJPI = 14;
+}

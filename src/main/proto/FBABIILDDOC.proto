@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FBABIILDDOCOuterClass";
+message FBABIILDDOC {
+  uint32 start_time = 2;
+  uint32 entity_id = 8;
+  uint32 end_time = 10;
+  uint32 uid = 11;
+}

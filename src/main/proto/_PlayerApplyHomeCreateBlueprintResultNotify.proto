@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_PlayerApplyHomeCreateBlueprintResultNotifyOuterClass";
+import "_PlayerApplyHomeCreateBlueprintResultNotify__Reason.proto";
+
+// 7.2 CmdId 1537
+message _PlayerApplyHomeCreateBlueprintResultNotify {
+  uint32 target_uid = 1;
+  bool is_agreed = 3;
+  _PlayerApplyHomeCreateBlueprintResultNotify__Reason reason = 7;
+  string target_nickname = 10;
+}

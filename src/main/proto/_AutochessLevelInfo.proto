@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "KLCNKCBIENB.proto";
+import "Uint32Pair.proto";
+import "_AutochessRecordSocialBrief.proto";
+
+message _AutochessLevelInfo {
+  KLCNKCBIENB HGLPHFNBEDC = 20000;
+  _AutochessRecordSocialBrief best_record = 9;
+  repeated _AutochessRecordSocialBrief record_list = 10;
+  Uint32Pair ONNMHEPKCIL = 20001;
+  uint32 JMGKOJGILKC = 20002;
+}

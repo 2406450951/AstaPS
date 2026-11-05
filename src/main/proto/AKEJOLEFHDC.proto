@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AKEJOLEFHDCOuterClass";
+import "EADKDFKJENC.proto";
+
+message AKEJOLEFHDC {
+  int32 MLNDHJDEPEO = 1;
+  EADKDFKJENC offset = 502;
+  EADKDFKJENC EJKDAPKHBKM = 503;
+  int32 BLGDIBNBNHJ = 504;
+  int32 OCEDGNJNLAF = 505;
+  int32 ILFAPCHOHIC = 506;
+  bool OMMKPHDCFLN = 507;
+  float GHGJPMFLJCG = 508;
+}

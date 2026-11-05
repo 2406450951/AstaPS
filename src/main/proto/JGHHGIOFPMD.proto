@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JGHHGIOFPMDOuterClass";
+import "Vector.proto";
+
+message JGHHGIOFPMD {
+  uint32 uid = 1;
+  Vector pos = 2;
+  Vector rot = 3;
+}

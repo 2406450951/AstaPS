@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerQuitDungeonRspOuterClass";
+// 7.2 CmdId 6314
+message PlayerQuitDungeonRsp {
+  uint32 point_id = 12;
+  int32 retcode = 14;
+}

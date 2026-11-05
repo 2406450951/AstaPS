@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TwoDimensionSnapshotOuterClass";
+import "FGLKAMHKIGN.proto";
+import "HGGENKNHBNH.proto";
+import "PBCPBBHKPFM.proto";
+
+message _TwoDimensionSnapshot {
+  map<uint32, FGLKAMHKIGN> JNOIIHOEDMK = 5;
+  map<uint32, HGGENKNHBNH> LOCKNENCKLE = 7;
+  map<uint32, PBCPBBHKPFM> CFKDNPLPBDE = 9;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeBalloonGallerySettleNotifyOuterClass";
+import "BalloonGallerySettleInfo.proto";
+
+// 7.2 CmdId 1700
+message HomeBalloonGallerySettleNotify {
+  uint32 gallery_id = 1;
+  uint32 rank = 4;
+  bool is_new_record = 7;
+  BalloonGallerySettleInfo settle_info = 10;
+}

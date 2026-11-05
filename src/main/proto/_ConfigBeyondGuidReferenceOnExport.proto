@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ConfigBeyondGuidReferenceOnExportOuterClass";
+import "COFKJGECHHP.proto";
+
+message _ConfigBeyondGuidReferenceOnExport {
+  COFKJGECHHP DOFNFJNKDGK = 1;
+}

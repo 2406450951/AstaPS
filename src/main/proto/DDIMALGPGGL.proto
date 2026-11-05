@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DDIMALGPGGLOuterClass";
+import "LDJPMCAFDCD.proto";
+
+message DDIMALGPGGL {
+  string name = 1;
+  bool FIALLJHLFEP = 2;
+  repeated LDJPMCAFDCD MDFDAOMPADH = 3;
+  int32 id = 501;
+  bool KECFGIKJHBI = 503;
+  LDJPMCAFDCD HAPEJNOEBML = 511;
+  LDJPMCAFDCD CALBLMNHDCN = 512;
+  LDJPMCAFDCD JIFEEOHDFFK = 513;
+}

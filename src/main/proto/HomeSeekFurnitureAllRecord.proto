@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeSeekFurnitureAllRecordOuterClass";
+import "HomeSeekFurnitureOneRecord.proto";
+
+message HomeSeekFurnitureAllRecord {
+  repeated HomeSeekFurnitureOneRecord record_list = 3;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PPLELGLIGEGOuterClass";
+import "EBCEHFCHJJO.proto";
+import "FAGMGLAJFNL.proto";
+import "OHGHECKIBIB.proto";
+
+message PPLELGLIGEG {
+  uint32 LMIGMCJLKDB = 1;
+  repeated OHGHECKIBIB value_list = 2;
+  bool HCPCHJIKNMN = 3;
+  FAGMGLAJFNL FOHFGIIMFCE = 4;
+  FAGMGLAJFNL EMNNKLLNMBG = 5;
+  EBCEHFCHJJO IHBCOECDIFB = 6;
+  string ODADJMJJHKE = 501;
+  bool PAGJAAKKDOH = 502;
+}

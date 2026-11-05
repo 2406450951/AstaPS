@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AddBlacklistRspOuterClass";
+import "FriendBrief.proto";
+
+// 7.2 CmdId 22850
+message AddBlacklistRsp {
+  int32 retcode = 1;
+  FriendBrief target_friend_brief = 3;
+}

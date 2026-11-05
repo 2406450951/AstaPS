@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JMDJNDDEFDFOuterClass";
+import "ProfilePicture.proto";
+import "_MonsterChessCardDetail.proto";
+
+message JMDJNDDEFDF {
+  repeated uint32 MCJPPOLOMOL = 1;
+  string online_id = 4;
+  string _xbox_gamertag = 5;
+  repeated uint32 _artifact_id_list = 7;
+  uint32 _monster_chess_team_num = 10;
+  ProfilePicture profile_picture = 11;
+  repeated _MonsterChessCardDetail _monster_card_list = 14;
+  string nick_name = 15;
+}

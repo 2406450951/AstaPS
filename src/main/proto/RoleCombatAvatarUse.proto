@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatAvatarUseOuterClass";
+import "_AvatarMirrorType.proto";
+
+message RoleCombatAvatarUse {
+  uint64 avatar_guid = 1;
+  _AvatarMirrorType avatar_type = 4;
+  uint32 use_time = 11;
+}

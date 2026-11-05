@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LCEGDMALIAHOuterClass";
+import "BJHNLELPNDM.proto";
+
+message LCEGDMALIAH {
+  BJHNLELPNDM DDIJJOHCJFF = 1;
+  repeated float BLPLNDJKPHK = 2;
+  repeated BJHNLELPNDM BJLOMFDKBLI = 3;
+  BJHNLELPNDM BCOAPBLGMGC = 4;
+}

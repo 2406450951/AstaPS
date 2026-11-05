@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JLEPNDHFAPDOuterClass";
+import "LHOBDFCMJOC.proto";
+
+message JLEPNDHFAPD {
+  int32 LCIHMJAOAGE = 1;
+  string EMFLFLBCEMG = 2;
+  int32 MNKDOGMCJGK = 3;
+  string GHLPCHMIOFA = 4;
+  bool is_hidden = 5;
+  int32 total_progress = 6;
+  LHOBDFCMJOC FOHFGIIMFCE = 7;
+  uint32 IHLJCKMPBAE = 8;
+  uint32 FCLEMOJGMJH = 9;
+}

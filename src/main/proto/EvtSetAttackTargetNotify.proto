@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtSetAttackTargetNotifyOuterClass";
+import "EvtSetAttackTargetInfo.proto";
+import "ForwardType.proto";
+
+// 7.2 CmdId 29999
+message EvtSetAttackTargetNotify {
+  ForwardType forward_type = 8;
+  EvtSetAttackTargetInfo evt_set_attack_target_info = 15;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _WeekActiveDetailInfo {
+  repeated uint32 _reward_week_list = 20000;
+  repeated uint32 _claimed_avatar_id_list = 20001;
+  repeated uint32 JOHCCPGDECJ = 20002;
+  uint32 ILEHAFHFMJN = 20003;
+  uint32 progress = 15;
+  bool _is_week_active_viewed = 12;
+  uint32 avatar_id = 2;
+}

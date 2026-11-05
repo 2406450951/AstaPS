@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HCOFOHJOPBJOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message HCOFOHJOPBJ {
+  float time = 1;
+  HHEDHCFPEKM JOJINOFIOPI = 2;
+}

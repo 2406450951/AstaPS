@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ProfilePicture.proto";
+
+message FurnitureMakeBeHelpedData {
+  ProfilePicture profile_picture = 8;
+  string player_name = 6;
+  uint32 uid = 7;
+  uint32 icon = 2;
+  fixed32 time = 11;
+}

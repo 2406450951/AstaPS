@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+
+message NFCFJEMPKJE {
+  string JMJIDPBBGEA = 502;
+  HHEDHCFPEKM offset = 503;
+  uint32 EKNOCDAOCOO = 504;
+  bool JPDHFDCOILK = 507;
+  bool DFNHKGLCCLL = 505;
+  bool BCFAMMOALOB = 506;
+  bool PBEMNOKOBGF = 501;
+}

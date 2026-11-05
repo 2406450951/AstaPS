@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_MonsterChessV2RecordTeamInfo.proto";
+
+message _MonsterChessV2RecordInfo {
+  repeated _MonsterChessV2RecordTeamInfo team_info_list = 14;
+  repeated uint32 _artifact_id_list = 4;
+  repeated uint32 _win_round_list = 3;
+  uint32 timestamp = 12;
+  uint32 _infinite_win_num = 5;
+  bool _is_infinite = 9;
+}

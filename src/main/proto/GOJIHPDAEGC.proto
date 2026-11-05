@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GOJIHPDAEGCOuterClass";
+import "GPJFGIDCGFJ.proto";
+import "LIDIOJOIPAM.proto";
+import "_BeyondClientFrogprintParamValueArmy.proto";
+import "_BeyondClientFrogprintParamValueArmyList.proto";
+import "_BeyondClientFrogprintParamValueBool.proto";
+import "_BeyondClientFrogprintParamValueBoolList.proto";
+import "_BeyondClientFrogprintParamValueConfigReference.proto";
+import "_BeyondClientFrogprintParamValueConfigReferenceList.proto";
+import "_BeyondClientFrogprintParamValueEntity.proto";
+import "_BeyondClientFrogprintParamValueEntityList.proto";
+import "_BeyondClientFrogprintParamValueEntityReference.proto";
+import "_BeyondClientFrogprintParamValueEntityReferenceList.proto";
+import "_BeyondClientFrogprintParamValueEnum.proto";
+import "_BeyondClientFrogprintParamValueEnumList.proto";
+import "_BeyondClientFrogprintParamValueFloat.proto";
+import "_BeyondClientFrogprintParamValueFloatList.proto";
+import "_BeyondClientFrogprintParamValueGuid.proto";
+import "_BeyondClientFrogprintParamValueGuidList.proto";
+import "_BeyondClientFrogprintParamValueInt.proto";
+import "_BeyondClientFrogprintParamValueIntList.proto";
+import "_BeyondClientFrogprintParamValueString.proto";
+import "_BeyondClientFrogprintParamValueStringList.proto";
+import "_BeyondClientFrogprintParamValueVector3.proto";
+import "_BeyondClientFrogprintParamValueVector3List.proto";
+
+message GOJIHPDAEGC {
+  GPJFGIDCGFJ BICMMLKCOIB = 1;
+  LIDIOJOIPAM GFGJGAAILJG = 2;
+  oneof detail {
+    _BeyondClientFrogprintParamValueEntity BeyondClientFrogprintParamValueEntity = 11;
+    _BeyondClientFrogprintParamValueEntityList BeyondClientFrogprintParamValueEntityList = 12;
+    _BeyondClientFrogprintParamValueInt BeyondClientFrogprintParamValueInt = 13;
+    _BeyondClientFrogprintParamValueIntList BeyondClientFrogprintParamValueIntList = 14;
+    _BeyondClientFrogprintParamValueBool BeyondClientFrogprintParamValueBool = 15;
+    _BeyondClientFrogprintParamValueBoolList BeyondClientFrogprintParamValueBoolList = 16;
+    _BeyondClientFrogprintParamValueFloat BeyondClientFrogprintParamValueFloat = 17;
+    _BeyondClientFrogprintParamValueFloatList BeyondClientFrogprintParamValueFloatList = 18;
+    _BeyondClientFrogprintParamValueString BeyondClientFrogprintParamValueString = 19;
+    _BeyondClientFrogprintParamValueStringList BeyondClientFrogprintParamValueStringList = 20;
+    _BeyondClientFrogprintParamValueVector3 BeyondClientFrogprintParamValueVector3 = 21;
+    _BeyondClientFrogprintParamValueVector3List BeyondClientFrogprintParamValueVector3List = 22;
+    _BeyondClientFrogprintParamValueEnum BeyondClientFrogprintParamValueEnum = 23;
+    _BeyondClientFrogprintParamValueGuid BeyondClientFrogprintParamValueGuid = 24;
+    _BeyondClientFrogprintParamValueGuidList BeyondClientFrogprintParamValueGuidList = 25;
+    _BeyondClientFrogprintParamValueArmy BeyondClientFrogprintParamValueArmy = 26;
+    _BeyondClientFrogprintParamValueEnumList BeyondClientFrogprintParamValueEnumList = 27;
+    _BeyondClientFrogprintParamValueConfigReference BeyondClientFrogprintParamValueConfigReference = 28;
+    _BeyondClientFrogprintParamValueEntityReference BeyondClientFrogprintParamValueEntityReference = 29;
+    _BeyondClientFrogprintParamValueConfigReferenceList BeyondClientFrogprintParamValueConfigReferenceList = 30;
+    _BeyondClientFrogprintParamValueEntityReferenceList BeyondClientFrogprintParamValueEntityReferenceList = 31;
+    _BeyondClientFrogprintParamValueStruct BeyondClientFrogprintParamValueStruct = 32;
+    _BeyondClientFrogprintParamValueStructList BeyondClientFrogprintParamValueStructList = 33;
+    _BeyondClientFrogprintParamValueDict BeyondClientFrogprintParamValueDict = 34;
+    _BeyondClientFrogprintParamValueArmyList BeyondClientFrogprintParamValueArmyList = 35;
+  }
+}
+
+message _BeyondClientFrogprintParamValueDict {
+  repeated GOJIHPDAEGC NGGMBAPMCLH = 1;
+}
+
+message _BeyondClientFrogprintParamValueStruct {
+  repeated GOJIHPDAEGC member_list = 1;
+}
+
+message _BeyondClientFrogprintParamValueStructList {
+  repeated GOJIHPDAEGC value_list = 1;
+}

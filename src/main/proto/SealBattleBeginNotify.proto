@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SealBattleBeginNotifyOuterClass";
+import "SealBattleType.proto";
+
+// 7.2 CmdId 7320
+message SealBattleBeginNotify {
+  SealBattleType battle_type = 1;
+  uint32 seal_max_progress = 2;
+  uint32 seal_radius = 6;
+  uint32 seal_entity_id = 8;
+}

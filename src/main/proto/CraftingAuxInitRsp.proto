@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CraftingAuxInitRspOuterClass";
+// 7.2 CmdId 6381
+message CraftingAuxInitRsp {
+  string client_params = 2;
+  int32 retcode = 14;
+}

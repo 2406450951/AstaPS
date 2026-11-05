@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcTriggerConditionOuterClass";
+import "_UgcTriggerConditionGadgetDeactive.proto";
+import "_UgcTriggerConditionGadgetStateChange.proto";
+import "_UgcTriggerConditionMonsterGroupDeactive.proto";
+import "_UgcTriggerConditionMonsterWaveDeactive.proto";
+
+message _UgcTriggerCondition {
+  uint32 config_id = 14;
+  oneof param {
+    _UgcTriggerConditionMonsterGroupDeactive MonsterGroupDeactive = 4;
+    _UgcTriggerConditionMonsterWaveDeactive MonsterWaveDeactive = 9;
+    _UgcTriggerConditionGadgetDeactive GadgetDeactive = 10;
+    _UgcTriggerConditionGadgetStateChange GadgetStateChange = 13;
+  }
+}

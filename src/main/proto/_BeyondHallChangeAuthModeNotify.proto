@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondHallChangeAuthModeNotifyOuterClass";
+import "_BeyondHallAuthMode.proto";
+
+// 7.2 CmdId 29869
+message _BeyondHallChangeAuthModeNotify {
+  uint64 _hall_guid = 4;
+  _BeyondHallAuthMode _auth_mode = 9;
+}

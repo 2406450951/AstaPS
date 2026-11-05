@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ProfilePicture.proto";
+
+message EDLMACJNHGP {
+  string _creator_online_id = 13;
+  string _xuid = 7;
+  string psn_id = 6;
+  ProfilePicture profile_picture = 5;
+  string nickname = 2;
+  string _xbox_gamertag = 10;
+  uint32 uid = 12;
+  fixed64 LPGBINFHLJD = 15;
+}

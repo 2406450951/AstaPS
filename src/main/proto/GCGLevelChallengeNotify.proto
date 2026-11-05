@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGLevelChallengeNotifyOuterClass";
+import "GCGBossChallengeData.proto";
+import "GCGLevelData.proto";
+
+// 7.2 CmdId 20732
+message GCGLevelChallengeNotify {
+  repeated uint32 unlock_world_challenge_list = 4;
+  repeated GCGBossChallengeData unlock_boss_challenge_list = 10;
+  repeated GCGLevelData level_list = 11;
+}

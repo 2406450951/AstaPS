@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FleurFairGallerySettleInfoOuterClass";
+message FleurFairGallerySettleInfo {
+  uint32 MLNKCMGINBF = 2;
+  bool is_success = 4;
+  uint32 PHHPFODHEJL = 5;
+  uint32 BLDNIJBOMAM = 8;
+}

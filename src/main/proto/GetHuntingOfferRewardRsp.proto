@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetHuntingOfferRewardRspOuterClass";
+import "HuntingPair.proto";
+
+// 7.2 CmdId 20985
+message GetHuntingOfferRewardRsp {
+  int32 retcode = 2;
+  HuntingPair hunting_pair = 4;
+  uint32 city_id = 5;
+}

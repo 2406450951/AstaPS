@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGTCTavernChallengeUpdateNotifyOuterClass";
+import "GCGTCTavernChallengeData.proto";
+
+// 7.2 CmdId 25489
+message GCGTCTavernChallengeUpdateNotify {
+  GCGTCTavernChallengeData tavern_challenge = 8;
+}

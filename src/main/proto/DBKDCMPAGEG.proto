@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "LEEAPMKHDJK.proto";
+
+message DBKDCMPAGEG {
+  repeated LEEAPMKHDJK team_list = 5;
+  uint32 BOJBEECJFDL = 3;
+  uint32 difficulty = 2;
+  uint32 ONEMANNIKIH = 7;
+}

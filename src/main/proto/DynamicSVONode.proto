@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DynamicSVONodeOuterClass";
+import "Vector.proto";
+
+message DynamicSVONode {
+  Vector refer_pos = 8;
+  int32 area = 10;
+  int64 index = 13;
+}

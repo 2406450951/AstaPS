@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatCoinNotifyOuterClass";
+import "MNMDKGBEEKN.proto";
+
+// 7.2 CmdId 7853
+message RoleCombatCoinNotify {
+  MNMDKGBEEKN JMDLABJHNBN = 2;
+  uint32 MMNHBJKNGFM = 11;
+  uint32 coin_num = 12;
+}

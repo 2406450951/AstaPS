@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EMPEPKOOJHP.proto";
+import "JEDABPPFPPK.proto";
+
+message DropGatherComp {
+  EMPEPKOOJHP GLGMMOMNFJG = 2;
+  JEDABPPFPPK NBEAAGGCFHC = 1;
+}

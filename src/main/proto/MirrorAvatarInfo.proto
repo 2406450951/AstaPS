@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message MirrorAvatarInfo {
+  uint64 LEEHFFLICIK = 2;
+  uint32 copy_from_avatar_type = 1;
+}

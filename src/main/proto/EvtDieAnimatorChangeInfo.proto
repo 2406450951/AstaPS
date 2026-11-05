@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtDieAnimatorChangeInfoOuterClass";
+import "Vector3Int.proto";
+
+message EvtDieAnimatorChangeInfo {
+  uint32 OJIHJOGKIOH = 1;
+  Vector3Int position = 2;
+  uint32 JPMKIMJDFJK = 3;
+  int32 ACBKOJMLDLC = 10;
+  uint32 entity_id = 14;
+  Vector3Int rotation = 15;
+}

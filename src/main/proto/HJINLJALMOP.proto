@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "IBDBBEBNGPO.proto";
+
+message HJINLJALMOP {
+  repeated IBDBBEBNGPO NKDKDDKOBHF = 501;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HJMIMHGPEOEOuterClass";
+message HJMIMHGPEOE {
+  uint32 CLIOKBBLNPA = 4;
+  uint32 difficulty_id = 7;
+  uint32 schedule_id = 9;
+}

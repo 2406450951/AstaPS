@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ConfigPlayMusicOuterClass";
+message _ConfigPlayMusic {
+  int32 JNAOJGJFKIF = 1;
+  int32 DINIFGLBAGM = 2;
+  int32 KIJJEKNKIKF = 3;
+  int32 NJMPFKFBGBB = 4;
+  int32 BNGKKKBJLFA = 5;
+  int32 KCFOAIMJGGJ = 6;
+  int32 LJJHNBLPIBA = 7;
+  int32 FGGPPGCHIFE = 8;
+}

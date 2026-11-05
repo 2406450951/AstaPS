@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGSettleOptionRspOuterClass";
+import "GCGSettleOption.proto";
+
+// 7.2 CmdId 25780
+message GCGSettleOptionRsp {
+  GCGSettleOption option = 9;
+  int32 retcode = 14;
+}

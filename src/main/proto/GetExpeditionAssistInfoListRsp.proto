@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetExpeditionAssistInfoListRspOuterClass";
+import "ExpeditionAssistInfo.proto";
+
+message GetExpeditionAssistInfoListRsp {
+  int32 retcode = 1;
+  repeated ExpeditionAssistInfo assist_info_list = 2;
+}

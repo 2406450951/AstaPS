@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetAllMailRspOuterClass";
+import "MailData.proto";
+
+// 7.2 CmdId 204
+message GetAllMailRsp {
+  bool is_collected = 6;
+  bool is_truncated = 7;
+  repeated MailData mail_list = 14;
+  int32 retcode = 15;
+}

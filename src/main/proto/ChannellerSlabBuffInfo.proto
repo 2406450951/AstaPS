@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ChannelerSlabBuffSchemeInfo.proto";
+import "ChannellerSlabAssistInfo.proto";
+
+message ChannellerSlabBuffInfo {
+  ChannelerSlabBuffSchemeInfo EBICDMABNFJ = 20000;
+  repeated uint32 buff_id_list = 1;
+  ChannelerSlabBuffSchemeInfo AKKLDFFAGMI = 20001;
+  repeated ChannellerSlabAssistInfo assist_info_list = 4;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatBriefDataNotifyOuterClass";
+import "RoleCombatBriefData.proto";
+
+// 7.2 CmdId 163
+message RoleCombatBriefDataNotify {
+  RoleCombatBriefData _combat_detail = 8;
+}

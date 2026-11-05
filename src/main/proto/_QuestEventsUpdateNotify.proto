@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestEventsUpdateNotifyOuterClass";
+import "_QuestEvents.proto";
+
+// 7.2 CmdId 21768
+message _QuestEventsUpdateNotify {
+  repeated _QuestEvents _quest_events_list = 6;
+}

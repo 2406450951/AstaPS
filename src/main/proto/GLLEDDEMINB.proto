@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GLLEDDEMINBOuterClass";
+message GLLEDDEMINB {
+  uint32 FJLNFAJMCMO = 1;
+  bool KOICILAFPAG = 2;
+  float LBNBAHAJJIC = 3;
+  bool OIGIDJNGCMM = 4;
+  string JDJMHIMAGJN = 5;
+  uint32 CFKPKLKBJHK = 6;
+  string GAGNDGMBJAL = 501;
+  int32 index = 502;
+  bool KIFPNHDKDFN = 503;
+  bool GOJCHDPOENP = 504;
+}

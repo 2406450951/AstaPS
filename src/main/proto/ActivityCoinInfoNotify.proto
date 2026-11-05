@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityCoinInfoNotifyOuterClass";
+// 7.2 CmdId 2175
+message ActivityCoinInfoNotify {
+  uint32 schedule_id = 6;
+  uint32 activity_id = 9;
+  map<uint32, uint32> activity_coin_map = 13;
+}

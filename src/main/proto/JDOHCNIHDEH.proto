@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EAOEICFJOBA.proto";
+
+message JDOHCNIHDEH {
+  repeated EAOEICFJOBA FECHNEFCAAC = 20000;
+  bool is_finish = 13;
+  bool HLPAFFCCGLF = 20001;
+  bool is_open = 6;
+  uint32 level_id = 15;
+}

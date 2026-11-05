@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GadgetChainLevelUpdateNotifyOuterClass";
+// 7.2 CmdId 26386
+message GadgetChainLevelUpdateNotify {
+  map<uint32, uint32> gadget_chain_level_map = 15;
+}

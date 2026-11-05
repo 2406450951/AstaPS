@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BatchBuyGoodsReqOuterClass";
+import "BuyGoodsParam.proto";
+
+// 7.2 CmdId 1447
+message BatchBuyGoodsReq {
+  uint32 DBLDIPEKDLE = 9;
+  repeated BuyGoodsParam buy_goods_list = 11;
+  uint32 shop_type = 13;
+}

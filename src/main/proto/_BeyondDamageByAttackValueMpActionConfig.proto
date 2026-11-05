@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondDamageByAttackValueMpActionConfigOuterClass";
+import "EJHLPJKBFJL.proto";
+import "HHEDHCFPEKM.proto";
+import "MIOPJIJBOBD.proto";
+
+message _BeyondDamageByAttackValueMpActionConfig {
+  string AKEAINMJDHL = 1;
+  HHEDHCFPEKM offset = 2;
+  HHEDHCFPEKM OEPBPEKNNKP = 3;
+  EJHLPJKBFJL CBFFMGHDCGL = 4;
+  MIOPJIJBOBD CHECPDOLJNP = 5;
+}

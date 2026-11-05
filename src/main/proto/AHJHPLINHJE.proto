@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AHJHPLINHJEOuterClass";
+import "BBFOKKDADAC.proto";
+import "JHIAFBJOLKJ.proto";
+
+message AHJHPLINHJE {
+  int32 GANMJMEBGIK = 501;
+  oneof detail {
+    BBFOKKDADAC ReadTransformComp = 11;
+    JHIAFBJOLKJ EditTransformComp = 12;
+  }
+}

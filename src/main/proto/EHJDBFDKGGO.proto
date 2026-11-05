@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EHJDBFDKGGOOuterClass";
+enum EHJDBFDKGGO {
+  EHJDBFDKGGO_SPHERE = 0;
+  EHJDBFDKGGO_CONE = 1;
+}

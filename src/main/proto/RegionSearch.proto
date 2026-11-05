@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RegionSearchOuterClass";
+import "RegionSearchState.proto";
+
+message RegionSearch {
+  RegionSearchState state = 3;
+  uint32 progress = 8;
+  uint32 region_search_id = 11;
+  bool is_entered = 15;
+}

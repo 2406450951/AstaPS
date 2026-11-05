@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KKLLPPPJPEFOuterClass";
+import "IMKKCGHONHC.proto";
+
+message KKLLPPPJPEF {
+  repeated IMKKCGHONHC PCBKEIGNAEG = 1;
+  uint32 IKBFILPICKP = 2;
+}

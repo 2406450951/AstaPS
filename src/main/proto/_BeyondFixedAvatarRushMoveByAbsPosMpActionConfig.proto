@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondFixedAvatarRushMoveByAbsPosMpActionConfigOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message _BeyondFixedAvatarRushMoveByAbsPosMpActionConfig {
+  HHEDHCFPEKM GEOMICNPBNE = 2;
+  float IJKJCOEKMOO = 5;
+  float POFBEBCELKI = 6;
+  float speed = 7;
+  bool DBGAMMNNKJK = 8;
+}

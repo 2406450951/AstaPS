@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ClientPlayFriendRecordInfoOuterClass";
+import "FriendBrief.proto";
+import "_ClientPlayRecord.proto";
+
+message _ClientPlayFriendRecordInfo {
+  _ClientPlayRecord _record_social_brief = 1;
+  FriendBrief _friend_brief = 3;
+}

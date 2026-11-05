@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondAddGlobalValueMpActionConfigOuterClass";
+import "JOJKJCPIMCA.proto";
+
+message _BeyondAddGlobalValueMpActionConfig {
+  JOJKJCPIMCA MPMPFILEPOI = 1;
+  float value = 2;
+}

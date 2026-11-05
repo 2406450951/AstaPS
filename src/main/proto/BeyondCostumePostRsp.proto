@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondCostumePostRspOuterClass";
+// 7.2 CmdId 4176
+message BeyondCostumePostRsp {
+  uint32 costume_post_id = 3;
+  int32 retcode = 13;
+}

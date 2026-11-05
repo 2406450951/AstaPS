@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ANLGBIKALMF.proto";
+
+message _QuickTimeCombatDetailInfo {
+  repeated ANLGBIKALMF stage_info_list = 1;
+}

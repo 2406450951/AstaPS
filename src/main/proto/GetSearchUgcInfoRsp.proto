@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetSearchUgcInfoRspOuterClass";
+import "CJBIHJFHFBL.proto";
+import "UgcType.proto";
+
+// 7.2 CmdId 29889
+message GetSearchUgcInfoRsp {
+  int32 retcode = 1;
+  UgcType ugc_type = 9;
+  oneof info {
+    CJBIHJFHFBL MusicInfo = 12;
+  }
+}

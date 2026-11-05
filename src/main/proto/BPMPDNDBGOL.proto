@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BPMPDNDBGOLOuterClass";
+import "BCEKFAELPNF.proto";
+
+message BPMPDNDBGOL {
+  repeated uint32 ABJFJMFDFEB = 1;
+  uint32 config_id = 2;
+  BCEKFAELPNF data = 3;
+}

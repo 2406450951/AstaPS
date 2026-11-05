@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message PHPBCLPALEL {
+  repeated uint32 NHDHPIAOEGE = 6;
+  uint32 level_id = 8;
+  uint32 PDLNMDDFNPC = 2;
+  uint32 NMHDKNDDLMC = 1;
+  uint32 HNFMJGOFMBG = 11;
+  bool KIEMHBNNEBF = 12;
+  bool is_finish = 5;
+}

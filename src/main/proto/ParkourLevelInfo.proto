@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Vector.proto";
+
+message ParkourLevelInfo {
+  Vector pos = 4;
+  bool is_open = 3;
+  uint32 best_record = 2;
+  uint32 open_time = 1;
+}

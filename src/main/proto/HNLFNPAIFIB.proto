@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HNLFNPAIFIBOuterClass";
+import "OMLGJDGIKIB.proto";
+
+message HNLFNPAIFIB {
+  OMLGJDGIKIB DCOLKOHGKEL = 1;
+}

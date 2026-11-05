@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message GetPushTipsRewardRsp {
+  repeated uint32 push_tips_id_list = 6;
+  int32 retcode = 5;
+}

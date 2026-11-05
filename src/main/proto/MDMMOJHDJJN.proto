@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message MDMMOJHDJJN {
+  repeated uint32 equip_id_list = 4;
+  uint32 _chess_level_up_id = 3;
+  uint32 _auto_chess_chess_id = 14;
+}

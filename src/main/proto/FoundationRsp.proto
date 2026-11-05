@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FoundationRspOuterClass";
+import "FoundationOpType.proto";
+
+// 7.2 CmdId 20266
+message FoundationRsp {
+  uint32 point_config_id = 1;
+  uint32 building_id = 4;
+  uint32 gadget_entity_id = 5;
+  int32 retcode = 14;
+  FoundationOpType op_type = 15;
+}

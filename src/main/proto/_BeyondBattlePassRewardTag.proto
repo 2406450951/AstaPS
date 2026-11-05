@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_LevelTag.proto";
+import "_PaidTag.proto";
+
+message _BeyondBattlePassRewardTag {
+  oneof reward_tag {
+    _LevelTag level_tag = 6;
+    _PaidTag paid_tag = 14;
+  }
+}

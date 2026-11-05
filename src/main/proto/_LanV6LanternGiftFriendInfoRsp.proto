@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV6LanternGiftFriendInfoRspOuterClass";
+import "_LanV6LanternGiftFriendInfo.proto";
+
+// 7.2 CmdId 9838
+message _LanV6LanternGiftFriendInfoRsp {
+  repeated _LanV6LanternGiftFriendInfo info_list = 3;
+  int32 retcode = 15;
+}

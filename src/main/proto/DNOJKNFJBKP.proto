@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DNOJKNFJBKPOuterClass";
+import "GCGSkillPreviewInfo.proto";
+
+message DNOJKNFJBKP {
+  uint32 MFKIGLGPAIE = 3;
+  GCGSkillPreviewInfo BIMAAAKLKJN = 10;
+  uint32 EIAOOGNBKHO = 15;
+}

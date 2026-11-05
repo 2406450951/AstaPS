@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivitySetGiftWishRspOuterClass";
+// 7.2 CmdId 8338
+message ActivitySetGiftWishRsp {
+  int32 retcode = 1;
+  uint32 schedule_id = 4;
+}

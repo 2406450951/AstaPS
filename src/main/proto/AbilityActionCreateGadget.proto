@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Vector.proto";
+
+message AbilityActionCreateGadget {
+  Vector pos = 13;
+  Vector rot = 3;
+  uint32 room_id = 1;
+}

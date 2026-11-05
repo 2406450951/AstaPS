@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TakeInvestigationTargetRewardReqOuterClass";
+// 7.2 CmdId 29063
+message TakeInvestigationTargetRewardReq {
+  uint32 quest_id = 15;
+}

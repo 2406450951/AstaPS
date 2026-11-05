@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityFireworkBornTypeOuterClass";
+import "Vector.proto";
+
+message AbilityFireworkBornType {
+  Vector move_dir = 2;
+  Vector rot = 3;
+  uint32 effect_index = 4;
+  Vector pos = 8;
+}

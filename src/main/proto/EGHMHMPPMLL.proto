@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum EGHMHMPPMLL {
+  EGHMHMPPMLL_NONE = 0;
+  EGHMHMPPMLL_BUNDLE_GOODS = 1;
+  EGHMHMPPMLL_COSTUME_SUIT = 2;
+  EGHMHMPPMLL_ALREADY_BOUGHT = 3;
+}

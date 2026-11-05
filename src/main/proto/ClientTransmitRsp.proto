@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ClientTransmitRspOuterClass";
+import "TransmitReason.proto";
+
+// 7.2 CmdId 9360
+message ClientTransmitRsp {
+  TransmitReason reason = 5;
+  int32 retcode = 8;
+}

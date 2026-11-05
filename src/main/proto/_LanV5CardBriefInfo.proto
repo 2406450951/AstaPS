@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV5CardBriefInfoOuterClass";
+import "_LanV5CardSocial.proto";
+
+message _LanV5CardBriefInfo {
+  uint32 _creator_uid = 1;
+  string _creator_online_id = 2;
+  _LanV5CardSocial social = 3;
+  string _xbox_gamertag = 4;
+  string creator_nickname = 5;
+  uint32 JHMIFBJAFNK = 7;
+  bool is_psn_platform = 8;
+  bool is_liked = 9;
+  bool is_stored = 10;
+  uint64 ugc_guid = 11;
+  uint32 NIFJGNDHLMK = 13;
+}

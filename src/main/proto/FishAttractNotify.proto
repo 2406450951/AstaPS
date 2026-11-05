@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FishAttractNotifyOuterClass";
+import "Vector.proto";
+
+// 7.2 CmdId 2170
+message FishAttractNotify {
+  repeated uint32 fish_id_list = 8;
+  uint32 uid = 9;
+  Vector pos = 14;
+}

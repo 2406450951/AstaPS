@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TowerDefenseEnterDungeonRspOuterClass";
+// 7.2 CmdId 3364
+message _TowerDefenseEnterDungeonRsp {
+  uint32 level_id = 3;
+  repeated uint32 skill_id_list = 7;
+  int32 retcode = 8;
+  bool _is_restart = 10;
+}

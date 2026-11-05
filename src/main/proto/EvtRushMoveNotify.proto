@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtRushMoveNotifyOuterClass";
+import "EvtRushMoveInfo.proto";
+import "ForwardType.proto";
+
+// 7.2 CmdId 20119
+message EvtRushMoveNotify {
+  EvtRushMoveInfo evt_rush_move_info = 7;
+  ForwardType forward_type = 13;
+}

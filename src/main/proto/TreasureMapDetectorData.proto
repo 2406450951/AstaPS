@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TreasureMapDetectorDataOuterClass";
+import "Vector.proto";
+
+message TreasureMapDetectorData {
+  repeated Vector spot_list = 1;
+  uint32 region_id = 2;
+  bool is_region_detected = 12;
+  Vector center_pos = 13;
+  uint32 radius = 15;
+}

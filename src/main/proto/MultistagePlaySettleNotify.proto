@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MultistagePlaySettleNotifyOuterClass";
+import "InBattleChessSettleInfo.proto";
+import "InBattleIrodoriChessSettleInfo.proto";
+import "InBattleMechanicusSettleInfo.proto";
+
+// 7.2 CmdId 23332
+message MultistagePlaySettleNotify {
+  uint32 play_index = 8;
+  uint32 group_id = 9;
+  oneof detail {
+    InBattleIrodoriChessSettleInfo IrodoriChessSettleInfo = 489;
+    InBattleMechanicusSettleInfo MechanicusSettleInfo = 932;
+    InBattleChessSettleInfo ChessSettleInfo = 1470;
+  }
+}

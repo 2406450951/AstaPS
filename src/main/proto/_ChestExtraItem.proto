@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Item.proto";
+
+message _ChestExtraItem {
+  Item item = 12;
+  uint32 reason = 15;
+}

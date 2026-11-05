@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeLimitedShopBuyGoodsRspOuterClass";
+import "HomeLimitedShopGoods.proto";
+
+// 7.2 CmdId 20349
+message HomeLimitedShopBuyGoodsRsp {
+  repeated HomeLimitedShopGoods goods_list = 1;
+  uint32 buy_count = 4;
+  int32 retcode = 7;
+  HomeLimitedShopGoods goods = 10;
+}

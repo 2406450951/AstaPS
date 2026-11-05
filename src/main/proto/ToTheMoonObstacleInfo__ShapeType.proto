@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ToTheMoonObstacleInfo__ShapeTypeOuterClass";
+enum ToTheMoonObstacleInfo__ShapeType {
+  TO_THE_MOON_OBSTACLE_INFO__SHAPE_TYPE_OBSTACLE_SHAPE_CAPSULE = 0;
+  TO_THE_MOON_OBSTACLE_INFO__SHAPE_TYPE_OBSTACLE_SHAPE_BOX = 1;
+}

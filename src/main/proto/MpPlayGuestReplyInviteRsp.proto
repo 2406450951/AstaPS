@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MpPlayGuestReplyInviteRspOuterClass";
+// 7.2 CmdId 5250
+message MpPlayGuestReplyInviteRsp {
+  uint32 mp_play_id = 5;
+  int32 retcode = 8;
+}

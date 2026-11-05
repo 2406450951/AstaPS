@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_HideAndSeekV4SettleInfoOuterClass";
+import "ExhibitionDisplayInfo.proto";
+import "ProfilePicture.proto";
+
+message _HideAndSeekV4SettleInfo {
+  uint32 head_image = 1;
+  uint32 uid = 5;
+  repeated ExhibitionDisplayInfo card_list = 8;
+  string nickname = 9;
+  string online_id = 10;
+  ProfilePicture profile_picture = 14;
+}

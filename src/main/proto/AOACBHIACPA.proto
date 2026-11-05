@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message AOACBHIACPA {
+  uint32 furniture_id = 6;
+  uint32 APGDMMNLIGP = 15;
+}

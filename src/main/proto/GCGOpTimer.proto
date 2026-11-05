@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGOpTimerOuterClass";
+message GCGOpTimer {
+  uint32 controller_id = 8;
+  fixed64 time_stamp = 13;
+  fixed64 begin_time = 14;
+}

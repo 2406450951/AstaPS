@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GachaOpenWishNotifyOuterClass";
+// 7.2 CmdId 6518
+message GachaOpenWishNotify {
+  uint32 gacha_schedule_id = 6;
+  uint32 gacha_type = 8;
+}

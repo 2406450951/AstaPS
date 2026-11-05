@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_WeekActiveSelectAvatarReqOuterClass";
+// 7.2 CmdId 3586
+message _WeekActiveSelectAvatarReq {
+  uint32 schedule_id = 2;
+  uint32 avatar_id = 15;
+}

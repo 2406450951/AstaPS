@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonRoomDeploymentOuterClass";
+import "_UgcGadget.proto";
+import "_UgcMonster.proto";
+import "_UgcMonsterGroup.proto";
+import "_UgcMonsterWave.proto";
+import "_UgcSuite.proto";
+import "_UgcTrigger.proto";
+
+message _UgcDungeonRoomDeployment {
+  repeated _UgcTrigger _trigger_list = 3;
+  repeated _UgcMonsterWave _monster_wave_list = 4;
+  repeated _UgcMonsterGroup _monster_group_list = 5;
+  repeated _UgcMonster monster_list = 7;
+  repeated _UgcGadget _gadget_list = 12;
+  repeated _UgcSuite _suite_list = 14;
+}

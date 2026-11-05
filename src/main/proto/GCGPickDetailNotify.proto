@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGPickDetailNotifyOuterClass";
+import "GCGGameBusinessType.proto";
+import "KPICIBAKNKN.proto";
+import "OnlinePlayerInfo.proto";
+
+// 7.2 CmdId 25716
+message GCGPickDetailNotify {
+  KPICIBAKNKN NMOJPBMOPBD = 3;
+  uint32 game_id = 4;
+  uint32 IHNJLIGJEIE = 6;
+  repeated uint32 JADKHNDBMCD = 7;
+  repeated OnlinePlayerInfo player_info_list = 13;
+  uint32 match_id = 14;
+  GCGGameBusinessType business_type = 15;
+}

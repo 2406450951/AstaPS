@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "QuestVarOp.proto";
+
+message QuestUpdateQuestVarReq {
+  repeated QuestVarOp quest_var_op_list = 3;
+  uint32 quest_id = 1;
+  uint32 parent_quest_var_seq = 4;
+  uint32 parent_quest_id = 9;
+}

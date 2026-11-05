@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MvMv2AvailableCardNotifyOuterClass";
+import "Uint32Pair.proto";
+
+// 7.2 CmdId 27379
+message MvMv2AvailableCardNotify {
+  repeated Uint32Pair GENMOFHFMLE = 14;
+}

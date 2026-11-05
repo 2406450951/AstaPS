@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DungeonPreloadMonsterNotifyOuterClass";
+import "PlatformType.proto";
+
+// 7.2 CmdId 4690
+message DungeonPreloadMonsterNotify {
+  repeated uint32 monster_id_list = 3;
+  repeated PlatformType platform_list = 10;
+}

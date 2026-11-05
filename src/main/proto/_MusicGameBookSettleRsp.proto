@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MusicGameBookSettleRspOuterClass";
+import "_UgcVote.proto";
+
+// 7.2 CmdId 21579
+message _MusicGameBookSettleRsp {
+  uint64 ugc_guid = 1;
+  _UgcVote _ugc_vote = 2;
+  bool is_stored = 5;
+  bool is_new_record = 6;
+  int32 retcode = 9;
+  repeated uint32 ELKPDKGMJHE = 11;
+  uint32 _beatmap_id = 13;
+  bool is_liked = 14;
+  uint32 PBCFLNBPGBC = 15;
+}

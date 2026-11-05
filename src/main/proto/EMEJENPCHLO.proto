@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_TriggerAbility.proto";
+
+message EMEJENPCHLO {
+  bool KFMDCEHACKM = 1;
+  float OMPEDKKJAJD = 2;
+  oneof action {
+    _TriggerAbility trigger_ability = 100;
+  }
+}

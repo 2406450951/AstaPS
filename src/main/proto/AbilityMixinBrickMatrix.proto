@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinBrickMatrixOuterClass";
+message AbilityMixinBrickMatrix {
+  uint32 sync_type = 4;
+  repeated uint32 data_list = 6;
+}

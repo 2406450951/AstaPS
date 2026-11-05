@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TakeResinCardDailyRewardRspOuterClass";
+import "ItemParam.proto";
+
+// 7.2 CmdId 1395
+message TakeResinCardDailyRewardRsp {
+  repeated ItemParam item_vec = 6;
+  int32 retcode = 9;
+  uint32 product_config_id = 10;
+}

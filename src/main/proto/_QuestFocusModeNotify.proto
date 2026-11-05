@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestFocusModeNotifyOuterClass";
+// 7.2 CmdId 5980
+message _QuestFocusModeNotify {
+  uint32 FDKCOIFMPKF = 10;
+  repeated uint32 _focused_parent_quest_id_list = 11;
+  repeated uint32 GMFBIMAJCIL = 12;
+  bool _is_focus_mode = 13;
+}

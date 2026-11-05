@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MKNHKHMILCGOuterClass";
+enum MKNHKHMILCG {
+  MKNHKHMILCG_BOX = 0;
+  MKNHKHMILCG_SPHERE = 1;
+  MKNHKHMILCG_CAPSULE = 2;
+  MKNHKHMILCG_CYLINDER = 3;
+}

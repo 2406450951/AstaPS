@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DMHIEONJAEBOuterClass";
+import "ACLMAJMPJAM.proto";
+import "KEKGJICEKOB.proto";
+import "LFGCKFMEEHD.proto";
+import "LMFOPJDFKJA.proto";
+import "NOAKFIEPCBM.proto";
+import "OGLOOCNIAIP.proto";
+import "OHPMKKFCBHF.proto";
+import "PBJJOGALKHB.proto";
+import "_FlowControlConfig.proto";
+
+message DMHIEONJAEB {
+  repeated PBJJOGALKHB ACOHCNIENLI = 4;
+  repeated KEKGJICEKOB KMAPLDOEONI = 100;
+  repeated KEKGJICEKOB IIFNEMLPEHB = 101;
+  repeated KEKGJICEKOB BDKOKOPBMEA = 102;
+  repeated KEKGJICEKOB CKOPMBPAPHA = 103;
+  repeated OHPMKKFCBHF FDKNHICGCOF = 104;
+  repeated KEKGJICEKOB extra_param_list = 106;
+  repeated LMFOPJDFKJA GHIBJCLCKKE = 107;
+  bool FHNFGAHFKFI = 108;
+  string name = 200;
+  string JONNKEBJAFL = 201;
+  OGLOOCNIAIP LPEKEEDEFFA = 203;
+  LFGCKFMEEHD AEMKDEBGCOB = 204;
+  NOAKFIEPCBM KCGNOBDKDKA = 205;
+  uint32 FKJIOIKBGHK = 206;
+  uint32 MMFHBJNDINO = 207;
+  repeated ACLMAJMPJAM _card_text = 208;
+  oneof DDCJMIGJNPP {
+    _FlowControlConfig FlowControlConfig = 1000;
+  }
+}

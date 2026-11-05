@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _AdventurerStatuePhotoGoalInfo {
+  repeated uint32 _finished_posture_id_list = 4;
+  uint32 _goal_id = 2;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message GetInvestigationMonsterReq {
+  repeated uint32 city_id_list = 13;
+  bool is_for_mark = 4;
+}

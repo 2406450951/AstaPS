@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "KODIFCAOMEC.proto";
+
+message _StaminaFightDetailInfo {
+  repeated KODIFCAOMEC level_info_list = 1;
+}

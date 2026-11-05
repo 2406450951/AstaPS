@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GachaStageData.proto";
+
+message GachaActivityDetailInfo {
+  map<uint32, uint32> robot_num_map = 1;
+  repeated uint32 have_get_robot_list = 6;
+  repeated GachaStageData gacha_stage_data_list = 3;
+  map<uint32, uint32> have_reward_robot_num_map = 4;
+  uint32 MFPKJNHGEIO = 20000;
+  uint32 LAJGHCOADJM = 20001;
+}

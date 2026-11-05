@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JOELNOGAPGNOuterClass";
+import "BFKOJEOFEBM.proto";
+
+message JOELNOGAPGN {
+  string HGCAHAGCJCI = 2;
+  string AKEAINMJDHL = 3;
+  BFKOJEOFEBM DOMJELBKHOD = 4;
+  int32 BOMNIAMBPDO = 5;
+  string FHONMJNJKCF = 6;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KKNLECKEMLIOuterClass";
+import "JJOEECFPENH.proto";
+import "JOJKJCPIMCA.proto";
+
+message KKNLECKEMLI {
+  JOJKJCPIMCA BOGBJOJKAIJ = 1;
+  uint32 AAHHCNFMADB = 2;
+  bool DABFMDIGHDK = 3;
+  repeated JJOEECFPENH KNFIDEEKFNI = 4;
+}

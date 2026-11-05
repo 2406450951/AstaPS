@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FMNNNJBPIPCOuterClass";
+message FMNNNJBPIPC {
+  int32 id = 1;
+  int32 point_id = 2;
+  string LIOCDIEHHEO = 501;
+  repeated uint32 EONOCNJNGKO = 502;
+}

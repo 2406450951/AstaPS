@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AvatarMirrorTypeOuterClass";
+enum _AvatarMirrorType {
+  _AVATAR_MIRROR_TYPE_NONE = 0;
+  _AVATAR_MIRROR_TYPE_FORMAL_MIRROR = 1;
+  _AVATAR_MIRROR_TYPE_TRIAL_MIRROR = 2;
+  _AVATAR_MIRROR_TYPE_RENT_MIRROR = 3;
+}

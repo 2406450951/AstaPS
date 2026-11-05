@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TakeWorldWatcherRewardReqOuterClass";
+// 7.2 CmdId 9080
+message TakeWorldWatcherRewardReq {
+  uint32 watcher_id = 2;
+}

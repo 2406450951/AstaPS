@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HPPHAPGKFNP.proto";
+import "MathQuaternion.proto";
+
+message _RouteMoverInfo {
+  HPPHAPGKFNP MFOMGKKGCKE = 20000;
+  MathQuaternion IINJFNJGEGP = 20001;
+}

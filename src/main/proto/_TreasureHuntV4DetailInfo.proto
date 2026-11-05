@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "LFKPMBBOGDP.proto";
+
+message _TreasureHuntV4DetailInfo {
+  repeated LFKPMBBOGDP level_info_list = 1;
+}

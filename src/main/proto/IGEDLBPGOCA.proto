@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IGEDLBPGOCAOuterClass";
+import "NNANMMJIFBG.proto";
+import "_StepCreateCompoundConnection.proto";
+import "_StepCreateConnection.proto";
+import "_StepCreateNode.proto";
+import "_StepModifyValue.proto";
+
+message IGEDLBPGOCA {
+  NNANMMJIFBG FKENIDKDDEA = 1;
+  oneof detail {
+    _StepCreateNode StepCreateNode = 100;
+    _StepModifyValue StepModifyValue = 101;
+    _StepCreateConnection StepCreateConnection = 102;
+    _StepCreateCompoundConnection StepCreateCompoundConnection = 103;
+  }
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterChessPhaseOuterClass";
+enum _MonsterChessPhase {
+  _MONSTER_CHESS_PHASE_MONSTER_CHESS_PHASE_NONE = 0;
+  _MONSTER_CHESS_PHASE_MONSTER_CHESS_PHASE_PREPARE = 1;
+  _MONSTER_CHESS_PHASE_MONSTER_CHESS_PHASE_UI_SHOW = 2;
+  _MONSTER_CHESS_PHASE_MONSTER_CHESS_PHASE_FIGHT = 3;
+  _MONSTER_CHESS_PHASE_MONSTER_CHESS_PHASE_SETTLE = 4;
+}

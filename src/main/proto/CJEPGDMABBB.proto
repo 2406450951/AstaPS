@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CJEPGDMABBBOuterClass";
+import "ILMJPBJBCLJ.proto";
+
+message CJEPGDMABBB {
+  bool BHKLKHPKIBK = 1;
+  bool LGAINKLJKNM = 2;
+  bool FAAAFGKAAOK = 3;
+  bool FLPILKNBBIC = 5;
+  bool KBCGLMEFOJJ = 7;
+  bool BPBKFJHPCAF = 8;
+  ILMJPBJBCLJ HKLIAAIHPNG = 9;
+  ILMJPBJBCLJ DHKABCIHIDK = 10;
+  string EIBHJIOJHEP = 11;
+}

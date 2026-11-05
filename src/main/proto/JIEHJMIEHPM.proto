@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message JIEHJMIEHPM {
+  repeated uint32 BLFDFGAGOIG = 11;
+  repeated uint32 OJIDBAFJECO = 2;
+  bool KLGNBKEEEIE = 12;
+  bool ODDFFNIOBLN = 4;
+  uint32 best_score = 10;
+  uint32 level_id = 9;
+}

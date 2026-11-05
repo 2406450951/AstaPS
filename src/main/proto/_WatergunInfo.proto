@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_WatergunInfoOuterClass";
+import "JGHHGIOFPMD.proto";
+
+message _WatergunInfo {
+  bool is_single = 1;
+  uint32 match_id = 2;
+  repeated JGHHGIOFPMD EBFAHHCJAOD = 3;
+  uint32 level_id = 4;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondModifyVehicleParamMpActionConfigOuterClass";
+message _BeyondModifyVehicleParamMpActionConfig {
+  float CCOGCAJEBDK = 1;
+  float AEPHMNMBHCE = 2;
+  float FJNGGCJHINI = 3;
+  float AMOCHEIIOKL = 4;
+  float MJGMNADEBDL = 5;
+  float BIDDDNKDMLE = 6;
+  float KCFDLJEHGPL = 7;
+}

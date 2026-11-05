@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BOHOAAAJCCIOuterClass";
+message BOHOAAAJCCI {
+  sfixed64 HBFNINJDEOJ = 8;
+  uint32 HNFKCEMHHCF = 11;
+  int32 KFCDNDBGLHN = 15;
+}

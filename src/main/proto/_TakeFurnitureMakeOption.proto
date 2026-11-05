@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TakeFurnitureMakeOptionOuterClass";
+message _TakeFurnitureMakeOption {
+  uint32 make_id = 1;
+  bool is_fast_finish = 3;
+  uint32 index = 4;
+}

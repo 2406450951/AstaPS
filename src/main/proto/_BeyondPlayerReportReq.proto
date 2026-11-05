@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondPlayerReportReqOuterClass";
+import "ReportReasonType.proto";
+import "_ChatReportInfo.proto";
+import "_CostumeReportInfo.proto";
+import "_CustomProfilePictureReportInfo.proto";
+import "_GiftTextReportInfo.proto";
+import "_HallReportInfo.proto";
+import "_LevelBriefReportInfo.proto";
+import "_LevelInternalReportInfo.proto";
+import "_LevelMinimapReportInfo.proto";
+import "_ReportReasonSubtype.proto";
+import "_TeyvatCommonReportInfo.proto";
+import "_VoiceChatReportInfo.proto";
+
+// 7.2 CmdId 4068
+message _BeyondPlayerReportReq {
+  _ReportReasonSubtype _report_subtype = 8;
+  string _report_detail = 13;
+  ReportReasonType report_type = 15;
+  oneof detail {
+    _HallReportInfo HallReportInfo = 1;
+    _LevelInternalReportInfo LevelInternalReportInfo = 2;
+    _GiftTextReportInfo GiftTextReportInfo = 7;
+    _CostumeReportInfo CostumeReportInfo = 11;
+    _ChatReportInfo ChatReportInfo = 14;
+    _LevelBriefReportInfo LevelBriefReportInfo = 420;
+    _TeyvatCommonReportInfo TeyvatCommonReportInfo = 492;
+    _CustomProfilePictureReportInfo CustomProfilePictureReportInfo = 845;
+    _VoiceChatReportInfo VoiceChatReportInfo = 1409;
+    _LevelMinimapReportInfo LevelMinimapReportInfo = 1663;
+  }
+}

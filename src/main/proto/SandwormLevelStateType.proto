@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum SandwormLevelStateType {
+  SandwormLevelStateType_SANDWORM_LEVEL_NOT_OPEN = 0;
+  SandwormLevelStateType_SANDWORM_LEVEL_PRE_QUEST = 1;
+  SandwormLevelStateType_SANDWORM_LEVEL_START = 2;
+  SandwormLevelStateType_SANDWORM_LEVEL_SEQUEL_QUEST = 3;
+}

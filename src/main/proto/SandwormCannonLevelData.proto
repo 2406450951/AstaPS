@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "SandwormLevelStateType.proto";
+
+message SandwormCannonLevelData {
+  SandwormLevelStateType level_state = 5;
+  uint32 level_id = 2;
+}

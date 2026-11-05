@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondShopGiftOuterClass";
+import "ItemParam.proto";
+
+message _BeyondShopGift {
+  uint32 goods_id = 1;
+  uint32 buy_count = 5;
+  uint32 EEEMOBABPMO = 8;
+  repeated uint32 DBHIHOMHLHL = 10;
+  bool DPJBMEDJEAK = 11;
+  repeated ItemParam KDIINKMIKKH = 12;
+  uint32 PAMGMOPJPFN = 13;
+}

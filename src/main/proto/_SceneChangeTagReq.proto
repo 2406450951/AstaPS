@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneChangeTagReqOuterClass";
+// 7.2 CmdId 9987
+message _SceneChangeTagReq {
+  bool is_add = 4;
+  uint32 quest_id = 5;
+  uint32 scene_tag_id = 6;
+  uint32 talk_id = 10;
+  uint32 PBNLCNIEJDJ = 13;
+}

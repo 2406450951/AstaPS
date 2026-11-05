@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HGGCFBAPOBHOuterClass";
+import "JKJJCHPOBBE.proto";
+import "NEHAHFEDDDD.proto";
+
+message HGGCFBAPOBH {
+  int32 KOAOELLDNDI = 1;
+  oneof detail {
+    JKJJCHPOBBE NormalTrack = 11;
+    NEHAHFEDDDD EffectTrack = 12;
+  }
+}

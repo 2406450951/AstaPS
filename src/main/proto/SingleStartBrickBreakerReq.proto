@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SingleStartBrickBreakerReqOuterClass";
+message SingleStartBrickBreakerReq {
+  uint32 level_id = 1;
+  bool is_dungeon = 2;
+  repeated uint32 chosen_avatar_list = 3;
+  repeated uint32 ADPMCLLKMOL = 4;
+  repeated uint32 NHDEAPAJJKD = 5;
+}

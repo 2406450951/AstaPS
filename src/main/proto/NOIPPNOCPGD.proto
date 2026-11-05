@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NOIPPNOCPGDOuterClass";
+import "HGGCDKJPLEK.proto";
+
+message NOIPPNOCPGD {
+  int32 ILEGHFMFCCP = 1;
+  bool FIALLJHLFEP = 2;
+  int32 factor_id = 3;
+  HGGCDKJPLEK KHMNBHPFHLK = 5;
+  bool AEHBALKFMID = 7;
+}

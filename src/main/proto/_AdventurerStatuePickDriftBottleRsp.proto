@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AdventurerStatuePickDriftBottleRspOuterClass";
+import "_AdventurerStatueDriftBottleCardDetail.proto";
+
+// 7.2 CmdId 994
+message _AdventurerStatuePickDriftBottleRsp {
+  _AdventurerStatueDriftBottleCardDetail _drift_bottle_card_detail = 4;
+  int32 retcode = 8;
+}

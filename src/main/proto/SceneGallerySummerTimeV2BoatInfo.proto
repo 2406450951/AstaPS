@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGallerySummerTimeV2BoatInfoOuterClass";
+message SceneGallerySummerTimeV2BoatInfo {
+  uint32 used_time = 1;
+  uint32 param1 = 2;
+  uint32 param2 = 3;
+  uint32 param3 = 4;
+}

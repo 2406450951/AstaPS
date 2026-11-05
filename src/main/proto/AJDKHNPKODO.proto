@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AJDKHNPKODOOuterClass";
+enum AJDKHNPKODO {
+  AJDKHNPKODO_FREE = 0;
+  AJDKHNPKODO_PAID = 1;
+  AJDKHNPKODO_REWARD = 2;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum _UiSettingInputType {
+  _UiSettingInputType_UI_SETTING_INPUT_TYPE_UNKNOWN = 0;
+  _UiSettingInputType_UI_SETTING_INPUT_TYPE_KEYBOARD = 1;
+  _UiSettingInputType_UI_SETTING_INPUT_TYPE_CONTROLLER = 2;
+  _UiSettingInputType_UI_SETTING_INPUT_TYPE_TOUCHSCREEN = 3;
+}

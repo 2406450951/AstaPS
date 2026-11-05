@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetGameTimeLockedQuestListRspOuterClass";
+// 7.2 CmdId 24836
+message GetGameTimeLockedQuestListRsp {
+  int32 retcode = 4;
+  repeated uint32 game_time_locked_quest_list = 7;
+}

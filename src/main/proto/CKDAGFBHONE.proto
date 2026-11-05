@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CKDAGFBHONEOuterClass";
+import "AADCCOGCDKC.proto";
+import "ANJLEOICOHF.proto";
+import "EJCABJLAEKD.proto";
+import "IPNHIOOIIFI.proto";
+import "KAAAKEHBIKM.proto";
+import "KKLLPPPJPEF.proto";
+import "LAMLBHCJOBI.proto";
+
+message CKDAGFBHONE {
+  uint64 dungeon_guid = 1;
+  KKLLPPPJPEF JGGCEMHHCIF = 3;
+  repeated ANJLEOICOHF BGEKLJNPDAI = 4;
+  AADCCOGCDKC PDGKLDJOAMC = 5;
+  KAAAKEHBIKM BKHKJBNJMLL = 6;
+  IPNHIOOIIFI EANHOLCNEMF = 7;
+  bool JNJBALJEGIO = 8;
+  EJCABJLAEKD GKNNEFLPJFG = 9;
+  LAMLBHCJOBI COKKLLKFAMA = 10;
+  uint32 JJHOINOKOGF = 11;
+}

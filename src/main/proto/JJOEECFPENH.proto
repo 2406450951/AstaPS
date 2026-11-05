@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JJOEECFPENHOuterClass";
+import "JOJKJCPIMCA.proto";
+
+message JJOEECFPENH {
+  JOJKJCPIMCA FILGEJFDGMM = 1;
+  uint32 count = 2;
+}

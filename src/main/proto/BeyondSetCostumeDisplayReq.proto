@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondSetCostumeDisplayReqOuterClass";
+import "BeyondCostumeDisplayInfo.proto";
+
+// 7.2 CmdId 26156
+message BeyondSetCostumeDisplayReq {
+  repeated BeyondCostumeDisplayInfo display_info_list = 12;
+}

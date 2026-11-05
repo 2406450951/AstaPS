@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerLoginReqOuterClass";
+import "HMLAJHBHLOC.proto";
+import "NBFMIBMFJIO.proto";
+import "_Vector2Int.proto";
+
+// 7.2 CmdId 23172
+message PlayerLoginReq {
+  string token = 1;
+  string system_version = 2;
+  string device_uuid = 3;
+  uint32 language_type = 4;
+  string platform = 5;
+  bool is_guest = 6;
+  string device_name = 7;
+  uint64 login_rand = 8;
+  string client_version = 9;
+  uint32 platform_type = 10;
+  string account_uid = 11;
+  uint32 HLNLCJBLCMM = 12;
+  uint32 target_uid = 13;
+  bool is_editor = 14;
+  string device_info = 15;
+  uint32 JNPMKMIMKCA = 60;
+  uint32 COEFLDLMONK = 115;
+  string online_id = 165;
+  string _xuid = 190;
+  string KALFFFLADGM = 213;
+  uint32 client_data_version = 274;
+  string cps = 345;
+  uint32 channel_id = 361;
+  uint32 LJLGGDEBGKD = 364;
+  bytes extra_bin_data = 415;
+  bool COAMILMLPIC = 473;
+  string psn_id = 492;
+  bytes security_cmd_reply = 552;
+  string checksum = 624;
+  uint32 GGJNKLPEPFG = 751;
+  NBFMIBMFJIO HDGALALKMCK = 769;
+  string checksum_client_version = 891;
+  string security_library_md5 = 944;
+  HMLAJHBHLOC HIAJLCOHEFP = 962;
+  uint32 DIJEIJEALKE = 978;
+  uint32 PNFFKLNLFMN = 1090;
+  bytes environment_error_code = 1105;
+  bool GJKKCNFPPGA = 1168;
+  uint32 timestamp = 1185;
+  _Vector2Int PJFPOHEKNEF = 1295;
+  bool AGPMKEEOBGD = 1312;
+  uint32 JNDGHFMPBOA = 1327;
+  string _xbox_gamertag = 1492;
+  uint32 PHEIMMPCLMP = 1494;
+  string _uapc = 1533;
+  uint32 tag = 1601;
+  bool JILJKLNFMMK = 1640;
+  uint32 HHMNDFCCNED = 1657;
+  string FDEFONJLCAG = 1710;
+  string country_code = 1719;
+  string IJANGEDLOMK = 1785;
+  string birthday = 1790;
+  string OOGECEEANJA = 1868;
+  uint32 cloud_client_ip = 1931;
+  string client_verison_hash = 1996;
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryPhotoInfoOuterClass";
+message _SceneGalleryPhotoInfo {
+  string transaction = 12;
+}

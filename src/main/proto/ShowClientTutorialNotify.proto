@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ShowClientTutorialNotifyOuterClass";
+// 7.2 CmdId 21174
+message ShowClientTutorialNotify {
+  uint32 tutorial_id = 8;
+}

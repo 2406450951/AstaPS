@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HideAndSeekStageInfoOuterClass";
+import "HideAndSeekPlayerBattleInfo.proto";
+import "HideAndSeekStageType.proto";
+
+message HideAndSeekStageInfo {
+  HideAndSeekStageType stage_type = 2;
+  map<uint32, HideAndSeekPlayerBattleInfo> battle_info_map = 4;
+  repeated uint32 hider_uid_list = 5;
+  bool is_record_score = 6;
+  uint32 map_id = 10;
+  uint32 hunter_uid = 11;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FoundationReqOuterClass";
+import "FoundationOpType.proto";
+
+// 7.2 CmdId 21412
+message FoundationReq {
+  uint32 building_id = 1;
+  FoundationOpType op_type = 10;
+  uint32 point_config_id = 12;
+  uint32 gadget_entity_id = 14;
+}

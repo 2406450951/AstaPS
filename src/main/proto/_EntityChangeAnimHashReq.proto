@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_EntityChangeAnimHashReqOuterClass";
+// 7.2 CmdId 7280
+message _EntityChangeAnimHashReq {
+  uint32 anim_hash = 8;
+  uint32 entity_id = 10;
+}

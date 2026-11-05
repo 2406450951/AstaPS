@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _TeamMoonPhaseChangeNotify {
+  uint32 _moon_phase_type = 7;
+  uint32 _moon_phase_level = 20000;
+  uint32 LIAGEGINEPH = 20001;
+  bool _is_activate_damselette_free_moon_phase = 6;
+  uint64 LHLFHFACGNL = 20002;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message SetCodexPushtipsReadReq {
+  uint32 codex_id = 5;
+  uint32 type_id = 14;
+}

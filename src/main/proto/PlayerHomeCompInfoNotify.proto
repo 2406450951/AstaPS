@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "PlayerHomeCompInfo.proto";
+
+message PlayerHomeCompInfoNotify {
+  PlayerHomeCompInfo comp_info = 11;
+}

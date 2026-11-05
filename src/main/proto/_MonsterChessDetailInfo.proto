@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_MonsterChessRecordInfo.proto";
+
+message _MonsterChessDetailInfo {
+  repeated _MonsterChessRecordInfo _monster_chess_record_info = 4;
+}

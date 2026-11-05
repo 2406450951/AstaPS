@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message BPENFBMNKMP {
+  uint32 best_cost_time = 2;
+  bool is_level_open = 3;
+  bool is_finished = 4;
+  uint32 level_id = 1;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGSkillPreviewReactionInfoOuterClass";
+message GCGSkillPreviewReactionInfo {
+  uint32 JKDOMLACNOE = 7;
+  uint32 DCPOEJAMHDF = 14;
+}

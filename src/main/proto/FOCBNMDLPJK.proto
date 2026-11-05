@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FOCBNMDLPJKOuterClass";
+import "HIEHDDNHLEI.proto";
+
+message FOCBNMDLPJK {
+  bool HFGLFLFBNMO = 501;
+  bool ENHMFABEOAP = 502;
+  int32 CDKFNNOFAAG = 503;
+  HIEHDDNHLEI ALDFLMCAMOJ = 504;
+  HIEHDDNHLEI KNDACNAKDOO = 505;
+}

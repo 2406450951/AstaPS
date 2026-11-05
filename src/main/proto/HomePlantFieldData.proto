@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomePlantFieldDataOuterClass";
+import "HomePlantSubFieldData.proto";
+import "Vector.proto";
+
+message HomePlantFieldData {
+  repeated HomePlantSubFieldData sub_field_list = 1;
+  uint32 furniture_id = 3;
+  uint32 field_guid = 4;
+  uint32 scene_id = 11;
+  Vector spawn_pos = 15;
+}

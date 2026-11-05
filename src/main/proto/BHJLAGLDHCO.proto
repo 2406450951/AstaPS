@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message BHJLAGLDHCO {
+  uint32 finish_time = 12;
+  bool is_finish = 1;
+  uint32 BLCPLGCJEBJ = 4;
+}

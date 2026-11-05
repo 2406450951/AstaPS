@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestSceneryOuterClass";
+import "_QuestSceneryState.proto";
+
+message _QuestScenery {
+  uint32 _quest_sub_scenery_id = 3;
+  uint32 _quest_scenery_id = 5;
+  _QuestSceneryState state = 12;
+}

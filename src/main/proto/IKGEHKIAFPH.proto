@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IKGEHKIAFPHOuterClass";
+import "EADKDFKJENC.proto";
+import "HKPEAJFLKLL.proto";
+
+message IKGEHKIAFPH {
+  string name = 501;
+  int32 LAGFLOMMPKO = 502;
+  EADKDFKJENC EJKDAPKHBKM = 503;
+  HKPEAJFLKLL content = 504;
+  EADKDFKJENC offset = 505;
+  int32 BBFEPLDBPGD = 506;
+  int32 NDNDABBLPAF = 507;
+  int32 FOKEFLOFOGJ = 508;
+  bool LNOMKKDNIML = 509;
+  int32 JECJFPHMLIA = 510;
+}

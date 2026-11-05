@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BENPGEKEBPFOuterClass";
+import "BMEAOOOGABN.proto";
+import "CJNDDHOGKLO.proto";
+import "ONMBGOAMECF.proto";
+
+message BENPGEKEBPF {
+  CJNDDHOGKLO guid = 1;
+  ONMBGOAMECF OHIBPKJJFFD = 2;
+  oneof info {
+    BMEAOOOGABN InfoNodeConfig = 100;
+  }
+}

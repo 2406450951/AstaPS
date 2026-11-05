@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+
+message _BeyondParamValueVector3List {
+  repeated HHEDHCFPEKM value_list = 1;
+}

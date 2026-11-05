@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HuntingRevealClueNotifyOuterClass";
+import "HuntingPair.proto";
+import "Vector.proto";
+
+// 7.2 CmdId 9486
+message HuntingRevealClueNotify {
+  Vector clue_position = 1;
+  uint32 finish_clue_count = 2;
+  uint32 finished_group_id = 7;
+  HuntingPair hunting_pair = 12;
+}

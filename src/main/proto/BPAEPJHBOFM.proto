@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_Beacon.proto";
+import "_Decorate.proto";
+
+message BPAEPJHBOFM {
+  oneof detail {
+    _Beacon beacon = 1;
+    _Decorate decorate = 2;
+  }
+}

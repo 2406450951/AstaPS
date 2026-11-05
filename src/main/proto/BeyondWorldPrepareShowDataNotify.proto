@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondWorldPrepareShowDataNotifyOuterClass";
+import "BDFEKNPJBGJ.proto";
+import "HIGIKLLJCHJ.proto";
+import "NFCMDCNOLCB.proto";
+import "OGCDCHPAJKL.proto";
+import "OMDGMNFICHC.proto";
+import "PKKKNAGHGHB.proto";
+
+// 7.2 CmdId 958
+message BeyondWorldPrepareShowDataNotify {
+  PKKKNAGHGHB EPLJBOGHIGP = 2;
+  HIGIKLLJCHJ KJGPFEDCEFL = 3;
+  OMDGMNFICHC FHJONLDIBKA = 4;
+  repeated OGCDCHPAJKL PEABJKLDFGL = 6;
+  bool LHOKEGGGANM = 10;
+  repeated NFCMDCNOLCB NEEOOIEAOHN = 12;
+  repeated BDFEKNPJBGJ LNLLKHKOIFN = 13;
+  uint64 AAFKLFBMKOA = 14;
+}

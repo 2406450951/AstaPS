@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ONMMGLNEIGMOuterClass";
+import "AGPIPKJNBMD.proto";
+import "CKENABMMLFB.proto";
+import "EILMHNONIJN.proto";
+import "FIJIECDAAEL.proto";
+import "KEGMDBHJOAF.proto";
+import "LIDKJAPBMHB.proto";
+import "NPOLOHFILLL.proto";
+
+message ONMMGLNEIGM {
+  int32 DFICKOMODDI = 501;
+  bool FKLMPEBKFEM = 502;
+  oneof detail {
+    AGPIPKJNBMD PlayerHp = 11;
+    FIJIECDAAEL SkillArea = 12;
+    KEGMDBHJOAF TeamAndFaction = 13;
+    NPOLOHFILLL MiniMap = 14;
+    CKENABMMLFB NoneIntrinsicUi = 15;
+    LIDKJAPBMHB BasicActiveControl = 16;
+    EILMHNONIJN ClientUi = 17;
+  }
+}

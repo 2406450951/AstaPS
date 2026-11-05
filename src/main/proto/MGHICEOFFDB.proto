@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MGHICEOFFDBOuterClass";
+import "GCGSkillPreviewInfo.proto";
+
+message MGHICEOFFDB {
+  GCGSkillPreviewInfo EBLDAPHHGEE = 1;
+  uint32 EIAOOGNBKHO = 12;
+  uint32 MCDJNCOPBJA = 14;
+}

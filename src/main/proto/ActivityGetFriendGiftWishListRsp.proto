@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityGetFriendGiftWishListRspOuterClass";
+import "ActivityFriendGiftWishData.proto";
+
+// 7.2 CmdId 28901
+message ActivityGetFriendGiftWishListRsp {
+  uint32 schedule_id = 1;
+  repeated ActivityFriendGiftWishData friend_gift_wish_list = 7;
+  int32 retcode = 12;
+}

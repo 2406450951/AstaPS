@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcTriggerConditionMonsterWaveDeactiveOuterClass";
+message _UgcTriggerConditionMonsterWaveDeactive {
+  uint32 _monster_wave_guid = 15;
+}

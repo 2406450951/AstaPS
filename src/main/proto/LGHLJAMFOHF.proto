@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LGHLJAMFOHFOuterClass";
+message LGHLJAMFOHF {
+  bool is_active = 1;
+  bool CGBBEDDOOIP = 2;
+  repeated uint32 GOOMJEBLPGE = 3;
+}

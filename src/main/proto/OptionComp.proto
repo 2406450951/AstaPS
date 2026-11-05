@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ICCPPEPMDEJ.proto";
+
+message OptionComp {
+  repeated ICCPPEPMDEJ option_list = 1;
+}

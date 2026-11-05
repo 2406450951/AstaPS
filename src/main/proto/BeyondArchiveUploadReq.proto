@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondArchiveUploadReqOuterClass";
+// 7.2 CmdId 21722
+message BeyondArchiveUploadReq {
+  uint32 GBGLGNFAJIL = 1;
+  uint32 OIHGAOAGNPD = 5;
+  uint32 OJNNGFDHLGC = 6;
+  uint32 FOLGJEPPOOE = 10;
+  uint64 guid = 14;
+  string ACPEPMIINBF = 15;
+}

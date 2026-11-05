@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message LBBDOIMGFNI {
+  uint32 cur_value = 5;
+  uint32 max_value = 1;
+}

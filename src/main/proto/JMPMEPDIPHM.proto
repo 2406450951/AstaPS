@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JMPMEPDIPHMOuterClass";
+import "EAKIHFPJENH.proto";
+import "FAGMGLAJFNL.proto";
+import "HGGCDKJPLEK.proto";
+import "JMGJLJFBHOO.proto";
+import "JPBBELBAEPD.proto";
+import "LCPOJHEEDPH.proto";
+import "MEIGDKPIDMA.proto";
+
+message JMPMEPDIPHM {
+  int32 GLOKFLKMJEO = 1;
+  repeated JMGJLJFBHOO EFMFLGNEDAM = 2;
+  FAGMGLAJFNL KLCMCMEEIHN = 3;
+  HGGCDKJPLEK GPEPAHLHNDM = 5;
+  repeated int32 LEGEJLDAFJD = 6;
+  int32 index = 502;
+  bool FIALLJHLFEP = 503;
+  string name = 504;
+  int32 filter_type = 505;
+  oneof detail {
+    LCPOJHEEDPH BeyondAvatarDisturberTraveller = 11;
+    EAKIHFPJENH BeyondAvatarDisturberField = 12;
+    JPBBELBAEPD BeyondAvatarDisturberEject = 13;
+    MEIGDKPIDMA BeyondAvatarDisturberDrag = 14;
+  }
+}

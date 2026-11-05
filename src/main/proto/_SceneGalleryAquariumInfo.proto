@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryAquariumInfoOuterClass";
+import "KMEFECFMEKN.proto";
+import "Uint32Pair.proto";
+import "Vector.proto";
+import "_AquariumDivingBagDetail.proto";
+import "_AquariumDivingCompassInfo.proto";
+import "_AquariumDivingTaskProgress.proto";
+
+message _SceneGalleryAquariumInfo {
+  repeated _AquariumDivingTaskProgress _task_progress_list = 1;
+  _AquariumDivingBagDetail _bag_detail = 3;
+  KMEFECFMEKN BDGLHJJFFDO = 5;
+  bool CCFMJBPAJHM = 7;
+  _AquariumDivingCompassInfo _aquarium_diving_compass_info = 8;
+  repeated Vector _escape_point_pos_list = 9;
+  repeated uint32 _escape_point_id_list = 10;
+  repeated Uint32Pair GLBNEHCNLGG = 11;
+  uint32 _bait_count = 14;
+}

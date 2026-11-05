@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcEnterDungeonReqOuterClass";
+import "_EnterUgcDungeonType.proto";
+import "_UgcDungeonAvatarInfo.proto";
+
+// 7.2 CmdId 1796
+message _UgcEnterDungeonReq {
+  uint64 dungeon_guid = 2;
+  uint32 dungeon_id = 7;
+  repeated _UgcDungeonAvatarInfo avatar_info_list = 8;
+  uint32 room_id = 11;
+  _EnterUgcDungeonType enter_type = 15;
+}

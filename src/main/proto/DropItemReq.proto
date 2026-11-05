@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DropItemReqOuterClass";
+import "StoreType.proto";
+import "Vector.proto";
+
+// 7.2 CmdId 3858
+message DropItemReq {
+  uint64 guid = 4;
+  uint32 count = 9;
+  StoreType store_type = 12;
+  Vector pos = 14;
+}

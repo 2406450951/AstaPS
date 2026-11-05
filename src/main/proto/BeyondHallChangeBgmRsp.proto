@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondHallChangeBgmRspOuterClass";
+// 7.2 CmdId 20591
+message BeyondHallChangeBgmRsp {
+  uint32 bgm_id = 3;
+  int32 retcode = 7;
+}

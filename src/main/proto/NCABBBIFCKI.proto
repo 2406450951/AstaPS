@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NCABBBIFCKIOuterClass";
+enum NCABBBIFCKI {
+  NCABBBIFCKI_BRONZE = 0;
+  NCABBBIFCKI_SILVER = 1;
+  NCABBBIFCKI_GOLD = 2;
+  NCABBBIFCKI_PLATINUM = 3;
+  NCABBBIFCKI_STAR = 4;
+  NCABBBIFCKI_MOON = 5;
+  NCABBBIFCKI_SUN = 6;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GKHOKJEKLFCOuterClass";
+import "PIFNOJGJKHD.proto";
+
+message GKHOKJEKLFC {
+  uint32 type = 2;
+  int32 value = 6;
+  repeated PIFNOJGJKHD OIBCGBDCCHM = 11;
+  int32 MHCDIEMKCOJ = 14;
+}

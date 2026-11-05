@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HuntingPairOuterClass";
+message HuntingPair {
+  uint32 monster_config_id = 3;
+  uint32 refresh_id = 4;
+}

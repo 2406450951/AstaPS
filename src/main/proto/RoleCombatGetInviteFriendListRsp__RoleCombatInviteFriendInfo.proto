@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatGetInviteFriendListRsp__RoleCombatInviteFriendInfoOuterClass";
+import "FriendBrief.proto";
+import "Uint32Pair.proto";
+
+message RoleCombatGetInviteFriendListRsp__RoleCombatInviteFriendInfo {
+  FriendBrief _friend_brief = 7;
+  repeated Uint32Pair DLHMEJEEBCA = 11;
+}

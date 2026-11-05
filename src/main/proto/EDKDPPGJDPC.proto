@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EDKDPPGJDPCOuterClass";
+message EDKDPPGJDPC {
+  uint32 _monster_chess_team_num = 3;
+  repeated uint32 ODIPCCCFFDE = 8;
+  repeated uint32 FJECFGBKJHK = 11;
+  uint32 IGMKDOBLGPD = 12;
+}

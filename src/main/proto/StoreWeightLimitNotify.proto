@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "StoreType.proto";
+
+message StoreWeightLimitNotify {
+  uint32 CDHAIJGOKFC = 20000;
+  uint32 DKIEKFJMMIH = 20001;
+  uint32 OAJHCKBKFPP = 20002;
+  uint32 reliquary_count_limit = 20003;
+  uint32 KADABCKKMGA = 20004;
+  StoreType store_type = 6;
+  uint32 _beyond_hall_facility_count_limit = 20005;
+  uint32 weight_limit = 2;
+}

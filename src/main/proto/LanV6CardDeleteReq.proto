@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LanV6CardDeleteReqOuterClass";
+// 7.2 CmdId 25090
+message LanV6CardDeleteReq {
+  repeated uint64 card_guid_list = 15;
+}

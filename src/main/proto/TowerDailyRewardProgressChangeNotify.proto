@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TowerDailyRewardProgressChangeNotifyOuterClass";
+// 7.2 CmdId 23625
+message TowerDailyRewardProgressChangeNotify {
+  uint32 BGMCMCOOEBK = 4;
+  uint32 OMNJCLGONGM = 9;
+}

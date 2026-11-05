@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ItemParam.proto";
+
+message _AvatarEscoffierSkillCookRsp {
+  repeated ItemParam item_list = 10;
+  uint32 _last_refresh_time = 20000;
+  uint32 _finished_weekly_cook_num = 20001;
+  int32 retcode = 14;
+}

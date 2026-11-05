@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Vector.proto";
+
+message SkyCrystalDetectorData {
+  Vector hint_center_pos = 6;
+  uint32 group_id = 5;
+  bool is_hint_valid = 3;
+  uint32 config_id = 1;
+}

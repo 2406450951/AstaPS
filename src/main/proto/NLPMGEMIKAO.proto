@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NLPMGEMIKAOOuterClass";
+import "CJMDFPONKPM.proto";
+import "HLNJDLCOEBO.proto";
+
+message NLPMGEMIKAO {
+  int32 content_type = 1;
+  CJMDFPONKPM KKLJPGAGCPF = 2;
+  HLNJDLCOEBO icon = 3;
+}

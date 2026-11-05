@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BMEAOOOGABNOuterClass";
+import "BJNKPNHFOHD.proto";
+
+message BMEAOOOGABN {
+  bool ELGPJIAMNKH = 1;
+  repeated BJNKPNHFOHD HDBMGNMBJPB = 2;
+}

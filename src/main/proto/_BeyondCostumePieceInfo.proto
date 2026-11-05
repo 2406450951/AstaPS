@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _BeyondCostumePieceInfo {
+  uint32 _costume_slot_index = 2;
+  uint32 costume_id = 1;
+}

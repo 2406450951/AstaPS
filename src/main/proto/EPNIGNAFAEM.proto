@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "CDHMHGIAMGM.proto";
+import "IGMCBGMACEJ.proto";
+import "OFBGCMDEAAL.proto";
+
+message EPNIGNAFAEM {
+  CDHMHGIAMGM basic_info = 502;
+  IGMCBGMACEJ BPNOIGGADDH = 503;
+  OFBGCMDEAAL IEOFCILLNLM = 504;
+  uint32 DNCJDAOOGHF = 501;
+  uint32 data_version = 505;
+}

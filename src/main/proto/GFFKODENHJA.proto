@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Vector.proto";
+
+message GFFKODENHJA {
+  Vector ref_pos = 4;
+  uint32 entity_id = 6;
+  uint32 ref_id = 12;
+}

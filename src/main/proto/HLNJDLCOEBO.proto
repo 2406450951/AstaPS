@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HLNJDLCOEBOOuterClass";
+import "BIOCOIFOGDE.proto";
+
+message HLNJDLCOEBO {
+  string name = 1;
+  int32 NBFHKIOFPBC = 2;
+  int32 KNCGGHCPAOK = 3;
+  BIOCOIFOGDE EJKDAPKHBKM = 4;
+  BIOCOIFOGDE offset = 5;
+}

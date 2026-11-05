@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TeyvatDispatchEnterInfoOuterClass";
+import "_ActivityAvatarInfo.proto";
+
+message _TeyvatDispatchEnterInfo {
+  uint32 difficulty = 4;
+  bool _is_restart = 5;
+  repeated _ActivityAvatarInfo avatar_list = 7;
+  uint32 JKHPGAAKCPI = 14;
+}

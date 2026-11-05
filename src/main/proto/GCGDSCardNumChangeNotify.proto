@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGDSCardNumChangeNotifyOuterClass";
+// 7.2 CmdId 7436
+message GCGDSCardNumChangeNotify {
+  uint32 card_id = 2;
+  uint32 num = 13;
+}

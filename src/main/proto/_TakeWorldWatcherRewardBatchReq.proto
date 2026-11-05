@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TakeWorldWatcherRewardBatchReqOuterClass";
+// 7.2 CmdId 2124
+message _TakeWorldWatcherRewardBatchReq {
+  repeated uint32 watcher_id_list = 3;
+}

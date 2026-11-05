@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KEDIEGLJIMCOuterClass";
+import "_BeyondWorldInfo.proto";
+import "_HallWorldInfo.proto";
+import "_PlayerWorldAnchorPointInfo.proto";
+import "_PlayerWorldInfo.proto";
+
+message KEDIEGLJIMC {
+  oneof detail {
+    _BeyondWorldInfo BeyondWorldInfo = 11;
+    _HallWorldInfo HallWorldInfo = 12;
+    _PlayerWorldInfo PlayerWorldInfo = 13;
+    _PlayerWorldAnchorPointInfo PlayerWorldAnchorPointInfo = 14;
+  }
+}

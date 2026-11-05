@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_HideAndSeekV4StageInfoOuterClass";
+import "_HideAndSeekV4PlayerBattleInfo.proto";
+
+message _HideAndSeekV4StageInfo {
+  map<uint32, _HideAndSeekV4PlayerBattleInfo> battle_info_map = 3;
+  repeated uint32 hider_uid_list = 5;
+  uint32 hunter_uid = 8;
+  uint32 map_id = 12;
+  bool is_record_score = 13;
+}

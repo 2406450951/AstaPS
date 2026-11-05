@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ChannelerSlabStageActiveChallengeIndexNotifyOuterClass";
+message ChannelerSlabStageActiveChallengeIndexNotify {
+  uint32 stage_id = 1;
+  uint32 challenge_index = 2;
+  uint32 active_camp_index = 3;
+}

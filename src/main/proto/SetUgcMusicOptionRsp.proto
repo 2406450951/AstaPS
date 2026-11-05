@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SetUgcMusicOptionRspOuterClass";
+import "UgcType.proto";
+
+// 7.2 CmdId 8520
+message SetUgcMusicOptionRsp {
+  bool _is_allow_import = 6;
+  UgcType ugc_type = 10;
+  int32 retcode = 15;
+}

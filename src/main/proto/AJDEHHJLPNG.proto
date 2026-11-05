@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AJDEHHJLPNGOuterClass";
+import "FAGMGLAJFNL.proto";
+import "LMMLCBPKOIO.proto";
+import "PHBNBLFCHBG.proto";
+import "PMKKJIKNJEB.proto";
+
+message AJDEHHJLPNG {
+  string ENLGNCEKJBM = 1;
+  bool HDCKCMDOGPF = 2;
+  float CHEAOIFKKMA = 4;
+  float IDMDJONENEB = 5;
+  repeated uint32 EGHKHCHANNF = 6;
+  repeated uint32 NHJAICEMFFF = 7;
+  repeated PMKKJIKNJEB ILNDGKLHADD = 8;
+  repeated LMMLCBPKOIO BJBKJNEFGGE = 9;
+  FAGMGLAJFNL FJLNFAJMCMO = 10;
+  repeated PHBNBLFCHBG MCBINGFBBDG = 11;
+  repeated PHBNBLFCHBG DEBJOCHMEFA = 12;
+  repeated PHBNBLFCHBG KEHDIOHFMEN = 13;
+  repeated PHBNBLFCHBG NOIOILOHKHG = 14;
+  repeated PHBNBLFCHBG HLDCCLCKHLD = 15;
+  float HLEKIIDGJPC = 16;
+}

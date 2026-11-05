@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcGadgetOuterClass";
+import "_UgcChestGadget.proto";
+import "_UgcEntityBasicInfo.proto";
+import "_UgcShopGadget.proto";
+
+message _UgcGadget {
+  bool _is_default_hide = 7;
+  _UgcEntityBasicInfo basic_info = 9;
+  uint32 _default_gadget_state_id = 10;
+  oneof param {
+    _UgcChestGadget ChestInfo = 2;
+    _UgcShopGadget ShopInfo = 4;
+  }
+}

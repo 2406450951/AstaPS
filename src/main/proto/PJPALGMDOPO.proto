@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PJPALGMDOPOOuterClass";
+import "NADJHIGFEJP.proto";
+import "NOIPPNOCPGD.proto";
+
+message PJPALGMDOPO {
+  repeated NOIPPNOCPGD MCAPHCDPLPP = 1;
+  repeated NADJHIGFEJP LBHDFEFDHKG = 501;
+}

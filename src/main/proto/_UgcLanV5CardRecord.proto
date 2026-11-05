@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "LanV5CardEntry.proto";
+
+message _UgcLanV5CardRecord {
+  repeated LanV5CardEntry card_list = 20000;
+}

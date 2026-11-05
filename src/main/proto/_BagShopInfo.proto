@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BagShopInfoOuterClass";
+import "AIOAIEIKFFD.proto";
+import "GJOPDCGMDKA.proto";
+import "_CurrentPhase.proto";
+
+message _BagShopInfo {
+  repeated _CurrentPhase NGMLNEHNICI = 1;
+  repeated GJOPDCGMDKA ECOGBFDGCDB = 2;
+  AIOAIEIKFFD _bag_detail = 3;
+}

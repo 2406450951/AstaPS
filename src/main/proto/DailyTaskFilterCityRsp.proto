@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DailyTaskFilterCityRspOuterClass";
+// 7.2 CmdId 27919
+message DailyTaskFilterCityRsp {
+  int32 retcode = 5;
+  uint32 city_id = 9;
+}

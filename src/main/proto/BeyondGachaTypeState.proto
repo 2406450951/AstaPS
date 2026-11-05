@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondGachaTypeStateOuterClass";
+import "ItemParam.proto";
+
+message BeyondGachaTypeState {
+  uint32 _beyond_gacha_type = 1;
+  repeated uint32 FECHBOOOGJM = 3;
+  uint32 MJCAEJEEANO = 9;
+  repeated ItemParam IKBAHAHKOBG = 15;
+}

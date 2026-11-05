@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HAIMMNLCIGPOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message HAIMMNLCIGP {
+  bool IOBGEJHNIJJ = 1;
+  string HOLKHGLCCCC = 2;
+  HHEDHCFPEKM offset = 3;
+  uint32 MKGAOEBNHEN = 4;
+  bool KFLIIOPELHG = 6;
+  bool CMHLBBHCENB = 7;
+}

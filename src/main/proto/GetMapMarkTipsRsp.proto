@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetMapMarkTipsRspOuterClass";
+import "MapMarkTipsInfo.proto";
+
+// 7.2 CmdId 25684
+message GetMapMarkTipsRsp {
+  int32 retcode = 10;
+  repeated MapMarkTipsInfo mark_tips_list = 12;
+}

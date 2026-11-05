@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondLocalBulletPropertyOuterClass";
+import "HNIAABOIFEJ.proto";
+import "KOPDAPFJMPD.proto";
+import "LEMKOFEOCHP.proto";
+
+message _BeyondLocalBulletProperty {
+  LEMKOFEOCHP LFFAMFOGJAC = 1;
+  HNIAABOIFEJ MPCBFIPEBHD = 2;
+  KOPDAPFJMPD ACNPPHHHJPD = 3;
+}

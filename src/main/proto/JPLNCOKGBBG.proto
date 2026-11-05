@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "IHNALHEKDID.proto";
+
+message JPLNCOKGBBG {
+  repeated IHNALHEKDID HAOABGIPDMO = 1;
+  uint32 schedule_id = 12;
+}

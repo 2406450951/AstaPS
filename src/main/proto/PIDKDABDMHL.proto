@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PIDKDABDMHLOuterClass";
+import "GHNOHNMPIJG.proto";
+import "HGGCDKJPLEK.proto";
+
+message PIDKDABDMHL {
+  float HGLKBJELFEC = 1;
+  float DDPIOFHBPAE = 2;
+  float EALDBIIPOKM = 3;
+  bool NFIGBIFKOJD = 4;
+  uint32 level = 5;
+  HGGCDKJPLEK LIKOJNDFKKB = 6;
+  float GMPHNNDALHE = 7;
+  float GPKPFADGNPJ = 8;
+  float EPCNDBKGFDB = 9;
+  float EJMHMGCIKIH = 10;
+  float CLMEGJCOCND = 11;
+  float IAMBFAFAOEK = 12;
+  float LIOGJMMKAMD = 13;
+  float BFGPLHMOKCK = 14;
+  float IDGDGGDGDBJ = 15;
+  bool LEOFJBDGMBG = 16;
+  float HAGPHFNDOEH = 17;
+  repeated GHNOHNMPIJG DIAFIJFOOAJ = 501;
+}

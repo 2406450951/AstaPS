@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_RankedMatchSnowBallEnterInfoOuterClass";
+import "_ActivityAvatarInfo.proto";
+
+message _RankedMatchSnowBallEnterInfo {
+  bool _is_restart = 1;
+  repeated _ActivityAvatarInfo avatar_list = 8;
+  uint32 difficulty = 14;
+}

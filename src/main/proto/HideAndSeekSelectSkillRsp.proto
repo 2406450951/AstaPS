@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HideAndSeekSelectSkillRspOuterClass";
+// 7.2 CmdId 2876
+message HideAndSeekSelectSkillRsp {
+  int32 retcode = 8;
+  repeated uint32 skill_list = 11;
+}

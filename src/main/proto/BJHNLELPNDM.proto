@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BJHNLELPNDMOuterClass";
+import "LMMLCBPKOIO.proto";
+import "PMKKJIKNJEB.proto";
+
+message BJHNLELPNDM {
+  float EKCJEOFDFDM = 1;
+  repeated uint32 EGHKHCHANNF = 2;
+  repeated uint32 NHJAICEMFFF = 3;
+  repeated PMKKJIKNJEB ILNDGKLHADD = 4;
+  repeated LMMLCBPKOIO BJBKJNEFGGE = 5;
+}

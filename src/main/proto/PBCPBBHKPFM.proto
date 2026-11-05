@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PBCPBBHKPFMOuterClass";
+import "FGLKAMHKIGN.proto";
+import "HGGENKNHBNH.proto";
+
+message PBCPBBHKPFM {
+  HGGENKNHBNH NKKFOEFPEEO = 1;
+  FGLKAMHKIGN EJCIMMKLDAE = 15;
+}

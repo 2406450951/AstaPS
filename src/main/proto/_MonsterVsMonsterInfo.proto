@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterVsMonsterInfoOuterClass";
+import "MNGEENLMEFG.proto";
+import "PMGGCFNDHHB.proto";
+
+message _MonsterVsMonsterInfo {
+  PMGGCFNDHHB MGKCGEKENOC = 1;
+  MNGEENLMEFG JJFKAMACJFE = 2;
+  uint32 _round_num = 3;
+  uint32 BAONDHCPBBE = 4;
+  uint32 GAMPAMDFMID = 5;
+}

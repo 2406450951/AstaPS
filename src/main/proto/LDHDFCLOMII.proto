@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LDHDFCLOMIIOuterClass";
+import "AGADFKKDIDF.proto";
+import "MGCJGINMICO.proto";
+
+message LDHDFCLOMII {
+  MGCJGINMICO HCIJPAGJOBE = 1;
+  AGADFKKDIDF data = 2;
+}

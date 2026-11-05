@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_PairOpOuterClass";
+message _PairOp {
+  uint32 KDHAOJFJFIP = 1;
+  uint32 OLBGFLGJBCI = 4;
+  int32 HANBICHHGOA = 11;
+}

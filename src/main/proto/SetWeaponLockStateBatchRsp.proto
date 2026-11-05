@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SetWeaponLockStateBatchRspOuterClass";
+// 7.2 CmdId 8244
+message SetWeaponLockStateBatchRsp {
+  bool is_locked = 6;
+  int32 retcode = 9;
+}

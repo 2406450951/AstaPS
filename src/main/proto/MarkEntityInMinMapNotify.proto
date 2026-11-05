@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MarkEntityInMinMapNotifyOuterClass";
+import "Vector.proto";
+
+// 7.2 CmdId 4275
+message MarkEntityInMinMapNotify {
+  uint32 entity_id = 4;
+  Vector position = 11;
+  uint32 monster_id = 13;
+}

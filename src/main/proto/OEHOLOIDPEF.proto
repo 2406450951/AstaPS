@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActionPointsNoCostBuffInfo.proto";
+import "_AddTotalRevenueAfterActionsExecBuffInfo.proto";
+import "_ExpandToReduceUpgradeCostBuffInfo.proto";
+import "_HireLevelUpgradeBuffInfo.proto";
+import "_NoQuestApCostAfterQuestFinishBuffInfo.proto";
+import "_RevenueBonusBuffInfo.proto";
+import "_UpgradeToBonusFacilityRevenueBuffInfo.proto";
+
+message OEHOLOIDPEF {
+  uint32 NNPEIMCDGIP = 6;
+  uint32 level = 9;
+  uint32 JCACGOEHBOA = 5;
+  uint32 guid = 15;
+  uint32 buff_id = 11;
+  oneof detail {
+    _HireLevelUpgradeBuffInfo hire_level_upgrade_buff_info = 1184;
+    _ActionPointsNoCostBuffInfo action_points_no_cost_buff_info = 698;
+    _NoQuestApCostAfterQuestFinishBuffInfo no_quest_ap_cost_after_quest_finish_buff_info = 471;
+    _RevenueBonusBuffInfo revenue_bonus_buff_info = 610;
+    _AddTotalRevenueAfterActionsExecBuffInfo add_total_revenue_after_actions_exec_buff_info = 297;
+    _UpgradeToBonusFacilityRevenueBuffInfo upgrade_to_bonus_facility_revenue_buff_info = 1120;
+    _ExpandToReduceUpgradeCostBuffInfo expand_to_reduce_upgrade_cost_buff_info = 1319;
+  }
+}

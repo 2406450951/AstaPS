@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtGrapplingHookMoveOuterClass";
+import "Vector.proto";
+
+message EvtGrapplingHookMove {
+  bool FPHFMEKFJIF = 1;
+  Vector target_pos = 4;
+  float acceleration = 5;
+  repeated uint32 animator_state_id_list = 6;
+  float speed = 9;
+  float max_speed = 10;
+  int32 param_index = 11;
+  uint32 entity_id = 12;
+  bool BLPNGICNCEO = 13;
+  string override_collider = 15;
+}

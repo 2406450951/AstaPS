@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CLGOODKINLNOuterClass";
+import "BCCKHJEJFGE.proto";
+import "EGKCOBDNAKD.proto";
+import "ILGJMEINFIE.proto";
+
+message CLGOODKINLN {
+  uint32 config_id = 1;
+  string key = 2;
+  EGKCOBDNAKD HGNICLOBBEN = 3;
+  DFIJEOOKOEO KJMLDBFCONN = 4;
+  bool GBCFIICGEGM = 5;
+  ILGJMEINFIE BICMMLKCOIB = 6;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ToTheMoonEnterSceneReqOuterClass";
+// 7.2 CmdId 6191
+message ToTheMoonEnterSceneReq {
+  uint32 version = 1;
+  uint32 scene_id = 4;
+  uint32 AIBADOKMLAN = 6;
+  uint32 NOGIGNFDIEB = 13;
+}

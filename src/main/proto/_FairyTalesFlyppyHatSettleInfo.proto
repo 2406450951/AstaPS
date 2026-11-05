@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_FairyTalesFlyppyHatSettleInfoOuterClass";
+message _FairyTalesFlyppyHatSettleInfo {
+  uint32 score = 1;
+  bool is_new_record = 2;
+  bool is_finished = 3;
+  uint32 cost_time = 4;
+  uint32 NAPIPKJAAHA = 5;
+  uint32 IFBIAIEMHLJ = 6;
+  uint32 ANBAHEPJPHK = 7;
+  uint32 DPAMBIEFFBJ = 8;
+  uint32 PIGKHKNNJOD = 9;
+  uint32 JDJIJFCOLLO = 10;
+  uint32 HBPGBLIBLHB = 11;
+  repeated uint32 JNAEGHLHAAN = 12;
+  repeated uint32 FLCABBLKLCM = 13;
+  repeated uint32 DICNNACOAFK = 14;
+}

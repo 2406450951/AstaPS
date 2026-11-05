@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum _AquariumDivingTaskState {
+  _AquariumDivingTaskState_AQUARIUM_TASK_NOT_ACCEPTED = 0;
+  _AquariumDivingTaskState_AQUARIUM_TASK_PRE_QUEST_NOT_FINISHED = 1;
+  _AquariumDivingTaskState_AQUARIUM_TASK_UNFINISHED = 2;
+  _AquariumDivingTaskState_AQUARIUM_TASK_REWARD_ACCEPTABLE = 3;
+  _AquariumDivingTaskState_AQUARIUM_TASK_POST_QUEST_NOT_FINISHED = 4;
+  _AquariumDivingTaskState_AQUARIUM_TASK_FINISHED = 5;
+}

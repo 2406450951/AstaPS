@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TpsDefenseTrapInfoOuterClass";
+message _TpsDefenseTrapInfo {
+  uint32 _trap_id = 6;
+  uint32 entity_id = 7;
+  uint32 _grid_index = 12;
+}

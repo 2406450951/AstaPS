@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeSeekFurnitureGalleryScoreNotifyOuterClass";
+import "GalleryStopReason.proto";
+import "HomeSeekFurnitureOneRecord.proto";
+
+// 7.2 CmdId 21542
+message HomeSeekFurnitureGalleryScoreNotify {
+  GalleryStopReason reason = 1;
+  uint32 gallery_id = 7;
+  HomeSeekFurnitureOneRecord record = 11;
+}

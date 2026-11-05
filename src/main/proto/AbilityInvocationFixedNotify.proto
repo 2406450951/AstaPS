@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityInvocationFixedNotifyOuterClass";
+import "AbilityInvokeEntry.proto";
+
+// 7.2 CmdId 6391
+message AbilityInvocationFixedNotify {
+  AbilityInvokeEntry invoke5th = 7;
+  AbilityInvokeEntry invoke6th = 10;
+  AbilityInvokeEntry invoke2nd = 11;
+  AbilityInvokeEntry invoke4th = 12;
+  AbilityInvokeEntry invoke1st = 13;
+  AbilityInvokeEntry invoke3rd = 15;
+}

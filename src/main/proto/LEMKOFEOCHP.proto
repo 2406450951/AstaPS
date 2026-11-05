@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LEMKOFEOCHPOuterClass";
+message LEMKOFEOCHP {
+  float HGLKBJELFEC = 1;
+  float DDPIOFHBPAE = 2;
+  float EALDBIIPOKM = 3;
+  uint32 DPAABIGKJEJ = 4;
+  bool KKNKJDBJICG = 5;
+}

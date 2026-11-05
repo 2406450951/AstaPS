@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BNGIPGGLOEFOuterClass";
+import "HKPEAJFLKLL.proto";
+
+message BNGIPGGLOEF {
+  string name = 501;
+  int32 LAGFLOMMPKO = 502;
+  HKPEAJFLKLL content = 503;
+  float APHKNCKOFDM = 504;
+  int32 index = 601;
+}

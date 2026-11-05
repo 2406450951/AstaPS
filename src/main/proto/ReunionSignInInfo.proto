@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ReunionSignInInfoOuterClass";
+message ReunionSignInInfo {
+  uint32 LMNBFKAKMEN = 4;
+  uint32 HDKLJHDJNBH = 7;
+  uint32 config_id = 10;
+  repeated uint32 reward_day_list = 14;
+}

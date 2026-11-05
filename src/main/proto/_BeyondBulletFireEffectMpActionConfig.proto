@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondBulletFireEffectMpActionConfigOuterClass";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+import "JOJKJCPIMCA.proto";
+
+message _BeyondBulletFireEffectMpActionConfig {
+  int32 FGGJFIKNDLB = 1;
+  FAGMGLAJFNL PEHPNKIJIPO = 2;
+  HHEDHCFPEKM offset = 3;
+  HHEDHCFPEKM OEPBPEKNNKP = 4;
+  float NILBBNBJKGD = 7;
+  JOJKJCPIMCA PEDCMMLNGFH = 8;
+  bool FGHDEAGKOMM = 9;
+}

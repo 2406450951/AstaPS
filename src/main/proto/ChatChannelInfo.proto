@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ChatChannelInfoOuterClass";
+message ChatChannelInfo {
+  uint32 channel_id = 2;
+  bool MLHANDEIPMN = 7;
+  bool GBGJOPELMKE = 11;
+  bool is_shield = 14;
+}

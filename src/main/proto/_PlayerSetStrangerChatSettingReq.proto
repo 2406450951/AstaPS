@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_PlayerSetStrangerChatSettingReqOuterClass";
+import "_StrangerChatSetting.proto";
+
+// 7.2 CmdId 5553
+message _PlayerSetStrangerChatSettingReq {
+  _StrangerChatSetting _stranger_chat_setting = 10;
+}

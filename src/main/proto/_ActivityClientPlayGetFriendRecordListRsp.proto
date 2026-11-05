@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ActivityClientPlayGetFriendRecordListRspOuterClass";
+import "LNCLNICEHNA.proto";
+import "_ClientPlayFriendRecordInfo.proto";
+
+// 7.2 CmdId 29662
+message _ActivityClientPlayGetFriendRecordListRsp {
+  LNCLNICEHNA HPBIALPMAKN = 1;
+  uint32 schedule_id = 3;
+  int32 retcode = 4;
+  repeated _ClientPlayFriendRecordInfo friend_record_list = 7;
+  uint32 level_id = 8;
+}

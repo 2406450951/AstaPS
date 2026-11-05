@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _DungeonQuickOpenRsp {
+  int32 retcode = 2;
+  uint32 dungeon_entry_config_id = 8;
+}

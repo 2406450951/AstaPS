@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_AquariumDivingBagDetail.proto";
+import "_AquariumDivingLevelEvent.proto";
+
+message _AquariumDivingDungeonSettleInfo {
+  repeated uint32 _finished_task_id_list = 10;
+  _AquariumDivingBagDetail _bag_detail = 7;
+  _AquariumDivingLevelEvent IDPMJLBKBNC = 20000;
+  uint32 CFPHMDCAGDL = 20001;
+  uint32 GJFKPLMNGED = 20002;
+  uint32 item_count = 13;
+  uint32 IHODOKLDAGG = 20003;
+  uint32 _bait_count = 11;
+}

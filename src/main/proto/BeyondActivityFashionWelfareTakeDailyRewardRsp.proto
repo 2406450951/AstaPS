@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondActivityFashionWelfareTakeDailyRewardRspOuterClass";
+// 7.2 CmdId 35806
+message BeyondActivityFashionWelfareTakeDailyRewardRsp {
+  uint32 activity_id = 4;
+  int32 retcode = 6;
+}

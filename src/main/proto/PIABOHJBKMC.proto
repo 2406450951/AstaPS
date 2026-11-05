@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PIABOHJBKMCOuterClass";
+import "ANPNCGFPLFF.proto";
+import "EOCJPOAOGFP.proto";
+
+message PIABOHJBKMC {
+  uint32 guid = 1;
+  repeated ANPNCGFPLFF KHOACFNELOP = 4;
+  repeated EOCJPOAOGFP LIPAEIDEIBG = 5;
+}

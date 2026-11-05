@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FungusFighterTrainingGallerySettleNotifyOuterClass";
+import "GalleryStopReason.proto";
+
+message FungusFighterTrainingGallerySettleNotify {
+  uint32 total_used_time = 1;
+  uint32 LNBHLJNPGKG = 2;
+  uint32 LDLLGELLGKO = 3;
+  uint32 BPBBCNPNMHH = 4;
+  bool is_final_settle = 5;
+  uint32 final_score = 6;
+  bool is_new_record = 7;
+  GalleryStopReason reason = 8;
+}

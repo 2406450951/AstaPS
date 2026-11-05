@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_StructObjectOuterClass";
+import "ODCKNOOPBCD.proto";
+
+message _StructObject {
+  ODCKNOOPBCD DAOIDIAMLBK = 1;
+  ODCKNOOPBCD LJFJGIKNIAB = 2;
+  bool OEJAAFMCCOC = 3;
+}

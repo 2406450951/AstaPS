@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityInvocationFailNotifyOuterClass";
+import "AbilityInvokeEntry.proto";
+
+// 7.2 CmdId 8013
+message AbilityInvocationFailNotify {
+  uint32 entity_id = 3;
+  AbilityInvokeEntry invoke = 5;
+  string reason = 9;
+}

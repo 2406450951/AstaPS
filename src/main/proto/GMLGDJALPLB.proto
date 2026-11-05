@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GMLGDJALPLBOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message GMLGDJALPLB {
+  string BPLNELOCDAE = 1;
+  uint32 ALBAIFHPDNC = 2;
+  bool PMIMGOHEICH = 3;
+  int32 OAKMKJCBEFO = 4;
+  string JNIGJMPNCKD = 5;
+  int32 AFLFLNOMBLO = 6;
+  float NILBBNBJKGD = 7;
+  HHEDHCFPEKM LAIKKIOHFPB = 8;
+  HHEDHCFPEKM PBJHHNLHDMD = 9;
+  bool FMNLPICFJCK = 10;
+  int32 JFJCECNFBJL = 11;
+  uint32 HGFFDHFGFIE = 12;
+}

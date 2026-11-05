@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+
+message _AvatarEnterFocus {
+  HHEDHCFPEKM offset = 2;
+  float FCHFDEKPEMN = 4;
+  float HAIGJANNIKM = 1;
+  float LNCDOHGMNKE = 6;
+  float ACAADMLKLOC = 5;
+  float IFDOOECCCPJ = 3;
+}

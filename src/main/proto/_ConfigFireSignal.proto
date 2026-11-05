@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ConfigFireSignalOuterClass";
+import "CJNDDHOGKLO.proto";
+
+message _ConfigFireSignal {
+  string PEHDGIPNKDC = 1;
+  CJNDDHOGKLO LNBBOHPKAKP = 2;
+  CJNDDHOGKLO PPJHKLKJBFO = 3;
+  CJNDDHOGKLO NBGNFIINCJM = 4;
+}

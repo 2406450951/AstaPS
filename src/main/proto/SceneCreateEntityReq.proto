@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneCreateEntityReqOuterClass";
+import "CreateEntityInfo.proto";
+import "CreateReason.proto";
+
+// 7.2 CmdId 3044
+message SceneCreateEntityReq {
+  CreateEntityInfo entity = 3;
+  CreateReason reason = 7;
+  bool is_destroy_when_disconnect = 15;
+}

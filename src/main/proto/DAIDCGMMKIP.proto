@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DAIDCGMMKIPOuterClass";
+import "CEAOFNIJLGP.proto";
+import "FAGMGLAJFNL.proto";
+import "IHCAKEOMECI.proto";
+import "JANJMHIBMJN.proto";
+
+message DAIDCGMMKIP {
+  FAGMGLAJFNL JGEFKLNNAFM = 1;
+  CEAOFNIJLGP PHCANBJCLAG = 11;
+  JANJMHIBMJN EDHLGHHEBFO = 12;
+  IHCAKEOMECI ILCPGOPPCMK = 13;
+}

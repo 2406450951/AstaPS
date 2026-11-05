@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _LanternRiteV6BattleSettleInfo {
+  bool is_new_record = 15;
+  uint32 score = 3;
+  uint32 use_time = 6;
+  uint32 difficulty = 12;
+  uint32 level_id = 4;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CMADLABNEPEOuterClass";
+message CMADLABNEPE {
+  float ONJCNEANCLN = 1;
+  bool NLGIENMCBFB = 2;
+  float PMADGDANDMK = 3;
+  bool KEBBJPOEOGL = 4;
+}

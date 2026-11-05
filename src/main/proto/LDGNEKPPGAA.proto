@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LDGNEKPPGAAOuterClass";
+import "DOEKJAMOHNG.proto";
+import "HHEDHCFPEKM.proto";
+import "LDLDIKEEKGO.proto";
+
+message LDGNEKPPGAA {
+  string template_id = 1;
+  float radius = 2;
+  float DELBALABLCM = 3;
+  HHEDHCFPEKM CLHHMKAMKOF = 4;
+  float FMPIPGDNKHD = 5;
+  float JDKIHOLDLNL = 6;
+  float JKMPCDCGGNG = 11;
+  LDLDIKEEKGO type = 12;
+  bool BHLMPJPEMOB = 13;
+  float LNNLPEAOKGB = 14;
+  float OGLOMDPMEPG = 15;
+  float OLEAGEGKJJM = 16;
+  float JBMBPAPJPGI = 17;
+  float KEAEGFCHHFD = 18;
+  bool BKEJFKKLLAC = 19;
+  float FFOLEPNMBJJ = 20;
+  DOEKJAMOHNG JBGGIGDFOMK = 21;
+  bool FCFGJLLHENA = 22;
+  float EOGCFICNBDI = 23;
+  float JPKJHGJCFCJ = 24;
+  float IAIKLMOHEAE = 25;
+  float COCMJMHEMKD = 26;
+  bool KODBIHGMBMF = 27;
+  float ANKENPHEOKN = 28;
+  float HKNMOAGPECN = 29;
+  float MNFJOIAJMKB = 30;
+  float CKMFBHCOAAN = 31;
+  bool DFDFPNLCKFD = 32;
+  HHEDHCFPEKM GLJGEOLBMIC = 33;
+  float IKPMNPGINOM = 34;
+  bool IOOBPHBPGJK = 35;
+  bool FLFIOIKPHDI = 36;
+  bool JNGJMMPDLIO = 37;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGDSChangeDeckNameRspOuterClass";
+// 7.2 CmdId 24095
+message GCGDSChangeDeckNameRsp {
+  bool is_only_check = 5;
+  int32 retcode = 8;
+  string name = 11;
+  uint32 deck_id = 15;
+}

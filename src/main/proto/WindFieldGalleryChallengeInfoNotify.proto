@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "WindFieldGalleryChallengeInfoNotifyOuterClass";
+message WindFieldGalleryChallengeInfoNotify {
+  bool is_start = 1;
+  bool is_success = 2;
+  uint32 challenge_total_time = 3;
+  uint32 challenge_timestamp = 4;
+  uint32 show_id = 5;
+  uint32 OHJOIGJINEN = 6;
+  uint32 CMCMBJGDGHB = 7;
+}

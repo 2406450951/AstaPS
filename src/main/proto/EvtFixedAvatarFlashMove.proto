@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "EvtFixedAvatarFlashMoveOuterClass";
+import "Vector.proto";
+
+message EvtFixedAvatarFlashMove {
+  Vector target_pos = 4;
+  repeated int32 animator_state_id_list = 9;
+  uint32 entity_id = 11;
+}

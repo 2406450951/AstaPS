@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JOLBJALOEOOOuterClass";
+import "DOHHACKDGGB.proto";
+import "GOKNKEBFHDI.proto";
+import "HKEKLJBLBGL.proto";
+import "KOOEFBNHKJK.proto";
+
+message JOLBJALOEOO {
+  HKEKLJBLBGL type = 1;
+  oneof detail {
+    GOKNKEBFHDI NoneData = 11;
+    KOOEFBNHKJK ByTimeData = 12;
+    DOHHACKDGGB BySpeedData = 13;
+  }
+}

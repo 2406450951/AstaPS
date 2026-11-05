@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActionPointsNoCostInfo.proto";
+import "_RevenueBonusInfo.proto";
+
+message GKOENKALADA {
+  bool HFFJGFBKIFL = 6;
+  uint32 buff_id = 13;
+  oneof detail {
+    _RevenueBonusInfo revenue_bonus_info = 923;
+    _ActionPointsNoCostInfo action_points_no_cost_info = 1139;
+  }
+}

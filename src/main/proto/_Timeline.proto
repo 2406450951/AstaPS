@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DLFMKKOHGGC.proto";
+
+message _Timeline {
+  DLFMKKOHGGC LCDHNFNNGNA = 4;
+  DLFMKKOHGGC DPANJEBHAKI = 1;
+  uint32 version = 3;
+  uint32 OLFKHJJGHHA = 2;
+}

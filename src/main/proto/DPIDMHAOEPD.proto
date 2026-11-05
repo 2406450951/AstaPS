@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DPIDMHAOEPDOuterClass";
+import "CGGGGIMBEEC.proto";
+import "PNGMNIMCDCA.proto";
+
+message DPIDMHAOEPD {
+  int32 EGLBMKBLDDL = 1;
+  uint32 DCMMOCGACHM = 2;
+  oneof detail {
+    CGGGGIMBEEC Track = 11;
+    PNGMNIMCDCA Clip = 12;
+  }
+}

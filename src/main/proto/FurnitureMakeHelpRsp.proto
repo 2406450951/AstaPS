@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FurnitureMakeHelpRspOuterClass";
+import "FurnitureMakeHelpData.proto";
+
+// 7.2 CmdId 2044
+message FurnitureMakeHelpRsp {
+  int32 retcode = 2;
+  repeated FurnitureMakeHelpData help_data_list = 13;
+}

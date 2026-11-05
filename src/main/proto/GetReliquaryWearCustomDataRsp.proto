@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetReliquaryWearCustomDataRspOuterClass";
+import "DFEMHKLMGLA.proto";
+
+// 7.2 CmdId 2232
+message GetReliquaryWearCustomDataRsp {
+  int32 retcode = 5;
+  repeated DFEMHKLMGLA BADENEEJLGG = 7;
+}

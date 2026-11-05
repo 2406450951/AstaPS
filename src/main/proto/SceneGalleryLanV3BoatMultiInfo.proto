@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryLanV3BoatMultiInfoOuterClass";
+import "LanV3BoatMultiPlayerData.proto";
+
+message SceneGalleryLanV3BoatMultiInfo {
+  repeated LanV3BoatMultiPlayerData player_data = 1;
+}

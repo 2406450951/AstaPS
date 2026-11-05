@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondSeasonPhaseOuterClass";
+enum _BeyondSeasonPhase {
+  _BEYOND_SEASON_PHASE_BEYOND_SEASON_PHASE_NONE = 0;
+  _BEYOND_SEASON_PHASE_BEYOND_SEASON_PHASE_PREPARE = 1;
+  _BEYOND_SEASON_PHASE_BEYOND_SEASON_PHASE_ON_GOING = 2;
+  _BEYOND_SEASON_PHASE_BEYOND_SEASON_PHASE_DISPLAY = 3;
+}

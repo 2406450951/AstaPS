@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GadgetChangeLevelTagReqOuterClass";
+import "CustomGadgetTreeInfo.proto";
+
+// 7.2 CmdId 23830
+message GadgetChangeLevelTagReq {
+  uint32 level_tag_id = 2;
+  uint32 gadget_entity_id = 9;
+  CustomGadgetTreeInfo combination_info = 13;
+}

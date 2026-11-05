@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ProudSkillUpgradeRspOuterClass";
+// 7.2 CmdId 24419
+message ProudSkillUpgradeRsp {
+  int32 retcode = 1;
+  uint64 avatar_guid = 13;
+  uint32 proud_skill_id = 15;
+}

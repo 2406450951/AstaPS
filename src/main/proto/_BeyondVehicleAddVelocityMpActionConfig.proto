@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondVehicleAddVelocityMpActionConfigOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message _BeyondVehicleAddVelocityMpActionConfig {
+  float velocity = 1;
+  HHEDHCFPEKM direction = 2;
+  float IJKJCOEKMOO = 3;
+}

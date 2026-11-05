@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PLJMMJOELMKOuterClass";
+import "HJPJAPIBMDI.proto";
+
+message PLJMMJOELMK {
+  uint32 KDBLHFFGAJL = 5;
+  repeated HJPJAPIBMDI _task_progress_list = 6;
+}

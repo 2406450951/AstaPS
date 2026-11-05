@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinFireworksLauncherOuterClass";
+message AbilityMixinFireworksLauncher {
+  uint32 NNDICPMLLKN = 2;
+  uint32 NPNLEKNNICE = 3;
+  uint32 phase = 7;
+  repeated uint32 fireworks_config = 9;
+  uint32 HDGJPPIPKAO = 12;
+  uint32 CBEILEHCOEI = 14;
+}

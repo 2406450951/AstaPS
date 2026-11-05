@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CheckGroupReplacedRspOuterClass";
+// 7.2 CmdId 20059
+message CheckGroupReplacedRsp {
+  int32 retcode = 3;
+  repeated uint32 replaced_group_id_list = 14;
+}

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "COFPPMEOFLPOuterClass";
+import "DIPEHJPGMNA.proto";
+import "KDABFHMEDOM.proto";
+import "_AddRoleStatus.proto";
+import "_BulletFireEffect.proto";
+import "_BulletTriggerBullet.proto";
+import "_DamageByAttackVal.proto";
+import "_Heal.proto";
+import "_KillSelf.proto";
+import "_RemoveRoleStatus.proto";
+
+message COFPPMEOFLP {
+  uint32 config_id = 1;
+  DIPEHJPGMNA action_type = 2;
+  repeated uint32 EOIFNCHDLII = 3;
+  string JCFBALEJOMK = 4;
+  oneof detail {
+    KDABFHMEDOM TriggerAttackEvent = 11;
+    _DamageByAttackVal DamageByAttackVal = 12;
+    _KillSelf KillSelf = 13;
+    _BulletTriggerBullet BulletTriggerBullet = 14;
+    _AddRoleStatus AddRoleStatus = 15;
+    _RemoveRoleStatus RemoveRoleStatus = 16;
+    _BulletFireEffect BulletFireEffect = 17;
+    _Heal Heal = 18;
+  }
+}

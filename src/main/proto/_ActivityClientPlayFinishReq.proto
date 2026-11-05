@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ActivityClientPlayFinishReqOuterClass";
+import "_AquariumSellSettleInfo.proto";
+import "_BirdBallClientSettleInfo.proto";
+import "_CatcafeSettleInfo.proto";
+import "_CeremonyDoodleSettleInfo.proto";
+import "_ClientPlayType.proto";
+import "_CookGameSettleInfo.proto";
+import "_DreamSwitchingSettleInfo.proto";
+import "_FairyTalesFlyppyHatSettleInfo.proto";
+import "_FloatToySettleInfo.proto";
+import "_FruitPickSettleInfo.proto";
+import "_GreatFestivalV2SheetRestoreSettleInfo.proto";
+import "_HolidayResortAdventureSettleInfo.proto";
+import "_LanternRiteV6DanmakuSettleInfo.proto";
+import "_LoliJumpSettleInfo.proto";
+import "_NatlanDrillCollectSettleInfo.proto";
+
+// 7.2 CmdId 26714
+message _ActivityClientPlayFinishReq {
+  uint32 activity_id = 3;
+  uint32 level_id = 6;
+  uint32 cost_time = 8;
+  bool _is_interrupt = 10;
+  _ClientPlayType _client_play_type = 13;
+  oneof detail {
+    _AquariumSellSettleInfo AquariumSellInfo = 92;
+    _FloatToySettleInfo FloatToyInfo = 331;
+    _CookGameSettleInfo CookGameInfo = 376;
+    _LanternRiteV6DanmakuSettleInfo LanternRiteV6DanmakuInfo = 421;
+    _DreamSwitchingSettleInfo DreamSwitchingInfo = 814;
+    _CatcafeSettleInfo CatcafeInfo = 1010;
+    _HolidayResortAdventureSettleInfo HolidayResortAdventureInfo = 1122;
+    _LoliJumpSettleInfo LoliJumpInfo = 1169;
+    _FairyTalesFlyppyHatSettleInfo FairyTalesFlyppyHatInfo = 1289;
+    _NatlanDrillCollectSettleInfo NatlanDrillCollectInfo = 1456;
+    _GreatFestivalV2SheetRestoreSettleInfo GreatFestivalV2SheetRestoreInfo = 1580;
+    _CeremonyDoodleSettleInfo CeremonyDoodleInfo = 1718;
+    _BirdBallClientSettleInfo BirdBallClientInfo = 2013;
+    _FruitPickSettleInfo FruitPickInfo = 2014;
+  }
+}

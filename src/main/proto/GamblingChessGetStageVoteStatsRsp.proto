@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GamblingChessGetStageVoteStatsRspOuterClass";
+import "GamblingChessStageVoteStats.proto";
+
+// 7.2 CmdId 6856
+message GamblingChessGetStageVoteStatsRsp {
+  uint32 stage_id = 6;
+  repeated GamblingChessStageVoteStats vote_stats_list = 7;
+  int32 retcode = 13;
+}

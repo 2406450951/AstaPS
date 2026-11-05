@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_TowerDefenseOperationNotifyOuterClass";
+import "_ArtifactOpInfo.proto";
+import "_BuildOpInfo.proto";
+import "_DestroyOpInfo.proto";
+import "_SkillOpInfo.proto";
+import "_UpgradeOpInfo.proto";
+
+// 7.2 CmdId 20168
+message _TowerDefenseOperationNotify {
+  int32 retcode = 3;
+  oneof info {
+    _BuildOpInfo BuildOpInfo = 276;
+    _ArtifactOpInfo ArtifactOpInfo = 421;
+    _SkillOpInfo SkillOpInfo = 1355;
+    _UpgradeOpInfo UpgradeOpInfo = 1488;
+    _DestroyOpInfo DestroyOpInfo = 1549;
+  }
+}

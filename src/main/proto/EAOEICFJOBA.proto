@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Uint32Pair.proto";
+
+message EAOEICFJOBA {
+  repeated Uint32Pair BGKNOBGMOIP = 8;
+  uint32 finish_time = 15;
+  bool KEHLBIHCOBB = 13;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _EffigyChallengeV5SettleInfo {
+  repeated uint32 KEDLFHEGILH = 20000;
+  repeated uint32 player_uid_list = 2;
+  repeated uint32 IFHEFIJGEOA = 20001;
+  uint32 difficulty_id = 6;
+  bool EFNJOLKMIPC = 20002;
+  bool is_new_record = 15;
+  uint32 cost_time = 9;
+  uint32 EKFJIIBDCEK = 20003;
+}

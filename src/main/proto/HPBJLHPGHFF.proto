@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HPBJLHPGHFFOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message HPBJLHPGHFF {
+  uint32 JKJDNGPIBMG = 501;
+  string JDJMHIMAGJN = 502;
+  HHEDHCFPEKM offset = 503;
+}

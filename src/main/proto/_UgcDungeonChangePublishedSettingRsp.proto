@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonChangePublishedSettingRspOuterClass";
+// 7.2 CmdId 27458
+message _UgcDungeonChangePublishedSettingRsp {
+  uint64 guid = 2;
+  bool _is_allow_import = 9;
+  int32 retcode = 10;
+}

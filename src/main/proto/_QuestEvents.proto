@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestEventsOuterClass";
+import "_QuestEventsGiving.proto";
+
+message _QuestEvents {
+  repeated uint32 _quest_events_item_id_list = 5;
+  repeated _QuestEventsGiving _quest_events_giving_list = 9;
+  uint32 _quest_events_id = 15;
+}

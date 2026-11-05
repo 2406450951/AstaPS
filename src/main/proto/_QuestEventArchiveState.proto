@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_QuestEventArchiveStateOuterClass";
+enum _QuestEventArchiveState {
+  _QUEST_EVENT_ARCHIVE_STATE_QUEST_EVENT_ARCHIVE_NONE = 0;
+  _QUEST_EVENT_ARCHIVE_STATE_QUEST_EVENT_ARCHIVE_AVALIABLE = 1;
+  _QUEST_EVENT_ARCHIVE_STATE_QUEST_EVENT_ARCHIVE_RUNNING = 2;
+  _QUEST_EVENT_ARCHIVE_STATE_QUEST_EVENT_ARCHIVE_FINISH = 3;
+}

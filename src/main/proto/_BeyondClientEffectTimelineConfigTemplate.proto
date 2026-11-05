@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondClientEffectTimelineConfigTemplateOuterClass";
+import "OFNCCCIBALH.proto";
+
+message _BeyondClientEffectTimelineConfigTemplate {
+  OFNCCCIBALH LIIOCFGFHBC = 1;
+}

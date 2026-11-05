@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "IPAHMDJEALFOuterClass";
+import "GPAEAPOIJFP.proto";
+
+message IPAHMDJEALF {
+  string name = 1;
+  int32 LAGFLOMMPKO = 2;
+  GPAEAPOIJFP content = 3;
+  float APHKNCKOFDM = 4;
+}

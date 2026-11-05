@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HEOOADDEGKJOuterClass";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+
+message HEOOADDEGKJ {
+  int32 point_id = 1;
+  HHEDHCFPEKM pos = 2;
+  HHEDHCFPEKM rot = 3;
+  float time = 4;
+  FAGMGLAJFNL point_type = 5;
+  bool NPIKJJOCLEJ = 6;
+  HHEDHCFPEKM KAONKBAGLNE = 7;
+  HHEDHCFPEKM BIFHIDGDOJG = 8;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GamblingChessStageVoteStatsOuterClass";
+message GamblingChessStageVoteStats {
+  float IHPNIKAPEAP = 2;
+  float JGBPEGPDJHJ = 5;
+  uint32 game_id = 7;
+}

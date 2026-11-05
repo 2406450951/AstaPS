@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _MoveTeamRsp {
+  uint32 GCAIFOFDGIC = 14;
+  uint32 NDCOJDIGMAN = 6;
+  int32 retcode = 12;
+}

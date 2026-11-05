@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LAHDFELEMKCOuterClass";
+message LAHDFELEMKC {
+  uint32 ECIJOJEKNLJ = 1;
+  repeated uint32 HEJPFJENKCA = 2;
+}

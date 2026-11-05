@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DailyAttendanceTakeRewardRspOuterClass";
+import "ItemParam.proto";
+
+// 7.2 CmdId 4259
+message DailyAttendanceTakeRewardRsp {
+  repeated ItemParam item_list = 4;
+  uint32 claimed_daily_task_count = 9;
+  int32 retcode = 10;
+}

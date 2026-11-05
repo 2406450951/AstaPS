@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ArtifactSelectInfo.proto";
+import "_PrepareInfo.proto";
+import "_SelectionInfo.proto";
+
+message _Battle {
+  oneof detail {
+    _SelectionInfo selection_info = 3;
+    _PrepareInfo prepare_info = 10;
+    _ArtifactSelectInfo artifact_select_info = 8;
+  }
+}

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FPNLKHKFMEPOuterClass";
+import "GEDLFKBHODF.proto";
+import "JOJKJCPIMCA.proto";
+import "ODKLAFBLOMN.proto";
+import "PHDKPFMFNJC.proto";
+
+message FPNLKHKFMEP {
+  string LKLDOIHKGDL = 1;
+  uint32 DJCLKHIIMAM = 2;
+  GEDLFKBHODF skill_type = 3;
+  float JIBKNIPPKGG = 4;
+  bool MJGDEDLDHHH = 5;
+  bool PMLNHHJGMMF = 7;
+  uint32 cd_time = 8;
+  bool NJJFDBDPJHA = 9;
+  JOJKJCPIMCA PPFONNHMOOP = 10;
+  float cost = 11;
+  bool CDDPDPCAKFM = 12;
+  uint32 use_time = 13;
+  ODKLAFBLOMN BFKJGEFFGHF = 14;
+  bool LONMBPLACCJ = 15;
+  bool HBMINKBALGF = 16;
+  uint32 BKEDGMJCJIM = 17;
+  bool PPAMOKCMDCF = 18;
+  repeated PHDKPFMFNJC CIBCOHPFBJK = 19;
+  JOJKJCPIMCA LDMNLDPKLED = 20;
+  JOJKJCPIMCA JKDEKJGKEEL = 21;
+  bool HEFHKEMBOGJ = 22;
+  bool OCABJPLPJIA = 23;
+}

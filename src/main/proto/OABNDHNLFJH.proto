@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OABNDHNLFJHOuterClass";
+enum OABNDHNLFJH {
+  OABNDHNLFJH_NONE = 0;
+  OABNDHNLFJH_CUSTOM_MAP = 1;
+}

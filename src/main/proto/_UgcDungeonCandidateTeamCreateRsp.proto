@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcDungeonCandidateTeamCreateRspOuterClass";
+import "_EnterUgcDungeonType.proto";
+import "_UgcDungeon.proto";
+
+// 7.2 CmdId 24110
+message _UgcDungeonCandidateTeamCreateRsp {
+  int32 retcode = 13;
+  _UgcDungeon _ugc_dungeon = 14;
+  _EnterUgcDungeonType enter_type = 15;
+}

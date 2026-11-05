@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "MotionInfo.proto";
+
+message EntityForceSyncRsp {
+  MotionInfo fail_motion = 8;
+  uint32 scene_time = 15;
+  int32 retcode = 12;
+  uint32 entity_id = 4;
+}

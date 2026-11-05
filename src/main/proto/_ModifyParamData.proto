@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ModifyParamDataOuterClass";
+message _ModifyParamData {
+  uint32 FCCGEAFECHA = 1;
+  repeated int32 param_index = 2;
+  oneof MEJONGIJGAH {
+    uint32 UintValue = 11;
+    int32 IntValue = 12;
+    bool BoolValue = 13;
+    float FloatValue = 14;
+    string StringValue = 15;
+  }
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetCityReputationInfoRspOuterClass";
+import "CityReputationInfo.proto";
+
+// 7.2 CmdId 21262
+message GetCityReputationInfoRsp {
+  int32 retcode = 5;
+  uint32 city_id = 8;
+  CityReputationInfo city_reputation_info = 12;
+}

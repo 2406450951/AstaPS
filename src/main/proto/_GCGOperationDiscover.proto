@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GCGOperationDiscoverOuterClass";
+message _GCGOperationDiscover {
+  uint32 FAECAOKBHIC = 14;
+  uint32 card_guid = 15;
+}

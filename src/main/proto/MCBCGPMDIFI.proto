@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FNMMKAMBICN.proto";
+import "JPGDPIOHKOL.proto";
+
+message MCBCGPMDIFI {
+  repeated JPGDPIOHKOL level_info_list = 15;
+  repeated FNMMKAMBICN FECECFDPFBP = 9;
+  repeated uint32 NGNKDNFOPDB = 7;
+  repeated uint32 MFKFEOAALPN = 11;
+  repeated uint32 EMPMBEDABCD = 12;
+  repeated uint32 OODMCABNGPE = 5;
+  bool GFMDMENKALA = 4;
+  bool EFIHHNEAFAK = 1;
+  bool EIFNKICAKCO = 10;
+  uint32 IKBLLCLNBLH = 2;
+  uint32 IBNKIJCDIKK = 3;
+}

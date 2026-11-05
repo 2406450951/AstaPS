@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LanternRiteStartFireworksReformRspOuterClass";
+import "LanternRiteFireworksReformFactorInfo.proto";
+import "LanternRiteFireworksReformSkillInfo.proto";
+
+message LanternRiteStartFireworksReformRsp {
+  int32 retcode = 1;
+  uint32 stage_id = 2;
+  uint32 challenge_id = 3;
+  uint32 HCODBCJFOAF = 4;
+  uint32 HNPDEFDCCBC = 5;
+  uint32 HPKHMDGPNMH = 6;
+  uint32 GKHBLBKNGBC = 7;
+  repeated LanternRiteFireworksReformFactorInfo factor_info_list = 8;
+  repeated LanternRiteFireworksReformSkillInfo skill_info_list = 9;
+}

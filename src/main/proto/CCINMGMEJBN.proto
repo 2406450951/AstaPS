@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GBLGAGAPIFE.proto";
+
+message CCINMGMEJBN {
+  repeated GBLGAGAPIFE NBFDAIOLGFI = 20000;
+  uint32 stage_id = 1;
+  uint32 best_score = 3;
+  bool is_open = 2;
+  bool is_finish = 4;
+}

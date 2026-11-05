@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_EffigyChallengeV5SocialInfo.proto";
+
+message POODJGCIHIE {
+  bool APBIKEACDGL = 3;
+  oneof value {
+    _EffigyChallengeV5SocialInfo effigy_challenge_v_5_social_info = 915;
+  }
+}

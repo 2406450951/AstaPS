@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondRoomRecruitmentOuterClass";
+message _BeyondRoomRecruitment {
+  uint32 POHJLPNIGDK = 1;
+  uint64 DIOPBEFMPBO = 2;
+  string MKHJKMHCKDF = 3;
+  uint32 HGCOMMCPKHP = 5;
+  uint32 LKAHCNLODAM = 6;
+  uint64 dungeon_guid = 10;
+  uint64 PAICLIPMNHL = 12;
+  uint32 music_basic_id = 14;
+}

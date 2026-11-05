@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message AddSeenMonsterNotify {
+  repeated uint32 monster_id_list = 11;
+}

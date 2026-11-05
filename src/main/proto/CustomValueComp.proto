@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "PLNKNNOEDFF.proto";
+
+message CustomValueComp {
+  repeated PLNKNNOEDFF PDAKKCCGGAC = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HDDBCFEEDGIOuterClass";
+import "DEHCFPPOACC.proto";
+import "INIEGDOKJFH.proto";
+
+message HDDBCFEEDGI {
+  uint32 config_id = 1;
+  string key = 2;
+  DGFJIEDFDPB KJMLDBFCONN = 4;
+  bool GBCFIICGEGM = 5;
+  INIEGDOKJFH BICMMLKCOIB = 6;
+}

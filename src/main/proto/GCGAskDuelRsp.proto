@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGAskDuelRspOuterClass";
+import "GCGDuel.proto";
+
+// 7.2 CmdId 27205
+message GCGAskDuelRsp {
+  int32 retcode = 6;
+  GCGDuel duel = 9;
+}

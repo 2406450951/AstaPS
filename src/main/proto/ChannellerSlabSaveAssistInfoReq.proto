@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ChannellerSlabSaveAssistInfoReqOuterClass";
+import "ChannellerSlabAssistInfo.proto";
+
+message ChannellerSlabSaveAssistInfoReq {
+  repeated ChannellerSlabAssistInfo assist_info_list = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MonsterPointArrayRouteUpdateNotifyOuterClass";
+import "MonsterRoute.proto";
+
+// 7.2 CmdId 5997
+message MonsterPointArrayRouteUpdateNotify {
+  uint32 entity_id = 8;
+  MonsterRoute monster_route = 11;
+}

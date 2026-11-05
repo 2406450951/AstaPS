@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryTeamChainInfoOuterClass";
+message SceneGalleryTeamChainInfo {
+  uint32 PJJAKADFODK = 1;
+  uint32 NOGDBEGAIAC = 2;
+  uint32 JICIELJFFCG = 3;
+  uint32 EIHHFNJODBG = 4;
+  uint32 NJIHIHNFLEJ = 5;
+}

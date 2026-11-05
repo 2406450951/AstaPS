@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanternRiteV6BattleEnterInfoOuterClass";
+import "_ActivityAvatarInfo.proto";
+
+message _LanternRiteV6BattleEnterInfo {
+  uint32 difficulty = 3;
+  repeated _ActivityAvatarInfo avatar_list = 11;
+  bool _is_restart = 12;
+}

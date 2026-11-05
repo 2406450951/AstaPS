@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ActivityAcceptAllGiveGiftRspOuterClass";
+import "ActivityAcceptGiftResultInfo.proto";
+
+// 7.2 CmdId 26918
+message ActivityAcceptAllGiveGiftRsp {
+  uint32 schedule_id = 3;
+  repeated ActivityAcceptGiftResultInfo accept_gift_result_info_list = 12;
+  int32 retcode = 14;
+}

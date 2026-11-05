@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BEIKOGGHFHD.proto";
+import "Vector.proto";
+
+message QueryPathRsp {
+  enum PathStatusType {
+    PathStatusType_STATUS_FAIL = 0;
+    PathStatusType_STATUS_SUCC = 1;
+    PathStatusType_STATUS_PARTIAL = 2;
+  }
+  repeated Vector corners = 4;
+  repeated BEIKOGGHFHD INAAJKIFKIF = 20000;
+  int32 query_id = 8;
+  int32 retcode = 15;
+  int32 FBLCJIHADLH = 20001;
+  QueryPathRsp.PathStatusType query_status = 13;
+}

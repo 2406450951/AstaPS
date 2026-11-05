@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryJourneyDiceInfoOuterClass";
+message _SceneGalleryJourneyDiceInfo {
+  repeated uint32 GOLHNCNCOBM = 1;
+  uint32 CIJMCCOMPNH = 2;
+  uint32 ODECGMENCMF = 3;
+  uint32 score = 4;
+}

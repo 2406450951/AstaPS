@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteCanWishRspOuterClass";
+import "_AnecdoteConflictInfo.proto";
+
+// 7.2 CmdId 3029
+message _AnecdoteCanWishRsp {
+  bool _is_wish_available = 2;
+  int32 retcode = 3;
+  uint32 npc_id = 10;
+  _AnecdoteConflictInfo _anecdote_conflict_info = 11;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteInfoOuterClass";
+message _AnecdoteInfo {
+  uint32 finish_count = 6;
+  uint32 state = 9;
+  uint32 id = 13;
+}

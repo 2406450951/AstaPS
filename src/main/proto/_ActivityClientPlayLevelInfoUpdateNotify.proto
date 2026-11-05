@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ActivityClientPlayLevelInfoUpdateNotifyOuterClass";
+import "_ClientPlayLevelInfo.proto";
+
+// 7.2 CmdId 151
+message _ActivityClientPlayLevelInfoUpdateNotify {
+  _ClientPlayLevelInfo _level_info = 1;
+  uint32 play_type = 3;
+  uint32 activity_id = 5;
+}

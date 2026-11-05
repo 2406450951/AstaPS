@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_ReunionReportTypeOuterClass";
+enum _ReunionReportType {
+  _REUNION_REPORT_TYPE_REUNION_REPORT_TYPE_NONE = 0;
+  _REUNION_REPORT_TYPE_REUNION_REPORT_TYPE_START = 1;
+  _REUNION_REPORT_TYPE_REUNION_REPORT_TYPE_DOUBLE = 2;
+}

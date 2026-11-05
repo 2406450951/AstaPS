@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MCAIFCINLMGOuterClass";
+import "LGHLJAMFOHF.proto";
+import "NIIIJCEDFML.proto";
+import "NPEAAHHPOJB.proto";
+
+message MCAIFCINLMG {
+  uint32 ADCIFHLDMJI = 1;
+  uint32 PLELOLOCDIE = 2;
+  uint32 total_progress = 3;
+  repeated NIIIJCEDFML MKEODIEEDAB = 4;
+  uint32 FGLHAJINBHC = 5;
+  NPEAAHHPOJB LHIBMLJJKHL = 6;
+  LGHLJAMFOHF FFCAKFPGDEP = 7;
+  string JONNKEBJAFL = 501;
+  bool CPCMHBNMDNE = 502;
+  bool EBIOBFBCIBG = 503;
+}

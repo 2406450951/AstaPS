@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetReunionSignInInfoReqOuterClass";
+// 7.2 CmdId 5806
+message GetReunionSignInInfoReq {
+  uint32 sign_in_config_id = 5;
+}

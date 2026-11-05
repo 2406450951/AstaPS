@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondEquipAffixPropertyOuterClass";
+import "IFGOLHNOHNI.proto";
+
+message _BeyondEquipAffixProperty {
+  IFGOLHNOHNI CPOCDJDECKL = 1;
+}

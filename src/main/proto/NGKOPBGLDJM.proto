@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message NGKOPBGLDJM {
+  string DKJPGNMLLDP = 1;
+  uint32 AHMNIINDBBN = 3;
+  uint32 client_version = 2;
+}

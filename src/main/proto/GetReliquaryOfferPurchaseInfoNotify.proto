@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetReliquaryOfferPurchaseInfoNotifyOuterClass";
+import "JFHFNPCFIPK.proto";
+
+// 7.2 CmdId 29798
+message GetReliquaryOfferPurchaseInfoNotify {
+  uint32 NONDPHKFIID = 3;
+  float JGIFHGCNNCK = 4;
+  uint32 NFPOIHFELLC = 5;
+  uint32 NGOBHDCDJMM = 6;
+  repeated JFHFNPCFIPK BOGOJMLGGJG = 12;
+  uint32 HGHJKAGOAKI = 14;
+}

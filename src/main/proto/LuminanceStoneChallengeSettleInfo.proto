@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LuminanceStoneChallengeSettleInfoOuterClass";
+import "LuminanceStoneChallengeGallerySettleInfo.proto";
+
+message LuminanceStoneChallengeSettleInfo {
+  LuminanceStoneChallengeGallerySettleInfo settle_info = 1;
+  bool is_new_record = 2;
+}

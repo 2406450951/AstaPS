@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerRechargeDataNotifyOuterClass";
+import "ProductPriceTier.proto";
+
+// 7.2 CmdId 2678
+message PlayerRechargeDataNotify {
+  uint32 card_product_remain_days = 9;
+  repeated ProductPriceTier product_price_tier_list = 13;
+}

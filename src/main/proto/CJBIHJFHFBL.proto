@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CJBIHJFHFBLOuterClass";
+import "_MusicBriefInfo.proto";
+
+message CJBIHJFHFBL {
+  repeated _MusicBriefInfo brief_info_list = 6;
+}

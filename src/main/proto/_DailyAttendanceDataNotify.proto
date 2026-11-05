@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DailyAttendanceDataNotifyOuterClass";
+// 7.2 CmdId 7297
+message _DailyAttendanceDataNotify {
+  uint32 _daily_attendance_reward_id = 1;
+  uint32 _daily_attendance_accumulated_points = 2;
+  uint32 _daily_attendance_accumulated_reset_time = 4;
+  uint32 _daily_attendance_total_claimed_rewards = 7;
+  uint32 JHNDHDIELCG = 10;
+  uint32 PCEKHCOFECP = 12;
+  uint32 LBENIKBCBIK = 13;
+}

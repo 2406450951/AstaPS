@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondScanEntitySubTagConfigTemplateOuterClass";
+import "CPOPNCBIIMA.proto";
+import "GBHFNGBOBLM.proto";
+import "JOJKJCPIMCA.proto";
+import "LCKFLCFENHI.proto";
+import "MDCIBHBEBFM.proto";
+import "NFNANMDNADA.proto";
+
+message _BeyondScanEntitySubTagConfigTemplate {
+  string CFJPLHICGED = 1;
+  LCKFLCFENHI FGLHMNEOFPH = 2;
+  CPOPNCBIIMA IOMCDMKNCAF = 3;
+  GBHFNGBOBLM COBOMABJMEF = 4;
+  MDCIBHBEBFM FBCFBFBPIJF = 5;
+  NFNANMDNADA KGPFIIFBLDC = 6;
+  JOJKJCPIMCA EJGJKKLHKDG = 7;
+  repeated int32 LEGEJLDAFJD = 8;
+}

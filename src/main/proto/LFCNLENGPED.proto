@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LFCNLENGPEDOuterClass";
+import "EIHNCDFKNPD.proto";
+import "KEEPEIBNKHE.proto";
+import "LPEIDLBOOIK.proto";
+import "_BeyondDlcItemQuality.proto";
+
+message LFCNLENGPED {
+  uint32 DJLKLNNCENO = 1;
+  string DJHEOAFILEI = 2;
+  KEEPEIBNKHE HNKBPNENPNJ = 3;
+  _BeyondDlcItemQuality HIGIDKHKJHN = 4;
+  string AGAEBDBCBMN = 5;
+  bool LNKHBNNBPJH = 6;
+  bool GINIKMOLONB = 7;
+  uint32 PECAEFHNALD = 8;
+  EIHNCDFKNPD NAMFHGHLDIL = 9;
+  repeated uint32 JHIFGCLCJKE = 10;
+  LPEIDLBOOIK FFCAKFPGDEP = 11;
+  uint32 CEGDGEEBEAH = 12;
+  uint32 JODGEGECGNK = 13;
+  string EJGCBGCBHLD = 501;
+  uint32 OHDBHJJCMLL = 502;
+  repeated uint32 OFPHHACFMGN = 503;
+}

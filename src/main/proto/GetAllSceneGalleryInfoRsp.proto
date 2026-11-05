@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetAllSceneGalleryInfoRspOuterClass";
+import "SceneGalleryInfo.proto";
+
+// 7.2 CmdId 29016
+message GetAllSceneGalleryInfoRsp {
+  repeated SceneGalleryInfo gallery_info_list = 10;
+  int32 retcode = 14;
+}

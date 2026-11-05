@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HomeSaveBlueprintRspOuterClass";
+import "HomeBlueprintSlotInfo.proto";
+
+// 7.2 CmdId 22291
+message HomeSaveBlueprintRsp {
+  HomeBlueprintSlotInfo slot_info = 8;
+  int32 retcode = 13;
+}

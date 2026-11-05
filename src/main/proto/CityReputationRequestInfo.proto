@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CityReputationRequestInfoOuterClass";
+import "RequestInfo.proto";
+
+message CityReputationRequestInfo {
+  repeated RequestInfo request_info_list = 3;
+  bool is_open = 9;
+}

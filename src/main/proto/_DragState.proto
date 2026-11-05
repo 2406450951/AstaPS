@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DragStateOuterClass";
+import "Vector.proto";
+
+message _DragState {
+  float FCBPPJIMCKH = 7;
+  bool KBLLNNIJGCL = 8;
+  float AIJFJFADGLG = 11;
+  Vector DNOCPGEKDMJ = 12;
+  float JDLCENEFAJI = 14;
+}

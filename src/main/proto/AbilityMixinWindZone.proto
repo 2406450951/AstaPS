@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "AbilityMixinWindZoneOuterClass";
+message AbilityMixinWindZone {
+  repeated uint32 HIJGDGGAJJI = 5;
+  repeated uint32 AJHGNKOIACF = 8;
+}

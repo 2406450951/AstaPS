@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "FMIGCKIIDKCOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message FMIGCKIIDKC {
+  HHEDHCFPEKM center = 1;
+  HHEDHCFPEKM JIMBJAFLLHA = 2;
+  float radius = 3;
+  float height = 4;
+  HHEDHCFPEKM direction = 5;
+}

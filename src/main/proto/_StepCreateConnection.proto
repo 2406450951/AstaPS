@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_StepCreateConnectionOuterClass";
+import "_PinName.proto";
+
+message _StepCreateConnection {
+  uint32 BIOKKMGBGJI = 1;
+  _PinName KFNOBIDLBEO = 2;
+  uint32 KODOEGFDBDP = 3;
+  _PinName FADFKDCJJLK = 4;
+}

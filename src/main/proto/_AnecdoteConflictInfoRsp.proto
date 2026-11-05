@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteConflictInfoRspOuterClass";
+import "_AnecdoteConflictInfo.proto";
+
+// 7.2 CmdId 2935
+message _AnecdoteConflictInfoRsp {
+  _AnecdoteConflictInfo _anecdote_conflict_info = 6;
+  int32 retcode = 10;
+  uint32 npc_id = 11;
+}

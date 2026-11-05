@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DOHHACKDGGBOuterClass";
+message DOHHACKDGGB {
+  float COHBONNEHEA = 1;
+  float NCGEAONFIKI = 2;
+  float max_speed = 3;
+  bool OILDCGIDKID = 4;
+  float PHGAEENPMAF = 5;
+  float accelerate_time = 501;
+  bool GEPLKKEAAHF = 502;
+}

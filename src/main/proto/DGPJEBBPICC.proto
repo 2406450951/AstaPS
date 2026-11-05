@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "DGPJEBBPICCOuterClass";
+import "HHEDHCFPEKM.proto";
+
+message DGPJEBBPICC {
+  uint32 OMDAHOCCOFE = 1;
+  HHEDHCFPEKM position = 2;
+  HHEDHCFPEKM rotation = 3;
+  HHEDHCFPEKM NILBBNBJKGD = 4;
+}

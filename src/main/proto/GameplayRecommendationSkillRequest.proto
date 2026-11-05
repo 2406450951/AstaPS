@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GameplayRecommendationSkillRequestOuterClass";
+message GameplayRecommendationSkillRequest {
+  uint32 skill_depot_id = 12;
+}

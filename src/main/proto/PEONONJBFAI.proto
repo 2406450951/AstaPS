@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PEONONJBFAIOuterClass";
+import "JLOOKPLCEHC.proto";
+import "NKCMJFCDAJO.proto";
+
+message PEONONJBFAI {
+  uint32 EPLDHABABOF = 1;
+  string NNMNKDBINJB = 2;
+  JLOOKPLCEHC NFCBKNAJLAE = 3;
+  bool GCKMBMIAKNK = 4;
+  oneof detail {
+    NKCMJFCDAJO FogConfig = 51;
+  }
+}

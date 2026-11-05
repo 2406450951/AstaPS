@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LMMLCBPKOIOOuterClass";
+import "FAGMGLAJFNL.proto";
+
+message LMMLCBPKOIO {
+  float CIKOECKLKLJ = 1;
+  float JGFHFJAEPAN = 2;
+  uint32 FNKJKAHKKAK = 3;
+  int32 KKFEIEKPEJI = 4;
+  FAGMGLAJFNL mode = 5;
+  float FKOPLJIGCPK = 6;
+}

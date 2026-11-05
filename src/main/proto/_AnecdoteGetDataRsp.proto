@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_AnecdoteGetDataRspOuterClass";
+import "_AnecdoteAreaInfo.proto";
+import "_AnecdoteInfo.proto";
+import "_AnecdoteRewardInfo.proto";
+import "_AnecdoteWishInfo.proto";
+
+// 7.2 CmdId 20976
+message _AnecdoteGetDataRsp {
+  _AnecdoteAreaInfo _anecdote_area_info = 2;
+  repeated _AnecdoteInfo _anecdote_info_list = 7;
+  _AnecdoteRewardInfo _anecdote_reward_info = 8;
+  int32 retcode = 10;
+  _AnecdoteWishInfo _anecdote_wish_info = 14;
+}

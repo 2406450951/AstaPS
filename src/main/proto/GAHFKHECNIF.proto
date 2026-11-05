@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GAHFKHECNIFOuterClass";
+import "DMKNNKLDKCG.proto";
+import "FOKJKKEEGDN.proto";
+import "NIPEFBBKEFG.proto";
+import "POIBHGAMOIH.proto";
+
+message GAHFKHECNIF {
+  FOKJKKEEGDN EIILLOEJBIJ = 1;
+  NIPEFBBKEFG NNNLDGNGEAH = 2;
+  POIBHGAMOIH FGLAGOEMIAD = 3;
+  repeated DMKNNKLDKCG CPDBPECFFFM = 4;
+}

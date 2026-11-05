@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondRoleStatusConfigTemplateOuterClass";
+import "AGIGIIKLNCH.proto";
+import "CKPIHOPIFIJ.proto";
+import "DIKBFLLLCGK.proto";
+import "FAGMGLAJFNL.proto";
+import "JOJKJCPIMCA.proto";
+
+message _BeyondRoleStatusConfigTemplate {
+  float JPHOKPMPPEP = 1;
+  bool IJFECNEHHLE = 2;
+  bool DFCCOLOFIJG = 3;
+  float MNFGJJEGKGD = 4;
+  float COAOFGDDBLN = 5;
+  repeated JOJKJCPIMCA OAFHKPPMGLE = 6;
+  repeated JOJKJCPIMCA NCCHAELANDG = 7;
+  bool BLINBFKMJGI = 8;
+  uint32 PNMKPCLGPML = 9;
+  CKPIHOPIFIJ IEKJMHPBMFP = 10;
+  uint32 GEMMEGMNPNP = 11;
+  bool ECGNJOKAPFM = 12;
+  bool CNBKLKHFEGN = 13;
+  DIKBFLLLCGK IHBCOECDIFB = 14;
+  repeated AGIGIIKLNCH HPPFONCCFMD = 15;
+  bool ABHABLECNOB = 16;
+  repeated FAGMGLAJFNL POLHBEFLMEG = 17;
+  bool NJAFMOMEEIK = 18;
+  uint32 AHPNNHGLOGH = 19;
+  repeated int32 LEGEJLDAFJD = 20;
+  uint32 PJDHLMFGCGJ = 21;
+}

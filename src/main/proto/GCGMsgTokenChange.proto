@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGMsgTokenChangeOuterClass";
+import "GCGReason.proto";
+
+message GCGMsgTokenChange {
+  uint32 PEIGLCCOGEA = 1;
+  GCGReason reason = 5;
+  uint32 card_guid = 12;
+  uint32 token_type = 13;
+  uint32 GNBPAAHHBJH = 14;
+}

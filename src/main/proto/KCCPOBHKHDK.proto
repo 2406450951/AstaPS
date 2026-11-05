@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KCCPOBHKHDKOuterClass";
+import "EFCIJPIOILI.proto";
+import "FAGMGLAJFNL.proto";
+import "HGGCDKJPLEK.proto";
+import "JMGJLJFBHOO.proto";
+import "OFPFDJCKLKE.proto";
+import "POLHKOACMLK.proto";
+
+message KCCPOBHKHDK {
+  int32 GLOKFLKMJEO = 1;
+  repeated JMGJLJFBHOO EFMFLGNEDAM = 2;
+  HGGCDKJPLEK GPEPAHLHNDM = 3;
+  repeated int32 LEGEJLDAFJD = 4;
+  FAGMGLAJFNL GHANCEINKPH = 10;
+  bool FIALLJHLFEP = 503;
+  int32 filter_type = 505;
+  oneof detail {
+    EFCIJPIOILI BeyondMonsterDisturberField = 11;
+    OFPFDJCKLKE BeyondMonsterDisturberEject = 12;
+    POLHKOACMLK BeyondMonsterDisturberDrag = 13;
+  }
+}

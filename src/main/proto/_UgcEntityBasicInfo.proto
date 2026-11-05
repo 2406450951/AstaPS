@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_UgcEntityBasicInfoOuterClass";
+import "Vector.proto";
+
+message _UgcEntityBasicInfo {
+  uint32 guid = 1;
+  uint32 config_id = 9;
+  Vector pos = 12;
+  Vector rot = 13;
+}

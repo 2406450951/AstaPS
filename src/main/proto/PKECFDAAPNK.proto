@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PKECFDAAPNKOuterClass";
+import "CNGFCEGKGDI.proto";
+import "HKPEAJFLKLL.proto";
+
+message PKECFDAAPNK {
+  int32 KIOHHBKIBNP = 501;
+  bool LNOMKKDNIML = 502;
+  int32 JECJFPHMLIA = 503;
+  uint32 EPKFCKICGHC = 504;
+  uint32 LCAAIMHOPCJ = 505;
+  bool GDCPALKMMPA = 506;
+  uint32 FKPPFAGECHB = 507;
+  int32 NDNDABBLPAF = 508;
+  int32 FOKEFLOFOGJ = 509;
+  HKPEAJFLKLL EPNPFOCIOKI = 510;
+  int32 IAJIABCMGMB = 511;
+  uint32 NKIILHCPCHG = 512;
+  uint32 LMMLLBDILIM = 513;
+  oneof detail {
+    CNGFCEGKGDI DragText = 62;
+  }
+}

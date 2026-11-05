@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondBuyPaidDlcReqOuterClass";
+// 7.2 CmdId 27579
+message _BeyondBuyPaidDlcReq {
+  uint32 DEJOJANOABA = 4;
+  uint64 dungeon_guid = 7;
+  uint32 DJLKLNNCENO = 15;
+}

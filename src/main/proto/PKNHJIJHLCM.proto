@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PKNHJIJHLCMOuterClass";
+message PKNHJIJHLCM {
+  int32 AHHOLHIKCAG = 501;
+  float DDHJFJFCDLD = 502;
+  string DODKAKNDIBA = 503;
+  int32 EKBOOEHCHOM = 504;
+}

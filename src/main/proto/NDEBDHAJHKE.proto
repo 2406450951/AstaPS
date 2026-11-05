@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NDEBDHAJHKEOuterClass";
+import "HIEHDDNHLEI.proto";
+
+message NDEBDHAJHKE {
+  uint32 EAGLDCJPLGO = 501;
+  HIEHDDNHLEI NGPLMHOHJBI = 502;
+  HIEHDDNHLEI KBMFFPIIKEN = 503;
+  HIEHDDNHLEI CBKCLMKMPEC = 504;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PMLCJKAIIJMOuterClass";
+enum PMLCJKAIIJM {
+  PMLCJKAIIJM_NONE = 0;
+  PMLCJKAIIJM_STRUCT_ID = 1;
+  PMLCJKAIIJM_SERVER_PARAM_DICTIONARY = 2;
+}

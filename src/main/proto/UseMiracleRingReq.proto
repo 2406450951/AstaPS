@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "UseMiracleRingReqOuterClass";
+import "Vector.proto";
+
+// 7.2 CmdId 2788
+message UseMiracleRingReq {
+  Vector rot = 2;
+  uint32 miracle_ring_op_type = 7;
+  Vector pos = 13;
+}

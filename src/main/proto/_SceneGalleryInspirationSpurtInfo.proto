@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_SceneGalleryInspirationSpurtInfoOuterClass";
+message _SceneGalleryInspirationSpurtInfo {
+  uint32 CIJMCCOMPNH = 1;
+  uint64 DMPOEDOPGOI = 2;
+  uint64 GKEBKEBPBJM = 3;
+  uint32 buff_num = 4;
+  uint32 ODECGMENCMF = 5;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "WinterCampRaceScoreNotifyOuterClass";
+import "FHCKDBDOGPD.proto";
+
+// 7.2 CmdId 1018
+message WinterCampRaceScoreNotify {
+  uint32 id = 1;
+  string DAMCEEAFAEB = 2;
+  string IJJMJDBNAKM = 3;
+  repeated FHCKDBDOGPD FNHDAMJGIIG = 4;
+}

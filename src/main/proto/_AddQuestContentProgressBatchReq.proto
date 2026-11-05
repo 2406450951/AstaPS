@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_QuestProgressInfo.proto";
+
+message _AddQuestContentProgressBatchReq {
+  repeated _QuestProgressInfo progress_info_list = 4;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ExpeditionChallengeEnterRegionNotifyOuterClass";
+message ExpeditionChallengeEnterRegionNotify {
+  bool is_puzzle_finished = 1;
+  uint32 id = 2;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "NKAHLJDAOHMOuterClass";
+import "HIEHDDNHLEI.proto";
+import "JDAILJFFOGJ.proto";
+
+message NKAHLJDAOHM {
+  int32 PGBDGIIAHBF = 501;
+  int32 PKJIFIMCOBI = 502;
+  uint32 PPKDBCDJDIP = 503;
+  int32 JLHILBPJPCM = 504;
+  float EHLJPFHKMCJ = 505;
+  int32 avatar_skill_id = 506;
+  JDAILJFFOGJ ANFAJLABBKM = 507;
+  HIEHDDNHLEI FDPJIKDJOKG = 508;
+  HIEHDDNHLEI PBMKMAFGLPA = 509;
+  int32 PCNFIOBNPOJ = 510;
+  int32 HNGKLLBEPAF = 511;
+}

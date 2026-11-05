@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HPIBBLDNIME.proto";
+
+message _GainBuffDetailInfo {
+  repeated HPIBBLDNIME level_info_list = 5;
+  uint32 difficulty = 8;
+}

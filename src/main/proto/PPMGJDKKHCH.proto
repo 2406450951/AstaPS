@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PPMGJDKKHCHOuterClass";
+message PPMGJDKKHCH {
+  int32 score = 10;
+  bool IMBHDKLAMKL = 11;
+  sfixed64 PKFMAOGCGIP = 12;
+}

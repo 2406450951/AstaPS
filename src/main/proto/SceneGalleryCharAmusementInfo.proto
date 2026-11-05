@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryCharAmusementInfoOuterClass";
+message SceneGalleryCharAmusementInfo {
+  uint32 cur_score = 1;
+  uint32 max_score = 2;
+  bool is_last_level = 3;
+  bool is_finish = 4;
+  bool is_success = 5;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterChessCardLevelChangeNotifyOuterClass";
+import "IDMFAIILKKG.proto";
+
+// 7.2 CmdId 3455
+message _MonsterChessCardLevelChangeNotify {
+  repeated IDMFAIILKKG NJEHHIJINBO = 11;
+}

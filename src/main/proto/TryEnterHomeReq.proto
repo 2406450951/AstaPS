@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message TryEnterHomeReq {
+  uint32 target_point = 8;
+  bool is_transfer_to_safe_point = 14;
+  bool _is_transfer_to_main_house_point = 2;
+  uint32 target_uid = 10;
+}

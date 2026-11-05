@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGHintTypeOuterClass";
+enum GCGHintType {
+  GCGHINT_TYPE_GCG_HINT_NONE = 0;
+  GCGHINT_TYPE_GCG_HINT_GAME_NOT_FOUND = 1;
+}

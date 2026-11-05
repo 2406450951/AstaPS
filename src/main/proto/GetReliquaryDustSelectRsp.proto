@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetReliquaryDustSelectRspOuterClass";
+// 7.2 CmdId 27869
+message GetReliquaryDustSelectRsp {
+  int32 retcode = 15;
+}

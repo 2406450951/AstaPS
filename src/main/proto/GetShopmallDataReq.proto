@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GetShopmallDataReqOuterClass";
+// 7.2 CmdId 27698
+message GetShopmallDataReq {
+  uint32 param = 7;
+  uint32 FMJCHPFEBPN = 12;
+}

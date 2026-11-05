@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ForgeQueueManipulateType.proto";
+import "ItemHint.proto";
+
+message ForgeQueueManipulateRsp {
+  repeated ItemHint extra_output_item_list = 3;
+  repeated ItemHint return_item_list = 20000;
+  repeated ItemHint output_item_list = 20001;
+  int32 retcode = 9;
+  ForgeQueueManipulateType manipulate_type = 5;
+}

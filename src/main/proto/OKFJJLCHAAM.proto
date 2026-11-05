@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message OKFJJLCHAAM {
+  bool is_active = 1;
+  bool is_show = 2;
+  bool LGHFIJLEMJE = 3;
+}

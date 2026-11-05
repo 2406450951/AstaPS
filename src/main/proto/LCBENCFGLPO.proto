@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LCBENCFGLPOOuterClass";
+import "BFJJBNAPNEK.proto";
+import "BJGJGHLCFJG.proto";
+import "BLCIDKAGOOD.proto";
+import "BLHNMAMFHAK.proto";
+import "DOPJDJHDMFC.proto";
+import "EFGLHCFIEJP.proto";
+import "FKAGGACHBJK.proto";
+import "GFENHHOMBBP.proto";
+import "GHDINFKEFOH.proto";
+import "GPJFGIDCGFJ.proto";
+import "HHFBFFCGABA.proto";
+import "JBGPOBFFFFO.proto";
+import "JNJJDKIMOGH.proto";
+import "KLGFEEGGGJL.proto";
+import "LOGIIKHAHKF.proto";
+import "LOOBAMOEFDJ.proto";
+import "MJHKMMCCMDH.proto";
+import "MKIEAEDNCJP.proto";
+import "MLEMJIONAGL.proto";
+import "MLLFOMLCKGL.proto";
+import "NGMCNMIBMAG.proto";
+import "PKKAHECOLBA.proto";
+import "PMKDPFOMOKC.proto";
+import "POMCIADONNO.proto";
+
+message LCBENCFGLPO {
+  repeated OJOCHPJAMBI NGGMBAPMCLH = 1;
+}
+
+message NBIPDCMECMA {
+  repeated OJOCHPJAMBI value_list = 1;
+}
+
+message NBKGBONCDHJ {
+  repeated OJOCHPJAMBI member_list = 1;
+}
+
+message OJOCHPJAMBI {
+  GPJFGIDCGFJ BICMMLKCOIB = 1;
+  EFGLHCFIEJP GFGJGAAILJG = 2;
+  oneof detail {
+    GFENHHOMBBP BeyondClientFrogprintParamValueEntity = 11;
+    GHDINFKEFOH BeyondClientFrogprintParamValueEntityList = 12;
+    HHFBFFCGABA BeyondClientFrogprintParamValueInt = 13;
+    LOGIIKHAHKF BeyondClientFrogprintParamValueIntList = 14;
+    FKAGGACHBJK BeyondClientFrogprintParamValueBool = 15;
+    JNJJDKIMOGH BeyondClientFrogprintParamValueBoolList = 16;
+    KLGFEEGGGJL BeyondClientFrogprintParamValueFloat = 17;
+    BLCIDKAGOOD BeyondClientFrogprintParamValueFloatList = 18;
+    NGMCNMIBMAG BeyondClientFrogprintParamValueString = 19;
+    LOOBAMOEFDJ BeyondClientFrogprintParamValueStringList = 20;
+    PKKAHECOLBA BeyondClientFrogprintParamValueVector3 = 21;
+    MJHKMMCCMDH BeyondClientFrogprintParamValueVector3List = 22;
+    PMKDPFOMOKC BeyondClientFrogprintParamValueEnum = 23;
+    JBGPOBFFFFO BeyondClientFrogprintParamValueGuid = 24;
+    BLHNMAMFHAK BeyondClientFrogprintParamValueGuidList = 25;
+    BFJJBNAPNEK BeyondClientFrogprintParamValueArmy = 26;
+    POMCIADONNO BeyondClientFrogprintParamValueEnumList = 27;
+    MKIEAEDNCJP BeyondClientFrogprintParamValueConfigReference = 28;
+    BJGJGHLCFJG BeyondClientFrogprintParamValueEntityReference = 29;
+    MLLFOMLCKGL BeyondClientFrogprintParamValueConfigReferenceList = 30;
+    MLEMJIONAGL BeyondClientFrogprintParamValueEntityReferenceList = 31;
+    NBKGBONCDHJ BeyondClientFrogprintParamValueStruct = 32;
+    NBIPDCMECMA BeyondClientFrogprintParamValueStructList = 33;
+    LCBENCFGLPO BeyondClientFrogprintParamValueDict = 34;
+    DOPJDJHDMFC BeyondClientFrogprintParamValueArmyList = 35;
+  }
+}

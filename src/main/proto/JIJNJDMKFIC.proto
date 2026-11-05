@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "JIJNJDMKFICOuterClass";
+import "BAHDGIJCMKG.proto";
+import "KOEPCDMDHID.proto";
+
+message JIJNJDMKFIC {
+  repeated BAHDGIJCMKG NNFNAMEBDOK = 1;
+  repeated KOEPCDMDHID OJINAJBMGEO = 501;
+  int32 NEMFLCOOLMB = 502;
+}

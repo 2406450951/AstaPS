@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EDLMACJNHGP.proto";
+import "FIEHCAPFKFI.proto";
+
+message _LanV6LanternGiftSource {
+  fixed32 BNBMJMEHPLJ = 20000;
+  fixed32 timestamp = 9;
+  oneof detail {
+    EDLMACJNHGP player = 550;
+    FIEHCAPFKFI npc = 173;
+  }
+}

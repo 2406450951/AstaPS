@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PCBAMEIJKIOOuterClass";
+import "LGGOBHLGLMM.proto";
+import "NGJBCALIMJO.proto";
+
+message PCBAMEIJKIO {
+  uint32 item_id = 1;
+  oneof detail {
+    LGGOBHLGLMM Reliquary = 11;
+    NGJBCALIMJO Weapon = 12;
+  }
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GamblingChessStageInfo.proto";
+import "GamblingChessStageVoteInfo.proto";
+
+message GamblingChessDetailInfo {
+  repeated uint32 settled_stage_id_list = 13;
+  repeated GamblingChessStageVoteInfo stage_vote_info_list = 11;
+  repeated GamblingChessStageInfo stage_info_list = 2;
+  uint32 timestamp = 9;
+  uint32 cur_stage_id = 14;
+}

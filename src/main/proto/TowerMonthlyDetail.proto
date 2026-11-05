@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "TowerMonthlyDetailOuterClass";
+import "TowerMonthlyBrief.proto";
+import "TowerMonthlyCombatRecord.proto";
+
+message TowerMonthlyDetail {
+  bool FHCAEALFDKE = 2;
+  uint32 COFJIIGMNCH = 4;
+  bool GGGMGDBBIPA = 6;
+  TowerMonthlyCombatRecord monthly_combat_record = 9;
+  TowerMonthlyBrief monthly_brief = 15;
+}

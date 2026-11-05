@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SceneGalleryIslandPartySailInfoOuterClass";
+import "GalleryStartSource.proto";
+import "IslandPartySailStage.proto";
+
+message SceneGalleryIslandPartySailInfo {
+  uint32 CCPGMIMPCMK = 2;
+  IslandPartySailStage stage = 5;
+  uint32 DHKFDMHONNG = 8;
+  uint32 AALOLHCIDAI = 9;
+  GalleryStartSource start_source = 10;
+  uint32 BKELFJCHLHC = 14;
+  uint32 coin = 15;
+}

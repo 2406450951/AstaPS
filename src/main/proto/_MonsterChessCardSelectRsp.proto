@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterChessCardSelectRspOuterClass";
+import "_MonsterChessCardStarUpInfo.proto";
+
+// 7.2 CmdId 28445
+message _MonsterChessCardSelectRsp {
+  int32 retcode = 3;
+  _MonsterChessCardStarUpInfo _card_star_up_info = 11;
+}

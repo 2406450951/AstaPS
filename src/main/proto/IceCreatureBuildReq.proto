@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AbilityScalarValueEntry.proto";
+import "BPAEPJHBOFM.proto";
+import "IceCreatureGadgetInfo.proto";
+import "Vector.proto";
+
+message IceCreatureBuildReq {
+  IceCreatureLimitType limit_type = 1;
+  Vector pos = 7;
+  repeated AbilityScalarValueEntry global_value_list = 8;
+  uint32 map_layer_id = 10;
+  bool unk_11 = 11;
+  BPAEPJHBOFM build_detail = 12;
+  Vector rot = 13;
+  repeated fixed64 replace_guid_list = 14;
+  uint32 gadget_id = 15;
+}

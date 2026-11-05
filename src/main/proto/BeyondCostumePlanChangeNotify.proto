@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondCostumePlanChangeNotifyOuterClass";
+import "_BeyondCostumeSetInfo.proto";
+
+// 7.2 CmdId 25004
+message BeyondCostumePlanChangeNotify {
+  repeated _BeyondCostumeSetInfo _costume_set_list = 2;
+  uint64 avatar_guid = 4;
+}

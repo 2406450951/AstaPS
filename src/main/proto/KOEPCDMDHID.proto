@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KOEPCDMDHIDOuterClass";
+import "BNGIPGGLOEF.proto";
+import "EADKDFKJENC.proto";
+import "HGGCDKJPLEK.proto";
+
+message KOEPCDMDHID {
+  int32 index = 501;
+  bool is_active = 502;
+  string AKEAINMJDHL = 503;
+  HGGCDKJPLEK GPEPAHLHNDM = 504;
+  float AEIOMAFDPBB = 505;
+  EADKDFKJENC offset = 506;
+  bool DBIAONGEALF = 507;
+  bool CHPMIMJDEOL = 508;
+  repeated BNGIPGGLOEF KPONHEPAGEF = 509;
+  int32 JFBIDBBFBPG = 510;
+  int32 LAGFLOMMPKO = 511;
+  repeated int32 LEGEJLDAFJD = 512;
+  string EBIACEANAIF = 601;
+  uint32 PAEBCHGFAOP = 602;
+  HGGCDKJPLEK KHMNBHPFHLK = 603;
+  int32 filter_type = 605;
+}

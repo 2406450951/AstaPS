@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BeyondSaveCostumeReqOuterClass";
+import "_BeyondCostumeSetInfo.proto";
+
+// 7.2 CmdId 25756
+message BeyondSaveCostumeReq {
+  uint32 save_request_id = 1;
+  _BeyondCostumeSetInfo _costume_set_detail = 2;
+  uint32 AHAJBLEAJDD = 3;
+  uint32 source_style_index = 11;
+  uint64 avatar_guid = 12;
+}

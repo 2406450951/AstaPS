@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CoinCollectGallerySettleNotifyOuterClass";
+message CoinCollectGallerySettleNotify {
+  uint32 level_id = 1;
+  uint32 KEPKIDFMNLP = 2;
+  uint32 GDCGFILFGKG = 3;
+  uint32 DPGGHJGDJCK = 4;
+  bool is_new_record = 5;
+  uint32 JHANJLEABNE = 6;
+}

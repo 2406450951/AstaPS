@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HGMPCLONGGFOuterClass";
+import "CMOPBLNOGED.proto";
+import "HIJNDLJGDED.proto";
+
+message HGMPCLONGGF {
+  HIJNDLJGDED CBNPHICHCAB = 501;
+  CMOPBLNOGED FLAOKGNEODL = 502;
+  uint32 DBPMLDHHJGG = 503;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message KDIBMDNOKDB {
+  uint32 camp_id = 1;
+  bool FBHFAMPKPPK = 6;
+  bool is_open = 15;
+  bool CLGJGGGKHBF = 13;
+  uint32 level_id = 11;
+}

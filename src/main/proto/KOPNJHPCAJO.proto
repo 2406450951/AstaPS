@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KOPNJHPCAJOOuterClass";
+import "AHEPPGPJJGL.proto";
+
+message KOPNJHPCAJO {
+  uint64 level_id = 1;
+  uint64 OGGCEBNCJBP = 2;
+  int64 BPBGBOFAOHM = 3;
+  int64 NNHGPAFDOJI = 4;
+  AHEPPGPJJGL IHIEJPAJDKH = 5;
+  uint64 total_score = 6;
+  bool CGIJDJBCLEA = 7;
+  int64 HAOAOOACJCH = 8;
+  bool GHEPILIPMON = 9;
+}

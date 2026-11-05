@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HBFCFDJHCEIOuterClass";
+message HBFCFDJHCEI {
+  int32 JBBEOLFPJFC = 1;
+  int32 CCDMBHHPGKO = 2;
+  uint32 target_count = 3;
+  int32 LPNKDNHBFDP = 4;
+  int32 EFNOJPEAJBI = 5;
+  repeated uint32 tag_list = 6;
+  bool ILKNPNOBHAP = 7;
+  bool EDPIDMACEEK = 8;
+}

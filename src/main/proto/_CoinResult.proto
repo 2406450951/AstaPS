@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_CoinResultOuterClass";
+message _CoinResult {
+  uint32 coin_num = 4;
+  uint32 JFONCCEFAME = 14;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "OABBNFBMAENOuterClass";
+import "JOELNOGAPGN.proto";
+
+message OABBNFBMAEN {
+  int32 HPAFCJPBIEA = 1;
+  bool FIALLJHLFEP = 2;
+  int32 BOMNIAMBPDO = 3;
+  JOELNOGAPGN BEDCCABJPKC = 501;
+  bool KNGEEIKIMLG = 502;
+}

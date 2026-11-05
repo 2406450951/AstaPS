@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "KKDGLHBEPLMOuterClass";
+message KKDGLHBEPLM {
+  uint32 DJLKLNNCENO = 2;
+  uint32 DEJOJANOABA = 3;
+  uint32 KGLAIDPAGOL = 4;
+  uint32 JJAIKGKPIEJ = 5;
+}

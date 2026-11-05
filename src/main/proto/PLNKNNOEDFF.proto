@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BeyondParamValueDictConst.proto";
+import "FJFKBKCECBC.proto";
+
+message PLNKNNOEDFF {
+  ABFMGNFBCOK value = 2;
+  string key = 1;
+  FJFKBKCECBC PMHDJBEJGKN = 3;
+}

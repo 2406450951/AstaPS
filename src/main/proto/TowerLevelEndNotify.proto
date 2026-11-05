@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ItemParam.proto";
+
+message TowerLevelEndNotify {
+  repeated ItemParam reward_item_list = 1;
+  repeated uint32 finished_star_cond_list = 4;
+  uint32 continue_state = 20000;
+  bool is_success = 11;
+  uint32 next_floor_id = 20001;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GalleryStopReason.proto";
+
+message _LanternRiteV6ParkourSettleInfo {
+  uint32 level_id = 2;
+  uint32 collect_num = 9;
+  bool is_new_record = 7;
+  GalleryStopReason reason = 1;
+  uint32 _max_collect_num = 13;
+  uint32 use_time = 6;
+  uint32 score = 4;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GuestPostEnterSceneNotifyOuterClass";
+// 7.2 CmdId 3660
+message GuestPostEnterSceneNotify {
+  uint32 scene_id = 1;
+  uint32 uid = 14;
+}

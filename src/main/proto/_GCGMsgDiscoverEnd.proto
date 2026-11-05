@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GCGMsgDiscoverEndOuterClass";
+message _GCGMsgDiscoverEnd {
+  uint32 IDNOFLMHOEO = 3;
+  uint32 card_guid = 6;
+  uint32 controller_id = 11;
+}

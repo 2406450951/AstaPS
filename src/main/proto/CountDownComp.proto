@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "OMIHJKKBJGO.proto";
+
+message CountDownComp {
+  repeated OMIHJKKBJGO FAMFKPMEOCC = 1;
+}

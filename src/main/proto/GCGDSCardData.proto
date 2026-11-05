@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GCGDSCardDataOuterClass";
+message GCGDSCardData {
+  uint32 num = 4;
+  uint32 face_type = 6;
+  uint32 proficiency = 8;
+  repeated uint32 EKMBFNJDEPG = 10;
+  uint32 card_id = 11;
+  repeated uint32 KCKJIFAGAFM = 14;
+}

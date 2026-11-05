@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ChannellerSlabSaveAssistInfoRspOuterClass";
+import "ChannellerSlabAssistInfo.proto";
+
+message ChannellerSlabSaveAssistInfoRsp {
+  int32 retcode = 1;
+  repeated ChannellerSlabAssistInfo assist_info_list = 2;
+}

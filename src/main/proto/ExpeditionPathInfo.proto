@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ExpeditionState.proto";
+
+message ExpeditionPathInfo {
+  repeated uint32 avatar_id_list = 4;
+  uint32 path_id = 1;
+  uint32 DAEPBFLMGIA = 20000;
+  float bonus_probability = 8;
+  uint32 LGBBIHMBIOM = 20001;
+  uint32 challenge_id = 9;
+  uint32 IOOGDKCHEAM = 20002;
+  ExpeditionState state = 2;
+  uint32 HPIHFPPEGEB = 20003;
+  uint32 start_time = 3;
+}

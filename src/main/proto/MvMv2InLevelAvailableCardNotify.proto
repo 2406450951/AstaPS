@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "MvMv2InLevelAvailableCardNotifyOuterClass";
+import "ProfilePicture.proto";
+import "Uint32Pair.proto";
+
+// 7.2 CmdId 8666
+message MvMv2InLevelAvailableCardNotify {
+  uint64 GIHMPFBFIII = 2;
+  string online_id = 3;
+  uint32 level_id = 4;
+  string _xbox_gamertag = 6;
+  repeated Uint32Pair GENMOFHFMLE = 8;
+  ProfilePicture profile_picture = 10;
+  bool GBJGGFEFCGK = 11;
+  string nick_name = 13;
+  uint32 uid = 14;
+}

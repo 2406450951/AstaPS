@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_DigV2SettleInfoOuterClass";
+import "GalleryStopReason.proto";
+
+message _DigV2SettleInfo {
+  uint32 score = 4;
+  bool is_new_record = 5;
+  GalleryStopReason _stop_reason = 6;
+  uint32 FOAIFKLAJNO = 8;
+}

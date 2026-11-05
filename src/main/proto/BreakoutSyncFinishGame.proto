@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BreakoutSyncFinishGameOuterClass";
+message BreakoutSyncFinishGame {
+  bool is_win = 4;
+  bool is_stop_gallery = 8;
+  uint64 server_game_time = 14;
+}

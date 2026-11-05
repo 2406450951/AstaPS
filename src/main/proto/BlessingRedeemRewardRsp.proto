@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "BlessingRedeemRewardRspOuterClass";
+// 7.2 CmdId 2555
+message BlessingRedeemRewardRsp {
+  map<uint32, uint32> pic_num_map = 13;
+  int32 retcode = 14;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PlayerApplyEnterMpAfterMatchAgreedNotifyOuterClass";
+import "MatchType.proto";
+import "OnlinePlayerInfo.proto";
+
+// 7.2 CmdId 7013
+message PlayerApplyEnterMpAfterMatchAgreedNotify {
+  MatchType match_type = 2;
+  uint32 matchserver_id = 5;
+  OnlinePlayerInfo src_player_info = 8;
+}

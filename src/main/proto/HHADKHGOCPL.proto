@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EMOLMHKIMBE.proto";
+
+message HHADKHGOCPL {
+  EMOLMHKIMBE NCGIMFGDIPG = 505;
+  int32 IDCCGKLBMHL = 503;
+  int32 EJANIOOPFHP = 504;
+  float ECCLIIIBOLE = 502;
+  bool HMOFNODLMBL = 501;
+}

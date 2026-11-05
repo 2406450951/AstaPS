@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "PBNavMeshPolyOuterClass";
+import "EdgeType.proto";
+
+message PBNavMeshPoly {
+  repeated int32 vects = 8;
+  int32 area = 12;
+  repeated EdgeType edge_types = 13;
+}

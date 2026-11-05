@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondTriggerAttackEventByAbsPosMpActionConfigOuterClass";
+import "DBIMHLLHBJM.proto";
+import "EIAFLJACCFK.proto";
+import "EJHLPJKBFJL.proto";
+import "FAGMGLAJFNL.proto";
+import "HHEDHCFPEKM.proto";
+import "MIOPJIJBOBD.proto";
+
+message _BeyondTriggerAttackEventByAbsPosMpActionConfig {
+  FAGMGLAJFNL PJOEEDBKIPJ = 1;
+  repeated FAGMGLAJFNL OPPMCOIIABO = 2;
+  FAGMGLAJFNL GABKHHDKKLF = 3;
+  FAGMGLAJFNL GJDFKAADLCC = 4;
+  HHEDHCFPEKM pos = 5;
+  HHEDHCFPEKM rot = 6;
+  EJHLPJKBFJL CBFFMGHDCGL = 8;
+  MIOPJIJBOBD CHECPDOLJNP = 9;
+  FAGMGLAJFNL HFHJJJKDGMM = 10;
+  HHEDHCFPEKM EJKDAPKHBKM = 11;
+  float radius = 12;
+  EIAFLJACCFK FDODBPBDKKJ = 13;
+  DBIMHLLHBJM IOMCDMKNCAF = 14;
+}

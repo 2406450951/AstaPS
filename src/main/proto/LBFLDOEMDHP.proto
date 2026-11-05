@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message LBFLDOEMDHP {
+  uint32 level_id = 9;
+  uint32 cost_time = 6;
+  bool is_finished = 13;
+}

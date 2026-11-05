@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "INACLKMNDEFOuterClass";
+import "CHGNKGDAGIC.proto";
+import "_ConfigPlayMusic.proto";
+import "_ConfigPlaySoundEffect.proto";
+
+message INACLKMNDEF {
+  CHGNKGDAGIC MPNMKLCAHMC = 1;
+  oneof detail {
+    _ConfigPlaySoundEffect ConfigPlaySoundEffect = 100;
+    _ConfigPlayMusic ConfigPlayMusic = 101;
+  }
+}

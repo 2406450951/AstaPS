@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "SegmentCRCInfoOuterClass";
+message SegmentCRCInfo {
+  uint32 AGBDJKDAIII = 1;
+  uint32 EJKDAPKHBKM = 4;
+  uint32 offset = 7;
+  string crc = 12;
+  int32 retcode = 15;
+}

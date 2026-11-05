@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "GeneralMatchInfoOuterClass";
+import "MatchPlayerInfo.proto";
+
+message GeneralMatchInfo {
+  uint32 match_param = 2;
+  repeated MatchPlayerInfo player_list = 3;
+  uint32 match_id = 6;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "HEBIKAOHEACOuterClass";
+enum HEBIKAOHEAC {
+  HEBIKAOHEAC_UNKNOWN = 0;
+  HEBIKAOHEAC_LOADING = 1;
+  HEBIKAOHEAC_DLC = 2;
+  HEBIKAOHEAC_ACHIEVEMENT = 3;
+  HEBIKAOHEAC_PAY_DLC = 4;
+  HEBIKAOHEAC_TASK_DLC = 5;
+}

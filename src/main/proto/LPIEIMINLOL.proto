@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "LPIEIMINLOLOuterClass";
+import "JJOEECFPENH.proto";
+import "JOJKJCPIMCA.proto";
+
+message LPIEIMINLOL {
+  JOJKJCPIMCA BOGBJOJKAIJ = 1;
+  uint32 FJGHCJMLBGM = 2;
+  bool JPJKPMFBMCL = 3;
+  uint32 PEBJFNLNHME = 4;
+  uint32 AAHHCNFMADB = 5;
+  bool GOIMHKHACBC = 6;
+  repeated JJOEECFPENH GPJFJPAONMB = 7;
+}

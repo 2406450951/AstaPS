@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_LanV6CardLikeReqOuterClass";
+// 7.2 CmdId 2043
+message _LanV6CardLikeReq {
+  fixed64 _lan_v6_card_guid = 9;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message NNOLNLHNOIO {
+  uint32 rank = 10;
+  uint32 PBBFBMDGOOH = 6;
+  uint32 DNIBBKLBBJE = 4;
+  uint32 IKFHIPAAFEF = 8;
+  uint32 count = 1;
+  uint32 exp = 11;
+  bool GOEKPDMOLKD = 13;
+  bool is_unlocked = 12;
+  bool HCEJBKINEOB = 9;
+}

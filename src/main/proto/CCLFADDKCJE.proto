@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CCLFADDKCJEOuterClass";
+import "_AvatarMirrorType.proto";
+
+message CCLFADDKCJE {
+  uint32 _avatar_element_type = 4;
+  _AvatarMirrorType avatar_type = 7;
+  uint32 avatar_id = 9;
+  uint32 costume_id = 12;
+}

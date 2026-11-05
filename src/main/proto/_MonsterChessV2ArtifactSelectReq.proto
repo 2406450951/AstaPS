@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_MonsterChessV2ArtifactSelectReqOuterClass";
+// 7.2 CmdId 118
+message _MonsterChessV2ArtifactSelectReq {
+  uint32 card_id = 5;
+  uint32 _artifact_id = 15;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_GetWidgetQuickSlotListRspOuterClass";
+// 7.2 CmdId 9610
+message _GetWidgetQuickSlotListRsp {
+  int32 retcode = 1;
+  repeated uint32 _material_id_list = 3;
+  uint32 _current_slot_num = 14;
+}

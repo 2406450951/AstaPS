@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "RoleCombatStartGalleryRspOuterClass";
+// 7.2 CmdId 3556
+message RoleCombatStartGalleryRsp {
+  int32 retcode = 4;
+}

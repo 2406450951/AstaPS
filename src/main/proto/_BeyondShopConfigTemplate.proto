@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondShopConfigTemplateOuterClass";
+import "EKDLMMNJEDE.proto";
+import "ENKNAKDGBDD.proto";
+import "EOHHMFMKIMI.proto";
+import "EOMDDNJBDHN.proto";
+import "GOBLDIADDAK.proto";
+import "IFFOPCANBBK.proto";
+import "IMKPFOODDDB.proto";
+import "LNDGJFGIBMI.proto";
+import "NEKEGBOINLP.proto";
+
+message _BeyondShopConfigTemplate {
+  ENKNAKDGBDD GCGFJOEJLJH = 1;
+  EOHHMFMKIMI GPNHPBFKNPL = 2;
+  LNDGJFGIBMI HIGFOOPAOHF = 3;
+  EOMDDNJBDHN MIEKEHEMJMO = 4;
+  NEKEGBOINLP KAELPKHAJNJ = 5;
+  GOBLDIADDAK BALCKBFFKID = 6;
+  IMKPFOODDDB DENNHGNBMEB = 7;
+  repeated uint32 NFDEJJCDKMP = 8;
+  repeated EKDLMMNJEDE IKDNEMGCIMJ = 9;
+  bool NDIPDEGEDJK = 10;
+  IFFOPCANBBK KINHDOLFLHN = 11;
+}

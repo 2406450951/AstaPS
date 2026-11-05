@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "_BeyondPlayerReportRspOuterClass";
+import "ReportReasonType.proto";
+import "_ReportReasonSubtype.proto";
+
+// 7.2 CmdId 25245
+message _BeyondPlayerReportRsp {
+  _ReportReasonSubtype _report_subtype = 7;
+  ReportReasonType report_type = 10;
+  int32 retcode = 11;
+  uint32 OONKNLKJBJM = 13;
+}

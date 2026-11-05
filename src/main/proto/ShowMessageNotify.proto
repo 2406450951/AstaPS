@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ShowMessageNotifyOuterClass";
+import "MsgParam.proto";
+import "SvrMsgId.proto";
+
+// 7.2 CmdId 25545
+message ShowMessageNotify {
+  SvrMsgId msg_id = 7;
+  repeated MsgParam params = 13;
+}

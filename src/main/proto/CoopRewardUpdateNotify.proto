@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "CoopRewardUpdateNotifyOuterClass";
+import "CoopReward.proto";
+
+// 7.2 CmdId 795
+message CoopRewardUpdateNotify {
+  repeated CoopReward reward_list = 2;
+}
