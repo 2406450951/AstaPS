@@ -6,6 +6,9 @@ A private server for Genshin Impact **7.2.0**, built on Grasscutter.
 
 > This is a research and preservation project. It is not affiliated with, endorsed by, or connected to HoYoverse / miHoYo in any way, and it is not for commercial use.
 
+> [!WARNING]
+> 7.2 support is still in progress and there are many bugs. Some features that worked on 7.1 do not work yet; see [docs/protocol-7.2-gaps.md](docs/protocol-7.2-gaps.md) for the protocol messages and fields that are still missing.
+
 If you can fix a bug, please help me.
 
 ## Requirements
