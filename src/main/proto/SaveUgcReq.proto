@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "KLALGJNDAFD.proto";
+import "UgcMusicBriefInfo.proto";
+import "UgcMusicRecord.proto";
+import "UgcType.proto";
+import "_UgcLanV5CardBriefInfo.proto";
+import "_UgcLanV5CardRecord.proto";
+import "_UgcShortVideoRecord.proto";
+
+message SaveUgcReq {
+  UgcType ugc_type = 14;
+  uint32 schedule_id = 1;
+  KLALGJNDAFD HMODKDEMFDE = 11;
+  oneof record {
+    UgcMusicRecord music_record = 5;
+    _UgcLanV5CardRecord lan_v_5_card_record = 9;
+    _UgcShortVideoRecord short_video_record = 10;
+  }
+  oneof brief {
+    UgcMusicBriefInfo music_brief_info = 1740;
+    _UgcLanV5CardBriefInfo lan_v_5_card_brief_info = 2034;
+  }
+}

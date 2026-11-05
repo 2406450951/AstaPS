@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_UgcShortVideoAvatarInfo.proto";
+
+message _UgcShortVideoBriefInfo {
+  repeated uint32 KOKGKGKFDEI = 20000;
+  repeated uint32 LKCCHMHJNEF = 20001;
+  string _level_name = 14;
+  string IONHLOONKFG = 20002;
+  repeated uint32 tag_list = 1;
+  repeated uint32 avatar_id_list = 3;
+  repeated _UgcShortVideoAvatarInfo avatar_info_list = 6;
+  uint32 _vote_neutral_num = 20003;
+  uint32 level_id = 4;
+  bool FAAOOIKCIJO = 20004;
+  uint32 _vote_positive_num = 20005;
+  uint32 _vote_negative_num = 20006;
+}

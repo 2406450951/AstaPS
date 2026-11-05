@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_MonsterChessV2RecordCardDetail.proto";
+
+message _MonsterChessV2RecordTeamInfo {
+  repeated _MonsterChessV2RecordCardDetail _monster_card_list = 13;
+  uint32 _flag_id = 1;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "PJFELCMPMKJ.proto";
+
+message CKFHELMIGOP {
+  map<uint64, uint32> CGNCCOMCOBA = 8;
+  map<uint64, uint32> CCKHKMBCEGJ = 3;
+  repeated uint32 KNPJGLLICAD = 11;
+  repeated PJFELCMPMKJ DDNFEHGKHFO = 15;
+  uint32 IECDLMNALEJ = 9;
+  uint64 MIHDAJBFNKE = 13;
+  uint32 FLGHAOCLOAJ = 12;
+  uint32 NDLKHEFOAJF = 5;
+  uint32 JLCDGPLJJMM = 6;
+  uint32 DILPAMLKLCC = 10;
+  uint64 OAICLPJOICK = 4;
+}

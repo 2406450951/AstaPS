@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_LanV6CardDetail.proto";
+import "_LanV6LanternGiftSource.proto";
+
+message _LanV6LanternGiftDetail {
+  _LanV6CardDetail card = 6;
+  _LanV6LanternGiftSource source = 9;
+}

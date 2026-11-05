@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ItemParam.proto";
+import "_AvatarExpeditionBasicInfo.proto";
+
+message _AvatarExpeditionRewardInfo {
+  repeated ItemParam item_list = 14;
+  repeated ItemParam extra_item_list = 15;
+  _AvatarExpeditionBasicInfo basic_info = 2;
+}

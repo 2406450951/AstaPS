@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BCFNIJFCBJK.proto";
+
+message MKCENPDADHA {
+  string PJBGKFGIKBA = 12;
+  string EFAEIFOKMDL = 1;
+  BCFNIJFCBJK dungeon_info = 13;
+  bool is_trial = 11;
+}

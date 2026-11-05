@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message KOCMFKMIOLG {
+  repeated uint32 CIIOIKFAPHF = 8;
+  uint32 IDAGPFELMMH = 11;
+  uint32 level_id = 14;
+  uint32 best_score = 1;
+  bool is_finish = 3;
+  bool is_open = 10;
+}

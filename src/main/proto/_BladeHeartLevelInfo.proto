@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _BladeHeartLevelInfo {
+  bool is_perfect = 12;
+  bool _is_cutscene_viewed = 7;
+}

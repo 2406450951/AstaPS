@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActivityAvatarInfo.proto";
+
+message HPIBBLDNIME {
+  repeated _ActivityAvatarInfo IHPPKPMKLHN = 20000;
+  bool is_finish = 3;
+  bool is_open = 1;
+  uint32 best_score = 14;
+  uint32 OKBGFHDDKCJ = 20001;
+  uint32 BOAKDOGPPPG = 5;
+  uint32 level_id = 11;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Shop.proto";
+
+message _GetShopBatchRsp {
+  repeated Shop _shop_list = 10;
+  int32 retcode = 2;
+}

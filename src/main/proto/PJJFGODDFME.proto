@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message PJJFGODDFME {
+  uint32 max_score = 7;
+  bool is_open = 14;
+  bool is_finished = 9;
+  uint32 level_id = 12;
+}

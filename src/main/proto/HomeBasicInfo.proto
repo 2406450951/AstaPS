@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HomeLimitedShopInfo.proto";
+
+message HomeBasicInfo {
+  string owner_nick_name = 9;
+  HomeLimitedShopInfo limited_shop_info = 1;
+  uint32 JDHBFLPNNFK = 12;
+  bool is_in_edit_mode = 5;
+  uint32 home_owner_uid = 3;
+  uint32 level = 10;
+  uint32 cur_module_id = 13;
+  uint32 cur_room_scene_id = 15;
+  uint64 exp = 2;
+}

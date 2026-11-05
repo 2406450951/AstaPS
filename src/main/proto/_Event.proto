@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AKEBFNIEJNM.proto";
+
+message _Event {
+  repeated AKEBFNIEJNM option_list = 13;
+  uint32 event_id = 9;
+}

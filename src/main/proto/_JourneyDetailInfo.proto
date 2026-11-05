@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "JourneyDiceDungeonInfo.proto";
+import "JourneyGearInfo.proto";
+import "JourneyPickInfo.proto";
+import "JourneySealInfo.proto";
+
+message _JourneyDetailInfo {
+  JourneyGearInfo journey_gear_info = 20000;
+  JourneySealInfo journey_seal_info = 20001;
+  JourneyPickInfo journey_gcg_info = 20002;
+  JourneyDiceDungeonInfo journey_dice_dungeon_info = 20003;
+}

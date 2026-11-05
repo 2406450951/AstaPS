@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GalleryStopReason.proto";
+
+message _ShortVideoSettleInfo {
+  uint32 level_id = 6;
+  uint32 use_time = 2;
+  GalleryStopReason reason = 15;
+}

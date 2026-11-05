@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_LanV5CardSocial.proto";
+
+message _UgcLanV5CardBriefInfo {
+  _LanV5CardSocial social = 13;
+  string creator_nickname = 3;
+  string FOGGDOBPMJO = 20000;
+  uint64 ugc_guid = 5;
+  uint32 audit_state = 2;
+  bool is_published = 4;
+  bool KPEEGKCFFBA = 20001;
+  bool is_liked = 8;
+  bool is_stored = 11;
+  uint32 save_time = 6;
+  uint32 BHBJOKCFMPN = 10;
+  uint32 slot_id = 1;
+  uint32 PNLPELDJLFL = 7;
+}

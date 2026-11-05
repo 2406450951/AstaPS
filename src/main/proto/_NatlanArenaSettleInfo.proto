@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _NatlanArenaSettleInfo {
+  uint32 difficulty = 13;
+  uint32 level_id = 6;
+  uint32 EKLLGJEHJPA = 15;
+  bool is_new_record = 7;
+  bool DAGLJBFPHEK = 1;
+  bool LDMJHAPIDNA = 20002;
+  uint32 cost_time = 8;
+  uint32 JGLPDDIMNAC = 20003;
+  uint32 MDFOCKGPHEN = 20004;
+  uint32 BBHKPGDIDOP = 20005;
+}

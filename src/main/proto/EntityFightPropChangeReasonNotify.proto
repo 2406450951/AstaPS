@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ChangHpReason.proto";
+import "ChangeEnergyReason.proto";
+import "DPICLKABIDC.proto";
+import "PropChangeReason.proto";
+import "_ChangeHpDebtsReason.proto";
+
+message EntityFightPropChangeReasonNotify {
+  repeated uint32 param_list = 9;
+  DPICLKABIDC detail_info = 5;
+  uint32 EFIBMPKIJJH = 20000;
+  uint32 entity_id = 8;
+  uint32 prop_type = 15;
+  _ChangeHpDebtsReason _change_hp_debts_reason = 11;
+  ChangHpReason change_hp_reason = 2;
+  ChangeEnergyReason change_energy_reson = 13;
+  float _paid_hp_debts = 14;
+  PropChangeReason reason = 1;
+  float prop_delta = 10;
+}

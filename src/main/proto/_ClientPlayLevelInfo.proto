@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ClientPlayDetailInfo.proto";
+
+message _ClientPlayLevelInfo {
+  _ClientPlayDetailInfo detail_info = 13;
+  uint32 best_record = 14;
+  uint32 level_id = 15;
+  bool is_open = 5;
+  uint32 _play_times = 20000;
+  uint32 _finish_times = 20001;
+}

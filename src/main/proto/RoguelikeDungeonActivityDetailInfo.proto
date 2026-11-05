@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "RogueStageInfo.proto";
+import "RoguelikeShikigamiRecord.proto";
+
+message RoguelikeDungeonActivityDetailInfo {
+  repeated RogueStageInfo stage_list = 3;
+  repeated uint32 rune_list = 20000;
+  repeated RoguelikeShikigamiRecord shikigami_list = 2;
+  repeated uint32 equipped_rune_list = 20001;
+  uint32 content_close_time = 6;
+  bool is_content_closed = 5;
+}

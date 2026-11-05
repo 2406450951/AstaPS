@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message NPLDPCGLKMK {
+  repeated uint32 BGKNOBGMOIP = 4;
+  repeated uint32 JFAEGBAKLOB = 13;
+  repeated uint32 EBFKBDLLJGC = 5;
+  repeated uint32 AHAPLEIGAPI = 15;
+  bool is_open = 3;
+  bool is_finish = 6;
+  uint32 level_id = 9;
+  uint32 score = 8;
+}

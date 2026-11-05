@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ItemParam.proto";
+
+message TakeCompoundOutputRsp {
+  repeated ItemParam item_list = 5;
+  repeated int32 ANAMNOCEICO = 11;
+  int32 retcode = 8;
+}

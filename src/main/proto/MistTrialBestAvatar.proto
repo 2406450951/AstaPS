@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AvatarType.proto";
+
+message MistTrialBestAvatar {
+  uint32 costume_id = 11;
+  uint32 avatar_id = 3;
+  AvatarType avatar_type = 5;
+}

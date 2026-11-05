@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AHKBALPHAAB.proto";
+import "_TemplatePotionInfo.proto";
+
+message MKJLLPCIMCM {
+  AHKBALPHAAB ELKDIMBAEPJ = 1;
+  _TemplatePotionInfo BNDLHOBBABM = 9;
+  repeated _TemplatePotionInfo NFCHLDDOALL = 11;
+  uint32 IDBAEDDIAGI = 3;
+  uint32 GLNPCFFJOMK = 10;
+  uint32 CPLCJCLPOPH = 12;
+  uint32 PFGKLKDGKNI = 5;
+  bool GHEDNNPDEMO = 15;
+  uint32 ACJECNOJOBP = 13;
+  uint32 PABCOFFLFMF = 7;
+  uint32 BMFLNENJCCJ = 8;
+  uint32 OICBPFABKFM = 2;
+}

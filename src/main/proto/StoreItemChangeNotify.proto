@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Item.proto";
+import "StoreType.proto";
+
+message StoreItemChangeNotify {
+  enum _ChangeReason {
+    _ChangeReason_OTHERS = 0;
+    _ChangeReason_LOCK_OR_STAR = 1;
+  }
+  repeated Item item_list = 1;
+  StoreType store_type = 8;
+  StoreItemChangeNotify._ChangeReason reason = 3;
+}

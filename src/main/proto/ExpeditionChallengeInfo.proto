@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ExpeditionChallengeInfo {
+  bool is_finished = 3;
+  uint32 open_time = 2;
+  uint32 id = 1;
+}

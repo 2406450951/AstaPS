@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _AvatarChangeWeaponSkinRsp {
+  repeated uint64 avatar_guid_list = 1;
+  repeated uint64 fail_avatar_guid_list = 5;
+  uint32 weapon_skin_id = 4;
+  int32 retcode = 10;
+}

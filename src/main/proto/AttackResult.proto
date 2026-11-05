@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AbilityIdentifier.proto";
+import "AttackHitEffectResult.proto";
+import "CIHENMDCMGJ.proto";
+import "HIMBAGFLEHM.proto";
+import "HitCollision.proto";
+import "Vector.proto";
+import "_InterpolateMoveInfo.proto";
+
+message AttackResult {
+  Vector resolved_dir = 20000;
+  AbilityIdentifier ability_identifier = 13;
+  HitCollision hit_collision = 5;
+  AttackHitEffectResult hit_eff_result = 3;
+  string anim_event_id = 12;
+  Vector DNMDKFFCNPJ = 20001;
+  repeated uint32 OHPEIAGBOIK = 20002;
+  _InterpolateMoveInfo _interpolate_move_info = 867;
+  CIHENMDCMGJ EFBFOAOJADK = 20003;
+  HIMBAGFLEHM PGPBACPJGNM = 20004;
+  float OOFNGENKHKG = 20005;
+  uint32 MOEKEMAHBNN = 550;
+  uint32 FDEGAMMGNGI = 20007;
+  uint32 CFKHDFPCHCL = 20008;
+  uint32 EKDNPKHMJIE = 20009;
+  float MDBPICGKMLB = 20010;
+  uint32 LNFCPOINHKK = 20011;
+  uint32 IFHJIFEBKAO = 20012;
+  bool EPLABAAGCKE = 20013;
+  bool DMIEAHDCHFA = 20014;
+  uint32 element_type = 2;
+  float damage = 14;
+  float NJFMEBDIICN = 20015;
+  uint32 AFPBFDHCDNK = 6;
+  uint32 IDENIGMCBJB = 20017;
+  uint32 defense_id = 4;
+  bool PKOFLCBFEOA = 20018;
+  bool OMJGKPMPFBI = 20019;
+  bool GGAMPLOEPMG = 20020;
+  uint32 PLNPCMILPPD = 20021;
+  float NILAPFIGLLH = 20022;
+  uint32 MHJDKCODNAA = 20023;
+  uint32 BNBBLJCDMPJ = 155;
+  uint32 attacker_id = 1;
+  float MDECMKGHDAK = 20025;
+  int32 hit_retreat_angle_compat = 11;
+  uint32 GMNALDFDANK = 20026;
+  uint32 JCPDJCGGJCC = 20027;
+  uint32 JILIGGDCLDH = 1900;
+  uint32 BJHAEPGOAKM = 20029;
+}

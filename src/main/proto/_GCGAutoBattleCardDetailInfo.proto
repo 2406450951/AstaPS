@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HBJLPIDKEND.proto";
+import "JJAAPEINGAC.proto";
+import "KBHFBAJNBCG.proto";
+
+message _GCGAutoBattleCardDetailInfo {
+  HBJLPIDKEND LEGBABJELMF = 20000;
+  repeated uint32 LIMMJOANIDO = 20001;
+  JJAAPEINGAC DHFAFMNNEOJ = 20002;
+  KBHFBAJNBCG PCCLJJHAJGH = 20003;
+  bool LBCGNOOJDIC = 1;
+}

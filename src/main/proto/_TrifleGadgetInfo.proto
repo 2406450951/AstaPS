@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Item.proto";
+
+message _TrifleGadgetInfo {
+  Item item = 1;
+  uint32 MICBGBIHOFE = 2;
+}

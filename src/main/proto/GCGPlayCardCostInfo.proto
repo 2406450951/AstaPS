@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "NAOPGAHKGGG.proto";
+
+message GCGPlayCardCostInfo {
+  repeated NAOPGAHKGGG token_list = 13;
+  uint32 card_id = 15;
+}

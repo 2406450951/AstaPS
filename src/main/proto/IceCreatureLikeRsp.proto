@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message IceCreatureLikeRsp {
+  int32 retcode = 8;
+  fixed64 guid = 13;
+  uint32 like_num = 9;
+}

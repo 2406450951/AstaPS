@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message OCECKEMKIGJ {
+  repeated uint32 EGCJHEIONKK = 20000;
+  bool is_played = 3;
+  bool is_unlock = 2;
+  bool is_finished = 4;
+  uint32 IFFKFLBCHHL = 20001;
+  uint32 ALNHCONFHHO = 20002;
+  uint32 level_id = 1;
+  uint32 JPBOIPOIGNH = 20003;
+}

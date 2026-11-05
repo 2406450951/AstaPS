@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message KODIFCAOMEC {
+  uint32 DEADDOKKEHM = 3;
+  uint32 level_id = 1;
+  uint32 CHJDGMGPDPE = 20001;
+  bool is_open = 2;
+}

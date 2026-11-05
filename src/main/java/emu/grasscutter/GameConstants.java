@@ -7,11 +7,11 @@ import emu.grasscutter.utils.objects.SparseSet;
 import java.util.Arrays;
 
 public final class GameConstants {
-    public static String VERSION = "7.1.0";
+    public static String VERSION = "7.2.0";
     public static int[] VERSION_PARTS = Arrays.stream(VERSION.split("\\.")).mapToInt(Integer::parseInt).toArray();
     public static boolean DEBUG = false;
 
-    public static final int ENTITY_ID_BIT_SHIFT = 21;
+    public static final int ENTITY_ID_BIT_SHIFT = 27; // 7.2; 7.1 used 21
     public static final int DEFAULT_TEAMS = 4;
     // 20 party slots in total (the 4 defaults plus 16 custom ones), matching the official client.
     public static final int MAX_TEAMS = 20;

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message BGNHNJFJLLC {
+  string name = 2;
+  int32 index = 5;
+  uint32 AENPIDPILAB = 1;
+  int32 slot_count = 4;
+  uint32 config_id = 3;
+}

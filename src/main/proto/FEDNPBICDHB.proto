@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message FEDNPBICDHB {
+  repeated uint64 avatar_guid_list = 9;
+  repeated uint32 _elite_monster_id_list = 4;
+  repeated uint32 monster_id_list = 11;
+  bool is_open = 15;
+  bool is_finish = 2;
+  uint32 max_score = 14;
+  uint32 use_time = 1;
+  uint32 level_id = 7;
+}

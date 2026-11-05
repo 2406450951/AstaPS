@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "PHPBCLPALEL.proto";
+import "Uint32Pair.proto";
+
+message DIGMMKNOMJH {
+  message BKPMKCLBFJO {
+    repeated uint32 avatar_id_list = 7;
+    uint32 AAKAOLKKNGC = 3;
+  }
+  repeated PHPBCLPALEL GIKGKBOOEBA = 10;
+  repeated uint32 GANBJPGGDCN = 3;
+  Uint32Pair CEBNLIBJDMH = 4;
+  Uint32Pair IEMHJKAFADD = 7;
+  repeated Uint32Pair DHLLNAJOLGD = 2;
+  repeated uint32 LJFEALFCNDK = 9;
+  repeated DIGMMKNOMJH.BKPMKCLBFJO PBOLJCMMHAE = 15;
+  repeated uint32 LBBGFJIIGEF = 12;
+  Uint32Pair ALLEKLNOBLE = 14;
+  uint32 GLAJBGCECKN = 13;
+  uint32 BHLBDKEMLCA = 8;
+  uint32 FACBACBDDPB = 1;
+  uint32 difficulty_id = 11;
+  uint32 AEOAOJFGECJ = 6;
+}

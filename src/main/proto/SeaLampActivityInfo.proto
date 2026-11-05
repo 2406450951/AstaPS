@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "SeaLampSectionInfo.proto";
+
+message SeaLampActivityInfo {
+  repeated SeaLampSectionInfo section_info_list = 5;
+  bool LMIKLCAMJPN = 20000;
+  bool HIFKCCMCHLO = 20001;
+  bool is_content_closed = 4;
+  uint32 first_day_start_time = 8;
+  uint32 day_index = 1;
+  uint32 BCGEMOHPELE = 20002;
+  uint32 MLCKEOGNHMF = 20003;
+  uint32 NOMMHKJEGDK = 20004;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_CityReputationRewardType.proto";
+
+message _CityReputationRewardInfo {
+  repeated uint32 NKEIGBLMELD = 5;
+  repeated uint32 reward_city_list = 20000;
+  _CityReputationRewardType type = 6;
+}

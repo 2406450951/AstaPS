@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActivityAvatarInfo.proto";
+
+message NOJCFCNEIMJ {
+  repeated _ActivityAvatarInfo avatar_info_list = 2;
+  uint32 difficulty = 13;
+  uint32 BOAKDOGPPPG = 15;
+  bool IMEPIKDEFHA = 4;
+}

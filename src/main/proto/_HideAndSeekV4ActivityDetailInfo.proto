@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BCMGBIKCCFB.proto";
+
+message _HideAndSeekV4ActivityDetailInfo {
+  repeated BCMGBIKCCFB LINFLLHOJEE = 20000;
+  repeated uint32 BBKJJPHJADK = 20001;
+  repeated uint32 KNDGADIAKME = 20002;
+  repeated BCMGBIKCCFB EDECCPJFDAF = 20003;
+  bool LBCGNOOJDIC = 13;
+}

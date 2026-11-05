@@ -2,9 +2,12 @@
 
 English · [简体中文](README_zh-CN.md) · [繁體中文](README_zh-TW.md)
 
-A private server for Genshin Impact **7.1.0**, built on Grasscutter.
+A private server for Genshin Impact **7.2.0**, built on Grasscutter.
 
 > This is a research and preservation project. It is not affiliated with, endorsed by, or connected to HoYoverse / miHoYo in any way, and it is not for commercial use.
+
+> [!WARNING]
+> 7.2 support is still in progress and there are many bugs. Some features that worked on 7.1 do not work yet; see [docs/protocol-7.2-gaps.md](docs/protocol-7.2-gaps.md) for the protocol messages and fields that are still missing.
 
 If you can fix a bug, please help me.
 
@@ -14,8 +17,8 @@ If you can fix a bug, please help me.
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Java        | **JDK 21** to build and **Java 21** to run. AstaPS uses Java 21 APIs such as virtual threads.                                                                                                                                     |
 | MongoDB     | Community Server. Must be running before the server starts.                                                                                                                                                                       |
-| Game client | Genshin Impact 7.1.0. The official client checks the region's signature, so it needs a client patch to connect to a private server, such as [hk4e-patch-universal](https://github.com/KitsukiDev/hk4e-patch-universal). AstaPS does not ship one. |
-| Resources   | A 7.1.0 resource pack, extracted to `resources/` in the server directory. If you don't have Resources, you can download it [here](https://github.com/MeChen618/AstaPS-Resource).                                                  |
+| Game client | Genshin Impact 7.2.0. The official client checks the region's signature, so it needs a client patch to connect to a private server, such as [hk4e-patch-universal](https://github.com/KitsukiDev/hk4e-patch-universal). AstaPS does not ship one. |
+| Resources   | A 7.2.0 resource pack, extracted to `resources/` in the server directory. If you don't have Resources, you can download it [here](https://github.com/MeChen618/AstaPS-Resource).                                                  |
 
 ## Docker
 
@@ -100,14 +103,14 @@ Then build with:
 ./gradlew jar -PskipHandbook=1
 ```
 
-`grasscutter-7.1.0.jar` lands in the project root. Drop `-PskipHandbook=1` to build the in-game handbook as well; that step needs NodeJS and fails without it.
+`grasscutter-7.2.0.jar` lands in the project root. Drop `-PskipHandbook=1` to build the in-game handbook as well; that step needs NodeJS and fails without it.
 
 On Windows use `./gradlew.bat`.
 
 ## Running
 
 1. Start MongoDB.
-2. Put a 7.1.0 resource pack in `resources/`.
+2. Put a 7.2.0 resource pack in `resources/`.
 3. Run the jar once. It writes a `config.json` and stops if anything essential is missing.
 4. Start it again. The dispatch server listens on `8088` and the game server on `22101` by default.
 5. Point the client at the dispatch server: [GrasscutterTools](https://github.com/jie65535/GrasscutterCommandGenerator) has a built-in proxy, or use Fiddler, mitmproxy or a client patch.
@@ -125,15 +128,11 @@ give 202 --amount 3 @10001
 
 See the [CLI migration guide](docs/cli-picocli-migration.md) for details and the [command API v5 guide](docs/plugin-command-api-v5.md) for plugins.
 
-## TPS shooting (7.1)
-
-Snezhnaya's third-person shooter mode works. See [docs/tps/README.md](docs/tps/README.md) for the commands, the TPS domains, and what is not settled yet.
-
 ## Licence
 
 Released under the **GNU General Public License v3.0**. See [`LICENSE`](LICENSE).
 
-`LICENSE-ClassGraph.txt` is not this project's licence. ClassGraph is an MIT-licensed dependency whose compiled classes ship inside `grasscutter-7.1.0.jar`, and MIT asks only that its notice remain with the distribution.
+`LICENSE-ClassGraph.txt` is not this project's licence. ClassGraph is an MIT-licensed dependency whose compiled classes ship inside `grasscutter-7.2.0.jar`, and MIT asks only that its notice remain with the distribution.
 
 ## Credits
 
@@ -145,4 +144,4 @@ The import commit at the root of this repository credits by name the authors who
 
 ## Proto Sources
 
-Protocol definitions sourced from [genshin-protocol](https://gitlab.com/kitkat-multiverse/genshin-protocol).
+Protocol definitions sourced from **Shizuki♡**. NT is from **Shizuki♡**.

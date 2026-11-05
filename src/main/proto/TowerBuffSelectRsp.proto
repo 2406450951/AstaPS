@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message TowerBuffSelectRsp {
+  uint32 tower_buff_id = 4;
+  int32 retcode = 15;
+}

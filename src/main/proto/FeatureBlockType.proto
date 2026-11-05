@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum FeatureBlockType {
+  FeatureBlockType_NONE = 0;
+  FeatureBlockType_CHAT = 1;
+  FeatureBlockType_MP = 2;
+  FeatureBlockType_FEATRURE_BLOCK_TYPE_CRC = 3;
+  FeatureBlockType_HOME = 4;
+  FeatureBlockType_HALL_CUSTOME = 5;
+  FeatureBlockType_BEYOND = 6;
+  FeatureBlockType_BEYOND_MP = 7;
+  FeatureBlockType_BEYOND_DISPLAY_COSTUME = 8;
+  FeatureBlockType_BEYOND_UPDATE_COSTUME = 9;
+  FeatureBlockType_BEYOND_ARCHIVE = 10;
+  FeatureBlockType_BEYOND_ROOM = 11;
+  FeatureBlockType_BEYOND_GACHA_GIFT = 12;
+  FeatureBlockType_BEYOND_SHOP_GIFT = 13;
+  FeatureBlockType_BEYOND_VOICE_CHAT = 14;
+  FeatureBlockType_BEYOND_CUSTOM_PROFILE_PICTURE_UPLOAD = 15;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message JourneyDiceDungeonLevelInfo {
+  repeated uint64 last_team_info_list = 7;
+  uint32 level_id = 4;
+  uint32 max_score = 11;
+  uint32 last_difficulty = 1;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "LockedPersonallineData.proto";
+
+message PersonalLineAllDataRsp {
+  repeated uint32 ongoing_personal_line_list = 20000;
+  repeated LockedPersonallineData locked_personal_line_list = 4;
+  repeated uint32 can_be_unlocked_personal_line_list = 20001;
+  repeated uint32 NIPKCPGAMKF = 20002;
+  uint32 cur_finished_daily_task_count = 7;
+  uint32 legendary_key_count = 2;
+  int32 retcode = 5;
+}

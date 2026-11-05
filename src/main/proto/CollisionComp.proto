@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BFCAIKCBBAK.proto";
+
+message CollisionComp {
+  repeated BFCAIKCBBAK EMBHEEONLNK = 5;
+}

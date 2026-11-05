@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AIOAIEIKFFD.proto";
+
+message StuffBagComp {
+  AIOAIEIKFFD _bag_detail = 1;
+}

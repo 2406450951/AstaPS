@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum LIBEGKHPMPN {
+  LIBEGKHPMPN_NONE = 0;
+  LIBEGKHPMPN_NORMAL = 1;
+  LIBEGKHPMPN_EQUIP = 2;
+}

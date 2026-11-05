@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "SkyCrystalDetectorData.proto";
+
+message SkyCrystalDetectorQuickUseResult {
+  SkyCrystalDetectorData sky_crystal_detector_data = 10;
+  int32 retcode = 15;
+}

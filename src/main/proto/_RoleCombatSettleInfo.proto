@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DIGMMKNOMJH.proto";
+import "IGNEGGFGNHB.proto";
+import "NBMAFDLIACA.proto";
+
+message _RoleCombatSettleInfo {
+  repeated IGNEGGFGNHB HMINJJJIEBB = 20000;
+  repeated uint64 HFDHOLOKLJK = 20001;
+  repeated uint64 avatar_guid_list = 11;
+  repeated uint32 KNCAOGIMIJJ = 20002;
+  DIGMMKNOMJH NAMEIDCGGIF = 20003;
+  bool FBHFAMPKPPK = 4;
+  bool INIDHGHIOOO = 20005;
+  uint32 difficulty_id = 6;
+  uint32 coin_num = 7;
+  NBMAFDLIACA PEENJAIFAEN = 20006;
+  uint32 GBNCKPFLFIM = 20007;
+  uint32 use_time = 12;
+}

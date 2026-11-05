@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "INJNJCALJGD.proto";
+
+message FHNGLNCPHKA {
+  map<uint32, uint32> BMPLOGFCMLG = 5;
+  repeated INJNJCALJGD AEIFJINONJF = 10;
+  uint32 FMMKKONOKML = 9;
+  uint32 BOJCAOCOAJB = 7;
+  uint32 NEPACBNDBOI = 3;
+}

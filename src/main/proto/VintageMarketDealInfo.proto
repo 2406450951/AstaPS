@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "VintageMarketTraderInfo.proto";
+
+message VintageMarketDealInfo {
+  map<uint32, VintageMarketTraderInfo> trader_item_info_map = 1;
+}

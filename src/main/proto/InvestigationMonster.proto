@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_InvestigationMonsterDetail.proto";
+
+message InvestigationMonster {
+  enum LockState {
+    LockState_LOCK_NONE = 0;
+    LockState_LOCK_QUEST = 1;
+  }
+  repeated _InvestigationMonsterDetail _investigation_monster_detail_list = 1898;
+  uint32 id = 15;
+  uint32 city_id = 8;
+  InvestigationMonster.LockState lock_state = 9;
+}

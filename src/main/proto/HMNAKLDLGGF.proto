@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "CADPEFKILCP.proto";
+
+message HMNAKLDLGGF {
+  repeated CADPEFKILCP NNJAEBPGEBD = 6;
+  repeated uint32 OPCJALLNAGK = 10;
+  uint32 LLKBGEFIHAL = 3;
+}

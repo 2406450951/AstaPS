@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GMBNGIKAPMN.proto";
+
+message _NatlanRaceDetailInfo {
+  repeated GMBNGIKAPMN level_info_list = 9;
+  bool is_special_reward_taken = 1;
+}

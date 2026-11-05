@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EBPIBIFOEFF.proto";
+
+message LEEAPMKHDJK {
+  repeated EBPIBIFOEFF avatar_list = 3;
+  uint32 energy_point = 7;
+  uint32 OOFPCLDDCCL = 2;
+  uint32 HANJNFCBFCJ = 1;
+}

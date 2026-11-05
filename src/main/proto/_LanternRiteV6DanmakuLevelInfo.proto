@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _LanternRiteV6DanmakuLevelInfo {
+  uint32 level_id = 3;
+  uint32 IJGJCFGFPFE = 20000;
+  uint32 PLAPMAGJCCA = 20001;
+  uint32 _round_num = 4;
+  uint32 FAMHJPHJKPE = 20002;
+  bool is_succ = 5;
+  uint32 KOJLBGECDGJ = 20003;
+  uint32 BGFHONDHLIF = 20004;
+}

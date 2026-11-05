@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ForwardType.proto";
+import "Vector.proto";
+
+message EvtAvatarEnterFocusNotify {
+  Vector focus_forward = 10;
+  ForwardType forward_type = 14;
+  bool MEBKKKCNDAK = 20000;
+  bool PNELCGBOIFM = 20001;
+  bool KLNNOPGOMKN = 20002;
+  int32 IMMFFEBPCJM = 20003;
+  uint32 entity_id = 3;
+  bool CCDMIMGNCBM = 20004;
+  bool JLNKDGGPICE = 20005;
+  bool ADMFCLBHILF = 20006;
+  bool KHOIOJCHLNL = 20007;
+  bool FDCDPKDKNAL = 20008;
+  bool HFFPEFBLBPC = 20009;
+  bool JHJBHFINKDK = 20010;
+  bool CFNHGMLGPHP = 20011;
+}

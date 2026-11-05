@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum KLALGJNDAFD {
+  KLALGJNDAFD_NONE = 0;
+  KLALGJNDAFD_RENAME_MY = 1;
+  KLALGJNDAFD_COPY_MY = 2;
+}

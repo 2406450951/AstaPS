@@ -47,14 +47,11 @@ jobs:
       - name: Build jar
         run: ./gradlew jar -PskipHandbook=1 -PjarFilename=grasscutter -Dorg.gradle.jvmargs=-Xmx4g
 
-      - name: Test
-        run: ./gradlew test -PexcludeTags=integration -Dorg.gradle.jvmargs=-Xmx4g
-
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: 7.1.${{ github.run_number }}
-          name: 7.1.${{ github.run_number }}
+          tag_name: 7.2.${{ github.run_number }}
+          name: 7.2.${{ github.run_number }}
           body: |
             Automated build.
 

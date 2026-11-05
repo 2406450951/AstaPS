@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ExamInfo.proto";
+import "_OrderInfo.proto";
+
+message KKILGCLBMCJ {
+  repeated uint32 BJPDBEKODPL = 11;
+  oneof detail {
+    _OrderInfo order_info = 9;
+    _ExamInfo exam_info = 7;
+  }
+}

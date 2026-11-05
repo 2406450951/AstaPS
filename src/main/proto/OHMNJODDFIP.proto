@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message OHMNJODDFIP {
+  uint32 best_cost_time = 9;
+  bool is_open = 8;
+  bool is_finish = 1;
+  uint32 level_id = 3;
+}

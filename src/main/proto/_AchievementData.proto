@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DBMABEGBDEN.proto";
+
+message _AchievementData {
+  DBMABEGBDEN data = 1;
+}

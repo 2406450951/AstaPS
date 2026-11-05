@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "MLHLODGBHKM.proto";
+
+message _TowerChallengeDetailInfo {
+  repeated MLHLODGBHKM level_info_list = 10;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "NAMGKHFEHIA.proto";
+import "NCEPICHGNNH.proto";
+
+message IGMCBGMACEJ {
+  NAMGKHFEHIA PIGGDMDEKBO = 502;
+  NCEPICHGNNH JMKHDDLKDBL = 501;
+}

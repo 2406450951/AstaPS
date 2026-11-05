@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _GCGPveInfiniteDetailInfo {
+  map<uint32, uint32> ELGGPGHLKIH = 20000;
+  bool is_gcg_pve_mode_open = 13;
+}

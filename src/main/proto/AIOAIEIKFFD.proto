@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BDPJCGLCLJI.proto";
+import "BECFBHPNDKD.proto";
+import "BJNDIAIEGJJ.proto";
+import "_CurrentPhase.proto";
+
+message AIOAIEIKFFD {
+  repeated BJNDIAIEGJJ CDMLMNAGMKJ = 20000;
+  _CurrentPhase MNJFGIHFEPA = 20001;
+  repeated BECFBHPNDKD COMOLMAMDBB = 20002;
+  repeated BDPJCGLCLJI GKPMNIPPOMG = 20003;
+  uint32 ACGFEKLLKKM = 20004;
+}

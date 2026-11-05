@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_InvestigationMonsterConfig.proto";
+
+message MarkTargetInvestigationMonsterNotify {
+  _InvestigationMonsterConfig GHPPPJJLDJN = 20000;
+  repeated _InvestigationMonsterConfig _config_list = 4;
+  uint32 investigation_monster_id = 2;
+}

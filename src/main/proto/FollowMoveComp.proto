@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FJFKBKCECBC.proto";
+import "JEOKDCIGCFP.proto";
+import "Vector.proto";
+
+message FollowMoveComp {
+  Vector NGLCFKKJGFJ = 3;
+  Vector NNPNDCFIAMA = 4;
+  string JOIIBHLCLIC = 2;
+  FJFKBKCECBC NNCDIEHLEDN = 8;
+  JEOKDCIGCFP PIOLELFOCLI = 5;
+  uint32 OLEEMFGPPBP = 1;
+  uint32 OLKCJPFLCGC = 7;
+  JEOKDCIGCFP follow_type = 6;
+}

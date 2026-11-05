@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "APNLICDADPC.proto";
+import "FGDPACMHDOO.proto";
+import "GKLJODICHJN.proto";
+
+message HIMBAGFLEHM {
+  repeated APNLICDADPC BFPMGFFNFCL = 2;
+  repeated FGDPACMHDOO BHLNAGPKJIL = 3;
+  repeated GKLJODICHJN NCNBEDEPFPM = 1;
+}

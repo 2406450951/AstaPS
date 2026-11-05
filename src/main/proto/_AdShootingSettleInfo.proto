@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FriendBrief.proto";
+import "NBKIIACAEDE.proto";
+import "Uint32Pair.proto";
+
+message _AdShootingSettleInfo {
+  repeated Uint32Pair BGKNOBGMOIP = 15;
+  FriendBrief _friend_brief = 1;
+  bool AAPHBOOLCJJ = 20001;
+  bool AIMJHJLEPEM = 20002;
+  bool JDOMINLKBJH = 20003;
+  uint32 score = 5;
+  uint32 level_id = 14;
+  NBKIIACAEDE type = 8;
+}

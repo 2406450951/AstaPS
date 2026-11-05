@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActivityAvatarInfo.proto";
+
+message _SummonBattleLevelInfo {
+  repeated _ActivityAvatarInfo avatar_list = 2;
+  uint32 DEADDOKKEHM = 6;
+  uint32 PHICBDKBDDH = 20001;
+}

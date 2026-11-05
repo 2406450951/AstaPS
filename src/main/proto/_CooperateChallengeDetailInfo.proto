@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _CooperateChallengeDetailInfo {
+  uint32 difficulty_id = 7;
+  bool LBCGNOOJDIC = 2;
+  bool MNGLBAEBKDA = 20001;
+}

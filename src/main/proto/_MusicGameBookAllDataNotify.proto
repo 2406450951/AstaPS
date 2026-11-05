@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BDOKHMKLJOM.proto";
+import "HALAGNDHLFK.proto";
+
+message _MusicGameBookAllDataNotify {
+  repeated uint32 LLMELMLCLOE = 20000;
+  repeated uint32 CDDGLKHJJAL = 20001;
+  repeated uint32 HALONGEGOEJ = 20002;
+  repeated HALAGNDHLFK DLOAIHJHANF = 20003;
+  repeated uint32 push_tips_id_list = 20004;
+  repeated uint32 DHDNMAMDHIP = 20005;
+  BDOKHMKLJOM setting = 13;
+  bool NNLEPHINEFH = 20006;
+  uint32 MGFHHOPDDKE = 20007;
+  uint32 MLAJCIMGINA = 1;
+  uint32 JHMFHOECCLH = 20009;
+}

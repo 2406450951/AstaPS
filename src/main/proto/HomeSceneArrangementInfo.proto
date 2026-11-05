@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HomeBlockArrangementInfo.proto";
+import "HomeBlockPlaceInfo.proto";
+import "HomeFurnitureData.proto";
+import "Vector.proto";
+
+message HomeSceneArrangementInfo {
+  Vector born_rot = 7;
+  repeated HomeFurnitureData stair_list = 20000;
+  HomeFurnitureData main_house = 6;
+  Vector MEEACPBAEJN = 20001;
+  Vector IILKHACKPAI = 20002;
+  repeated HomeFurnitureData door_list = 20003;
+  Vector born_pos = 5;
+  Vector djinn_pos = 14;
+  repeated HomeBlockPlaceInfo block_place_pos_list = 20004;
+  repeated HomeBlockArrangementInfo block_arrangement_info_list = 15;
+  uint32 scene_id = 1;
+  uint32 bgm_id = 13;
+  uint32 comfort_value = 2;
+  bool OADJEMPMKIF = 20005;
+  bool KGGKIAHPDGO = 20006;
+  uint32 tmp_version = 12;
+}

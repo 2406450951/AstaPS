@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Uint32Pair.proto";
+
+message _UpgradeToBonusFacilityRevenueBuffInfo {
+  repeated Uint32Pair ICLJFFNOEHF = 20000;
+  uint32 MPPNKBJHBOK = 7;
+  bool NHLOILJDDIP = 9;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FPCEOEFHGOB.proto";
+
+message _EquipStuff {
+  repeated FPCEOEFHGOB IDAKLGDICPC = 20000;
+  bool BEKPAJHIHOJ = 20001;
+  bool MHDOFDCCPLH = 20002;
+}

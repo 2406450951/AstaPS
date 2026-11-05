@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DGAJHBBIDNM.proto";
+import "GBGKDGMAEGA.proto";
+import "JIEHJMIEHPM.proto";
+import "MPAFKGBDMGD.proto";
+
+message _FairyTalesDetailInfo {
+  repeated MPAFKGBDMGD PKAOIMANLKC = 20000;
+  repeated JIEHJMIEHPM ICALMLAHAAL = 20001;
+  repeated uint32 JLGIAAGNLCO = 20002;
+  repeated GBGKDGMAEGA HIIIBLGMMLF = 20003;
+  DGAJHBBIDNM FBKBOIEBJCH = 20004;
+  bool ELCGFJCJMNN = 6;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FGJFGPAPOHE.proto";
+
+message _ExamInfo {
+  repeated uint32 CKBLJCHDKPO = 20000;
+  repeated uint32 npc_id_list = 9;
+  uint32 FCOJGHNMIKK = 20001;
+  FGJFGPAPOHE BHHGGMIGHHL = 13;
+  uint32 id = 8;
+  uint32 GCKDBLEMLNM = 3;
+  bool LKIIDNBEBIM = 14;
+  bool LBIEHJGLEFK = 20005;
+}

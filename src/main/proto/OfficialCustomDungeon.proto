@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message OfficialCustomDungeon {
+  uint32 win_times = 2;
+  uint32 dungeon_id = 6;
+}

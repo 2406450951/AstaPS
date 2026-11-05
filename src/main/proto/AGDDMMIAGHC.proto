@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BGNBJMCFEEM.proto";
+import "SkillCdInfo.proto";
+import "_CurrentPhase.proto";
+import "_TacticReturnToBornPosInfo.proto";
+
+message AGDDMMIAGHC {
+  _CurrentPhase AMEILFAPLBD = 1;
+  _TacticReturnToBornPosInfo HNIIHEABBNM = 3;
+  repeated SkillCdInfo PKHBKFNODPI = 4;
+  repeated SkillCdInfo GJMIADFNGDF = 5;
+  BGNBJMCFEEM JDFIPNGEHHG = 6;
+  uint32 AIFNFGFAJOC = 2;
+}

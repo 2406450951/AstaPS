@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DDBNDHNGEMF.proto";
+import "PFFMGFPKANE.proto";
+
+message HDHLLCCCLJM {
+  repeated PFFMGFPKANE player_info_list = 2;
+  repeated DDBNDHNGEMF _level_record_list = 7;
+  fixed64 timestamp = 10;
+  uint32 difficulty = 11;
+  uint32 schedule_id = 4;
+  bool OIFKDFIFIOP = 14;
+}

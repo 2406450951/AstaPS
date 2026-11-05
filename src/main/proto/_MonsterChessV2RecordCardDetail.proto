@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _MonsterChessV2RecordCardDetail {
+  uint32 _card_star_num = 4;
+  uint32 card_id = 13;
+  uint32 extra_level = 2;
+}

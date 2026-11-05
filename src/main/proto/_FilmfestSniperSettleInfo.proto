@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _FilmfestSniperSettleInfo {
+  uint32 level_id = 1;
+  float CJFPPKKJLMK = 3;
+  uint32 PAGGBIOEHOO = 2;
+}

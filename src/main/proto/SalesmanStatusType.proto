@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum SalesmanStatusType {
+  SalesmanStatusType_SALESMAN_STATUS_NONE = 0;
+  SalesmanStatusType_SALESMAN_STATUS_UNSTARTED = 1;
+  SalesmanStatusType_SALESMAN_STATUS_STARTED = 2;
+  SalesmanStatusType_SALESMAN_STATUS_DELIVERED = 3;
+}

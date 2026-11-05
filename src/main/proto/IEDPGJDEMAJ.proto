@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActivityAvatarInfo.proto";
+
+message IEDPGJDEMAJ {
+  repeated uint32 AGILCKGHLME = 13;
+  repeated _ActivityAvatarInfo avatar_list = 12;
+  bool is_finish = 9;
+  bool is_open = 7;
+  uint32 max_score = 4;
+  uint32 level_id = 2;
+}

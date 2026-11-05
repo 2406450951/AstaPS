@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Vector.proto";
+import "WeeklyBossResinDiscountInfo.proto";
+import "_InvestigationMonsterConfig.proto";
+
+message _InvestigationMonsterDetail {
+  WeeklyBossResinDiscountInfo weekly_boss_resin_discount_info = 10;
+  Vector pos = 12;
+  _InvestigationMonsterConfig _monster_config = 15;
+  uint32 resin = 9;
+  uint32 next_refresh_time = 7;
+  uint32 next_boss_chest_refresh_time = 13;
+  uint32 refresh_interval = 11;
+  uint32 _map_layer_id = 8;
+  uint32 boss_chest_num = 20000;
+  bool _is_respawning = 20001;
+  bool is_area_locked = 20002;
+  bool is_alive = 6;
+  uint32 max_boss_chest_num = 20003;
+  uint32 level = 5;
+}

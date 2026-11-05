@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "NNOLNLHNOIO.proto";
+
+message FLJBHAGNLOF {
+  repeated NNOLNLHNOIO IJNNOEEKODG = 4;
+  repeated uint32 DFDEJLLNPJF = 14;
+  repeated uint32 FKCIFOHLLBM = 9;
+  uint32 CMFBOGELCPE = 13;
+  uint32 ALAKKGOILIC = 12;
+}

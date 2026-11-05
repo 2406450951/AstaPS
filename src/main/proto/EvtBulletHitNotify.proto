@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ForwardType.proto";
+import "HitColliderType.proto";
+import "Vector.proto";
+
+message EvtBulletHitNotify {
+  Vector hit_point = 14;
+  Vector hit_normal = 5;
+  HitColliderType hit_collider_type = 3;
+  ForwardType forward_type = 2;
+  int32 hit_box_index = 4;
+  uint32 forward_peer = 9;
+  uint32 single_bullet_id = 20000;
+  uint32 entity_id = 12;
+  uint32 hit_entity_id = 20001;
+}

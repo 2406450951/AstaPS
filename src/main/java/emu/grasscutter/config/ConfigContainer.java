@@ -583,7 +583,7 @@ public class ConfigContainer {
         /** How the login Lua shell watermark is sent; its text is the built-in LuaShell chunk. */
         public static class WatermarkOptions {
             /* CmdId to send the wind seed notify under. 0 (recommended) uses
-             * PacketOpcodes.WindSeedType1Notify, 29056 in 7.1. Set to -1 to send nothing at all.
+             * PacketOpcodes.WindSeedType1Notify, 21002 in 7.2 (29056 in 7.1). Set to -1 to send nothing at all.
              *
              * If the client ever starts crashing a second or two after login, set this to -1 first:
              * this is the one packet whose payload the client EXECUTES as Lua, so a payload it does

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_CurrentPhase.proto";
+
+message FPCEOEFHGOB {
+  _CurrentPhase KDPEFOBKJON = 2;
+  float EAOMOHNNPOM = 3;
+  uint32 guid = 1;
+}

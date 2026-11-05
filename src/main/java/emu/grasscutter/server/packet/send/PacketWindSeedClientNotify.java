@@ -17,8 +17,9 @@ public class PacketWindSeedClientNotify extends BasePacket {
     public static final int CMD = PacketOpcodes.WindSeedType1Notify;
     public static final int FIELD = WindSeedType1Notify.PAYLOAD_FIELD_NUMBER;
     /**
-     * The message is `WindSeedType1Notify` - in 7.1 CmdId 29056, `{bytes payload = 5, uint32
-     * config_id = 10}` (7.0 called it `_PlayerNormalLuaShellNotify`, CmdId 27286, payload 6).
+     * The message is `WindSeedType1Notify`, which the dumps call `_PlayerNormalLuaShellNotify`:
+     * 7.2 CmdId 21002 `{bytes _payload = 15, uint32 config_id = 10}`, 7.1 CmdId 29056 with the
+     * payload on 5, 7.0 CmdId 27286 with the payload on 6.
      *
      * <p>It is NOT `WindSeedClientNotify`. That is a different message (a oneof carrying
      * area/refresh/wind-bullet arms), and pointing this at it is what crashed the client: its
@@ -30,7 +31,7 @@ public class PacketWindSeedClientNotify extends BasePacket {
         return configured > 0 ? configured : PacketOpcodes.WindSeedType1Notify;
     }
 
-    /** `payload` on WindSeedType1Notify: 5 in 7.1 (7.0 had it at 6, 6.7 at 11, 6.6 at 8). */
+    /** `payload` on WindSeedType1Notify: 15 in 7.2, 5 in 7.1 (7.0 had it at 6, 6.7 at 11, 6.6 at 8). */
     private static final int DEFAULT_PAYLOAD_FIELD = WindSeedType1Notify.PAYLOAD_FIELD_NUMBER;
 
     /**

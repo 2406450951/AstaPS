@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AGMBEFMBBBF.proto";
+
+message _MultiCharacterDungeonSettleInfo {
+  repeated uint32 JOPIGPEPHCN = 20000;
+  repeated AGMBEFMBBBF team_info_list = 4;
+  uint32 stage_id = 1;
+  bool is_new_record = 6;
+  uint32 level_id = 3;
+  uint32 difficulty = 2;
+}

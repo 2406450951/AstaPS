@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _ShowLoadingScreenNotify {
+  float OCPDAMPEMIA = 1;
+  float duration = 5;
+  uint32 _template_loading_id = 14;
+  float OCPLMKIMGDI = 8;
+}

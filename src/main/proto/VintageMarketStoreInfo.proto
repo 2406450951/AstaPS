@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message VintageMarketStoreInfo {
+  repeated uint32 GLINPEAHPKI = 20000;
+  repeated uint32 strategy_list = 20001;
+  repeated uint32 HHJEAFJANAD = 20002;
+  uint32 store_id = 1;
+  uint32 slot_count = 2;
+}

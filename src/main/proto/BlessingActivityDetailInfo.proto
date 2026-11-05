@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message BlessingActivityDetailInfo {
+  map<uint32, uint32> pic_num_map = 5;
+  uint32 DKHOJDNIKGN = 20000;
+  bool is_content_closed = 2;
+  bool is_activated = 1;
+  uint32 LLCFNEBDEJG = 20001;
+  uint32 content_close_time = 8;
+  uint32 HLGJOMHPMDA = 20002;
+  uint32 next_refresh_time = 7;
+}

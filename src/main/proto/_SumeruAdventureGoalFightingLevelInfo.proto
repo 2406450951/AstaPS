@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "NOJCFCNEIMJ.proto";
+
+message _SumeruAdventureGoalFightingLevelInfo {
+  NOJCFCNEIMJ MFJAFOAHPDA = 11;
+  uint32 LLGCHCADBJF = 20001;
+}

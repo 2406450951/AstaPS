@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message BrickBreakerLevelInfo {
+  repeated uint32 chosen_avatar_list = 3;
+  repeated uint32 CFMEKCCEEPD = 7;
+  repeated uint32 NDLGNCEFMFD = 4;
+  uint32 level_id = 1;
+  bool is_can_start = 6;
+  bool is_finish = 2;
+  uint32 max_score = 5;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message AddQuestContentProgressRsp {
+  int32 retcode = 9;
+  uint32 content_type = 3;
+}

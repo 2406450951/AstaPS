@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message FungusFighterV2LevelData {
+  bool is_level_open = 3;
+  uint32 best_cost_time = 2;
+  uint32 level_id = 1;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _Mvm2PveSettleInfo {
+  uint32 use_time = 7;
+  bool is_new_record = 6;
+  uint32 level_id = 15;
+  uint32 progress = 2;
+}

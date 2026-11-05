@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message IGNEGGFGNHB {
+  uint32 coin_num = 8;
+  bool is_finish = 14;
+  bool KIEMHBNNEBF = 3;
+  uint32 OMNIHFNCEIN = 9;
+}

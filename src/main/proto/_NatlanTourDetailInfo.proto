@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HPKLMGOJCBG.proto";
+import "MJDAGPDBODL.proto";
+import "OOHHKGLNCIN.proto";
+
+message _NatlanTourDetailInfo {
+  HPKLMGOJCBG explore_info = 15;
+  MJDAGPDBODL DJIOGHINDGP = 20000;
+  OOHHKGLNCIN JKJHPFMHOGJ = 20001;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message NMPMEMFEOMA {
+  repeated uint32 AGFGCHIHNEE = 6;
+  uint32 difficulty_id = 1;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AbilityControlBlock.proto";
+import "AbilitySyncStateInfo.proto";
+import "IDAKPKNODGC.proto";
+import "ILFPMCGGMOA.proto";
+
+message TeamEnterSceneInfo {
+  ILFPMCGGMOA KAHECAKOMLD = 12;
+  AbilityControlBlock ability_control_block = 1;
+  repeated IDAKPKNODGC JFAHOBMFLFE = 20001;
+  AbilitySyncStateInfo team_ability_info = 4;
+  uint32 team_entity_id = 7;
+  float FOMPMBNENPH = 20002;
+}

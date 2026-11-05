@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message DuelHeartLevelDifficultyInfo {
+  uint32 cost_time = 2;
+  uint32 difficulty = 1;
+  bool is_open = 3;
+}

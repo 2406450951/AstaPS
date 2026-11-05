@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DPIFNBBLBCI.proto";
+import "FPDFKKCLABC.proto";
+import "GIBOKGAOIPM.proto";
+import "HGJIDLNNCFH.proto";
+import "HNHADJKJBDG.proto";
+import "KBEDMDPADOA.proto";
+import "KMNMLECJJPL.proto";
+
+message _RogueBallSnapshot {
+  repeated GIBOKGAOIPM DAIIEJDGBBG = 20000;
+  FPDFKKCLABC AMBJOPDFKJL = 20001;
+  repeated DPIFNBBLBCI NHCBKFECGCC = 20002;
+  repeated KMNMLECJJPL PAEFJALLLNP = 20003;
+  FPDFKKCLABC EGGMNOIIALC = 20004;
+  repeated HGJIDLNNCFH FLIACKHKLHD = 20005;
+  repeated FPDFKKCLABC HKNENGCGNLM = 20006;
+  repeated KBEDMDPADOA HAJFLJAGDIA = 20007;
+  repeated HNHADJKJBDG CEKKJFILBDE = 20008;
+  repeated GIBOKGAOIPM KEHHDOKBFFD = 20009;
+  uint32 cost_time = 3;
+  uint32 _auto_chess_equip_id = 1;
+  uint32 LFODBPELIAH = 20010;
+  uint32 score = 14;
+  fixed32 EJAFLLJLJAH = 20011;
+  bool is_finish = 1840;
+  bool KLGNBKEEEIE = 20012;
+  bool is_succ = 361;
+  bool OEIMBKPACKF = 20013;
+  uint32 FPBLBCKIKIK = 20014;
+  uint32 IKJMLCNHBIM = 20015;
+  uint32 LHIGKHHFONB = 20016;
+  fixed32 GOGAJJBGNGA = 20017;
+  uint32 kill_num = 1987;
+  uint32 AAKAOLKKNGC = 15;
+  uint32 HMEOCELGIHL = 20019;
+  uint32 player_level = 7;
+  uint32 IOLDKPFFJMM = 20020;
+  uint32 PLEOIAMMEDC = 20021;
+  uint32 element_ball_num = 4;
+  uint32 CPGIKKNENKA = 20022;
+  uint32 DNGACHHMPBL = 20023;
+  uint32 IAPKLIIEINM = 20024;
+}

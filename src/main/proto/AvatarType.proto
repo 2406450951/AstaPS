@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum AvatarType {
+  AvatarType_NONE = 0;
+  AvatarType_FORMAL = 1;
+  AvatarType_TRIAL = 2;
+  AvatarType_MIRROR = 3;
+}

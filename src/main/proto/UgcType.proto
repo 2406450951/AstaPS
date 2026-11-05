@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum UgcType {
+  UgcType_NONE = 0;
+  UgcType_MUSIC_GAME = 1;
+  UgcType_LAN_V_5_CARD_GAME = 2;
+  UgcType_SHORT_VIDEO = 3;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_LimitedRegionInfo.proto";
+import "_MapLayerInfo.proto";
+
+message SceneDataNotify {
+  repeated string level_config_name_list = 1;
+  _LimitedRegionInfo _limited_region_info = 3;
+  repeated uint32 scene_tag_id_list = 11;
+  _MapLayerInfo _map_layer_info = 6;
+  uint32 scene_id = 7;
+}

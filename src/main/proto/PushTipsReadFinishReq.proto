@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message PushTipsReadFinishReq {
+  uint32 push_tips_id = 3;
+}

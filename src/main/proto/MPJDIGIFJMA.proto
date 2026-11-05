@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message MPJDIGIFJMA {
+  repeated uint32 PJABINOBEJL = 12;
+  map<uint32, uint32> EBCJOCPDGID = 2;
+}

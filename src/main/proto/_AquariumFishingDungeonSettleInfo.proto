@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_AquariumFishingItemInfo.proto";
+
+message _AquariumFishingDungeonSettleInfo {
+  repeated _AquariumFishingItemInfo _fishing_item_info_list = 4;
+  uint32 parent_quest_id = 20000;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message AkaFesAstrolabeLevelInfo {
+  uint32 level_id = 13;
+  uint32 min_finish_time = 15;
+}

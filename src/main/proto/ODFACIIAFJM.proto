@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ODFACIIAFJM {
+  uint32 _keyword_id = 2;
+  uint32 slot_id = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FMNPNEKAICI.proto";
+import "NEHIBHKFNEG.proto";
+import "NPLDPCGLKMK.proto";
+
+message _FilmfestDetailInfo {
+  repeated NPLDPCGLKMK OFIOKIABKNN = 20000;
+  repeated NEHIBHKFNEG JLMEBPAKPNE = 20001;
+  repeated FMNPNEKAICI HGNLKDCGLBO = 1;
+  bool JLNGANGGJLH = 20003;
+}

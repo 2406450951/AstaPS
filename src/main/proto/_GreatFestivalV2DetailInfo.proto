@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "IJNAPHNIHJH.proto";
+import "IPPDBOLOOIB.proto";
+import "OAKCNCLBBMI.proto";
+import "PIEANKFJENC.proto";
+
+message _GreatFestivalV2DetailInfo {
+  IJNAPHNIHJH music_game_info = 1;
+  PIEANKFJENC FPNIAMHNDON = 20001;
+  IPPDBOLOOIB GOFMMGFEDBI = 20002;
+  OAKCNCLBBMI CLHOGMFANFJ = 20003;
+}

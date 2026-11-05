@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BNJGIMAFELC.proto";
+
+message GBAOLFCECGM {
+  repeated BNJGIMAFELC mark_list = 15;
+  repeated uint32 JLGIAAGNLCO = 12;
+  bool LAOJFDMECIB = 1;
+  bool NNBCNODJNBG = 14;
+}

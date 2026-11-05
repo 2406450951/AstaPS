@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "KHFBAMPCPPF.proto";
+import "Uint32Pair.proto";
+
+message _AutochessRecordSocialBrief {
+  KHFBAMPCPPF DNBEJHIILMM = 20000;
+  repeated uint32 HDKMGJJKEMA = 20001;
+  Uint32Pair progress = 3;
+  repeated uint32 _artifact_id_list = 15;
+  bool NBCEKJJNAHJ = 12;
+  uint32 hp = 2;
+  uint32 AFDKEOOHHPA = 20003;
+  uint32 timestamp = 7;
+  uint32 HOAOJBKJFLE = 5;
+  uint32 LKPNNFDCJLF = 20005;
+  uint32 GBAIFJIKOON = 20006;
+  uint32 max_hp = 11;
+  uint32 coin = 14;
+}

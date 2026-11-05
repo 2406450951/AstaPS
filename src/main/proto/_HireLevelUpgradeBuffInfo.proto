@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _HireLevelUpgradeBuffInfo {
+  repeated uint32 MOLFPGIEHLM = 20000;
+}

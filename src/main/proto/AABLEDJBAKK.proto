@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "APIBGNMPLHD.proto";
+import "JMBPOAGEPCL.proto";
+
+message AABLEDJBAKK {
+  JMBPOAGEPCL CDKNGAEHLMM = 2;
+  APIBGNMPLHD IMBIHDBGJHK = 1;
+}

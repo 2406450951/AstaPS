@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EGHMHMPPMLL.proto";
+
+message AOGBDADBNNH {
+  EGHMHMPPMLL key = 3;
+  uint32 value = 6;
+}

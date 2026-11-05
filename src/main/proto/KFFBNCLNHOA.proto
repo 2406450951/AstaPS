@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "SocialShowAvatarInfo.proto";
+
+message KFFBNCLNHOA {
+  SocialShowAvatarInfo FGGLBLAFNLD = 10;
+  uint32 trial_avatar_id = 1;
+}

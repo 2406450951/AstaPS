@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+
+message IBDBBEBNGPO {
+  HHEDHCFPEKM PCGNFBIFNNB = 508;
+  HHEDHCFPEKM IJFHPCEKJDH = 509;
+  string LFECKGLBMGP = 505;
+  string CFLEPBGPEGF = 501;
+  uint32 filter_type = 502;
+  int32 AKLMACPJBEM = 511;
+  int32 JBKILKNBCGK = 504;
+  float OLIPGCONBJC = 507;
+  bool MNOFHALNGKC = 503;
+  bool JEBIEFDANFN = 510;
+  uint32 GJLPKGCBJGG = 512;
+  int32 HPFJNPNFHHD = 506;
+}

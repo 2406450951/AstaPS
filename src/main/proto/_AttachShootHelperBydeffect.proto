@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+import "JEOKDCIGCFP.proto";
+import "PGDMAIHKGFO.proto";
+
+message _AttachShootHelperBydeffect {
+  PGDMAIHKGFO EHOGLGOAMGJ = 8;
+  HHEDHCFPEKM NGLCFKKJGFJ = 20001;
+  HHEDHCFPEKM NNPNDCFIAMA = 20002;
+  uint32 MKFPOCEDFJH = 1;
+  bool MCGOLBFHCJI = 9;
+  float OLIPGCONBJC = 4;
+  JEOKDCIGCFP JILIGGDCLDH = 5;
+  float FCKFDIPLOOP = 20007;
+  float GNIHLHPHBAI = 20008;
+}

@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AGFPHAHBDCG.proto";
+import "HOBFDAJFJLP.proto";
+import "KELLGDNEKPD.proto";
+import "LAHCJMJCHCO.proto";
+import "MCMHHFNNGOC.proto";
+import "MLNJNMGHEIN.proto";
+import "NCKAKJEKMGN.proto";
+import "_AirBranchJump.proto";
+import "_AttachShootHelperBydeffect.proto";
+import "_AvatarEnterFocus.proto";
+import "_BranchJump.proto";
+import "_CanDoSkill.proto";
+import "_CancelInterval.proto";
+import "_ComboJump.proto";
+import "_MonsterSteer.proto";
+import "_SpecialStateDoSkill.proto";
+
+message IBBBCHHJLOA {
+  bool OJPHIPCONHJ = 2;
+  int32 AKHGCHLPBOE = 1;
+  oneof detail {
+    NCKAKJEKMGN attach_effect = 11;
+    LAHCJMJCHCO avatar_levitate = 12;
+    KELLGDNEKPD avatar_steer_by_camera = 13;
+    _CancelInterval cancel_interval = 14;
+    _CanDoSkill can_do_skill = 15;
+    _BranchJump branch_jump = 16;
+    _ComboJump combo_jump = 17;
+    _AvatarEnterFocus avatar_enter_focus = 18;
+    AGFPHAHBDCG aim_ui = 19;
+    _AttachShootHelperBydeffect attach_shoot_helper_bydeffect = 20;
+    _MonsterSteer monster_steer = 21;
+    _AirBranchJump air_branch_jump = 22;
+    _SpecialStateDoSkill special_state_do_skill = 23;
+    HOBFDAJFJLP modify_cast_speed_ratio = 24;
+    MLNJNMGHEIN ability_drag_force = 25;
+    MCMHHFNNGOC pre_targeting = 26;
+  }
+}

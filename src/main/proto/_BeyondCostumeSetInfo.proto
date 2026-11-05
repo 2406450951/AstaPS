@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_BeyondCostumeSetDetail.proto";
+
+message _BeyondCostumeSetInfo {
+  _BeyondCostumeSetDetail _costume_set = 2;
+  _BeyondCostumeSetDetail _makeup_set = 3;
+  uint32 _data_index = 1;
+}

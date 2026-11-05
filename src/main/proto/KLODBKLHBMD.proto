@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BeyondParamValueDictConst.proto";
+import "GACDJPLIOAM.proto";
+import "_CurrentPhase.proto";
+
+message KLODBKLHBMD {
+  ABFMGNFBCOK BBEPCDIECGL = 10;
+  repeated GACDJPLIOAM LKDBKENAIDN = 3;
+  _CurrentPhase ELOCMMKHNAD = 2;
+  float MBPMCDGEAJE = 11;
+  uint32 MLAJBBBFCPB = 5;
+  uint32 slot_id = 1;
+  float GPIBNBDAMIL = 7;
+  uint64 KHNEGCBPFMP = 13;
+  uint64 NIAGJCJHAHD = 12;
+  uint32 OIJJNFKNIGP = 8;
+  uint32 NKILDDLEKIE = 6;
+  uint32 JBINKFAEHLL = 4;
+  bool KJGOFPPPLEE = 9;
+}

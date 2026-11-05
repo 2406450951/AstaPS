@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _CancelInterval {
+  bool HPFAJGGIBFK = 20000;
+  bool PPODFNCMJEA = 20001;
+  bool NJJOCCIOBPD = 20002;
+  bool NEOPHHNEDFP = 20003;
+  float LHCACEFJFGP = 20004;
+}

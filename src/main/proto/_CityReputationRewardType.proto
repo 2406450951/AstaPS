@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum _CityReputationRewardType {
+  _CityReputationRewardType_REPUTATION_REWARD_NONE = 0;
+  _CityReputationRewardType_REPUTATION_REWARD_LEVEL = 1;
+  _CityReputationRewardType_REPUTATION_REWARD_QUEST = 2;
+  _CityReputationRewardType_REPUTATION_REWARD_EXPLORE = 3;
+  _CityReputationRewardType_REPUTATION_REWARD_HUNTING = 4;
+  _CityReputationRewardType_REPUTATION_REWARD_TOTAL = 5;
+}

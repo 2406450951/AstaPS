@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_BeyondActivityWatcherVar.proto";
+
+message CBNPFLLFAJG {
+  repeated _BeyondActivityWatcherVar var_list = 15;
+  uint32 HNIKLMLMNPA = 8;
+}

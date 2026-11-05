@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HomeResource.proto";
+
+message HomeResourceTakeFetterExpRsp {
+  HomeResource fetter_exp = 9;
+  int32 retcode = 8;
+}

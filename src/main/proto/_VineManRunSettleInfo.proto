@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _VineManRunSettleInfo {
+  uint32 level_id = 1;
+  uint32 score = 11;
+  uint32 remain_time = 12;
+  bool is_new_record = 9;
+  uint32 collect_num = 8;
+}

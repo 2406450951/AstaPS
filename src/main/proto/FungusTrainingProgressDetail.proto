@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FungusFighterMonsterDetail.proto";
+import "FungusTrainingPoolPreviewDetail.proto";
+
+message FungusTrainingProgressDetail {
+  repeated FungusFighterMonsterDetail monster_detail_list = 3;
+  repeated uint32 BJKNGIJCKOE = 20000;
+  repeated FungusTrainingPoolPreviewDetail monster_pool_preview_list = 7;
+  repeated uint32 HLMGKMNFOOF = 20001;
+  uint32 cur_round = 2;
+  uint32 total_used_time = 6;
+  uint32 dungeon_id = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_BeyondPlayerSocialInfo.proto";
+
+message _GetBeyondPlayerSocialInfoRsp {
+  repeated _BeyondPlayerSocialInfo _beyond_player_social_info_list = 8;
+  repeated uint32 _invalid_player_uid_list = 5;
+  int32 retcode = 12;
+  uint32 param = 13;
+}

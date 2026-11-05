@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message PlayerCookReq {
+  uint32 cook_count = 12;
+  uint32 qte_quality = 4;
+  uint32 EBPHDCJFJEF = 2;
+  uint32 assist_avatar = 6;
+  uint32 MJAKDGHIIFB = 13;
+  uint32 recipe_id = 8;
+}

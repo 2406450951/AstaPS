@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EBPGBJPNECE.proto";
+import "MDCLJNPDHKG.proto";
+import "OGPKLKFOKMA.proto";
+
+message _ToyBattleDetailInfo {
+  OGPKLKFOKMA camp_info = 1;
+  MDCLJNPDHKG LPJNDCOPMLF = 20000;
+  EBPGBJPNECE ECIAOICLCLC = 20001;
+}

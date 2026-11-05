@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum SystemHintType {
+  SYSTEM_HINT_TYPE_CHAT_NONE = 0;
+  SYSTEM_HINT_TYPE_CHAT_ENTER_WORLD = 1;
+  SYSTEM_HINT_TYPE_CHAT_LEAVE_WORLD = 2;
+}

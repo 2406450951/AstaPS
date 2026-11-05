@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_PlatformKey.proto";
+
+message DICLKEBODEC {
+  oneof detail {
+    _PlatformKey platform_key = 8;
+  }
+}

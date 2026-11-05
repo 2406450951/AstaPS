@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BBIBJKCJINF.proto";
+import "HFNONNBFKOE.proto";
+import "LLINKLDMOCF.proto";
+
+message _NahidaBirthDetailInfo {
+  LLINKLDMOCF MEDJFGIIACB = 20000;
+  BBIBJKCJINF POKCBHFGDLE = 20001;
+  HFNONNBFKOE PHGKJLCIBMG = 20002;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "MathQuaternion.proto";
+import "Vector.proto";
+
+message _RotateMoverInfo {
+  Vector IMFDIHLBFEN = 1;
+  MathQuaternion GMDLGOECLKP = 20001;
+  float LAIKIBMMJKD = 2;
+}

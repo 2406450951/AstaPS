@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "CombatTypeArgument.proto";
+import "ForwardType.proto";
+
+message CombatInvokeEntry {
+  bytes combat_data = 8;
+  ForwardType forward_type = 15;
+  uint32 LDAODDFLPGB = 3;
+  CombatTypeArgument argument_type = 6;
+}

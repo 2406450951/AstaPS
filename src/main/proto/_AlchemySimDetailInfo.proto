@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BBCHHKCMIOJ.proto";
+import "CDOHBLNEKCJ.proto";
+import "CKFHELMIGOP.proto";
+import "FLJBHAGNLOF.proto";
+import "HMNAKLDLGGF.proto";
+import "KKILGCLBMCJ.proto";
+import "LGNCGIEICJJ.proto";
+import "MKJLLPCIMCM.proto";
+import "MPJDIGIFJMA.proto";
+
+message _AlchemySimDetailInfo {
+  repeated CDOHBLNEKCJ CCKABEMPMAP = 20000;
+  KKILGCLBMCJ KINNLCJKLGL = 20001;
+  MKJLLPCIMCM BJLMKGHFMDA = 20002;
+  repeated LGNCGIEICJJ NLKBEFDOFKN = 20003;
+  FLJBHAGNLOF IJGCBAKELPE = 20004;
+  HMNAKLDLGGF KLIJBFPJEDF = 20005;
+  MPJDIGIFJMA AEGECEPLBKK = 20006;
+  BBCHHKCMIOJ basic_info = 2;
+  CKFHELMIGOP PMMPDHCPONP = 20007;
+}

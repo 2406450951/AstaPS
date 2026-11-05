@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DJBEAHLAPPI.proto";
+
+message OOHHKGLNCIN {
+  repeated DJBEAHLAPPI level_info_list = 11;
+}

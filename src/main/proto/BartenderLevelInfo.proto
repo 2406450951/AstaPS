@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message BartenderLevelInfo {
+  bool is_finish = 3;
+  uint32 max_score = 2;
+  uint32 id = 1;
+}

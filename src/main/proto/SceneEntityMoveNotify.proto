@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "MotionInfo.proto";
+import "_InterpolateMoveInfo.proto";
+
+message SceneEntityMoveNotify {
+  MotionInfo motion_info = 11;
+  _InterpolateMoveInfo _interpolate_move_info = 8;
+  uint32 scene_time = 1;
+  uint32 reliable_seq = 2;
+  uint32 entity_id = 15;
+}

@@ -30,7 +30,7 @@ RUN --mount=type=cache,target=/home/gradle/.gradle,uid=1000,gid=1000 \
 
 FROM ${JRE_IMAGE} AS runtime
 WORKDIR /opt/astaps
-COPY --from=build /workspace/grasscutter-7.1.0.jar ./grasscutter.jar
+COPY --from=build /workspace/grasscutter-7.2.0.jar ./grasscutter.jar
 RUN mkdir -p /runtime \
     && chown 1000:1000 /runtime /opt/astaps
 WORKDIR /runtime

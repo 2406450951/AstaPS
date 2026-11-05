@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_RogueBallLevelInfo.proto";
+import "_SummonBattleLevelInfo.proto";
+import "_VineManRunLevelInfo.proto";
+import "_AutochessLevelInfo.proto";
+import "_BladeHeartLevelInfo.proto";
+import "_BubbleDramaPhotoLevelInfo.proto";
+import "_DiversityBattleLevelInfo.proto";
+import "_DoppelgangerPuzzleLevelInfo.proto";
+import "_DreamSwitchingLevelInfo.proto";
+import "_HolidayResortAdventureLevelInfo.proto";
+import "_HolidayResortBattleLevelInfo.proto";
+import "_HolidayResortGraffitiLevelInfo.proto";
+import "_HolidayResortSniperLevelInfo.proto";
+import "_InazumaBadmintonLevelInfo.proto";
+import "_LoliJumpLevelInfo.proto";
+import "_MapMarkLevelInfo.proto";
+import "_NatlanDrillBattleLevelInfo.proto";
+import "_OneShotLevelInfo.proto";
+import "_PartyLevelInfo.proto";
+import "_RankedMatchTrainLevelInfo.proto";
+import "_SumeruAdventureGoalFightingLevelInfo.proto";
+import "_TowerDefenseLevelInfo.proto";
+
+message _ClientPlayDetailInfo {
+  oneof detail {
+    _InazumaBadmintonLevelInfo inazuma_badminton_level_info = 12886;
+    _DreamSwitchingLevelInfo dream_switching_level_info = 7842;
+    _DoppelgangerPuzzleLevelInfo doppelganger_puzzle_level_info = 6442;
+    _NatlanDrillBattleLevelInfo natlan_drill_battle_level_info = 6062;
+    _PartyLevelInfo party_level_info = 9395;
+    _DiversityBattleLevelInfo diversity_battle_level_info = 3013;
+    _AutochessLevelInfo autochess_level_info = 13584;
+    _HolidayResortAdventureLevelInfo holiday_resort_adventure_level_info = 2512;
+    _HolidayResortBattleLevelInfo holiday_resort_battle_level_info = 18941;
+    _HolidayResortGraffitiLevelInfo holiday_resort_graffiti_level_info = 15730;
+    _HolidayResortSniperLevelInfo holiday_resort_sniper_level_info = 9422;
+    _SumeruAdventureGoalFightingLevelInfo sumeru_adventure_goal_fighting_level_info = 3216;
+    _BubbleDramaPhotoLevelInfo bubble_drama_photo_level_info = 9115;
+    _TowerDefenseLevelInfo tower_defense_level_info = 9333;
+    _MapMarkLevelInfo map_mark_level_info = 18482;
+    _BladeHeartLevelInfo blade_heart_level_info = 3132;
+    _LoliJumpLevelInfo loli_jump_level_info = 9066;
+    _OneShotLevelInfo one_shot_level_info = 3738;
+    _RankedMatchTrainLevelInfo ranked_match_train_level_info = 3363;
+    _RogueBallLevelInfo rogue_ball_level_info = 4343;
+    _VineManRunLevelInfo vine_man_run_level_info = 3791;
+    _SummonBattleLevelInfo summon_battle_level_info = 4680;
+  }
+}

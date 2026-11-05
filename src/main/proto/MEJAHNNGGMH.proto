@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message MEJAHNNGGMH {
+  bool is_open = 2;
+  bool is_finish = 4;
+  uint32 level_id = 1;
+  uint32 camp_id = 3;
+}

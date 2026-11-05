@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EPHKKEDNINE.proto";
+import "Uint32Pair.proto";
+
+message KLCNKCBIENB {
+  repeated EPHKKEDNINE CLKEEOEPJGB = 11;
+  Uint32Pair progress = 12;
+  uint32 max_hp = 15;
+  uint32 HOAOJBKJFLE = 6;
+  uint32 hp = 5;
+}

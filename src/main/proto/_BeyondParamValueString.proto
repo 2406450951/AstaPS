@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _BeyondParamValueString {
+  string value = 1;
+  uint32 KINEJLPEJOA = 2;
+}

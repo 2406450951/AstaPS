@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+
+message EMCDNJLCAEB {
+  HHEDHCFPEKM NGLCFKKJGFJ = 2;
+  string name = 1;
+  HHEDHCFPEKM NNPNDCFIAMA = 3;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "InterOpType.proto";
+import "ResinCostType.proto";
+
+message GadgetInteractReq {
+  bool DOGHJJCHDLF = 20000;
+  bool IKMNHOHNBKJ = 20001;
+  bool LPCDPGNKGFL = 20002;
+  bool IKDIFBEOEKM = 20003;
+  bool AJDBEGMCGKD = 8;
+  bool HDJABIODGCI = 20005;
+  InterOpType op_type = 5;
+  uint32 EBEELPIEKEL = 20006;
+  ResinCostType resin_cost_type = 6;
+  uint32 gadget_id = 7;
+  uint32 ALLPOOBNNPH = 20007;
+  uint32 gadget_entity_id = 11;
+  uint32 CJIPKAIPCIB = 12;
+}

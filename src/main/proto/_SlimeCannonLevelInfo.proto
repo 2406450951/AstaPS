@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _SlimeCannonLevelInfo {
+  uint32 level_id = 6;
+  uint32 _max_combo_num = 9;
+  bool is_finish = 13;
+  bool is_open = 8;
+  uint32 score = 14;
+  uint32 _max_wave = 15;
+  uint32 use_time = 1;
+}

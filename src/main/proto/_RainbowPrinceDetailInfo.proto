@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HEEIDHNNCDM.proto";
+import "LBGHHNDLACN.proto";
+
+message _RainbowPrinceDetailInfo {
+  repeated HEEIDHNNCDM NBALJIPCLAF = 20000;
+  repeated LBGHHNDLACN HGNLKDCGLBO = 2;
+}

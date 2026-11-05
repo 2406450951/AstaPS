@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GCGPlayCardCostInfo.proto";
+
+message JJAAPEINGAC {
+  repeated uint32 AJJGPPPBOAB = 2;
+  repeated uint32 EGLADOIBKMG = 1;
+  repeated GCGPlayCardCostInfo MNIGABGNNBK = 8;
+  uint32 NMKGLEHEEIN = 3;
+  uint32 FHJEAPIGJLG = 12;
+}

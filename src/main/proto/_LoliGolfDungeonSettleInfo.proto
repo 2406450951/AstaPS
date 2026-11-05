@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Uint32Pair.proto";
+
+message _LoliGolfDungeonSettleInfo {
+  repeated Uint32Pair NKOOPGKMHEK = 20000;
+  repeated Uint32Pair KHEMPDGCLGG = 20001;
+  uint32 FHKOLIDKNBA = 20002;
+  uint32 JOELLBHNGDL = 20003;
+  uint32 BMMIKCIJLHN = 20004;
+  uint32 AFOELHPKJOP = 20005;
+  uint32 qte_count = 9;
+  uint32 score = 1;
+  uint32 level_id = 13;
+  uint32 IDJGDOGIJFE = 20007;
+  bool is_new_record = 8;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _FishingJoyDetailInfo {
+  bool FPKBKGBKGEG = 20000;
+  bool LBCGNOOJDIC = 2;
+  uint32 PLEDFNKONLB = 7;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _BadgetBattleSettleInfo {
+  repeated uint32 LLDFKPKHFFB = 20000;
+  bool is_new_record = 7;
+  uint32 difficulty = 9;
+  uint32 score = 4;
+  uint32 level_id = 12;
+}

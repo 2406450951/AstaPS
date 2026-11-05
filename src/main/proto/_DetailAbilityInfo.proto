@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AbilityString.proto";
+
+message _DetailAbilityInfo {
+  AbilityString parent_ability_name = 9;
+  uint32 instanced_ability_id = 1;
+  int32 local_id = 14;
+  int32 modifier_local_id = 12;
+  uint32 caster_id = 8;
+  uint32 instanced_modifier_id = 3;
+}

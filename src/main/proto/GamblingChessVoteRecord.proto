@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message GamblingChessVoteRecord {
+  uint32 score = 12;
+  uint32 game_id = 8;
+  uint32 camp_id = 2;
+  uint32 count = 13;
+  uint32 settle_score = 15;
+}

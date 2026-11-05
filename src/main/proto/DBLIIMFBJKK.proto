@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum DBLIIMFBJKK {
+  DBLIIMFBJKK_NONE = 0;
+  DBLIIMFBJKK_INIT = 1;
+  DBLIIMFBJKK_START = 2;
+  DBLIIMFBJKK_PAUSED = 3;
+  DBLIIMFBJKK_STOP = 4;
+}

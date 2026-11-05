@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message LanV5CardEntry {
+  uint32 IPHHMCDGGCP = 7;
+  float MIFLBOMJLLO = 3;
+  uint32 value = 8;
+  uint32 id = 10;
+  float HGHDGAIHIHJ = 11;
+  float JADCKOMEOGC = 14;
+  bool GDNALHJEFPE = 2;
+  float rot = 4;
+}

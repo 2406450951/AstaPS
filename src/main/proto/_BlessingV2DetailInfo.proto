@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ADMKLIPHAHG.proto";
+
+message _BlessingV2DetailInfo {
+  repeated ADMKLIPHAHG OIJEHCLCPFN = 20000;
+  uint32 DKHOJDNIKGN = 20001;
+  bool ELCGFJCJMNN = 8;
+  bool is_activated = 1;
+  fixed32 next_refresh_time = 5;
+  uint32 HLGJOMHPMDA = 20003;
+  fixed32 content_close_time = 6;
+  uint32 GFJBLFOFJIP = 20004;
+}

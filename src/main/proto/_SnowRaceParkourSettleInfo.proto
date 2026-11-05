@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GalleryStopReason.proto";
+
+message _SnowRaceParkourSettleInfo {
+  uint32 use_time = 8;
+  uint32 score = 9;
+  GalleryStopReason reason = 2;
+  bool is_new_record = 5;
+  uint32 level_id = 4;
+  uint32 _max_collect_num = 7;
+  uint32 collect_num = 12;
+}

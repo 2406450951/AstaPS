@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "JJNLBIGDBFJ.proto";
+
+message APGNMMCFCPD {
+  repeated JJNLBIGDBFJ level_info_list = 1;
+}

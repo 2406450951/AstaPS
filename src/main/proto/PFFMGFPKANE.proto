@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ProfilePicture.proto";
+
+message PFFMGFPKANE {
+  string _xbox_gamertag = 15;
+  ProfilePicture profile_picture = 11;
+  string nickname = 12;
+  string online_id = 9;
+  uint32 HLDCINAFEAJ = 5;
+  bool NDJCMBBPOKH = 1;
+  uint32 uid = 6;
+}

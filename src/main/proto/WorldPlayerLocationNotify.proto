@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "PlayerLocationInfo.proto";
+import "PlayerWorldLocationInfo.proto";
+
+message WorldPlayerLocationNotify {
+  repeated PlayerLocationInfo player_loc_list = 3;
+  repeated PlayerWorldLocationInfo player_world_loc_list = 4;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message EPHKKEDNINE {
+  uint32 _chess_level_up_id = 10;
+  uint32 _auto_chess_chess_id = 4;
+}

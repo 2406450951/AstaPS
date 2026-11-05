@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _FilmfestBattleSettleInfo {
+  uint32 level_id = 1;
+  uint32 PFEPGBGJJMM = 20000;
+  uint32 FFDJNIKMFFC = 20001;
+  uint32 score = 3;
+  bool is_new_record = 4;
+  uint32 difficulty = 2;
+}

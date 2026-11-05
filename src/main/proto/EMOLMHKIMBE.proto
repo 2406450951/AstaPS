@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DEGDFAOEICK.proto";
+
+message EMOLMHKIMBE {
+  int32 EDPBOKBAICA = 501;
+  uint32 LFMJFCFHJKF = 2;
+  DEGDFAOEICK KKFBGJGDAJI = 1;
+}

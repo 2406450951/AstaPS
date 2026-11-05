@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ELCEHBGKMMJ.proto";
+import "EMOLMHKIMBE.proto";
+import "JEOKDCIGCFP.proto";
+import "PLGPJEHKFNC.proto";
+
+message IEJOILPHGBN {
+  ELCEHBGKMMJ OLMNNFBBFMN = 516;
+  PLGPJEHKFNC EEEPKEKDMPA = 506;
+  EMOLMHKIMBE IDDPFBOAPNO = 515;
+  repeated JEOKDCIGCFP NFDNBCLBMCF = 510;
+  PLGPJEHKFNC BDPPPIJOKHI = 507;
+  float MIJCLCFBGLE = 511;
+  uint32 HLBMLJLKKJM = 513;
+  int32 IBBCBHGEIKH = 512;
+  float height = 504;
+  int32 FJINKCIOAFO = 501;
+  bool NNOCFHAOIOO = 514;
+  bool OEDLHAANBDP = 508;
+  bool NLKJICEAIOM = 509;
+  float ANNNKHCCJBP = 505;
+  float radius = 503;
+  bool LJPHJOMHAIF = 502;
+  bool LPEKBAPJIMM = 517;
+}

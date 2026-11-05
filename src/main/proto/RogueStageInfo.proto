@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "RogueShowAvatarTeamInfo.proto";
+import "RoguelikeRuneRecord.proto";
+
+message RogueStageInfo {
+  RogueShowAvatarTeamInfo avatar_team = 10;
+  repeated RoguelikeRuneRecord rune_record_list = 13;
+  bool DHLBAPDOFMF = 20000;
+  bool KAJLCAPNCFA = 5;
+  bool is_passed = 6;
+  uint32 KKJFEBAPLHL = 20002;
+  uint32 revise_monster_level = 20003;
+  uint32 JEEEJLIDCCN = 20004;
+  uint32 cur_level = 11;
+  bool is_taken_reward = 7;
+  bool is_open = 2;
+  uint32 stage_id = 1;
+  uint32 LNLCFJGNECG = 20005;
+  uint32 CPDHCBHKOEC = 20006;
+  uint32 JKCCEMMPJIO = 20007;
+}

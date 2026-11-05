@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "EFOBFCPONPK.proto";
+import "_AutoChessShop.proto";
+
+message _PrepareInfo {
+  EFOBFCPONPK NKPMILJNBBB = 20000;
+  _AutoChessShop shop = 1;
+  uint32 MPKGOMIOBOL = 14;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+import "PGDMAIHKGFO.proto";
+
+message NCKAKJEKMGN {
+  PGDMAIHKGFO EHOGLGOAMGJ = 8;
+  HHEDHCFPEKM offset = 3;
+  string BOMAJDALJLC = 2;
+  HHEDHCFPEKM rotation = 4;
+  float OLIPGCONBJC = 5;
+  int32 filter_type = 1;
+  bool MCGOLBFHCJI = 9;
+  bool LAINEKLMPKP = 7;
+  bool FNBIHPLBKLH = 6;
+}

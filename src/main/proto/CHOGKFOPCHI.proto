@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message CHOGKFOPCHI {
+  uint32 level_id = 4;
+  bool FBHFAMPKPPK = 11;
+  bool is_open = 7;
+}

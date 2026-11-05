@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _SpecificGameserver {
+  uint32 JNFCLADDNJC = 20000;
+  uint32 FOCNOCHNIAO = 20001;
+}

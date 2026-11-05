@@ -95,7 +95,7 @@ final class NativeCharacterSelectionTest {
         assertEquals(0, session.player.getMainCharacterId());
         assertEquals(0, session.player.logins);
         assertEquals(0, session.player.avatarAdds);
-        assertEquals(List.of(22899, PacketOpcodes.PlayerLoginRsp), opcodes(session));
+        assertEquals(List.of(5008, PacketOpcodes.PlayerLoginRsp), opcodes(session)); // 7.2
         assertInstanceOf(PacketDoSetPlayerBornDataNotify.class, session.packets.get(0));
         assertInstanceOf(PacketPlayerLoginRsp.class, session.packets.get(1));
         assertEquals(0, session.closes);
@@ -133,10 +133,10 @@ final class NativeCharacterSelectionTest {
     }
 
     @Test
-    void bornPacketsUseTheKnown71CmdIdsAndEmptySuccessPayload() {
-        assertEquals(26105, PacketOpcodes.SetPlayerBornDataReq);
-        assertEquals(22899, PacketOpcodes.DoSetPlayerBornDataNotify);
-        assertEquals(4385, PacketOpcodes.SetPlayerBornDataRsp);
+    void bornPacketsUseTheKnown72CmdIdsAndEmptySuccessPayload() {
+        assertEquals(8541, PacketOpcodes.SetPlayerBornDataReq); // 7.2
+        assertEquals(5008, PacketOpcodes.DoSetPlayerBornDataNotify); // 7.2
+        assertEquals(414, PacketOpcodes.SetPlayerBornDataRsp); // 7.2
         assertEquals(PacketOpcodes.SetPlayerBornDataRsp, PacketSetPlayerBornDataRsp.CMD_ID);
 
         var notify = new PacketDoSetPlayerBornDataNotify();

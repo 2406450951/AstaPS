@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "TeamEntityInfo.proto";
+
+message SyncTeamEntityNotify {
+  repeated TeamEntityInfo team_entity_info_list = 4;
+  uint32 scene_id = 13;
+}

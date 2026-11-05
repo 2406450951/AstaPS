@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_BeyondBattlePassSchedule.proto";
+
+message _BeyondBattlePassCurScheduleUpdateNotify {
+  _BeyondBattlePassSchedule cur_schedule = 11;
+  uint32 GOKJFDPPOHF = 8;
+  bool _have_cur_beyond_schedule = 1;
+}

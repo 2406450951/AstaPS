@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_RogueBallSnapshot.proto";
+
+message _RogueBallSettleInfo {
+  _RogueBallSnapshot snapshot = 7;
+  uint32 level_id = 14;
+  bool is_new_record = 4;
+}

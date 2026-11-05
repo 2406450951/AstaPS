@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message AvatarFetterLevelRewardReq {
+  uint64 avatar_guid = 4;
+  uint32 fetter_level = 1;
+}

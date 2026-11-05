@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_Vector2Int.proto";
+
+message LKILCHLHHLL {
+  repeated uint32 AEDCGAMENCN = 6;
+  repeated int32 int_param_list = 9;
+  _Vector2Int pos = 2;
+  _Vector2Int ANLGEJIKLBE = 4;
+  repeated _Vector2Int DLDMILGJGGE = 7;
+  uint32 MLPBHLGJCHH = 11;
+  int32 rotation = 3;
+  uint32 id = 1;
+  uint32 EKNOCDAOCOO = 13;
+  uint32 config_id = 12;
+  uint32 HPDBLGPPNBM = 5;
+  int32 KJIINMAADME = 14;
+}

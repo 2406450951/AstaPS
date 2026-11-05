@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_LanternRiteV6CardInfo.proto";
+import "_LanternRiteV6DanmakuInfo.proto";
+
+message _LanternRiteV6DetailInfo {
+  _LanternRiteV6DanmakuInfo _danmaku_info = 4;
+  _LanternRiteV6CardInfo _card_info = 14;
+  uint32 like_num = 7;
+  bool is_taken_costume_reward = 10;
+  uint32 JFKNEPBHALE = 20000;
+}

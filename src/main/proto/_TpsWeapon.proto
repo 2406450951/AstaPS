@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _TpsWeapon {
+  map<uint32, uint32> affix_map = 3;
+  repeated uint32 accessory_id_list = 2;
+}

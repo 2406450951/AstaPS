@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message PANGJIGDLJH {
+  uint32 best_score = 14;
+  bool is_finish = 5;
+  bool is_open = 6;
+  uint32 level_id = 3;
+}

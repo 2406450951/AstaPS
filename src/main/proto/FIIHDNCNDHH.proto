@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FHDOGFCDKDK.proto";
+
+message FIIHDNCNDHH {
+  repeated FHDOGFCDKDK COKFKPJNKHC = 20000;
+  repeated uint32 winner_uid_list = 3;
+  uint32 start_time = 15;
+  uint32 finish_time = 14;
+  uint64 guid = 1;
+}

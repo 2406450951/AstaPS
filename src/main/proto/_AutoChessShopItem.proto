@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _AutoChessShopItem {
+  uint32 guid = 15;
+  bool FIIALJOBLHL = 20000;
+  uint32 _auto_chess_chess_id = 14;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_MapLayerInfo.proto";
+
+message _MirrorWorldSceneDetail {
+  repeated uint32 scene_tag_id_list = 13;
+  _MapLayerInfo _map_layer_info = 1;
+  uint32 _mirrored_scene_id = 11;
+}

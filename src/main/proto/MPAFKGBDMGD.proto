@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message MPAFKGBDMGD {
+  uint32 level_id = 7;
+  bool is_open = 12;
+  bool is_finish = 13;
+  uint32 score = 2;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_AquariumDivingLevelEventType.proto";
+
+message _AquariumDivingLevelEvent {
+  repeated uint32 _event_param_list = 15;
+  uint32 level_id = 7;
+  _AquariumDivingLevelEventType event_type = 14;
+}

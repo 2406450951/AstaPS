@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HOIHHDKMFIF.proto";
+
+message DBMABEGBDEN {
+  repeated HOIHHDKMFIF NBGLBHHCFKH = 20000;
+  string PANOOKHHBPD = 501;
+  bool JONFNJGGCOE = 20002;
+  bool FNLCEOICIDK = 20003;
+  bool PACIOEOBAED = 20004;
+  uint32 AKCFELJHHJG = 20005;
+  uint32 FPFMABFBJJM = 20006;
+}

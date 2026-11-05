@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GFFKODENHJA.proto";
+
+message EnterSceneDoneRsp {
+  GFFKODENHJA PPKIKFGEINK = 20000;
+  int32 retcode = 6;
+  uint32 enter_scene_token = 4;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message OtherPlayerEnterHomeNotify {
+  enum Reason {
+    Reason_INVALID = 0;
+    Reason_ENTER = 1;
+    Reason_LEAVE = 2;
+  }
+  string nickname = 14;
+  OtherPlayerEnterHomeNotify.Reason reason = 6;
+}

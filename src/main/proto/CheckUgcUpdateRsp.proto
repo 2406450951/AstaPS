@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "UgcType.proto";
+
+message CheckUgcUpdateRsp {
+  repeated uint64 update_ugc_guid_list = 13;
+  int32 retcode = 12;
+  UgcType ugc_type = 7;
+}

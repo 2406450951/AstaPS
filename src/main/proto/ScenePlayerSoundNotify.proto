@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Vector.proto";
+
+message ScenePlayerSoundNotify {
+  enum PlaySoundType {
+    PlaySoundType_PLAY_SOUND_NONE = 0;
+    PlaySoundType_PLAY_SOUND_START = 1;
+    PlaySoundType_PLAY_SOUND_STOP = 2;
+  }
+  string sound_name = 6;
+  Vector play_pos = 13;
+  ScenePlayerSoundNotify.PlaySoundType play_type = 15;
+}

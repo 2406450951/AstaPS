@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _OfferingPariDetailData {
+  uint32 CAKBDOLKCJL = 20000;
+  bool is_taken_finish_reward = 20001;
+}

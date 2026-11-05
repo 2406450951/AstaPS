@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message VehicleComp {
+  repeated uint32 FHKCCHJCGBA = 2;
+  uint32 CIDAIGANDEI = 1;
+}

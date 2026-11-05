@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Uint32Pair.proto";
+import "_AquariumDivingTaskState.proto";
+
+message _AquariumDivingTaskInfo {
+  repeated Uint32Pair _task_progress_pair_list = 11;
+  _AquariumDivingTaskState _task_state = 15;
+  uint32 _aquarium_diving_task_id = 2;
+}

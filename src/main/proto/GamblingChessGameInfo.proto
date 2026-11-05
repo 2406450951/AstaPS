@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GamblingChessCardResult.proto";
+
+message GamblingChessGameInfo {
+  repeated GamblingChessCardResult card_result_list = 8;
+  float blue_vote_ratio = 20000;
+  uint32 _streaming_video_id = 1;
+  uint32 game_id = 14;
+  uint32 winner_team_id = 20001;
+  float red_vote_ratio = 20002;
+  uint32 blue_team_id = 20003;
+  uint32 state = 20004;
+  uint32 red_team_id = 20005;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AFCJANIEJKC.proto";
+import "EEEPOOPKBPC.proto";
+
+message EABNOCBCGFM {
+  EEEPOOPKBPC FOHNJKCKKPC = 3;
+  AFCJANIEJKC EJGAEGAPEBA = 15;
+  uint32 GEPHOFOGHJC = 10;
+  uint32 round = 14;
+  uint32 PHDOCOKGBOF = 13;
+}

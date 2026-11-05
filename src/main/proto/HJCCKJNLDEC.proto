@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "JEOKDCIGCFP.proto";
+
+message HJCCKJNLDEC {
+  repeated JEOKDCIGCFP value_list = 1;
+}

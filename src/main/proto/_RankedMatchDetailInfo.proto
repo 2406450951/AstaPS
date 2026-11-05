@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _RankedMatchDetailInfo {
+  uint32 JDHBFLPNNFK = 13;
+  uint32 LOGCPKHCCHA = 20001;
+  uint32 NFIMEMMGEDE = 20002;
+}

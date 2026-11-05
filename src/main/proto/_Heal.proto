@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "LLAKPLJOMGE.proto";
+import "MFBOLEHLNDN.proto";
+
+message _Heal {
+  repeated LLAKPLJOMGE KMMMLDEIBGE = 6;
+  MFBOLEHLNDN KHLECDECHLM = 7;
+  int32 MNFGHFFJKFH = 20002;
+  bool KAEOAODMGNH = 20003;
+  bool OLKMOICPKBG = 20004;
+  float KLPDNIINGMM = 1;
+  float KEGCKDGDPGL = 20006;
+}

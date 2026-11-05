@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GalleryStopReason.proto";
+
+message _RankedMatchTrainSettleInfo {
+  uint32 item_num = 5;
+  uint32 use_time = 9;
+  GalleryStopReason reason = 4;
+  uint32 score = 13;
+  bool is_new_record = 2;
+  uint32 DPFLJBCLGDJ = 11;
+  uint32 level_id = 7;
+}

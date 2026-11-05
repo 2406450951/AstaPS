@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GalleryStopReason.proto";
+
+message _LostSamachurlSneakSettleInfo {
+  GalleryStopReason reason = 2;
+  uint32 level_id = 4;
+  bool is_new_record = 10;
+  uint32 cost_time = 6;
+}

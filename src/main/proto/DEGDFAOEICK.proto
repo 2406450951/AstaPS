@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum DEGDFAOEICK {
+  DEGDFAOEICK_OFFICIAL = 0;
+  DEGDFAOEICK_CUSTOM = 1;
+  DEGDFAOEICK_SUB_BLUEPRINT = 2;
+}

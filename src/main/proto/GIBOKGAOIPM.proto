@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message GIBOKGAOIPM {
+  uint32 level = 9;
+  uint32 buff_id = 6;
+}

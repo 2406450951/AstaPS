@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _QuestQuickLaunchRsp {
+  int32 retcode = 8;
+  uint32 quest_id = 3;
+  int32 DKMKHOCJAEC = 20000;
+  bool _is_enter_focus_mode = 7;
+}

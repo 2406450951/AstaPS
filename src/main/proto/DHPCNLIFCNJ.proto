@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_ActivityAvatarInfo.proto";
+
+message DHPCNLIFCNJ {
+  message DGJFGKJJDAK {
+    repeated _ActivityAvatarInfo avatar_list = 4;
+    uint32 EKLLGJEHJPA = 2;
+    bool IMEPIKDEFHA = 14;
+    uint32 cost_time = 1;
+    uint32 difficulty = 13;
+  }
+  message NFPOBMPOEKA {
+    uint32 avatar_type = 10;
+    uint32 costume_id = 15;
+    uint32 avatar_id = 7;
+  }
+  repeated _ActivityAvatarInfo CKFFOEMBBGD = 20000;
+  repeated _ActivityAvatarInfo KJGGFDABONJ = 20001;
+  DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;
+  repeated DHPCNLIFCNJ.NFPOBMPOEKA CIFCCNMBLFA = 20003;
+  bool is_open = 1;
+  bool DAGLJBFPHEK = 14;
+  bool is_finish = 8;
+  uint32 cost_time = 4;
+  uint32 level_id = 2;
+  uint32 EPDCAEBLLHA = 20005;
+}

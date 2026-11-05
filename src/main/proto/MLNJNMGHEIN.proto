@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+import "KBAFLHAFJMA.proto";
+
+message MLNJNMGHEIN {
+  HHEDHCFPEKM DLMJCBBIJAB = 2;
+  HHEDHCFPEKM NGOLGGAMAMD = 3;
+  KBAFLHAFJMA ODBAPCEINAM = 1;
+  float velocity = 4;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ScenePointUnlockNotify {
+  repeated uint32 point_list = 4;
+  repeated uint32 HBKHEKLMEKN = 7;
+  repeated uint32 unhide_point_list = 10;
+  repeated uint32 hide_point_list = 2;
+  uint32 scene_id = 9;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message KNPLPLPHFGH {
+  bool is_finish = 15;
+  bool is_open = 12;
+  uint32 left_time = 11;
+  uint32 level_id = 3;
+}

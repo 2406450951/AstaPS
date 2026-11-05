@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_BeyondBattlePassMission.proto";
+import "_BeyondBattlePassProduct.proto";
+import "_BeyondBattlePassSchedule.proto";
+
+message _BeyondBattlePassAllDataNotify {
+  _BeyondBattlePassSchedule cur_schedule = 15;
+  _BeyondBattlePassProduct product_info = 11;
+  repeated _BeyondBattlePassMission mission_list = 2;
+  bool _have_cur_beyond_schedule = 8;
+  uint32 GOKJFDPPOHF = 6;
+}

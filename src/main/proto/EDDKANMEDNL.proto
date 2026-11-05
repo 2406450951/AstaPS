@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum EDDKANMEDNL {
+  EDDKANMEDNL_NONE = 0;
+  EDDKANMEDNL_MAX_DIFFICULTY = 1;
+  EDDKANMEDNL_MAX_DIFFICULTY_EXTRA = 2;
+}

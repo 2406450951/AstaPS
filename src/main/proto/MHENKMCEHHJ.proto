@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "NHKBDCPGNMN.proto";
+
+message MHENKMCEHHJ {
+  repeated NHKBDCPGNMN level_info_list = 3;
+}

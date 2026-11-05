@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DICLKEBODEC.proto";
+import "QueryFilter.proto";
+import "Vector.proto";
+import "Vector3Int.proto";
+
+message QueryPathReq {
+  enum OptionType {
+    OptionType_OPTION_NONE = 0;
+    OptionType_OPTION_NORMAL = 1;
+    OptionType_OPTION_FIRST_CAN_GO = 2;
+    OptionType_OPTION_FIRST_CAN_GO_SUCCESS_ONLY = 3;
+  }
+  Vector3Int GEAKGEBKLGB = 20000;
+  repeated Vector destination_pos = 8;
+  Vector source_pos = 3;
+  QueryFilter filter = 4;
+  DICLKEBODEC FLFPHIAAGME = 5;
+  Vector3Int CPMFACKILJN = 20002;
+  QueryPathReq.OptionType query_type = 9;
+  uint32 scene_id = 1;
+  int32 query_id = 2;
+}

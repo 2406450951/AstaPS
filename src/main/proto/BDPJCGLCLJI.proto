@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_CurrentPhase.proto";
+
+message BDPJCGLCLJI {
+  _CurrentPhase KDPEFOBKJON = 1;
+  uint32 count = 2;
+}

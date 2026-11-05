@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Uint32Pair.proto";
+
+message _LanternRiteV6DanmakuRecord {
+  repeated Uint32Pair _level_record_time_list = 1;
+  uint32 IJGJCFGFPFE = 20000;
+  uint32 BGFHONDHLIF = 20001;
+  uint32 FAMHJPHJKPE = 20002;
+}

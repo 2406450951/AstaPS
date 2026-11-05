@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _SetReliquaryStarStateRsp {
+  uint64 target_reliquary_guid = 12;
+  int32 retcode = 1;
+  bool _is_relic_starred = 3;
+}

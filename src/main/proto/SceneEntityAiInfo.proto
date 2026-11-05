@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AGDDMMIAGHC.proto";
+import "MonsterRoute.proto";
+import "ServantInfo.proto";
+
+message SceneEntityAiInfo {
+  MonsterRoute monster_route = 9;
+  ServantInfo servant_info = 4;
+  map<uint32, uint32> ai_threat_map = 5;
+  AGDDMMIAGHC HCPPLEOKNMH = 10;
+  map<uint32, uint32> skill_cd_map = 3;
+  map<uint32, uint32> skill_group_cd_map = 6;
+  bool is_entered_combat = 8;
+  uint32 cur_tactic = 7;
+}

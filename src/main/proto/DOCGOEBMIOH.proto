@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum DOCGOEBMIOH {
+  DOCGOEBMIOH_NONE = 0;
+  DOCGOEBMIOH_LEAVE = 1;
+  DOCGOEBMIOH_PENDING = 2;
+  DOCGOEBMIOH_IDLE = 3;
+}

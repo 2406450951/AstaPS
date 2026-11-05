@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "Retcode.proto";
+
+message WidgetDoBagRsp {
+  uint32 material_id = 12;
+  int32 retcode = 1;
+}

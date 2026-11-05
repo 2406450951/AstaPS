@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FPFLLDHMCIB.proto";
+import "_DiversityBattleSocialBrief.proto";
+
+message _DiversityBattleLevelInfo {
+  _DiversityBattleSocialBrief _record_social_brief = 7;
+  repeated FPFLLDHMCIB team_list = 13;
+}

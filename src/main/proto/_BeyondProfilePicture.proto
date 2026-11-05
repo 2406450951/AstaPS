@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _BeyondProfilePicture {
+  string GKJIHMFEMHG = 4;
+  string LPAKOLBCKNE = 3;
+  uint32 _profile_picture_id = 1;
+  uint32 MDMBIJIKELK = 5;
+  bool OGAGBJGPONB = 2;
+}

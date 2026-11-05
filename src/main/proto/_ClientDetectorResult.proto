@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _ClientDetectorResult {
+  repeated uint32 DCGOIJMIJMG = 20000;
+  bool GJFFLCIHPIN = 6;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BNLFGDGHCJH.proto";
+import "GBPENPLJMNG.proto";
+import "GECNMHDPJKN.proto";
+
+message _PoetryFestivalDetailInfo {
+  GBPENPLJMNG NFIPAFAGGED = 20000;
+  GECNMHDPJKN CPKPABJNLNJ = 20001;
+  BNLFGDGHCJH HIHIOBJPCEF = 20002;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message MusicGameStartReq {
+  uint64 ugc_guid = 4;
+  uint32 music_basic_id = 1;
+  bool is_save_score = 10;
+}

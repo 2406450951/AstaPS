@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DBLIIMFBJKK.proto";
+import "FJFKBKCECBC.proto";
+import "HOKPFMBPOMB.proto";
+import "_FixedMoverInfo.proto";
+import "_RotateMoverInfo.proto";
+import "_RouteMoverInfo.proto";
+import "_VectorMoverInfo.proto";
+
+message OLDIEOFBBML {
+  string name = 2;
+  FJFKBKCECBC FFHNLIMFNEG = 8;
+  uint64 OBNGABCMBPB = 3;
+  uint64 start_scene_time_ms = 4;
+  uint64 ENEDFBGGNOG = 6;
+  DBLIIMFBJKK EKKALFHAEHH = 7;
+  uint64 DJHMPDJCLGI = 5;
+  HOKPFMBPOMB MNMMABEPJBH = 1;
+  oneof detail {
+    _VectorMoverInfo vector_mover_info = 11;
+    _RotateMoverInfo rotate_mover_info = 12;
+    _RouteMoverInfo route_mover_info = 13;
+    _FixedMoverInfo fixed_mover_info = 14;
+  }
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "GalleryStopReason.proto";
+
+message _RankedMatchShootingSettleInfo {
+  bool is_new_record = 3;
+  GalleryStopReason reason = 4;
+  uint32 item_num = 2;
+  uint32 MOEKEMAHBNN = 10;
+  uint32 level_id = 8;
+  uint32 score = 6;
+}

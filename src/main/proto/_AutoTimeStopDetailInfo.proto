@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "AJKHPLDCLEO.proto";
+
+message _AutoTimeStopDetailInfo {
+  repeated AJKHPLDCLEO level_info_list = 1;
+}

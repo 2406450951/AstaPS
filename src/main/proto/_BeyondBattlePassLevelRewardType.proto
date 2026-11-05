@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+enum _BeyondBattlePassLevelRewardType {
+  _BeyondBattlePassLevelRewardType_BEYOND_BATTLE_PASS_LEVEL_REWARD_INVALID = 0;
+  _BeyondBattlePassLevelRewardType_BEYOND_BATTLE_PASS_LEVEL_REWARD_FREE = 1;
+  _BeyondBattlePassLevelRewardType_BEYOND_BATTLE_PASS_LEVEL_REWARD_PAID = 2;
+}

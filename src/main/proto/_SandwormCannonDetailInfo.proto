@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "SandwormCannonLevelData.proto";
+
+message _SandwormCannonDetailInfo {
+  repeated SandwormCannonLevelData sandworm_cannon_info = 20000;
+}

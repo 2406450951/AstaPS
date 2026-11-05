@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _DrawPlayInfo {
+  repeated uint32 CBHPBBCOPPE = 20000;
+  repeated uint32 FEIANMMFPJC = 20001;
+}

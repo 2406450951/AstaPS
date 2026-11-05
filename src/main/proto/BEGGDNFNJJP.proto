@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FMDFIKLPPGO.proto";
+
+message BEGGDNFNJJP {
+  repeated FMDFIKLPPGO BBJHGNFMGLA = 8;
+  uint32 level_id = 13;
+  bool is_open = 7;
+  bool is_finish = 12;
+}

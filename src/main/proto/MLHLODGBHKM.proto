@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ShowAvatarInfo.proto";
+
+message MLHLODGBHKM {
+  repeated ShowAvatarInfo LIFIMBEPICC = 20000;
+  bool is_open = 2;
+  bool is_finish = 3;
+  uint32 PAEIDOBHKMA = 20001;
+  uint32 FCJFGPBEEKD = 20002;
+  uint32 PBBBLFJECID = 20003;
+  uint32 level_id = 5;
+  uint32 GHNIABHCKPO = 20004;
+  uint32 MLIINJCDNGJ = 20005;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message ADMKLIPHAHG {
+  uint32 FJDBPKDKOEF = 13;
+  uint32 HFMJFHBOGDB = 6;
+  uint32 group_id = 14;
+  uint32 config_id = 10;
+  uint32 DOAOCNIJGNK = 12;
+}

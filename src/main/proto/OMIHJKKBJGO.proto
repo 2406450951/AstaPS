@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FJFKBKCECBC.proto";
+import "FKPFJHCNOLD.proto";
+
+message OMIHJKKBJGO {
+  FJFKBKCECBC PMHDJBEJGKN = 8;
+  string key = 1;
+  float AGJIJMBOBAN = 7;
+  FKPFJHCNOLD status = 6;
+  uint64 KCMJPMNPCBA = 3;
+  bool NKDMPKJGMFF = 5;
+  float GOHMGHDBJMC = 2;
+  uint64 LGGICGBDDFO = 4;
+}

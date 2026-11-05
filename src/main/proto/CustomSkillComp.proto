@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BACMNHCJNEM.proto";
+
+message CustomSkillComp {
+  repeated BACMNHCJNEM ADBGKEMOLNJ = 2;
+  repeated int32 JJMIKFGBIOM = 3;
+  repeated BACMNHCJNEM IPLOPAOAFLI = 1;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "FungusDetail.proto";
+import "FungusPlotStageDetail.proto";
+import "FungusTrainingDungeonDetail.proto";
+import "FungusTrainingProgressDetail.proto";
+
+message FungusFighterDetailInfo {
+  repeated uint32 CLAIGDOBHKL = 20000;
+  repeated uint32 OBINCBHLGCD = 20001;
+  repeated FungusTrainingDungeonDetail training_dungeon_detail_list = 6;
+  repeated uint32 KPNKIKPCPPM = 20002;
+  repeated FungusPlotStageDetail plot_stage_detail_list = 4;
+  repeated FungusTrainingProgressDetail training_dungeon_progress_detail_list = 7;
+  repeated FungusDetail fungus_detail_list = 1;
+}

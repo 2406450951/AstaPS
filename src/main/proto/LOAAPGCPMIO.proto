@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "DACMDDCLPNH.proto";
+import "MHJHCJJGOAD.proto";
+
+message LOAAPGCPMIO {
+  MHJHCJJGOAD OIIIOAEMICJ = 5;
+  DACMDDCLPNH JJFAGNLJDMN = 7;
+  uint32 progress = 4;
+  uint32 DEMNDDHDDKF = 14;
+  uint32 NJIAIJLAFEI = 2;
+  bool is_accept = 6;
+}

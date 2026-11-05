@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "OnlinePlayerInfo.proto";
+
+message PlayerApplyEnterMpNotify {
+  OnlinePlayerInfo src_player_info = 5;
+  uint32 src_thread_index = 20000;
+  bool EEHKAIMJJDO = 2;
+  uint32 src_app_id = 20002;
+}

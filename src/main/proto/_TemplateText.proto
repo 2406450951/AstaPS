@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ODFACIIAFJM.proto";
+
+message _TemplateText {
+  repeated ODFACIIAFJM AABINJFFLHE = 20000;
+}

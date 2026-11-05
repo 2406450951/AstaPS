@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "SalesmanStatusType.proto";
+
+message SalesmanActivityDetailInfo {
+  map<uint32, uint32> selected_reward_id_map = 13;
+  uint32 KMKFHBKGBOH = 20000;
+  bool LOCIIDPOHAH = 20001;
+  bool CCIDPKHDGLB = 20002;
+  uint32 DILMJEONOCC = 20003;
+  uint32 KFEIFMLHHGM = 20004;
+  uint32 FNPCMPBIIMP = 20005;
+  uint32 day_index = 11;
+  uint32 IKCLPCPHAJF = 20006;
+  SalesmanStatusType status = 2;
+}

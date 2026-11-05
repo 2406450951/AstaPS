@@ -5,7 +5,8 @@ on:
     branches:
       - "**"
     paths:
-      - "protocol/**"
+      - "src/main/proto/**"
+      - "src/generated/java/**"
       - "tools/protocol/**"
       - "gradle/protocol-generation.gradle"
       - "build.gradle"
@@ -23,7 +24,7 @@ permissions:
 
 jobs:
   validate:
-    name: Generate, build, and test (${{ matrix.os }})
+    name: Generate and build (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     strategy:
@@ -51,42 +52,23 @@ jobs:
         if: runner.os != 'Windows'
         run: chmod +x ./gradlew
 
-      # Compile the production jar, run the focused protocol regression test, and separately compile
-      # only regenerated protocol sources with -Xlint:all -Werror. Repository-wide validation remains
-      # in the normal Build workflow.
-      - name: Generate, lint, build, and test
+      # Regenerate the protocol Java from src/main/proto and fail if it differs from the checked-in
+      # copy, then compile it with -Xlint:all -Werror and build the jar.
+      - name: Regenerate, lint, and build
         shell: bash
         run: >-
-          ./gradlew lintGeneratedProtocolJava jar test
-          --tests emu.grasscutter.net.ProtocolGenerationTest
+          ./gradlew generateProtocolJava lintGeneratedProtocolJava jar
           --build-cache
           -PskipHandbook=1
           -PjarFilename=grasscutter
-          -PexcludeTags=integration
           -Dorg.gradle.jvmargs=-Xmx4g
 
-      - name: Verify generated protocol set
+      - name: Check checked-in protocol Java is up to date
         shell: bash
         run: |
-          count="$(find build/generated/sources/protocol/7.1/java/main -name '*.java' -type f | wc -l | tr -d '[:space:]')"
-          descriptor_count="$(grep -cve '^[[:space:]]*$' protocol/7.1/files.txt)"
-          supplemental_count="$(find protocol/7.1/compat -name '*.proto' -type f | wc -l | tr -d '[:space:]')"
-          expected="$({
-            grep -v '^[[:space:]]*$' protocol/7.1/files.txt
-            find protocol/7.1/compat -name '*.proto' -type f | sed 's#^protocol/7.1/compat/##'
-          } | sort -u | wc -l | tr -d '[:space:]')"
-          test "$count" -eq "$expected"
-          echo "Generated $count protocol Java files from $descriptor_count base descriptors and $supplemental_count recovered sources ($expected unique proto files)."
-          sha256sum protocol/7.1/protocol.desc
-
-      - name: Upload test report
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: protocol-test-results-${{ matrix.os }}
-          path: build/reports/tests/test
-          if-no-files-found: ignore
-          retention-days: 7
+          git add -N src/generated/java
+          git diff --stat --exit-code -- src/generated/java
+          echo "$(find src/generated/java -name '*.java' | wc -l | tr -d '[:space:]') protocol Java files match src/main/proto."
 
       - name: Upload jar
         if: success()

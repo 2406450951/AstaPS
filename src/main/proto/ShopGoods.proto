@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+option java_outer_classname = "ShopGoodsOuterClass";
+
+import "AOGBDADBNNH.proto";
+import "ItemParam.proto";
+
+message ShopGoods {
+  uint32 bought_num = 15;
+  repeated uint32 MEODDILKAAD = 20000;
+  ItemParam goods_item = 13;
+  repeated ItemParam cost_item_list = 5;
+  uint32 goods_id = 1;
+  uint32 min_level = 4;
+  uint32 max_level = 12;
+  uint32 ELPGDNACFOA = 20001;
+  uint32 next_refresh_time = 3;
+  uint32 end_time = 6;
+  uint32 mcoin = 20002;
+  uint32 hcoin = 2;
+  uint32 OCFMGIPGLDK = 20003;
+  uint32 scoin = 20004;
+  uint32 begin_time = 7;
+  uint32 HBFOJABHIND = 20005;
+  uint32 discount_begin_time = 984;
+  uint32 AJCBLGEDLFK = 20006;
+  uint32 single_limit = 20007;
+  bool NGPHJJIEDEH = 20008;
+  repeated uint32 MMMFLNHEDNI = 20009;
+  uint32 LDCJFLOPNMP = 20010;
+  repeated uint32 AIALJDFIEAI = 20011;
+  uint32 EKBHAAKJINF = 20012;
+  repeated AOGBDADBNNH KAGKMENGAFH = 20013;
+  bool MBMIKDBJNAN = 20014;
+  uint32 discount_end_time = 478;
+  uint32 DCMBDJMCGGP = 20015;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "_BeyondMaterialDeleteInfo.proto";
+
+message _BeyondMaterial {
+  _BeyondMaterialDeleteInfo delete_info = 2;
+  uint32 count = 1;
+}

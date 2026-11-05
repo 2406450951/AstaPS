@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+message _ShopBeyondMcoinProduct {
+  string price_tier = 2;
+  string product_id = 1;
+  uint32 DKDDEIFPLBD = 5;
+  uint32 buy_times = 7;
+  uint32 NGHGJCHPGFL = 4;
+  uint32 OOBJLKGFDMJ = 6;
+  uint32 LPKNFJCJPMH = 3;
+}

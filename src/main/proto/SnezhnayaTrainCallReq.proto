@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "BMJNJLKCODG.proto";
+
+message SnezhnayaTrainCallReq {
+  BMJNJLKCODG curve_info = 14;
+}

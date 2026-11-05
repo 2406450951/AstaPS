@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "ExhibitionDisplayInfo.proto";
+import "ProfilePicture.proto";
+
+message _CooperateChallengeSettleInfo {
+  message FGCJMIDEKMB {
+    repeated uint32 uid_list = 11;
+    int32 EOAFEBOFEJB = 12;
+    uint32 FAFDNMIEMEL = 13;
+  }
+  message JOPDICINNLJ {
+    ProfilePicture profile_picture = 2;
+    repeated ExhibitionDisplayInfo card_list = 11;
+    string _xbox_gamertag = 9;
+    string nickname = 14;
+    repeated uint32 OFEHCJOPEIG = 10;
+    string online_id = 7;
+    uint32 uid = 12;
+    uint32 score = 3;
+    uint32 add_score = 1;
+  }
+  enum EACPNCPOKGE {
+    EACPNCPOKGE_SETTLE_REASON_NONE = 0;
+    EACPNCPOKGE_SETTLE_REASON_SUCC = 1;
+    EACPNCPOKGE_SETTLE_REASON_PLAYER_NOT_ENOUGH = 2;
+  }
+  repeated _CooperateChallengeSettleInfo.FGCJMIDEKMB GMNBBBOLHDH = 20000;
+  repeated _CooperateChallengeSettleInfo.JOPDICINNLJ _settle_list = 5;
+  repeated uint32 MIFCBDAIKNH = 20001;
+  _CooperateChallengeSettleInfo.EACPNCPOKGE EBGPHJCLGKC = 20002;
+  uint32 difficulty_id = 6;
+  uint32 IKLNEBCKENF = 3;
+}

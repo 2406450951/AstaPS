@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+
+message _MonsterSteer {
+  string BOMAJDALJLC = 20000;
+  HHEDHCFPEKM NNPNDCFIAMA = 20001;
+  HHEDHCFPEKM NGLCFKKJGFJ = 20002;
+  string LFCLEIDLEFP = 20003;
+  uint32 JAKFOIPNDLA = 20004;
+  float DIKFIFNKELO = 20005;
+}

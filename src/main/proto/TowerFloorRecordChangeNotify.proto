@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "TowerFloorRecord.proto";
+
+message TowerFloorRecordChangeNotify {
+  repeated TowerFloorRecord tower_floor_record_list = 3;
+  bool is_finished_entrance_floor = 1;
+}

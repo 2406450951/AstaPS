@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "emu.grasscutter.net.proto";
+
+import "HHEDHCFPEKM.proto";
+import "PLGPJEHKFNC.proto";
+
+message NCEPICHGNNH {
+  PLGPJEHKFNC CEOFIHMJEOG = 514;
+  PLGPJEHKFNC EEEPKEKDMPA = 510;
+  PLGPJEHKFNC IHGMMDAGDOG = 512;
+  PLGPJEHKFNC GKEJKKGEMIC = 513;
+  PLGPJEHKFNC BDPPPIJOKHI = 511;
+  HHEDHCFPEKM offset = 518;
+  bool GBKNFFKAOCO = 501;
+  bool LJPHJOMHAIF = 503;
+  bool MMEJJLFLJAC = 519;
+  float radius = 504;
+  float ANNNKHCCJBP = 509;
+  float height = 505;
+  int32 JNJNEAAAJOH = 502;
+  float CKBCDLFPHAI = 506;
+  float IBCBFHJDDKG = 508;
+  int32 IFOMHEPKODO = 516;
+  int32 DGBDAMGEGJM = 515;
+  float OKOLJKOGKMB = 517;
+  float width = 507;
+}
