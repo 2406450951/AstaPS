@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-
-// 7.1 CmdId 9517 (_IceCreatureLikeReq).
-message IceCreatureLikeReq {
-  fixed64 guid = 13;
-}

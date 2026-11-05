@@ -1,4 +1,6 @@
-# 7.1 protocol generation
+# 7.1 protocol generation (historical)
+
+`protocol/7.1` was removed when the server moved to 7.2; see `protocol-generation-7.2.md`. The corrections below are kept as a record of what was verified on 7.1, since the same messages need checking again on 7.2.
 
 The base 7.1 protocol schema is stored as `protocol/7.1/protocol.desc` with its file list in `protocol/7.1/files.txt`. The descriptor set was captured from the previously checked-in 7.1 generated Java descriptors. Its SHA-256 is `dfc0fe457558b86d661b24f0c0ac023a39bbbc37b95a35e603deb4c7efbedfa5`, and it contains 2059 protocol files. Later name recoveries (for example the GamblingChess, LunaRiteV2, SnowBallFight, VineManRun, RogueBall and SummonBattle activity messages) rename messages, fields and files in place; field numbers, labels and types are left untouched. Two activity fields were renumbered to match what the 7.1 client reads and writes: `GetActivityInfoReq.activity_id_list` is field 14 (was 4), and `ActivityInfo.meet_cond_list` is field 1917, swapping names with `quick_open_pre_quest_list` on field 13.
 

@@ -126,6 +126,10 @@ Parked at field 20000 and up, so they are neither read nor written on the wire. 
 - `WorldPlayerDieNotify`: MCPNIFKDECF=15, OBOKABMLGHI=9, murderer_entity_id=10, AOMDIHGJMNK=3
 - `_TakeAllForgeOutputRsp`: output_item_list=12, return_item_list=5, unknown_list=9
 
+## Handwritten parsers
+
+- `net/proto/AvatarPromoteReqParser.java` reads the ascension request guid from field 3, the 7.1 client field. `AvatarPromoteReq` has no named 7.2 counterpart, so the 7.2 field is unknown.
+
 ## Handwritten wire code still on 7.1 numbers
 
 These build or read protobuf bytes by hand with 7.1 field numbers or CmdIds and need checking against 7.2 captures:

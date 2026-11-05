@@ -1,6 +1,5 @@
 package emu.grasscutter.tools.protocol;
 
-import com.google.protobuf.DescriptorProtos.FieldDescriptorProto;
 import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
 import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
 import java.io.File;
@@ -33,7 +32,6 @@ public final class ProtocolJavaGenerator {
 
         var protoc = Path.of(args[0]).toAbsolutePath().normalize();
         var descriptorSet = Path.of(args[1]).toAbsolutePath().normalize();
-        applyLegacyPatches = descriptorSet.getParent().getFileName().toString().equals("7.1");
         var fileList = Path.of(args[2]).toAbsolutePath().normalize();
         var supplementalProtoDir = Path.of(args[3]).toAbsolutePath().normalize();
         var supplementalImportDir = Path.of(args[4]).toAbsolutePath().normalize();
@@ -106,7 +104,7 @@ public final class ProtocolJavaGenerator {
             }
 
             var baseDescriptors = FileDescriptorSet.parseFrom(Files.readAllBytes(descriptorSet));
-            var combinedDescriptors = mergeAndPatchDescriptors(baseDescriptors, supplementalDescriptors);
+            var combinedDescriptors = mergeDescriptors(baseDescriptors, supplementalDescriptors);
             auditDescriptor = combinedDescriptors.toByteArray();
             Files.write(combinedDescriptorSet, auditDescriptor);
 
@@ -209,7 +207,7 @@ public final class ProtocolJavaGenerator {
         return sha256(String.join("", rows).getBytes(StandardCharsets.UTF_8));
     }
 
-    private static FileDescriptorSet mergeAndPatchDescriptors(
+    private static FileDescriptorSet mergeDescriptors(
             FileDescriptorSet base, FileDescriptorSet supplemental) {
         var filesByName = new LinkedHashMap<String, FileDescriptorProto>();
         for (var file : base.getFileList()) {
@@ -221,230 +219,9 @@ public final class ProtocolJavaGenerator {
 
         var result = FileDescriptorSet.newBuilder();
         for (var file : filesByName.values()) {
-            result.addFile(applyRecoveredProtocolPatches(file));
+            result.addFile(file);
         }
         return result.build();
-    }
-
-    /**
-     * The canonical descriptor dump predates semantic recovery of several TPS fields. Their wire
-     * slots already exist under obfuscated names. Validate each legacy shape before replacing only
-     * the field descriptor, preserving every other recovered field unchanged.
-     */
-    /**
-     * The 7.1 patches below rename obfuscated slots in the original 7.1 dump. The 7.2 descriptor
-     * set was remapped from the already patched 7.1 server descriptors, so it carries those names
-     * and must not be patched again.
-     */
-    private static boolean applyLegacyPatches = true;
-
-    private static FileDescriptorProto applyRecoveredProtocolPatches(FileDescriptorProto file) {
-        if (!applyLegacyPatches) return file;
-        return switch (file.getName()) {
-            case "BlossomBriefInfoNotify.proto" -> patchBlossomBriefListField(file);
-            case "AvatarInfo.proto" ->
-                    replaceMessageField(
-                            file,
-                            "AvatarInfo",
-                            "KPJFLNKEFBC",
-                            ".SceneWeaponInfo",
-                            repeatedMessageField("tps_weapon_list", 37, ".SceneWeaponInfo"),
-                            "SceneWeaponInfo.proto");
-            case "SceneAvatarInfo.proto" ->
-                    replaceMessageField(
-                            file,
-                            "SceneAvatarInfo",
-                            "KPJFLNKEFBC",
-                            ".SceneWeaponInfo",
-                            repeatedMessageField("tps_weapon_list", 31, ".SceneWeaponInfo"),
-                            "SceneWeaponInfo.proto");
-            case "SceneTeamAvatar.proto" ->
-                    replaceMessageField(
-                            file,
-                            "SceneTeamAvatar",
-                            "DGGJCMNHDOJ",
-                            ".SceneWeaponInfo",
-                            repeatedMessageField("tps_weapon_list", 382, ".SceneWeaponInfo"),
-                            "SceneWeaponInfo.proto");
-            case "AvatarEnterSceneInfo.proto" ->
-                    replaceMessageField(
-                            file,
-                            "AvatarEnterSceneInfo",
-                            "DGGJCMNHDOJ",
-                            ".SceneWeaponInfo",
-                            repeatedMessageField("tps_weapon_list", 13, ".SceneWeaponInfo"),
-                            "SceneWeaponInfo.proto");
-            case "SceneWeaponInfo.proto" ->
-                    replaceMessageField(
-                            file,
-                            "SceneWeaponInfo",
-                            "KCLFBBACHLP",
-                            ".IMPFHAGJHCE",
-                            repeatedMessageField(
-                                    "ammunition_list", 12, ".TpsWeaponAmmunitionInfo"),
-                            "TpsWeaponAmmunitionInfo.proto");
-            case "_TpsWeapon.proto" ->
-                    replaceMessageField(
-                            file,
-                            "_TpsWeapon",
-                            "OMDPJNIPFDL",
-                            null,
-                            FieldDescriptorProto.newBuilder()
-                                    .setName("accessory_id_list")
-                                    .setNumber(2)
-                                    .setLabel(FieldDescriptorProto.Label.LABEL_REPEATED)
-                                    .setType(FieldDescriptorProto.Type.TYPE_UINT32)
-                                    .build());
-            default -> file;
-        };
-    }
-
-    /**
-     * Global 7.1 original client: ABJOMOIIDHH (CmdId 6743) reads its repeated
-     * MFOACFDAOID element from protobuf field 10 (tag 0x52). The imported
-     * server descriptor has the corresponding field at 13.
-     * See Genshin-Reverse/versions/7.1.0-global/windows-x64/analyses/blossom-map-markers.
-     */
-    private static FileDescriptorProto patchBlossomBriefListField(FileDescriptorProto file) {
-        var fileBuilder = file.toBuilder();
-        for (int i = 0; i < fileBuilder.getMessageTypeCount(); i++) {
-            if (!fileBuilder.getMessageType(i).getName().equals("BlossomBriefInfoNotify")) continue;
-            var message = fileBuilder.getMessageTypeBuilder(i);
-            for (int j = 0; j < message.getFieldCount(); j++) {
-                var field = message.getField(j);
-                if (!field.getName().equals("brief_info_list")) continue;
-                if (field.getNumber() != 13
-                        || field.getLabel() != FieldDescriptorProto.Label.LABEL_REPEATED
-                        || field.getType() != FieldDescriptorProto.Type.TYPE_MESSAGE
-                        || !field.getTypeName().equals(".BlossomBriefInfo")) {
-                    throw new IllegalStateException(
-                            "Unexpected imported BlossomBriefInfoNotify.brief_info_list shape");
-                }
-                message.setField(j, field.toBuilder().setNumber(10).build());
-                return fileBuilder.build();
-            }
-        }
-        throw new IllegalStateException(
-                "Cannot find imported BlossomBriefInfoNotify.brief_info_list in " + file.getName());
-    }
-
-    private static FieldDescriptorProto repeatedMessageField(
-            String name, int number, String typeName) {
-        return FieldDescriptorProto.newBuilder()
-                .setName(name)
-                .setNumber(number)
-                .setLabel(FieldDescriptorProto.Label.LABEL_REPEATED)
-                .setType(FieldDescriptorProto.Type.TYPE_MESSAGE)
-                .setTypeName(typeName)
-                .build();
-    }
-
-    private static FileDescriptorProto replaceMessageField(
-            FileDescriptorProto file,
-            String messageName,
-            String legacyName,
-            String legacyTypeName,
-            FieldDescriptorProto replacement,
-            String... dependencies) {
-        var fileBuilder = file.toBuilder();
-        var messageIndex = -1;
-        for (int index = 0; index < fileBuilder.getMessageTypeCount(); index++) {
-            if (fileBuilder.getMessageType(index).getName().equals(messageName)) {
-                messageIndex = index;
-                break;
-            }
-        }
-        if (messageIndex < 0) {
-            throw new IllegalStateException(
-                    "protocol patch target message " + messageName + " was not found in " + file.getName());
-        }
-
-        var messageBuilder = fileBuilder.getMessageTypeBuilder(messageIndex);
-        var fieldIndex = -1;
-        for (int index = 0; index < messageBuilder.getFieldCount(); index++) {
-            var existing = messageBuilder.getField(index);
-            if (existing.getNumber() == replacement.getNumber()) {
-                fieldIndex = index;
-                break;
-            }
-        }
-
-        if (fieldIndex < 0) {
-            throw new IllegalStateException(
-                    "protocol patch field number "
-                            + replacement.getNumber()
-                            + " was not found in "
-                            + file.getName()
-                            + ":"
-                            + messageName);
-        }
-
-        var existing = messageBuilder.getField(fieldIndex);
-        if (existing.getName().equals(replacement.getName())) {
-            validateReplacementShape(file, messageName, existing, replacement, replacement.getTypeName());
-        } else {
-            if (!existing.getName().equals(legacyName)) {
-                throw new IllegalStateException(
-                        "protocol patch expected legacy field "
-                                + legacyName
-                                + " at "
-                                + file.getName()
-                                + ":"
-                                + messageName
-                                + "#"
-                                + replacement.getNumber()
-                                + " but found "
-                                + existing.getName());
-            }
-            validateReplacementShape(file, messageName, existing, replacement, legacyTypeName);
-            messageBuilder.setField(fieldIndex, replacement);
-        }
-
-        for (var dependency : dependencies) {
-            if (!fileBuilder.getDependencyList().contains(dependency)) {
-                fileBuilder.addDependency(dependency);
-            }
-        }
-        return fileBuilder.build();
-    }
-
-    private static void validateReplacementShape(
-            FileDescriptorProto file,
-            String messageName,
-            FieldDescriptorProto existing,
-            FieldDescriptorProto replacement,
-            String expectedTypeName) {
-        if (existing.getLabel() != replacement.getLabel() || existing.getType() != replacement.getType()) {
-            throw new IllegalStateException(
-                    "protocol patch wire shape mismatch at "
-                            + file.getName()
-                            + ":"
-                            + messageName
-                            + "#"
-                            + replacement.getNumber()
-                            + ": found "
-                            + existing.getLabel()
-                            + "/"
-                            + existing.getType()
-                            + ", expected "
-                            + replacement.getLabel()
-                            + "/"
-                            + replacement.getType());
-        }
-        if (replacement.getType() == FieldDescriptorProto.Type.TYPE_MESSAGE
-                && !existing.getTypeName().equals(expectedTypeName)) {
-            throw new IllegalStateException(
-                    "protocol patch message type mismatch at "
-                            + file.getName()
-                            + ":"
-                            + messageName
-                            + "#"
-                            + replacement.getNumber()
-                            + ": found "
-                            + existing.getTypeName()
-                            + ", expected "
-                            + expectedTypeName);
-        }
     }
 
     private static List<String> listProtoFiles(Path directory) throws IOException {

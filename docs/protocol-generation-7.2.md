@@ -22,6 +22,6 @@ It bridges through the kitkat 7.1.0 dump:
 
 `WindSeedType1Notify` is mapped explicitly to `_PlayerNormalLuaShellNotify` (the UID watermark): CmdId 21002, payload field 15.
 
-`ProtocolJavaGenerator` applies its 7.1 TPS renames only to `protocol/7.1`, because the 7.2 set already carries them.
+`protocol/7.1` has been removed. To rerun the remap, check out a commit that still has it (for example `origin/main` before the 7.2 merge), build once to produce `build/generated/protocol/7.1/server.desc`, and pass that file as the first argument. The 7.1 TPS renames that `ProtocolJavaGenerator` used to apply are already part of the 7.2 set, so the generator no longer patches descriptors.
 
 What is still missing is listed in `docs/protocol-7.2-gaps.md`.
