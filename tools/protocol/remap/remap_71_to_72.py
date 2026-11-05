@@ -161,6 +161,12 @@ def compute_maps(server_desc, kitkat, r72, opcodes_file):
                         k2r[kt] = rt
                         changed = True
 
+    # A 7.1 dump message reached by CmdId may carry an obfuscated name that the 7.2 dump does
+    # not share, while the server's own name for it is in the 7.2 dump.
+    for s, k in s2k.items():
+        if k not in k2r and s in R:
+            k2r[k] = s
+
     return fds, S, K, R, kcmd, rcmd, ops, s2k, k2r, alias_sk
 
 
@@ -225,7 +231,9 @@ def main(server_desc, kitkat, r72, opcodes_file, out_desc, report_file):
     newops = {}
     for name, old in ops.items():
         k = alias_sk.get(name) if name in alias_sk else (k_by_cmd.get(old) or (name if name in K else None))
-        r = k2r.get(k) if k else (name if name in R else None)
+        r = k2r.get(k) if k else None
+        if r not in rcmd and name in rcmd:
+            r = name  # the 7.2 dump knows the opcode by the server's name
         newops[name] = rcmd.get(r, 0) if r else 0
     report['cmd'] = newops
     report['s2k'] = len(s2k)

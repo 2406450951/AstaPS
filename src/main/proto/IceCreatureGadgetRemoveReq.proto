@@ -3,7 +3,7 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message IceCreatureGadgetRemoveReq {
-  repeated uint32 entity_id_list = 1;
-  uint32 scene_id = 14;
-  bool unk_15 = 15;
+  repeated uint32 entity_id_list = 14;
+  uint32 scene_id = 12;
+  bool unk_15 = 20000;
 }

@@ -31,13 +31,13 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 count = 6;</code>
+     * <code>uint32 count = 1;</code>
      * @return The count.
      */
     int getCount();
 
     /**
-     * <code>uint32 FCONJGIFCAO = 1;</code>
+     * <code>uint32 FCONJGIFCAO = 20000;</code>
      * @return The fCONJGIFCAO.
      */
     int getFCONJGIFCAO();
@@ -84,10 +84,10 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
               emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.class, emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder.class);
     }
 
-    public static final int COUNT_FIELD_NUMBER = 6;
+    public static final int COUNT_FIELD_NUMBER = 1;
     private int count_ = 0;
     /**
-     * <code>uint32 count = 6;</code>
+     * <code>uint32 count = 1;</code>
      * @return The count.
      */
     @java.lang.Override
@@ -95,10 +95,10 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
       return count_;
     }
 
-    public static final int FCONJGIFCAO_FIELD_NUMBER = 1;
+    public static final int FCONJGIFCAO_FIELD_NUMBER = 20000;
     private int fCONJGIFCAO_ = 0;
     /**
-     * <code>uint32 FCONJGIFCAO = 1;</code>
+     * <code>uint32 FCONJGIFCAO = 20000;</code>
      * @return The fCONJGIFCAO.
      */
     @java.lang.Override
@@ -120,23 +120,23 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (fCONJGIFCAO_ != 0) {
-        output.writeUInt32(1, fCONJGIFCAO_);
-      }
       if (count_ != 0) {
-        output.writeUInt32(6, count_);
+        output.writeUInt32(1, count_);
+      }
+      if (fCONJGIFCAO_ != 0) {
+        output.writeUInt32(20000, fCONJGIFCAO_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
-      if (fCONJGIFCAO_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, fCONJGIFCAO_);
-      }
       if (count_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(6, count_);
+          .computeUInt32Size(1, count_);
+      }
+      if (fCONJGIFCAO_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(20000, fCONJGIFCAO_);
       }
       return size;
     }
@@ -398,15 +398,15 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
                 done = true;
                 break;
               case 8: {
-                fCONJGIFCAO_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 8
-              case 48: {
                 count_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 48
+              } // case 8
+              case 160000: {
+                fCONJGIFCAO_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -426,7 +426,7 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
 
       private int count_ ;
       /**
-       * <code>uint32 count = 6;</code>
+       * <code>uint32 count = 1;</code>
        * @return The count.
        */
       @java.lang.Override
@@ -434,7 +434,7 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
         return count_;
       }
       /**
-       * <code>uint32 count = 6;</code>
+       * <code>uint32 count = 1;</code>
        * @param value The count to set.
        * @return This builder for chaining.
        */
@@ -446,7 +446,7 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
         return this;
       }
       /**
-       * <code>uint32 count = 6;</code>
+       * <code>uint32 count = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearCount() {
@@ -458,7 +458,7 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
 
       private int fCONJGIFCAO_ ;
       /**
-       * <code>uint32 FCONJGIFCAO = 1;</code>
+       * <code>uint32 FCONJGIFCAO = 20000;</code>
        * @return The fCONJGIFCAO.
        */
       @java.lang.Override
@@ -466,7 +466,7 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
         return fCONJGIFCAO_;
       }
       /**
-       * <code>uint32 FCONJGIFCAO = 1;</code>
+       * <code>uint32 FCONJGIFCAO = 20000;</code>
        * @param value The fCONJGIFCAO to set.
        * @return This builder for chaining.
        */
@@ -478,7 +478,7 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
         return this;
       }
       /**
-       * <code>uint32 FCONJGIFCAO = 1;</code>
+       * <code>uint32 FCONJGIFCAO = 20000;</code>
        * @return This builder for chaining.
        */
       public Builder clearFCONJGIFCAO() {
@@ -553,10 +553,10 @@ public final class GamblingChessCardResultOuterClass extends com.google.protobuf
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\035GamblingChessCardResult.proto\"=\n\027Gambl" +
-      "ingChessCardResult\022\r\n\005count\030\006 \001(\r\022\023\n\013FCO" +
-      "NJGIFCAO\030\001 \001(\rB\033\n\031emu.grasscutter.net.pr" +
-      "otob\006proto3"
+      "\n\035GamblingChessCardResult.proto\"?\n\027Gambl" +
+      "ingChessCardResult\022\r\n\005count\030\001 \001(\r\022\025\n\013FCO" +
+      "NJGIFCAO\030\240\234\001 \001(\rB\033\n\031emu.grasscutter.net." +
+      "protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -5,7 +5,7 @@ option java_package = "emu.grasscutter.net.proto";
 import "GamblingChessVoteRecord.proto";
 
 message GamblingChessStageVoteInfo {
-  repeated GamblingChessVoteRecord vote_record_list = 13;
-  uint32 stage_id = 8;
-  bool is_settled = 2;
+  repeated GamblingChessVoteRecord vote_record_list = 15;
+  uint32 stage_id = 11;
+  bool is_settled = 6;
 }

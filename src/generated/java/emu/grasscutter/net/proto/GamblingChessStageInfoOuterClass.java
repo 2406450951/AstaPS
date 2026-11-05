@@ -31,31 +31,31 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     java.util.List<emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo> 
         getGameInfoListList();
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo getGameInfoList(int index);
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     int getGameInfoListCount();
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfoOrBuilder> 
         getGameInfoListOrBuilderList();
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfoOrBuilder getGameInfoListOrBuilder(
         int index);
 
     /**
-     * <code>uint32 stage_id = 3;</code>
+     * <code>uint32 stage_id = 15;</code>
      * @return The stageId.
      */
     int getStageId();
@@ -103,18 +103,18 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
               emu.grasscutter.net.proto.GamblingChessStageInfoOuterClass.GamblingChessStageInfo.class, emu.grasscutter.net.proto.GamblingChessStageInfoOuterClass.GamblingChessStageInfo.Builder.class);
     }
 
-    public static final int GAME_INFO_LIST_FIELD_NUMBER = 8;
+    public static final int GAME_INFO_LIST_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo> gameInfoList_;
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo> getGameInfoListList() {
       return gameInfoList_;
     }
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfoOrBuilder> 
@@ -122,21 +122,21 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
       return gameInfoList_;
     }
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     @java.lang.Override
     public int getGameInfoListCount() {
       return gameInfoList_.size();
     }
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo getGameInfoList(int index) {
       return gameInfoList_.get(index);
     }
     /**
-     * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+     * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfoOrBuilder getGameInfoListOrBuilder(
@@ -144,10 +144,10 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
       return gameInfoList_.get(index);
     }
 
-    public static final int STAGE_ID_FIELD_NUMBER = 3;
+    public static final int STAGE_ID_FIELD_NUMBER = 15;
     private int stageId_ = 0;
     /**
-     * <code>uint32 stage_id = 3;</code>
+     * <code>uint32 stage_id = 15;</code>
      * @return The stageId.
      */
     @java.lang.Override
@@ -169,20 +169,16 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (stageId_ != 0) {
-        output.writeUInt32(3, stageId_);
-      }
       for (int i = 0; i < gameInfoList_.size(); i++) {
-        output.writeMessage(8, gameInfoList_.get(i));
+        output.writeMessage(3, gameInfoList_.get(i));
+      }
+      if (stageId_ != 0) {
+        output.writeUInt32(15, stageId_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
-      if (stageId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, stageId_);
-      }
 
           {
             final int count = gameInfoList_.size();
@@ -192,6 +188,10 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
             }
             size += 1 * count;
           }
+      if (stageId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(15, stageId_);
+      }
       return size;
     }
     @java.lang.Override
@@ -492,12 +492,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
               case 0:
                 done = true;
                 break;
-              case 24: {
-                stageId_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 24
-              case 66: {
+              case 26: {
                 emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo m =
                     input.readMessage(
                         emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.parser(),
@@ -509,7 +504,12 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
                   gameInfoListBuilder_.addMessage(m);
                 }
                 break;
-              } // case 66
+              } // case 26
+              case 120: {
+                stageId_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 120
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -540,7 +540,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
           emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo, emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder, emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfoOrBuilder> gameInfoListBuilder_;
 
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo> getGameInfoListList() {
         if (gameInfoListBuilder_ == null) {
@@ -550,7 +550,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         }
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public int getGameInfoListCount() {
         if (gameInfoListBuilder_ == null) {
@@ -560,7 +560,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         }
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo getGameInfoList(int index) {
         if (gameInfoListBuilder_ == null) {
@@ -570,7 +570,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         }
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder setGameInfoList(
           int index, emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo value) {
@@ -585,7 +585,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder setGameInfoList(
           int index, emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder builderForValue) {
@@ -599,7 +599,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder addGameInfoList(emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo value) {
         if (gameInfoListBuilder_ == null) {
@@ -613,7 +613,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder addGameInfoList(
           int index, emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo value) {
@@ -628,7 +628,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder addGameInfoList(
           emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder builderForValue) {
@@ -642,7 +642,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder addGameInfoList(
           int index, emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder builderForValue) {
@@ -656,7 +656,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder addAllGameInfoList(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo> values) {
@@ -671,7 +671,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder clearGameInfoList() {
         if (gameInfoListBuilder_ == null) {
@@ -684,7 +684,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public Builder removeGameInfoList(int index) {
         if (gameInfoListBuilder_ == null) {
@@ -697,14 +697,14 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder getGameInfoListBuilder(
           int index) {
         return internalGetGameInfoListFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfoOrBuilder getGameInfoListOrBuilder(
           int index) {
@@ -714,7 +714,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         }
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfoOrBuilder> 
            getGameInfoListOrBuilderList() {
@@ -725,14 +725,14 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         }
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder addGameInfoListBuilder() {
         return internalGetGameInfoListFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.getDefaultInstance());
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder addGameInfoListBuilder(
           int index) {
@@ -740,7 +740,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
             index, emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.getDefaultInstance());
       }
       /**
-       * <code>repeated .GamblingChessGameInfo game_info_list = 8;</code>
+       * <code>repeated .GamblingChessGameInfo game_info_list = 3;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder> 
            getGameInfoListBuilderList() {
@@ -763,7 +763,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
 
       private int stageId_ ;
       /**
-       * <code>uint32 stage_id = 3;</code>
+       * <code>uint32 stage_id = 15;</code>
        * @return The stageId.
        */
       @java.lang.Override
@@ -771,7 +771,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return stageId_;
       }
       /**
-       * <code>uint32 stage_id = 3;</code>
+       * <code>uint32 stage_id = 15;</code>
        * @param value The stageId to set.
        * @return This builder for chaining.
        */
@@ -783,7 +783,7 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>uint32 stage_id = 3;</code>
+       * <code>uint32 stage_id = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearStageId() {
@@ -860,8 +860,8 @@ public final class GamblingChessStageInfoOuterClass extends com.google.protobuf.
     java.lang.String[] descriptorData = {
       "\n\034GamblingChessStageInfo.proto\032\033Gambling" +
       "ChessGameInfo.proto\"Z\n\026GamblingChessStag" +
-      "eInfo\022.\n\016game_info_list\030\010 \003(\0132\026.Gambling" +
-      "ChessGameInfo\022\020\n\010stage_id\030\003 \001(\rB\033\n\031emu.g" +
+      "eInfo\022.\n\016game_info_list\030\003 \003(\0132\026.Gambling" +
+      "ChessGameInfo\022\020\n\010stage_id\030\017 \001(\rB\033\n\031emu.g" +
       "rasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

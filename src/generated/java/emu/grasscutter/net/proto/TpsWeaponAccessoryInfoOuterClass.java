@@ -31,25 +31,25 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 ammunition_type = 7;</code>
+     * <code>uint32 ammunition_type = 6;</code>
      * @return The ammunitionType.
      */
     int getAmmunitionType();
 
     /**
-     * <code>uint32 ammunition_config_id = 11;</code>
+     * <code>uint32 ammunition_config_id = 20001;</code>
      * @return The ammunitionConfigId.
      */
     int getAmmunitionConfigId();
 
     /**
-     * <code>uint32 KAPHEDKKFGK = 12;</code>
+     * <code>uint32 KAPHEDKKFGK = 20002;</code>
      * @return The kAPHEDKKFGK.
      */
     int getKAPHEDKKFGK();
 
     /**
-     * <code>uint32 MHFBBNKOBPK = 14;</code>
+     * <code>uint32 MHFBBNKOBPK = 20003;</code>
      * @return The mHFBBNKOBPK.
      */
     int getMHFBBNKOBPK();
@@ -96,10 +96,10 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
               emu.grasscutter.net.proto.TpsWeaponAccessoryInfoOuterClass.TpsWeaponAccessoryInfo.class, emu.grasscutter.net.proto.TpsWeaponAccessoryInfoOuterClass.TpsWeaponAccessoryInfo.Builder.class);
     }
 
-    public static final int AMMUNITION_TYPE_FIELD_NUMBER = 7;
+    public static final int AMMUNITION_TYPE_FIELD_NUMBER = 6;
     private int ammunitionType_ = 0;
     /**
-     * <code>uint32 ammunition_type = 7;</code>
+     * <code>uint32 ammunition_type = 6;</code>
      * @return The ammunitionType.
      */
     @java.lang.Override
@@ -107,10 +107,10 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
       return ammunitionType_;
     }
 
-    public static final int AMMUNITION_CONFIG_ID_FIELD_NUMBER = 11;
+    public static final int AMMUNITION_CONFIG_ID_FIELD_NUMBER = 20001;
     private int ammunitionConfigId_ = 0;
     /**
-     * <code>uint32 ammunition_config_id = 11;</code>
+     * <code>uint32 ammunition_config_id = 20001;</code>
      * @return The ammunitionConfigId.
      */
     @java.lang.Override
@@ -118,10 +118,10 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
       return ammunitionConfigId_;
     }
 
-    public static final int KAPHEDKKFGK_FIELD_NUMBER = 12;
+    public static final int KAPHEDKKFGK_FIELD_NUMBER = 20002;
     private int kAPHEDKKFGK_ = 0;
     /**
-     * <code>uint32 KAPHEDKKFGK = 12;</code>
+     * <code>uint32 KAPHEDKKFGK = 20002;</code>
      * @return The kAPHEDKKFGK.
      */
     @java.lang.Override
@@ -129,10 +129,10 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
       return kAPHEDKKFGK_;
     }
 
-    public static final int MHFBBNKOBPK_FIELD_NUMBER = 14;
+    public static final int MHFBBNKOBPK_FIELD_NUMBER = 20003;
     private int mHFBBNKOBPK_ = 0;
     /**
-     * <code>uint32 MHFBBNKOBPK = 14;</code>
+     * <code>uint32 MHFBBNKOBPK = 20003;</code>
      * @return The mHFBBNKOBPK.
      */
     @java.lang.Override
@@ -155,16 +155,16 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (ammunitionType_ != 0) {
-        output.writeUInt32(7, ammunitionType_);
+        output.writeUInt32(6, ammunitionType_);
       }
       if (ammunitionConfigId_ != 0) {
-        output.writeUInt32(11, ammunitionConfigId_);
+        output.writeUInt32(20001, ammunitionConfigId_);
       }
       if (kAPHEDKKFGK_ != 0) {
-        output.writeUInt32(12, kAPHEDKKFGK_);
+        output.writeUInt32(20002, kAPHEDKKFGK_);
       }
       if (mHFBBNKOBPK_ != 0) {
-        output.writeUInt32(14, mHFBBNKOBPK_);
+        output.writeUInt32(20003, mHFBBNKOBPK_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -172,19 +172,19 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
       int size = 0;
       if (ammunitionType_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(7, ammunitionType_);
+          .computeUInt32Size(6, ammunitionType_);
       }
       if (ammunitionConfigId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(11, ammunitionConfigId_);
+          .computeUInt32Size(20001, ammunitionConfigId_);
       }
       if (kAPHEDKKFGK_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(12, kAPHEDKKFGK_);
+          .computeUInt32Size(20002, kAPHEDKKFGK_);
       }
       if (mHFBBNKOBPK_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(14, mHFBBNKOBPK_);
+          .computeUInt32Size(20003, mHFBBNKOBPK_);
       }
       return size;
     }
@@ -467,26 +467,26 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
               case 0:
                 done = true;
                 break;
-              case 56: {
+              case 48: {
                 ammunitionType_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 56
-              case 88: {
+              } // case 48
+              case 160008: {
                 ammunitionConfigId_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 88
-              case 96: {
+              } // case 160008
+              case 160016: {
                 kAPHEDKKFGK_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 96
-              case 112: {
+              } // case 160016
+              case 160024: {
                 mHFBBNKOBPK_ = input.readUInt32();
                 bitField0_ |= 0x00000008;
                 break;
-              } // case 112
+              } // case 160024
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -506,7 +506,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
 
       private int ammunitionType_ ;
       /**
-       * <code>uint32 ammunition_type = 7;</code>
+       * <code>uint32 ammunition_type = 6;</code>
        * @return The ammunitionType.
        */
       @java.lang.Override
@@ -514,7 +514,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
         return ammunitionType_;
       }
       /**
-       * <code>uint32 ammunition_type = 7;</code>
+       * <code>uint32 ammunition_type = 6;</code>
        * @param value The ammunitionType to set.
        * @return This builder for chaining.
        */
@@ -526,7 +526,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>uint32 ammunition_type = 7;</code>
+       * <code>uint32 ammunition_type = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearAmmunitionType() {
@@ -538,7 +538,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
 
       private int ammunitionConfigId_ ;
       /**
-       * <code>uint32 ammunition_config_id = 11;</code>
+       * <code>uint32 ammunition_config_id = 20001;</code>
        * @return The ammunitionConfigId.
        */
       @java.lang.Override
@@ -546,7 +546,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
         return ammunitionConfigId_;
       }
       /**
-       * <code>uint32 ammunition_config_id = 11;</code>
+       * <code>uint32 ammunition_config_id = 20001;</code>
        * @param value The ammunitionConfigId to set.
        * @return This builder for chaining.
        */
@@ -558,7 +558,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>uint32 ammunition_config_id = 11;</code>
+       * <code>uint32 ammunition_config_id = 20001;</code>
        * @return This builder for chaining.
        */
       public Builder clearAmmunitionConfigId() {
@@ -570,7 +570,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
 
       private int kAPHEDKKFGK_ ;
       /**
-       * <code>uint32 KAPHEDKKFGK = 12;</code>
+       * <code>uint32 KAPHEDKKFGK = 20002;</code>
        * @return The kAPHEDKKFGK.
        */
       @java.lang.Override
@@ -578,7 +578,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
         return kAPHEDKKFGK_;
       }
       /**
-       * <code>uint32 KAPHEDKKFGK = 12;</code>
+       * <code>uint32 KAPHEDKKFGK = 20002;</code>
        * @param value The kAPHEDKKFGK to set.
        * @return This builder for chaining.
        */
@@ -590,7 +590,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>uint32 KAPHEDKKFGK = 12;</code>
+       * <code>uint32 KAPHEDKKFGK = 20002;</code>
        * @return This builder for chaining.
        */
       public Builder clearKAPHEDKKFGK() {
@@ -602,7 +602,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
 
       private int mHFBBNKOBPK_ ;
       /**
-       * <code>uint32 MHFBBNKOBPK = 14;</code>
+       * <code>uint32 MHFBBNKOBPK = 20003;</code>
        * @return The mHFBBNKOBPK.
        */
       @java.lang.Override
@@ -610,7 +610,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
         return mHFBBNKOBPK_;
       }
       /**
-       * <code>uint32 MHFBBNKOBPK = 14;</code>
+       * <code>uint32 MHFBBNKOBPK = 20003;</code>
        * @param value The mHFBBNKOBPK to set.
        * @return This builder for chaining.
        */
@@ -622,7 +622,7 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>uint32 MHFBBNKOBPK = 14;</code>
+       * <code>uint32 MHFBBNKOBPK = 20003;</code>
        * @return This builder for chaining.
        */
       public Builder clearMHFBBNKOBPK() {
@@ -697,11 +697,11 @@ public final class TpsWeaponAccessoryInfoOuterClass extends com.google.protobuf.
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034TpsWeaponAccessoryInfo.proto\"y\n\026TpsWea" +
-      "ponAccessoryInfo\022\027\n\017ammunition_type\030\007 \001(" +
-      "\r\022\034\n\024ammunition_config_id\030\013 \001(\r\022\023\n\013KAPHE" +
-      "DKKFGK\030\014 \001(\r\022\023\n\013MHFBBNKOBPK\030\016 \001(\rB\033\n\031emu" +
-      ".grasscutter.net.protob\006proto3"
+      "\n\034TpsWeaponAccessoryInfo.proto\"\177\n\026TpsWea" +
+      "ponAccessoryInfo\022\027\n\017ammunition_type\030\006 \001(" +
+      "\r\022\036\n\024ammunition_config_id\030\241\234\001 \001(\r\022\025\n\013KAP" +
+      "HEDKKFGK\030\242\234\001 \001(\r\022\025\n\013MHFBBNKOBPK\030\243\234\001 \001(\rB" +
+      "\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

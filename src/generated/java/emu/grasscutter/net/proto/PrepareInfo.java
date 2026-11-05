@@ -61,7 +61,7 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
     emu.grasscutter.net.proto.AutoChessShop._AutoChessShopOrBuilder getShopOrBuilder();
 
     /**
-     * <code>uint32 MPKGOMIOBOL = 20001;</code>
+     * <code>uint32 MPKGOMIOBOL = 14;</code>
      * @return The mPKGOMIOBOL.
      */
     int getMPKGOMIOBOL();
@@ -161,10 +161,10 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
       return shop_ == null ? emu.grasscutter.net.proto.AutoChessShop._AutoChessShop.getDefaultInstance() : shop_;
     }
 
-    public static final int MPKGOMIOBOL_FIELD_NUMBER = 20001;
+    public static final int MPKGOMIOBOL_FIELD_NUMBER = 14;
     private int mPKGOMIOBOL_ = 0;
     /**
-     * <code>uint32 MPKGOMIOBOL = 20001;</code>
+     * <code>uint32 MPKGOMIOBOL = 14;</code>
      * @return The mPKGOMIOBOL.
      */
     @java.lang.Override
@@ -189,11 +189,11 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(1, getShop());
       }
+      if (mPKGOMIOBOL_ != 0) {
+        output.writeUInt32(14, mPKGOMIOBOL_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20000, getNKPMILJNBBB());
-      }
-      if (mPKGOMIOBOL_ != 0) {
-        output.writeUInt32(20001, mPKGOMIOBOL_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -203,13 +203,13 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getShop());
       }
+      if (mPKGOMIOBOL_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(14, mPKGOMIOBOL_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20000, getNKPMILJNBBB());
-      }
-      if (mPKGOMIOBOL_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, mPKGOMIOBOL_);
       }
       return size;
     }
@@ -521,6 +521,11 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 10
+              case 112: {
+                mPKGOMIOBOL_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 112
               case 160002: {
                 input.readMessage(
                     internalGetNKPMILJNBBBFieldBuilder().getBuilder(),
@@ -528,11 +533,6 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 160002
-              case 160008: {
-                mPKGOMIOBOL_ = input.readUInt32();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -790,7 +790,7 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
 
       private int mPKGOMIOBOL_ ;
       /**
-       * <code>uint32 MPKGOMIOBOL = 20001;</code>
+       * <code>uint32 MPKGOMIOBOL = 14;</code>
        * @return The mPKGOMIOBOL.
        */
       @java.lang.Override
@@ -798,7 +798,7 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
         return mPKGOMIOBOL_;
       }
       /**
-       * <code>uint32 MPKGOMIOBOL = 20001;</code>
+       * <code>uint32 MPKGOMIOBOL = 14;</code>
        * @param value The mPKGOMIOBOL to set.
        * @return This builder for chaining.
        */
@@ -810,7 +810,7 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 MPKGOMIOBOL = 20001;</code>
+       * <code>uint32 MPKGOMIOBOL = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearMPKGOMIOBOL() {
@@ -886,11 +886,11 @@ public final class PrepareInfo extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\022_PrepareInfo.proto\032\021EFOBFCPONPK.proto\032" +
-      "\024_AutoChessShop.proto\"i\n\014_PrepareInfo\022#\n" +
+      "\024_AutoChessShop.proto\"g\n\014_PrepareInfo\022#\n" +
       "\013NKPMILJNBBB\030\240\234\001 \001(\0132\014.EFOBFCPONPK\022\035\n\004sh" +
-      "op\030\001 \001(\0132\017._AutoChessShop\022\025\n\013MPKGOMIOBOL" +
-      "\030\241\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006p" +
-      "roto3"
+      "op\030\001 \001(\0132\017._AutoChessShop\022\023\n\013MPKGOMIOBOL" +
+      "\030\016 \001(\rB\033\n\031emu.grasscutter.net.protob\006pro" +
+      "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

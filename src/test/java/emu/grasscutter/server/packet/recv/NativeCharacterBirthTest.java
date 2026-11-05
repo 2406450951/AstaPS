@@ -105,7 +105,7 @@ final class NativeCharacterBirthTest {
         assertTrue(BornIntroGate.isFreshPlayerBootstrap(session));
         assertEquals(2, session.packets.size());
         var response = assertInstanceOf(PacketSetPlayerBornDataRsp.class, session.packets.get(0));
-        assertEquals(4385, response.getOpcode());
+        assertEquals(414, response.getOpcode()); // 7.2 SetPlayerBornDataRsp
         assertEquals(12, response.build().length);
         assertInstanceOf(PacketPlayerNicknameNotify.class, session.packets.get(1));
         assertEquals(0, session.closes);
@@ -190,9 +190,9 @@ final class NativeCharacterBirthTest {
     private static void assertErrorResponse(RecordingSession session) throws Exception {
         assertEquals(1, session.packets.size());
         var response = assertInstanceOf(PacketSetPlayerBornDataRsp.class, session.packets.get(0));
-        assertEquals(4385, response.getOpcode());
+        assertEquals(414, response.getOpcode()); // 7.2 SetPlayerBornDataRsp
         var data = CodedInputStream.newInstance(response.getData());
-        assertEquals(7 << 3, data.readTag());
+        assertEquals(15 << 3, data.readTag()); // 7.2 retcode field
         assertEquals(-1, data.readInt32());
         assertEquals(0, data.readTag());
     }

@@ -31,7 +31,7 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 buy_level = 1;</code>
+     * <code>uint32 buy_level = 13;</code>
      * @return The buyLevel.
      */
     int getBuyLevel();
@@ -78,10 +78,10 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
               emu.grasscutter.net.proto.BuyBattlePassLevelReqOuterClass.BuyBattlePassLevelReq.class, emu.grasscutter.net.proto.BuyBattlePassLevelReqOuterClass.BuyBattlePassLevelReq.Builder.class);
     }
 
-    public static final int BUY_LEVEL_FIELD_NUMBER = 1;
+    public static final int BUY_LEVEL_FIELD_NUMBER = 13;
     private int buyLevel_ = 0;
     /**
-     * <code>uint32 buy_level = 1;</code>
+     * <code>uint32 buy_level = 13;</code>
      * @return The buyLevel.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (buyLevel_ != 0) {
-        output.writeUInt32(1, buyLevel_);
+        output.writeUInt32(13, buyLevel_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
       int size = 0;
       if (buyLevel_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, buyLevel_);
+          .computeUInt32Size(13, buyLevel_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
               case 0:
                 done = true;
                 break;
-              case 8: {
+              case 104: {
                 buyLevel_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 8
+              } // case 104
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
 
       private int buyLevel_ ;
       /**
-       * <code>uint32 buy_level = 1;</code>
+       * <code>uint32 buy_level = 13;</code>
        * @return The buyLevel.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
         return buyLevel_;
       }
       /**
-       * <code>uint32 buy_level = 1;</code>
+       * <code>uint32 buy_level = 13;</code>
        * @param value The buyLevel to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 buy_level = 1;</code>
+       * <code>uint32 buy_level = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearBuyLevel() {
@@ -482,7 +482,7 @@ public final class BuyBattlePassLevelReqOuterClass extends com.google.protobuf.G
   static {
     java.lang.String[] descriptorData = {
       "\n\033BuyBattlePassLevelReq.proto\"*\n\025BuyBatt" +
-      "lePassLevelReq\022\021\n\tbuy_level\030\001 \001(\rB\033\n\031emu" +
+      "lePassLevelReq\022\021\n\tbuy_level\030\r \001(\rB\033\n\031emu" +
       ".grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

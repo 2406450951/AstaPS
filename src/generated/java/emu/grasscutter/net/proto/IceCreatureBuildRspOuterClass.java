@@ -31,12 +31,12 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.IceCreatureLimitType limit_type = 20000;</code>
+     * <code>.IceCreatureLimitType limit_type = 12;</code>
      * @return The enum numeric value on the wire for limitType.
      */
     int getLimitTypeValue();
     /**
-     * <code>.IceCreatureLimitType limit_type = 20000;</code>
+     * <code>.IceCreatureLimitType limit_type = 12;</code>
      * @return The limitType.
      */
     emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureLimitType getLimitType();
@@ -106,17 +106,17 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
     }
 
     private int bitField0_;
-    public static final int LIMIT_TYPE_FIELD_NUMBER = 20000;
+    public static final int LIMIT_TYPE_FIELD_NUMBER = 12;
     private int limitType_ = 0;
     /**
-     * <code>.IceCreatureLimitType limit_type = 20000;</code>
+     * <code>.IceCreatureLimitType limit_type = 12;</code>
      * @return The enum numeric value on the wire for limitType.
      */
     @java.lang.Override public int getLimitTypeValue() {
       return limitType_;
     }
     /**
-     * <code>.IceCreatureLimitType limit_type = 20000;</code>
+     * <code>.IceCreatureLimitType limit_type = 12;</code>
      * @return The limitType.
      */
     @java.lang.Override public emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureLimitType getLimitType() {
@@ -179,7 +179,7 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
         output.writeInt32(11, retcode_);
       }
       if (limitType_ != emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureLimitType.ICE_CREATURE_LIMIT_TYPE_NONE.getNumber()) {
-        output.writeEnum(20000, limitType_);
+        output.writeEnum(12, limitType_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20001, getIceCreatureGadgetInfo());
@@ -194,7 +194,7 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
       }
       if (limitType_ != emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureLimitType.ICE_CREATURE_LIMIT_TYPE_NONE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(20000, limitType_);
+          .computeEnumSize(12, limitType_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -494,11 +494,11 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
                 bitField0_ |= 0x00000004;
                 break;
               } // case 88
-              case 160000: {
+              case 96: {
                 limitType_ = input.readEnum();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 96
               case 160010: {
                 input.readMessage(
                     internalGetIceCreatureGadgetInfoFieldBuilder().getBuilder(),
@@ -525,14 +525,14 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
 
       private int limitType_ = 0;
       /**
-       * <code>.IceCreatureLimitType limit_type = 20000;</code>
+       * <code>.IceCreatureLimitType limit_type = 12;</code>
        * @return The enum numeric value on the wire for limitType.
        */
       @java.lang.Override public int getLimitTypeValue() {
         return limitType_;
       }
       /**
-       * <code>.IceCreatureLimitType limit_type = 20000;</code>
+       * <code>.IceCreatureLimitType limit_type = 12;</code>
        * @param value The enum numeric value on the wire for limitType to set.
        * @return This builder for chaining.
        */
@@ -543,7 +543,7 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
         return this;
       }
       /**
-       * <code>.IceCreatureLimitType limit_type = 20000;</code>
+       * <code>.IceCreatureLimitType limit_type = 12;</code>
        * @return The limitType.
        */
       @java.lang.Override
@@ -552,7 +552,7 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
         return result == null ? emu.grasscutter.net.proto.IceCreatureGadgetInfoOuterClass.IceCreatureLimitType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.IceCreatureLimitType limit_type = 20000;</code>
+       * <code>.IceCreatureLimitType limit_type = 12;</code>
        * @param value The limitType to set.
        * @throws IllegalArgumentException if UNRECOGNIZED is provided.
        * @return This builder for chaining.
@@ -565,7 +565,7 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
         return this;
       }
       /**
-       * <code>.IceCreatureLimitType limit_type = 20000;</code>
+       * <code>.IceCreatureLimitType limit_type = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearLimitType() {
@@ -792,11 +792,11 @@ public final class IceCreatureBuildRspOuterClass extends com.google.protobuf.Gen
   static {
     java.lang.String[] descriptorData = {
       "\n\031IceCreatureBuildRsp.proto\032\033IceCreature" +
-      "GadgetInfo.proto\"\217\001\n\023IceCreatureBuildRsp" +
-      "\022+\n\nlimit_type\030\240\234\001 \001(\0162\025.IceCreatureLimi" +
-      "tType\022:\n\030ice_creature_gadget_info\030\241\234\001 \001(" +
-      "\0132\026.IceCreatureGadgetInfo\022\017\n\007retcode\030\013 \001" +
-      "(\005B\033\n\031emu.grasscutter.net.protob\006proto3"
+      "GadgetInfo.proto\"\215\001\n\023IceCreatureBuildRsp" +
+      "\022)\n\nlimit_type\030\014 \001(\0162\025.IceCreatureLimitT" +
+      "ype\022:\n\030ice_creature_gadget_info\030\241\234\001 \001(\0132" +
+      "\026.IceCreatureGadgetInfo\022\017\n\007retcode\030\013 \001(\005" +
+      "B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -31,13 +31,13 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 entity_id = 5;</code>
+     * <code>uint32 entity_id = 1;</code>
      * @return The entityId.
      */
     int getEntityId();
 
     /**
-     * <code>int32 retcode = 14;</code>
+     * <code>int32 retcode = 10;</code>
      * @return The retcode.
      */
     int getRetcode();
@@ -84,10 +84,10 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
               emu.grasscutter.net.proto.IceCreatureGadgetRemoveRspOuterClass.IceCreatureGadgetRemoveRsp.class, emu.grasscutter.net.proto.IceCreatureGadgetRemoveRspOuterClass.IceCreatureGadgetRemoveRsp.Builder.class);
     }
 
-    public static final int ENTITY_ID_FIELD_NUMBER = 5;
+    public static final int ENTITY_ID_FIELD_NUMBER = 1;
     private int entityId_ = 0;
     /**
-     * <code>uint32 entity_id = 5;</code>
+     * <code>uint32 entity_id = 1;</code>
      * @return The entityId.
      */
     @java.lang.Override
@@ -95,10 +95,10 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
       return entityId_;
     }
 
-    public static final int RETCODE_FIELD_NUMBER = 14;
+    public static final int RETCODE_FIELD_NUMBER = 10;
     private int retcode_ = 0;
     /**
-     * <code>int32 retcode = 14;</code>
+     * <code>int32 retcode = 10;</code>
      * @return The retcode.
      */
     @java.lang.Override
@@ -121,10 +121,10 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (entityId_ != 0) {
-        output.writeUInt32(5, entityId_);
+        output.writeUInt32(1, entityId_);
       }
       if (retcode_ != 0) {
-        output.writeInt32(14, retcode_);
+        output.writeInt32(10, retcode_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -132,11 +132,11 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
       int size = 0;
       if (entityId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(5, entityId_);
+          .computeUInt32Size(1, entityId_);
       }
       if (retcode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(14, retcode_);
+          .computeInt32Size(10, retcode_);
       }
       return size;
     }
@@ -397,16 +397,16 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
               case 0:
                 done = true;
                 break;
-              case 40: {
+              case 8: {
                 entityId_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 40
-              case 112: {
+              } // case 8
+              case 80: {
                 retcode_ = input.readInt32();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 112
+              } // case 80
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -426,7 +426,7 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
 
       private int entityId_ ;
       /**
-       * <code>uint32 entity_id = 5;</code>
+       * <code>uint32 entity_id = 1;</code>
        * @return The entityId.
        */
       @java.lang.Override
@@ -434,7 +434,7 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
         return entityId_;
       }
       /**
-       * <code>uint32 entity_id = 5;</code>
+       * <code>uint32 entity_id = 1;</code>
        * @param value The entityId to set.
        * @return This builder for chaining.
        */
@@ -446,7 +446,7 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>uint32 entity_id = 5;</code>
+       * <code>uint32 entity_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearEntityId() {
@@ -458,7 +458,7 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
 
       private int retcode_ ;
       /**
-       * <code>int32 retcode = 14;</code>
+       * <code>int32 retcode = 10;</code>
        * @return The retcode.
        */
       @java.lang.Override
@@ -466,7 +466,7 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
         return retcode_;
       }
       /**
-       * <code>int32 retcode = 14;</code>
+       * <code>int32 retcode = 10;</code>
        * @param value The retcode to set.
        * @return This builder for chaining.
        */
@@ -478,7 +478,7 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>int32 retcode = 14;</code>
+       * <code>int32 retcode = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearRetcode() {
@@ -554,8 +554,8 @@ public final class IceCreatureGadgetRemoveRspOuterClass extends com.google.proto
   static {
     java.lang.String[] descriptorData = {
       "\n IceCreatureGadgetRemoveRsp.proto\"@\n\032Ic" +
-      "eCreatureGadgetRemoveRsp\022\021\n\tentity_id\030\005 " +
-      "\001(\r\022\017\n\007retcode\030\016 \001(\005B\033\n\031emu.grasscutter." +
+      "eCreatureGadgetRemoveRsp\022\021\n\tentity_id\030\001 " +
+      "\001(\r\022\017\n\007retcode\030\n \001(\005B\033\n\031emu.grasscutter." +
       "net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

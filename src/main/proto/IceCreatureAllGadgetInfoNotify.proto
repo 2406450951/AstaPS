@@ -5,6 +5,6 @@ option java_package = "emu.grasscutter.net.proto";
 import "IceCreatureGadgetInfo.proto";
 
 message IceCreatureAllGadgetInfoNotify {
-  uint32 uid = 8;
-  repeated IceCreatureGadgetInfo ice_creature_gadget_info_list = 14;
+  uint32 uid = 2;
+  repeated IceCreatureGadgetInfo ice_creature_gadget_info_list = 20000;
 }

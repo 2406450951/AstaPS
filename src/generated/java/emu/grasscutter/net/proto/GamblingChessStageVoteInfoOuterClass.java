@@ -31,37 +31,37 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     java.util.List<emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord> 
         getVoteRecordListList();
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord getVoteRecordList(int index);
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     int getVoteRecordListCount();
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecordOrBuilder> 
         getVoteRecordListOrBuilderList();
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecordOrBuilder getVoteRecordListOrBuilder(
         int index);
 
     /**
-     * <code>uint32 stage_id = 8;</code>
+     * <code>uint32 stage_id = 11;</code>
      * @return The stageId.
      */
     int getStageId();
 
     /**
-     * <code>bool is_settled = 2;</code>
+     * <code>bool is_settled = 6;</code>
      * @return The isSettled.
      */
     boolean getIsSettled();
@@ -109,18 +109,18 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
               emu.grasscutter.net.proto.GamblingChessStageVoteInfoOuterClass.GamblingChessStageVoteInfo.class, emu.grasscutter.net.proto.GamblingChessStageVoteInfoOuterClass.GamblingChessStageVoteInfo.Builder.class);
     }
 
-    public static final int VOTE_RECORD_LIST_FIELD_NUMBER = 13;
+    public static final int VOTE_RECORD_LIST_FIELD_NUMBER = 15;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord> voteRecordList_;
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord> getVoteRecordListList() {
       return voteRecordList_;
     }
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecordOrBuilder> 
@@ -128,21 +128,21 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
       return voteRecordList_;
     }
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     @java.lang.Override
     public int getVoteRecordListCount() {
       return voteRecordList_.size();
     }
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord getVoteRecordList(int index) {
       return voteRecordList_.get(index);
     }
     /**
-     * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+     * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecordOrBuilder getVoteRecordListOrBuilder(
@@ -150,10 +150,10 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
       return voteRecordList_.get(index);
     }
 
-    public static final int STAGE_ID_FIELD_NUMBER = 8;
+    public static final int STAGE_ID_FIELD_NUMBER = 11;
     private int stageId_ = 0;
     /**
-     * <code>uint32 stage_id = 8;</code>
+     * <code>uint32 stage_id = 11;</code>
      * @return The stageId.
      */
     @java.lang.Override
@@ -161,10 +161,10 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
       return stageId_;
     }
 
-    public static final int IS_SETTLED_FIELD_NUMBER = 2;
+    public static final int IS_SETTLED_FIELD_NUMBER = 6;
     private boolean isSettled_ = false;
     /**
-     * <code>bool is_settled = 2;</code>
+     * <code>bool is_settled = 6;</code>
      * @return The isSettled.
      */
     @java.lang.Override
@@ -187,13 +187,13 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (isSettled_ != false) {
-        output.writeBool(2, isSettled_);
+        output.writeBool(6, isSettled_);
       }
       if (stageId_ != 0) {
-        output.writeUInt32(8, stageId_);
+        output.writeUInt32(11, stageId_);
       }
       for (int i = 0; i < voteRecordList_.size(); i++) {
-        output.writeMessage(13, voteRecordList_.get(i));
+        output.writeMessage(15, voteRecordList_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -201,11 +201,11 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
       int size = 0;
       if (isSettled_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, isSettled_);
+          .computeBoolSize(6, isSettled_);
       }
       if (stageId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(8, stageId_);
+          .computeUInt32Size(11, stageId_);
       }
 
           {
@@ -528,17 +528,17 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
               case 0:
                 done = true;
                 break;
-              case 16: {
+              case 48: {
                 isSettled_ = input.readBool();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 16
-              case 64: {
+              } // case 48
+              case 88: {
                 stageId_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 64
-              case 106: {
+              } // case 88
+              case 122: {
                 emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord m =
                     input.readMessage(
                         emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.parser(),
@@ -550,7 +550,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
                   voteRecordListBuilder_.addMessage(m);
                 }
                 break;
-              } // case 106
+              } // case 122
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -581,7 +581,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
           emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord, emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder, emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecordOrBuilder> voteRecordListBuilder_;
 
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord> getVoteRecordListList() {
         if (voteRecordListBuilder_ == null) {
@@ -591,7 +591,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         }
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public int getVoteRecordListCount() {
         if (voteRecordListBuilder_ == null) {
@@ -601,7 +601,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         }
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord getVoteRecordList(int index) {
         if (voteRecordListBuilder_ == null) {
@@ -611,7 +611,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         }
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder setVoteRecordList(
           int index, emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord value) {
@@ -626,7 +626,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder setVoteRecordList(
           int index, emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder builderForValue) {
@@ -640,7 +640,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder addVoteRecordList(emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord value) {
         if (voteRecordListBuilder_ == null) {
@@ -654,7 +654,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder addVoteRecordList(
           int index, emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord value) {
@@ -669,7 +669,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder addVoteRecordList(
           emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder builderForValue) {
@@ -683,7 +683,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder addVoteRecordList(
           int index, emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder builderForValue) {
@@ -697,7 +697,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder addAllVoteRecordList(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord> values) {
@@ -712,7 +712,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder clearVoteRecordList() {
         if (voteRecordListBuilder_ == null) {
@@ -725,7 +725,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public Builder removeVoteRecordList(int index) {
         if (voteRecordListBuilder_ == null) {
@@ -738,14 +738,14 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder getVoteRecordListBuilder(
           int index) {
         return internalGetVoteRecordListFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecordOrBuilder getVoteRecordListOrBuilder(
           int index) {
@@ -755,7 +755,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         }
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecordOrBuilder> 
            getVoteRecordListOrBuilderList() {
@@ -766,14 +766,14 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         }
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder addVoteRecordListBuilder() {
         return internalGetVoteRecordListFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.getDefaultInstance());
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder addVoteRecordListBuilder(
           int index) {
@@ -781,7 +781,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
             index, emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.getDefaultInstance());
       }
       /**
-       * <code>repeated .GamblingChessVoteRecord vote_record_list = 13;</code>
+       * <code>repeated .GamblingChessVoteRecord vote_record_list = 15;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder> 
            getVoteRecordListBuilderList() {
@@ -804,7 +804,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
 
       private int stageId_ ;
       /**
-       * <code>uint32 stage_id = 8;</code>
+       * <code>uint32 stage_id = 11;</code>
        * @return The stageId.
        */
       @java.lang.Override
@@ -812,7 +812,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return stageId_;
       }
       /**
-       * <code>uint32 stage_id = 8;</code>
+       * <code>uint32 stage_id = 11;</code>
        * @param value The stageId to set.
        * @return This builder for chaining.
        */
@@ -824,7 +824,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>uint32 stage_id = 8;</code>
+       * <code>uint32 stage_id = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearStageId() {
@@ -836,7 +836,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
 
       private boolean isSettled_ ;
       /**
-       * <code>bool is_settled = 2;</code>
+       * <code>bool is_settled = 6;</code>
        * @return The isSettled.
        */
       @java.lang.Override
@@ -844,7 +844,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return isSettled_;
       }
       /**
-       * <code>bool is_settled = 2;</code>
+       * <code>bool is_settled = 6;</code>
        * @param value The isSettled to set.
        * @return This builder for chaining.
        */
@@ -856,7 +856,7 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>bool is_settled = 2;</code>
+       * <code>bool is_settled = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearIsSettled() {
@@ -933,9 +933,9 @@ public final class GamblingChessStageVoteInfoOuterClass extends com.google.proto
     java.lang.String[] descriptorData = {
       "\n GamblingChessStageVoteInfo.proto\032\035Gamb" +
       "lingChessVoteRecord.proto\"v\n\032GamblingChe" +
-      "ssStageVoteInfo\0222\n\020vote_record_list\030\r \003(" +
+      "ssStageVoteInfo\0222\n\020vote_record_list\030\017 \003(" +
       "\0132\030.GamblingChessVoteRecord\022\020\n\010stage_id\030" +
-      "\010 \001(\r\022\022\n\nis_settled\030\002 \001(\010B\033\n\031emu.grasscu" +
+      "\013 \001(\r\022\022\n\nis_settled\030\006 \001(\010B\033\n\031emu.grasscu" +
       "tter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

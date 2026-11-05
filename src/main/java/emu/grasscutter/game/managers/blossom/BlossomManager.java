@@ -801,8 +801,13 @@ public class BlossomManager {
     }
 
     /** Global 7.1 original-resin amount selector: GadgetInteractReq field 14. */
+    /**
+     * How many rewards a normal-resin claim takes (1 for 20 resin, 2 for 40). 7.1 sent it on
+     * field 14 (`EBEELPIEKEL`); its 7.2 field is not known yet, so an absent count is one claim.
+     */
     static int normalClaimCount(GadgetInteractReqOuterClass.GadgetInteractReq req) {
-        return (int) req.getField(req.getDescriptorForType().findFieldByNumber(14));
+        int count = req.getEBEELPIEKEL();
+        return count == 0 ? 1 : count;
     }
 
     public List<GameItem> claimReward(Player player, EntityGadget chest,

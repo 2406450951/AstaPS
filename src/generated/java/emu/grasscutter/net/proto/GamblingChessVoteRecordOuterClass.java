@@ -31,31 +31,31 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 score = 14;</code>
+     * <code>uint32 score = 12;</code>
      * @return The score.
      */
     int getScore();
 
     /**
-     * <code>uint32 game_id = 13;</code>
+     * <code>uint32 game_id = 8;</code>
      * @return The gameId.
      */
     int getGameId();
 
     /**
-     * <code>uint32 camp_id = 3;</code>
+     * <code>uint32 camp_id = 2;</code>
      * @return The campId.
      */
     int getCampId();
 
     /**
-     * <code>uint32 count = 4;</code>
+     * <code>uint32 count = 13;</code>
      * @return The count.
      */
     int getCount();
 
     /**
-     * <code>uint32 settle_score = 9;</code>
+     * <code>uint32 settle_score = 15;</code>
      * @return The settleScore.
      */
     int getSettleScore();
@@ -102,10 +102,10 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
               emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.class, emu.grasscutter.net.proto.GamblingChessVoteRecordOuterClass.GamblingChessVoteRecord.Builder.class);
     }
 
-    public static final int SCORE_FIELD_NUMBER = 14;
+    public static final int SCORE_FIELD_NUMBER = 12;
     private int score_ = 0;
     /**
-     * <code>uint32 score = 14;</code>
+     * <code>uint32 score = 12;</code>
      * @return The score.
      */
     @java.lang.Override
@@ -113,10 +113,10 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
       return score_;
     }
 
-    public static final int GAME_ID_FIELD_NUMBER = 13;
+    public static final int GAME_ID_FIELD_NUMBER = 8;
     private int gameId_ = 0;
     /**
-     * <code>uint32 game_id = 13;</code>
+     * <code>uint32 game_id = 8;</code>
      * @return The gameId.
      */
     @java.lang.Override
@@ -124,10 +124,10 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
       return gameId_;
     }
 
-    public static final int CAMP_ID_FIELD_NUMBER = 3;
+    public static final int CAMP_ID_FIELD_NUMBER = 2;
     private int campId_ = 0;
     /**
-     * <code>uint32 camp_id = 3;</code>
+     * <code>uint32 camp_id = 2;</code>
      * @return The campId.
      */
     @java.lang.Override
@@ -135,10 +135,10 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
       return campId_;
     }
 
-    public static final int COUNT_FIELD_NUMBER = 4;
+    public static final int COUNT_FIELD_NUMBER = 13;
     private int count_ = 0;
     /**
-     * <code>uint32 count = 4;</code>
+     * <code>uint32 count = 13;</code>
      * @return The count.
      */
     @java.lang.Override
@@ -146,10 +146,10 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
       return count_;
     }
 
-    public static final int SETTLE_SCORE_FIELD_NUMBER = 9;
+    public static final int SETTLE_SCORE_FIELD_NUMBER = 15;
     private int settleScore_ = 0;
     /**
-     * <code>uint32 settle_score = 9;</code>
+     * <code>uint32 settle_score = 15;</code>
      * @return The settleScore.
      */
     @java.lang.Override
@@ -172,19 +172,19 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (campId_ != 0) {
-        output.writeUInt32(3, campId_);
-      }
-      if (count_ != 0) {
-        output.writeUInt32(4, count_);
-      }
-      if (settleScore_ != 0) {
-        output.writeUInt32(9, settleScore_);
+        output.writeUInt32(2, campId_);
       }
       if (gameId_ != 0) {
-        output.writeUInt32(13, gameId_);
+        output.writeUInt32(8, gameId_);
       }
       if (score_ != 0) {
-        output.writeUInt32(14, score_);
+        output.writeUInt32(12, score_);
+      }
+      if (count_ != 0) {
+        output.writeUInt32(13, count_);
+      }
+      if (settleScore_ != 0) {
+        output.writeUInt32(15, settleScore_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -192,23 +192,23 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
       int size = 0;
       if (campId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, campId_);
-      }
-      if (count_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(4, count_);
-      }
-      if (settleScore_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(9, settleScore_);
+          .computeUInt32Size(2, campId_);
       }
       if (gameId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(13, gameId_);
+          .computeUInt32Size(8, gameId_);
       }
       if (score_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(14, score_);
+          .computeUInt32Size(12, score_);
+      }
+      if (count_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(13, count_);
+      }
+      if (settleScore_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(15, settleScore_);
       }
       return size;
     }
@@ -502,31 +502,31 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
               case 0:
                 done = true;
                 break;
-              case 24: {
+              case 16: {
                 campId_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 24
-              case 32: {
-                count_ = input.readUInt32();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 32
-              case 72: {
-                settleScore_ = input.readUInt32();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 72
-              case 104: {
+              } // case 16
+              case 64: {
                 gameId_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 104
-              case 112: {
+              } // case 64
+              case 96: {
                 score_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 112
+              } // case 96
+              case 104: {
+                count_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 104
+              case 120: {
+                settleScore_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 120
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -546,7 +546,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
 
       private int score_ ;
       /**
-       * <code>uint32 score = 14;</code>
+       * <code>uint32 score = 12;</code>
        * @return The score.
        */
       @java.lang.Override
@@ -554,7 +554,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return score_;
       }
       /**
-       * <code>uint32 score = 14;</code>
+       * <code>uint32 score = 12;</code>
        * @param value The score to set.
        * @return This builder for chaining.
        */
@@ -566,7 +566,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return this;
       }
       /**
-       * <code>uint32 score = 14;</code>
+       * <code>uint32 score = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearScore() {
@@ -578,7 +578,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
 
       private int gameId_ ;
       /**
-       * <code>uint32 game_id = 13;</code>
+       * <code>uint32 game_id = 8;</code>
        * @return The gameId.
        */
       @java.lang.Override
@@ -586,7 +586,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return gameId_;
       }
       /**
-       * <code>uint32 game_id = 13;</code>
+       * <code>uint32 game_id = 8;</code>
        * @param value The gameId to set.
        * @return This builder for chaining.
        */
@@ -598,7 +598,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return this;
       }
       /**
-       * <code>uint32 game_id = 13;</code>
+       * <code>uint32 game_id = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearGameId() {
@@ -610,7 +610,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
 
       private int campId_ ;
       /**
-       * <code>uint32 camp_id = 3;</code>
+       * <code>uint32 camp_id = 2;</code>
        * @return The campId.
        */
       @java.lang.Override
@@ -618,7 +618,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return campId_;
       }
       /**
-       * <code>uint32 camp_id = 3;</code>
+       * <code>uint32 camp_id = 2;</code>
        * @param value The campId to set.
        * @return This builder for chaining.
        */
@@ -630,7 +630,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return this;
       }
       /**
-       * <code>uint32 camp_id = 3;</code>
+       * <code>uint32 camp_id = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearCampId() {
@@ -642,7 +642,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
 
       private int count_ ;
       /**
-       * <code>uint32 count = 4;</code>
+       * <code>uint32 count = 13;</code>
        * @return The count.
        */
       @java.lang.Override
@@ -650,7 +650,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return count_;
       }
       /**
-       * <code>uint32 count = 4;</code>
+       * <code>uint32 count = 13;</code>
        * @param value The count to set.
        * @return This builder for chaining.
        */
@@ -662,7 +662,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return this;
       }
       /**
-       * <code>uint32 count = 4;</code>
+       * <code>uint32 count = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearCount() {
@@ -674,7 +674,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
 
       private int settleScore_ ;
       /**
-       * <code>uint32 settle_score = 9;</code>
+       * <code>uint32 settle_score = 15;</code>
        * @return The settleScore.
        */
       @java.lang.Override
@@ -682,7 +682,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return settleScore_;
       }
       /**
-       * <code>uint32 settle_score = 9;</code>
+       * <code>uint32 settle_score = 15;</code>
        * @param value The settleScore to set.
        * @return This builder for chaining.
        */
@@ -694,7 +694,7 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
         return this;
       }
       /**
-       * <code>uint32 settle_score = 9;</code>
+       * <code>uint32 settle_score = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearSettleScore() {
@@ -770,9 +770,9 @@ public final class GamblingChessVoteRecordOuterClass extends com.google.protobuf
   static {
     java.lang.String[] descriptorData = {
       "\n\035GamblingChessVoteRecord.proto\"o\n\027Gambl" +
-      "ingChessVoteRecord\022\r\n\005score\030\016 \001(\r\022\017\n\007gam" +
-      "e_id\030\r \001(\r\022\017\n\007camp_id\030\003 \001(\r\022\r\n\005count\030\004 \001" +
-      "(\r\022\024\n\014settle_score\030\t \001(\rB\033\n\031emu.grasscut" +
+      "ingChessVoteRecord\022\r\n\005score\030\014 \001(\r\022\017\n\007gam" +
+      "e_id\030\010 \001(\r\022\017\n\007camp_id\030\002 \001(\r\022\r\n\005count\030\r \001" +
+      "(\r\022\024\n\014settle_score\030\017 \001(\rB\033\n\031emu.grasscut" +
       "ter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

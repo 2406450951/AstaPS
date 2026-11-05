@@ -8,5 +8,5 @@ import "_AutoChessShop.proto";
 message _PrepareInfo {
   EFOBFCPONPK NKPMILJNBBB = 20000;
   _AutoChessShop shop = 1;
-  uint32 MPKGOMIOBOL = 20001;
+  uint32 MPKGOMIOBOL = 14;
 }

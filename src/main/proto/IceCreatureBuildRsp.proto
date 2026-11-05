@@ -5,7 +5,7 @@ option java_package = "emu.grasscutter.net.proto";
 import "IceCreatureGadgetInfo.proto";
 
 message IceCreatureBuildRsp {
-  IceCreatureLimitType limit_type = 20000;
+  IceCreatureLimitType limit_type = 12;
   IceCreatureGadgetInfo ice_creature_gadget_info = 20001;
   int32 retcode = 11;
 }

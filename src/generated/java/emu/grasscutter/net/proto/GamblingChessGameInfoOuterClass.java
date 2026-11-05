@@ -31,73 +31,73 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     java.util.List<emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult> 
         getCardResultListList();
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult getCardResultList(int index);
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     int getCardResultListCount();
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResultOrBuilder> 
         getCardResultListOrBuilderList();
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResultOrBuilder getCardResultListOrBuilder(
         int index);
 
     /**
-     * <code>float blue_vote_ratio = 7;</code>
+     * <code>float blue_vote_ratio = 20000;</code>
      * @return The blueVoteRatio.
      */
     float getBlueVoteRatio();
 
     /**
-     * <code>uint32 _streaming_video_id = 2;</code>
+     * <code>uint32 _streaming_video_id = 1;</code>
      * @return The streamingVideoId.
      */
     int getStreamingVideoId();
 
     /**
-     * <code>uint32 game_id = 6;</code>
+     * <code>uint32 game_id = 14;</code>
      * @return The gameId.
      */
     int getGameId();
 
     /**
-     * <code>uint32 winner_team_id = 12;</code>
+     * <code>uint32 winner_team_id = 20001;</code>
      * @return The winnerTeamId.
      */
     int getWinnerTeamId();
 
     /**
-     * <code>float red_vote_ratio = 1;</code>
+     * <code>float red_vote_ratio = 20002;</code>
      * @return The redVoteRatio.
      */
     float getRedVoteRatio();
 
     /**
-     * <code>uint32 blue_team_id = 9;</code>
+     * <code>uint32 blue_team_id = 20003;</code>
      * @return The blueTeamId.
      */
     int getBlueTeamId();
 
     /**
-     * <code>uint32 state = 13;</code>
+     * <code>uint32 state = 20004;</code>
      * @return The state.
      */
     int getState();
 
     /**
-     * <code>uint32 red_team_id = 4;</code>
+     * <code>uint32 red_team_id = 20005;</code>
      * @return The redTeamId.
      */
     int getRedTeamId();
@@ -145,18 +145,18 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
               emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.class, emu.grasscutter.net.proto.GamblingChessGameInfoOuterClass.GamblingChessGameInfo.Builder.class);
     }
 
-    public static final int CARD_RESULT_LIST_FIELD_NUMBER = 3;
+    public static final int CARD_RESULT_LIST_FIELD_NUMBER = 8;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult> cardResultList_;
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult> getCardResultListList() {
       return cardResultList_;
     }
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResultOrBuilder> 
@@ -164,21 +164,21 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return cardResultList_;
     }
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     @java.lang.Override
     public int getCardResultListCount() {
       return cardResultList_.size();
     }
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult getCardResultList(int index) {
       return cardResultList_.get(index);
     }
     /**
-     * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+     * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResultOrBuilder getCardResultListOrBuilder(
@@ -186,10 +186,10 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return cardResultList_.get(index);
     }
 
-    public static final int BLUE_VOTE_RATIO_FIELD_NUMBER = 7;
+    public static final int BLUE_VOTE_RATIO_FIELD_NUMBER = 20000;
     private float blueVoteRatio_ = 0F;
     /**
-     * <code>float blue_vote_ratio = 7;</code>
+     * <code>float blue_vote_ratio = 20000;</code>
      * @return The blueVoteRatio.
      */
     @java.lang.Override
@@ -197,10 +197,10 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return blueVoteRatio_;
     }
 
-    public static final int _STREAMING_VIDEO_ID_FIELD_NUMBER = 2;
+    public static final int _STREAMING_VIDEO_ID_FIELD_NUMBER = 1;
     private int StreamingVideoId_ = 0;
     /**
-     * <code>uint32 _streaming_video_id = 2;</code>
+     * <code>uint32 _streaming_video_id = 1;</code>
      * @return The streamingVideoId.
      */
     @java.lang.Override
@@ -208,10 +208,10 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return StreamingVideoId_;
     }
 
-    public static final int GAME_ID_FIELD_NUMBER = 6;
+    public static final int GAME_ID_FIELD_NUMBER = 14;
     private int gameId_ = 0;
     /**
-     * <code>uint32 game_id = 6;</code>
+     * <code>uint32 game_id = 14;</code>
      * @return The gameId.
      */
     @java.lang.Override
@@ -219,10 +219,10 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return gameId_;
     }
 
-    public static final int WINNER_TEAM_ID_FIELD_NUMBER = 12;
+    public static final int WINNER_TEAM_ID_FIELD_NUMBER = 20001;
     private int winnerTeamId_ = 0;
     /**
-     * <code>uint32 winner_team_id = 12;</code>
+     * <code>uint32 winner_team_id = 20001;</code>
      * @return The winnerTeamId.
      */
     @java.lang.Override
@@ -230,10 +230,10 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return winnerTeamId_;
     }
 
-    public static final int RED_VOTE_RATIO_FIELD_NUMBER = 1;
+    public static final int RED_VOTE_RATIO_FIELD_NUMBER = 20002;
     private float redVoteRatio_ = 0F;
     /**
-     * <code>float red_vote_ratio = 1;</code>
+     * <code>float red_vote_ratio = 20002;</code>
      * @return The redVoteRatio.
      */
     @java.lang.Override
@@ -241,10 +241,10 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return redVoteRatio_;
     }
 
-    public static final int BLUE_TEAM_ID_FIELD_NUMBER = 9;
+    public static final int BLUE_TEAM_ID_FIELD_NUMBER = 20003;
     private int blueTeamId_ = 0;
     /**
-     * <code>uint32 blue_team_id = 9;</code>
+     * <code>uint32 blue_team_id = 20003;</code>
      * @return The blueTeamId.
      */
     @java.lang.Override
@@ -252,10 +252,10 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return blueTeamId_;
     }
 
-    public static final int STATE_FIELD_NUMBER = 13;
+    public static final int STATE_FIELD_NUMBER = 20004;
     private int state_ = 0;
     /**
-     * <code>uint32 state = 13;</code>
+     * <code>uint32 state = 20004;</code>
      * @return The state.
      */
     @java.lang.Override
@@ -263,10 +263,10 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
       return state_;
     }
 
-    public static final int RED_TEAM_ID_FIELD_NUMBER = 4;
+    public static final int RED_TEAM_ID_FIELD_NUMBER = 20005;
     private int redTeamId_ = 0;
     /**
-     * <code>uint32 red_team_id = 4;</code>
+     * <code>uint32 red_team_id = 20005;</code>
      * @return The redTeamId.
      */
     @java.lang.Override
@@ -288,44 +288,40 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (java.lang.Float.floatToRawIntBits(redVoteRatio_) != 0) {
-        output.writeFloat(1, redVoteRatio_);
-      }
       if (StreamingVideoId_ != 0) {
-        output.writeUInt32(2, StreamingVideoId_);
+        output.writeUInt32(1, StreamingVideoId_);
       }
       for (int i = 0; i < cardResultList_.size(); i++) {
-        output.writeMessage(3, cardResultList_.get(i));
-      }
-      if (redTeamId_ != 0) {
-        output.writeUInt32(4, redTeamId_);
+        output.writeMessage(8, cardResultList_.get(i));
       }
       if (gameId_ != 0) {
-        output.writeUInt32(6, gameId_);
+        output.writeUInt32(14, gameId_);
       }
       if (java.lang.Float.floatToRawIntBits(blueVoteRatio_) != 0) {
-        output.writeFloat(7, blueVoteRatio_);
-      }
-      if (blueTeamId_ != 0) {
-        output.writeUInt32(9, blueTeamId_);
+        output.writeFloat(20000, blueVoteRatio_);
       }
       if (winnerTeamId_ != 0) {
-        output.writeUInt32(12, winnerTeamId_);
+        output.writeUInt32(20001, winnerTeamId_);
+      }
+      if (java.lang.Float.floatToRawIntBits(redVoteRatio_) != 0) {
+        output.writeFloat(20002, redVoteRatio_);
+      }
+      if (blueTeamId_ != 0) {
+        output.writeUInt32(20003, blueTeamId_);
       }
       if (state_ != 0) {
-        output.writeUInt32(13, state_);
+        output.writeUInt32(20004, state_);
+      }
+      if (redTeamId_ != 0) {
+        output.writeUInt32(20005, redTeamId_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
-      if (java.lang.Float.floatToRawIntBits(redVoteRatio_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(1, redVoteRatio_);
-      }
       if (StreamingVideoId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, StreamingVideoId_);
+          .computeUInt32Size(1, StreamingVideoId_);
       }
 
           {
@@ -336,29 +332,33 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
             }
             size += 1 * count;
           }
-      if (redTeamId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(4, redTeamId_);
-      }
       if (gameId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(6, gameId_);
+          .computeUInt32Size(14, gameId_);
       }
       if (java.lang.Float.floatToRawIntBits(blueVoteRatio_) != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, blueVoteRatio_);
-      }
-      if (blueTeamId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(9, blueTeamId_);
+          .computeFloatSize(20000, blueVoteRatio_);
       }
       if (winnerTeamId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(12, winnerTeamId_);
+          .computeUInt32Size(20001, winnerTeamId_);
+      }
+      if (java.lang.Float.floatToRawIntBits(redVoteRatio_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(20002, redVoteRatio_);
+      }
+      if (blueTeamId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(20003, blueTeamId_);
       }
       if (state_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(13, state_);
+          .computeUInt32Size(20004, state_);
+      }
+      if (redTeamId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(20005, redTeamId_);
       }
       return size;
     }
@@ -741,17 +741,12 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
               case 0:
                 done = true;
                 break;
-              case 13: {
-                redVoteRatio_ = input.readFloat();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 13
-              case 16: {
+              case 8: {
                 StreamingVideoId_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 16
-              case 26: {
+              } // case 8
+              case 66: {
                 emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult m =
                     input.readMessage(
                         emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.parser(),
@@ -763,37 +758,42 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
                   cardResultListBuilder_.addMessage(m);
                 }
                 break;
-              } // case 26
-              case 32: {
-                redTeamId_ = input.readUInt32();
-                bitField0_ |= 0x00000100;
-                break;
-              } // case 32
-              case 48: {
+              } // case 66
+              case 112: {
                 gameId_ = input.readUInt32();
                 bitField0_ |= 0x00000008;
                 break;
-              } // case 48
-              case 61: {
+              } // case 112
+              case 160005: {
                 blueVoteRatio_ = input.readFloat();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 61
-              case 72: {
-                blueTeamId_ = input.readUInt32();
-                bitField0_ |= 0x00000040;
-                break;
-              } // case 72
-              case 96: {
+              } // case 160005
+              case 160008: {
                 winnerTeamId_ = input.readUInt32();
                 bitField0_ |= 0x00000010;
                 break;
-              } // case 96
-              case 104: {
+              } // case 160008
+              case 160021: {
+                redVoteRatio_ = input.readFloat();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 160021
+              case 160024: {
+                blueTeamId_ = input.readUInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 160024
+              case 160032: {
                 state_ = input.readUInt32();
                 bitField0_ |= 0x00000080;
                 break;
-              } // case 104
+              } // case 160032
+              case 160040: {
+                redTeamId_ = input.readUInt32();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 160040
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -824,7 +824,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
           emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult, emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder, emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResultOrBuilder> cardResultListBuilder_;
 
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult> getCardResultListList() {
         if (cardResultListBuilder_ == null) {
@@ -834,7 +834,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         }
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public int getCardResultListCount() {
         if (cardResultListBuilder_ == null) {
@@ -844,7 +844,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         }
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult getCardResultList(int index) {
         if (cardResultListBuilder_ == null) {
@@ -854,7 +854,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         }
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder setCardResultList(
           int index, emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult value) {
@@ -869,7 +869,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder setCardResultList(
           int index, emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder builderForValue) {
@@ -883,7 +883,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder addCardResultList(emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult value) {
         if (cardResultListBuilder_ == null) {
@@ -897,7 +897,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder addCardResultList(
           int index, emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult value) {
@@ -912,7 +912,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder addCardResultList(
           emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder builderForValue) {
@@ -926,7 +926,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder addCardResultList(
           int index, emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder builderForValue) {
@@ -940,7 +940,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder addAllCardResultList(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult> values) {
@@ -955,7 +955,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder clearCardResultList() {
         if (cardResultListBuilder_ == null) {
@@ -968,7 +968,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public Builder removeCardResultList(int index) {
         if (cardResultListBuilder_ == null) {
@@ -981,14 +981,14 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder getCardResultListBuilder(
           int index) {
         return internalGetCardResultListFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResultOrBuilder getCardResultListOrBuilder(
           int index) {
@@ -998,7 +998,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         }
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResultOrBuilder> 
            getCardResultListOrBuilderList() {
@@ -1009,14 +1009,14 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         }
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder addCardResultListBuilder() {
         return internalGetCardResultListFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.getDefaultInstance());
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder addCardResultListBuilder(
           int index) {
@@ -1024,7 +1024,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
             index, emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.getDefaultInstance());
       }
       /**
-       * <code>repeated .GamblingChessCardResult card_result_list = 3;</code>
+       * <code>repeated .GamblingChessCardResult card_result_list = 8;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.GamblingChessCardResultOuterClass.GamblingChessCardResult.Builder> 
            getCardResultListBuilderList() {
@@ -1047,7 +1047,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
 
       private float blueVoteRatio_ ;
       /**
-       * <code>float blue_vote_ratio = 7;</code>
+       * <code>float blue_vote_ratio = 20000;</code>
        * @return The blueVoteRatio.
        */
       @java.lang.Override
@@ -1055,7 +1055,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return blueVoteRatio_;
       }
       /**
-       * <code>float blue_vote_ratio = 7;</code>
+       * <code>float blue_vote_ratio = 20000;</code>
        * @param value The blueVoteRatio to set.
        * @return This builder for chaining.
        */
@@ -1067,7 +1067,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>float blue_vote_ratio = 7;</code>
+       * <code>float blue_vote_ratio = 20000;</code>
        * @return This builder for chaining.
        */
       public Builder clearBlueVoteRatio() {
@@ -1079,7 +1079,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
 
       private int StreamingVideoId_ ;
       /**
-       * <code>uint32 _streaming_video_id = 2;</code>
+       * <code>uint32 _streaming_video_id = 1;</code>
        * @return The streamingVideoId.
        */
       @java.lang.Override
@@ -1087,7 +1087,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return StreamingVideoId_;
       }
       /**
-       * <code>uint32 _streaming_video_id = 2;</code>
+       * <code>uint32 _streaming_video_id = 1;</code>
        * @param value The streamingVideoId to set.
        * @return This builder for chaining.
        */
@@ -1099,7 +1099,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 _streaming_video_id = 2;</code>
+       * <code>uint32 _streaming_video_id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearStreamingVideoId() {
@@ -1111,7 +1111,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
 
       private int gameId_ ;
       /**
-       * <code>uint32 game_id = 6;</code>
+       * <code>uint32 game_id = 14;</code>
        * @return The gameId.
        */
       @java.lang.Override
@@ -1119,7 +1119,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return gameId_;
       }
       /**
-       * <code>uint32 game_id = 6;</code>
+       * <code>uint32 game_id = 14;</code>
        * @param value The gameId to set.
        * @return This builder for chaining.
        */
@@ -1131,7 +1131,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 game_id = 6;</code>
+       * <code>uint32 game_id = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearGameId() {
@@ -1143,7 +1143,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
 
       private int winnerTeamId_ ;
       /**
-       * <code>uint32 winner_team_id = 12;</code>
+       * <code>uint32 winner_team_id = 20001;</code>
        * @return The winnerTeamId.
        */
       @java.lang.Override
@@ -1151,7 +1151,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return winnerTeamId_;
       }
       /**
-       * <code>uint32 winner_team_id = 12;</code>
+       * <code>uint32 winner_team_id = 20001;</code>
        * @param value The winnerTeamId to set.
        * @return This builder for chaining.
        */
@@ -1163,7 +1163,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 winner_team_id = 12;</code>
+       * <code>uint32 winner_team_id = 20001;</code>
        * @return This builder for chaining.
        */
       public Builder clearWinnerTeamId() {
@@ -1175,7 +1175,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
 
       private float redVoteRatio_ ;
       /**
-       * <code>float red_vote_ratio = 1;</code>
+       * <code>float red_vote_ratio = 20002;</code>
        * @return The redVoteRatio.
        */
       @java.lang.Override
@@ -1183,7 +1183,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return redVoteRatio_;
       }
       /**
-       * <code>float red_vote_ratio = 1;</code>
+       * <code>float red_vote_ratio = 20002;</code>
        * @param value The redVoteRatio to set.
        * @return This builder for chaining.
        */
@@ -1195,7 +1195,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>float red_vote_ratio = 1;</code>
+       * <code>float red_vote_ratio = 20002;</code>
        * @return This builder for chaining.
        */
       public Builder clearRedVoteRatio() {
@@ -1207,7 +1207,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
 
       private int blueTeamId_ ;
       /**
-       * <code>uint32 blue_team_id = 9;</code>
+       * <code>uint32 blue_team_id = 20003;</code>
        * @return The blueTeamId.
        */
       @java.lang.Override
@@ -1215,7 +1215,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return blueTeamId_;
       }
       /**
-       * <code>uint32 blue_team_id = 9;</code>
+       * <code>uint32 blue_team_id = 20003;</code>
        * @param value The blueTeamId to set.
        * @return This builder for chaining.
        */
@@ -1227,7 +1227,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 blue_team_id = 9;</code>
+       * <code>uint32 blue_team_id = 20003;</code>
        * @return This builder for chaining.
        */
       public Builder clearBlueTeamId() {
@@ -1239,7 +1239,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
 
       private int state_ ;
       /**
-       * <code>uint32 state = 13;</code>
+       * <code>uint32 state = 20004;</code>
        * @return The state.
        */
       @java.lang.Override
@@ -1247,7 +1247,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return state_;
       }
       /**
-       * <code>uint32 state = 13;</code>
+       * <code>uint32 state = 20004;</code>
        * @param value The state to set.
        * @return This builder for chaining.
        */
@@ -1259,7 +1259,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 state = 13;</code>
+       * <code>uint32 state = 20004;</code>
        * @return This builder for chaining.
        */
       public Builder clearState() {
@@ -1271,7 +1271,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
 
       private int redTeamId_ ;
       /**
-       * <code>uint32 red_team_id = 4;</code>
+       * <code>uint32 red_team_id = 20005;</code>
        * @return The redTeamId.
        */
       @java.lang.Override
@@ -1279,7 +1279,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return redTeamId_;
       }
       /**
-       * <code>uint32 red_team_id = 4;</code>
+       * <code>uint32 red_team_id = 20005;</code>
        * @param value The redTeamId to set.
        * @return This builder for chaining.
        */
@@ -1291,7 +1291,7 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 red_team_id = 4;</code>
+       * <code>uint32 red_team_id = 20005;</code>
        * @return This builder for chaining.
        */
       public Builder clearRedTeamId() {
@@ -1367,14 +1367,15 @@ public final class GamblingChessGameInfoOuterClass extends com.google.protobuf.G
   static {
     java.lang.String[] descriptorData = {
       "\n\033GamblingChessGameInfo.proto\032\035GamblingC" +
-      "hessCardResult.proto\"\374\001\n\025GamblingChessGa" +
-      "meInfo\0222\n\020card_result_list\030\003 \003(\0132\030.Gambl" +
-      "ingChessCardResult\022\027\n\017blue_vote_ratio\030\007 " +
-      "\001(\002\022\033\n\023_streaming_video_id\030\002 \001(\r\022\017\n\007game" +
-      "_id\030\006 \001(\r\022\026\n\016winner_team_id\030\014 \001(\r\022\026\n\016red" +
-      "_vote_ratio\030\001 \001(\002\022\024\n\014blue_team_id\030\t \001(\r\022" +
-      "\r\n\005state\030\r \001(\r\022\023\n\013red_team_id\030\004 \001(\rB\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "hessCardResult.proto\"\210\002\n\025GamblingChessGa" +
+      "meInfo\0222\n\020card_result_list\030\010 \003(\0132\030.Gambl" +
+      "ingChessCardResult\022\031\n\017blue_vote_ratio\030\240\234" +
+      "\001 \001(\002\022\033\n\023_streaming_video_id\030\001 \001(\r\022\017\n\007ga" +
+      "me_id\030\016 \001(\r\022\030\n\016winner_team_id\030\241\234\001 \001(\r\022\030\n" +
+      "\016red_vote_ratio\030\242\234\001 \001(\002\022\026\n\014blue_team_id\030" +
+      "\243\234\001 \001(\r\022\017\n\005state\030\244\234\001 \001(\r\022\025\n\013red_team_id\030" +
+      "\245\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

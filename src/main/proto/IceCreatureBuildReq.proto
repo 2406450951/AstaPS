@@ -8,13 +8,13 @@ import "IceCreatureGadgetInfo.proto";
 import "Vector.proto";
 
 message IceCreatureBuildReq {
-  IceCreatureLimitType limit_type = 1;
-  Vector pos = 7;
-  repeated AbilityScalarValueEntry global_value_list = 8;
-  uint32 map_layer_id = 10;
-  bool unk_11 = 11;
-  BPAEPJHBOFM build_detail = 12;
-  Vector rot = 13;
-  repeated fixed64 replace_guid_list = 14;
+  IceCreatureLimitType limit_type = 10;
+  Vector pos = 1;
+  repeated AbilityScalarValueEntry global_value_list = 20001;
+  uint32 map_layer_id = 8;
+  bool unk_11 = 20002;
+  BPAEPJHBOFM build_detail = 20003;
+  Vector rot = 9;
+  repeated fixed64 replace_guid_list = 20004;
   uint32 gadget_id = 15;
 }

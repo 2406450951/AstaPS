@@ -33,7 +33,7 @@ python3 -I tools/protocol/remap/export_proto_72.py out72.desc <7.1 server.desc> 
     [--with-nt-additions]
 ```
 
-`tools/protocol/remap/recover_lost_72.py` then recovered parked fields across messages: both dumps give a field the same name in every message, so a 7.1 name and a 7.2 name that are left unmatched together in at least two mapped messages, and only there, with matching types, are the same field. That recovered 179 fields. Its `--single` rule (one unmatched field of a type on each side of a single message) is weaker and was not applied.
+`tools/protocol/remap/recover_lost_72.py` then recovered parked fields across messages: both dumps give a field the same name in every message, so a 7.1 name and a 7.2 name that are left unmatched together in at least two mapped messages, and only there, with matching types, are the same field. That recovered 183 fields. Its `--single` rule (one unmatched field of a type on each side of a single message) is weaker and was not applied.
 
 Fixes made by hand after export, such as `GachaInfo`, are commented in the `.proto` files themselves. Rerunning the exporter would overwrite them.
 

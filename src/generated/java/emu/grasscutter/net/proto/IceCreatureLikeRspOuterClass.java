@@ -31,19 +31,19 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 retcode = 3;</code>
+     * <code>int32 retcode = 8;</code>
      * @return The retcode.
      */
     int getRetcode();
 
     /**
-     * <code>fixed64 guid = 10;</code>
+     * <code>fixed64 guid = 13;</code>
      * @return The guid.
      */
     long getGuid();
 
     /**
-     * <code>uint32 like_num = 13;</code>
+     * <code>uint32 like_num = 9;</code>
      * @return The likeNum.
      */
     int getLikeNum();
@@ -90,10 +90,10 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
               emu.grasscutter.net.proto.IceCreatureLikeRspOuterClass.IceCreatureLikeRsp.class, emu.grasscutter.net.proto.IceCreatureLikeRspOuterClass.IceCreatureLikeRsp.Builder.class);
     }
 
-    public static final int RETCODE_FIELD_NUMBER = 3;
+    public static final int RETCODE_FIELD_NUMBER = 8;
     private int retcode_ = 0;
     /**
-     * <code>int32 retcode = 3;</code>
+     * <code>int32 retcode = 8;</code>
      * @return The retcode.
      */
     @java.lang.Override
@@ -101,10 +101,10 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
       return retcode_;
     }
 
-    public static final int GUID_FIELD_NUMBER = 10;
+    public static final int GUID_FIELD_NUMBER = 13;
     private long guid_ = 0L;
     /**
-     * <code>fixed64 guid = 10;</code>
+     * <code>fixed64 guid = 13;</code>
      * @return The guid.
      */
     @java.lang.Override
@@ -112,10 +112,10 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
       return guid_;
     }
 
-    public static final int LIKE_NUM_FIELD_NUMBER = 13;
+    public static final int LIKE_NUM_FIELD_NUMBER = 9;
     private int likeNum_ = 0;
     /**
-     * <code>uint32 like_num = 13;</code>
+     * <code>uint32 like_num = 9;</code>
      * @return The likeNum.
      */
     @java.lang.Override
@@ -138,13 +138,13 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (retcode_ != 0) {
-        output.writeInt32(3, retcode_);
-      }
-      if (guid_ != 0L) {
-        output.writeFixed64(10, guid_);
+        output.writeInt32(8, retcode_);
       }
       if (likeNum_ != 0) {
-        output.writeUInt32(13, likeNum_);
+        output.writeUInt32(9, likeNum_);
+      }
+      if (guid_ != 0L) {
+        output.writeFixed64(13, guid_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -152,15 +152,15 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
       int size = 0;
       if (retcode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, retcode_);
-      }
-      if (guid_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFixed64Size(10, guid_);
+          .computeInt32Size(8, retcode_);
       }
       if (likeNum_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(13, likeNum_);
+          .computeUInt32Size(9, likeNum_);
+      }
+      if (guid_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed64Size(13, guid_);
       }
       return size;
     }
@@ -433,21 +433,21 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
               case 0:
                 done = true;
                 break;
-              case 24: {
+              case 64: {
                 retcode_ = input.readInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 24
-              case 81: {
-                guid_ = input.readFixed64();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 81
-              case 104: {
+              } // case 64
+              case 72: {
                 likeNum_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 104
+              } // case 72
+              case 105: {
+                guid_ = input.readFixed64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 105
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -467,7 +467,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
 
       private int retcode_ ;
       /**
-       * <code>int32 retcode = 3;</code>
+       * <code>int32 retcode = 8;</code>
        * @return The retcode.
        */
       @java.lang.Override
@@ -475,7 +475,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
         return retcode_;
       }
       /**
-       * <code>int32 retcode = 3;</code>
+       * <code>int32 retcode = 8;</code>
        * @param value The retcode to set.
        * @return This builder for chaining.
        */
@@ -487,7 +487,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
         return this;
       }
       /**
-       * <code>int32 retcode = 3;</code>
+       * <code>int32 retcode = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearRetcode() {
@@ -499,7 +499,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
 
       private long guid_ ;
       /**
-       * <code>fixed64 guid = 10;</code>
+       * <code>fixed64 guid = 13;</code>
        * @return The guid.
        */
       @java.lang.Override
@@ -507,7 +507,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
         return guid_;
       }
       /**
-       * <code>fixed64 guid = 10;</code>
+       * <code>fixed64 guid = 13;</code>
        * @param value The guid to set.
        * @return This builder for chaining.
        */
@@ -519,7 +519,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
         return this;
       }
       /**
-       * <code>fixed64 guid = 10;</code>
+       * <code>fixed64 guid = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearGuid() {
@@ -531,7 +531,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
 
       private int likeNum_ ;
       /**
-       * <code>uint32 like_num = 13;</code>
+       * <code>uint32 like_num = 9;</code>
        * @return The likeNum.
        */
       @java.lang.Override
@@ -539,7 +539,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
         return likeNum_;
       }
       /**
-       * <code>uint32 like_num = 13;</code>
+       * <code>uint32 like_num = 9;</code>
        * @param value The likeNum to set.
        * @return This builder for chaining.
        */
@@ -551,7 +551,7 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
         return this;
       }
       /**
-       * <code>uint32 like_num = 13;</code>
+       * <code>uint32 like_num = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearLikeNum() {
@@ -627,8 +627,8 @@ public final class IceCreatureLikeRspOuterClass extends com.google.protobuf.Gene
   static {
     java.lang.String[] descriptorData = {
       "\n\030IceCreatureLikeRsp.proto\"E\n\022IceCreatur" +
-      "eLikeRsp\022\017\n\007retcode\030\003 \001(\005\022\014\n\004guid\030\n \001(\006\022" +
-      "\020\n\010like_num\030\r \001(\rB\033\n\031emu.grasscutter.net" +
+      "eLikeRsp\022\017\n\007retcode\030\010 \001(\005\022\014\n\004guid\030\r \001(\006\022" +
+      "\020\n\010like_num\030\t \001(\rB\033\n\031emu.grasscutter.net" +
       ".protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

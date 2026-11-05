@@ -3,5 +3,5 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message BuyBattlePassLevelReq {
-  uint32 buy_level = 1;
+  uint32 buy_level = 13;
 }

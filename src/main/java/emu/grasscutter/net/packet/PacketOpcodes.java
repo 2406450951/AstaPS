@@ -13,7 +13,7 @@ public final class PacketOpcodes {
     public static final int ActivityTakeWatcherRewardReq = 25045; // 7.1: 23105
     public static final int AddCustomTeamReq = 0;
     public static final int AskAddFriendReq = 29876; // 7.1: 3092
-    public static final int BuyBattlePassLevelReq = 0; // 7.2 CmdId unknown (7.1: 20941)
+    public static final int BuyBattlePassLevelReq = 4815; // 7.1: 20941
     public static final int BuyResinReq = 0;
     public static final int CancelCoopTaskReq = 0; // 7.2 CmdId unknown (7.1: 27925)
     public static final int CheckUgcStateReq = 0; // 7.2 CmdId unknown (7.1: 3955)
@@ -2975,7 +2975,7 @@ public final class PacketOpcodes {
     public static final int CustomTeamListNotify = 0; // 7.1 CmdId unknown (7.0: 1)
     public static final int DeleteFriendNotify = 23556; // 7.1: 25517
     public static final int DeleteFriendRsp = 22275; // 7.1: 7913
-    public static final int DoSetPlayerBornDataNotify = 0; // 7.2 CmdId unknown (7.1: 22899)
+    public static final int DoSetPlayerBornDataNotify = 5008; // 7.1: 22899
     public static final int EndCameraSceneLookNotify = 0; // 7.2 CmdId unknown (7.1: 4771)
     public static final int ExecuteGadgetLuaRsp = 0; // 7.2 CmdId unknown (7.1: 1263)
     public static final int ForgeStartRsp = 1759; // 7.1: 24460
@@ -3007,7 +3007,7 @@ public final class PacketOpcodes {
     public static final int SceneEntityUpdateNotify = 0; // 7.2 CmdId unknown (7.1: 1936)
     public static final int SceneKickPlayerRsp = 7699; // 7.1: 24358
     public static final int SetFriendEnterHomeOptionRsp = 0; // 7.2 CmdId unknown (7.1: 28346)
-    public static final int SetPlayerBornDataRsp = 0; // 7.2 CmdId unknown (7.1: 4385)
+    public static final int SetPlayerBornDataRsp = 414; // 7.1: 4385
     public static final int SkipPlayerGameTimeRsp = 0; // 7.2 CmdId unknown (7.1: 338)
     public static final int TheaterLobbySceneJumpRsp = 0; // 7.1 CmdId unknown (7.0: 1)
     public static final int TowerMiddleLevelChangeTeamNotify = 0; // 7.1 CmdId unknown (7.0: 1)
@@ -3027,17 +3027,17 @@ public final class PacketOpcodes {
     public static final int WearTpsEquipReq = 0; // 7.2 CmdId unknown (7.1: 20756)
     public static final int WearTpsEquipRsp = 0; // 7.2 CmdId unknown (7.1: 25902)
     public static final int TpsEquipChangeNotify = 0; // 7.2 CmdId unknown (7.1: 21312)
-    public static final int TpsRegionalPlaySupplyInfoNotify = 0; // 7.2 CmdId unknown (7.1: 6579)
+    public static final int TpsRegionalPlaySupplyInfoNotify = 21289; // 7.1: 6579
     public static final int TpsAmmunitionChangeNotify = 0; // 7.2 CmdId unknown (7.1: 24371)
 
     // Snezhnaya Ice Creatures (Icemaking), from kitkat-multiverse/genshin-protocol 7.1.0.
-    public static final int IceCreatureBuildReq = 0; // 7.2 CmdId unknown (7.1: 5180)
+    public static final int IceCreatureBuildReq = 5949; // 7.1: 5180
     public static final int IceCreatureBuildRsp = 28174; // 7.1: 6254
     public static final int IceCreatureLikeReq = 0; // 7.2 CmdId unknown (7.1: 9517)
-    public static final int IceCreatureLikeRsp = 0; // 7.2 CmdId unknown (7.1: 25935)
-    public static final int IceCreatureGadgetRemoveReq = 0; // 7.2 CmdId unknown (7.1: 27474)
-    public static final int IceCreatureGadgetRemoveRsp = 0; // 7.2 CmdId unknown (7.1: 24183)
-    public static final int IceCreatureAllGadgetInfoNotify = 0; // 7.2 CmdId unknown (7.1: 6301)
+    public static final int IceCreatureLikeRsp = 5187; // 7.1: 25935
+    public static final int IceCreatureGadgetRemoveReq = 27140; // 7.1: 27474
+    public static final int IceCreatureGadgetRemoveRsp = 1003; // 7.1: 24183
+    public static final int IceCreatureAllGadgetInfoNotify = 24204; // 7.1: 6301
     public static final int IceCreatureGadgetDisappearNotify = 0; // 7.2 CmdId unknown (7.1: 22946)
     public static final int IceCreatureDataNotify = 0; // 7.2 CmdId unknown (7.1: 25312)
     public static final int IceCreatureSetTypeGadgetReq = 0; // 7.2 CmdId unknown (7.1: 29885)
@@ -3050,11 +3050,11 @@ public final class PacketOpcodes {
 
     // Opcodes only this repository's handlers use (negative: never matches a packet).
     public static final int AvatarTraceEffectChangeNotify = -1001; // no 7.1 CmdId known
-    public static final int DungeonQuickOpenReq = 0; // 7.2 CmdId unknown (7.1: 23939)
-    public static final int DungeonQuickOpenRsp = 0; // 7.2 CmdId unknown (7.1: 20791)
+    public static final int DungeonQuickOpenReq = 24777; // 7.1: 23939
+    public static final int DungeonQuickOpenRsp = 539; // 7.1: 20791
     public static final int EnterMapLayerReq = 7526; // 7.1: 5991
     public static final int EnterMapLayerReq_660 = -1002; // no 7.1 CmdId known
-    public static final int EnterMapLayerRsp = 0; // 7.2 CmdId unknown (7.1: 21115)
+    public static final int EnterMapLayerRsp = 8723; // 7.1: 21115
     public static final int EnterMapLayerRsp_660 = -1004; // no 7.1 CmdId known
     public static final int FNBOONCENJP_Req = -1005; // no 7.1 CmdId known
     public static final int GetBeyondPlayerSocialInfoReq = 6368; // 7.1: 4086

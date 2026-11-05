@@ -31,30 +31,30 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated uint32 entity_id_list = 1;</code>
+     * <code>repeated uint32 entity_id_list = 14;</code>
      * @return A list containing the entityIdList.
      */
     java.util.List<java.lang.Integer> getEntityIdListList();
     /**
-     * <code>repeated uint32 entity_id_list = 1;</code>
+     * <code>repeated uint32 entity_id_list = 14;</code>
      * @return The count of entityIdList.
      */
     int getEntityIdListCount();
     /**
-     * <code>repeated uint32 entity_id_list = 1;</code>
+     * <code>repeated uint32 entity_id_list = 14;</code>
      * @param index The index of the element to return.
      * @return The entityIdList at the given index.
      */
     int getEntityIdList(int index);
 
     /**
-     * <code>uint32 scene_id = 14;</code>
+     * <code>uint32 scene_id = 12;</code>
      * @return The sceneId.
      */
     int getSceneId();
 
     /**
-     * <code>bool unk_15 = 15;</code>
+     * <code>bool unk_15 = 20000;</code>
      * @return The unk15.
      */
     boolean getUnk15();
@@ -102,12 +102,12 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
               emu.grasscutter.net.proto.IceCreatureGadgetRemoveReqOuterClass.IceCreatureGadgetRemoveReq.class, emu.grasscutter.net.proto.IceCreatureGadgetRemoveReqOuterClass.IceCreatureGadgetRemoveReq.Builder.class);
     }
 
-    public static final int ENTITY_ID_LIST_FIELD_NUMBER = 1;
+    public static final int ENTITY_ID_LIST_FIELD_NUMBER = 14;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList entityIdList_ =
         emptyIntList();
     /**
-     * <code>repeated uint32 entity_id_list = 1;</code>
+     * <code>repeated uint32 entity_id_list = 14;</code>
      * @return A list containing the entityIdList.
      */
     @java.lang.Override
@@ -116,14 +116,14 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
       return entityIdList_;
     }
     /**
-     * <code>repeated uint32 entity_id_list = 1;</code>
+     * <code>repeated uint32 entity_id_list = 14;</code>
      * @return The count of entityIdList.
      */
     public int getEntityIdListCount() {
       return entityIdList_.size();
     }
     /**
-     * <code>repeated uint32 entity_id_list = 1;</code>
+     * <code>repeated uint32 entity_id_list = 14;</code>
      * @param index The index of the element to return.
      * @return The entityIdList at the given index.
      */
@@ -132,10 +132,10 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
     }
     private int entityIdListMemoizedSerializedSize = -1;
 
-    public static final int SCENE_ID_FIELD_NUMBER = 14;
+    public static final int SCENE_ID_FIELD_NUMBER = 12;
     private int sceneId_ = 0;
     /**
-     * <code>uint32 scene_id = 14;</code>
+     * <code>uint32 scene_id = 12;</code>
      * @return The sceneId.
      */
     @java.lang.Override
@@ -143,10 +143,10 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
       return sceneId_;
     }
 
-    public static final int UNK_15_FIELD_NUMBER = 15;
+    public static final int UNK_15_FIELD_NUMBER = 20000;
     private boolean unk15_ = false;
     /**
-     * <code>bool unk_15 = 15;</code>
+     * <code>bool unk_15 = 20000;</code>
      * @return The unk15.
      */
     @java.lang.Override
@@ -169,23 +169,27 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (sceneId_ != 0) {
+        output.writeUInt32(12, sceneId_);
+      }
       if (getEntityIdListList().size() > 0) {
-        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(114);
         output.writeUInt32NoTag(entityIdListMemoizedSerializedSize);
       }
       for (int i = 0; i < entityIdList_.size(); i++) {
         output.writeUInt32NoTag(entityIdList_.getInt(i));
       }
-      if (sceneId_ != 0) {
-        output.writeUInt32(14, sceneId_);
-      }
       if (unk15_ != false) {
-        output.writeBool(15, unk15_);
+        output.writeBool(20000, unk15_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (sceneId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(12, sceneId_);
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < entityIdList_.size(); i++) {
@@ -200,13 +204,9 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         }
         entityIdListMemoizedSerializedSize = dataSize;
       }
-      if (sceneId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(14, sceneId_);
-      }
       if (unk15_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(15, unk15_);
+          .computeBoolSize(20000, unk15_);
       }
       return size;
     }
@@ -490,13 +490,18 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
               case 0:
                 done = true;
                 break;
-              case 8: {
+              case 96: {
+                sceneId_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 96
+              case 112: {
                 int v = input.readUInt32();
                 ensureEntityIdListIsMutable();
                 entityIdList_.addInt(v);
                 break;
-              } // case 8
-              case 10: {
+              } // case 112
+              case 114: {
                 int length = input.readRawVarint32();
                 int limit = input.pushLimit(length);
                 ensureEntityIdListIsMutable();
@@ -505,17 +510,12 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
                 }
                 input.popLimit(limit);
                 break;
-              } // case 10
-              case 112: {
-                sceneId_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 112
-              case 120: {
+              } // case 114
+              case 160000: {
                 unk15_ = input.readBool();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 120
+              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -541,7 +541,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         bitField0_ |= 0x00000001;
       }
       /**
-       * <code>repeated uint32 entity_id_list = 1;</code>
+       * <code>repeated uint32 entity_id_list = 14;</code>
        * @return A list containing the entityIdList.
        */
       public java.util.List<java.lang.Integer>
@@ -550,14 +550,14 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return entityIdList_;
       }
       /**
-       * <code>repeated uint32 entity_id_list = 1;</code>
+       * <code>repeated uint32 entity_id_list = 14;</code>
        * @return The count of entityIdList.
        */
       public int getEntityIdListCount() {
         return entityIdList_.size();
       }
       /**
-       * <code>repeated uint32 entity_id_list = 1;</code>
+       * <code>repeated uint32 entity_id_list = 14;</code>
        * @param index The index of the element to return.
        * @return The entityIdList at the given index.
        */
@@ -565,7 +565,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return entityIdList_.getInt(index);
       }
       /**
-       * <code>repeated uint32 entity_id_list = 1;</code>
+       * <code>repeated uint32 entity_id_list = 14;</code>
        * @param index The index to set the value at.
        * @param value The entityIdList to set.
        * @return This builder for chaining.
@@ -580,7 +580,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated uint32 entity_id_list = 1;</code>
+       * <code>repeated uint32 entity_id_list = 14;</code>
        * @param value The entityIdList to add.
        * @return This builder for chaining.
        */
@@ -593,7 +593,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated uint32 entity_id_list = 1;</code>
+       * <code>repeated uint32 entity_id_list = 14;</code>
        * @param values The entityIdList to add.
        * @return This builder for chaining.
        */
@@ -607,7 +607,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>repeated uint32 entity_id_list = 1;</code>
+       * <code>repeated uint32 entity_id_list = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearEntityIdList() {
@@ -619,7 +619,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
 
       private int sceneId_ ;
       /**
-       * <code>uint32 scene_id = 14;</code>
+       * <code>uint32 scene_id = 12;</code>
        * @return The sceneId.
        */
       @java.lang.Override
@@ -627,7 +627,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return sceneId_;
       }
       /**
-       * <code>uint32 scene_id = 14;</code>
+       * <code>uint32 scene_id = 12;</code>
        * @param value The sceneId to set.
        * @return This builder for chaining.
        */
@@ -639,7 +639,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>uint32 scene_id = 14;</code>
+       * <code>uint32 scene_id = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearSceneId() {
@@ -651,7 +651,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
 
       private boolean unk15_ ;
       /**
-       * <code>bool unk_15 = 15;</code>
+       * <code>bool unk_15 = 20000;</code>
        * @return The unk15.
        */
       @java.lang.Override
@@ -659,7 +659,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return unk15_;
       }
       /**
-       * <code>bool unk_15 = 15;</code>
+       * <code>bool unk_15 = 20000;</code>
        * @param value The unk15 to set.
        * @return This builder for chaining.
        */
@@ -671,7 +671,7 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>bool unk_15 = 15;</code>
+       * <code>bool unk_15 = 20000;</code>
        * @return This builder for chaining.
        */
       public Builder clearUnk15() {
@@ -746,10 +746,11 @@ public final class IceCreatureGadgetRemoveReqOuterClass extends com.google.proto
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n IceCreatureGadgetRemoveReq.proto\"V\n\032Ic" +
+      "\n IceCreatureGadgetRemoveReq.proto\"X\n\032Ic" +
       "eCreatureGadgetRemoveReq\022\026\n\016entity_id_li" +
-      "st\030\001 \003(\r\022\020\n\010scene_id\030\016 \001(\r\022\016\n\006unk_15\030\017 \001" +
-      "(\010B\033\n\031emu.grasscutter.net.protob\006proto3"
+      "st\030\016 \003(\r\022\020\n\010scene_id\030\014 \001(\r\022\020\n\006unk_15\030\240\234\001" +
+      " \001(\010B\033\n\031emu.grasscutter.net.protob\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

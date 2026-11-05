@@ -3,6 +3,6 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message GamblingChessCardResult {
-  uint32 count = 6;
-  uint32 FCONJGIFCAO = 1;
+  uint32 count = 1;
+  uint32 FCONJGIFCAO = 20000;
 }

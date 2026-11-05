@@ -1,6 +1,7 @@
 package emu.grasscutter.server.packet.recv;
 
 import com.google.protobuf.CodedInputStream;
+import emu.grasscutter.net.proto.TakePlayerLevelRewardReqOuterClass.TakePlayerLevelRewardReq;
 import emu.grasscutter.data.GameData;
 import emu.grasscutter.data.common.ItemParamData;
 import emu.grasscutter.game.player.Player;
@@ -59,14 +60,14 @@ public class HandlerTakePlayerLevelRewardReq extends PacketHandler {
         }
     }
 
-    /** Validate the complete 7.1 field-15 request before entering the reward boundary. */
+    /** Validate the complete request (level on field 9 in 7.2) before entering the reward boundary. */
     private static int readLevel(byte[] payload) throws IOException {
         if (payload == null || payload.length == 0) return 0;
         CodedInputStream input = CodedInputStream.newInstance(payload);
         int level = 0;
         while (!input.isAtEnd()) {
             int tag = input.readTag();
-            if ((tag >>> 3) == 15) {
+            if ((tag >>> 3) == TakePlayerLevelRewardReq.LEVEL_FIELD_NUMBER) {
                 if ((tag & 7) != 0) throw new IOException("Invalid rank wire type");
                 level = input.readUInt32();
             } else if (!input.skipField(tag)) {
