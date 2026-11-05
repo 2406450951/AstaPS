@@ -70,7 +70,7 @@ def load_reference(path):
 def proto_source_fingerprint(repo):
     rows = []
     for folder in ("compat", "compat-imports"):
-        root = repo / "protocol/7.1" / folder
+        root = repo / "protocol/7.2" / folder
         if not root.is_dir():
             raise ValueError(f"Missing protocol source directory: {root}")
         for path in sorted(root.rglob("*.proto")):
@@ -95,7 +95,7 @@ def load_server_descriptor(repo, path):
     if metadata.get("format") != "astaps.server-protocol-descriptor.v1":
         raise ValueError("Unsupported server descriptor manifest")
     expected = {"descriptor_sha256": digest(data),
-                "base_sha256": digest((repo / "protocol/7.1/protocol.desc").read_bytes()),
+                "base_sha256": digest((repo / "protocol/7.2/protocol.desc").read_bytes()),
                 "proto_sources_sha256": proto_source_fingerprint(repo),
                 "generator_sources_sha256": generator_source_fingerprint(repo)}
     if any(metadata.get(k) != v for k, v in expected.items()):
@@ -428,7 +428,7 @@ def main():
     repo = args.repo.resolve()
     try:
         reference = load_reference(args.reference)
-        messages, enums, provenance = load_server_descriptor(repo, args.descriptor or repo / "build/generated/protocol/7.1/server.desc")
+        messages, enums, provenance = load_server_descriptor(repo, args.descriptor or repo / "build/generated/protocol/7.2/server.desc")
         opcodes, unresolved_constants = read_opcodes(repo / "src/main/java/emu/grasscutter/net/packet/PacketOpcodes.java")
         scope = re.compile(args.scope)
         usage, unresolved_usage = scan_packets(repo, opcodes, scope)

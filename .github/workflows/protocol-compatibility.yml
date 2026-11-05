@@ -49,6 +49,6 @@ jobs:
           from pathlib import Path
           sys.path.insert(0, "tools/protocol")
           from check_compatibility import load_server_descriptor
-          load_server_descriptor(Path("."), Path("build/generated/protocol/7.1/server.desc"))
+          load_server_descriptor(Path("."), Path("build/generated/protocol/7.2/server.desc"))
           print("Generated server descriptor and implementation hashes match.")
           PY

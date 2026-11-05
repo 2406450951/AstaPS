@@ -68,16 +68,16 @@ jobs:
       - name: Verify generated protocol set
         shell: bash
         run: |
-          count="$(find build/generated/sources/protocol/7.1/java/main -name '*.java' -type f | wc -l | tr -d '[:space:]')"
-          descriptor_count="$(grep -cve '^[[:space:]]*$' protocol/7.1/files.txt)"
-          supplemental_count="$(find protocol/7.1/compat -name '*.proto' -type f | wc -l | tr -d '[:space:]')"
+          count="$(find build/generated/sources/protocol/7.2/java/main -name '*.java' -type f | wc -l | tr -d '[:space:]')"
+          descriptor_count="$(grep -cve '^[[:space:]]*$' protocol/7.2/files.txt)"
+          supplemental_count="$(find protocol/7.2/compat -name '*.proto' -type f | wc -l | tr -d '[:space:]')"
           expected="$({
-            grep -v '^[[:space:]]*$' protocol/7.1/files.txt
-            find protocol/7.1/compat -name '*.proto' -type f | sed 's#^protocol/7.1/compat/##'
+            grep -v '^[[:space:]]*$' protocol/7.2/files.txt
+            find protocol/7.2/compat -name '*.proto' -type f | sed 's#^protocol/7.2/compat/##'
           } | sort -u | wc -l | tr -d '[:space:]')"
           test "$count" -eq "$expected"
           echo "Generated $count protocol Java files from $descriptor_count base descriptors and $supplemental_count recovered sources ($expected unique proto files)."
-          sha256sum protocol/7.1/protocol.desc
+          sha256sum protocol/7.2/protocol.desc
 
       - name: Upload test report
         if: always()

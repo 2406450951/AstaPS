@@ -25,7 +25,7 @@ class ValidatedReviewTest(unittest.TestCase):
                 metadata = json.loads(manifest.read_text())
                 metadata['generator_sources_sha256'] = c.generator_source_fingerprint(root)
                 manifest.write_text(json.dumps(metadata))
-                before = {p: p.read_bytes() for p in [desc, root / 'protocol/7.1/protocol.desc']}
+                before = {p: p.read_bytes() for p in [desc, root / 'protocol/7.2/protocol.desc']}
                 if change == 'edit':
                     source.write_text('class SyntheticGenerator { int revision; }')
                 elif change == 'add':

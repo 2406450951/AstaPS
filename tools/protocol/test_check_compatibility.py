@@ -48,7 +48,7 @@ def compare(s, n, strong=True, direction='server_to_client'):
 
 def fixture(root, mismatch=False, unrelated=False):
     """Build an entirely synthetic source tree and hash-bound protobuf descriptor."""
-    proto = root / 'protocol/7.1'
+    proto = root / 'protocol/7.2'
     (proto / 'compat').mkdir(parents=True)
     (proto / 'compat-imports').mkdir()
     (proto / 'protocol.desc').write_bytes(b'synthetic base descriptor identity')
@@ -65,7 +65,7 @@ def fixture(root, mismatch=False, unrelated=False):
         name='Unrelated' if unrelated else 'ExampleRsp')
     message.field.add(name='value', number=6 if mismatch else 5,
                       type=pb.FieldDescriptorProto.TYPE_UINT32, label=pb.FieldDescriptorProto.LABEL_OPTIONAL)
-    path = root / 'build/generated/protocol/7.1/server.desc'
+    path = root / 'build/generated/protocol/7.2/server.desc'
     path.parent.mkdir(parents=True)
     path.write_bytes(desc.SerializeToString())
     metadata = {'format': 'astaps.server-protocol-descriptor.v1', 'descriptor_sha256': c.digest(path.read_bytes()),
@@ -254,7 +254,7 @@ class SourceAndCliTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); _, path = fixture(root)
             c.load_server_descriptor(root, path)
-            (root / 'protocol/7.1/compat-imports/Example.proto').write_text('synthetic change')
+            (root / 'protocol/7.2/compat-imports/Example.proto').write_text('synthetic change')
             with self.assertRaisesRegex(ValueError, 'stale'): c.load_server_descriptor(root, path)
 
     def test_cli_reference_is_required(self):
