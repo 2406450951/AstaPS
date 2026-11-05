@@ -23,7 +23,7 @@ permissions:
 
 jobs:
   validate:
-    name: Generate, build, and test (${{ matrix.os }})
+    name: Generate and build (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     strategy:
@@ -51,14 +51,12 @@ jobs:
         if: runner.os != 'Windows'
         run: chmod +x ./gradlew
 
-      # Compile the production jar, run the focused protocol regression test, and separately compile
-      # only regenerated protocol sources with -Xlint:all -Werror. Repository-wide validation remains
-      # in the normal Build workflow.
-      - name: Generate, lint, build, and test
+      # Compile the production jar and separately compile only regenerated protocol sources with
+      # -Xlint:all -Werror.
+      - name: Generate, lint, and build
         shell: bash
         run: >-
-          ./gradlew lintGeneratedProtocolJava jar test
-          --tests emu.grasscutter.net.ProtocolGenerationTest
+          ./gradlew lintGeneratedProtocolJava jar
           --build-cache
           -PskipHandbook=1
           -PjarFilename=grasscutter
@@ -78,15 +76,6 @@ jobs:
           test "$count" -eq "$expected"
           echo "Generated $count protocol Java files from $descriptor_count base descriptors and $supplemental_count recovered sources ($expected unique proto files)."
           sha256sum protocol/7.2/protocol.desc
-
-      - name: Upload test report
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: protocol-test-results-${{ matrix.os }}
-          path: build/reports/tests/test
-          if-no-files-found: ignore
-          retention-days: 7
 
       - name: Upload jar
         if: success()
