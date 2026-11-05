@@ -202,12 +202,21 @@ def main(server72, server71, kitkat, r72, opcodes71, java_refs, out_dir):
     new_types = {}  # NT name -> emitted name
     queue = []
 
+    # File and class names must also differ ignoring case, or they overwrite each other on
+    # Windows and macOS checkouts.
+    taken = {n.lower() for n in type_file} | {f.lower()[:-6] for f in files}
+
     def emitted_name(nt_name):
         if nt_name in new_types:
             return new_types[nt_name]
         name = nt_name
-        if name in type_file:  # an unrelated server type of the same name
+        if name.lower() in taken:  # an unrelated type whose name differs at most in case
             name = name + '_72'
+        n = 2
+        while name.lower() in taken:
+            name = f'{nt_name}_72_{n}'
+            n += 1
+        taken.add(name.lower())
         new_types[nt_name] = name
         queue.append(nt_name)
         return name

@@ -1,12 +1,12 @@
 syntax = "proto3";
 
 option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AttachShootHelperBydEffectOuterClass";
+option java_outer_classname = "_AttachShootHelperBydEffect_72OuterClass";
 import "FAGMGLAJFNL.proto";
 import "HHEDHCFPEKM.proto";
 import "JOJKJCPIMCA.proto";
 
-message _AttachShootHelperBydEffect {
+message _AttachShootHelperBydEffect_72 {
   uint32 FGGJFIKNDLB = 1;
   HHEDHCFPEKM HNEMCDKOANC = 2;
   HHEDHCFPEKM IBKJDKIDDCA = 3;

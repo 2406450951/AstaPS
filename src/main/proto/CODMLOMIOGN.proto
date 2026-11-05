@@ -11,7 +11,7 @@ import "HMEJEGBHBDG.proto";
 import "KFIPPMEHBPP.proto";
 import "OGCBNKGPOJK.proto";
 import "_AttachPreInputComboJumpEffect.proto";
-import "_AttachShootHelperBydEffect.proto";
+import "_AttachShootHelperBydEffect_72.proto";
 import "_BydCheckGround.proto";
 import "_EnterFocus.proto";
 import "_MonsterSteerByAiTarget.proto";
@@ -26,7 +26,7 @@ message CODMLOMIOGN {
     GPOJILFFDHI AvatarSteerByCamera = 13;
     _EnterFocus EnterFocus = 14;
     BKBOMIKGHNM AimUi = 15;
-    _AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;
+    _AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;
     _AttachPreInputComboJumpEffect AttachPreInputComboJumpEffect = 17;
     _MonsterSteerByAiTarget MonsterSteerByAiTarget = 18;
     _MonsterSteerByCvPos MonsterSteerByCvPos = 19;

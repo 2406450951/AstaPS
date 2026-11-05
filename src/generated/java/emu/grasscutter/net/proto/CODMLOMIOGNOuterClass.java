@@ -117,19 +117,19 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
     emu.grasscutter.net.proto.BKBOMIKGHNMOuterClass.BKBOMIKGHNMOrBuilder getAimUiOrBuilder();
 
     /**
-     * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+     * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
      * @return Whether the attachShootHelperBydEffect field is set.
      */
     boolean hasAttachShootHelperBydEffect();
     /**
-     * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+     * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
      * @return The attachShootHelperBydEffect.
      */
-    emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect getAttachShootHelperBydEffect();
+    emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72 getAttachShootHelperBydEffect();
     /**
-     * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+     * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
      */
-    emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffectOrBuilder getAttachShootHelperBydEffectOrBuilder();
+    emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72OrBuilder getAttachShootHelperBydEffectOrBuilder();
 
     /**
      * <code>._AttachPreInputComboJumpEffect AttachPreInputComboJumpEffect = 17;</code>
@@ -537,7 +537,7 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
 
     public static final int ATTACHSHOOTHELPERBYDEFFECT_FIELD_NUMBER = 16;
     /**
-     * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+     * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
      * @return Whether the attachShootHelperBydEffect field is set.
      */
     @java.lang.Override
@@ -545,25 +545,25 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
       return detailCase_ == 16;
     }
     /**
-     * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+     * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
      * @return The attachShootHelperBydEffect.
      */
     @java.lang.Override
-    public emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect getAttachShootHelperBydEffect() {
+    public emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72 getAttachShootHelperBydEffect() {
       if (detailCase_ == 16) {
-         return (emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect) detail_;
+         return (emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72) detail_;
       }
-      return emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.getDefaultInstance();
+      return emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.getDefaultInstance();
     }
     /**
-     * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+     * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
      */
     @java.lang.Override
-    public emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffectOrBuilder getAttachShootHelperBydEffectOrBuilder() {
+    public emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72OrBuilder getAttachShootHelperBydEffectOrBuilder() {
       if (detailCase_ == 16) {
-         return (emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect) detail_;
+         return (emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72) detail_;
       }
-      return emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.getDefaultInstance();
+      return emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.getDefaultInstance();
     }
 
     public static final int ATTACHPREINPUTCOMBOJUMPEFFECT_FIELD_NUMBER = 17;
@@ -847,7 +847,7 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
         output.writeMessage(15, (emu.grasscutter.net.proto.BKBOMIKGHNMOuterClass.BKBOMIKGHNM) detail_);
       }
       if (detailCase_ == 16) {
-        output.writeMessage(16, (emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect) detail_);
+        output.writeMessage(16, (emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72) detail_);
       }
       if (detailCase_ == 17) {
         output.writeMessage(17, (emu.grasscutter.net.proto._AttachPreInputComboJumpEffectOuterClass._AttachPreInputComboJumpEffect) detail_);
@@ -903,7 +903,7 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
       }
       if (detailCase_ == 16) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(16, (emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect) detail_);
+          .computeMessageSize(16, (emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72) detail_);
       }
       if (detailCase_ == 17) {
         size += com.google.protobuf.CodedOutputStream
@@ -2360,9 +2360,9 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
       }
 
       private com.google.protobuf.SingleFieldBuilder<
-          emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect, emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.Builder, emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffectOrBuilder> attachShootHelperBydEffectBuilder_;
+          emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72, emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.Builder, emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72OrBuilder> attachShootHelperBydEffectBuilder_;
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        * @return Whether the attachShootHelperBydEffect field is set.
        */
       @java.lang.Override
@@ -2370,27 +2370,27 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
         return detailCase_ == 16;
       }
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        * @return The attachShootHelperBydEffect.
        */
       @java.lang.Override
-      public emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect getAttachShootHelperBydEffect() {
+      public emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72 getAttachShootHelperBydEffect() {
         if (attachShootHelperBydEffectBuilder_ == null) {
           if (detailCase_ == 16) {
-            return (emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect) detail_;
+            return (emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72) detail_;
           }
-          return emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.getDefaultInstance();
+          return emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.getDefaultInstance();
         } else {
           if (detailCase_ == 16) {
             return attachShootHelperBydEffectBuilder_.getMessage();
           }
-          return emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.getDefaultInstance();
+          return emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.getDefaultInstance();
         }
       }
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        */
-      public Builder setAttachShootHelperBydEffect(emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect value) {
+      public Builder setAttachShootHelperBydEffect(emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72 value) {
         if (attachShootHelperBydEffectBuilder_ == null) {
           java.util.Objects.requireNonNull(value);
           detail_ = value;
@@ -2402,10 +2402,10 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        */
       public Builder setAttachShootHelperBydEffect(
-          emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.Builder builderForValue) {
+          emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.Builder builderForValue) {
         if (attachShootHelperBydEffectBuilder_ == null) {
           detail_ = builderForValue.build();
           onChanged();
@@ -2416,13 +2416,13 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        */
-      public Builder mergeAttachShootHelperBydEffect(emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect value) {
+      public Builder mergeAttachShootHelperBydEffect(emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72 value) {
         if (attachShootHelperBydEffectBuilder_ == null) {
           if (detailCase_ == 16 &&
-              detail_ != emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.getDefaultInstance()) {
-            detail_ = emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.newBuilder((emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect) detail_)
+              detail_ != emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.getDefaultInstance()) {
+            detail_ = emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.newBuilder((emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72) detail_)
                 .mergeFrom(value).buildPartial();
           } else {
             detail_ = value;
@@ -2439,7 +2439,7 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        */
       public Builder clearAttachShootHelperBydEffect() {
         if (attachShootHelperBydEffectBuilder_ == null) {
@@ -2458,38 +2458,38 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        */
-      public emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.Builder getAttachShootHelperBydEffectBuilder() {
+      public emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.Builder getAttachShootHelperBydEffectBuilder() {
         return internalGetAttachShootHelperBydEffectFieldBuilder().getBuilder();
       }
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        */
       @java.lang.Override
-      public emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffectOrBuilder getAttachShootHelperBydEffectOrBuilder() {
+      public emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72OrBuilder getAttachShootHelperBydEffectOrBuilder() {
         if ((detailCase_ == 16) && (attachShootHelperBydEffectBuilder_ != null)) {
           return attachShootHelperBydEffectBuilder_.getMessageOrBuilder();
         } else {
           if (detailCase_ == 16) {
-            return (emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect) detail_;
+            return (emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72) detail_;
           }
-          return emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.getDefaultInstance();
+          return emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.getDefaultInstance();
         }
       }
       /**
-       * <code>._AttachShootHelperBydEffect AttachShootHelperBydEffect = 16;</code>
+       * <code>._AttachShootHelperBydEffect_72 AttachShootHelperBydEffect = 16;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect, emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.Builder, emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffectOrBuilder> 
+          emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72, emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.Builder, emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72OrBuilder> 
           internalGetAttachShootHelperBydEffectFieldBuilder() {
         if (attachShootHelperBydEffectBuilder_ == null) {
           if (!(detailCase_ == 16)) {
-            detail_ = emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.getDefaultInstance();
+            detail_ = emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.getDefaultInstance();
           }
           attachShootHelperBydEffectBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect, emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect.Builder, emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffectOrBuilder>(
-                  (emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass._AttachShootHelperBydEffect) detail_,
+              emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72, emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72.Builder, emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72OrBuilder>(
+                  (emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass._AttachShootHelperBydEffect_72) detail_,
                   getParentForChildren(),
                   isClean());
           detail_ = null;
@@ -3689,30 +3689,31 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
       "FIMHEFIGA.proto\032\021GPOJILFFDHI.proto\032\021HMEJ" +
       "EGBHBDG.proto\032\021KFIPPMEHBPP.proto\032\021OGCBNK" +
       "GPOJK.proto\032$_AttachPreInputComboJumpEff" +
-      "ect.proto\032!_AttachShootHelperBydEffect.p" +
-      "roto\032\025_BydCheckGround.proto\032\021_EnterFocus" +
-      ".proto\032\035_MonsterSteerByAiTarget.proto\032\032_" +
-      "MonsterSteerByCvPos.proto\032\030_SpecialCanDo" +
-      "Skill.proto\"\324\005\n\013CODMLOMIOGN\022!\n\013PKMPDBMLM" +
-      "PA\030\001 \001(\0162\014.FKFIMHEFIGA\022$\n\014AttachEffect\030\013" +
-      " \001(\0132\014.OGCBNKGPOJKH\000\022&\n\016AvatarLevitate\030\014" +
-      " \001(\0132\014.KFIPPMEHBPPH\000\022+\n\023AvatarSteerByCam" +
-      "era\030\r \001(\0132\014.GPOJILFFDHIH\000\022\"\n\nEnterFocus\030" +
-      "\016 \001(\0132\014._EnterFocusH\000\022\035\n\005AimUi\030\017 \001(\0132\014.B" +
-      "KBOMIKGHNMH\000\022B\n\032AttachShootHelperBydEffe" +
-      "ct\030\020 \001(\0132\034._AttachShootHelperBydEffectH\000" +
-      "\022H\n\035AttachPreInputComboJumpEffect\030\021 \001(\0132" +
-      "\037._AttachPreInputComboJumpEffectH\000\022:\n\026Mo" +
-      "nsterSteerByAiTarget\030\022 \001(\0132\030._MonsterSte" +
-      "erByAiTargetH\000\0224\n\023MonsterSteerByCvPos\030\023 " +
-      "\001(\0132\025._MonsterSteerByCvPosH\000\0220\n\021SpecialC" +
-      "anDoSkill\030\024 \001(\0132\023._SpecialCanDoSkillH\000\022," +
-      "\n\024ModifyCastSpeedRatio\030\025 \001(\0132\014.CBIEMFJPE" +
-      "KJH\000\022*\n\016BydCheckGround\030\026 \001(\0132\020._BydCheck" +
-      "GroundH\000\022(\n\020AbilityDragForce\030\027 \001(\0132\014.ADD" +
-      "PGGGJNHBH\000\022$\n\014PreTargeting\030\030 \001(\0132\014.HMEJE" +
-      "GBHBDGH\000B\010\n\006detailB2\n\031emu.grasscutter.ne" +
-      "t.protoB\025CODMLOMIOGNOuterClassb\006proto3"
+      "ect.proto\032$_AttachShootHelperBydEffect_7" +
+      "2.proto\032\025_BydCheckGround.proto\032\021_EnterFo" +
+      "cus.proto\032\035_MonsterSteerByAiTarget.proto" +
+      "\032\032_MonsterSteerByCvPos.proto\032\030_SpecialCa" +
+      "nDoSkill.proto\"\327\005\n\013CODMLOMIOGN\022!\n\013PKMPDB" +
+      "MLMPA\030\001 \001(\0162\014.FKFIMHEFIGA\022$\n\014AttachEffec" +
+      "t\030\013 \001(\0132\014.OGCBNKGPOJKH\000\022&\n\016AvatarLevitat" +
+      "e\030\014 \001(\0132\014.KFIPPMEHBPPH\000\022+\n\023AvatarSteerBy" +
+      "Camera\030\r \001(\0132\014.GPOJILFFDHIH\000\022\"\n\nEnterFoc" +
+      "us\030\016 \001(\0132\014._EnterFocusH\000\022\035\n\005AimUi\030\017 \001(\0132" +
+      "\014.BKBOMIKGHNMH\000\022E\n\032AttachShootHelperBydE" +
+      "ffect\030\020 \001(\0132\037._AttachShootHelperBydEffec" +
+      "t_72H\000\022H\n\035AttachPreInputComboJumpEffect\030" +
+      "\021 \001(\0132\037._AttachPreInputComboJumpEffectH\000" +
+      "\022:\n\026MonsterSteerByAiTarget\030\022 \001(\0132\030._Mons" +
+      "terSteerByAiTargetH\000\0224\n\023MonsterSteerByCv" +
+      "Pos\030\023 \001(\0132\025._MonsterSteerByCvPosH\000\0220\n\021Sp" +
+      "ecialCanDoSkill\030\024 \001(\0132\023._SpecialCanDoSki" +
+      "llH\000\022,\n\024ModifyCastSpeedRatio\030\025 \001(\0132\014.CBI" +
+      "EMFJPEKJH\000\022*\n\016BydCheckGround\030\026 \001(\0132\020._By" +
+      "dCheckGroundH\000\022(\n\020AbilityDragForce\030\027 \001(\013" +
+      "2\014.ADDPGGGJNHBH\000\022$\n\014PreTargeting\030\030 \001(\0132\014" +
+      ".HMEJEGBHBDGH\000B\010\n\006detailB2\n\031emu.grasscut" +
+      "ter.net.protoB\025CODMLOMIOGNOuterClassb\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3726,7 +3727,7 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
           emu.grasscutter.net.proto.KFIPPMEHBPPOuterClass.getDescriptor(),
           emu.grasscutter.net.proto.OGCBNKGPOJKOuterClass.getDescriptor(),
           emu.grasscutter.net.proto._AttachPreInputComboJumpEffectOuterClass.getDescriptor(),
-          emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass.getDescriptor(),
+          emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass.getDescriptor(),
           emu.grasscutter.net.proto._BydCheckGroundOuterClass.getDescriptor(),
           emu.grasscutter.net.proto._EnterFocusOuterClass.getDescriptor(),
           emu.grasscutter.net.proto._MonsterSteerByAiTargetOuterClass.getDescriptor(),
@@ -3749,7 +3750,7 @@ public final class CODMLOMIOGNOuterClass extends com.google.protobuf.GeneratedFi
     emu.grasscutter.net.proto.KFIPPMEHBPPOuterClass.getDescriptor();
     emu.grasscutter.net.proto.OGCBNKGPOJKOuterClass.getDescriptor();
     emu.grasscutter.net.proto._AttachPreInputComboJumpEffectOuterClass.getDescriptor();
-    emu.grasscutter.net.proto._AttachShootHelperBydEffectOuterClass.getDescriptor();
+    emu.grasscutter.net.proto._AttachShootHelperBydEffect_72OuterClass.getDescriptor();
     emu.grasscutter.net.proto._BydCheckGroundOuterClass.getDescriptor();
     emu.grasscutter.net.proto._EnterFocusOuterClass.getDescriptor();
     emu.grasscutter.net.proto._MonsterSteerByAiTargetOuterClass.getDescriptor();
