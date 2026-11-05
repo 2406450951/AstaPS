@@ -19,7 +19,7 @@ class BuildConfigTest {
             assertNotNull(revision);
             assertFalse(revision.isBlank());
             assertEquals(revision, BuildConfig.GIT_HASH);
-            assertEquals("7.1.0", BuildConfig.VERSION);
+            assertEquals("7.2.0", BuildConfig.VERSION);
         }
     }
 }

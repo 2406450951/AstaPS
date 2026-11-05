@@ -33,6 +33,7 @@ public final class ProtocolJavaGenerator {
 
         var protoc = Path.of(args[0]).toAbsolutePath().normalize();
         var descriptorSet = Path.of(args[1]).toAbsolutePath().normalize();
+        applyLegacyPatches = descriptorSet.getParent().getFileName().toString().equals("7.1");
         var fileList = Path.of(args[2]).toAbsolutePath().normalize();
         var supplementalProtoDir = Path.of(args[3]).toAbsolutePath().normalize();
         var supplementalImportDir = Path.of(args[4]).toAbsolutePath().normalize();
@@ -230,7 +231,15 @@ public final class ProtocolJavaGenerator {
      * slots already exist under obfuscated names. Validate each legacy shape before replacing only
      * the field descriptor, preserving every other recovered field unchanged.
      */
+    /**
+     * The 7.1 patches below rename obfuscated slots in the original 7.1 dump. The 7.2 descriptor
+     * set was remapped from the already patched 7.1 server descriptors, so it carries those names
+     * and must not be patched again.
+     */
+    private static boolean applyLegacyPatches = true;
+
     private static FileDescriptorProto applyRecoveredProtocolPatches(FileDescriptorProto file) {
+        if (!applyLegacyPatches) return file;
         return switch (file.getName()) {
             case "BlossomBriefInfoNotify.proto" -> patchBlossomBriefListField(file);
             case "AvatarInfo.proto" ->
