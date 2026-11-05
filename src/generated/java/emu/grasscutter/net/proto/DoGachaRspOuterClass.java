@@ -91,7 +91,7 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
     int getCostItemNum();
 
     /**
-     * <code>uint32 ten_cost_item_id = 20000;</code>
+     * <code>uint32 ten_cost_item_id = 11;</code>
      * @return The tenCostItemId.
      */
     int getTenCostItemId();
@@ -139,7 +139,7 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
     int getNewGachaRandom();
 
     /**
-     * <code>uint32 cur_schedule_daily_gacha_times = 20001;</code>
+     * <code>uint32 cur_schedule_daily_gacha_times = 489;</code>
      * @return The curScheduleDailyGachaTimes.
      */
     int getCurScheduleDailyGachaTimes();
@@ -169,6 +169,11 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
     int getDailyGachaTimes();
   }
   /**
+   * <pre>
+   * 7.2: ten_cost_item_id is NT's ELHMLLLJKGC (11) and cur_schedule_daily_gacha_times its
+   * NBFNKAHGNGJ (489), the same obfuscated names NT gives those fields in GachaInfo.
+   * </pre>
+   *
    * Protobuf type {@code DoGachaRsp}
    */
   public static final class DoGachaRsp extends
@@ -321,10 +326,10 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
       return costItemNum_;
     }
 
-    public static final int TEN_COST_ITEM_ID_FIELD_NUMBER = 20000;
+    public static final int TEN_COST_ITEM_ID_FIELD_NUMBER = 11;
     private int tenCostItemId_ = 0;
     /**
-     * <code>uint32 ten_cost_item_id = 20000;</code>
+     * <code>uint32 ten_cost_item_id = 11;</code>
      * @return The tenCostItemId.
      */
     @java.lang.Override
@@ -406,10 +411,10 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
       return newGachaRandom_;
     }
 
-    public static final int CUR_SCHEDULE_DAILY_GACHA_TIMES_FIELD_NUMBER = 20001;
+    public static final int CUR_SCHEDULE_DAILY_GACHA_TIMES_FIELD_NUMBER = 489;
     private int curScheduleDailyGachaTimes_ = 0;
     /**
-     * <code>uint32 cur_schedule_daily_gacha_times = 20001;</code>
+     * <code>uint32 cur_schedule_daily_gacha_times = 489;</code>
      * @return The curScheduleDailyGachaTimes.
      */
     @java.lang.Override
@@ -505,6 +510,9 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
       if (retcode_ != 0) {
         output.writeInt32(10, retcode_);
       }
+      if (tenCostItemId_ != 0) {
+        output.writeUInt32(11, tenCostItemId_);
+      }
       if (gachaScheduleId_ != 0) {
         output.writeUInt32(12, gachaScheduleId_);
       }
@@ -520,17 +528,14 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
       if (dailyGachaTimes_ != 0) {
         output.writeUInt32(156, dailyGachaTimes_);
       }
+      if (curScheduleDailyGachaTimes_ != 0) {
+        output.writeUInt32(489, curScheduleDailyGachaTimes_);
+      }
       if (isUnderMinorsRestrict_ != false) {
         output.writeBool(1317, isUnderMinorsRestrict_);
       }
       if (isUnderGeneralRestrict_ != false) {
         output.writeBool(1715, isUnderGeneralRestrict_);
-      }
-      if (tenCostItemId_ != 0) {
-        output.writeUInt32(20000, tenCostItemId_);
-      }
-      if (curScheduleDailyGachaTimes_ != 0) {
-        output.writeUInt32(20001, curScheduleDailyGachaTimes_);
       }
       if (isEpitomized_ != false) {
         output.writeBool(20002, isEpitomized_);
@@ -579,6 +584,10 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(10, retcode_);
       }
+      if (tenCostItemId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(11, tenCostItemId_);
+      }
       if (gachaScheduleId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(12, gachaScheduleId_);
@@ -604,6 +613,10 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(156, dailyGachaTimes_);
       }
+      if (curScheduleDailyGachaTimes_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(489, curScheduleDailyGachaTimes_);
+      }
       if (isUnderMinorsRestrict_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1317, isUnderMinorsRestrict_);
@@ -611,14 +624,6 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
       if (isUnderGeneralRestrict_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1715, isUnderGeneralRestrict_);
-      }
-      if (tenCostItemId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, tenCostItemId_);
-      }
-      if (curScheduleDailyGachaTimes_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, curScheduleDailyGachaTimes_);
       }
       if (isEpitomized_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -842,6 +847,11 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
       return builder;
     }
     /**
+     * <pre>
+     * 7.2: ten_cost_item_id is NT's ELHMLLLJKGC (11) and cur_schedule_daily_gacha_times its
+     * NBFNKAHGNGJ (489), the same obfuscated names NT gives those fields in GachaInfo.
+     * </pre>
+     *
      * Protobuf type {@code DoGachaRsp}
      */
     public static final class Builder extends
@@ -1175,6 +1185,11 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00000010;
                 break;
               } // case 80
+              case 88: {
+                tenCostItemId_ = input.readUInt32();
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 88
               case 96: {
                 gachaScheduleId_ = input.readUInt32();
                 bitField0_ |= 0x00000080;
@@ -1208,6 +1223,11 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00080000;
                 break;
               } // case 1248
+              case 3912: {
+                curScheduleDailyGachaTimes_ = input.readUInt32();
+                bitField0_ |= 0x00008000;
+                break;
+              } // case 3912
               case 10536: {
                 isUnderMinorsRestrict_ = input.readBool();
                 bitField0_ |= 0x00010000;
@@ -1218,16 +1238,6 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00020000;
                 break;
               } // case 13720
-              case 160000: {
-                tenCostItemId_ = input.readUInt32();
-                bitField0_ |= 0x00000400;
-                break;
-              } // case 160000
-              case 160008: {
-                curScheduleDailyGachaTimes_ = input.readUInt32();
-                bitField0_ |= 0x00008000;
-                break;
-              } // case 160008
               case 160016: {
                 isEpitomized_ = input.readBool();
                 bitField0_ |= 0x00040000;
@@ -1572,7 +1582,7 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
 
       private int tenCostItemId_ ;
       /**
-       * <code>uint32 ten_cost_item_id = 20000;</code>
+       * <code>uint32 ten_cost_item_id = 11;</code>
        * @return The tenCostItemId.
        */
       @java.lang.Override
@@ -1580,7 +1590,7 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
         return tenCostItemId_;
       }
       /**
-       * <code>uint32 ten_cost_item_id = 20000;</code>
+       * <code>uint32 ten_cost_item_id = 11;</code>
        * @param value The tenCostItemId to set.
        * @return This builder for chaining.
        */
@@ -1592,7 +1602,7 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>uint32 ten_cost_item_id = 20000;</code>
+       * <code>uint32 ten_cost_item_id = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearTenCostItemId() {
@@ -1934,7 +1944,7 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
 
       private int curScheduleDailyGachaTimes_ ;
       /**
-       * <code>uint32 cur_schedule_daily_gacha_times = 20001;</code>
+       * <code>uint32 cur_schedule_daily_gacha_times = 489;</code>
        * @return The curScheduleDailyGachaTimes.
        */
       @java.lang.Override
@@ -1942,7 +1952,7 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
         return curScheduleDailyGachaTimes_;
       }
       /**
-       * <code>uint32 cur_schedule_daily_gacha_times = 20001;</code>
+       * <code>uint32 cur_schedule_daily_gacha_times = 489;</code>
        * @param value The curScheduleDailyGachaTimes to set.
        * @return This builder for chaining.
        */
@@ -1954,7 +1964,7 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>uint32 cur_schedule_daily_gacha_times = 20001;</code>
+       * <code>uint32 cur_schedule_daily_gacha_times = 489;</code>
        * @return This builder for chaining.
        */
       public Builder clearCurScheduleDailyGachaTimes() {
@@ -2157,23 +2167,23 @@ public final class DoGachaRspOuterClass extends com.google.protobuf.GeneratedFil
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020DoGachaRsp.proto\032\017GachaItem.proto\"\247\004\n\n" +
+      "\n\020DoGachaRsp.proto\032\017GachaItem.proto\"\244\004\n\n" +
       "DoGachaRsp\022\031\n\021ten_cost_item_num\030\006 \001(\r\022\030\n" +
       "\020left_gacha_times\030\003 \001(\r\022\023\n\013gacha_times\030\017" +
       " \001(\r\022\031\n\021gacha_times_limit\030\007 \001(\r\022\017\n\007retco" +
       "de\030\n \001(\005\022\024\n\014cost_item_id\030\t \001(\r\022\022\n\ngacha_" +
       "type\030\r \001(\r\022\031\n\021gacha_schedule_id\030\014 \001(\r\022\025\n" +
       "\rwish_progress\030\001 \001(\r\022\025\n\rcost_item_num\030\005 " +
-      "\001(\r\022\032\n\020ten_cost_item_id\030\240\234\001 \001(\r\022\024\n\014wish_" +
-      "item_id\030\010 \001(\r\022#\n\017gacha_item_list\030\016 \003(\0132\n" +
-      ".GachaItem\022\031\n\021wish_max_progress\030\002 \001(\r\022\030\n" +
-      "\020new_gacha_random\030\004 \001(\r\022(\n\036cur_schedule_" +
-      "daily_gacha_times\030\241\234\001 \001(\r\022!\n\030is_under_mi" +
-      "nors_restrict\030\245\n \001(\010\022\"\n\031is_under_general" +
-      "_restrict\030\263\r \001(\010\022\027\n\ris_epitomized\030\242\234\001 \001(" +
-      "\010\022\032\n\021daily_gacha_times\030\234\001 \001(\rB1\n\031emu.gra" +
-      "sscutter.net.protoB\024DoGachaRspOuterClass" +
-      "b\006proto3"
+      "\001(\r\022\030\n\020ten_cost_item_id\030\013 \001(\r\022\024\n\014wish_it" +
+      "em_id\030\010 \001(\r\022#\n\017gacha_item_list\030\016 \003(\0132\n.G" +
+      "achaItem\022\031\n\021wish_max_progress\030\002 \001(\r\022\030\n\020n" +
+      "ew_gacha_random\030\004 \001(\r\022\'\n\036cur_schedule_da" +
+      "ily_gacha_times\030\351\003 \001(\r\022!\n\030is_under_minor" +
+      "s_restrict\030\245\n \001(\010\022\"\n\031is_under_general_re" +
+      "strict\030\263\r \001(\010\022\027\n\ris_epitomized\030\242\234\001 \001(\010\022\032" +
+      "\n\021daily_gacha_times\030\234\001 \001(\rB1\n\031emu.grassc" +
+      "utter.net.protoB\024DoGachaRspOuterClassb\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

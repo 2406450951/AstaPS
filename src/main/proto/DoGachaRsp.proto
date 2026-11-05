@@ -5,6 +5,8 @@ option java_outer_classname = "DoGachaRspOuterClass";
 
 import "GachaItem.proto";
 
+// 7.2: ten_cost_item_id is NT's ELHMLLLJKGC (11) and cur_schedule_daily_gacha_times its
+// NBFNKAHGNGJ (489), the same obfuscated names NT gives those fields in GachaInfo.
 message DoGachaRsp {
   uint32 ten_cost_item_num = 6;
   uint32 left_gacha_times = 3;
@@ -16,12 +18,12 @@ message DoGachaRsp {
   uint32 gacha_schedule_id = 12;
   uint32 wish_progress = 1;
   uint32 cost_item_num = 5;
-  uint32 ten_cost_item_id = 20000;
+  uint32 ten_cost_item_id = 11;
   uint32 wish_item_id = 8;
   repeated GachaItem gacha_item_list = 14;
   uint32 wish_max_progress = 2;
   uint32 new_gacha_random = 4;
-  uint32 cur_schedule_daily_gacha_times = 20001;
+  uint32 cur_schedule_daily_gacha_times = 489;
   bool is_under_minors_restrict = 1317;
   bool is_under_general_restrict = 1715;
   bool is_epitomized = 20002;
