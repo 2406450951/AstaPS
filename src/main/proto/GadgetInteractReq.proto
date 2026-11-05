@@ -10,7 +10,7 @@ message GadgetInteractReq {
   bool IKMNHOHNBKJ = 20001;
   bool LPCDPGNKGFL = 20002;
   bool IKDIFBEOEKM = 20003;
-  bool AJDBEGMCGKD = 20004;
+  bool AJDBEGMCGKD = 8;
   bool HDJABIODGCI = 20005;
   InterOpType op_type = 5;
   uint32 EBEELPIEKEL = 20006;
@@ -18,5 +18,5 @@ message GadgetInteractReq {
   uint32 gadget_id = 7;
   uint32 ALLPOOBNNPH = 20007;
   uint32 gadget_entity_id = 11;
-  uint32 CJIPKAIPCIB = 20008;
+  uint32 CJIPKAIPCIB = 12;
 }

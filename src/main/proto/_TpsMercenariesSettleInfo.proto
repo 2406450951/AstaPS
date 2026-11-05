@@ -3,7 +3,7 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message _TpsMercenariesSettleInfo {
-  repeated uint32 FHINHGGMCEI = 20000;
+  repeated uint32 FHINHGGMCEI = 2;
   float LCGFBJHGFHF = 20001;
   uint32 ICLCODDOBDM = 20002;
   float NBFANLFNCCO = 20003;
@@ -16,6 +16,6 @@ message _TpsMercenariesSettleInfo {
   uint32 GADNKLEDPAK = 20005;
   uint32 KDLJHPGCKEK = 20006;
   uint32 DLCKFLBGLPL = 20007;
-  uint32 BKLAKFGNCIH = 20008;
+  uint32 BKLAKFGNCIH = 1;
   uint32 use_time = 13;
 }

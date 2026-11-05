@@ -52,7 +52,7 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
     int getBattlePassPlan();
 
     /**
-     * <code>bool HBHFBAGFADF = 20000;</code>
+     * <code>bool HBHFBAGFADF = 8;</code>
      * @return The hBHFBAGFADF.
      */
     boolean getHBHFBAGFADF();
@@ -149,10 +149,10 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
       return BattlePassPlan_;
     }
 
-    public static final int HBHFBAGFADF_FIELD_NUMBER = 20000;
+    public static final int HBHFBAGFADF_FIELD_NUMBER = 8;
     private boolean hBHFBAGFADF_ = false;
     /**
-     * <code>bool HBHFBAGFADF = 20000;</code>
+     * <code>bool HBHFBAGFADF = 8;</code>
      * @return The hBHFBAGFADF.
      */
     @java.lang.Override
@@ -202,14 +202,14 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
       if (BattlePassPlan_ != 0) {
         output.writeUInt32(3, BattlePassPlan_);
       }
+      if (hBHFBAGFADF_ != false) {
+        output.writeBool(8, hBHFBAGFADF_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(12, getCurSchedule());
       }
       if (isViewed_ != false) {
         output.writeBool(15, isViewed_);
-      }
-      if (hBHFBAGFADF_ != false) {
-        output.writeBool(20000, hBHFBAGFADF_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -223,6 +223,10 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(3, BattlePassPlan_);
       }
+      if (hBHFBAGFADF_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, hBHFBAGFADF_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, getCurSchedule());
@@ -230,10 +234,6 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
       if (isViewed_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(15, isViewed_);
-      }
-      if (hBHFBAGFADF_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, hBHFBAGFADF_);
       }
       return size;
     }
@@ -560,6 +560,11 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
                 bitField0_ |= 0x00000002;
                 break;
               } // case 24
+              case 64: {
+                hBHFBAGFADF_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 64
               case 98: {
                 input.readMessage(
                     internalGetCurScheduleFieldBuilder().getBuilder(),
@@ -572,11 +577,6 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
                 bitField0_ |= 0x00000010;
                 break;
               } // case 120
-              case 160000: {
-                hBHFBAGFADF_ = input.readBool();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -747,7 +747,7 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
 
       private boolean hBHFBAGFADF_ ;
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 8;</code>
        * @return The hBHFBAGFADF.
        */
       @java.lang.Override
@@ -755,7 +755,7 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
         return hBHFBAGFADF_;
       }
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 8;</code>
        * @param value The hBHFBAGFADF to set.
        * @return This builder for chaining.
        */
@@ -767,7 +767,7 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
         return this;
       }
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearHBHFBAGFADF() {
@@ -907,13 +907,12 @@ public final class BattlePassCurScheduleUpdateNotifyOuterClass extends com.googl
   static {
     java.lang.String[] descriptorData = {
       "\n\'BattlePassCurScheduleUpdateNotify.prot" +
-      "o\032\030BattlePassSchedule.proto\"\256\001\n!BattlePa" +
+      "o\032\030BattlePassSchedule.proto\"\254\001\n!BattlePa" +
       "ssCurScheduleUpdateNotify\022)\n\014cur_schedul" +
       "e\030\014 \001(\0132\023.BattlePassSchedule\022\031\n\021_battle_" +
-      "pass_plan\030\003 \001(\r\022\025\n\013HBHFBAGFADF\030\240\234\001 \001(\010\022\031" +
-      "\n\021have_cur_schedule\030\002 \001(\010\022\021\n\tis_viewed\030\017" +
-      " \001(\010B\033\n\031emu.grasscutter.net.protob\006proto" +
-      "3"
+      "pass_plan\030\003 \001(\r\022\023\n\013HBHFBAGFADF\030\010 \001(\010\022\031\n\021" +
+      "have_cur_schedule\030\002 \001(\010\022\021\n\tis_viewed\030\017 \001" +
+      "(\010B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

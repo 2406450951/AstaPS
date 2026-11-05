@@ -48,7 +48,7 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
     int getLIPNPNHELML(int index);
 
     /**
-     * <code>bool is_gcg_pve_mode_open = 20001;</code>
+     * <code>bool is_gcg_pve_mode_open = 9;</code>
      * @return The isGcgPveModeOpen.
      */
     boolean getIsGcgPveModeOpen();
@@ -126,10 +126,10 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
     }
     private int lIPNPNHELMLMemoizedSerializedSize = -1;
 
-    public static final int IS_GCG_PVE_MODE_OPEN_FIELD_NUMBER = 20001;
+    public static final int IS_GCG_PVE_MODE_OPEN_FIELD_NUMBER = 9;
     private boolean isGcgPveModeOpen_ = false;
     /**
-     * <code>bool is_gcg_pve_mode_open = 20001;</code>
+     * <code>bool is_gcg_pve_mode_open = 9;</code>
      * @return The isGcgPveModeOpen.
      */
     @java.lang.Override
@@ -152,6 +152,9 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (isGcgPveModeOpen_ != false) {
+        output.writeBool(9, isGcgPveModeOpen_);
+      }
       if (getLIPNPNHELMLList().size() > 0) {
         output.writeUInt32NoTag(160002);
         output.writeUInt32NoTag(lIPNPNHELMLMemoizedSerializedSize);
@@ -159,13 +162,14 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
       for (int i = 0; i < lIPNPNHELML_.size(); i++) {
         output.writeUInt32NoTag(lIPNPNHELML_.getInt(i));
       }
-      if (isGcgPveModeOpen_ != false) {
-        output.writeBool(20001, isGcgPveModeOpen_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (isGcgPveModeOpen_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, isGcgPveModeOpen_);
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < lIPNPNHELML_.size(); i++) {
@@ -179,10 +183,6 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
               .computeInt32SizeNoTag(dataSize);
         }
         lIPNPNHELMLMemoizedSerializedSize = dataSize;
-      }
-      if (isGcgPveModeOpen_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20001, isGcgPveModeOpen_);
       }
       return size;
     }
@@ -455,6 +455,11 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
               case 0:
                 done = true;
                 break;
+              case 72: {
+                isGcgPveModeOpen_ = input.readBool();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 72
               case 160000: {
                 int v = input.readUInt32();
                 ensureLIPNPNHELMLIsMutable();
@@ -471,11 +476,6 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
                 input.popLimit(limit);
                 break;
               } // case 160002
-              case 160008: {
-                isGcgPveModeOpen_ = input.readBool();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -579,7 +579,7 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
 
       private boolean isGcgPveModeOpen_ ;
       /**
-       * <code>bool is_gcg_pve_mode_open = 20001;</code>
+       * <code>bool is_gcg_pve_mode_open = 9;</code>
        * @return The isGcgPveModeOpen.
        */
       @java.lang.Override
@@ -587,7 +587,7 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
         return isGcgPveModeOpen_;
       }
       /**
-       * <code>bool is_gcg_pve_mode_open = 20001;</code>
+       * <code>bool is_gcg_pve_mode_open = 9;</code>
        * @param value The isGcgPveModeOpen to set.
        * @return This builder for chaining.
        */
@@ -599,7 +599,7 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>bool is_gcg_pve_mode_open = 20001;</code>
+       * <code>bool is_gcg_pve_mode_open = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearIsGcgPveModeOpen() {
@@ -674,10 +674,10 @@ public final class GCGPvePuzzleDetailInfo extends com.google.protobuf.GeneratedF
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\035_GCGPvePuzzleDetailInfo.proto\"P\n\027_GCGP" +
+      "\n\035_GCGPvePuzzleDetailInfo.proto\"N\n\027_GCGP" +
       "vePuzzleDetailInfo\022\025\n\013LIPNPNHELML\030\240\234\001 \003(" +
-      "\r\022\036\n\024is_gcg_pve_mode_open\030\241\234\001 \001(\010B\033\n\031emu" +
-      ".grasscutter.net.protob\006proto3"
+      "\r\022\034\n\024is_gcg_pve_mode_open\030\t \001(\010B\033\n\031emu.g" +
+      "rasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

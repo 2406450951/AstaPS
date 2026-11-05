@@ -31,7 +31,7 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 EMBJNKGJLFN = 20000;</code>
+     * <code>uint32 EMBJNKGJLFN = 2;</code>
      * @return The eMBJNKGJLFN.
      */
     int getEMBJNKGJLFN();
@@ -90,10 +90,10 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
               emu.grasscutter.net.proto.CurrentPhase._CurrentPhase.class, emu.grasscutter.net.proto.CurrentPhase._CurrentPhase.Builder.class);
     }
 
-    public static final int EMBJNKGJLFN_FIELD_NUMBER = 20000;
+    public static final int EMBJNKGJLFN_FIELD_NUMBER = 2;
     private int eMBJNKGJLFN_ = 0;
     /**
-     * <code>uint32 EMBJNKGJLFN = 20000;</code>
+     * <code>uint32 EMBJNKGJLFN = 2;</code>
      * @return The eMBJNKGJLFN.
      */
     @java.lang.Override
@@ -134,7 +134,7 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (eMBJNKGJLFN_ != 0) {
-        output.writeUInt32(20000, eMBJNKGJLFN_);
+        output.writeUInt32(2, eMBJNKGJLFN_);
       }
       if (kKFBGJGDAJI_ != emu.grasscutter.net.proto.DEGDFAOEICKOuterClass.DEGDFAOEICK.DEGDFAOEICK_OFFICIAL.getNumber()) {
         output.writeEnum(20001, kKFBGJGDAJI_);
@@ -145,7 +145,7 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
       int size = 0;
       if (eMBJNKGJLFN_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, eMBJNKGJLFN_);
+          .computeUInt32Size(2, eMBJNKGJLFN_);
       }
       if (kKFBGJGDAJI_ != emu.grasscutter.net.proto.DEGDFAOEICKOuterClass.DEGDFAOEICK.DEGDFAOEICK_OFFICIAL.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -409,11 +409,11 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 16: {
                 eMBJNKGJLFN_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 16
               case 160008: {
                 kKFBGJGDAJI_ = input.readEnum();
                 bitField0_ |= 0x00000002;
@@ -438,7 +438,7 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
 
       private int eMBJNKGJLFN_ ;
       /**
-       * <code>uint32 EMBJNKGJLFN = 20000;</code>
+       * <code>uint32 EMBJNKGJLFN = 2;</code>
        * @return The eMBJNKGJLFN.
        */
       @java.lang.Override
@@ -446,7 +446,7 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
         return eMBJNKGJLFN_;
       }
       /**
-       * <code>uint32 EMBJNKGJLFN = 20000;</code>
+       * <code>uint32 EMBJNKGJLFN = 2;</code>
        * @param value The eMBJNKGJLFN to set.
        * @return This builder for chaining.
        */
@@ -458,7 +458,7 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 EMBJNKGJLFN = 20000;</code>
+       * <code>uint32 EMBJNKGJLFN = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearEMBJNKGJLFN() {
@@ -586,9 +586,9 @@ public final class CurrentPhase extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\023_CurrentPhase.proto\032\021DEGDFAOEICK.proto" +
-      "\"K\n\r_CurrentPhase\022\025\n\013EMBJNKGJLFN\030\240\234\001 \001(\r" +
-      "\022#\n\013KKFBGJGDAJI\030\241\234\001 \001(\0162\014.DEGDFAOEICKB\033\n" +
-      "\031emu.grasscutter.net.protob\006proto3"
+      "\"I\n\r_CurrentPhase\022\023\n\013EMBJNKGJLFN\030\002 \001(\r\022#" +
+      "\n\013KKFBGJGDAJI\030\241\234\001 \001(\0162\014.DEGDFAOEICKB\033\n\031e" +
+      "mu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -66,7 +66,7 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
     int getDPHCDGFOLCN();
 
     /**
-     * <code>uint32 MIOFAOEPJEJ = 20001;</code>
+     * <code>uint32 MIOFAOEPJEJ = 4;</code>
      * @return The mIOFAOEPJEJ.
      */
     int getMIOFAOEPJEJ();
@@ -177,10 +177,10 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
       return dPHCDGFOLCN_;
     }
 
-    public static final int MIOFAOEPJEJ_FIELD_NUMBER = 20001;
+    public static final int MIOFAOEPJEJ_FIELD_NUMBER = 4;
     private int mIOFAOEPJEJ_ = 0;
     /**
-     * <code>uint32 MIOFAOEPJEJ = 20001;</code>
+     * <code>uint32 MIOFAOEPJEJ = 4;</code>
      * @return The mIOFAOEPJEJ.
      */
     @java.lang.Override
@@ -203,6 +203,9 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (mIOFAOEPJEJ_ != 0) {
+        output.writeUInt32(4, mIOFAOEPJEJ_);
+      }
       if (getShopTypeListList().size() > 0) {
         output.writeUInt32NoTag(58);
         output.writeUInt32NoTag(shopTypeListMemoizedSerializedSize);
@@ -219,13 +222,14 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
       if (dPHCDGFOLCN_ != 0) {
         output.writeUInt32(20000, dPHCDGFOLCN_);
       }
-      if (mIOFAOEPJEJ_ != 0) {
-        output.writeUInt32(20001, mIOFAOEPJEJ_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (mIOFAOEPJEJ_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, mIOFAOEPJEJ_);
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < shopTypeList_.size(); i++) {
@@ -251,10 +255,6 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
       if (dPHCDGFOLCN_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20000, dPHCDGFOLCN_);
-      }
-      if (mIOFAOEPJEJ_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, mIOFAOEPJEJ_);
       }
       return size;
     }
@@ -559,6 +559,11 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
               case 0:
                 done = true;
                 break;
+              case 32: {
+                mIOFAOEPJEJ_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 32
               case 56: {
                 int v = input.readUInt32();
                 ensureShopTypeListIsMutable();
@@ -590,11 +595,6 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
                 bitField0_ |= 0x00000008;
                 break;
               } // case 160000
-              case 160008: {
-                mIOFAOEPJEJ_ = input.readUInt32();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -794,7 +794,7 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
 
       private int mIOFAOEPJEJ_ ;
       /**
-       * <code>uint32 MIOFAOEPJEJ = 20001;</code>
+       * <code>uint32 MIOFAOEPJEJ = 4;</code>
        * @return The mIOFAOEPJEJ.
        */
       @java.lang.Override
@@ -802,7 +802,7 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
         return mIOFAOEPJEJ_;
       }
       /**
-       * <code>uint32 MIOFAOEPJEJ = 20001;</code>
+       * <code>uint32 MIOFAOEPJEJ = 4;</code>
        * @param value The mIOFAOEPJEJ to set.
        * @return This builder for chaining.
        */
@@ -814,7 +814,7 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
         return this;
       }
       /**
-       * <code>uint32 MIOFAOEPJEJ = 20001;</code>
+       * <code>uint32 MIOFAOEPJEJ = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearMIOFAOEPJEJ() {
@@ -889,11 +889,11 @@ public final class GetShopmallDataRspOuterClass extends com.google.protobuf.Gene
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\030GetShopmallDataRsp.proto\"z\n\022GetShopmal" +
+      "\n\030GetShopmallDataRsp.proto\"x\n\022GetShopmal" +
       "lDataRsp\022\026\n\016shop_type_list\030\007 \003(\r\022\017\n\007retc" +
       "ode\030\r \001(\005\022\r\n\005param\030\016 \001(\r\022\025\n\013DPHCDGFOLCN\030" +
-      "\240\234\001 \001(\r\022\025\n\013MIOFAOEPJEJ\030\241\234\001 \001(\rB\033\n\031emu.gr" +
-      "asscutter.net.protob\006proto3"
+      "\240\234\001 \001(\r\022\023\n\013MIOFAOEPJEJ\030\004 \001(\rB\033\n\031emu.gras" +
+      "scutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

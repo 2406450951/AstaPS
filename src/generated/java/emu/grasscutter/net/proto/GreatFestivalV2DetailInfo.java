@@ -31,17 +31,17 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+     * <code>.IJNAPHNIHJH music_game_info = 1;</code>
      * @return Whether the musicGameInfo field is set.
      */
     boolean hasMusicGameInfo();
     /**
-     * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+     * <code>.IJNAPHNIHJH music_game_info = 1;</code>
      * @return The musicGameInfo.
      */
     emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH getMusicGameInfo();
     /**
-     * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+     * <code>.IJNAPHNIHJH music_game_info = 1;</code>
      */
     emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJHOrBuilder getMusicGameInfoOrBuilder();
 
@@ -133,10 +133,10 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
     }
 
     private int bitField0_;
-    public static final int MUSIC_GAME_INFO_FIELD_NUMBER = 20000;
+    public static final int MUSIC_GAME_INFO_FIELD_NUMBER = 1;
     private emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH musicGameInfo_;
     /**
-     * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+     * <code>.IJNAPHNIHJH music_game_info = 1;</code>
      * @return Whether the musicGameInfo field is set.
      */
     @java.lang.Override
@@ -144,7 +144,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+     * <code>.IJNAPHNIHJH music_game_info = 1;</code>
      * @return The musicGameInfo.
      */
     @java.lang.Override
@@ -152,7 +152,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
       return musicGameInfo_ == null ? emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH.getDefaultInstance() : musicGameInfo_;
     }
     /**
-     * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+     * <code>.IJNAPHNIHJH music_game_info = 1;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJHOrBuilder getMusicGameInfoOrBuilder() {
@@ -252,7 +252,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getMusicGameInfo());
+        output.writeMessage(1, getMusicGameInfo());
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(20001, getFPNIAMHNDON());
@@ -269,7 +269,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
       int size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getMusicGameInfo());
+          .computeMessageSize(1, getMusicGameInfo());
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -623,13 +623,13 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 10: {
                 input.readMessage(
                     internalGetMusicGameInfoFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 10
               case 160010: {
                 input.readMessage(
                     internalGetFPNIAMHNDONFieldBuilder().getBuilder(),
@@ -672,14 +672,14 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH, emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH.Builder, emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJHOrBuilder> musicGameInfoBuilder_;
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        * @return Whether the musicGameInfo field is set.
        */
       public boolean hasMusicGameInfo() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        * @return The musicGameInfo.
        */
       public emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH getMusicGameInfo() {
@@ -690,7 +690,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
         }
       }
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        */
       public Builder setMusicGameInfo(emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH value) {
         if (musicGameInfoBuilder_ == null) {
@@ -704,7 +704,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        */
       public Builder setMusicGameInfo(
           emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH.Builder builderForValue) {
@@ -718,7 +718,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        */
       public Builder mergeMusicGameInfo(emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH value) {
         if (musicGameInfoBuilder_ == null) {
@@ -739,7 +739,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        */
       public Builder clearMusicGameInfo() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -752,7 +752,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        */
       public emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH.Builder getMusicGameInfoBuilder() {
         bitField0_ |= 0x00000001;
@@ -760,7 +760,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
         return internalGetMusicGameInfoFieldBuilder().getBuilder();
       }
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        */
       public emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJHOrBuilder getMusicGameInfoOrBuilder() {
         if (musicGameInfoBuilder_ != null) {
@@ -771,7 +771,7 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
         }
       }
       /**
-       * <code>.IJNAPHNIHJH music_game_info = 20000;</code>
+       * <code>.IJNAPHNIHJH music_game_info = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH, emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJH.Builder, emu.grasscutter.net.proto.IJNAPHNIHJHOuterClass.IJNAPHNIHJHOrBuilder> 
@@ -1211,13 +1211,13 @@ public final class GreatFestivalV2DetailInfo extends com.google.protobuf.Generat
     java.lang.String[] descriptorData = {
       "\n _GreatFestivalV2DetailInfo.proto\032\021IJNA" +
       "PHNIHJH.proto\032\021IPPDBOLOOIB.proto\032\021OAKCNC" +
-      "LBBMI.proto\032\021PIEANKFJENC.proto\"\264\001\n\032_Grea" +
-      "tFestivalV2DetailInfo\022\'\n\017music_game_info" +
-      "\030\240\234\001 \001(\0132\014.IJNAPHNIHJH\022#\n\013FPNIAMHNDON\030\241\234" +
-      "\001 \001(\0132\014.PIEANKFJENC\022#\n\013GOFMMGFEDBI\030\242\234\001 \001" +
-      "(\0132\014.IPPDBOLOOIB\022#\n\013CLHOGMFANFJ\030\243\234\001 \001(\0132" +
-      "\014.OAKCNCLBBMIB\033\n\031emu.grasscutter.net.pro" +
-      "tob\006proto3"
+      "LBBMI.proto\032\021PIEANKFJENC.proto\"\262\001\n\032_Grea" +
+      "tFestivalV2DetailInfo\022%\n\017music_game_info" +
+      "\030\001 \001(\0132\014.IJNAPHNIHJH\022#\n\013FPNIAMHNDON\030\241\234\001 " +
+      "\001(\0132\014.PIEANKFJENC\022#\n\013GOFMMGFEDBI\030\242\234\001 \001(\013" +
+      "2\014.IPPDBOLOOIB\022#\n\013CLHOGMFANFJ\030\243\234\001 \001(\0132\014." +
+      "OAKCNCLBBMIB\033\n\031emu.grasscutter.net.proto" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

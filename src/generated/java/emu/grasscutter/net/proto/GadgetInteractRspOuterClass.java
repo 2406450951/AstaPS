@@ -54,7 +54,7 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
     int getGadgetEntityId();
 
     /**
-     * <code>uint32 CJIPKAIPCIB = 20000;</code>
+     * <code>uint32 CJIPKAIPCIB = 10;</code>
      * @return The cJIPKAIPCIB.
      */
     int getCJIPKAIPCIB();
@@ -160,10 +160,10 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
       return gadgetEntityId_;
     }
 
-    public static final int CJIPKAIPCIB_FIELD_NUMBER = 20000;
+    public static final int CJIPKAIPCIB_FIELD_NUMBER = 10;
     private int cJIPKAIPCIB_ = 0;
     /**
-     * <code>uint32 CJIPKAIPCIB = 20000;</code>
+     * <code>uint32 CJIPKAIPCIB = 10;</code>
      * @return The cJIPKAIPCIB.
      */
     @java.lang.Override
@@ -223,14 +223,14 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
       if (gadgetEntityId_ != 0) {
         output.writeUInt32(8, gadgetEntityId_);
       }
+      if (cJIPKAIPCIB_ != 0) {
+        output.writeUInt32(10, cJIPKAIPCIB_);
+      }
       if (interactType_ != emu.grasscutter.net.proto.InteractTypeOuterClass.InteractType.InteractType_INTERACT_NONE.getNumber()) {
         output.writeEnum(12, interactType_);
       }
       if (retcode_ != 0) {
         output.writeInt32(14, retcode_);
-      }
-      if (cJIPKAIPCIB_ != 0) {
-        output.writeUInt32(20000, cJIPKAIPCIB_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -248,6 +248,10 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(8, gadgetEntityId_);
       }
+      if (cJIPKAIPCIB_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(10, cJIPKAIPCIB_);
+      }
       if (interactType_ != emu.grasscutter.net.proto.InteractTypeOuterClass.InteractType.InteractType_INTERACT_NONE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(12, interactType_);
@@ -255,10 +259,6 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
       if (retcode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(14, retcode_);
-      }
-      if (cJIPKAIPCIB_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, cJIPKAIPCIB_);
       }
       return size;
     }
@@ -576,6 +576,11 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000004;
                 break;
               } // case 64
+              case 80: {
+                cJIPKAIPCIB_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 80
               case 96: {
                 interactType_ = input.readEnum();
                 bitField0_ |= 0x00000002;
@@ -586,11 +591,6 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000001;
                 break;
               } // case 112
-              case 160000: {
-                cJIPKAIPCIB_ = input.readUInt32();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -726,7 +726,7 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
 
       private int cJIPKAIPCIB_ ;
       /**
-       * <code>uint32 CJIPKAIPCIB = 20000;</code>
+       * <code>uint32 CJIPKAIPCIB = 10;</code>
        * @return The cJIPKAIPCIB.
        */
       @java.lang.Override
@@ -734,7 +734,7 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
         return cJIPKAIPCIB_;
       }
       /**
-       * <code>uint32 CJIPKAIPCIB = 20000;</code>
+       * <code>uint32 CJIPKAIPCIB = 10;</code>
        * @param value The cJIPKAIPCIB to set.
        * @return This builder for chaining.
        */
@@ -746,7 +746,7 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>uint32 CJIPKAIPCIB = 20000;</code>
+       * <code>uint32 CJIPKAIPCIB = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearCJIPKAIPCIB() {
@@ -906,12 +906,12 @@ public final class GadgetInteractRspOuterClass extends com.google.protobuf.Gener
   static {
     java.lang.String[] descriptorData = {
       "\n\027GadgetInteractRsp.proto\032\021InterOpType.p" +
-      "roto\032\022InteractType.proto\"\255\001\n\021GadgetInter" +
+      "roto\032\022InteractType.proto\"\253\001\n\021GadgetInter" +
       "actRsp\022\017\n\007retcode\030\016 \001(\005\022$\n\rinteract_type" +
       "\030\014 \001(\0162\r.InteractType\022\030\n\020gadget_entity_i" +
-      "d\030\010 \001(\r\022\025\n\013CJIPKAIPCIB\030\240\234\001 \001(\r\022\021\n\tgadget" +
-      "_id\030\002 \001(\r\022\035\n\007op_type\030\003 \001(\0162\014.InterOpType" +
-      "B\033\n\031emu.grasscutter.net.protob\006proto3"
+      "d\030\010 \001(\r\022\023\n\013CJIPKAIPCIB\030\n \001(\r\022\021\n\tgadget_i" +
+      "d\030\002 \001(\r\022\035\n\007op_type\030\003 \001(\0162\014.InterOpTypeB\033" +
+      "\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

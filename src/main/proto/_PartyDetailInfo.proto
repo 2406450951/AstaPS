@@ -4,5 +4,5 @@ option java_package = "emu.grasscutter.net.proto";
 
 message _PartyDetailInfo {
   bool GEHDFDEEKEL = 20000;
-  bool DHONHHFBAKP = 20001;
+  bool DHONHHFBAKP = 9;
 }

@@ -78,17 +78,17 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
     emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getInitPosOrBuilder();
 
     /**
-     * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+     * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
      * @return Whether the bHJNCGINIJB field is set.
      */
     boolean hasBHJNCGINIJB();
     /**
-     * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+     * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
      * @return The bHJNCGINIJB.
      */
     emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE getBHJNCGINIJB();
     /**
-     * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+     * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
      */
     emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJEOrBuilder getBHJNCGINIJBOrBuilder();
 
@@ -160,7 +160,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
     int getBornSlotIndex();
 
     /**
-     * <code>uint32 KMDOFBPMGAI = 20001;</code>
+     * <code>uint32 KMDOFBPMGAI = 2028;</code>
      * @return The kMDOFBPMGAI.
      */
     int getKMDOFBPMGAI();
@@ -219,7 +219,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
     int getTargetEntityId();
 
     /**
-     * <code>uint32 LDAODDFLPGB = 20003;</code>
+     * <code>uint32 LDAODDFLPGB = 1945;</code>
      * @return The lDAODDFLPGB.
      */
     int getLDAODDFLPGB();
@@ -389,10 +389,10 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
       return initPos_ == null ? emu.grasscutter.net.proto.VectorOuterClass.Vector.getDefaultInstance() : initPos_;
     }
 
-    public static final int BHJNCGINIJB_FIELD_NUMBER = 20000;
+    public static final int BHJNCGINIJB_FIELD_NUMBER = 2006;
     private emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE bHJNCGINIJB_;
     /**
-     * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+     * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
      * @return Whether the bHJNCGINIJB field is set.
      */
     @java.lang.Override
@@ -400,7 +400,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+     * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
      * @return The bHJNCGINIJB.
      */
     @java.lang.Override
@@ -408,7 +408,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
       return bHJNCGINIJB_ == null ? emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE.getDefaultInstance() : bHJNCGINIJB_;
     }
     /**
-     * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+     * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJEOrBuilder getBHJNCGINIJBOrBuilder() {
@@ -533,10 +533,10 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
       return bornSlotIndex_;
     }
 
-    public static final int KMDOFBPMGAI_FIELD_NUMBER = 20001;
+    public static final int KMDOFBPMGAI_FIELD_NUMBER = 2028;
     private int kMDOFBPMGAI_ = 0;
     /**
-     * <code>uint32 KMDOFBPMGAI = 20001;</code>
+     * <code>uint32 KMDOFBPMGAI = 2028;</code>
      * @return The kMDOFBPMGAI.
      */
     @java.lang.Override
@@ -639,10 +639,10 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
       return targetEntityId_;
     }
 
-    public static final int LDAODDFLPGB_FIELD_NUMBER = 20003;
+    public static final int LDAODDFLPGB_FIELD_NUMBER = 1945;
     private int lDAODDFLPGB_ = 0;
     /**
-     * <code>uint32 LDAODDFLPGB = 20003;</code>
+     * <code>uint32 LDAODDFLPGB = 1945;</code>
      * @return The lDAODDFLPGB.
      */
     @java.lang.Override
@@ -799,17 +799,17 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(1496, getAbilityName());
       }
+      if (lDAODDFLPGB_ != 0) {
+        output.writeUInt32(1945, lDAODDFLPGB_);
+      }
       if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeMessage(20000, getBHJNCGINIJB());
+        output.writeMessage(2006, getBHJNCGINIJB());
       }
       if (kMDOFBPMGAI_ != 0) {
-        output.writeUInt32(20001, kMDOFBPMGAI_);
+        output.writeUInt32(2028, kMDOFBPMGAI_);
       }
       if (aAMABJDMIFN_ != 0) {
         output.writeUInt32(20002, aAMABJDMIFN_);
-      }
-      if (lDAODDFLPGB_ != 0) {
-        output.writeUInt32(20003, lDAODDFLPGB_);
       }
       if (nHNFGNMNDDE_ != false) {
         output.writeBool(20004, nHNFGNMNDDE_);
@@ -924,21 +924,21 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1496, getAbilityName());
       }
+      if (lDAODDFLPGB_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1945, lDAODDFLPGB_);
+      }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getBHJNCGINIJB());
+          .computeMessageSize(2006, getBHJNCGINIJB());
       }
       if (kMDOFBPMGAI_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, kMDOFBPMGAI_);
+          .computeUInt32Size(2028, kMDOFBPMGAI_);
       }
       if (aAMABJDMIFN_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20002, aAMABJDMIFN_);
-      }
-      if (lDAODDFLPGB_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20003, lDAODDFLPGB_);
       }
       if (nHNFGNMNDDE_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -1698,28 +1698,28 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
                 bitField0_ |= 0x00000001;
                 break;
               } // case 11970
-              case 160002: {
+              case 15560: {
+                lDAODDFLPGB_ = input.readUInt32();
+                bitField0_ |= 0x00100000;
+                break;
+              } // case 15560
+              case 16050: {
                 input.readMessage(
                     internalGetBHJNCGINIJBFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000008;
                 break;
-              } // case 160002
-              case 160008: {
+              } // case 16050
+              case 16224: {
                 kMDOFBPMGAI_ = input.readUInt32();
                 bitField0_ |= 0x00000800;
                 break;
-              } // case 160008
+              } // case 16224
               case 160016: {
                 aAMABJDMIFN_ = input.readUInt32();
                 bitField0_ |= 0x00010000;
                 break;
               } // case 160016
-              case 160024: {
-                lDAODDFLPGB_ = input.readUInt32();
-                bitField0_ |= 0x00100000;
-                break;
-              } // case 160024
               case 160032: {
                 nHNFGNMNDDE_ = input.readBool();
                 bitField0_ |= 0x00200000;
@@ -2078,14 +2078,14 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE, emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE.Builder, emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJEOrBuilder> bHJNCGINIJBBuilder_;
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        * @return Whether the bHJNCGINIJB field is set.
        */
       public boolean hasBHJNCGINIJB() {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        * @return The bHJNCGINIJB.
        */
       public emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE getBHJNCGINIJB() {
@@ -2096,7 +2096,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         }
       }
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        */
       public Builder setBHJNCGINIJB(emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE value) {
         if (bHJNCGINIJBBuilder_ == null) {
@@ -2110,7 +2110,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        */
       public Builder setBHJNCGINIJB(
           emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE.Builder builderForValue) {
@@ -2124,7 +2124,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        */
       public Builder mergeBHJNCGINIJB(emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE value) {
         if (bHJNCGINIJBBuilder_ == null) {
@@ -2145,7 +2145,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        */
       public Builder clearBHJNCGINIJB() {
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -2158,7 +2158,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        */
       public emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE.Builder getBHJNCGINIJBBuilder() {
         bitField0_ |= 0x00000008;
@@ -2166,7 +2166,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return internalGetBHJNCGINIJBFieldBuilder().getBuilder();
       }
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        */
       public emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJEOrBuilder getBHJNCGINIJBOrBuilder() {
         if (bHJNCGINIJBBuilder_ != null) {
@@ -2177,7 +2177,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         }
       }
       /**
-       * <code>.CEAFBJOBFJE BHJNCGINIJB = 20000;</code>
+       * <code>.CEAFBJOBFJE BHJNCGINIJB = 2006;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE, emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJE.Builder, emu.grasscutter.net.proto.CEAFBJOBFJEOuterClass.CEAFBJOBFJEOrBuilder> 
@@ -2578,7 +2578,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
 
       private int kMDOFBPMGAI_ ;
       /**
-       * <code>uint32 KMDOFBPMGAI = 20001;</code>
+       * <code>uint32 KMDOFBPMGAI = 2028;</code>
        * @return The kMDOFBPMGAI.
        */
       @java.lang.Override
@@ -2586,7 +2586,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return kMDOFBPMGAI_;
       }
       /**
-       * <code>uint32 KMDOFBPMGAI = 20001;</code>
+       * <code>uint32 KMDOFBPMGAI = 2028;</code>
        * @param value The kMDOFBPMGAI to set.
        * @return This builder for chaining.
        */
@@ -2598,7 +2598,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 KMDOFBPMGAI = 20001;</code>
+       * <code>uint32 KMDOFBPMGAI = 2028;</code>
        * @return This builder for chaining.
        */
       public Builder clearKMDOFBPMGAI() {
@@ -2886,7 +2886,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
 
       private int lDAODDFLPGB_ ;
       /**
-       * <code>uint32 LDAODDFLPGB = 20003;</code>
+       * <code>uint32 LDAODDFLPGB = 1945;</code>
        * @return The lDAODDFLPGB.
        */
       @java.lang.Override
@@ -2894,7 +2894,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return lDAODDFLPGB_;
       }
       /**
-       * <code>uint32 LDAODDFLPGB = 20003;</code>
+       * <code>uint32 LDAODDFLPGB = 1945;</code>
        * @param value The lDAODDFLPGB to set.
        * @return This builder for chaining.
        */
@@ -2906,7 +2906,7 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 LDAODDFLPGB = 20003;</code>
+       * <code>uint32 LDAODDFLPGB = 1945;</code>
        * @return This builder for chaining.
        */
       public Builder clearLDAODDFLPGB() {
@@ -3176,26 +3176,26 @@ public final class EvtCreateGadgetNotifyOuterClass extends com.google.protobuf.G
       "\n\033EvtCreateGadgetNotify.proto\032\023AbilitySt" +
       "ring.proto\032\021CEAFBJOBFJE.proto\032\021ForwardTy" +
       "pe.proto\032\014Vector.proto\032\026_LifeByOwnerType" +
-      ".proto\"\346\005\n\025EvtCreateGadgetNotify\022%\n\014abil" +
+      ".proto\"\343\005\n\025EvtCreateGadgetNotify\022%\n\014abil" +
       "ity_name\030\330\013 \001(\0132\016.AbilityString\022%\n\034targe" +
       "t_lock_point_index_list\030\373\005 \003(\r\022\031\n\010init_p" +
-      "os\030\014 \001(\0132\007.Vector\022#\n\013BHJNCGINIJB\030\240\234\001 \001(\013" +
-      "2\014.CEAFBJOBFJE\022\036\n\025target_entity_id_list\030" +
-      "\200\006 \003(\r\022\"\n\021init_euler_angles\030\n \001(\0132\007.Vect" +
-      "or\022\014\n\004guid\030\017 \001(\004\022\"\n\014forward_type\030\004 \001(\0162\014" +
-      ".ForwardType\022\021\n\010local_id\030\310\013 \001(\005\022\025\n\014init_" +
-      "pose_id\030\347\t \001(\r\022\030\n\017born_slot_index\030\372\005 \001(\r" +
-      "\022\025\n\013KMDOFBPMGAI\030\241\234\001 \001(\r\022\017\n\007room_id\030\001 \001(\r" +
-      "\022\021\n\tcamp_type\030\005 \001(\r\022.\n\023_life_by_owner_ty" +
-      "pe\030~ \001(\0162\021._LifeByOwnerType\022\027\n\017owner_ent" +
-      "ity_id\030\002 \001(\r\022\025\n\013AAMABJDMIFN\030\242\234\001 \001(\r\022\021\n\tc" +
-      "onfig_id\030\t \001(\r\022\034\n\024prop_owner_entity_id\030\003" +
-      " \001(\r\022\030\n\020target_entity_id\030\r \001(\r\022\025\n\013LDAODD" +
-      "FLPGB\030\243\234\001 \001(\r\022\025\n\013NHNFGNMNDDE\030\244\234\001 \001(\010\022\025\n\013" +
-      "LMLMALLLGBB\030\245\234\001 \001(\010\022\037\n\026is_peer_id_from_p" +
-      "layer\030\222\007 \001(\010\022\025\n\013PBLACGNNCDF\030\246\234\001 \001(\010\022\017\n\007c" +
-      "amp_id\030\016 \001(\r\022\021\n\tentity_id\030\007 \001(\rB\033\n\031emu.g" +
-      "rasscutter.net.protob\006proto3"
+      "os\030\014 \001(\0132\007.Vector\022\"\n\013BHJNCGINIJB\030\326\017 \001(\0132" +
+      "\014.CEAFBJOBFJE\022\036\n\025target_entity_id_list\030\200" +
+      "\006 \003(\r\022\"\n\021init_euler_angles\030\n \001(\0132\007.Vecto" +
+      "r\022\014\n\004guid\030\017 \001(\004\022\"\n\014forward_type\030\004 \001(\0162\014." +
+      "ForwardType\022\021\n\010local_id\030\310\013 \001(\005\022\025\n\014init_p" +
+      "ose_id\030\347\t \001(\r\022\030\n\017born_slot_index\030\372\005 \001(\r\022" +
+      "\024\n\013KMDOFBPMGAI\030\354\017 \001(\r\022\017\n\007room_id\030\001 \001(\r\022\021" +
+      "\n\tcamp_type\030\005 \001(\r\022.\n\023_life_by_owner_type" +
+      "\030~ \001(\0162\021._LifeByOwnerType\022\027\n\017owner_entit" +
+      "y_id\030\002 \001(\r\022\025\n\013AAMABJDMIFN\030\242\234\001 \001(\r\022\021\n\tcon" +
+      "fig_id\030\t \001(\r\022\034\n\024prop_owner_entity_id\030\003 \001" +
+      "(\r\022\030\n\020target_entity_id\030\r \001(\r\022\024\n\013LDAODDFL" +
+      "PGB\030\231\017 \001(\r\022\025\n\013NHNFGNMNDDE\030\244\234\001 \001(\010\022\025\n\013LML" +
+      "MALLLGBB\030\245\234\001 \001(\010\022\037\n\026is_peer_id_from_play" +
+      "er\030\222\007 \001(\010\022\025\n\013PBLACGNNCDF\030\246\234\001 \001(\010\022\017\n\007camp" +
+      "_id\030\016 \001(\r\022\021\n\tentity_id\030\007 \001(\rB\033\n\031emu.gras" +
+      "scutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

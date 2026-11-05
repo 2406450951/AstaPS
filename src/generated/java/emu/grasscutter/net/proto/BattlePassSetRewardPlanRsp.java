@@ -48,7 +48,7 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
     int getAffectedTierIdList(int index);
 
     /**
-     * <code>bool HBHFBAGFADF = 20000;</code>
+     * <code>bool HBHFBAGFADF = 12;</code>
      * @return The hBHFBAGFADF.
      */
     boolean getHBHFBAGFADF();
@@ -144,10 +144,10 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
     }
     private int AffectedTierIdListMemoizedSerializedSize = -1;
 
-    public static final int HBHFBAGFADF_FIELD_NUMBER = 20000;
+    public static final int HBHFBAGFADF_FIELD_NUMBER = 12;
     private boolean hBHFBAGFADF_ = false;
     /**
-     * <code>bool HBHFBAGFADF = 20000;</code>
+     * <code>bool HBHFBAGFADF = 12;</code>
      * @return The hBHFBAGFADF.
      */
     @java.lang.Override
@@ -217,7 +217,7 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
         output.writeInt32(9, retcode_);
       }
       if (hBHFBAGFADF_ != false) {
-        output.writeBool(20000, hBHFBAGFADF_);
+        output.writeBool(12, hBHFBAGFADF_);
       }
       if (fEEHKLNIONE_ != false) {
         output.writeBool(20001, fEEHKLNIONE_);
@@ -250,7 +250,7 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
       }
       if (hBHFBAGFADF_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, hBHFBAGFADF_);
+          .computeBoolSize(12, hBHFBAGFADF_);
       }
       if (fEEHKLNIONE_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -587,11 +587,11 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000008;
                 break;
               } // case 72
-              case 160000: {
+              case 96: {
                 hBHFBAGFADF_ = input.readBool();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160000
+              } // case 96
               case 160008: {
                 fEEHKLNIONE_ = input.readBool();
                 bitField0_ |= 0x00000004;
@@ -700,7 +700,7 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
 
       private boolean hBHFBAGFADF_ ;
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 12;</code>
        * @return The hBHFBAGFADF.
        */
       @java.lang.Override
@@ -708,7 +708,7 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
         return hBHFBAGFADF_;
       }
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 12;</code>
        * @param value The hBHFBAGFADF to set.
        * @return This builder for chaining.
        */
@@ -720,7 +720,7 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearHBHFBAGFADF() {
@@ -891,12 +891,12 @@ public final class BattlePassSetRewardPlanRsp extends com.google.protobuf.Genera
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n!_BattlePassSetRewardPlanRsp.proto\"\227\001\n\033" +
+      "\n!_BattlePassSetRewardPlanRsp.proto\"\225\001\n\033" +
       "_BattlePassSetRewardPlanRsp\022\036\n\026_affected" +
-      "_tier_id_list\030\005 \003(\r\022\025\n\013HBHFBAGFADF\030\240\234\001 \001" +
-      "(\010\022\025\n\013FEEHKLNIONE\030\241\234\001 \001(\010\022\017\n\007retcode\030\t \001" +
-      "(\005\022\031\n\021_battle_pass_plan\030\003 \001(\rB\033\n\031emu.gra" +
-      "sscutter.net.protob\006proto3"
+      "_tier_id_list\030\005 \003(\r\022\023\n\013HBHFBAGFADF\030\014 \001(\010" +
+      "\022\025\n\013FEEHKLNIONE\030\241\234\001 \001(\010\022\017\n\007retcode\030\t \001(\005" +
+      "\022\031\n\021_battle_pass_plan\030\003 \001(\rB\033\n\031emu.grass" +
+      "cutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

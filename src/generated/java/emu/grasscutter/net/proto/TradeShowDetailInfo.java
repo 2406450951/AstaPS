@@ -31,7 +31,7 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 CEDBOCOCINO = 20000;</code>
+     * <code>uint32 CEDBOCOCINO = 7;</code>
      * @return The cEDBOCOCINO.
      */
     int getCEDBOCOCINO();
@@ -78,10 +78,10 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
               emu.grasscutter.net.proto.TradeShowDetailInfo._TradeShowDetailInfo.class, emu.grasscutter.net.proto.TradeShowDetailInfo._TradeShowDetailInfo.Builder.class);
     }
 
-    public static final int CEDBOCOCINO_FIELD_NUMBER = 20000;
+    public static final int CEDBOCOCINO_FIELD_NUMBER = 7;
     private int cEDBOCOCINO_ = 0;
     /**
-     * <code>uint32 CEDBOCOCINO = 20000;</code>
+     * <code>uint32 CEDBOCOCINO = 7;</code>
      * @return The cEDBOCOCINO.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (cEDBOCOCINO_ != 0) {
-        output.writeUInt32(20000, cEDBOCOCINO_);
+        output.writeUInt32(7, cEDBOCOCINO_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
       int size = 0;
       if (cEDBOCOCINO_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, cEDBOCOCINO_);
+          .computeUInt32Size(7, cEDBOCOCINO_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 56: {
                 cEDBOCOCINO_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 56
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
 
       private int cEDBOCOCINO_ ;
       /**
-       * <code>uint32 CEDBOCOCINO = 20000;</code>
+       * <code>uint32 CEDBOCOCINO = 7;</code>
        * @return The cEDBOCOCINO.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
         return cEDBOCOCINO_;
       }
       /**
-       * <code>uint32 CEDBOCOCINO = 20000;</code>
+       * <code>uint32 CEDBOCOCINO = 7;</code>
        * @param value The cEDBOCOCINO to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
         return this;
       }
       /**
-       * <code>uint32 CEDBOCOCINO = 20000;</code>
+       * <code>uint32 CEDBOCOCINO = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearCEDBOCOCINO() {
@@ -481,9 +481,9 @@ public final class TradeShowDetailInfo extends com.google.protobuf.GeneratedFile
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032_TradeShowDetailInfo.proto\"-\n\024_TradeSh" +
-      "owDetailInfo\022\025\n\013CEDBOCOCINO\030\240\234\001 \001(\rB\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "\n\032_TradeShowDetailInfo.proto\"+\n\024_TradeSh" +
+      "owDetailInfo\022\023\n\013CEDBOCOCINO\030\007 \001(\rB\033\n\031emu" +
+      ".grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

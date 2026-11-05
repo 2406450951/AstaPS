@@ -31,7 +31,7 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 HOAOJBKJFLE = 20000;</code>
+     * <code>uint32 HOAOJBKJFLE = 8;</code>
      * @return The hOAOJBKJFLE.
      */
     int getHOAOJBKJFLE();
@@ -78,10 +78,10 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
               emu.grasscutter.net.proto.AutochessDetailInfo._AutochessDetailInfo.class, emu.grasscutter.net.proto.AutochessDetailInfo._AutochessDetailInfo.Builder.class);
     }
 
-    public static final int HOAOJBKJFLE_FIELD_NUMBER = 20000;
+    public static final int HOAOJBKJFLE_FIELD_NUMBER = 8;
     private int hOAOJBKJFLE_ = 0;
     /**
-     * <code>uint32 HOAOJBKJFLE = 20000;</code>
+     * <code>uint32 HOAOJBKJFLE = 8;</code>
      * @return The hOAOJBKJFLE.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (hOAOJBKJFLE_ != 0) {
-        output.writeUInt32(20000, hOAOJBKJFLE_);
+        output.writeUInt32(8, hOAOJBKJFLE_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
       int size = 0;
       if (hOAOJBKJFLE_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, hOAOJBKJFLE_);
+          .computeUInt32Size(8, hOAOJBKJFLE_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 64: {
                 hOAOJBKJFLE_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 64
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
 
       private int hOAOJBKJFLE_ ;
       /**
-       * <code>uint32 HOAOJBKJFLE = 20000;</code>
+       * <code>uint32 HOAOJBKJFLE = 8;</code>
        * @return The hOAOJBKJFLE.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
         return hOAOJBKJFLE_;
       }
       /**
-       * <code>uint32 HOAOJBKJFLE = 20000;</code>
+       * <code>uint32 HOAOJBKJFLE = 8;</code>
        * @param value The hOAOJBKJFLE to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
         return this;
       }
       /**
-       * <code>uint32 HOAOJBKJFLE = 20000;</code>
+       * <code>uint32 HOAOJBKJFLE = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearHOAOJBKJFLE() {
@@ -481,9 +481,9 @@ public final class AutochessDetailInfo extends com.google.protobuf.GeneratedFile
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032_AutochessDetailInfo.proto\"-\n\024_Autoche" +
-      "ssDetailInfo\022\025\n\013HOAOJBKJFLE\030\240\234\001 \001(\rB\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "\n\032_AutochessDetailInfo.proto\"+\n\024_Autoche" +
+      "ssDetailInfo\022\023\n\013HOAOJBKJFLE\030\010 \001(\rB\033\n\031emu" +
+      ".grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

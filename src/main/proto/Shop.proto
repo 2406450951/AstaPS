@@ -12,7 +12,7 @@ import "_ShopBeyondMcoinProduct.proto";
 
 message Shop {
   uint32 next_refresh_time = 8;
-  OLFKDMCHEDP FAEEGIJKFJP = 20000;
+  OLFKDMCHEDP FAEEGIJKFJP = 6;
   repeated ShopCardProduct card_product_list = 13;
   uint32 city_reputation_level = 20001;
   repeated _ShopBeyondMcoinProduct _beyond_mcoin_product_list = 10;

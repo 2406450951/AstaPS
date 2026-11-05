@@ -79,25 +79,25 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         int index);
 
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     java.util.List<emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI> 
         getHGNLKDCGLBOList();
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI getHGNLKDCGLBO(int index);
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     int getHGNLKDCGLBOCount();
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICIOrBuilder> 
         getHGNLKDCGLBOOrBuilderList();
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICIOrBuilder getHGNLKDCGLBOOrBuilder(
         int index);
@@ -235,18 +235,18 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
       return jLMEBPAKPNE_.get(index);
     }
 
-    public static final int HGNLKDCGLBO_FIELD_NUMBER = 20002;
+    public static final int HGNLKDCGLBO_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI> hGNLKDCGLBO_;
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI> getHGNLKDCGLBOList() {
       return hGNLKDCGLBO_;
     }
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICIOrBuilder> 
@@ -254,21 +254,21 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
       return hGNLKDCGLBO_;
     }
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     @java.lang.Override
     public int getHGNLKDCGLBOCount() {
       return hGNLKDCGLBO_.size();
     }
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI getHGNLKDCGLBO(int index) {
       return hGNLKDCGLBO_.get(index);
     }
     /**
-     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+     * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICIOrBuilder getHGNLKDCGLBOOrBuilder(
@@ -301,14 +301,14 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      for (int i = 0; i < hGNLKDCGLBO_.size(); i++) {
+        output.writeMessage(1, hGNLKDCGLBO_.get(i));
+      }
       for (int i = 0; i < oFIOKIABKNN_.size(); i++) {
         output.writeMessage(20000, oFIOKIABKNN_.get(i));
       }
       for (int i = 0; i < jLMEBPAKPNE_.size(); i++) {
         output.writeMessage(20001, jLMEBPAKPNE_.get(i));
-      }
-      for (int i = 0; i < hGNLKDCGLBO_.size(); i++) {
-        output.writeMessage(20002, hGNLKDCGLBO_.get(i));
       }
       if (jLNGANGGJLH_ != false) {
         output.writeBool(20003, jLNGANGGJLH_);
@@ -317,6 +317,15 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
     }
     private int computeSerializedSize_0() {
       int size = 0;
+
+          {
+            final int count = hGNLKDCGLBO_.size();
+            for (int i = 0; i < count; i++) {
+              size += com.google.protobuf.CodedOutputStream
+                .computeMessageSizeNoTag(hGNLKDCGLBO_.get(i));
+            }
+            size += 1 * count;
+          }
 
           {
             final int count = oFIOKIABKNN_.size();
@@ -332,15 +341,6 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
             for (int i = 0; i < count; i++) {
               size += com.google.protobuf.CodedOutputStream
                 .computeMessageSizeNoTag(jLMEBPAKPNE_.get(i));
-            }
-            size += 3 * count;
-          }
-
-          {
-            final int count = hGNLKDCGLBO_.size();
-            for (int i = 0; i < count; i++) {
-              size += com.google.protobuf.CodedOutputStream
-                .computeMessageSizeNoTag(hGNLKDCGLBO_.get(i));
             }
             size += 3 * count;
           }
@@ -745,6 +745,19 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
               case 0:
                 done = true;
                 break;
+              case 10: {
+                emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI m =
+                    input.readMessage(
+                        emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.parser(),
+                        extensionRegistry);
+                if (hGNLKDCGLBOBuilder_ == null) {
+                  ensureHGNLKDCGLBOIsMutable();
+                  hGNLKDCGLBO_.add(m);
+                } else {
+                  hGNLKDCGLBOBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
               case 160002: {
                 emu.grasscutter.net.proto.NPLDPCGLKMKOuterClass.NPLDPCGLKMK m =
                     input.readMessage(
@@ -771,19 +784,6 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
                 }
                 break;
               } // case 160010
-              case 160018: {
-                emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI m =
-                    input.readMessage(
-                        emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.parser(),
-                        extensionRegistry);
-                if (hGNLKDCGLBOBuilder_ == null) {
-                  ensureHGNLKDCGLBOIsMutable();
-                  hGNLKDCGLBO_.add(m);
-                } else {
-                  hGNLKDCGLBOBuilder_.addMessage(m);
-                }
-                break;
-              } // case 160018
               case 160024: {
                 jLNGANGGJLH_ = input.readBool();
                 bitField0_ |= 0x00000008;
@@ -1287,7 +1287,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
           emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI, emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.Builder, emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICIOrBuilder> hGNLKDCGLBOBuilder_;
 
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI> getHGNLKDCGLBOList() {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -1297,7 +1297,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         }
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public int getHGNLKDCGLBOCount() {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -1307,7 +1307,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         }
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI getHGNLKDCGLBO(int index) {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -1317,7 +1317,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         }
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder setHGNLKDCGLBO(
           int index, emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI value) {
@@ -1332,7 +1332,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder setHGNLKDCGLBO(
           int index, emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.Builder builderForValue) {
@@ -1346,7 +1346,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder addHGNLKDCGLBO(emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI value) {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -1360,7 +1360,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder addHGNLKDCGLBO(
           int index, emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI value) {
@@ -1375,7 +1375,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder addHGNLKDCGLBO(
           emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.Builder builderForValue) {
@@ -1389,7 +1389,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder addHGNLKDCGLBO(
           int index, emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.Builder builderForValue) {
@@ -1403,7 +1403,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder addAllHGNLKDCGLBO(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI> values) {
@@ -1418,7 +1418,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder clearHGNLKDCGLBO() {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -1431,7 +1431,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public Builder removeHGNLKDCGLBO(int index) {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -1444,14 +1444,14 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.Builder getHGNLKDCGLBOBuilder(
           int index) {
         return internalGetHGNLKDCGLBOFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICIOrBuilder getHGNLKDCGLBOOrBuilder(
           int index) {
@@ -1461,7 +1461,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         }
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICIOrBuilder> 
            getHGNLKDCGLBOOrBuilderList() {
@@ -1472,14 +1472,14 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
         }
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.Builder addHGNLKDCGLBOBuilder() {
         return internalGetHGNLKDCGLBOFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.getDefaultInstance());
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.Builder addHGNLKDCGLBOBuilder(
           int index) {
@@ -1487,7 +1487,7 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
             index, emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.getDefaultInstance());
       }
       /**
-       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 20002;</code>
+       * <code>repeated .FMNPNEKAICI HGNLKDCGLBO = 1;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.FMNPNEKAICIOuterClass.FMNPNEKAICI.Builder> 
            getHGNLKDCGLBOBuilderList() {
@@ -1607,11 +1607,11 @@ public final class FilmfestDetailInfo extends com.google.protobuf.GeneratedFile 
     java.lang.String[] descriptorData = {
       "\n\031_FilmfestDetailInfo.proto\032\021FMNPNEKAICI" +
       ".proto\032\021NEHIBHKFNEG.proto\032\021NPLDPCGLKMK.p" +
-      "roto\"\233\001\n\023_FilmfestDetailInfo\022#\n\013OFIOKIAB" +
+      "roto\"\231\001\n\023_FilmfestDetailInfo\022#\n\013OFIOKIAB" +
       "KNN\030\240\234\001 \003(\0132\014.NPLDPCGLKMK\022#\n\013JLMEBPAKPNE" +
-      "\030\241\234\001 \003(\0132\014.NEHIBHKFNEG\022#\n\013HGNLKDCGLBO\030\242\234" +
-      "\001 \003(\0132\014.FMNPNEKAICI\022\025\n\013JLNGANGGJLH\030\243\234\001 \001" +
-      "(\010B\033\n\031emu.grasscutter.net.protob\006proto3"
+      "\030\241\234\001 \003(\0132\014.NEHIBHKFNEG\022!\n\013HGNLKDCGLBO\030\001 " +
+      "\003(\0132\014.FMNPNEKAICI\022\025\n\013JLNGANGGJLH\030\243\234\001 \001(\010" +
+      "B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

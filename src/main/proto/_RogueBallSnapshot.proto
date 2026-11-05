@@ -35,7 +35,7 @@ message _RogueBallSnapshot {
   uint32 LHIGKHHFONB = 20016;
   fixed32 GOGAJJBGNGA = 20017;
   uint32 kill_num = 1987;
-  uint32 AAKAOLKKNGC = 20018;
+  uint32 AAKAOLKKNGC = 15;
   uint32 HMEOCELGIHL = 20019;
   uint32 player_level = 7;
   uint32 IOLDKPFFJMM = 20020;

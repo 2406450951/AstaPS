@@ -79,17 +79,17 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         int index);
 
     /**
-     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
      * @return Whether the mFJAFOAHPDA field is set.
      */
     boolean hasMFJAFOAHPDA();
     /**
-     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
      * @return The mFJAFOAHPDA.
      */
     emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK getMFJAFOAHPDA();
     /**
-     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
      */
     emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAKOrBuilder getMFJAFOAHPDAOrBuilder();
 
@@ -124,7 +124,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
     boolean getIsOpen();
 
     /**
-     * <code>bool DAGLJBFPHEK = 20004;</code>
+     * <code>bool DAGLJBFPHEK = 14;</code>
      * @return The dAGLJBFPHEK.
      */
     boolean getDAGLJBFPHEK();
@@ -1901,10 +1901,10 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
       return kJGGFDABONJ_.get(index);
     }
 
-    public static final int MFJAFOAHPDA_FIELD_NUMBER = 20002;
+    public static final int MFJAFOAHPDA_FIELD_NUMBER = 9;
     private emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK mFJAFOAHPDA_;
     /**
-     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
      * @return Whether the mFJAFOAHPDA field is set.
      */
     @java.lang.Override
@@ -1912,7 +1912,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
      * @return The mFJAFOAHPDA.
      */
     @java.lang.Override
@@ -1920,7 +1920,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
       return mFJAFOAHPDA_ == null ? emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK.getDefaultInstance() : mFJAFOAHPDA_;
     }
     /**
-     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+     * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAKOrBuilder getMFJAFOAHPDAOrBuilder() {
@@ -1979,10 +1979,10 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
       return isOpen_;
     }
 
-    public static final int DAGLJBFPHEK_FIELD_NUMBER = 20004;
+    public static final int DAGLJBFPHEK_FIELD_NUMBER = 14;
     private boolean dAGLJBFPHEK_ = false;
     /**
-     * <code>bool DAGLJBFPHEK = 20004;</code>
+     * <code>bool DAGLJBFPHEK = 14;</code>
      * @return The dAGLJBFPHEK.
      */
     @java.lang.Override
@@ -2060,20 +2060,20 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
       if (isFinish_ != false) {
         output.writeBool(8, isFinish_);
       }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(9, getMFJAFOAHPDA());
+      }
+      if (dAGLJBFPHEK_ != false) {
+        output.writeBool(14, dAGLJBFPHEK_);
+      }
       for (int i = 0; i < cKFFOEMBBGD_.size(); i++) {
         output.writeMessage(20000, cKFFOEMBBGD_.get(i));
       }
       for (int i = 0; i < kJGGFDABONJ_.size(); i++) {
         output.writeMessage(20001, kJGGFDABONJ_.get(i));
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20002, getMFJAFOAHPDA());
-      }
       for (int i = 0; i < cIFCCNMBLFA_.size(); i++) {
         output.writeMessage(20003, cIFCCNMBLFA_.get(i));
-      }
-      if (dAGLJBFPHEK_ != false) {
-        output.writeBool(20004, dAGLJBFPHEK_);
       }
       if (ePDCAEBLLHA_ != 0) {
         output.writeUInt32(20005, ePDCAEBLLHA_);
@@ -2098,6 +2098,14 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, isFinish_);
       }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getMFJAFOAHPDA());
+      }
+      if (dAGLJBFPHEK_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(14, dAGLJBFPHEK_);
+      }
 
           {
             final int count = cKFFOEMBBGD_.size();
@@ -2116,10 +2124,6 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
             }
             size += 3 * count;
           }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20002, getMFJAFOAHPDA());
-      }
 
           {
             final int count = cIFCCNMBLFA_.size();
@@ -2129,10 +2133,6 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
             }
             size += 3 * count;
           }
-      if (dAGLJBFPHEK_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20004, dAGLJBFPHEK_);
-      }
       if (ePDCAEBLLHA_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20005, ePDCAEBLLHA_);
@@ -2645,6 +2645,18 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000040;
                 break;
               } // case 64
+              case 74: {
+                input.readMessage(
+                    internalGetMFJAFOAHPDAFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 74
+              case 112: {
+                dAGLJBFPHEK_ = input.readBool();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 112
               case 160002: {
                 emu.grasscutter.net.proto.ActivityAvatarInfo._ActivityAvatarInfo m =
                     input.readMessage(
@@ -2671,13 +2683,6 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
                 }
                 break;
               } // case 160010
-              case 160018: {
-                input.readMessage(
-                    internalGetMFJAFOAHPDAFieldBuilder().getBuilder(),
-                    extensionRegistry);
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160018
               case 160026: {
                 emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.NFPOBMPOEKA m =
                     input.readMessage(
@@ -2691,11 +2696,6 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
                 }
                 break;
               } // case 160026
-              case 160032: {
-                dAGLJBFPHEK_ = input.readBool();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160032
               case 160040: {
                 ePDCAEBLLHA_ = input.readUInt32();
                 bitField0_ |= 0x00000200;
@@ -3190,14 +3190,14 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK, emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK.Builder, emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAKOrBuilder> mFJAFOAHPDABuilder_;
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        * @return Whether the mFJAFOAHPDA field is set.
        */
       public boolean hasMFJAFOAHPDA() {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        * @return The mFJAFOAHPDA.
        */
       public emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK getMFJAFOAHPDA() {
@@ -3208,7 +3208,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         }
       }
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        */
       public Builder setMFJAFOAHPDA(emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK value) {
         if (mFJAFOAHPDABuilder_ == null) {
@@ -3222,7 +3222,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        */
       public Builder setMFJAFOAHPDA(
           emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK.Builder builderForValue) {
@@ -3236,7 +3236,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        */
       public Builder mergeMFJAFOAHPDA(emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK value) {
         if (mFJAFOAHPDABuilder_ == null) {
@@ -3257,7 +3257,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        */
       public Builder clearMFJAFOAHPDA() {
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -3270,7 +3270,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        */
       public emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK.Builder getMFJAFOAHPDABuilder() {
         bitField0_ |= 0x00000004;
@@ -3278,7 +3278,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         return internalGetMFJAFOAHPDAFieldBuilder().getBuilder();
       }
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        */
       public emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAKOrBuilder getMFJAFOAHPDAOrBuilder() {
         if (mFJAFOAHPDABuilder_ != null) {
@@ -3289,7 +3289,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         }
       }
       /**
-       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;</code>
+       * <code>.DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK, emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAK.Builder, emu.grasscutter.net.proto.DHPCNLIFCNJOuterClass.DHPCNLIFCNJ.DGJFGKJJDAKOrBuilder> 
@@ -3573,7 +3573,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
 
       private boolean dAGLJBFPHEK_ ;
       /**
-       * <code>bool DAGLJBFPHEK = 20004;</code>
+       * <code>bool DAGLJBFPHEK = 14;</code>
        * @return The dAGLJBFPHEK.
        */
       @java.lang.Override
@@ -3581,7 +3581,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         return dAGLJBFPHEK_;
       }
       /**
-       * <code>bool DAGLJBFPHEK = 20004;</code>
+       * <code>bool DAGLJBFPHEK = 14;</code>
        * @param value The dAGLJBFPHEK to set.
        * @return This builder for chaining.
        */
@@ -3593,7 +3593,7 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>bool DAGLJBFPHEK = 20004;</code>
+       * <code>bool DAGLJBFPHEK = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearDAGLJBFPHEK() {
@@ -3807,21 +3807,21 @@ public final class DHPCNLIFCNJOuterClass extends com.google.protobuf.GeneratedFi
   static {
     java.lang.String[] descriptorData = {
       "\n\021DHPCNLIFCNJ.proto\032\031_ActivityAvatarInfo" +
-      ".proto\"\227\004\n\013DHPCNLIFCNJ\022+\n\013CKFFOEMBBGD\030\240\234" +
+      ".proto\"\223\004\n\013DHPCNLIFCNJ\022+\n\013CKFFOEMBBGD\030\240\234" +
       "\001 \003(\0132\024._ActivityAvatarInfo\022+\n\013KJGGFDABO" +
-      "NJ\030\241\234\001 \003(\0132\024._ActivityAvatarInfo\022/\n\013MFJA" +
-      "FOAHPDA\030\242\234\001 \001(\0132\030.DHPCNLIFCNJ.DGJFGKJJDA" +
-      "K\022/\n\013CIFCCNMBLFA\030\243\234\001 \003(\0132\030.DHPCNLIFCNJ.N" +
-      "FPOBMPOEKA\022\017\n\007is_open\030\001 \001(\010\022\025\n\013DAGLJBFPH" +
-      "EK\030\244\234\001 \001(\010\022\021\n\tis_finish\030\010 \001(\010\022\021\n\tcost_ti" +
-      "me\030\004 \001(\r\022\020\n\010level_id\030\002 \001(\r\022\025\n\013EPDCAEBLLH" +
-      "A\030\245\234\001 \001(\r\032\211\001\n\013DGJFGKJJDAK\022)\n\013avatar_list" +
-      "\030\004 \003(\0132\024._ActivityAvatarInfo\022\023\n\013EKLLGJEH" +
-      "JPA\030\002 \001(\r\022\023\n\013IMEPIKDEFHA\030\016 \001(\010\022\021\n\tcost_t" +
-      "ime\030\001 \001(\r\022\022\n\ndifficulty\030\r \001(\r\032I\n\013NFPOBMP" +
-      "OEKA\022\023\n\013avatar_type\030\n \001(\r\022\022\n\ncostume_id\030" +
-      "\017 \001(\r\022\021\n\tavatar_id\030\007 \001(\rB\033\n\031emu.grasscut" +
-      "ter.net.protob\006proto3"
+      "NJ\030\241\234\001 \003(\0132\024._ActivityAvatarInfo\022-\n\013MFJA" +
+      "FOAHPDA\030\t \001(\0132\030.DHPCNLIFCNJ.DGJFGKJJDAK\022" +
+      "/\n\013CIFCCNMBLFA\030\243\234\001 \003(\0132\030.DHPCNLIFCNJ.NFP" +
+      "OBMPOEKA\022\017\n\007is_open\030\001 \001(\010\022\023\n\013DAGLJBFPHEK" +
+      "\030\016 \001(\010\022\021\n\tis_finish\030\010 \001(\010\022\021\n\tcost_time\030\004" +
+      " \001(\r\022\020\n\010level_id\030\002 \001(\r\022\025\n\013EPDCAEBLLHA\030\245\234" +
+      "\001 \001(\r\032\211\001\n\013DGJFGKJJDAK\022)\n\013avatar_list\030\004 \003" +
+      "(\0132\024._ActivityAvatarInfo\022\023\n\013EKLLGJEHJPA\030" +
+      "\002 \001(\r\022\023\n\013IMEPIKDEFHA\030\016 \001(\010\022\021\n\tcost_time\030" +
+      "\001 \001(\r\022\022\n\ndifficulty\030\r \001(\r\032I\n\013NFPOBMPOEKA" +
+      "\022\023\n\013avatar_type\030\n \001(\r\022\022\n\ncostume_id\030\017 \001(" +
+      "\r\022\021\n\tavatar_id\030\007 \001(\rB\033\n\031emu.grasscutter." +
+      "net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

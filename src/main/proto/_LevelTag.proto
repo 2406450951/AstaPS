@@ -8,5 +8,5 @@ message _LevelTag {
   uint32 level = 1;
   _BeyondBattlePassLevelRewardType _reward_type = 14;
   uint32 reward_id = 12;
-  uint32 CNJOFMDBADE = 20000;
+  uint32 CNJOFMDBADE = 5;
 }

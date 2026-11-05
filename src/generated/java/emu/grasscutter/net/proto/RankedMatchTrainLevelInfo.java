@@ -37,7 +37,7 @@ public final class RankedMatchTrainLevelInfo extends com.google.protobuf.Generat
     int getGPOGMDICIBO();
 
     /**
-     * <code>uint32 FDNLFLGDJBJ = 20001;</code>
+     * <code>uint32 FDNLFLGDJBJ = 4;</code>
      * @return The fDNLFLGDJBJ.
      */
     int getFDNLFLGDJBJ();
@@ -95,10 +95,10 @@ public final class RankedMatchTrainLevelInfo extends com.google.protobuf.Generat
       return gPOGMDICIBO_;
     }
 
-    public static final int FDNLFLGDJBJ_FIELD_NUMBER = 20001;
+    public static final int FDNLFLGDJBJ_FIELD_NUMBER = 4;
     private int fDNLFLGDJBJ_ = 0;
     /**
-     * <code>uint32 FDNLFLGDJBJ = 20001;</code>
+     * <code>uint32 FDNLFLGDJBJ = 4;</code>
      * @return The fDNLFLGDJBJ.
      */
     @java.lang.Override
@@ -120,23 +120,23 @@ public final class RankedMatchTrainLevelInfo extends com.google.protobuf.Generat
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (fDNLFLGDJBJ_ != 0) {
+        output.writeUInt32(4, fDNLFLGDJBJ_);
+      }
       if (gPOGMDICIBO_ != 0) {
         output.writeUInt32(20000, gPOGMDICIBO_);
-      }
-      if (fDNLFLGDJBJ_ != 0) {
-        output.writeUInt32(20001, fDNLFLGDJBJ_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (fDNLFLGDJBJ_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, fDNLFLGDJBJ_);
+      }
       if (gPOGMDICIBO_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20000, gPOGMDICIBO_);
-      }
-      if (fDNLFLGDJBJ_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, fDNLFLGDJBJ_);
       }
       return size;
     }
@@ -397,16 +397,16 @@ public final class RankedMatchTrainLevelInfo extends com.google.protobuf.Generat
               case 0:
                 done = true;
                 break;
+              case 32: {
+                fDNLFLGDJBJ_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 32
               case 160000: {
                 gPOGMDICIBO_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 160000
-              case 160008: {
-                fDNLFLGDJBJ_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -458,7 +458,7 @@ public final class RankedMatchTrainLevelInfo extends com.google.protobuf.Generat
 
       private int fDNLFLGDJBJ_ ;
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20001;</code>
+       * <code>uint32 FDNLFLGDJBJ = 4;</code>
        * @return The fDNLFLGDJBJ.
        */
       @java.lang.Override
@@ -466,7 +466,7 @@ public final class RankedMatchTrainLevelInfo extends com.google.protobuf.Generat
         return fDNLFLGDJBJ_;
       }
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20001;</code>
+       * <code>uint32 FDNLFLGDJBJ = 4;</code>
        * @param value The fDNLFLGDJBJ to set.
        * @return This builder for chaining.
        */
@@ -478,7 +478,7 @@ public final class RankedMatchTrainLevelInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20001;</code>
+       * <code>uint32 FDNLFLGDJBJ = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearFDNLFLGDJBJ() {
@@ -553,10 +553,10 @@ public final class RankedMatchTrainLevelInfo extends com.google.protobuf.Generat
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n _RankedMatchTrainLevelInfo.proto\"J\n\032_R" +
+      "\n _RankedMatchTrainLevelInfo.proto\"H\n\032_R" +
       "ankedMatchTrainLevelInfo\022\025\n\013GPOGMDICIBO\030" +
-      "\240\234\001 \001(\r\022\025\n\013FDNLFLGDJBJ\030\241\234\001 \001(\rB\033\n\031emu.gr" +
-      "asscutter.net.protob\006proto3"
+      "\240\234\001 \001(\r\022\023\n\013FDNLFLGDJBJ\030\004 \001(\rB\033\n\031emu.gras" +
+      "scutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

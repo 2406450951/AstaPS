@@ -31,17 +31,17 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+     * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
      * @return A list containing the aIFEJOGBAKK.
      */
     java.util.List<java.lang.Long> getAIFEJOGBAKKList();
     /**
-     * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+     * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
      * @return The count of aIFEJOGBAKK.
      */
     int getAIFEJOGBAKKCount();
     /**
-     * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+     * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
      * @param index The index of the element to return.
      * @return The aIFEJOGBAKK at the given index.
      */
@@ -96,12 +96,12 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
               emu.grasscutter.net.proto.BeyondWorldInfo._BeyondWorldInfo.class, emu.grasscutter.net.proto.BeyondWorldInfo._BeyondWorldInfo.Builder.class);
     }
 
-    public static final int AIFEJOGBAKK_FIELD_NUMBER = 20000;
+    public static final int AIFEJOGBAKK_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.LongList aIFEJOGBAKK_ =
         emptyLongList();
     /**
-     * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+     * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
      * @return A list containing the aIFEJOGBAKK.
      */
     @java.lang.Override
@@ -110,14 +110,14 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
       return aIFEJOGBAKK_;
     }
     /**
-     * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+     * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
      * @return The count of aIFEJOGBAKK.
      */
     public int getAIFEJOGBAKKCount() {
       return aIFEJOGBAKK_.size();
     }
     /**
-     * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+     * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
      * @param index The index of the element to return.
      * @return The aIFEJOGBAKK at the given index.
      */
@@ -153,7 +153,7 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
                         throws java.io.IOException {
       getSerializedSize();
       if (getAIFEJOGBAKKList().size() > 0) {
-        output.writeUInt32NoTag(160002);
+        output.writeUInt32NoTag(18);
         output.writeUInt32NoTag(aIFEJOGBAKKMemoizedSerializedSize);
       }
       for (int i = 0; i < aIFEJOGBAKK_.size(); i++) {
@@ -174,7 +174,7 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
         }
         size += dataSize;
         if (!getAIFEJOGBAKKList().isEmpty()) {
-          size += 3;
+          size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
@@ -454,13 +454,13 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 16: {
                 long v = input.readUInt64();
                 ensureAIFEJOGBAKKIsMutable();
                 aIFEJOGBAKK_.addLong(v);
                 break;
-              } // case 160000
-              case 160002: {
+              } // case 16
+              case 18: {
                 int length = input.readRawVarint32();
                 int limit = input.pushLimit(length);
                 ensureAIFEJOGBAKKIsMutable();
@@ -469,7 +469,7 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
                 }
                 input.popLimit(limit);
                 break;
-              } // case 160002
+              } // case 18
               case 160008: {
                 oBONBLEEHBK_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
@@ -500,7 +500,7 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
         bitField0_ |= 0x00000001;
       }
       /**
-       * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+       * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
        * @return A list containing the aIFEJOGBAKK.
        */
       public java.util.List<java.lang.Long>
@@ -509,14 +509,14 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
         return aIFEJOGBAKK_;
       }
       /**
-       * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+       * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
        * @return The count of aIFEJOGBAKK.
        */
       public int getAIFEJOGBAKKCount() {
         return aIFEJOGBAKK_.size();
       }
       /**
-       * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+       * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
        * @param index The index of the element to return.
        * @return The aIFEJOGBAKK at the given index.
        */
@@ -524,7 +524,7 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
         return aIFEJOGBAKK_.getLong(index);
       }
       /**
-       * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+       * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
        * @param index The index to set the value at.
        * @param value The aIFEJOGBAKK to set.
        * @return This builder for chaining.
@@ -539,7 +539,7 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+       * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
        * @param value The aIFEJOGBAKK to add.
        * @return This builder for chaining.
        */
@@ -552,7 +552,7 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+       * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
        * @param values The aIFEJOGBAKK to add.
        * @return This builder for chaining.
        */
@@ -566,7 +566,7 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated uint64 AIFEJOGBAKK = 20000;</code>
+       * <code>repeated uint64 AIFEJOGBAKK = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearAIFEJOGBAKK() {
@@ -673,10 +673,10 @@ public final class BeyondWorldInfo extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026_BeyondWorldInfo.proto\"@\n\020_BeyondWorld" +
-      "Info\022\025\n\013AIFEJOGBAKK\030\240\234\001 \003(\004\022\025\n\013OBONBLEEH" +
-      "BK\030\241\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob" +
-      "\006proto3"
+      "\n\026_BeyondWorldInfo.proto\">\n\020_BeyondWorld" +
+      "Info\022\023\n\013AIFEJOGBAKK\030\002 \003(\004\022\025\n\013OBONBLEEHBK" +
+      "\030\241\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -6,8 +6,8 @@ import "FGJFGPAPOHE.proto";
 
 message _OrderInfo {
   repeated uint32 npc_id_list = 3;
-  FGJFGPAPOHE BHHGGMIGHHL = 20000;
+  FGJFGPAPOHE BHHGGMIGHHL = 10;
   uint32 id = 15;
-  uint32 GCKDBLEMLNM = 20001;
-  bool LKIIDNBEBIM = 20002;
+  uint32 GCKDBLEMLNM = 6;
+  bool LKIIDNBEBIM = 8;
 }

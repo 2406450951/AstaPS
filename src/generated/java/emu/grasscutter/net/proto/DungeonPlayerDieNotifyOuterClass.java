@@ -65,17 +65,17 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
         int key);
 
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 15;</code>
      * @return Whether the mCPNIFKDECF field is set.
      */
     boolean hasMCPNIFKDECF();
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 15;</code>
      * @return The mCPNIFKDECF.
      */
     emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString getMCPNIFKDECF();
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 15;</code>
      */
     emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder getMCPNIFKDECFOrBuilder();
 
@@ -327,10 +327,10 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
       return map.get(key);
     }
 
-    public static final int MCPNIFKDECF_FIELD_NUMBER = 20000;
+    public static final int MCPNIFKDECF_FIELD_NUMBER = 15;
     private emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString mCPNIFKDECF_;
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 15;</code>
      * @return Whether the mCPNIFKDECF field is set.
      */
     @java.lang.Override
@@ -338,7 +338,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 15;</code>
      * @return The mCPNIFKDECF.
      */
     @java.lang.Override
@@ -346,7 +346,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
       return mCPNIFKDECF_ == null ? emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.getDefaultInstance() : mCPNIFKDECF_;
     }
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 15;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder getMCPNIFKDECFOrBuilder() {
@@ -520,7 +520,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
             13, (int)((java.lang.Integer) entity_));
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getMCPNIFKDECF());
+        output.writeMessage(15, getMCPNIFKDECF());
       }
       if (murdererEntityId_ != 0) {
         output.writeUInt32(20001, murdererEntityId_);
@@ -573,7 +573,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getMCPNIFKDECF());
+          .computeMessageSize(15, getMCPNIFKDECF());
       }
       if (murdererEntityId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -1051,13 +1051,13 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
                 entityCase_ = 13;
                 break;
               } // case 104
-              case 160002: {
+              case 122: {
                 input.readMessage(
                     internalGetMCPNIFKDECFFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160002
+              } // case 122
               case 160008: {
                 murdererEntityId_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -1263,14 +1263,14 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString, emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.Builder, emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder> mCPNIFKDECFBuilder_;
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        * @return Whether the mCPNIFKDECF field is set.
        */
       public boolean hasMCPNIFKDECF() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        * @return The mCPNIFKDECF.
        */
       public emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString getMCPNIFKDECF() {
@@ -1281,7 +1281,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
         }
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        */
       public Builder setMCPNIFKDECF(emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString value) {
         if (mCPNIFKDECFBuilder_ == null) {
@@ -1295,7 +1295,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
         return this;
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        */
       public Builder setMCPNIFKDECF(
           emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.Builder builderForValue) {
@@ -1309,7 +1309,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
         return this;
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        */
       public Builder mergeMCPNIFKDECF(emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString value) {
         if (mCPNIFKDECFBuilder_ == null) {
@@ -1330,7 +1330,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
         return this;
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        */
       public Builder clearMCPNIFKDECF() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1343,7 +1343,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
         return this;
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        */
       public emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.Builder getMCPNIFKDECFBuilder() {
         bitField0_ |= 0x00000002;
@@ -1351,7 +1351,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
         return internalGetMCPNIFKDECFFieldBuilder().getBuilder();
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        */
       public emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder getMCPNIFKDECFOrBuilder() {
         if (mCPNIFKDECFBuilder_ != null) {
@@ -1362,7 +1362,7 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
         }
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 15;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString, emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.Builder, emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder> 
@@ -1778,19 +1778,19 @@ emu.grasscutter.net.proto.StrengthenPointDataOuterClass.StrengthenPointData defa
     java.lang.String[] descriptorData = {
       "\n\034DungeonPlayerDieNotify.proto\032\023AbilityS" +
       "tring.proto\032\023PlayerDieType.proto\032\031Streng" +
-      "thenPointData.proto\"\314\003\n\026DungeonPlayerDie" +
+      "thenPointData.proto\"\312\003\n\026DungeonPlayerDie" +
       "Notify\022V\n\031strengthen_point_data_map\030\t \003(" +
       "\01323.DungeonPlayerDieNotify.StrengthenPoi" +
-      "ntDataMapEntry\022%\n\013MCPNIFKDECF\030\240\234\001 \001(\0132\016." +
-      "AbilityString\022\034\n\022murderer_entity_id\030\241\234\001 " +
-      "\001(\r\022\024\n\014revive_count\030\001 \001(\r\022 \n\010die_type\030\n " +
-      "\001(\0162\016.PlayerDieType\022\025\n\013OBOKABMLGHI\030\242\234\001 \001" +
-      "(\r\022\022\n\ndungeon_id\030\007 \001(\r\022\025\n\013AOMDIHGJMNK\030\243\234" +
-      "\001 \001(\r\022\021\n\twait_time\030\013 \001(\r\022\024\n\nmonster_id\030\r" +
-      " \001(\rH\000\022\023\n\tgadget_id\030\006 \001(\rH\000\032S\n\033Strengthe" +
-      "nPointDataMapEntry\022\013\n\003key\030\001 \001(\r\022#\n\005value" +
-      "\030\002 \001(\0132\024.StrengthenPointData:\0028\001B\010\n\006enti" +
-      "tyB\033\n\031emu.grasscutter.net.protob\006proto3"
+      "ntDataMapEntry\022#\n\013MCPNIFKDECF\030\017 \001(\0132\016.Ab" +
+      "ilityString\022\034\n\022murderer_entity_id\030\241\234\001 \001(" +
+      "\r\022\024\n\014revive_count\030\001 \001(\r\022 \n\010die_type\030\n \001(" +
+      "\0162\016.PlayerDieType\022\025\n\013OBOKABMLGHI\030\242\234\001 \001(\r" +
+      "\022\022\n\ndungeon_id\030\007 \001(\r\022\025\n\013AOMDIHGJMNK\030\243\234\001 " +
+      "\001(\r\022\021\n\twait_time\030\013 \001(\r\022\024\n\nmonster_id\030\r \001" +
+      "(\rH\000\022\023\n\tgadget_id\030\006 \001(\rH\000\032S\n\033StrengthenP" +
+      "ointDataMapEntry\022\013\n\003key\030\001 \001(\r\022#\n\005value\030\002" +
+      " \001(\0132\024.StrengthenPointData:\0028\001B\010\n\006entity" +
+      "B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -4,5 +4,5 @@ option java_package = "emu.grasscutter.net.proto";
 
 message _LevelStateMachineComp {
   string GACOKFFCBJO = 20000;
-  int32 BIFLHAOJNJO = 20001;
+  int32 BIFLHAOJNJO = 1;
 }

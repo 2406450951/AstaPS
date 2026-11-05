@@ -37,13 +37,13 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
     boolean getFPKBKGBKGEG();
 
     /**
-     * <code>bool LBCGNOOJDIC = 20001;</code>
+     * <code>bool LBCGNOOJDIC = 2;</code>
      * @return The lBCGNOOJDIC.
      */
     boolean getLBCGNOOJDIC();
 
     /**
-     * <code>uint32 PLEDFNKONLB = 20002;</code>
+     * <code>uint32 PLEDFNKONLB = 7;</code>
      * @return The pLEDFNKONLB.
      */
     int getPLEDFNKONLB();
@@ -101,10 +101,10 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
       return fPKBKGBKGEG_;
     }
 
-    public static final int LBCGNOOJDIC_FIELD_NUMBER = 20001;
+    public static final int LBCGNOOJDIC_FIELD_NUMBER = 2;
     private boolean lBCGNOOJDIC_ = false;
     /**
-     * <code>bool LBCGNOOJDIC = 20001;</code>
+     * <code>bool LBCGNOOJDIC = 2;</code>
      * @return The lBCGNOOJDIC.
      */
     @java.lang.Override
@@ -112,10 +112,10 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
       return lBCGNOOJDIC_;
     }
 
-    public static final int PLEDFNKONLB_FIELD_NUMBER = 20002;
+    public static final int PLEDFNKONLB_FIELD_NUMBER = 7;
     private int pLEDFNKONLB_ = 0;
     /**
-     * <code>uint32 PLEDFNKONLB = 20002;</code>
+     * <code>uint32 PLEDFNKONLB = 7;</code>
      * @return The pLEDFNKONLB.
      */
     @java.lang.Override
@@ -137,30 +137,30 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (fPKBKGBKGEG_ != false) {
-        output.writeBool(20000, fPKBKGBKGEG_);
-      }
       if (lBCGNOOJDIC_ != false) {
-        output.writeBool(20001, lBCGNOOJDIC_);
+        output.writeBool(2, lBCGNOOJDIC_);
       }
       if (pLEDFNKONLB_ != 0) {
-        output.writeUInt32(20002, pLEDFNKONLB_);
+        output.writeUInt32(7, pLEDFNKONLB_);
+      }
+      if (fPKBKGBKGEG_ != false) {
+        output.writeBool(20000, fPKBKGBKGEG_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
-      if (fPKBKGBKGEG_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, fPKBKGBKGEG_);
-      }
       if (lBCGNOOJDIC_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20001, lBCGNOOJDIC_);
+          .computeBoolSize(2, lBCGNOOJDIC_);
       }
       if (pLEDFNKONLB_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20002, pLEDFNKONLB_);
+          .computeUInt32Size(7, pLEDFNKONLB_);
+      }
+      if (fPKBKGBKGEG_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(20000, fPKBKGBKGEG_);
       }
       return size;
     }
@@ -434,21 +434,21 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
               case 0:
                 done = true;
                 break;
+              case 16: {
+                lBCGNOOJDIC_ = input.readBool();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 56: {
+                pLEDFNKONLB_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 56
               case 160000: {
                 fPKBKGBKGEG_ = input.readBool();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 160000
-              case 160008: {
-                lBCGNOOJDIC_ = input.readBool();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160008
-              case 160016: {
-                pLEDFNKONLB_ = input.readUInt32();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160016
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -500,7 +500,7 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
 
       private boolean lBCGNOOJDIC_ ;
       /**
-       * <code>bool LBCGNOOJDIC = 20001;</code>
+       * <code>bool LBCGNOOJDIC = 2;</code>
        * @return The lBCGNOOJDIC.
        */
       @java.lang.Override
@@ -508,7 +508,7 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
         return lBCGNOOJDIC_;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20001;</code>
+       * <code>bool LBCGNOOJDIC = 2;</code>
        * @param value The lBCGNOOJDIC to set.
        * @return This builder for chaining.
        */
@@ -520,7 +520,7 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20001;</code>
+       * <code>bool LBCGNOOJDIC = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearLBCGNOOJDIC() {
@@ -532,7 +532,7 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
 
       private int pLEDFNKONLB_ ;
       /**
-       * <code>uint32 PLEDFNKONLB = 20002;</code>
+       * <code>uint32 PLEDFNKONLB = 7;</code>
        * @return The pLEDFNKONLB.
        */
       @java.lang.Override
@@ -540,7 +540,7 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
         return pLEDFNKONLB_;
       }
       /**
-       * <code>uint32 PLEDFNKONLB = 20002;</code>
+       * <code>uint32 PLEDFNKONLB = 7;</code>
        * @param value The pLEDFNKONLB to set.
        * @return This builder for chaining.
        */
@@ -552,7 +552,7 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>uint32 PLEDFNKONLB = 20002;</code>
+       * <code>uint32 PLEDFNKONLB = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearPLEDFNKONLB() {
@@ -627,10 +627,10 @@ public final class FishingJoyDetailInfo extends com.google.protobuf.GeneratedFil
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\033_FishingJoyDetailInfo.proto\"\\\n\025_Fishin" +
-      "gJoyDetailInfo\022\025\n\013FPKBKGBKGEG\030\240\234\001 \001(\010\022\025\n" +
-      "\013LBCGNOOJDIC\030\241\234\001 \001(\010\022\025\n\013PLEDFNKONLB\030\242\234\001 " +
-      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
+      "\n\033_FishingJoyDetailInfo.proto\"X\n\025_Fishin" +
+      "gJoyDetailInfo\022\025\n\013FPKBKGBKGEG\030\240\234\001 \001(\010\022\023\n" +
+      "\013LBCGNOOJDIC\030\002 \001(\010\022\023\n\013PLEDFNKONLB\030\007 \001(\rB" +
+      "\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

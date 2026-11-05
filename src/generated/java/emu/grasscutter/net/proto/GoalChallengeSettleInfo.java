@@ -31,17 +31,17 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @return A list containing the kKBGBCAOLAP.
      */
     java.util.List<java.lang.Integer> getKKBGBCAOLAPList();
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @return The count of kKBGBCAOLAP.
      */
     int getKKBGBCAOLAPCount();
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @param index The index of the element to return.
      * @return The kKBGBCAOLAP at the given index.
      */
@@ -108,12 +108,12 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
               emu.grasscutter.net.proto.GoalChallengeSettleInfo._GoalChallengeSettleInfo.class, emu.grasscutter.net.proto.GoalChallengeSettleInfo._GoalChallengeSettleInfo.Builder.class);
     }
 
-    public static final int KKBGBCAOLAP_FIELD_NUMBER = 20000;
+    public static final int KKBGBCAOLAP_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList kKBGBCAOLAP_ =
         emptyIntList();
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @return A list containing the kKBGBCAOLAP.
      */
     @java.lang.Override
@@ -122,14 +122,14 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
       return kKBGBCAOLAP_;
     }
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @return The count of kKBGBCAOLAP.
      */
     public int getKKBGBCAOLAPCount() {
       return kKBGBCAOLAP_.size();
     }
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @param index The index of the element to return.
      * @return The kKBGBCAOLAP at the given index.
      */
@@ -192,15 +192,15 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
       if (difficulty_ != 0) {
         output.writeUInt32(2, difficulty_);
       }
-      if (isNewRecord_ != false) {
-        output.writeBool(4, isNewRecord_);
-      }
       if (getKKBGBCAOLAPList().size() > 0) {
-        output.writeUInt32NoTag(160002);
+        output.writeUInt32NoTag(26);
         output.writeUInt32NoTag(kKBGBCAOLAPMemoizedSerializedSize);
       }
       for (int i = 0; i < kKBGBCAOLAP_.size(); i++) {
         output.writeUInt32NoTag(kKBGBCAOLAP_.getInt(i));
+      }
+      if (isNewRecord_ != false) {
+        output.writeBool(4, isNewRecord_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -214,10 +214,6 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, difficulty_);
       }
-      if (isNewRecord_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, isNewRecord_);
-      }
       {
         int dataSize = 0;
         for (int i = 0; i < kKBGBCAOLAP_.size(); i++) {
@@ -226,11 +222,15 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
         }
         size += dataSize;
         if (!getKKBGBCAOLAPList().isEmpty()) {
-          size += 3;
+          size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
         kKBGBCAOLAPMemoizedSerializedSize = dataSize;
+      }
+      if (isNewRecord_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, isNewRecord_);
       }
       return size;
     }
@@ -535,18 +535,13 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
                 bitField0_ |= 0x00000004;
                 break;
               } // case 16
-              case 32: {
-                isNewRecord_ = input.readBool();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 32
-              case 160000: {
+              case 24: {
                 int v = input.readUInt32();
                 ensureKKBGBCAOLAPIsMutable();
                 kKBGBCAOLAP_.addInt(v);
                 break;
-              } // case 160000
-              case 160002: {
+              } // case 24
+              case 26: {
                 int length = input.readRawVarint32();
                 int limit = input.pushLimit(length);
                 ensureKKBGBCAOLAPIsMutable();
@@ -555,7 +550,12 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
                 }
                 input.popLimit(limit);
                 break;
-              } // case 160002
+              } // case 26
+              case 32: {
+                isNewRecord_ = input.readBool();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -581,7 +581,7 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
         bitField0_ |= 0x00000001;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @return A list containing the kKBGBCAOLAP.
        */
       public java.util.List<java.lang.Integer>
@@ -590,14 +590,14 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
         return kKBGBCAOLAP_;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @return The count of kKBGBCAOLAP.
        */
       public int getKKBGBCAOLAPCount() {
         return kKBGBCAOLAP_.size();
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @param index The index of the element to return.
        * @return The kKBGBCAOLAP at the given index.
        */
@@ -605,7 +605,7 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
         return kKBGBCAOLAP_.getInt(index);
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @param index The index to set the value at.
        * @param value The kKBGBCAOLAP to set.
        * @return This builder for chaining.
@@ -620,7 +620,7 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @param value The kKBGBCAOLAP to add.
        * @return This builder for chaining.
        */
@@ -633,7 +633,7 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @param values The kKBGBCAOLAP to add.
        * @return This builder for chaining.
        */
@@ -647,7 +647,7 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearKKBGBCAOLAP() {
@@ -818,11 +818,11 @@ public final class GoalChallengeSettleInfo extends com.google.protobuf.Generated
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\036_GoalChallengeSettleInfo.proto\"n\n\030_Goa" +
-      "lChallengeSettleInfo\022\025\n\013KKBGBCAOLAP\030\240\234\001 " +
-      "\003(\r\022\020\n\010stage_id\030\001 \001(\r\022\022\n\ndifficulty\030\002 \001(" +
-      "\r\022\025\n\ris_new_record\030\004 \001(\010B\033\n\031emu.grasscut" +
-      "ter.net.protob\006proto3"
+      "\n\036_GoalChallengeSettleInfo.proto\"l\n\030_Goa" +
+      "lChallengeSettleInfo\022\023\n\013KKBGBCAOLAP\030\003 \003(" +
+      "\r\022\020\n\010stage_id\030\001 \001(\r\022\022\n\ndifficulty\030\002 \001(\r\022" +
+      "\025\n\ris_new_record\030\004 \001(\010B\033\n\031emu.grasscutte" +
+      "r.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

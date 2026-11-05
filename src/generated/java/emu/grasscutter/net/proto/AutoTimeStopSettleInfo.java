@@ -49,7 +49,7 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
     int getLevelId();
 
     /**
-     * <code>uint32 EEJFHMGENNI = 20000;</code>
+     * <code>uint32 EEJFHMGENNI = 3;</code>
      * @return The eEJFHMGENNI.
      */
     int getEEJFHMGENNI();
@@ -129,10 +129,10 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
       return levelId_;
     }
 
-    public static final int EEJFHMGENNI_FIELD_NUMBER = 20000;
+    public static final int EEJFHMGENNI_FIELD_NUMBER = 3;
     private int eEJFHMGENNI_ = 0;
     /**
-     * <code>uint32 EEJFHMGENNI = 20000;</code>
+     * <code>uint32 EEJFHMGENNI = 3;</code>
      * @return The eEJFHMGENNI.
      */
     @java.lang.Override
@@ -160,11 +160,11 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
       if (score_ != 0) {
         output.writeUInt32(2, score_);
       }
+      if (eEJFHMGENNI_ != 0) {
+        output.writeUInt32(3, eEJFHMGENNI_);
+      }
       if (isNewRecord_ != false) {
         output.writeBool(4, isNewRecord_);
-      }
-      if (eEJFHMGENNI_ != 0) {
-        output.writeUInt32(20000, eEJFHMGENNI_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -178,13 +178,13 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, score_);
       }
+      if (eEJFHMGENNI_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, eEJFHMGENNI_);
+      }
       if (isNewRecord_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(4, isNewRecord_);
-      }
-      if (eEJFHMGENNI_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, eEJFHMGENNI_);
       }
       return size;
     }
@@ -478,16 +478,16 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x00000001;
                 break;
               } // case 16
+              case 24: {
+                eEJFHMGENNI_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 24
               case 32: {
                 isNewRecord_ = input.readBool();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 32
-              case 160000: {
-                eEJFHMGENNI_ = input.readUInt32();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -603,7 +603,7 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
 
       private int eEJFHMGENNI_ ;
       /**
-       * <code>uint32 EEJFHMGENNI = 20000;</code>
+       * <code>uint32 EEJFHMGENNI = 3;</code>
        * @return The eEJFHMGENNI.
        */
       @java.lang.Override
@@ -611,7 +611,7 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
         return eEJFHMGENNI_;
       }
       /**
-       * <code>uint32 EEJFHMGENNI = 20000;</code>
+       * <code>uint32 EEJFHMGENNI = 3;</code>
        * @param value The eEJFHMGENNI to set.
        * @return This builder for chaining.
        */
@@ -623,7 +623,7 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>uint32 EEJFHMGENNI = 20000;</code>
+       * <code>uint32 EEJFHMGENNI = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearEEJFHMGENNI() {
@@ -698,11 +698,11 @@ public final class AutoTimeStopSettleInfo extends com.google.protobuf.GeneratedF
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\035_AutoTimeStopSettleInfo.proto\"h\n\027_Auto" +
+      "\n\035_AutoTimeStopSettleInfo.proto\"f\n\027_Auto" +
       "TimeStopSettleInfo\022\r\n\005score\030\002 \001(\r\022\025\n\ris_" +
-      "new_record\030\004 \001(\010\022\020\n\010level_id\030\001 \001(\r\022\025\n\013EE" +
-      "JFHMGENNI\030\240\234\001 \001(\rB\033\n\031emu.grasscutter.net" +
-      ".protob\006proto3"
+      "new_record\030\004 \001(\010\022\020\n\010level_id\030\001 \001(\r\022\023\n\013EE" +
+      "JFHMGENNI\030\003 \001(\rB\033\n\031emu.grasscutter.net.p" +
+      "rotob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

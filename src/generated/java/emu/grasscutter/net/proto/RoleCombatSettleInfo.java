@@ -121,7 +121,7 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
     emu.grasscutter.net.proto.DIGMMKNOMJHOuterClass.DIGMMKNOMJHOrBuilder getNAMEIDCGGIFOrBuilder();
 
     /**
-     * <code>bool FBHFAMPKPPK = 20004;</code>
+     * <code>bool FBHFAMPKPPK = 4;</code>
      * @return The fBHFAMPKPPK.
      */
     boolean getFBHFAMPKPPK();
@@ -372,10 +372,10 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
       return nAMEIDCGGIF_ == null ? emu.grasscutter.net.proto.DIGMMKNOMJHOuterClass.DIGMMKNOMJH.getDefaultInstance() : nAMEIDCGGIF_;
     }
 
-    public static final int FBHFAMPKPPK_FIELD_NUMBER = 20004;
+    public static final int FBHFAMPKPPK_FIELD_NUMBER = 4;
     private boolean fBHFAMPKPPK_ = false;
     /**
-     * <code>bool FBHFAMPKPPK = 20004;</code>
+     * <code>bool FBHFAMPKPPK = 4;</code>
      * @return The fBHFAMPKPPK.
      */
     @java.lang.Override
@@ -471,6 +471,9 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (fBHFAMPKPPK_ != false) {
+        output.writeBool(4, fBHFAMPKPPK_);
+      }
       if (difficultyId_ != 0) {
         output.writeUInt32(6, difficultyId_);
       }
@@ -507,9 +510,6 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20003, getNAMEIDCGGIF());
       }
-      if (fBHFAMPKPPK_ != false) {
-        output.writeBool(20004, fBHFAMPKPPK_);
-      }
       if (iNIDHGHIOOO_ != false) {
         output.writeBool(20005, iNIDHGHIOOO_);
       }
@@ -523,6 +523,10 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (fBHFAMPKPPK_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, fBHFAMPKPPK_);
+      }
       if (difficultyId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(6, difficultyId_);
@@ -589,10 +593,6 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20003, getNAMEIDCGGIF());
-      }
-      if (fBHFAMPKPPK_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20004, fBHFAMPKPPK_);
       }
       if (iNIDHGHIOOO_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -1071,6 +1071,11 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
               case 0:
                 done = true;
                 break;
+              case 32: {
+                fBHFAMPKPPK_ = input.readBool();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 32
               case 48: {
                 difficultyId_ = input.readUInt32();
                 bitField0_ |= 0x00000080;
@@ -1154,11 +1159,6 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00000010;
                 break;
               } // case 160026
-              case 160032: {
-                fBHFAMPKPPK_ = input.readBool();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160032
               case 160040: {
                 iNIDHGHIOOO_ = input.readBool();
                 bitField0_ |= 0x00000040;
@@ -1798,7 +1798,7 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
 
       private boolean fBHFAMPKPPK_ ;
       /**
-       * <code>bool FBHFAMPKPPK = 20004;</code>
+       * <code>bool FBHFAMPKPPK = 4;</code>
        * @return The fBHFAMPKPPK.
        */
       @java.lang.Override
@@ -1806,7 +1806,7 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
         return fBHFAMPKPPK_;
       }
       /**
-       * <code>bool FBHFAMPKPPK = 20004;</code>
+       * <code>bool FBHFAMPKPPK = 4;</code>
        * @param value The fBHFAMPKPPK to set.
        * @return This builder for chaining.
        */
@@ -1818,7 +1818,7 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>bool FBHFAMPKPPK = 20004;</code>
+       * <code>bool FBHFAMPKPPK = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearFBHFAMPKPPK() {
@@ -2107,16 +2107,16 @@ public final class RoleCombatSettleInfo extends com.google.protobuf.GeneratedFil
     java.lang.String[] descriptorData = {
       "\n\033_RoleCombatSettleInfo.proto\032\021DIGMMKNOM" +
       "JH.proto\032\021IGNEGGFGNHB.proto\032\021NBMAFDLIACA" +
-      ".proto\"\316\002\n\025_RoleCombatSettleInfo\022#\n\013HMIN" +
+      ".proto\"\314\002\n\025_RoleCombatSettleInfo\022#\n\013HMIN" +
       "JJJIEBB\030\240\234\001 \003(\0132\014.IGNEGGFGNHB\022\025\n\013HFDHOLO" +
       "KLJK\030\241\234\001 \003(\004\022\030\n\020avatar_guid_list\030\013 \003(\004\022\025" +
       "\n\013KNCAOGIMIJJ\030\242\234\001 \003(\r\022#\n\013NAMEIDCGGIF\030\243\234\001" +
-      " \001(\0132\014.DIGMMKNOMJH\022\025\n\013FBHFAMPKPPK\030\244\234\001 \001(" +
-      "\010\022\025\n\013INIDHGHIOOO\030\245\234\001 \001(\010\022\025\n\rdifficulty_i" +
-      "d\030\006 \001(\r\022\020\n\010coin_num\030\007 \001(\r\022#\n\013PEENJAIFAEN" +
-      "\030\246\234\001 \001(\0162\014.NBMAFDLIACA\022\025\n\013GBNCKPFLFIM\030\247\234" +
-      "\001 \001(\r\022\020\n\010use_time\030\014 \001(\rB\033\n\031emu.grasscutt" +
-      "er.net.protob\006proto3"
+      " \001(\0132\014.DIGMMKNOMJH\022\023\n\013FBHFAMPKPPK\030\004 \001(\010\022" +
+      "\025\n\013INIDHGHIOOO\030\245\234\001 \001(\010\022\025\n\rdifficulty_id\030" +
+      "\006 \001(\r\022\020\n\010coin_num\030\007 \001(\r\022#\n\013PEENJAIFAEN\030\246" +
+      "\234\001 \001(\0162\014.NBMAFDLIACA\022\025\n\013GBNCKPFLFIM\030\247\234\001 " +
+      "\001(\r\022\020\n\010use_time\030\014 \001(\rB\033\n\031emu.grasscutter" +
+      ".net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

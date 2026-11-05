@@ -3,5 +3,5 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message _ArtifactSelectInfo {
-  repeated uint32 OHBPLEJNHBF = 20000;
+  repeated uint32 OHBPLEJNHBF = 13;
 }

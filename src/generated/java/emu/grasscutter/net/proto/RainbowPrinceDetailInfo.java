@@ -55,25 +55,25 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         int index);
 
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     java.util.List<emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN> 
         getHGNLKDCGLBOList();
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN getHGNLKDCGLBO(int index);
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     int getHGNLKDCGLBOCount();
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACNOrBuilder> 
         getHGNLKDCGLBOOrBuilderList();
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACNOrBuilder getHGNLKDCGLBOOrBuilder(
         int index);
@@ -163,18 +163,18 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
       return nBALJIPCLAF_.get(index);
     }
 
-    public static final int HGNLKDCGLBO_FIELD_NUMBER = 20001;
+    public static final int HGNLKDCGLBO_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN> hGNLKDCGLBO_;
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN> getHGNLKDCGLBOList() {
       return hGNLKDCGLBO_;
     }
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACNOrBuilder> 
@@ -182,21 +182,21 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
       return hGNLKDCGLBO_;
     }
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     @java.lang.Override
     public int getHGNLKDCGLBOCount() {
       return hGNLKDCGLBO_.size();
     }
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN getHGNLKDCGLBO(int index) {
       return hGNLKDCGLBO_.get(index);
     }
     /**
-     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+     * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACNOrBuilder getHGNLKDCGLBOOrBuilder(
@@ -218,11 +218,11 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      for (int i = 0; i < hGNLKDCGLBO_.size(); i++) {
+        output.writeMessage(2, hGNLKDCGLBO_.get(i));
+      }
       for (int i = 0; i < nBALJIPCLAF_.size(); i++) {
         output.writeMessage(20000, nBALJIPCLAF_.get(i));
-      }
-      for (int i = 0; i < hGNLKDCGLBO_.size(); i++) {
-        output.writeMessage(20001, hGNLKDCGLBO_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -230,19 +230,19 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
       int size = 0;
 
           {
-            final int count = nBALJIPCLAF_.size();
-            for (int i = 0; i < count; i++) {
-              size += com.google.protobuf.CodedOutputStream
-                .computeMessageSizeNoTag(nBALJIPCLAF_.get(i));
-            }
-            size += 3 * count;
-          }
-
-          {
             final int count = hGNLKDCGLBO_.size();
             for (int i = 0; i < count; i++) {
               size += com.google.protobuf.CodedOutputStream
                 .computeMessageSizeNoTag(hGNLKDCGLBO_.get(i));
+            }
+            size += 1 * count;
+          }
+
+          {
+            final int count = nBALJIPCLAF_.size();
+            for (int i = 0; i < count; i++) {
+              size += com.google.protobuf.CodedOutputStream
+                .computeMessageSizeNoTag(nBALJIPCLAF_.get(i));
             }
             size += 3 * count;
           }
@@ -583,6 +583,19 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
               case 0:
                 done = true;
                 break;
+              case 18: {
+                emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN m =
+                    input.readMessage(
+                        emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.parser(),
+                        extensionRegistry);
+                if (hGNLKDCGLBOBuilder_ == null) {
+                  ensureHGNLKDCGLBOIsMutable();
+                  hGNLKDCGLBO_.add(m);
+                } else {
+                  hGNLKDCGLBOBuilder_.addMessage(m);
+                }
+                break;
+              } // case 18
               case 160002: {
                 emu.grasscutter.net.proto.HEEIDHNNCDMOuterClass.HEEIDHNNCDM m =
                     input.readMessage(
@@ -596,19 +609,6 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
                 }
                 break;
               } // case 160002
-              case 160010: {
-                emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN m =
-                    input.readMessage(
-                        emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.parser(),
-                        extensionRegistry);
-                if (hGNLKDCGLBOBuilder_ == null) {
-                  ensureHGNLKDCGLBOIsMutable();
-                  hGNLKDCGLBO_.add(m);
-                } else {
-                  hGNLKDCGLBOBuilder_.addMessage(m);
-                }
-                break;
-              } // case 160010
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -873,7 +873,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
           emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN, emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.Builder, emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACNOrBuilder> hGNLKDCGLBOBuilder_;
 
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN> getHGNLKDCGLBOList() {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -883,7 +883,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         }
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public int getHGNLKDCGLBOCount() {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -893,7 +893,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         }
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN getHGNLKDCGLBO(int index) {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -903,7 +903,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         }
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder setHGNLKDCGLBO(
           int index, emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN value) {
@@ -918,7 +918,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder setHGNLKDCGLBO(
           int index, emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.Builder builderForValue) {
@@ -932,7 +932,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder addHGNLKDCGLBO(emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN value) {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -946,7 +946,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder addHGNLKDCGLBO(
           int index, emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN value) {
@@ -961,7 +961,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder addHGNLKDCGLBO(
           emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.Builder builderForValue) {
@@ -975,7 +975,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder addHGNLKDCGLBO(
           int index, emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.Builder builderForValue) {
@@ -989,7 +989,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder addAllHGNLKDCGLBO(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN> values) {
@@ -1004,7 +1004,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder clearHGNLKDCGLBO() {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -1017,7 +1017,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public Builder removeHGNLKDCGLBO(int index) {
         if (hGNLKDCGLBOBuilder_ == null) {
@@ -1030,14 +1030,14 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.Builder getHGNLKDCGLBOBuilder(
           int index) {
         return internalGetHGNLKDCGLBOFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACNOrBuilder getHGNLKDCGLBOOrBuilder(
           int index) {
@@ -1047,7 +1047,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         }
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACNOrBuilder> 
            getHGNLKDCGLBOOrBuilderList() {
@@ -1058,14 +1058,14 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
         }
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.Builder addHGNLKDCGLBOBuilder() {
         return internalGetHGNLKDCGLBOFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.getDefaultInstance());
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.Builder addHGNLKDCGLBOBuilder(
           int index) {
@@ -1073,7 +1073,7 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
             index, emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.getDefaultInstance());
       }
       /**
-       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 20001;</code>
+       * <code>repeated .LBGHHNDLACN HGNLKDCGLBO = 2;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.LBGHHNDLACNOuterClass.LBGHHNDLACN.Builder> 
            getHGNLKDCGLBOBuilderList() {
@@ -1160,11 +1160,11 @@ public final class RainbowPrinceDetailInfo extends com.google.protobuf.Generated
   static {
     java.lang.String[] descriptorData = {
       "\n\036_RainbowPrinceDetailInfo.proto\032\021HEEIDH" +
-      "NNCDM.proto\032\021LBGHHNDLACN.proto\"d\n\030_Rainb" +
+      "NNCDM.proto\032\021LBGHHNDLACN.proto\"b\n\030_Rainb" +
       "owPrinceDetailInfo\022#\n\013NBALJIPCLAF\030\240\234\001 \003(" +
-      "\0132\014.HEEIDHNNCDM\022#\n\013HGNLKDCGLBO\030\241\234\001 \003(\0132\014" +
-      ".LBGHHNDLACNB\033\n\031emu.grasscutter.net.prot" +
-      "ob\006proto3"
+      "\0132\014.HEEIDHNNCDM\022!\n\013HGNLKDCGLBO\030\002 \003(\0132\014.L" +
+      "BGHHNDLACNB\033\n\031emu.grasscutter.net.protob" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

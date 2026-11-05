@@ -31,25 +31,25 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     java.util.List<emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord> 
         getLevelRecordListList();
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord getLevelRecordList(int index);
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     int getLevelRecordListCount();
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecordOrBuilder> 
         getLevelRecordListOrBuilderList();
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecordOrBuilder getLevelRecordListOrBuilder(
         int index);
@@ -97,18 +97,18 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
               emu.grasscutter.net.proto.MapMarkLevelInfo._MapMarkLevelInfo.class, emu.grasscutter.net.proto.MapMarkLevelInfo._MapMarkLevelInfo.Builder.class);
     }
 
-    public static final int _LEVEL_RECORD_LIST_FIELD_NUMBER = 20000;
+    public static final int _LEVEL_RECORD_LIST_FIELD_NUMBER = 10;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord> LevelRecordList_;
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord> getLevelRecordListList() {
       return LevelRecordList_;
     }
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecordOrBuilder> 
@@ -116,21 +116,21 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
       return LevelRecordList_;
     }
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     @java.lang.Override
     public int getLevelRecordListCount() {
       return LevelRecordList_.size();
     }
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord getLevelRecordList(int index) {
       return LevelRecordList_.get(index);
     }
     /**
-     * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+     * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecordOrBuilder getLevelRecordListOrBuilder(
@@ -153,7 +153,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < LevelRecordList_.size(); i++) {
-        output.writeMessage(20000, LevelRecordList_.get(i));
+        output.writeMessage(10, LevelRecordList_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -166,7 +166,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
               size += com.google.protobuf.CodedOutputStream
                 .computeMessageSizeNoTag(LevelRecordList_.get(i));
             }
-            size += 3 * count;
+            size += 1 * count;
           }
       return size;
     }
@@ -457,7 +457,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 82: {
                 emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord m =
                     input.readMessage(
                         emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.parser(),
@@ -469,7 +469,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
                   LevelRecordListBuilder_.addMessage(m);
                 }
                 break;
-              } // case 160002
+              } // case 82
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -500,7 +500,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
           emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord, emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.Builder, emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecordOrBuilder> LevelRecordListBuilder_;
 
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord> getLevelRecordListList() {
         if (LevelRecordListBuilder_ == null) {
@@ -510,7 +510,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public int getLevelRecordListCount() {
         if (LevelRecordListBuilder_ == null) {
@@ -520,7 +520,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord getLevelRecordList(int index) {
         if (LevelRecordListBuilder_ == null) {
@@ -530,7 +530,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder setLevelRecordList(
           int index, emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord value) {
@@ -545,7 +545,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder setLevelRecordList(
           int index, emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.Builder builderForValue) {
@@ -559,7 +559,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder addLevelRecordList(emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord value) {
         if (LevelRecordListBuilder_ == null) {
@@ -573,7 +573,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder addLevelRecordList(
           int index, emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord value) {
@@ -588,7 +588,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder addLevelRecordList(
           emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.Builder builderForValue) {
@@ -602,7 +602,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder addLevelRecordList(
           int index, emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.Builder builderForValue) {
@@ -616,7 +616,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder addAllLevelRecordList(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord> values) {
@@ -631,7 +631,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder clearLevelRecordList() {
         if (LevelRecordListBuilder_ == null) {
@@ -644,7 +644,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public Builder removeLevelRecordList(int index) {
         if (LevelRecordListBuilder_ == null) {
@@ -657,14 +657,14 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.Builder getLevelRecordListBuilder(
           int index) {
         return internalGetLevelRecordListFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecordOrBuilder getLevelRecordListOrBuilder(
           int index) {
@@ -674,7 +674,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecordOrBuilder> 
            getLevelRecordListOrBuilderList() {
@@ -685,14 +685,14 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.Builder addLevelRecordListBuilder() {
         return internalGetLevelRecordListFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.getDefaultInstance());
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.Builder addLevelRecordListBuilder(
           int index) {
@@ -700,7 +700,7 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
             index, emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.getDefaultInstance());
       }
       /**
-       * <code>repeated ._MapMarkRecord _level_record_list = 20000;</code>
+       * <code>repeated ._MapMarkRecord _level_record_list = 10;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.MapMarkRecord._MapMarkRecord.Builder> 
            getLevelRecordListBuilderList() {
@@ -787,9 +787,9 @@ public final class MapMarkLevelInfo extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\027_MapMarkLevelInfo.proto\032\024_MapMarkRecor" +
-      "d.proto\"B\n\021_MapMarkLevelInfo\022-\n\022_level_r" +
-      "ecord_list\030\240\234\001 \003(\0132\017._MapMarkRecordB\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "d.proto\"@\n\021_MapMarkLevelInfo\022+\n\022_level_r" +
+      "ecord_list\030\n \003(\0132\017._MapMarkRecordB\033\n\031emu" +
+      ".grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

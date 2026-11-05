@@ -48,12 +48,12 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
     int getScheduleId();
 
     /**
-     * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+     * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
      * @return The enum numeric value on the wire for hMODKDEMFDE.
      */
     int getHMODKDEMFDEValue();
     /**
-     * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+     * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
      * @return The hMODKDEMFDE.
      */
     emu.grasscutter.net.proto.KLALGJNDAFDOuterClass.KLALGJNDAFD getHMODKDEMFDE();
@@ -296,17 +296,17 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
       return scheduleId_;
     }
 
-    public static final int HMODKDEMFDE_FIELD_NUMBER = 20000;
+    public static final int HMODKDEMFDE_FIELD_NUMBER = 11;
     private int hMODKDEMFDE_ = 0;
     /**
-     * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+     * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
      * @return The enum numeric value on the wire for hMODKDEMFDE.
      */
     @java.lang.Override public int getHMODKDEMFDEValue() {
       return hMODKDEMFDE_;
     }
     /**
-     * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+     * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
      * @return The hMODKDEMFDE.
      */
     @java.lang.Override public emu.grasscutter.net.proto.KLALGJNDAFDOuterClass.KLALGJNDAFD getHMODKDEMFDE() {
@@ -495,6 +495,9 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
       if (recordCase_ == 10) {
         output.writeMessage(10, (emu.grasscutter.net.proto.UgcShortVideoRecord._UgcShortVideoRecord) record_);
       }
+      if (hMODKDEMFDE_ != emu.grasscutter.net.proto.KLALGJNDAFDOuterClass.KLALGJNDAFD.KLALGJNDAFD_NONE.getNumber()) {
+        output.writeEnum(11, hMODKDEMFDE_);
+      }
       if (ugcType_ != emu.grasscutter.net.proto.UgcTypeOuterClass.UgcType.UgcType_NONE.getNumber()) {
         output.writeEnum(14, ugcType_);
       }
@@ -503,9 +506,6 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
       }
       if (briefCase_ == 2034) {
         output.writeMessage(2034, (emu.grasscutter.net.proto.UgcLanV5CardBriefInfo._UgcLanV5CardBriefInfo) brief_);
-      }
-      if (hMODKDEMFDE_ != emu.grasscutter.net.proto.KLALGJNDAFDOuterClass.KLALGJNDAFD.KLALGJNDAFD_NONE.getNumber()) {
-        output.writeEnum(20000, hMODKDEMFDE_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -527,6 +527,10 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, (emu.grasscutter.net.proto.UgcShortVideoRecord._UgcShortVideoRecord) record_);
       }
+      if (hMODKDEMFDE_ != emu.grasscutter.net.proto.KLALGJNDAFDOuterClass.KLALGJNDAFD.KLALGJNDAFD_NONE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(11, hMODKDEMFDE_);
+      }
       if (ugcType_ != emu.grasscutter.net.proto.UgcTypeOuterClass.UgcType.UgcType_NONE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(14, ugcType_);
@@ -538,10 +542,6 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
       if (briefCase_ == 2034) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2034, (emu.grasscutter.net.proto.UgcLanV5CardBriefInfo._UgcLanV5CardBriefInfo) brief_);
-      }
-      if (hMODKDEMFDE_ != emu.grasscutter.net.proto.KLALGJNDAFDOuterClass.KLALGJNDAFD.KLALGJNDAFD_NONE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(20000, hMODKDEMFDE_);
       }
       return size;
     }
@@ -972,6 +972,11 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
                 recordCase_ = 10;
                 break;
               } // case 82
+              case 88: {
+                hMODKDEMFDE_ = input.readEnum();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 88
               case 112: {
                 ugcType_ = input.readEnum();
                 bitField0_ |= 0x00000001;
@@ -991,11 +996,6 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
                 briefCase_ = 2034;
                 break;
               } // case 16274
-              case 160000: {
-                hMODKDEMFDE_ = input.readEnum();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1129,14 +1129,14 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
 
       private int hMODKDEMFDE_ = 0;
       /**
-       * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+       * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
        * @return The enum numeric value on the wire for hMODKDEMFDE.
        */
       @java.lang.Override public int getHMODKDEMFDEValue() {
         return hMODKDEMFDE_;
       }
       /**
-       * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+       * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
        * @param value The enum numeric value on the wire for hMODKDEMFDE to set.
        * @return This builder for chaining.
        */
@@ -1147,7 +1147,7 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+       * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
        * @return The hMODKDEMFDE.
        */
       @java.lang.Override
@@ -1156,7 +1156,7 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
         return result == null ? emu.grasscutter.net.proto.KLALGJNDAFDOuterClass.KLALGJNDAFD.UNRECOGNIZED : result;
       }
       /**
-       * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+       * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
        * @param value The hMODKDEMFDE to set.
        * @throws IllegalArgumentException if UNRECOGNIZED is provided.
        * @return This builder for chaining.
@@ -1169,7 +1169,7 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>.KLALGJNDAFD HMODKDEMFDE = 20000;</code>
+       * <code>.KLALGJNDAFD HMODKDEMFDE = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearHMODKDEMFDE() {
@@ -1948,17 +1948,17 @@ public final class SaveUgcReqOuterClass extends com.google.protobuf.GeneratedFil
       "gcMusicBriefInfo.proto\032\024UgcMusicRecord.p" +
       "roto\032\rUgcType.proto\032\034_UgcLanV5CardBriefI" +
       "nfo.proto\032\031_UgcLanV5CardRecord.proto\032\032_U" +
-      "gcShortVideoRecord.proto\"\366\002\n\nSaveUgcReq\022" +
+      "gcShortVideoRecord.proto\"\364\002\n\nSaveUgcReq\022" +
       "\032\n\010ugc_type\030\016 \001(\0162\010.UgcType\022\023\n\013schedule_" +
-      "id\030\001 \001(\r\022#\n\013HMODKDEMFDE\030\240\234\001 \001(\0162\014.KLALGJ" +
-      "NDAFD\022\'\n\014music_record\030\005 \001(\0132\017.UgcMusicRe" +
-      "cordH\000\0223\n\023lan_v_5_card_record\030\t \001(\0132\024._U" +
-      "gcLanV5CardRecordH\000\0223\n\022short_video_recor" +
-      "d\030\n \001(\0132\025._UgcShortVideoRecordH\000\022/\n\020musi" +
-      "c_brief_info\030\314\r \001(\0132\022.UgcMusicBriefInfoH" +
-      "\001\022;\n\027lan_v_5_card_brief_info\030\362\017 \001(\0132\027._U" +
-      "gcLanV5CardBriefInfoH\001B\010\n\006recordB\007\n\005brie" +
-      "fB\033\n\031emu.grasscutter.net.protob\006proto3"
+      "id\030\001 \001(\r\022!\n\013HMODKDEMFDE\030\013 \001(\0162\014.KLALGJND" +
+      "AFD\022\'\n\014music_record\030\005 \001(\0132\017.UgcMusicReco" +
+      "rdH\000\0223\n\023lan_v_5_card_record\030\t \001(\0132\024._Ugc" +
+      "LanV5CardRecordH\000\0223\n\022short_video_record\030" +
+      "\n \001(\0132\025._UgcShortVideoRecordH\000\022/\n\020music_" +
+      "brief_info\030\314\r \001(\0132\022.UgcMusicBriefInfoH\001\022" +
+      ";\n\027lan_v_5_card_brief_info\030\362\017 \001(\0132\027._Ugc" +
+      "LanV5CardBriefInfoH\001B\010\n\006recordB\007\n\005briefB" +
+      "\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

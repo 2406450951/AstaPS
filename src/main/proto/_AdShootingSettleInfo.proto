@@ -7,7 +7,7 @@ import "NBKIIACAEDE.proto";
 import "Uint32Pair.proto";
 
 message _AdShootingSettleInfo {
-  repeated Uint32Pair BGKNOBGMOIP = 20000;
+  repeated Uint32Pair BGKNOBGMOIP = 15;
   FriendBrief _friend_brief = 1;
   bool AAPHBOOLCJJ = 20001;
   bool AIMJHJLEPEM = 20002;

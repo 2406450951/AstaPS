@@ -37,7 +37,7 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
     int getDifficultyId();
 
     /**
-     * <code>bool LBCGNOOJDIC = 20000;</code>
+     * <code>bool LBCGNOOJDIC = 2;</code>
      * @return The lBCGNOOJDIC.
      */
     boolean getLBCGNOOJDIC();
@@ -101,10 +101,10 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
       return difficultyId_;
     }
 
-    public static final int LBCGNOOJDIC_FIELD_NUMBER = 20000;
+    public static final int LBCGNOOJDIC_FIELD_NUMBER = 2;
     private boolean lBCGNOOJDIC_ = false;
     /**
-     * <code>bool LBCGNOOJDIC = 20000;</code>
+     * <code>bool LBCGNOOJDIC = 2;</code>
      * @return The lBCGNOOJDIC.
      */
     @java.lang.Override
@@ -137,11 +137,11 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (lBCGNOOJDIC_ != false) {
+        output.writeBool(2, lBCGNOOJDIC_);
+      }
       if (difficultyId_ != 0) {
         output.writeUInt32(7, difficultyId_);
-      }
-      if (lBCGNOOJDIC_ != false) {
-        output.writeBool(20000, lBCGNOOJDIC_);
       }
       if (mNGLBAEBKDA_ != false) {
         output.writeBool(20001, mNGLBAEBKDA_);
@@ -150,13 +150,13 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (lBCGNOOJDIC_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, lBCGNOOJDIC_);
+      }
       if (difficultyId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(7, difficultyId_);
-      }
-      if (lBCGNOOJDIC_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, lBCGNOOJDIC_);
       }
       if (mNGLBAEBKDA_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -434,16 +434,16 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
               case 0:
                 done = true;
                 break;
+              case 16: {
+                lBCGNOOJDIC_ = input.readBool();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
               case 56: {
                 difficultyId_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 56
-              case 160000: {
-                lBCGNOOJDIC_ = input.readBool();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160000
               case 160008: {
                 mNGLBAEBKDA_ = input.readBool();
                 bitField0_ |= 0x00000004;
@@ -500,7 +500,7 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
 
       private boolean lBCGNOOJDIC_ ;
       /**
-       * <code>bool LBCGNOOJDIC = 20000;</code>
+       * <code>bool LBCGNOOJDIC = 2;</code>
        * @return The lBCGNOOJDIC.
        */
       @java.lang.Override
@@ -508,7 +508,7 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
         return lBCGNOOJDIC_;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20000;</code>
+       * <code>bool LBCGNOOJDIC = 2;</code>
        * @param value The lBCGNOOJDIC to set.
        * @return This builder for chaining.
        */
@@ -520,7 +520,7 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
         return this;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20000;</code>
+       * <code>bool LBCGNOOJDIC = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearLBCGNOOJDIC() {
@@ -627,11 +627,11 @@ public final class CooperateChallengeDetailInfo extends com.google.protobuf.Gene
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n#_CooperateChallengeDetailInfo.proto\"d\n" +
+      "\n#_CooperateChallengeDetailInfo.proto\"b\n" +
       "\035_CooperateChallengeDetailInfo\022\025\n\rdiffic" +
-      "ulty_id\030\007 \001(\r\022\025\n\013LBCGNOOJDIC\030\240\234\001 \001(\010\022\025\n\013" +
-      "MNGLBAEBKDA\030\241\234\001 \001(\010B\033\n\031emu.grasscutter.n" +
-      "et.protob\006proto3"
+      "ulty_id\030\007 \001(\r\022\023\n\013LBCGNOOJDIC\030\002 \001(\010\022\025\n\013MN" +
+      "GLBAEBKDA\030\241\234\001 \001(\010B\033\n\031emu.grasscutter.net" +
+      ".protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

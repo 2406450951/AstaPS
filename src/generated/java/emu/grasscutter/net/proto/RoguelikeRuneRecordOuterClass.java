@@ -37,7 +37,7 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
     int getRuneId();
 
     /**
-     * <code>uint32 KPHKIPBJFMO = 20001;</code>
+     * <code>uint32 KPHKIPBJFMO = 3;</code>
      * @return The kPHKIPBJFMO.
      */
     int getKPHKIPBJFMO();
@@ -101,10 +101,10 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
       return runeId_;
     }
 
-    public static final int KPHKIPBJFMO_FIELD_NUMBER = 20001;
+    public static final int KPHKIPBJFMO_FIELD_NUMBER = 3;
     private int kPHKIPBJFMO_ = 0;
     /**
-     * <code>uint32 KPHKIPBJFMO = 20001;</code>
+     * <code>uint32 KPHKIPBJFMO = 3;</code>
      * @return The kPHKIPBJFMO.
      */
     @java.lang.Override
@@ -137,11 +137,11 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (kPHKIPBJFMO_ != 0) {
+        output.writeUInt32(3, kPHKIPBJFMO_);
+      }
       if (runeId_ != 0) {
         output.writeUInt32(20000, runeId_);
-      }
-      if (kPHKIPBJFMO_ != 0) {
-        output.writeUInt32(20001, kPHKIPBJFMO_);
       }
       if (hAKBGHFECEJ_ != 0) {
         output.writeUInt32(20002, hAKBGHFECEJ_);
@@ -150,13 +150,13 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (kPHKIPBJFMO_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, kPHKIPBJFMO_);
+      }
       if (runeId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20000, runeId_);
-      }
-      if (kPHKIPBJFMO_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, kPHKIPBJFMO_);
       }
       if (hAKBGHFECEJ_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -432,16 +432,16 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
               case 0:
                 done = true;
                 break;
+              case 24: {
+                kPHKIPBJFMO_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 24
               case 160000: {
                 runeId_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 160000
-              case 160008: {
-                kPHKIPBJFMO_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160008
               case 160016: {
                 hAKBGHFECEJ_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -498,7 +498,7 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
 
       private int kPHKIPBJFMO_ ;
       /**
-       * <code>uint32 KPHKIPBJFMO = 20001;</code>
+       * <code>uint32 KPHKIPBJFMO = 3;</code>
        * @return The kPHKIPBJFMO.
        */
       @java.lang.Override
@@ -506,7 +506,7 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
         return kPHKIPBJFMO_;
       }
       /**
-       * <code>uint32 KPHKIPBJFMO = 20001;</code>
+       * <code>uint32 KPHKIPBJFMO = 3;</code>
        * @param value The kPHKIPBJFMO to set.
        * @return This builder for chaining.
        */
@@ -518,7 +518,7 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
         return this;
       }
       /**
-       * <code>uint32 KPHKIPBJFMO = 20001;</code>
+       * <code>uint32 KPHKIPBJFMO = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearKPHKIPBJFMO() {
@@ -625,10 +625,10 @@ public final class RoguelikeRuneRecordOuterClass extends com.google.protobuf.Gen
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\031RoguelikeRuneRecord.proto\"V\n\023Roguelike" +
-      "RuneRecord\022\021\n\007rune_id\030\240\234\001 \001(\r\022\025\n\013KPHKIPB" +
-      "JFMO\030\241\234\001 \001(\r\022\025\n\013HAKBGHFECEJ\030\242\234\001 \001(\rB\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "\n\031RoguelikeRuneRecord.proto\"T\n\023Roguelike" +
+      "RuneRecord\022\021\n\007rune_id\030\240\234\001 \001(\r\022\023\n\013KPHKIPB" +
+      "JFMO\030\003 \001(\r\022\025\n\013HAKBGHFECEJ\030\242\234\001 \001(\rB\033\n\031emu" +
+      ".grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

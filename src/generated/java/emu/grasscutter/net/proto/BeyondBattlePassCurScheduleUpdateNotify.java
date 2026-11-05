@@ -46,7 +46,7 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
     emu.grasscutter.net.proto.BeyondBattlePassSchedule._BeyondBattlePassScheduleOrBuilder getCurScheduleOrBuilder();
 
     /**
-     * <code>uint32 GOKJFDPPOHF = 20000;</code>
+     * <code>uint32 GOKJFDPPOHF = 8;</code>
      * @return The gOKJFDPPOHF.
      */
     int getGOKJFDPPOHF();
@@ -126,10 +126,10 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
       return curSchedule_ == null ? emu.grasscutter.net.proto.BeyondBattlePassSchedule._BeyondBattlePassSchedule.getDefaultInstance() : curSchedule_;
     }
 
-    public static final int GOKJFDPPOHF_FIELD_NUMBER = 20000;
+    public static final int GOKJFDPPOHF_FIELD_NUMBER = 8;
     private int gOKJFDPPOHF_ = 0;
     /**
-     * <code>uint32 GOKJFDPPOHF = 20000;</code>
+     * <code>uint32 GOKJFDPPOHF = 8;</code>
      * @return The gOKJFDPPOHF.
      */
     @java.lang.Override
@@ -165,11 +165,11 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
       if (HaveCurBeyondSchedule_ != false) {
         output.writeBool(1, HaveCurBeyondSchedule_);
       }
+      if (gOKJFDPPOHF_ != 0) {
+        output.writeUInt32(8, gOKJFDPPOHF_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(11, getCurSchedule());
-      }
-      if (gOKJFDPPOHF_ != 0) {
-        output.writeUInt32(20000, gOKJFDPPOHF_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -179,13 +179,13 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(1, HaveCurBeyondSchedule_);
       }
+      if (gOKJFDPPOHF_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(8, gOKJFDPPOHF_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getCurSchedule());
-      }
-      if (gOKJFDPPOHF_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, gOKJFDPPOHF_);
       }
       return size;
     }
@@ -483,6 +483,11 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
                 bitField0_ |= 0x00000004;
                 break;
               } // case 8
+              case 64: {
+                gOKJFDPPOHF_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 64
               case 90: {
                 input.readMessage(
                     internalGetCurScheduleFieldBuilder().getBuilder(),
@@ -490,11 +495,6 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
                 bitField0_ |= 0x00000001;
                 break;
               } // case 90
-              case 160000: {
-                gOKJFDPPOHF_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -633,7 +633,7 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
 
       private int gOKJFDPPOHF_ ;
       /**
-       * <code>uint32 GOKJFDPPOHF = 20000;</code>
+       * <code>uint32 GOKJFDPPOHF = 8;</code>
        * @return The gOKJFDPPOHF.
        */
       @java.lang.Override
@@ -641,7 +641,7 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
         return gOKJFDPPOHF_;
       }
       /**
-       * <code>uint32 GOKJFDPPOHF = 20000;</code>
+       * <code>uint32 GOKJFDPPOHF = 8;</code>
        * @param value The gOKJFDPPOHF to set.
        * @return This builder for chaining.
        */
@@ -653,7 +653,7 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
         return this;
       }
       /**
-       * <code>uint32 GOKJFDPPOHF = 20000;</code>
+       * <code>uint32 GOKJFDPPOHF = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearGOKJFDPPOHF() {
@@ -762,11 +762,11 @@ public final class BeyondBattlePassCurScheduleUpdateNotify extends com.google.pr
     java.lang.String[] descriptorData = {
       "\n._BeyondBattlePassCurScheduleUpdateNoti" +
       "fy.proto\032\037_BeyondBattlePassSchedule.prot" +
-      "o\"\226\001\n(_BeyondBattlePassCurScheduleUpdate" +
+      "o\"\224\001\n(_BeyondBattlePassCurScheduleUpdate" +
       "Notify\0220\n\014cur_schedule\030\013 \001(\0132\032._BeyondBa" +
-      "ttlePassSchedule\022\025\n\013GOKJFDPPOHF\030\240\234\001 \001(\r\022" +
-      "!\n\031_have_cur_beyond_schedule\030\001 \001(\010B\033\n\031em" +
-      "u.grasscutter.net.protob\006proto3"
+      "ttlePassSchedule\022\023\n\013GOKJFDPPOHF\030\010 \001(\r\022!\n" +
+      "\031_have_cur_beyond_schedule\030\001 \001(\010B\033\n\031emu." +
+      "grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

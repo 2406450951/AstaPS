@@ -23,11 +23,11 @@ message UgcMusicBriefInfo {
   uint32 version = 12;
   uint64 ugc_guid = 5;
   uint32 save_time = 15;
-  uint32 MLAJCIMGINA = 20005;
+  uint32 MLAJCIMGINA = 2018;
   uint32 IIPJKAOBBBD = 20006;
   uint32 MOIDOMCHPFG = 20007;
   uint32 note_count = 20008;
   uint32 publish_time = 2;
-  uint32 PGHGCGNLNPG = 20009;
+  uint32 PGHGCGNLNPG = 379;
   uint32 CDEMBFGJAPH = 20010;
 }

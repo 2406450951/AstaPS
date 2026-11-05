@@ -31,13 +31,13 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool NHLOILJDDIP = 20000;</code>
+     * <code>bool NHLOILJDDIP = 13;</code>
      * @return The nHLOILJDDIP.
      */
     boolean getNHLOILJDDIP();
 
     /**
-     * <code>uint32 MPPNKBJHBOK = 20001;</code>
+     * <code>uint32 MPPNKBJHBOK = 11;</code>
      * @return The mPPNKBJHBOK.
      */
     int getMPPNKBJHBOK();
@@ -84,10 +84,10 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
               emu.grasscutter.net.proto.ExpandToReduceUpgradeCostBuffInfo._ExpandToReduceUpgradeCostBuffInfo.class, emu.grasscutter.net.proto.ExpandToReduceUpgradeCostBuffInfo._ExpandToReduceUpgradeCostBuffInfo.Builder.class);
     }
 
-    public static final int NHLOILJDDIP_FIELD_NUMBER = 20000;
+    public static final int NHLOILJDDIP_FIELD_NUMBER = 13;
     private boolean nHLOILJDDIP_ = false;
     /**
-     * <code>bool NHLOILJDDIP = 20000;</code>
+     * <code>bool NHLOILJDDIP = 13;</code>
      * @return The nHLOILJDDIP.
      */
     @java.lang.Override
@@ -95,10 +95,10 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
       return nHLOILJDDIP_;
     }
 
-    public static final int MPPNKBJHBOK_FIELD_NUMBER = 20001;
+    public static final int MPPNKBJHBOK_FIELD_NUMBER = 11;
     private int mPPNKBJHBOK_ = 0;
     /**
-     * <code>uint32 MPPNKBJHBOK = 20001;</code>
+     * <code>uint32 MPPNKBJHBOK = 11;</code>
      * @return The mPPNKBJHBOK.
      */
     @java.lang.Override
@@ -120,23 +120,23 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (nHLOILJDDIP_ != false) {
-        output.writeBool(20000, nHLOILJDDIP_);
-      }
       if (mPPNKBJHBOK_ != 0) {
-        output.writeUInt32(20001, mPPNKBJHBOK_);
+        output.writeUInt32(11, mPPNKBJHBOK_);
+      }
+      if (nHLOILJDDIP_ != false) {
+        output.writeBool(13, nHLOILJDDIP_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
-      if (nHLOILJDDIP_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, nHLOILJDDIP_);
-      }
       if (mPPNKBJHBOK_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, mPPNKBJHBOK_);
+          .computeUInt32Size(11, mPPNKBJHBOK_);
+      }
+      if (nHLOILJDDIP_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(13, nHLOILJDDIP_);
       }
       return size;
     }
@@ -398,16 +398,16 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
               case 0:
                 done = true;
                 break;
-              case 160000: {
-                nHLOILJDDIP_ = input.readBool();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 160000
-              case 160008: {
+              case 88: {
                 mPPNKBJHBOK_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160008
+              } // case 88
+              case 104: {
+                nHLOILJDDIP_ = input.readBool();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 104
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -427,7 +427,7 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
 
       private boolean nHLOILJDDIP_ ;
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 13;</code>
        * @return The nHLOILJDDIP.
        */
       @java.lang.Override
@@ -435,7 +435,7 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
         return nHLOILJDDIP_;
       }
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 13;</code>
        * @param value The nHLOILJDDIP to set.
        * @return This builder for chaining.
        */
@@ -447,7 +447,7 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
         return this;
       }
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearNHLOILJDDIP() {
@@ -459,7 +459,7 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
 
       private int mPPNKBJHBOK_ ;
       /**
-       * <code>uint32 MPPNKBJHBOK = 20001;</code>
+       * <code>uint32 MPPNKBJHBOK = 11;</code>
        * @return The mPPNKBJHBOK.
        */
       @java.lang.Override
@@ -467,7 +467,7 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
         return mPPNKBJHBOK_;
       }
       /**
-       * <code>uint32 MPPNKBJHBOK = 20001;</code>
+       * <code>uint32 MPPNKBJHBOK = 11;</code>
        * @param value The mPPNKBJHBOK to set.
        * @return This builder for chaining.
        */
@@ -479,7 +479,7 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
         return this;
       }
       /**
-       * <code>uint32 MPPNKBJHBOK = 20001;</code>
+       * <code>uint32 MPPNKBJHBOK = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearMPPNKBJHBOK() {
@@ -555,10 +555,9 @@ public final class ExpandToReduceUpgradeCostBuffInfo extends com.google.protobuf
   static {
     java.lang.String[] descriptorData = {
       "\n(_ExpandToReduceUpgradeCostBuffInfo.pro" +
-      "to\"R\n\"_ExpandToReduceUpgradeCostBuffInfo" +
-      "\022\025\n\013NHLOILJDDIP\030\240\234\001 \001(\010\022\025\n\013MPPNKBJHBOK\030\241" +
-      "\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006pro" +
-      "to3"
+      "to\"N\n\"_ExpandToReduceUpgradeCostBuffInfo" +
+      "\022\023\n\013NHLOILJDDIP\030\r \001(\010\022\023\n\013MPPNKBJHBOK\030\013 \001" +
+      "(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

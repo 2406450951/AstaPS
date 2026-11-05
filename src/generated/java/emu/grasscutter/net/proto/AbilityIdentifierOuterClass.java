@@ -31,12 +31,12 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+     * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
      * @return The enum numeric value on the wire for fPDAONBEBHK.
      */
     int getFPDAONBEBHKValue();
     /**
-     * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+     * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
      * @return The fPDAONBEBHK.
      */
     emu.grasscutter.net.proto.LJGEHMILKEMOuterClass.LJGEHMILKEM getFPDAONBEBHK();
@@ -114,17 +114,17 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
               emu.grasscutter.net.proto.AbilityIdentifierOuterClass.AbilityIdentifier.class, emu.grasscutter.net.proto.AbilityIdentifierOuterClass.AbilityIdentifier.Builder.class);
     }
 
-    public static final int FPDAONBEBHK_FIELD_NUMBER = 20000;
+    public static final int FPDAONBEBHK_FIELD_NUMBER = 1;
     private int fPDAONBEBHK_ = 0;
     /**
-     * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+     * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
      * @return The enum numeric value on the wire for fPDAONBEBHK.
      */
     @java.lang.Override public int getFPDAONBEBHKValue() {
       return fPDAONBEBHK_;
     }
     /**
-     * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+     * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
      * @return The fPDAONBEBHK.
      */
     @java.lang.Override public emu.grasscutter.net.proto.LJGEHMILKEMOuterClass.LJGEHMILKEM getFPDAONBEBHK() {
@@ -201,6 +201,9 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (fPDAONBEBHK_ != emu.grasscutter.net.proto.LJGEHMILKEMOuterClass.LJGEHMILKEM.LJGEHMILKEM_NORMAL.getNumber()) {
+        output.writeEnum(1, fPDAONBEBHK_);
+      }
       if (instancedAbilityId_ != 0) {
         output.writeUInt32(7, instancedAbilityId_);
       }
@@ -209,9 +212,6 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
       }
       if (instancedModifierId_ != 0) {
         output.writeUInt32(11, instancedModifierId_);
-      }
-      if (fPDAONBEBHK_ != emu.grasscutter.net.proto.LJGEHMILKEMOuterClass.LJGEHMILKEM.LJGEHMILKEM_NORMAL.getNumber()) {
-        output.writeEnum(20000, fPDAONBEBHK_);
       }
       if (nBHCDKPBBOI_ != 0) {
         output.writeUInt32(20001, nBHCDKPBBOI_);
@@ -223,6 +223,10 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (fPDAONBEBHK_ != emu.grasscutter.net.proto.LJGEHMILKEMOuterClass.LJGEHMILKEM.LJGEHMILKEM_NORMAL.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, fPDAONBEBHK_);
+      }
       if (instancedAbilityId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(7, instancedAbilityId_);
@@ -234,10 +238,6 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
       if (instancedModifierId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(11, instancedModifierId_);
-      }
-      if (fPDAONBEBHK_ != emu.grasscutter.net.proto.LJGEHMILKEMOuterClass.LJGEHMILKEM.LJGEHMILKEM_NORMAL.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(20000, fPDAONBEBHK_);
       }
       if (nBHCDKPBBOI_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -549,6 +549,11 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
               case 0:
                 done = true;
                 break;
+              case 8: {
+                fPDAONBEBHK_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
               case 56: {
                 instancedAbilityId_ = input.readUInt32();
                 bitField0_ |= 0x00000020;
@@ -564,11 +569,6 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000010;
                 break;
               } // case 88
-              case 160000: {
-                fPDAONBEBHK_ = input.readEnum();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 160000
               case 160008: {
                 nBHCDKPBBOI_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -598,14 +598,14 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
 
       private int fPDAONBEBHK_ = 0;
       /**
-       * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+       * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
        * @return The enum numeric value on the wire for fPDAONBEBHK.
        */
       @java.lang.Override public int getFPDAONBEBHKValue() {
         return fPDAONBEBHK_;
       }
       /**
-       * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+       * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
        * @param value The enum numeric value on the wire for fPDAONBEBHK to set.
        * @return This builder for chaining.
        */
@@ -616,7 +616,7 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+       * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
        * @return The fPDAONBEBHK.
        */
       @java.lang.Override
@@ -625,7 +625,7 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
         return result == null ? emu.grasscutter.net.proto.LJGEHMILKEMOuterClass.LJGEHMILKEM.UNRECOGNIZED : result;
       }
       /**
-       * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+       * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
        * @param value The fPDAONBEBHK to set.
        * @throws IllegalArgumentException if UNRECOGNIZED is provided.
        * @return This builder for chaining.
@@ -638,7 +638,7 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>.LJGEHMILKEM FPDAONBEBHK = 20000;</code>
+       * <code>.LJGEHMILKEM FPDAONBEBHK = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearFPDAONBEBHK() {
@@ -874,12 +874,12 @@ public final class AbilityIdentifierOuterClass extends com.google.protobuf.Gener
   static {
     java.lang.String[] descriptorData = {
       "\n\027AbilityIdentifier.proto\032\021LJGEHMILKEM.p" +
-      "roto\"\265\001\n\021AbilityIdentifier\022#\n\013FPDAONBEBH" +
-      "K\030\240\234\001 \001(\0162\014.LJGEHMILKEM\022\020\n\010local_id\030\010 \001(" +
-      "\005\022\025\n\013NBHCDKPBBOI\030\241\234\001 \001(\r\022\025\n\013DLLKGHINFBJ\030" +
-      "\242\234\001 \001(\r\022\035\n\025instanced_modifier_id\030\013 \001(\r\022\034" +
-      "\n\024instanced_ability_id\030\007 \001(\rB\033\n\031emu.gras" +
-      "scutter.net.protob\006proto3"
+      "roto\"\263\001\n\021AbilityIdentifier\022!\n\013FPDAONBEBH" +
+      "K\030\001 \001(\0162\014.LJGEHMILKEM\022\020\n\010local_id\030\010 \001(\005\022" +
+      "\025\n\013NBHCDKPBBOI\030\241\234\001 \001(\r\022\025\n\013DLLKGHINFBJ\030\242\234" +
+      "\001 \001(\r\022\035\n\025instanced_modifier_id\030\013 \001(\r\022\034\n\024" +
+      "instanced_ability_id\030\007 \001(\rB\033\n\031emu.grassc" +
+      "utter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

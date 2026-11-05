@@ -6,8 +6,8 @@ import "MathQuaternion.proto";
 import "Vector.proto";
 
 message _FixedMoverInfo {
-  Vector IMFDIHLBFEN = 20000;
+  Vector IMFDIHLBFEN = 2;
   MathQuaternion MGIHDBMCCPK = 20001;
-  Vector OHMBANGLFIJ = 20002;
-  float LAIKIBMMJKD = 20003;
+  Vector OHMBANGLFIJ = 1;
+  float LAIKIBMMJKD = 3;
 }

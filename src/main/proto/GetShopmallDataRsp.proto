@@ -7,5 +7,5 @@ message GetShopmallDataRsp {
   int32 retcode = 13;
   uint32 param = 14;
   uint32 DPHCDGFOLCN = 20000;
-  uint32 MIOFAOEPJEJ = 20001;
+  uint32 MIOFAOEPJEJ = 4;
 }

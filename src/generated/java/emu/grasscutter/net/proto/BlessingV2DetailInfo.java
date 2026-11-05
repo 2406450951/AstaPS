@@ -61,7 +61,7 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
     int getDKHOJDNIKGN();
 
     /**
-     * <code>bool ELCGFJCJMNN = 20002;</code>
+     * <code>bool ELCGFJCJMNN = 8;</code>
      * @return The eLCGFJCJMNN.
      */
     boolean getELCGFJCJMNN();
@@ -191,10 +191,10 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
       return dKHOJDNIKGN_;
     }
 
-    public static final int ELCGFJCJMNN_FIELD_NUMBER = 20002;
+    public static final int ELCGFJCJMNN_FIELD_NUMBER = 8;
     private boolean eLCGFJCJMNN_ = false;
     /**
-     * <code>bool ELCGFJCJMNN = 20002;</code>
+     * <code>bool ELCGFJCJMNN = 8;</code>
      * @return The eLCGFJCJMNN.
      */
     @java.lang.Override
@@ -280,14 +280,14 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
       if (contentCloseTime_ != 0) {
         output.writeFixed32(6, contentCloseTime_);
       }
+      if (eLCGFJCJMNN_ != false) {
+        output.writeBool(8, eLCGFJCJMNN_);
+      }
       for (int i = 0; i < oIJEHCLCPFN_.size(); i++) {
         output.writeMessage(20000, oIJEHCLCPFN_.get(i));
       }
       if (dKHOJDNIKGN_ != 0) {
         output.writeUInt32(20001, dKHOJDNIKGN_);
-      }
-      if (eLCGFJCJMNN_ != false) {
-        output.writeBool(20002, eLCGFJCJMNN_);
       }
       if (hLGJOMHPMDA_ != 0) {
         output.writeUInt32(20003, hLGJOMHPMDA_);
@@ -311,6 +311,10 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
         size += com.google.protobuf.CodedOutputStream
           .computeFixed32Size(6, contentCloseTime_);
       }
+      if (eLCGFJCJMNN_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, eLCGFJCJMNN_);
+      }
 
           {
             final int count = oIJEHCLCPFN_.size();
@@ -323,10 +327,6 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
       if (dKHOJDNIKGN_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20001, dKHOJDNIKGN_);
-      }
-      if (eLCGFJCJMNN_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20002, eLCGFJCJMNN_);
       }
       if (hLGJOMHPMDA_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -719,6 +719,11 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00000040;
                 break;
               } // case 53
+              case 64: {
+                eLCGFJCJMNN_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 64
               case 160002: {
                 emu.grasscutter.net.proto.ADMKLIPHAHGOuterClass.ADMKLIPHAHG m =
                     input.readMessage(
@@ -737,11 +742,6 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00000002;
                 break;
               } // case 160008
-              case 160016: {
-                eLCGFJCJMNN_ = input.readBool();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160016
               case 160024: {
                 hLGJOMHPMDA_ = input.readUInt32();
                 bitField0_ |= 0x00000020;
@@ -1037,7 +1037,7 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
 
       private boolean eLCGFJCJMNN_ ;
       /**
-       * <code>bool ELCGFJCJMNN = 20002;</code>
+       * <code>bool ELCGFJCJMNN = 8;</code>
        * @return The eLCGFJCJMNN.
        */
       @java.lang.Override
@@ -1045,7 +1045,7 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
         return eLCGFJCJMNN_;
       }
       /**
-       * <code>bool ELCGFJCJMNN = 20002;</code>
+       * <code>bool ELCGFJCJMNN = 8;</code>
        * @param value The eLCGFJCJMNN to set.
        * @return This builder for chaining.
        */
@@ -1057,7 +1057,7 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>bool ELCGFJCJMNN = 20002;</code>
+       * <code>bool ELCGFJCJMNN = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearELCGFJCJMNN() {
@@ -1293,13 +1293,13 @@ public final class BlessingV2DetailInfo extends com.google.protobuf.GeneratedFil
   static {
     java.lang.String[] descriptorData = {
       "\n\033_BlessingV2DetailInfo.proto\032\021ADMKLIPHA" +
-      "HG.proto\"\345\001\n\025_BlessingV2DetailInfo\022#\n\013OI" +
+      "HG.proto\"\343\001\n\025_BlessingV2DetailInfo\022#\n\013OI" +
       "JEHCLCPFN\030\240\234\001 \003(\0132\014.ADMKLIPHAHG\022\025\n\013DKHOJ" +
-      "DNIKGN\030\241\234\001 \001(\r\022\025\n\013ELCGFJCJMNN\030\242\234\001 \001(\010\022\024\n" +
-      "\014is_activated\030\001 \001(\010\022\031\n\021next_refresh_time" +
-      "\030\005 \001(\007\022\025\n\013HLGJOMHPMDA\030\243\234\001 \001(\r\022\032\n\022content" +
-      "_close_time\030\006 \001(\007\022\025\n\013GFJBLFOFJIP\030\244\234\001 \001(\r" +
-      "B\033\n\031emu.grasscutter.net.protob\006proto3"
+      "DNIKGN\030\241\234\001 \001(\r\022\023\n\013ELCGFJCJMNN\030\010 \001(\010\022\024\n\014i" +
+      "s_activated\030\001 \001(\010\022\031\n\021next_refresh_time\030\005" +
+      " \001(\007\022\025\n\013HLGJOMHPMDA\030\243\234\001 \001(\r\022\032\n\022content_c" +
+      "lose_time\030\006 \001(\007\022\025\n\013GFJBLFOFJIP\030\244\234\001 \001(\rB\033" +
+      "\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

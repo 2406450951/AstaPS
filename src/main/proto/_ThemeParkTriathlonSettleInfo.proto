@@ -3,6 +3,6 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message _ThemeParkTriathlonSettleInfo {
-  bool OABFNCIAGMK = 20000;
+  bool OABFNCIAGMK = 9;
   uint32 level_id = 13;
 }

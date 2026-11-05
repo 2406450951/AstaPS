@@ -160,13 +160,13 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
     boolean getOFBDHIJICPL();
 
     /**
-     * <code>bool LBCGNOOJDIC = 20007;</code>
+     * <code>bool LBCGNOOJDIC = 9;</code>
      * @return The lBCGNOOJDIC.
      */
     boolean getLBCGNOOJDIC();
 
     /**
-     * <code>uint64 LEEHFFLICIK = 20008;</code>
+     * <code>uint64 LEEHFFLICIK = 7;</code>
      * @return The lEEHFFLICIK.
      */
     long getLEEHFFLICIK();
@@ -446,10 +446,10 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
       return oFBDHIJICPL_;
     }
 
-    public static final int LBCGNOOJDIC_FIELD_NUMBER = 20007;
+    public static final int LBCGNOOJDIC_FIELD_NUMBER = 9;
     private boolean lBCGNOOJDIC_ = false;
     /**
-     * <code>bool LBCGNOOJDIC = 20007;</code>
+     * <code>bool LBCGNOOJDIC = 9;</code>
      * @return The lBCGNOOJDIC.
      */
     @java.lang.Override
@@ -457,10 +457,10 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
       return lBCGNOOJDIC_;
     }
 
-    public static final int LEEHFFLICIK_FIELD_NUMBER = 20008;
+    public static final int LEEHFFLICIK_FIELD_NUMBER = 7;
     private long lEEHFFLICIK_ = 0L;
     /**
-     * <code>uint64 LEEHFFLICIK = 20008;</code>
+     * <code>uint64 LEEHFFLICIK = 7;</code>
      * @return The lEEHFFLICIK.
      */
     @java.lang.Override
@@ -496,6 +496,12 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
       for (int i = 0; i < difficultyInfoList_.size(); i++) {
         output.writeMessage(3, difficultyInfoList_.get(i));
       }
+      if (lEEHFFLICIK_ != 0L) {
+        output.writeUInt64(7, lEEHFFLICIK_);
+      }
+      if (lBCGNOOJDIC_ != false) {
+        output.writeBool(9, lBCGNOOJDIC_);
+      }
       for (int i = 0; i < aKLPNJCALKO_.size(); i++) {
         output.writeMessage(20000, aKLPNJCALKO_.get(i));
       }
@@ -517,12 +523,6 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
       if (oFBDHIJICPL_ != false) {
         output.writeBool(20006, oFBDHIJICPL_);
       }
-      if (lBCGNOOJDIC_ != false) {
-        output.writeBool(20007, lBCGNOOJDIC_);
-      }
-      if (lEEHFFLICIK_ != 0L) {
-        output.writeUInt64(20008, lEEHFFLICIK_);
-      }
       if (gCONANDBHMP_ != 0) {
         output.writeUInt32(20009, gCONANDBHMP_);
       }
@@ -539,6 +539,14 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
             }
             size += 1 * count;
           }
+      if (lEEHFFLICIK_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(7, lEEHFFLICIK_);
+      }
+      if (lBCGNOOJDIC_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, lBCGNOOJDIC_);
+      }
 
           {
             final int count = aKLPNJCALKO_.size();
@@ -576,14 +584,6 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
       if (oFBDHIJICPL_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20006, oFBDHIJICPL_);
-      }
-      if (lBCGNOOJDIC_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20007, lBCGNOOJDIC_);
-      }
-      if (lEEHFFLICIK_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(20008, lEEHFFLICIK_);
       }
       if (gCONANDBHMP_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -1127,6 +1127,16 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
                 }
                 break;
               } // case 26
+              case 56: {
+                lEEHFFLICIK_ = input.readUInt64();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 56
+              case 72: {
+                lBCGNOOJDIC_ = input.readBool();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 72
               case 160002: {
                 emu.grasscutter.net.proto.FAAOMPMEBKIOuterClass.FAAOMPMEBKI m =
                     input.readMessage(
@@ -1184,16 +1194,6 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000080;
                 break;
               } // case 160048
-              case 160056: {
-                lBCGNOOJDIC_ = input.readBool();
-                bitField0_ |= 0x00000100;
-                break;
-              } // case 160056
-              case 160064: {
-                lEEHFFLICIK_ = input.readUInt64();
-                bitField0_ |= 0x00000200;
-                break;
-              } // case 160064
               case 160072: {
                 gCONANDBHMP_ = input.readUInt32();
                 bitField0_ |= 0x00000400;
@@ -2341,7 +2341,7 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
 
       private boolean lBCGNOOJDIC_ ;
       /**
-       * <code>bool LBCGNOOJDIC = 20007;</code>
+       * <code>bool LBCGNOOJDIC = 9;</code>
        * @return The lBCGNOOJDIC.
        */
       @java.lang.Override
@@ -2349,7 +2349,7 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
         return lBCGNOOJDIC_;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20007;</code>
+       * <code>bool LBCGNOOJDIC = 9;</code>
        * @param value The lBCGNOOJDIC to set.
        * @return This builder for chaining.
        */
@@ -2361,7 +2361,7 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20007;</code>
+       * <code>bool LBCGNOOJDIC = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearLBCGNOOJDIC() {
@@ -2373,7 +2373,7 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
 
       private long lEEHFFLICIK_ ;
       /**
-       * <code>uint64 LEEHFFLICIK = 20008;</code>
+       * <code>uint64 LEEHFFLICIK = 7;</code>
        * @return The lEEHFFLICIK.
        */
       @java.lang.Override
@@ -2381,7 +2381,7 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
         return lEEHFFLICIK_;
       }
       /**
-       * <code>uint64 LEEHFFLICIK = 20008;</code>
+       * <code>uint64 LEEHFFLICIK = 7;</code>
        * @param value The lEEHFFLICIK to set.
        * @return This builder for chaining.
        */
@@ -2393,7 +2393,7 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>uint64 LEEHFFLICIK = 20008;</code>
+       * <code>uint64 LEEHFFLICIK = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearLEEHFFLICIK() {
@@ -2502,7 +2502,7 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
     java.lang.String[] descriptorData = {
       "\n!_LeyLineChallengeDetailInfo.proto\032\021FAA" +
       "OMPMEBKI.proto\032\021HDHLLCCCLJM.proto\032\021JJKBE" +
-      "PPIFIE.proto\032\021MKADIBABGKH.proto\"\365\002\n\033_Ley" +
+      "PPIFIE.proto\032\021MKADIBABGKH.proto\"\361\002\n\033_Ley" +
       "LineChallengeDetailInfo\022#\n\013AKLPNJCALKO\030\240" +
       "\234\001 \003(\0132\014.FAAOMPMEBKI\022#\n\013HDAKHICDPPN\030\241\234\001 " +
       "\003(\0132\014.HDHLLCCCLJM\022#\n\013IDIHOMKNMHE\030\242\234\001 \001(\013" +
@@ -2510,10 +2510,9 @@ public final class LeyLineChallengeDetailInfo extends com.google.protobuf.Genera
       "HDHLLCCCLJM\022*\n\024difficulty_info_list\030\003 \003(" +
       "\0132\014.MKADIBABGKH\022#\n\013ALJFGLAPKKM\030\244\234\001 \001(\0132\014" +
       ".JJKBEPPIFIE\022\025\n\013PIJLAHENJEP\030\245\234\001 \001(\r\022\025\n\013O" +
-      "FBDHIJICPL\030\246\234\001 \001(\010\022\025\n\013LBCGNOOJDIC\030\247\234\001 \001(" +
-      "\010\022\025\n\013LEEHFFLICIK\030\250\234\001 \001(\004\022\025\n\013GCONANDBHMP\030" +
-      "\251\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006pr" +
-      "oto3"
+      "FBDHIJICPL\030\246\234\001 \001(\010\022\023\n\013LBCGNOOJDIC\030\t \001(\010\022" +
+      "\023\n\013LEEHFFLICIK\030\007 \001(\004\022\025\n\013GCONANDBHMP\030\251\234\001 " +
+      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

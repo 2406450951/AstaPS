@@ -91,17 +91,17 @@ public final class PlayerLoginRspOuterClass extends com.google.protobuf.Generate
     emu.grasscutter.net.proto.ResVersionConfigOuterClass.ResVersionConfigOrBuilder getResVersionConfigOrBuilder();
 
     /**
-     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
      * @return Whether the lPFKKMMLFOP field is set.
      */
     boolean hasLPFKKMMLFOP();
     /**
-     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
      * @return The lPFKKMMLFOP.
      */
     emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM getLPFKKMMLFOP();
     /**
-     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
      */
     emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJMOrBuilder getLPFKKMMLFOPOrBuilder();
 
@@ -301,17 +301,17 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue);
         java.lang.String key);
 
     /**
-     * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+     * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
      * @return Whether the kJEMCDAJINF field is set.
      */
     boolean hasKJEMCDAJINF();
     /**
-     * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+     * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
      * @return The kJEMCDAJINF.
      */
     emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG getKJEMCDAJINF();
     /**
-     * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+     * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
      */
     emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDGOrBuilder getKJEMCDAJINFOrBuilder();
 
@@ -428,7 +428,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue);
     boolean getIsScOpen();
 
     /**
-     * <code>bool CGMBIAPFHGE = 20006;</code>
+     * <code>bool CGMBIAPFHGE = 389;</code>
      * @return The cGMBIAPFHGE.
      */
     boolean getCGMBIAPFHGE();
@@ -458,7 +458,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue);
     int getClientSilenceDataVersion();
 
     /**
-     * <code>uint32 HPHGKOCDPJE = 20010;</code>
+     * <code>uint32 HPHGKOCDPJE = 646;</code>
      * @return The hPHGKOCDPJE.
      */
     int getHPHGKOCDPJE();
@@ -494,7 +494,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue);
     boolean getGHAJDNKLEDA();
 
     /**
-     * <code>bool MBPNFGLAJOG = 20013;</code>
+     * <code>bool MBPNFGLAJOG = 410;</code>
      * @return The mBPNFGLAJOG.
      */
     boolean getMBPNFGLAJOG();
@@ -731,10 +731,10 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue);
       return resVersionConfig_ == null ? emu.grasscutter.net.proto.ResVersionConfigOuterClass.ResVersionConfig.getDefaultInstance() : resVersionConfig_;
     }
 
-    public static final int LPFKKMMLFOP_FIELD_NUMBER = 20001;
+    public static final int LPFKKMMLFOP_FIELD_NUMBER = 288;
     private emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM lPFKKMMLFOP_;
     /**
-     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
      * @return Whether the lPFKKMMLFOP field is set.
      */
     @java.lang.Override
@@ -742,7 +742,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue);
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
      * @return The lPFKKMMLFOP.
      */
     @java.lang.Override
@@ -750,7 +750,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue);
       return lPFKKMMLFOP_ == null ? emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM.getDefaultInstance() : lPFKKMMLFOP_;
     }
     /**
-     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+     * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJMOrBuilder getLPFKKMMLFOPOrBuilder() {
@@ -1264,10 +1264,10 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
       return map.get(key);
     }
 
-    public static final int KJEMCDAJINF_FIELD_NUMBER = 20003;
+    public static final int KJEMCDAJINF_FIELD_NUMBER = 470;
     private emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG kJEMCDAJINF_;
     /**
-     * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+     * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
      * @return Whether the kJEMCDAJINF field is set.
      */
     @java.lang.Override
@@ -1275,7 +1275,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
       return ((bitField0_ & 0x00000010) != 0);
     }
     /**
-     * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+     * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
      * @return The kJEMCDAJINF.
      */
     @java.lang.Override
@@ -1283,7 +1283,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
       return kJEMCDAJINF_ == null ? emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG.getDefaultInstance() : kJEMCDAJINF_;
     }
     /**
-     * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+     * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDGOrBuilder getKJEMCDAJINFOrBuilder() {
@@ -1526,10 +1526,10 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       return isScOpen_;
     }
 
-    public static final int CGMBIAPFHGE_FIELD_NUMBER = 20006;
+    public static final int CGMBIAPFHGE_FIELD_NUMBER = 389;
     private boolean cGMBIAPFHGE_ = false;
     /**
-     * <code>bool CGMBIAPFHGE = 20006;</code>
+     * <code>bool CGMBIAPFHGE = 389;</code>
      * @return The cGMBIAPFHGE.
      */
     @java.lang.Override
@@ -1581,10 +1581,10 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       return clientSilenceDataVersion_;
     }
 
-    public static final int HPHGKOCDPJE_FIELD_NUMBER = 20010;
+    public static final int HPHGKOCDPJE_FIELD_NUMBER = 646;
     private int hPHGKOCDPJE_ = 0;
     /**
-     * <code>uint32 HPHGKOCDPJE = 20010;</code>
+     * <code>uint32 HPHGKOCDPJE = 646;</code>
      * @return The hPHGKOCDPJE.
      */
     @java.lang.Override
@@ -1647,10 +1647,10 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       return gHAJDNKLEDA_;
     }
 
-    public static final int MBPNFGLAJOG_FIELD_NUMBER = 20013;
+    public static final int MBPNFGLAJOG_FIELD_NUMBER = 410;
     private boolean mBPNFGLAJOG_ = false;
     /**
-     * <code>bool MBPNFGLAJOG = 20013;</code>
+     * <code>bool MBPNFGLAJOG = 410;</code>
      * @return The mBPNFGLAJOG.
      */
     @java.lang.Override
@@ -1747,8 +1747,20 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(msg_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 154, msg_);
       }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        output.writeMessage(288, getLPFKKMMLFOP());
+      }
+      if (cGMBIAPFHGE_ != false) {
+        output.writeBool(389, cGMBIAPFHGE_);
+      }
+      if (mBPNFGLAJOG_ != false) {
+        output.writeBool(410, mBPNFGLAJOG_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientSilenceMd5_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 437, clientSilenceMd5_);
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        output.writeMessage(470, getKJEMCDAJINF());
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(countryCode_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 500, countryCode_);
@@ -1758,6 +1770,9 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       }
       if (isAudit_ != false) {
         output.writeBool(583, isAudit_);
+      }
+      if (hPHGKOCDPJE_ != 0) {
+        output.writeUInt32(646, hPHGKOCDPJE_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientSilenceVersionSuffix_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 744, clientSilenceVersionSuffix_);
@@ -1798,26 +1813,17 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20000, getStopServerInfo());
       }
-      if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeMessage(20001, getLPFKKMMLFOP());
-      }
       com.google.protobuf.GeneratedMessage
         .serializeLongMapTo(
           output,
           internalGetKKNBKGBLHDM(),
           KKNBKGBLHDMDefaultEntryHolder.defaultEntry,
           20002);
-      if (((bitField0_ & 0x00000010) != 0)) {
-        output.writeMessage(20003, getKJEMCDAJINF());
-      }
       if (dPPKDPCKANP_ != 0) {
         output.writeUInt32(20004, dPPKDPCKANP_);
       }
       if (isScOpen_ != false) {
         output.writeBool(20005, isScOpen_);
-      }
-      if (cGMBIAPFHGE_ != false) {
-        output.writeBool(20006, cGMBIAPFHGE_);
       }
       if (isUseAbilityHash_ != false) {
         output.writeBool(20007, isUseAbilityHash_);
@@ -1828,17 +1834,11 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (jBEGCLMHOPF_ != 0) {
         output.writeUInt32(20009, jBEGCLMHOPF_);
       }
-      if (hPHGKOCDPJE_ != 0) {
-        output.writeUInt32(20010, hPHGKOCDPJE_);
-      }
       if (kLKDKMBAPGA_ != false) {
         output.writeBool(20011, kLKDKMBAPGA_);
       }
       if (gHAJDNKLEDA_ != false) {
         output.writeBool(20012, gHAJDNKLEDA_);
-      }
-      if (mBPNFGLAJOG_ != false) {
-        output.writeBool(20013, mBPNFGLAJOG_);
       }
       if (oEMHPIKBDMB_ != false) {
         output.writeBool(20014, oEMHPIKBDMB_);
@@ -1906,8 +1906,24 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(msg_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(154, msg_);
       }
+      if (((bitField0_ & 0x00000004) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(288, getLPFKKMMLFOP());
+      }
+      if (cGMBIAPFHGE_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(389, cGMBIAPFHGE_);
+      }
+      if (mBPNFGLAJOG_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(410, mBPNFGLAJOG_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientSilenceMd5_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(437, clientSilenceMd5_);
+      }
+      if (((bitField0_ & 0x00000010) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(470, getKJEMCDAJINF());
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(countryCode_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(500, countryCode_);
@@ -1924,6 +1940,10 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (isAudit_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(583, isAudit_);
+      }
+      if (hPHGKOCDPJE_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(646, hPHGKOCDPJE_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientSilenceVersionSuffix_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(744, clientSilenceVersionSuffix_);
@@ -1970,6 +1990,10 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(registerCps_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1805, registerCps_);
       }
+      return size;
+    }
+    private int computeSerializedSize_1() {
+      int size = 0;
       if (java.lang.Double.doubleToRawLongBits(totalTickTime_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeDoubleSize(1852, totalTickTime_);
@@ -1977,10 +2001,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20000, getStopServerInfo());
-      }
-      if (((bitField0_ & 0x00000004) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20001, getLPFKKMMLFOP());
       }
       for (java.util.Map.Entry<java.lang.Long, emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG> entry
            : internalGetKKNBKGBLHDM().getMap().entrySet()) {
@@ -1992,14 +2012,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(20002, kKNBKGBLHDM__);
       }
-      if (((bitField0_ & 0x00000010) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20003, getKJEMCDAJINF());
-      }
-      return size;
-    }
-    private int computeSerializedSize_1() {
-      int size = 0;
       if (dPPKDPCKANP_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20004, dPPKDPCKANP_);
@@ -2007,10 +2019,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (isScOpen_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20005, isScOpen_);
-      }
-      if (cGMBIAPFHGE_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20006, cGMBIAPFHGE_);
       }
       if (isUseAbilityHash_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -2024,10 +2032,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20009, jBEGCLMHOPF_);
       }
-      if (hPHGKOCDPJE_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20010, hPHGKOCDPJE_);
-      }
       if (kLKDKMBAPGA_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20011, kLKDKMBAPGA_);
@@ -2035,10 +2039,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       if (gHAJDNKLEDA_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20012, gHAJDNKLEDA_);
-      }
-      if (mBPNFGLAJOG_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20013, mBPNFGLAJOG_);
       }
       if (oEMHPIKBDMB_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -3069,11 +3069,35 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
                 bitField0_ |= 0x00000004;
                 break;
               } // case 1234
+              case 2306: {
+                input.readMessage(
+                    internalGetLPFKKMMLFOPFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 2306
+              case 3112: {
+                cGMBIAPFHGE_ = input.readBool();
+                bitField0_ |= 0x20000000;
+                break;
+              } // case 3112
+              case 3280: {
+                mBPNFGLAJOG_ = input.readBool();
+                bitField1_ |= 0x00000100;
+                break;
+              } // case 3280
               case 3498: {
                 clientSilenceMd5_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000080;
                 break;
               } // case 3498
+              case 3762: {
+                input.readMessage(
+                    internalGetKJEMCDAJINFFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00040000;
+                break;
+              } // case 3762
               case 4002: {
                 countryCode_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00008000;
@@ -3097,6 +3121,11 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
                 bitField1_ |= 0x00000040;
                 break;
               } // case 4664
+              case 5168: {
+                hPHGKOCDPJE_ = input.readUInt32();
+                bitField1_ |= 0x00000004;
+                break;
+              } // case 5168
               case 5954: {
                 clientSilenceVersionSuffix_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00200000;
@@ -3173,13 +3202,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 160002
-              case 160010: {
-                input.readMessage(
-                    internalGetLPFKKMMLFOPFieldBuilder().getBuilder(),
-                    extensionRegistry);
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160010
               case 160018: {
                 com.google.protobuf.MapEntry<java.lang.Long, emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG>
                 kKNBKGBLHDM__ = input.readMessage(
@@ -3189,13 +3211,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
                 bitField0_ |= 0x00000100;
                 break;
               } // case 160018
-              case 160026: {
-                input.readMessage(
-                    internalGetKJEMCDAJINFFieldBuilder().getBuilder(),
-                    extensionRegistry);
-                bitField0_ |= 0x00040000;
-                break;
-              } // case 160026
               case 160032: {
                 dPPKDPCKANP_ = input.readUInt32();
                 bitField0_ |= 0x01000000;
@@ -3206,11 +3221,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
                 bitField0_ |= 0x10000000;
                 break;
               } // case 160040
-              case 160048: {
-                cGMBIAPFHGE_ = input.readBool();
-                bitField0_ |= 0x20000000;
-                break;
-              } // case 160048
               case 160056: {
                 isUseAbilityHash_ = input.readBool();
                 bitField0_ |= 0x40000000;
@@ -3226,11 +3236,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
                 bitField1_ |= 0x00000001;
                 break;
               } // case 160072
-              case 160080: {
-                hPHGKOCDPJE_ = input.readUInt32();
-                bitField1_ |= 0x00000004;
-                break;
-              } // case 160080
               case 160088: {
                 kLKDKMBAPGA_ = input.readBool();
                 bitField1_ |= 0x00000010;
@@ -3241,11 +3246,6 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
                 bitField1_ |= 0x00000080;
                 break;
               } // case 160096
-              case 160104: {
-                mBPNFGLAJOG_ = input.readBool();
-                bitField1_ |= 0x00000100;
-                break;
-              } // case 160104
               case 160112: {
                 oEMHPIKBDMB_ = input.readBool();
                 bitField1_ |= 0x00000200;
@@ -3692,14 +3692,14 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM, emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM.Builder, emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJMOrBuilder> lPFKKMMLFOPBuilder_;
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        * @return Whether the lPFKKMMLFOP field is set.
        */
       public boolean hasLPFKKMMLFOP() {
         return ((bitField0_ & 0x00000020) != 0);
       }
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        * @return The lPFKKMMLFOP.
        */
       public emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM getLPFKKMMLFOP() {
@@ -3710,7 +3710,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         }
       }
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        */
       public Builder setLPFKKMMLFOP(emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM value) {
         if (lPFKKMMLFOPBuilder_ == null) {
@@ -3724,7 +3724,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return this;
       }
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        */
       public Builder setLPFKKMMLFOP(
           emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM.Builder builderForValue) {
@@ -3738,7 +3738,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return this;
       }
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        */
       public Builder mergeLPFKKMMLFOP(emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM value) {
         if (lPFKKMMLFOPBuilder_ == null) {
@@ -3759,7 +3759,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return this;
       }
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        */
       public Builder clearLPFKKMMLFOP() {
         bitField0_ = (bitField0_ & ~0x00000020);
@@ -3772,7 +3772,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return this;
       }
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        */
       public emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM.Builder getLPFKKMMLFOPBuilder() {
         bitField0_ |= 0x00000020;
@@ -3780,7 +3780,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return internalGetLPFKKMMLFOPFieldBuilder().getBuilder();
       }
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        */
       public emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJMOrBuilder getLPFKKMMLFOPOrBuilder() {
         if (lPFKKMMLFOPBuilder_ != null) {
@@ -3791,7 +3791,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         }
       }
       /**
-       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 20001;</code>
+       * <code>.NGKOPBGLDJM LPFKKMMLFOP = 288;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM, emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJM.Builder, emu.grasscutter.net.proto.NGKOPBGLDJMOuterClass.NGKOPBGLDJMOrBuilder> 
@@ -4979,14 +4979,14 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG, emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG.Builder, emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDGOrBuilder> kJEMCDAJINFBuilder_;
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        * @return Whether the kJEMCDAJINF field is set.
        */
       public boolean hasKJEMCDAJINF() {
         return ((bitField0_ & 0x00040000) != 0);
       }
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        * @return The kJEMCDAJINF.
        */
       public emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG getKJEMCDAJINF() {
@@ -4997,7 +4997,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
         }
       }
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        */
       public Builder setKJEMCDAJINF(emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG value) {
         if (kJEMCDAJINFBuilder_ == null) {
@@ -5011,7 +5011,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
         return this;
       }
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        */
       public Builder setKJEMCDAJINF(
           emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG.Builder builderForValue) {
@@ -5025,7 +5025,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
         return this;
       }
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        */
       public Builder mergeKJEMCDAJINF(emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG value) {
         if (kJEMCDAJINFBuilder_ == null) {
@@ -5046,7 +5046,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
         return this;
       }
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        */
       public Builder clearKJEMCDAJINF() {
         bitField0_ = (bitField0_ & ~0x00040000);
@@ -5059,7 +5059,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
         return this;
       }
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        */
       public emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG.Builder getKJEMCDAJINFBuilder() {
         bitField0_ |= 0x00040000;
@@ -5067,7 +5067,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
         return internalGetKJEMCDAJINFFieldBuilder().getBuilder();
       }
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        */
       public emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDGOrBuilder getKJEMCDAJINFOrBuilder() {
         if (kJEMCDAJINFBuilder_ != null) {
@@ -5078,7 +5078,7 @@ emu.grasscutter.net.proto.MPGPEKAFHJGOuterClass.MPGPEKAFHJG defaultValue) {
         }
       }
       /**
-       * <code>.FNGEEAFJCDG KJEMCDAJINF = 20003;</code>
+       * <code>.FNGEEAFJCDG KJEMCDAJINF = 470;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG, emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDG.Builder, emu.grasscutter.net.proto.FNGEEAFJCDGOuterClass.FNGEEAFJCDGOrBuilder> 
@@ -5780,7 +5780,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
 
       private boolean cGMBIAPFHGE_ ;
       /**
-       * <code>bool CGMBIAPFHGE = 20006;</code>
+       * <code>bool CGMBIAPFHGE = 389;</code>
        * @return The cGMBIAPFHGE.
        */
       @java.lang.Override
@@ -5788,7 +5788,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return cGMBIAPFHGE_;
       }
       /**
-       * <code>bool CGMBIAPFHGE = 20006;</code>
+       * <code>bool CGMBIAPFHGE = 389;</code>
        * @param value The cGMBIAPFHGE to set.
        * @return This builder for chaining.
        */
@@ -5800,7 +5800,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return this;
       }
       /**
-       * <code>bool CGMBIAPFHGE = 20006;</code>
+       * <code>bool CGMBIAPFHGE = 389;</code>
        * @return This builder for chaining.
        */
       public Builder clearCGMBIAPFHGE() {
@@ -5940,7 +5940,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
 
       private int hPHGKOCDPJE_ ;
       /**
-       * <code>uint32 HPHGKOCDPJE = 20010;</code>
+       * <code>uint32 HPHGKOCDPJE = 646;</code>
        * @return The hPHGKOCDPJE.
        */
       @java.lang.Override
@@ -5948,7 +5948,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return hPHGKOCDPJE_;
       }
       /**
-       * <code>uint32 HPHGKOCDPJE = 20010;</code>
+       * <code>uint32 HPHGKOCDPJE = 646;</code>
        * @param value The hPHGKOCDPJE to set.
        * @return This builder for chaining.
        */
@@ -5960,7 +5960,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 HPHGKOCDPJE = 20010;</code>
+       * <code>uint32 HPHGKOCDPJE = 646;</code>
        * @return This builder for chaining.
        */
       public Builder clearHPHGKOCDPJE() {
@@ -6132,7 +6132,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
 
       private boolean mBPNFGLAJOG_ ;
       /**
-       * <code>bool MBPNFGLAJOG = 20013;</code>
+       * <code>bool MBPNFGLAJOG = 410;</code>
        * @return The mBPNFGLAJOG.
        */
       @java.lang.Override
@@ -6140,7 +6140,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return mBPNFGLAJOG_;
       }
       /**
-       * <code>bool MBPNFGLAJOG = 20013;</code>
+       * <code>bool MBPNFGLAJOG = 410;</code>
        * @param value The mBPNFGLAJOG to set.
        * @return This builder for chaining.
        */
@@ -6152,7 +6152,7 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
         return this;
       }
       /**
-       * <code>bool MBPNFGLAJOG = 20013;</code>
+       * <code>bool MBPNFGLAJOG = 410;</code>
        * @return This builder for chaining.
        */
       public Builder clearMBPNFGLAJOG() {
@@ -6342,46 +6342,46 @@ emu.grasscutter.net.proto.BlockInfoOuterClass.BlockInfo defaultValue) {
       "\021FNGEEAFJCDG.proto\032\026FeatureBlockInfo.pro" +
       "to\032\021MPGPEKAFHJG.proto\032\021NGKOPBGLDJM.proto" +
       "\032\026ResVersionConfig.proto\032\032ShortAbilityHa" +
-      "shPair.proto\032\024StopServerInfo.proto\"\355\013\n\016P" +
+      "shPair.proto\032\024StopServerInfo.proto\"\350\013\n\016P" +
       "layerLoginRsp\022\032\n\021next_resource_url\030\277\006 \001(" +
       "\t\022+\n\020stop_server_info\030\240\234\001 \001(\0132\017.StopServ" +
       "erInfo\022\014\n\003msg\030\232\001 \001(\t\022\023\n\013player_data\030\001 \001(" +
       "\014\022-\n\022res_version_config\030= \001(\0132\021.ResVersi" +
-      "onConfig\022#\n\013LPFKKMMLFOP\030\241\234\001 \001(\0132\014.NGKOPB" +
-      "GLDJM\022\021\n\010birthday\030\323\n \001(\t\022\033\n\022client_silen" +
-      "ce_md5\030\265\003 \001(\t\0227\n\013KKNBKGBLHDM\030\242\234\001 \003(\0132 .P" +
-      "layerLoginRsp.KKNBKGBLHDMEntry\022\023\n\nclient" +
-      "_md5\030\347\t \001(\t\0223\n\027next_res_version_config\030\271" +
-      "\n \001(\0132\021.ResVersionConfig\022\020\n\007sc_info\030\303\014 \001" +
-      "(\014\0226\n\026short_ability_hash_map\030\372\007 \003(\0132\025.Sh" +
-      "ortAbilityHashPair\022\020\n\010game_biz\030\003 \001(\t\022\036\n\025" +
-      "client_version_suffix\030\200\016 \001(\t\022\025\n\014country_" +
-      "code\030\364\003 \001(\t\022\025\n\014register_cps\030\215\016 \001(\t\022=\n\020ab" +
-      "ility_hash_map\030\004 \003(\0132#.PlayerLoginRsp.Ab" +
-      "ilityHashMapEntry\022#\n\013KJEMCDAJINF\030\243\234\001 \001(\013" +
-      "2\014.FNGEEAFJCDG\0223\n\027feature_block_info_lis" +
-      "t\030\256\004 \003(\0132\021.FeatureBlockInfo\022:\n\016block_inf" +
-      "o_map\030\302\t \003(\0132!.PlayerLoginRsp.BlockInfoM" +
-      "apEntry\022&\n\035client_silence_version_suffix" +
-      "\030\350\005 \001(\t\022\030\n\017total_tick_time\030\274\016 \001(\001\022\022\n\ntar" +
-      "get_uid\030\006 \001(\r\022\025\n\013DPPKDPCKANP\030\244\234\001 \001(\r\022\031\n\021" +
-      "ability_hash_code\030\014 \001(\005\022\033\n\023client_data_v" +
-      "ersion\030\013 \001(\r\022\017\n\007retcode\030\010 \001(\005\022\024\n\nis_sc_o" +
-      "pen\030\245\234\001 \001(\010\022\025\n\013CGMBIAPFHGE\030\246\234\001 \001(\010\022\035\n\023is" +
-      "_use_ability_hash\030\247\234\001 \001(\010\022\025\n\013GICKBBGJGCK" +
-      "\030\250\234\001 \001(\010\022\025\n\013JBEGCLMHOPF\030\251\234\001 \001(\r\022#\n\033clien" +
-      "t_silence_data_version\030\n \001(\r\022\025\n\013HPHGKOCD" +
-      "PJE\030\252\234\001 \001(\r\022\022\n\nis_relogin\030\016 \001(\010\022\025\n\013KLKDK" +
-      "MBAPGA\030\253\234\001 \001(\010\022\025\n\rplatform_type\030x \001(\r\022\021\n" +
-      "\010is_audit\030\307\004 \001(\010\022\025\n\013GHAJDNKLEDA\030\254\234\001 \001(\010\022" +
-      "\025\n\013MBPNFGLAJOG\030\255\234\001 \001(\010\022\025\n\013OEMHPIKBDMB\030\256\234" +
-      "\001 \001(\010\022\025\n\013HACEPFEEKGA\030\257\234\001 \001(\r\022\022\n\nlogin_ra" +
-      "nd\030\005 \001(\004\032@\n\020KKNBKGBLHDMEntry\022\013\n\003key\030\001 \001(" +
-      "\004\022\033\n\005value\030\002 \001(\0132\014.MPGPEKAFHJG:\0028\001\0325\n\023Ab" +
-      "ilityHashMapEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
-      "\002 \001(\005:\0028\001\032?\n\021BlockInfoMapEntry\022\013\n\003key\030\001 " +
-      "\001(\r\022\031\n\005value\030\002 \001(\0132\n.BlockInfo:\0028\001B\033\n\031em" +
-      "u.grasscutter.net.protob\006proto3"
+      "onConfig\022\"\n\013LPFKKMMLFOP\030\240\002 \001(\0132\014.NGKOPBG" +
+      "LDJM\022\021\n\010birthday\030\323\n \001(\t\022\033\n\022client_silenc" +
+      "e_md5\030\265\003 \001(\t\0227\n\013KKNBKGBLHDM\030\242\234\001 \003(\0132 .Pl" +
+      "ayerLoginRsp.KKNBKGBLHDMEntry\022\023\n\nclient_" +
+      "md5\030\347\t \001(\t\0223\n\027next_res_version_config\030\271\n" +
+      " \001(\0132\021.ResVersionConfig\022\020\n\007sc_info\030\303\014 \001(" +
+      "\014\0226\n\026short_ability_hash_map\030\372\007 \003(\0132\025.Sho" +
+      "rtAbilityHashPair\022\020\n\010game_biz\030\003 \001(\t\022\036\n\025c" +
+      "lient_version_suffix\030\200\016 \001(\t\022\025\n\014country_c" +
+      "ode\030\364\003 \001(\t\022\025\n\014register_cps\030\215\016 \001(\t\022=\n\020abi" +
+      "lity_hash_map\030\004 \003(\0132#.PlayerLoginRsp.Abi" +
+      "lityHashMapEntry\022\"\n\013KJEMCDAJINF\030\326\003 \001(\0132\014" +
+      ".FNGEEAFJCDG\0223\n\027feature_block_info_list\030" +
+      "\256\004 \003(\0132\021.FeatureBlockInfo\022:\n\016block_info_" +
+      "map\030\302\t \003(\0132!.PlayerLoginRsp.BlockInfoMap" +
+      "Entry\022&\n\035client_silence_version_suffix\030\350" +
+      "\005 \001(\t\022\030\n\017total_tick_time\030\274\016 \001(\001\022\022\n\ntarge" +
+      "t_uid\030\006 \001(\r\022\025\n\013DPPKDPCKANP\030\244\234\001 \001(\r\022\031\n\021ab" +
+      "ility_hash_code\030\014 \001(\005\022\033\n\023client_data_ver" +
+      "sion\030\013 \001(\r\022\017\n\007retcode\030\010 \001(\005\022\024\n\nis_sc_ope" +
+      "n\030\245\234\001 \001(\010\022\024\n\013CGMBIAPFHGE\030\205\003 \001(\010\022\035\n\023is_us" +
+      "e_ability_hash\030\247\234\001 \001(\010\022\025\n\013GICKBBGJGCK\030\250\234" +
+      "\001 \001(\010\022\025\n\013JBEGCLMHOPF\030\251\234\001 \001(\r\022#\n\033client_s" +
+      "ilence_data_version\030\n \001(\r\022\024\n\013HPHGKOCDPJE" +
+      "\030\206\005 \001(\r\022\022\n\nis_relogin\030\016 \001(\010\022\025\n\013KLKDKMBAP" +
+      "GA\030\253\234\001 \001(\010\022\025\n\rplatform_type\030x \001(\r\022\021\n\010is_" +
+      "audit\030\307\004 \001(\010\022\025\n\013GHAJDNKLEDA\030\254\234\001 \001(\010\022\024\n\013M" +
+      "BPNFGLAJOG\030\232\003 \001(\010\022\025\n\013OEMHPIKBDMB\030\256\234\001 \001(\010" +
+      "\022\025\n\013HACEPFEEKGA\030\257\234\001 \001(\r\022\022\n\nlogin_rand\030\005 " +
+      "\001(\004\032@\n\020KKNBKGBLHDMEntry\022\013\n\003key\030\001 \001(\004\022\033\n\005" +
+      "value\030\002 \001(\0132\014.MPGPEKAFHJG:\0028\001\0325\n\023Ability" +
+      "HashMapEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\005" +
+      ":\0028\001\032?\n\021BlockInfoMapEntry\022\013\n\003key\030\001 \001(\r\022\031" +
+      "\n\005value\030\002 \001(\0132\n.BlockInfo:\0028\001B\033\n\031emu.gra" +
+      "sscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

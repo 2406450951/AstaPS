@@ -18,7 +18,7 @@ message QueryPathReq {
   repeated Vector destination_pos = 8;
   Vector source_pos = 3;
   QueryFilter filter = 4;
-  DICLKEBODEC FLFPHIAAGME = 20001;
+  DICLKEBODEC FLFPHIAAGME = 5;
   Vector3Int CPMFACKILJN = 20002;
   QueryPathReq.OptionType query_type = 9;
   uint32 scene_id = 1;

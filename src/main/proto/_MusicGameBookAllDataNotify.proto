@@ -15,6 +15,6 @@ message _MusicGameBookAllDataNotify {
   BDOKHMKLJOM setting = 13;
   bool NNLEPHINEFH = 20006;
   uint32 MGFHHOPDDKE = 20007;
-  uint32 MLAJCIMGINA = 20008;
+  uint32 MLAJCIMGINA = 1;
   uint32 JHMFHOECCLH = 20009;
 }

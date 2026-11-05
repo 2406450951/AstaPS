@@ -87,17 +87,17 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         int index);
 
     /**
-     * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+     * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
      * @return A list containing the oPCOMCJHGAJ.
      */
     java.util.List<java.lang.Long> getOPCOMCJHGAJList();
     /**
-     * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+     * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
      * @return The count of oPCOMCJHGAJ.
      */
     int getOPCOMCJHGAJCount();
     /**
-     * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+     * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
      * @param index The index of the element to return.
      * @return The oPCOMCJHGAJ at the given index.
      */
@@ -3288,12 +3288,12 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
       return activityPushTipsDataList_.get(index);
     }
 
-    public static final int OPCOMCJHGAJ_FIELD_NUMBER = 20000;
+    public static final int OPCOMCJHGAJ_FIELD_NUMBER = 862;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.LongList oPCOMCJHGAJ_ =
         emptyLongList();
     /**
-     * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+     * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
      * @return A list containing the oPCOMCJHGAJ.
      */
     @java.lang.Override
@@ -3302,14 +3302,14 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
       return oPCOMCJHGAJ_;
     }
     /**
-     * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+     * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
      * @return The count of oPCOMCJHGAJ.
      */
     public int getOPCOMCJHGAJCount() {
       return oPCOMCJHGAJ_.size();
     }
     /**
-     * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+     * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
      * @param index The index of the element to return.
      * @return The oPCOMCJHGAJ at the given index.
      */
@@ -8981,6 +8981,13 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
       if (detailCase_ == 857) {
         output.writeMessage(857, (emu.grasscutter.net.proto.CeremonyDetailInfo._CeremonyDetailInfo) detail_);
       }
+      if (getOPCOMCJHGAJList().size() > 0) {
+        output.writeUInt32NoTag(6898);
+        output.writeUInt32NoTag(oPCOMCJHGAJMemoizedSerializedSize);
+      }
+      for (int i = 0; i < oPCOMCJHGAJ_.size(); i++) {
+        output.writeUInt64NoTag(oPCOMCJHGAJ_.getLong(i));
+      }
       if (detailCase_ == 873) {
         output.writeMessage(873, (emu.grasscutter.net.proto.FindHilichurlDetailInfoOuterClass.FindHilichurlDetailInfo) detail_);
       }
@@ -9295,13 +9302,6 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
       }
       if (detailCase_ == 2032) {
         output.writeMessage(2032, (emu.grasscutter.net.proto.ActivityMultiCharacterDetailInfo._ActivityMultiCharacterDetailInfo) detail_);
-      }
-      if (getOPCOMCJHGAJList().size() > 0) {
-        output.writeUInt32NoTag(160002);
-        output.writeUInt32NoTag(oPCOMCJHGAJMemoizedSerializedSize);
-      }
-      for (int i = 0; i < oPCOMCJHGAJ_.size(); i++) {
-        output.writeUInt64NoTag(oPCOMCJHGAJ_.getLong(i));
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20001, getJJFJONCHEIK());
@@ -9676,6 +9676,20 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(857, (emu.grasscutter.net.proto.CeremonyDetailInfo._CeremonyDetailInfo) detail_);
       }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < oPCOMCJHGAJ_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt64SizeNoTag(oPCOMCJHGAJ_.getLong(i));
+        }
+        size += dataSize;
+        if (!getOPCOMCJHGAJList().isEmpty()) {
+          size += 2;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        oPCOMCJHGAJMemoizedSerializedSize = dataSize;
+      }
       if (detailCase_ == 873) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(873, (emu.grasscutter.net.proto.FindHilichurlDetailInfoOuterClass.FindHilichurlDetailInfo) detail_);
@@ -9758,14 +9772,14 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1110, (emu.grasscutter.net.proto.BuoyantCombatDetailInfoOuterClass.BuoyantCombatDetailInfo) detail_);
       }
-      if (detailCase_ == 1131) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1131, (emu.grasscutter.net.proto.GamblingChessDetailInfoOuterClass.GamblingChessDetailInfo) detail_);
-      }
       return size;
     }
     private int computeSerializedSize_3() {
       int size = 0;
+      if (detailCase_ == 1131) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1131, (emu.grasscutter.net.proto.GamblingChessDetailInfoOuterClass.GamblingChessDetailInfo) detail_);
+      }
       if (detailCase_ == 1133) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1133, (emu.grasscutter.net.proto.LanternRiteV5DetailInfo._LanternRiteV5DetailInfo) detail_);
@@ -9896,14 +9910,14 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1441, (emu.grasscutter.net.proto.WindFieldDetailInfoOuterClass.WindFieldDetailInfo) detail_);
       }
-      if (detailCase_ == 1466) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1466, (emu.grasscutter.net.proto.ToyBattleDetailInfo._ToyBattleDetailInfo) detail_);
-      }
       return size;
     }
     private int computeSerializedSize_4() {
       int size = 0;
+      if (detailCase_ == 1466) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1466, (emu.grasscutter.net.proto.ToyBattleDetailInfo._ToyBattleDetailInfo) detail_);
+      }
       if (detailCase_ == 1468) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1468, (emu.grasscutter.net.proto.RoguelikeDungeonActivityDetailInfoOuterClass.RoguelikeDungeonActivityDetailInfo) detail_);
@@ -10033,14 +10047,14 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1816, (emu.grasscutter.net.proto.NatlanRaceDetailInfo._NatlanRaceDetailInfo) detail_);
       }
-      if (detailCase_ == 1820) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1820, (emu.grasscutter.net.proto.TreasureHuntV4DetailInfo._TreasureHuntV4DetailInfo) detail_);
-      }
       return size;
     }
     private int computeSerializedSize_5() {
       int size = 0;
+      if (detailCase_ == 1820) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1820, (emu.grasscutter.net.proto.TreasureHuntV4DetailInfo._TreasureHuntV4DetailInfo) detail_);
+      }
       if (detailCase_ == 1839) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1839, (emu.grasscutter.net.proto.HideAndSeekV4ActivityDetailInfo._HideAndSeekV4ActivityDetailInfo) detail_);
@@ -10116,20 +10130,6 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
       if (detailCase_ == 2032) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2032, (emu.grasscutter.net.proto.ActivityMultiCharacterDetailInfo._ActivityMultiCharacterDetailInfo) detail_);
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < oPCOMCJHGAJ_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeUInt64SizeNoTag(oPCOMCJHGAJ_.getLong(i));
-        }
-        size += dataSize;
-        if (!getOPCOMCJHGAJList().isEmpty()) {
-          size += 3;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        oPCOMCJHGAJMemoizedSerializedSize = dataSize;
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -14568,6 +14568,22 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
                 detailCase_ = 857;
                 break;
               } // case 6858
+              case 6896: {
+                long v = input.readUInt64();
+                ensureOPCOMCJHGAJIsMutable();
+                oPCOMCJHGAJ_.addLong(v);
+                break;
+              } // case 6896
+              case 6898: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureOPCOMCJHGAJIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  oPCOMCJHGAJ_.addLong(input.readUInt64());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 6898
               case 6986: {
                 input.readMessage(
                     internalGetFindHilichurlInfoFieldBuilder().getBuilder(),
@@ -15291,22 +15307,6 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
                 detailCase_ = 2032;
                 break;
               } // case 16258
-              case 160000: {
-                long v = input.readUInt64();
-                ensureOPCOMCJHGAJIsMutable();
-                oPCOMCJHGAJ_.addLong(v);
-                break;
-              } // case 160000
-              case 160002: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                ensureOPCOMCJHGAJIsMutable();
-                while (input.getBytesUntilLimit() > 0) {
-                  oPCOMCJHGAJ_.addLong(input.readUInt64());
-                }
-                input.popLimit(limit);
-                break;
-              } // case 160002
               case 160010: {
                 input.readMessage(
                     internalGetJJFJONCHEIKFieldBuilder().getBuilder(),
@@ -15775,7 +15775,7 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         bitField0_ |= 0x00000004;
       }
       /**
-       * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+       * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
        * @return A list containing the oPCOMCJHGAJ.
        */
       public java.util.List<java.lang.Long>
@@ -15784,14 +15784,14 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         return oPCOMCJHGAJ_;
       }
       /**
-       * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+       * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
        * @return The count of oPCOMCJHGAJ.
        */
       public int getOPCOMCJHGAJCount() {
         return oPCOMCJHGAJ_.size();
       }
       /**
-       * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+       * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
        * @param index The index of the element to return.
        * @return The oPCOMCJHGAJ at the given index.
        */
@@ -15799,7 +15799,7 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         return oPCOMCJHGAJ_.getLong(index);
       }
       /**
-       * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+       * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
        * @param index The index to set the value at.
        * @param value The oPCOMCJHGAJ to set.
        * @return This builder for chaining.
@@ -15814,7 +15814,7 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+       * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
        * @param value The oPCOMCJHGAJ to add.
        * @return This builder for chaining.
        */
@@ -15827,7 +15827,7 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+       * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
        * @param values The oPCOMCJHGAJ to add.
        * @return This builder for chaining.
        */
@@ -15841,7 +15841,7 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>repeated uint64 OPCOMCJHGAJ = 20000;</code>
+       * <code>repeated uint64 OPCOMCJHGAJ = 862;</code>
        * @return This builder for chaining.
        */
       public Builder clearOPCOMCJHGAJ() {
@@ -39804,274 +39804,274 @@ public final class ActivityInfoOuterClass extends com.google.protobuf.GeneratedF
       "DetailInfo.proto\032\032_TradeShowDetailInfo.p" +
       "roto\032\037_TreasureHuntV4DetailInfo.proto\032\026_" +
       "UgcV2DetailInfo.proto\032\031_WatergunDetailIn" +
-      "fo.proto\032\033_WeekActiveDetailInfo.proto\"\360R" +
+      "fo.proto\032\033_WeekActiveDetailInfo.proto\"\357R" +
       "\n\014ActivityInfo\022=\n\021wish_gift_num_map\030\244\010 \003" +
       "(\0132!.ActivityInfo.WishGiftNumMapEntry\022<\n" +
       "\034activity_push_tips_data_list\030\226\016 \003(\0132\025.A" +
-      "ctivityPushTipsData\022\025\n\013OPCOMCJHGAJ\030\240\234\001 \003" +
-      "(\004\022\032\n\021taken_reward_list\030\325\002 \003(\r\022#\n\013JJFJON" +
-      "CHEIK\030\241\234\001 \001(\0132\014.POODJGCIHIE\022/\n\021watcher_i" +
-      "nfo_list\030\t \003(\0132\024.ActivityWatcherInfo\022,\n\021" +
-      "_client_play_data\030\235\005 \001(\0132\020._ClientPlayDa" +
-      "ta\022\"\n\031quick_open_pre_quest_list\030\245\006 \003(\r\022>" +
-      "\n\033_client_play_cur_level_info\030\224\017 \001(\0132\030._" +
-      "ClientPlayCurLevelInfo\022>\n\021activity_coin_" +
-      "map\030\270\t \003(\0132\".ActivityInfo.ActivityCoinMa" +
-      "pEntry\022\030\n\016meet_cond_list\030\242\234\001 \003(\r\022\032\n\020expi" +
-      "re_cond_list\030\243\234\001 \003(\r\022\035\n\024first_day_start_" +
-      "time\030\371\001 \001(\r\022\"\n\031selected_avatar_reward_id" +
-      "\030\207\010 \001(\r\022\023\n\013activity_id\030\001 \001(\r\022\025\n\013is_start" +
-      "ing\030\244\234\001 \001(\010\022\031\n\021is_banner_cleared\030\n \001(\010\022\022" +
-      "\n\tis_hidden\030\211\010 \001(\010\022\023\n\013is_finished\030\004 \001(\010\022" +
-      "\022\n\tcur_score\030\254\005 \001(\r\022\020\n\010end_time\030\017 \001(\r\022\023\n" +
-      "\013schedule_id\030\002 \001(\r\022\025\n\ractivity_type\030\010 \001(" +
-      "\r\022\024\n\013score_limit\030\305\n \001(\r\022\025\n\013OPPDJKGIKBJ\030\245" +
-      "\234\001 \001(\004\022\025\n\013DIEFHMGFNIJ\030\246\234\001 \001(\r\022\022\n\nbegin_t" +
-      "ime\030\006 \001(\r\022\"\n\030is_common_content_closed\030\247\234" +
-      "\001 \001(\010\022\033\n\021is_play_open_anim\030\250\234\001 \001(\010\022\026\n\ris" +
-      "_quick_open\030\353\r \001(\010\0223\n\rsam_lamp_info\030\005 \001(" +
-      "\0132\032.SeaLampActivityDetailInfoH\000\0224\n\rcruci" +
-      "ble_info\030\007 \001(\0132\033.CrucibleActivityDetailI" +
-      "nfoH\000\0224\n\rsalesman_info\030\016 \001(\0132\033.SalesmanA" +
-      "ctivityDetailInfoH\000\022;\n\021trial_avatar_info" +
-      "\030\r \001(\0132\036.TrialAvatarActivityDetailInfoH\000" +
-      "\0224\n\rdelivery_info\030\033 \001(\0132\033.DeliveryActivi" +
-      "tyDetailInfoH\000\022/\n\naster_info\030\367\010 \001(\0132\030.As" +
-      "terActivityDetailInfoH\000\0221\n\013flight_info\030\374" +
-      "\003 \001(\0132\031.FlightActivityDetailInfoH\000\022<\n\021dr" +
-      "agon_spine_info\030\214\017 \001(\0132\036.DragonSpineActi" +
-      "vityDetailInfoH\000\0221\n\013effigy_info\030\324\002 \001(\0132\031" +
-      ".EffigyActivityDetailInfoH\000\022<\n\021treasure_" +
-      "map_info\030\375\002 \001(\0132\036.TreasureMapActivityDet" +
-      "ailInfoH\000\0225\n\rblessing_info\030\237\013 \001(\0132\033.Bles" +
-      "singActivityDetailInfoH\000\022.\n\rsea_lamp_inf" +
-      "o\030\336\007 \001(\0132\024.SeaLampActivityInfoH\000\0228\n\017expe" +
-      "dition_info\030x \001(\0132\035.ExpeditionActivityDe" +
-      "tailInfoH\000\022B\n\024arena_challenge_info\030\336\016 \001(" +
-      "\0132!.ArenaChallengeActivityDetailInfoH\000\0228" +
-      "\n\017fleur_fair_info\030\352\002 \001(\0132\034.FleurFairActi" +
-      "vityDetailInfoH\000\022<\n\021water_spirit_info\030\371\005" +
-      " \001(\0132\036.WaterSpiritActivityDetailInfoH\000\022@" +
-      "\n\024challneler_slab_info\030Y \001(\0132 .Channeler" +
-      "SlabActivityDetailInfoH\000\022@\n\030mist_trial_a" +
-      "ctivity_info\030C \001(\0132\034.MistTrialActivityDe" +
-      "tailInfoH\000\022=\n\022hide_and_seek_info\030\274\001 \001(\0132" +
-      "\036.HideAndSeekActivityDetailInfoH\000\0228\n\023fin" +
-      "d_hilichurl_info\030\351\006 \001(\0132\030.FindHilichurlD" +
-      "etailInfoH\000\0222\n\020summer_time_info\030\322\017 \001(\0132\025" +
-      ".SummerTimeDetailInfoH\000\0228\n\023buoyant_comba" +
-      "t_info\030\326\010 \001(\0132\030.BuoyantCombatDetailInfoH" +
-      "\000\0220\n\017echo_shell_info\030\374\005 \001(\0132\024.EchoShellD" +
-      "etailInfoH\000\022D\n\025bounce_conjuring_info\030\266\002 " +
-      "\001(\0132\".BounceConjuringActivityDetailInfoH" +
-      "\000\0228\n\017blitz_rush_info\030\205\002 \001(\0132\034.BlitzRushA" +
-      "ctivityDetailInfoH\000\022/\n\nchess_info\030\255\001 \001(\013" +
-      "2\030.ChessActivityDetailInfoH\000\022-\n\tsumo_inf" +
-      "o\030\267\014 \001(\0132\027.SumoActivityDetailInfoH\000\022>\n\022m" +
-      "oonfin_trial_info\030\261\014 \001(\0132\037.MoonfinTrialA" +
-      "ctivityDetailInfoH\000\022.\n\016luna_rite_info\030\335\007" +
-      " \001(\0132\023.LunaRiteDetailInfoH\000\022<\n\021plant_flo" +
-      "wer_info\030\203\016 \001(\0132\036.PlantFlowerActivityDet" +
-      "ailInfoH\000\0228\n\017music_game_info\030\331\r \001(\0132\034.Mu" +
-      "sicGameActivityDetailInfoH\000\022F\n\026roguelike" +
-      "_dungoen_info\030\274\013 \001(\0132#.RoguelikeDungeonA" +
-      "ctivityDetailInfoH\000\022+\n\010dig_info\030\363\010 \001(\0132\026" +
-      ".DigActivityDetailInfoH\000\022/\n\nhachi_info\030\215" +
-      "\002 \001(\0132\030.HachiActivityDetailInfoH\000\022:\n\020win" +
-      "ter_camp_info\030\212\002 \001(\0132\035.WinterCampActivit" +
-      "yDetailInfoH\000\0221\n\013potion_info\030\356\001 \001(\0132\031.Po" +
-      "tionActivityDetailInfoH\000\022G\n\033tanuki_trave" +
-      "l_activity_info\030\344\002 \001(\0132\037.TanukiTravelAct" +
-      "ivityDetailInfoH\000\022E\n\032lantern_rite_activi" +
-      "ty_info\030\355\002 \001(\0132\036.LanternRiteActivityDeta" +
-      "ilInfoH\000\022B\n\024michiae_matsuri_info\030\211\017 \001(\0132" +
-      "!.MichiaeMatsuriActivityDetailInfoH\000\0227\n\016" +
-      "bartender_info\030\242\001 \001(\0132\034.BartenderActivit" +
-      "yDetailInfoH\000\022+\n\010ugc_info\030\276\005 \001(\0132\026.UgcAc" +
-      "tivityDetailInfoH\000\022<\n\021crystal_link_info\030" +
-      "\332\013 \001(\0132\036.CrystalLinkActivityDetailInfoH\000" +
-      "\0223\n\014irodori_info\030\271\006 \001(\0132\032.IrodoriActivit" +
-      "yDetailInfoH\000\022.\n\nphoto_info\030( \001(\0132\030.Phot" +
-      "oActivityDetailInfoH\000\022/\n\nspice_info\030\310\003 \001" +
-      "(\0132\030.SpiceActivityDetailInfoH\000\022/\n\ngacha_" +
-      "info\030\343\014 \001(\0132\030.GachaActivityDetailInfoH\000\022" +
-      "U\n\036luminance_stone_challenge_info\030\241\002 \001(\013" +
-      "2*.LuminanceStoneChallengeActivityDetail" +
-      "InfoH\000\022:\n\020rogue_diary_info\030\220\014 \001(\0132\035.Rogu" +
-      "eDiaryActivityDetailInfoH\000\0227\n\024summer_tim" +
-      "e_v_2_info\030\035 \001(\0132\027.SummerTimeV2DetailInf" +
-      "oH\000\0224\n\021island_party_info\030\341\007 \001(\0132\026.Island" +
-      "PartyDetailInfoH\000\022-\n\tgear_info\030\247\004 \001(\0132\027." +
-      "GearActivityDetailInfoH\000\022<\n\025graven_innoc" +
-      "ence_info\030\322\014 \001(\0132\032.GravenInnocenceDetail" +
-      "InfoH\000\0228\n\023instable_spray_info\030\241\005 \001(\0132\030.I" +
-      "nstableSprayDetailInfoH\000\022@\n\023muqadas_poti" +
-      "on_info\030\247\010 \001(\0132 .MuqadasPotionActivityDe" +
-      "tailInfoH\000\022B\n\024treasure_seelie_info\030\373\n \001(" +
-      "\0132!.TreasureSeelieActivityDetailInfoH\000\022?" +
-      "\n\027rock_board_explore_info\030\375\013 \001(\0132\033.RockB" +
-      "oardExploreDetailInfoH\000\0223\n\014vintage_info\030" +
-      "\234\t \001(\0132\032.VintageActivityDetailInfoH\000\0220\n\017" +
-      "wind_field_info\030\241\013 \001(\0132\024.WindFieldDetail" +
-      "InfoH\000\0228\n\023fungus_fighter_info\030\277\n \001(\0132\030.F" +
-      "ungusFighterDetailInfoH\000\0228\n\023char_amuseme" +
-      "nt_info\030\271\016 \001(\0132\030.CharAmusementDetailInfo" +
-      "H\000\022>\n\025effigy_challenge_info\030\340\013 \001(\0132\034.Eff" +
-      "igyChallengeV2DetailInfoH\000\0224\n\021coin_colle" +
-      "ct_info\030\324\r \001(\0132\026.CoinCollectDetailInfoH\000" +
-      "\0226\n\022brick_breaker_info\030\274\n \001(\0132\027.BrickBre" +
-      "akerDetailInfoH\000\0220\n\017duel_heart_info\030\205\t \001" +
-      "(\0132\024.DuelHeartDetailInfoH\000\0222\n\021sea_lamp_v" +
-      "_3_info\030\220\013 \001(\0132\024.SeaLampV3DetailInfoH\000\0220" +
-      "\n\017team_chain_info\030\201\n \001(\0132\024.TeamChainDeta" +
-      "ilInfoH\000\022H\n\033electrohercules_battle_info\030" +
-      "\236\017 \001(\0132 .ElectroherculesBattleDetailInfo" +
-      "H\000\0224\n\021gcg_festival_info\030\340\014 \001(\0132\026.GCGFest" +
-      "ivalDetailInfoH\000\0227\n\023fleur_fair_v_2_info\030" +
-      "\376\003 \001(\0132\027._FleurFairV2DetailInfoH\000\022?\n\027fun" +
-      "gus_fighter_v_2_info\030\256\006 \001(\0132\033._FungusFig" +
-      "hterV2DetailInfoH\000\022+\n\014aka_fes_info\030\203\013 \001(" +
-      "\0132\022._AkaFesDetailInfoH\000\022B\n\033sandworm_cann" +
-      "on_detail_info\030\340\002 \001(\0132\032._SandwormCannonD" +
-      "etailInfoH\000\0225\n\021sorush_trial_info\030\213\002 \001(\0132" +
-      "\027._SorushTrialDetailInfoH\000\022,\n\014journey_in" +
-      "fo\030\261\010 \001(\0132\023._JourneyDetailInfoH\000\022C\n\031effi" +
-      "gy_challenge_v_4_info\030\241\r \001(\0132\035._EffigyCh" +
-      "allengeV4DetailInfoH\000\022+\n\014gcg_pve_info\030\320\r" +
-      " \001(\0132\022._GCGPveDetailInfoH\000\022*\n\014ugc_v_2_in" +
-      "fo\030\363\r \001(\0132\021._UgcV2DetailInfoH\000\022A\n\027penumb" +
-      "ra_adventure_info\030\371\004 \001(\0132\035._PenumbraAdve" +
-      "ntureDetailInfoH\000\0223\n\020animal_view_info\030\331\016" +
-      " \001(\0132\026._AnimalViewDetailInfoH\000\022L\n\035activi" +
-      "ty_multi_character_info\030\360\017 \001(\0132\"._Activi" +
-      "tyMultiCharacterDetailInfoH\000\022<\n\025gcg_pve_" +
-      "infinite_info\030\243\010 \001(\0132\032._GCGPveInfiniteDe" +
-      "tailInfoH\000\0221\n\017toy_battle_info\030\272\013 \001(\0132\025._" +
-      "ToyBattleDetailInfoH\000\0229\n\023photo_undersea_" +
-      "info\030\225\013 \001(\0132\031._PhotoUnderseaDetailInfoH\000" +
-      "\022;\n\024fontaine_gather_info\030\345\003 \001(\0132\032._Fonta" +
-      "ineGatherDetailInfoH\000\0228\n\023gcg_pve_puzzle_" +
-      "info\030\336\n \001(\0132\030._GCGPvePuzzleDetailInfoH\000\022" +
-      "A\n\027collect_underwater_info\030\376\001 \001(\0132\035._Col" +
-      "lectUnderwaterDetailInfoH\000\022>\n\026quick_time" +
-      "_combat_info\030\327\016 \001(\0132\033._QuickTimeCombatDe" +
-      "tailInfoH\000\022B\n\033poetry_festival_detail_inf" +
-      "o\030\222\010 \001(\0132\032._PoetryFestivalDetailInfoH\000\0225" +
-      "\n\021fish_blaster_info\030\200\014 \001(\0132\027._FishBlaste" +
-      "rDetailInfoH\000\0224\n\021blessing_v_2_info\030\242\n \001(" +
-      "\0132\026._BlessingV2DetailInfoH\000\022@\n\032rainbow_p" +
-      "rince_detail_info\030\224\007 \001(\0132\031._RainbowPrinc" +
-      "eDetailInfoH\000\022?\n\027fungus_fighter_v_3_info" +
-      "\030\354\t \001(\0132\033._FungusFighterV3DetailInfoH\000\0225" +
-      "\n\024filmfest_detail_info\030\277\005 \001(\0132\024._Filmfes" +
-      "tDetailInfoH\000\0229\n\023goal_challenge_info\030\377\004 " +
-      "\001(\0132\031._GoalChallengeDetailInfoH\000\022=\n\026trea" +
-      "sure_hunt_v_4_info\030\234\016 \001(\0132\032._TreasureHun" +
-      "tV4DetailInfoH\000\0227\n\022stamina_fight_info\030\322\010" +
-      " \001(\0132\030._StaminaFightDetailInfoH\000\022;\n\025lant" +
-      "ern_rite_v_4_info\030\363\005 \001(\0132\031._LanternRiteV" +
-      "4DetailInfoH\000\0229\n\023lost_samachurl_info\030\200\017 " +
-      "\001(\0132\031._LostSamachurlDetailInfoH\000\0226\n\025cook" +
-      "_game_detail_info\030\266\007 \001(\0132\024._CookGameDeta" +
-      "ilInfoH\000\022:\n\027alchemy_sim_detail_info\030\305\002 \001" +
-      "(\0132\026._AlchemySimDetailInfoH\000\022?\n\032auto_tim" +
-      "e_stop_detail_info\030\302\r \001(\0132\030._AutoTimeSto" +
-      "pDetailInfoH\000\0223\n\023catcafe_detail_info\030\327\004 " +
-      "\001(\0132\023._CatcafeDetailInfoH\000\022<\n\030slime_cann" +
-      "on_detail_info\030\224\r \001(\0132\027._SlimeCannonDeta" +
-      "ilInfoH\000\022J\n effigy_challenge_v_5_detail_" +
-      "info\030\237\005 \001(\0132\035._EffigyChallengeV5DetailIn" +
-      "foH\000\022F\n\036great_festival_v_2_detail_info\030\303" +
-      "\r \001(\0132\033._GreatFestivalV2DetailInfoH\000\022K\n\035" +
-      "hide_and_seek_v_4_detail_info\030\257\016 \001(\0132!._" +
-      "HideAndSeekV4ActivityDetailInfoH\000\022F\n\035acr" +
-      "obatics_battle_detail_info\030\322\t \001(\0132\034._Acr" +
-      "obaticsBattleDetailInfoH\000\022.\n\rwatergun_in" +
-      "fo\030\363\t \001(\0132\024._WatergunDetailInfoH\000\022G\n\036mon" +
-      "ster_vs_monster_detail_info\030\321\t \001(\0132\034._Mo" +
-      "nsterVsMonsterDetailInfoH\000\022:\n\027bullet_hel" +
-      "l_detail_info\030\354\r \001(\0132\026._BulletHellDetail" +
-      "InfoH\000\0226\n\025bird_ball_detail_info\030\224\005 \001(\0132\024" +
-      "._BirdBallDetailInfoH\000\022:\n\027fairy_tales_de" +
-      "tail_info\030\354\013 \001(\0132\026._FairyTalesDetailInfo" +
-      "H\000\022>\n\031recharge_disk_detail_info\030\314\n \001(\0132\030" +
-      "._RechargeDiskDetailInfoH\000\022>\n\031bomber_dod" +
-      "oco_detail_info\030\370\003 \001(\0132\030._BomberDodocoDe" +
-      "tailInfoH\000\0226\n\025gain_buff_detail_info\030\357\004 \001" +
-      "(\0132\024._GainBuffDetailInfoH\000\022:\n\027natlan_tou" +
-      "r_detail_info\030\332\n \001(\0132\026._NatlanTourDetail" +
-      "InfoH\000\022<\n\030nahida_birth_detail_info\030\371\t \001(" +
-      "\0132\027._NahidaBirthDetailInfoH\000\022H\n\037arena_ch" +
-      "allenge_v_5_detail_info\030\375\r \001(\0132\034._ArenaC" +
-      "hallengeV5DetailInfoH\000\022>\n\031boltbug_abyss_" +
-      "detail_info\030\210\017 \001(\0132\030._BoltbugAbyssDetail" +
-      "InfoH\000\022J\n\037cooperate_challenge_detail_inf" +
-      "o\030\345\017 \001(\0132\036._CooperateChallengeDetailInfo" +
-      "H\000\022J\n gcg_auto_battle_card_detail_info\030\244" +
-      "\r \001(\0132\035._GCGAutoBattleCardDetailInfoH\000\022>" +
-      "\n\031monster_chess_detail_info\030\241\t \001(\0132\030._Mo" +
-      "nsterChessDetailInfoH\000\022.\n\rceremony_info\030" +
-      "\331\006 \001(\0132\024._CeremonyDetailInfoH\000\022X\n$limite" +
-      "d_time_reward_area_banner_info\030\223\002 \001(\0132\'." +
-      "_LimitedTimeRewardAreaBannerDetailInfoH\000" +
-      "\022B\n\034lantern_rite_v_5_detail_info\030\355\010 \001(\0132" +
-      "\031._LanternRiteV5DetailInfoH\000\022V\n&electroh" +
-      "ercules_battle_v_3_detail_info\030\206\017 \001(\0132#." +
-      "_ElectroherculesBattleV3DetailInfoH\000\0223\n\020" +
-      "natlan_race_info\030\230\016 \001(\0132\026._NatlanRaceDet" +
-      "ailInfoH\000\022:\n\027ad_shooting_detail_info\030\376\010 " +
-      "\001(\0132\026._AdShootingDetailInfoH\000\022B\n\033tower_c" +
-      "hallenge_detail_info\030\240\013 \001(\0132\032._TowerChal" +
-      "lengeDetailInfoH\000\022:\n\027fishing_joy_detail_" +
-      "info\030\374\014 \001(\0132\026._FishingJoyDetailInfoH\000\022>\n" +
-      "\031mikawa_flower_detail_info\030\376\007 \001(\0132\030._Mik" +
-      "awaFlowerDetailInfoH\000\022/\n\021party_detail_in" +
-      "fo\030\252\004 \001(\0132\021._PartyDetailInfoH\000\0225\n\021natlan" +
-      "_drill_info\030\230\003 \001(\0132\027._NatlanDrillDetailI" +
-      "nfoH\000\022<\n\030natlan_arena_detail_info\030\242\017 \001(\013" +
-      "2\027._NatlanArenaDetailInfoH\000\022?\n\032theme_par" +
-      "k_sim_detail_info\030\261\016 \001(\0132\030._ThemeParkSim" +
-      "DetailInfoH\000\022D\n\034diversity_battle_detail_" +
-      "info\030\317\001 \001(\0132\033._DiversityBattleDetailInfo" +
-      "H\000\022-\n\021mvm_2_detail_info\030\026 \001(\0132\020._Mvm2Det" +
-      "ailInfoH\000\022F\n\036ley_line_challenge_detail_i" +
-      "nfo\030Z \001(\0132\034._LeyLineChallengeDetailInfoH" +
-      "\000\022/\n\016autochess_info\030_ \001(\0132\025._AutochessDe" +
-      "tailInfoH\000\022@\n\032holiday_resort_detail_info" +
-      "\030\373\013 \001(\0132\031._HolidayResortDetailInfoH\000\022:\n\027" +
-      "week_active_detail_info\030\223\007 \001(\0132\026._WeekAc" +
-      "tiveDetailInfoH\000\022U\n%sumeru_adventure_tra" +
-      "ining_detail_info\030\211\007 \001(\0132#._SumeruAdvent" +
-      "ureTrainingDetailInfoH\000\0226\n\025snow_race_det" +
-      "ail_info\030\353\006 \001(\0132\024._SnowRaceDetailInfoH\000\022" +
-      "D\n\035monster_chess_v_2_detail_info\030\223\005 \001(\0132" +
-      "\032._MonsterChessV2DetailInfoH\000\022;\n\025lantern" +
-      "_rite_v_6_info\030\370\005 \001(\0132\031._LanternRiteV6De" +
-      "tailInfoH\000\022>\n\031tower_defense_detail_info\030" +
-      "\315\014 \001(\0132\030._TowerDefenseDetailInfoH\000\022<\n\030bu" +
-      "bble_drama_detail_info\030\302\001 \001(\0132\027._BubbleD" +
-      "ramaDetailInfoH\000\0228\n\026trade_show_detail_in" +
-      "fo\030\214\005 \001(\0132\025._TradeShowDetailInfoH\000\022:\n\027sh" +
-      "ort_video_detail_info\030\330\013 \001(\0132\026._ShortVid" +
-      "eoDetailInfoH\000\022:\n\027loli_friend_detail_inf" +
-      "o\030\202\013 \001(\0132\026._LoliFriendDetailInfoH\000\0228\n\026co" +
-      "lor_ball_detail_info\030\226\017 \001(\0132\025._ColorBall" +
-      "DetailInfoH\000\0225\n\024aquarium_detail_info\030\211\n " +
-      "\001(\0132\024._AquariumDetailInfoH\000\022<\n\030ranked_ma" +
-      "tch_detail_info\030\247\t \001(\0132\027._RankedMatchDet" +
-      "ailInfoH\000\022F\n\035adventurer_statue_detail_in" +
-      "fo\030\200\006 \001(\0132\034._AdventurerStatueDetailInfoH" +
-      "\000\022:\n\027tps_defense_detail_info\030\374\016 \001(\0132\026._T" +
-      "psDefenseDetailInfoH\000\022A\n\033snow_ball_fight" +
-      "_detail_info\030\370\004 \001(\0132\031._SnowBallFightDeta" +
-      "ilInfoH\000\022?\n\032gambling_chess_detail_info\030\353" +
-      "\010 \001(\0132\030.GamblingChessDetailInfoH\000\0224\n\022lun" +
-      "a_rite_v_2_info\030s \001(\0132\026._LunaRiteV2Detai" +
-      "lInfoH\000\0325\n\023WishGiftNumMapEntry\022\013\n\003key\030\001 " +
-      "\001(\r\022\r\n\005value\030\002 \001(\r:\0028\001\0326\n\024ActivityCoinMa" +
-      "pEntry\022\013\n\003key\030\001 \001(\r\022\r\n\005value\030\002 \001(\r:\0028\001B\010" +
-      "\n\006detailB\033\n\031emu.grasscutter.net.protob\006p" +
-      "roto3"
+      "ctivityPushTipsData\022\024\n\013OPCOMCJHGAJ\030\336\006 \003(" +
+      "\004\022\032\n\021taken_reward_list\030\325\002 \003(\r\022#\n\013JJFJONC" +
+      "HEIK\030\241\234\001 \001(\0132\014.POODJGCIHIE\022/\n\021watcher_in" +
+      "fo_list\030\t \003(\0132\024.ActivityWatcherInfo\022,\n\021_" +
+      "client_play_data\030\235\005 \001(\0132\020._ClientPlayDat" +
+      "a\022\"\n\031quick_open_pre_quest_list\030\245\006 \003(\r\022>\n" +
+      "\033_client_play_cur_level_info\030\224\017 \001(\0132\030._C" +
+      "lientPlayCurLevelInfo\022>\n\021activity_coin_m" +
+      "ap\030\270\t \003(\0132\".ActivityInfo.ActivityCoinMap" +
+      "Entry\022\030\n\016meet_cond_list\030\242\234\001 \003(\r\022\032\n\020expir" +
+      "e_cond_list\030\243\234\001 \003(\r\022\035\n\024first_day_start_t" +
+      "ime\030\371\001 \001(\r\022\"\n\031selected_avatar_reward_id\030" +
+      "\207\010 \001(\r\022\023\n\013activity_id\030\001 \001(\r\022\025\n\013is_starti" +
+      "ng\030\244\234\001 \001(\010\022\031\n\021is_banner_cleared\030\n \001(\010\022\022\n" +
+      "\tis_hidden\030\211\010 \001(\010\022\023\n\013is_finished\030\004 \001(\010\022\022" +
+      "\n\tcur_score\030\254\005 \001(\r\022\020\n\010end_time\030\017 \001(\r\022\023\n\013" +
+      "schedule_id\030\002 \001(\r\022\025\n\ractivity_type\030\010 \001(\r" +
+      "\022\024\n\013score_limit\030\305\n \001(\r\022\025\n\013OPPDJKGIKBJ\030\245\234" +
+      "\001 \001(\004\022\025\n\013DIEFHMGFNIJ\030\246\234\001 \001(\r\022\022\n\nbegin_ti" +
+      "me\030\006 \001(\r\022\"\n\030is_common_content_closed\030\247\234\001" +
+      " \001(\010\022\033\n\021is_play_open_anim\030\250\234\001 \001(\010\022\026\n\ris_" +
+      "quick_open\030\353\r \001(\010\0223\n\rsam_lamp_info\030\005 \001(\013" +
+      "2\032.SeaLampActivityDetailInfoH\000\0224\n\rcrucib" +
+      "le_info\030\007 \001(\0132\033.CrucibleActivityDetailIn" +
+      "foH\000\0224\n\rsalesman_info\030\016 \001(\0132\033.SalesmanAc" +
+      "tivityDetailInfoH\000\022;\n\021trial_avatar_info\030" +
+      "\r \001(\0132\036.TrialAvatarActivityDetailInfoH\000\022" +
+      "4\n\rdelivery_info\030\033 \001(\0132\033.DeliveryActivit" +
+      "yDetailInfoH\000\022/\n\naster_info\030\367\010 \001(\0132\030.Ast" +
+      "erActivityDetailInfoH\000\0221\n\013flight_info\030\374\003" +
+      " \001(\0132\031.FlightActivityDetailInfoH\000\022<\n\021dra" +
+      "gon_spine_info\030\214\017 \001(\0132\036.DragonSpineActiv" +
+      "ityDetailInfoH\000\0221\n\013effigy_info\030\324\002 \001(\0132\031." +
+      "EffigyActivityDetailInfoH\000\022<\n\021treasure_m" +
+      "ap_info\030\375\002 \001(\0132\036.TreasureMapActivityDeta" +
+      "ilInfoH\000\0225\n\rblessing_info\030\237\013 \001(\0132\033.Bless" +
+      "ingActivityDetailInfoH\000\022.\n\rsea_lamp_info" +
+      "\030\336\007 \001(\0132\024.SeaLampActivityInfoH\000\0228\n\017exped" +
+      "ition_info\030x \001(\0132\035.ExpeditionActivityDet" +
+      "ailInfoH\000\022B\n\024arena_challenge_info\030\336\016 \001(\013" +
+      "2!.ArenaChallengeActivityDetailInfoH\000\0228\n" +
+      "\017fleur_fair_info\030\352\002 \001(\0132\034.FleurFairActiv" +
+      "ityDetailInfoH\000\022<\n\021water_spirit_info\030\371\005 " +
+      "\001(\0132\036.WaterSpiritActivityDetailInfoH\000\022@\n" +
+      "\024challneler_slab_info\030Y \001(\0132 .ChannelerS" +
+      "labActivityDetailInfoH\000\022@\n\030mist_trial_ac" +
+      "tivity_info\030C \001(\0132\034.MistTrialActivityDet" +
+      "ailInfoH\000\022=\n\022hide_and_seek_info\030\274\001 \001(\0132\036" +
+      ".HideAndSeekActivityDetailInfoH\000\0228\n\023find" +
+      "_hilichurl_info\030\351\006 \001(\0132\030.FindHilichurlDe" +
+      "tailInfoH\000\0222\n\020summer_time_info\030\322\017 \001(\0132\025." +
+      "SummerTimeDetailInfoH\000\0228\n\023buoyant_combat" +
+      "_info\030\326\010 \001(\0132\030.BuoyantCombatDetailInfoH\000" +
+      "\0220\n\017echo_shell_info\030\374\005 \001(\0132\024.EchoShellDe" +
+      "tailInfoH\000\022D\n\025bounce_conjuring_info\030\266\002 \001" +
+      "(\0132\".BounceConjuringActivityDetailInfoH\000" +
+      "\0228\n\017blitz_rush_info\030\205\002 \001(\0132\034.BlitzRushAc" +
+      "tivityDetailInfoH\000\022/\n\nchess_info\030\255\001 \001(\0132" +
+      "\030.ChessActivityDetailInfoH\000\022-\n\tsumo_info" +
+      "\030\267\014 \001(\0132\027.SumoActivityDetailInfoH\000\022>\n\022mo" +
+      "onfin_trial_info\030\261\014 \001(\0132\037.MoonfinTrialAc" +
+      "tivityDetailInfoH\000\022.\n\016luna_rite_info\030\335\007 " +
+      "\001(\0132\023.LunaRiteDetailInfoH\000\022<\n\021plant_flow" +
+      "er_info\030\203\016 \001(\0132\036.PlantFlowerActivityDeta" +
+      "ilInfoH\000\0228\n\017music_game_info\030\331\r \001(\0132\034.Mus" +
+      "icGameActivityDetailInfoH\000\022F\n\026roguelike_" +
+      "dungoen_info\030\274\013 \001(\0132#.RoguelikeDungeonAc" +
+      "tivityDetailInfoH\000\022+\n\010dig_info\030\363\010 \001(\0132\026." +
+      "DigActivityDetailInfoH\000\022/\n\nhachi_info\030\215\002" +
+      " \001(\0132\030.HachiActivityDetailInfoH\000\022:\n\020wint" +
+      "er_camp_info\030\212\002 \001(\0132\035.WinterCampActivity" +
+      "DetailInfoH\000\0221\n\013potion_info\030\356\001 \001(\0132\031.Pot" +
+      "ionActivityDetailInfoH\000\022G\n\033tanuki_travel" +
+      "_activity_info\030\344\002 \001(\0132\037.TanukiTravelActi" +
+      "vityDetailInfoH\000\022E\n\032lantern_rite_activit" +
+      "y_info\030\355\002 \001(\0132\036.LanternRiteActivityDetai" +
+      "lInfoH\000\022B\n\024michiae_matsuri_info\030\211\017 \001(\0132!" +
+      ".MichiaeMatsuriActivityDetailInfoH\000\0227\n\016b" +
+      "artender_info\030\242\001 \001(\0132\034.BartenderActivity" +
+      "DetailInfoH\000\022+\n\010ugc_info\030\276\005 \001(\0132\026.UgcAct" +
+      "ivityDetailInfoH\000\022<\n\021crystal_link_info\030\332" +
+      "\013 \001(\0132\036.CrystalLinkActivityDetailInfoH\000\022" +
+      "3\n\014irodori_info\030\271\006 \001(\0132\032.IrodoriActivity" +
+      "DetailInfoH\000\022.\n\nphoto_info\030( \001(\0132\030.Photo" +
+      "ActivityDetailInfoH\000\022/\n\nspice_info\030\310\003 \001(" +
+      "\0132\030.SpiceActivityDetailInfoH\000\022/\n\ngacha_i" +
+      "nfo\030\343\014 \001(\0132\030.GachaActivityDetailInfoH\000\022U" +
+      "\n\036luminance_stone_challenge_info\030\241\002 \001(\0132" +
+      "*.LuminanceStoneChallengeActivityDetailI" +
+      "nfoH\000\022:\n\020rogue_diary_info\030\220\014 \001(\0132\035.Rogue" +
+      "DiaryActivityDetailInfoH\000\0227\n\024summer_time" +
+      "_v_2_info\030\035 \001(\0132\027.SummerTimeV2DetailInfo" +
+      "H\000\0224\n\021island_party_info\030\341\007 \001(\0132\026.IslandP" +
+      "artyDetailInfoH\000\022-\n\tgear_info\030\247\004 \001(\0132\027.G" +
+      "earActivityDetailInfoH\000\022<\n\025graven_innoce" +
+      "nce_info\030\322\014 \001(\0132\032.GravenInnocenceDetailI" +
+      "nfoH\000\0228\n\023instable_spray_info\030\241\005 \001(\0132\030.In" +
+      "stableSprayDetailInfoH\000\022@\n\023muqadas_potio" +
+      "n_info\030\247\010 \001(\0132 .MuqadasPotionActivityDet" +
+      "ailInfoH\000\022B\n\024treasure_seelie_info\030\373\n \001(\013" +
+      "2!.TreasureSeelieActivityDetailInfoH\000\022?\n" +
+      "\027rock_board_explore_info\030\375\013 \001(\0132\033.RockBo" +
+      "ardExploreDetailInfoH\000\0223\n\014vintage_info\030\234" +
+      "\t \001(\0132\032.VintageActivityDetailInfoH\000\0220\n\017w" +
+      "ind_field_info\030\241\013 \001(\0132\024.WindFieldDetailI" +
+      "nfoH\000\0228\n\023fungus_fighter_info\030\277\n \001(\0132\030.Fu" +
+      "ngusFighterDetailInfoH\000\0228\n\023char_amusemen" +
+      "t_info\030\271\016 \001(\0132\030.CharAmusementDetailInfoH" +
+      "\000\022>\n\025effigy_challenge_info\030\340\013 \001(\0132\034.Effi" +
+      "gyChallengeV2DetailInfoH\000\0224\n\021coin_collec" +
+      "t_info\030\324\r \001(\0132\026.CoinCollectDetailInfoH\000\022" +
+      "6\n\022brick_breaker_info\030\274\n \001(\0132\027.BrickBrea" +
+      "kerDetailInfoH\000\0220\n\017duel_heart_info\030\205\t \001(" +
+      "\0132\024.DuelHeartDetailInfoH\000\0222\n\021sea_lamp_v_" +
+      "3_info\030\220\013 \001(\0132\024.SeaLampV3DetailInfoH\000\0220\n" +
+      "\017team_chain_info\030\201\n \001(\0132\024.TeamChainDetai" +
+      "lInfoH\000\022H\n\033electrohercules_battle_info\030\236" +
+      "\017 \001(\0132 .ElectroherculesBattleDetailInfoH" +
+      "\000\0224\n\021gcg_festival_info\030\340\014 \001(\0132\026.GCGFesti" +
+      "valDetailInfoH\000\0227\n\023fleur_fair_v_2_info\030\376" +
+      "\003 \001(\0132\027._FleurFairV2DetailInfoH\000\022?\n\027fung" +
+      "us_fighter_v_2_info\030\256\006 \001(\0132\033._FungusFigh" +
+      "terV2DetailInfoH\000\022+\n\014aka_fes_info\030\203\013 \001(\013" +
+      "2\022._AkaFesDetailInfoH\000\022B\n\033sandworm_canno" +
+      "n_detail_info\030\340\002 \001(\0132\032._SandwormCannonDe" +
+      "tailInfoH\000\0225\n\021sorush_trial_info\030\213\002 \001(\0132\027" +
+      "._SorushTrialDetailInfoH\000\022,\n\014journey_inf" +
+      "o\030\261\010 \001(\0132\023._JourneyDetailInfoH\000\022C\n\031effig" +
+      "y_challenge_v_4_info\030\241\r \001(\0132\035._EffigyCha" +
+      "llengeV4DetailInfoH\000\022+\n\014gcg_pve_info\030\320\r " +
+      "\001(\0132\022._GCGPveDetailInfoH\000\022*\n\014ugc_v_2_inf" +
+      "o\030\363\r \001(\0132\021._UgcV2DetailInfoH\000\022A\n\027penumbr" +
+      "a_adventure_info\030\371\004 \001(\0132\035._PenumbraAdven" +
+      "tureDetailInfoH\000\0223\n\020animal_view_info\030\331\016 " +
+      "\001(\0132\026._AnimalViewDetailInfoH\000\022L\n\035activit" +
+      "y_multi_character_info\030\360\017 \001(\0132\"._Activit" +
+      "yMultiCharacterDetailInfoH\000\022<\n\025gcg_pve_i" +
+      "nfinite_info\030\243\010 \001(\0132\032._GCGPveInfiniteDet" +
+      "ailInfoH\000\0221\n\017toy_battle_info\030\272\013 \001(\0132\025._T" +
+      "oyBattleDetailInfoH\000\0229\n\023photo_undersea_i" +
+      "nfo\030\225\013 \001(\0132\031._PhotoUnderseaDetailInfoH\000\022" +
+      ";\n\024fontaine_gather_info\030\345\003 \001(\0132\032._Fontai" +
+      "neGatherDetailInfoH\000\0228\n\023gcg_pve_puzzle_i" +
+      "nfo\030\336\n \001(\0132\030._GCGPvePuzzleDetailInfoH\000\022A" +
+      "\n\027collect_underwater_info\030\376\001 \001(\0132\035._Coll" +
+      "ectUnderwaterDetailInfoH\000\022>\n\026quick_time_" +
+      "combat_info\030\327\016 \001(\0132\033._QuickTimeCombatDet" +
+      "ailInfoH\000\022B\n\033poetry_festival_detail_info" +
+      "\030\222\010 \001(\0132\032._PoetryFestivalDetailInfoH\000\0225\n" +
+      "\021fish_blaster_info\030\200\014 \001(\0132\027._FishBlaster" +
+      "DetailInfoH\000\0224\n\021blessing_v_2_info\030\242\n \001(\013" +
+      "2\026._BlessingV2DetailInfoH\000\022@\n\032rainbow_pr" +
+      "ince_detail_info\030\224\007 \001(\0132\031._RainbowPrince" +
+      "DetailInfoH\000\022?\n\027fungus_fighter_v_3_info\030" +
+      "\354\t \001(\0132\033._FungusFighterV3DetailInfoH\000\0225\n" +
+      "\024filmfest_detail_info\030\277\005 \001(\0132\024._Filmfest" +
+      "DetailInfoH\000\0229\n\023goal_challenge_info\030\377\004 \001" +
+      "(\0132\031._GoalChallengeDetailInfoH\000\022=\n\026treas" +
+      "ure_hunt_v_4_info\030\234\016 \001(\0132\032._TreasureHunt" +
+      "V4DetailInfoH\000\0227\n\022stamina_fight_info\030\322\010 " +
+      "\001(\0132\030._StaminaFightDetailInfoH\000\022;\n\025lante" +
+      "rn_rite_v_4_info\030\363\005 \001(\0132\031._LanternRiteV4" +
+      "DetailInfoH\000\0229\n\023lost_samachurl_info\030\200\017 \001" +
+      "(\0132\031._LostSamachurlDetailInfoH\000\0226\n\025cook_" +
+      "game_detail_info\030\266\007 \001(\0132\024._CookGameDetai" +
+      "lInfoH\000\022:\n\027alchemy_sim_detail_info\030\305\002 \001(" +
+      "\0132\026._AlchemySimDetailInfoH\000\022?\n\032auto_time" +
+      "_stop_detail_info\030\302\r \001(\0132\030._AutoTimeStop" +
+      "DetailInfoH\000\0223\n\023catcafe_detail_info\030\327\004 \001" +
+      "(\0132\023._CatcafeDetailInfoH\000\022<\n\030slime_canno" +
+      "n_detail_info\030\224\r \001(\0132\027._SlimeCannonDetai" +
+      "lInfoH\000\022J\n effigy_challenge_v_5_detail_i" +
+      "nfo\030\237\005 \001(\0132\035._EffigyChallengeV5DetailInf" +
+      "oH\000\022F\n\036great_festival_v_2_detail_info\030\303\r" +
+      " \001(\0132\033._GreatFestivalV2DetailInfoH\000\022K\n\035h" +
+      "ide_and_seek_v_4_detail_info\030\257\016 \001(\0132!._H" +
+      "ideAndSeekV4ActivityDetailInfoH\000\022F\n\035acro" +
+      "batics_battle_detail_info\030\322\t \001(\0132\034._Acro" +
+      "baticsBattleDetailInfoH\000\022.\n\rwatergun_inf" +
+      "o\030\363\t \001(\0132\024._WatergunDetailInfoH\000\022G\n\036mons" +
+      "ter_vs_monster_detail_info\030\321\t \001(\0132\034._Mon" +
+      "sterVsMonsterDetailInfoH\000\022:\n\027bullet_hell" +
+      "_detail_info\030\354\r \001(\0132\026._BulletHellDetailI" +
+      "nfoH\000\0226\n\025bird_ball_detail_info\030\224\005 \001(\0132\024." +
+      "_BirdBallDetailInfoH\000\022:\n\027fairy_tales_det" +
+      "ail_info\030\354\013 \001(\0132\026._FairyTalesDetailInfoH" +
+      "\000\022>\n\031recharge_disk_detail_info\030\314\n \001(\0132\030." +
+      "_RechargeDiskDetailInfoH\000\022>\n\031bomber_dodo" +
+      "co_detail_info\030\370\003 \001(\0132\030._BomberDodocoDet" +
+      "ailInfoH\000\0226\n\025gain_buff_detail_info\030\357\004 \001(" +
+      "\0132\024._GainBuffDetailInfoH\000\022:\n\027natlan_tour" +
+      "_detail_info\030\332\n \001(\0132\026._NatlanTourDetailI" +
+      "nfoH\000\022<\n\030nahida_birth_detail_info\030\371\t \001(\013" +
+      "2\027._NahidaBirthDetailInfoH\000\022H\n\037arena_cha" +
+      "llenge_v_5_detail_info\030\375\r \001(\0132\034._ArenaCh" +
+      "allengeV5DetailInfoH\000\022>\n\031boltbug_abyss_d" +
+      "etail_info\030\210\017 \001(\0132\030._BoltbugAbyssDetailI" +
+      "nfoH\000\022J\n\037cooperate_challenge_detail_info" +
+      "\030\345\017 \001(\0132\036._CooperateChallengeDetailInfoH" +
+      "\000\022J\n gcg_auto_battle_card_detail_info\030\244\r" +
+      " \001(\0132\035._GCGAutoBattleCardDetailInfoH\000\022>\n" +
+      "\031monster_chess_detail_info\030\241\t \001(\0132\030._Mon" +
+      "sterChessDetailInfoH\000\022.\n\rceremony_info\030\331" +
+      "\006 \001(\0132\024._CeremonyDetailInfoH\000\022X\n$limited" +
+      "_time_reward_area_banner_info\030\223\002 \001(\0132\'._" +
+      "LimitedTimeRewardAreaBannerDetailInfoH\000\022" +
+      "B\n\034lantern_rite_v_5_detail_info\030\355\010 \001(\0132\031" +
+      "._LanternRiteV5DetailInfoH\000\022V\n&electrohe" +
+      "rcules_battle_v_3_detail_info\030\206\017 \001(\0132#._" +
+      "ElectroherculesBattleV3DetailInfoH\000\0223\n\020n" +
+      "atlan_race_info\030\230\016 \001(\0132\026._NatlanRaceDeta" +
+      "ilInfoH\000\022:\n\027ad_shooting_detail_info\030\376\010 \001" +
+      "(\0132\026._AdShootingDetailInfoH\000\022B\n\033tower_ch" +
+      "allenge_detail_info\030\240\013 \001(\0132\032._TowerChall" +
+      "engeDetailInfoH\000\022:\n\027fishing_joy_detail_i" +
+      "nfo\030\374\014 \001(\0132\026._FishingJoyDetailInfoH\000\022>\n\031" +
+      "mikawa_flower_detail_info\030\376\007 \001(\0132\030._Mika" +
+      "waFlowerDetailInfoH\000\022/\n\021party_detail_inf" +
+      "o\030\252\004 \001(\0132\021._PartyDetailInfoH\000\0225\n\021natlan_" +
+      "drill_info\030\230\003 \001(\0132\027._NatlanDrillDetailIn" +
+      "foH\000\022<\n\030natlan_arena_detail_info\030\242\017 \001(\0132" +
+      "\027._NatlanArenaDetailInfoH\000\022?\n\032theme_park" +
+      "_sim_detail_info\030\261\016 \001(\0132\030._ThemeParkSimD" +
+      "etailInfoH\000\022D\n\034diversity_battle_detail_i" +
+      "nfo\030\317\001 \001(\0132\033._DiversityBattleDetailInfoH" +
+      "\000\022-\n\021mvm_2_detail_info\030\026 \001(\0132\020._Mvm2Deta" +
+      "ilInfoH\000\022F\n\036ley_line_challenge_detail_in" +
+      "fo\030Z \001(\0132\034._LeyLineChallengeDetailInfoH\000" +
+      "\022/\n\016autochess_info\030_ \001(\0132\025._AutochessDet" +
+      "ailInfoH\000\022@\n\032holiday_resort_detail_info\030" +
+      "\373\013 \001(\0132\031._HolidayResortDetailInfoH\000\022:\n\027w" +
+      "eek_active_detail_info\030\223\007 \001(\0132\026._WeekAct" +
+      "iveDetailInfoH\000\022U\n%sumeru_adventure_trai" +
+      "ning_detail_info\030\211\007 \001(\0132#._SumeruAdventu" +
+      "reTrainingDetailInfoH\000\0226\n\025snow_race_deta" +
+      "il_info\030\353\006 \001(\0132\024._SnowRaceDetailInfoH\000\022D" +
+      "\n\035monster_chess_v_2_detail_info\030\223\005 \001(\0132\032" +
+      "._MonsterChessV2DetailInfoH\000\022;\n\025lantern_" +
+      "rite_v_6_info\030\370\005 \001(\0132\031._LanternRiteV6Det" +
+      "ailInfoH\000\022>\n\031tower_defense_detail_info\030\315" +
+      "\014 \001(\0132\030._TowerDefenseDetailInfoH\000\022<\n\030bub" +
+      "ble_drama_detail_info\030\302\001 \001(\0132\027._BubbleDr" +
+      "amaDetailInfoH\000\0228\n\026trade_show_detail_inf" +
+      "o\030\214\005 \001(\0132\025._TradeShowDetailInfoH\000\022:\n\027sho" +
+      "rt_video_detail_info\030\330\013 \001(\0132\026._ShortVide" +
+      "oDetailInfoH\000\022:\n\027loli_friend_detail_info" +
+      "\030\202\013 \001(\0132\026._LoliFriendDetailInfoH\000\0228\n\026col" +
+      "or_ball_detail_info\030\226\017 \001(\0132\025._ColorBallD" +
+      "etailInfoH\000\0225\n\024aquarium_detail_info\030\211\n \001" +
+      "(\0132\024._AquariumDetailInfoH\000\022<\n\030ranked_mat" +
+      "ch_detail_info\030\247\t \001(\0132\027._RankedMatchDeta" +
+      "ilInfoH\000\022F\n\035adventurer_statue_detail_inf" +
+      "o\030\200\006 \001(\0132\034._AdventurerStatueDetailInfoH\000" +
+      "\022:\n\027tps_defense_detail_info\030\374\016 \001(\0132\026._Tp" +
+      "sDefenseDetailInfoH\000\022A\n\033snow_ball_fight_" +
+      "detail_info\030\370\004 \001(\0132\031._SnowBallFightDetai" +
+      "lInfoH\000\022?\n\032gambling_chess_detail_info\030\353\010" +
+      " \001(\0132\030.GamblingChessDetailInfoH\000\0224\n\022luna" +
+      "_rite_v_2_info\030s \001(\0132\026._LunaRiteV2Detail" +
+      "InfoH\000\0325\n\023WishGiftNumMapEntry\022\013\n\003key\030\001 \001" +
+      "(\r\022\r\n\005value\030\002 \001(\r:\0028\001\0326\n\024ActivityCoinMap" +
+      "Entry\022\013\n\003key\030\001 \001(\r\022\r\n\005value\030\002 \001(\r:\0028\001B\010\n" +
+      "\006detailB\033\n\031emu.grasscutter.net.protob\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

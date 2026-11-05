@@ -93,7 +93,7 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
     emu.grasscutter.net.proto.KBHFBAJNBCGOuterClass.KBHFBAJNBCGOrBuilder getPCCLJJHAJGHOrBuilder();
 
     /**
-     * <code>bool LBCGNOOJDIC = 20004;</code>
+     * <code>bool LBCGNOOJDIC = 1;</code>
      * @return The lBCGNOOJDIC.
      */
     boolean getLBCGNOOJDIC();
@@ -250,10 +250,10 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
       return pCCLJJHAJGH_ == null ? emu.grasscutter.net.proto.KBHFBAJNBCGOuterClass.KBHFBAJNBCG.getDefaultInstance() : pCCLJJHAJGH_;
     }
 
-    public static final int LBCGNOOJDIC_FIELD_NUMBER = 20004;
+    public static final int LBCGNOOJDIC_FIELD_NUMBER = 1;
     private boolean lBCGNOOJDIC_ = false;
     /**
-     * <code>bool LBCGNOOJDIC = 20004;</code>
+     * <code>bool LBCGNOOJDIC = 1;</code>
      * @return The lBCGNOOJDIC.
      */
     @java.lang.Override
@@ -276,6 +276,9 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (lBCGNOOJDIC_ != false) {
+        output.writeBool(1, lBCGNOOJDIC_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20000, getLEGBABJELMF());
       }
@@ -292,13 +295,14 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
       if (((bitField0_ & 0x00000004) != 0)) {
         output.writeMessage(20003, getPCCLJJHAJGH());
       }
-      if (lBCGNOOJDIC_ != false) {
-        output.writeBool(20004, lBCGNOOJDIC_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (lBCGNOOJDIC_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, lBCGNOOJDIC_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20000, getLEGBABJELMF());
@@ -324,10 +328,6 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20003, getPCCLJJHAJGH());
-      }
-      if (lBCGNOOJDIC_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20004, lBCGNOOJDIC_);
       }
       return size;
     }
@@ -679,6 +679,11 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
               case 0:
                 done = true;
                 break;
+              case 8: {
+                lBCGNOOJDIC_ = input.readBool();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 8
               case 160002: {
                 input.readMessage(
                     internalGetLEGBABJELMFFieldBuilder().getBuilder(),
@@ -716,11 +721,6 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000008;
                 break;
               } // case 160026
-              case 160032: {
-                lBCGNOOJDIC_ = input.readBool();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160032
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1181,7 +1181,7 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
 
       private boolean lBCGNOOJDIC_ ;
       /**
-       * <code>bool LBCGNOOJDIC = 20004;</code>
+       * <code>bool LBCGNOOJDIC = 1;</code>
        * @return The lBCGNOOJDIC.
        */
       @java.lang.Override
@@ -1189,7 +1189,7 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
         return lBCGNOOJDIC_;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20004;</code>
+       * <code>bool LBCGNOOJDIC = 1;</code>
        * @param value The lBCGNOOJDIC to set.
        * @return This builder for chaining.
        */
@@ -1201,7 +1201,7 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20004;</code>
+       * <code>bool LBCGNOOJDIC = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearLBCGNOOJDIC() {
@@ -1278,12 +1278,12 @@ public final class GCGAutoBattleCardDetailInfo extends com.google.protobuf.Gener
     java.lang.String[] descriptorData = {
       "\n\"_GCGAutoBattleCardDetailInfo.proto\032\021HB" +
       "JLPIDKEND.proto\032\021JJAAPEINGAC.proto\032\021KBHF" +
-      "BAJNBCG.proto\"\273\001\n\034_GCGAutoBattleCardDeta" +
+      "BAJNBCG.proto\"\271\001\n\034_GCGAutoBattleCardDeta" +
       "ilInfo\022#\n\013LEGBABJELMF\030\240\234\001 \001(\0132\014.HBJLPIDK" +
       "END\022\025\n\013LIMMJOANIDO\030\241\234\001 \003(\r\022#\n\013DHFAFMNNEO" +
       "J\030\242\234\001 \001(\0132\014.JJAAPEINGAC\022#\n\013PCCLJJHAJGH\030\243" +
-      "\234\001 \001(\0132\014.KBHFBAJNBCG\022\025\n\013LBCGNOOJDIC\030\244\234\001 " +
-      "\001(\010B\033\n\031emu.grasscutter.net.protob\006proto3"
+      "\234\001 \001(\0132\014.KBHFBAJNBCG\022\023\n\013LBCGNOOJDIC\030\001 \001(" +
+      "\010B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

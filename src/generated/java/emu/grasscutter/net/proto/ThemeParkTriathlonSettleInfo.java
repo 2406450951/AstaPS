@@ -31,7 +31,7 @@ public final class ThemeParkTriathlonSettleInfo extends com.google.protobuf.Gene
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bool OABFNCIAGMK = 20000;</code>
+     * <code>bool OABFNCIAGMK = 9;</code>
      * @return The oABFNCIAGMK.
      */
     boolean getOABFNCIAGMK();
@@ -84,10 +84,10 @@ public final class ThemeParkTriathlonSettleInfo extends com.google.protobuf.Gene
               emu.grasscutter.net.proto.ThemeParkTriathlonSettleInfo._ThemeParkTriathlonSettleInfo.class, emu.grasscutter.net.proto.ThemeParkTriathlonSettleInfo._ThemeParkTriathlonSettleInfo.Builder.class);
     }
 
-    public static final int OABFNCIAGMK_FIELD_NUMBER = 20000;
+    public static final int OABFNCIAGMK_FIELD_NUMBER = 9;
     private boolean oABFNCIAGMK_ = false;
     /**
-     * <code>bool OABFNCIAGMK = 20000;</code>
+     * <code>bool OABFNCIAGMK = 9;</code>
      * @return The oABFNCIAGMK.
      */
     @java.lang.Override
@@ -120,23 +120,23 @@ public final class ThemeParkTriathlonSettleInfo extends com.google.protobuf.Gene
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (oABFNCIAGMK_ != false) {
+        output.writeBool(9, oABFNCIAGMK_);
+      }
       if (levelId_ != 0) {
         output.writeUInt32(13, levelId_);
-      }
-      if (oABFNCIAGMK_ != false) {
-        output.writeBool(20000, oABFNCIAGMK_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (oABFNCIAGMK_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, oABFNCIAGMK_);
+      }
       if (levelId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(13, levelId_);
-      }
-      if (oABFNCIAGMK_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, oABFNCIAGMK_);
       }
       return size;
     }
@@ -398,16 +398,16 @@ public final class ThemeParkTriathlonSettleInfo extends com.google.protobuf.Gene
               case 0:
                 done = true;
                 break;
+              case 72: {
+                oABFNCIAGMK_ = input.readBool();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 72
               case 104: {
                 levelId_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 104
-              case 160000: {
-                oABFNCIAGMK_ = input.readBool();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -427,7 +427,7 @@ public final class ThemeParkTriathlonSettleInfo extends com.google.protobuf.Gene
 
       private boolean oABFNCIAGMK_ ;
       /**
-       * <code>bool OABFNCIAGMK = 20000;</code>
+       * <code>bool OABFNCIAGMK = 9;</code>
        * @return The oABFNCIAGMK.
        */
       @java.lang.Override
@@ -435,7 +435,7 @@ public final class ThemeParkTriathlonSettleInfo extends com.google.protobuf.Gene
         return oABFNCIAGMK_;
       }
       /**
-       * <code>bool OABFNCIAGMK = 20000;</code>
+       * <code>bool OABFNCIAGMK = 9;</code>
        * @param value The oABFNCIAGMK to set.
        * @return This builder for chaining.
        */
@@ -447,7 +447,7 @@ public final class ThemeParkTriathlonSettleInfo extends com.google.protobuf.Gene
         return this;
       }
       /**
-       * <code>bool OABFNCIAGMK = 20000;</code>
+       * <code>bool OABFNCIAGMK = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearOABFNCIAGMK() {
@@ -554,10 +554,10 @@ public final class ThemeParkTriathlonSettleInfo extends com.google.protobuf.Gene
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n#_ThemeParkTriathlonSettleInfo.proto\"H\n" +
-      "\035_ThemeParkTriathlonSettleInfo\022\025\n\013OABFNC" +
-      "IAGMK\030\240\234\001 \001(\010\022\020\n\010level_id\030\r \001(\rB\033\n\031emu.g" +
-      "rasscutter.net.protob\006proto3"
+      "\n#_ThemeParkTriathlonSettleInfo.proto\"F\n" +
+      "\035_ThemeParkTriathlonSettleInfo\022\023\n\013OABFNC" +
+      "IAGMK\030\t \001(\010\022\020\n\010level_id\030\r \001(\rB\033\n\031emu.gra" +
+      "sscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

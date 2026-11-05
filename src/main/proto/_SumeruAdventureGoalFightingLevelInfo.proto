@@ -5,6 +5,6 @@ option java_package = "emu.grasscutter.net.proto";
 import "NOJCFCNEIMJ.proto";
 
 message _SumeruAdventureGoalFightingLevelInfo {
-  NOJCFCNEIMJ MFJAFOAHPDA = 20000;
+  NOJCFCNEIMJ MFJAFOAHPDA = 11;
   uint32 LLGCHCADBJF = 20001;
 }

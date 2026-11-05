@@ -31,17 +31,17 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @return A list containing the kKBGBCAOLAP.
      */
     java.util.List<java.lang.Integer> getKKBGBCAOLAPList();
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @return The count of kKBGBCAOLAP.
      */
     int getKKBGBCAOLAPCount();
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @param index The index of the element to return.
      * @return The kKBGBCAOLAP at the given index.
      */
@@ -114,12 +114,12 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
               emu.grasscutter.net.proto.QuickTimeCombatSettleInfo._QuickTimeCombatSettleInfo.class, emu.grasscutter.net.proto.QuickTimeCombatSettleInfo._QuickTimeCombatSettleInfo.Builder.class);
     }
 
-    public static final int KKBGBCAOLAP_FIELD_NUMBER = 20000;
+    public static final int KKBGBCAOLAP_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList kKBGBCAOLAP_ =
         emptyIntList();
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @return A list containing the kKBGBCAOLAP.
      */
     @java.lang.Override
@@ -128,14 +128,14 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
       return kKBGBCAOLAP_;
     }
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @return The count of kKBGBCAOLAP.
      */
     public int getKKBGBCAOLAPCount() {
       return kKBGBCAOLAP_.size();
     }
     /**
-     * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+     * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
      * @param index The index of the element to return.
      * @return The kKBGBCAOLAP at the given index.
      */
@@ -209,18 +209,18 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
       if (difficulty_ != 0) {
         output.writeUInt32(2, difficulty_);
       }
+      if (getKKBGBCAOLAPList().size() > 0) {
+        output.writeUInt32NoTag(26);
+        output.writeUInt32NoTag(kKBGBCAOLAPMemoizedSerializedSize);
+      }
+      for (int i = 0; i < kKBGBCAOLAP_.size(); i++) {
+        output.writeUInt32NoTag(kKBGBCAOLAP_.getInt(i));
+      }
       if (totalScore_ != 0) {
         output.writeUInt32(4, totalScore_);
       }
       if (isNewRecord_ != false) {
         output.writeBool(5, isNewRecord_);
-      }
-      if (getKKBGBCAOLAPList().size() > 0) {
-        output.writeUInt32NoTag(160002);
-        output.writeUInt32NoTag(kKBGBCAOLAPMemoizedSerializedSize);
-      }
-      for (int i = 0; i < kKBGBCAOLAP_.size(); i++) {
-        output.writeUInt32NoTag(kKBGBCAOLAP_.getInt(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -234,14 +234,6 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, difficulty_);
       }
-      if (totalScore_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(4, totalScore_);
-      }
-      if (isNewRecord_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(5, isNewRecord_);
-      }
       {
         int dataSize = 0;
         for (int i = 0; i < kKBGBCAOLAP_.size(); i++) {
@@ -250,11 +242,19 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
         }
         size += dataSize;
         if (!getKKBGBCAOLAPList().isEmpty()) {
-          size += 3;
+          size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
         kKBGBCAOLAPMemoizedSerializedSize = dataSize;
+      }
+      if (totalScore_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, totalScore_);
+      }
+      if (isNewRecord_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, isNewRecord_);
       }
       return size;
     }
@@ -570,6 +570,22 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
+              case 24: {
+                int v = input.readUInt32();
+                ensureKKBGBCAOLAPIsMutable();
+                kKBGBCAOLAP_.addInt(v);
+                break;
+              } // case 24
+              case 26: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureKKBGBCAOLAPIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  kKBGBCAOLAP_.addInt(input.readUInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 26
               case 32: {
                 totalScore_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -580,22 +596,6 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
                 bitField0_ |= 0x00000008;
                 break;
               } // case 40
-              case 160000: {
-                int v = input.readUInt32();
-                ensureKKBGBCAOLAPIsMutable();
-                kKBGBCAOLAP_.addInt(v);
-                break;
-              } // case 160000
-              case 160002: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                ensureKKBGBCAOLAPIsMutable();
-                while (input.getBytesUntilLimit() > 0) {
-                  kKBGBCAOLAP_.addInt(input.readUInt32());
-                }
-                input.popLimit(limit);
-                break;
-              } // case 160002
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -621,7 +621,7 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
         bitField0_ |= 0x00000001;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @return A list containing the kKBGBCAOLAP.
        */
       public java.util.List<java.lang.Integer>
@@ -630,14 +630,14 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
         return kKBGBCAOLAP_;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @return The count of kKBGBCAOLAP.
        */
       public int getKKBGBCAOLAPCount() {
         return kKBGBCAOLAP_.size();
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @param index The index of the element to return.
        * @return The kKBGBCAOLAP at the given index.
        */
@@ -645,7 +645,7 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
         return kKBGBCAOLAP_.getInt(index);
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @param index The index to set the value at.
        * @param value The kKBGBCAOLAP to set.
        * @return This builder for chaining.
@@ -660,7 +660,7 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @param value The kKBGBCAOLAP to add.
        * @return This builder for chaining.
        */
@@ -673,7 +673,7 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @param values The kKBGBCAOLAP to add.
        * @return This builder for chaining.
        */
@@ -687,7 +687,7 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>repeated uint32 KKBGBCAOLAP = 20000;</code>
+       * <code>repeated uint32 KKBGBCAOLAP = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearKKBGBCAOLAP() {
@@ -890,12 +890,12 @@ public final class QuickTimeCombatSettleInfo extends com.google.protobuf.Generat
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n _QuickTimeCombatSettleInfo.proto\"\205\001\n\032_" +
-      "QuickTimeCombatSettleInfo\022\025\n\013KKBGBCAOLAP" +
-      "\030\240\234\001 \003(\r\022\022\n\ndifficulty\030\002 \001(\r\022\023\n\013total_sc" +
-      "ore\030\004 \001(\r\022\025\n\ris_new_record\030\005 \001(\010\022\020\n\010stag" +
-      "e_id\030\001 \001(\rB\033\n\031emu.grasscutter.net.protob" +
-      "\006proto3"
+      "\n _QuickTimeCombatSettleInfo.proto\"\203\001\n\032_" +
+      "QuickTimeCombatSettleInfo\022\023\n\013KKBGBCAOLAP" +
+      "\030\003 \003(\r\022\022\n\ndifficulty\030\002 \001(\r\022\023\n\013total_scor" +
+      "e\030\004 \001(\r\022\025\n\ris_new_record\030\005 \001(\010\022\020\n\010stage_" +
+      "id\030\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

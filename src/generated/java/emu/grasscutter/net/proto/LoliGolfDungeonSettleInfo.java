@@ -103,7 +103,7 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
     int getAFOELHPKJOP();
 
     /**
-     * <code>uint32 qte_count = 20006;</code>
+     * <code>uint32 qte_count = 9;</code>
      * @return The qteCount.
      */
     int getQteCount();
@@ -302,10 +302,10 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
       return aFOELHPKJOP_;
     }
 
-    public static final int QTE_COUNT_FIELD_NUMBER = 20006;
+    public static final int QTE_COUNT_FIELD_NUMBER = 9;
     private int qteCount_ = 0;
     /**
-     * <code>uint32 qte_count = 20006;</code>
+     * <code>uint32 qte_count = 9;</code>
      * @return The qteCount.
      */
     @java.lang.Override
@@ -377,6 +377,9 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
       if (isNewRecord_ != false) {
         output.writeBool(8, isNewRecord_);
       }
+      if (qteCount_ != 0) {
+        output.writeUInt32(9, qteCount_);
+      }
       if (levelId_ != 0) {
         output.writeUInt32(13, levelId_);
       }
@@ -398,9 +401,6 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
       if (aFOELHPKJOP_ != 0) {
         output.writeUInt32(20005, aFOELHPKJOP_);
       }
-      if (qteCount_ != 0) {
-        output.writeUInt32(20006, qteCount_);
-      }
       if (iDJGDOGIJFE_ != 0) {
         output.writeUInt32(20007, iDJGDOGIJFE_);
       }
@@ -415,6 +415,10 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
       if (isNewRecord_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, isNewRecord_);
+      }
+      if (qteCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(9, qteCount_);
       }
       if (levelId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -453,10 +457,6 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
       if (aFOELHPKJOP_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20005, aFOELHPKJOP_);
-      }
-      if (qteCount_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20006, qteCount_);
       }
       if (iDJGDOGIJFE_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -909,6 +909,11 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
                 bitField0_ |= 0x00000400;
                 break;
               } // case 64
+              case 72: {
+                qteCount_ = input.readUInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 72
               case 104: {
                 levelId_ = input.readUInt32();
                 bitField0_ |= 0x00000100;
@@ -960,11 +965,6 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
                 bitField0_ |= 0x00000020;
                 break;
               } // case 160040
-              case 160048: {
-                qteCount_ = input.readUInt32();
-                bitField0_ |= 0x00000040;
-                break;
-              } // case 160048
               case 160056: {
                 iDJGDOGIJFE_ = input.readUInt32();
                 bitField0_ |= 0x00000200;
@@ -1585,7 +1585,7 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
 
       private int qteCount_ ;
       /**
-       * <code>uint32 qte_count = 20006;</code>
+       * <code>uint32 qte_count = 9;</code>
        * @return The qteCount.
        */
       @java.lang.Override
@@ -1593,7 +1593,7 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
         return qteCount_;
       }
       /**
-       * <code>uint32 qte_count = 20006;</code>
+       * <code>uint32 qte_count = 9;</code>
        * @param value The qteCount to set.
        * @return This builder for chaining.
        */
@@ -1605,7 +1605,7 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>uint32 qte_count = 20006;</code>
+       * <code>uint32 qte_count = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearQteCount() {
@@ -1809,15 +1809,15 @@ public final class LoliGolfDungeonSettleInfo extends com.google.protobuf.Generat
   static {
     java.lang.String[] descriptorData = {
       "\n _LoliGolfDungeonSettleInfo.proto\032\020Uint" +
-      "32Pair.proto\"\244\002\n\032_LoliGolfDungeonSettleI" +
+      "32Pair.proto\"\242\002\n\032_LoliGolfDungeonSettleI" +
       "nfo\022\"\n\013NKOOPGKMHEK\030\240\234\001 \003(\0132\013.Uint32Pair\022" +
       "\"\n\013KHEMPDGCLGG\030\241\234\001 \003(\0132\013.Uint32Pair\022\025\n\013F" +
       "HKOLIDKNBA\030\242\234\001 \001(\r\022\025\n\013JOELLBHNGDL\030\243\234\001 \001(" +
       "\r\022\025\n\013BMMIKCIJLHN\030\244\234\001 \001(\r\022\025\n\013AFOELHPKJOP\030" +
-      "\245\234\001 \001(\r\022\023\n\tqte_count\030\246\234\001 \001(\r\022\r\n\005score\030\001 " +
-      "\001(\r\022\020\n\010level_id\030\r \001(\r\022\025\n\013IDJGDOGIJFE\030\247\234\001" +
-      " \001(\r\022\025\n\ris_new_record\030\010 \001(\010B\033\n\031emu.grass" +
-      "cutter.net.protob\006proto3"
+      "\245\234\001 \001(\r\022\021\n\tqte_count\030\t \001(\r\022\r\n\005score\030\001 \001(" +
+      "\r\022\020\n\010level_id\030\r \001(\r\022\025\n\013IDJGDOGIJFE\030\247\234\001 \001" +
+      "(\r\022\025\n\ris_new_record\030\010 \001(\010B\033\n\031emu.grasscu" +
+      "tter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

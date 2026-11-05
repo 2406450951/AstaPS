@@ -31,17 +31,17 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 11;</code>
      * @return Whether the mCPNIFKDECF field is set.
      */
     boolean hasMCPNIFKDECF();
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 11;</code>
      * @return The mCPNIFKDECF.
      */
     emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString getMCPNIFKDECF();
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 11;</code>
      */
     emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder getMCPNIFKDECFOrBuilder();
 
@@ -184,10 +184,10 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
           entityCase_);
     }
 
-    public static final int MCPNIFKDECF_FIELD_NUMBER = 20000;
+    public static final int MCPNIFKDECF_FIELD_NUMBER = 11;
     private emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString mCPNIFKDECF_;
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 11;</code>
      * @return Whether the mCPNIFKDECF field is set.
      */
     @java.lang.Override
@@ -195,7 +195,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 11;</code>
      * @return The mCPNIFKDECF.
      */
     @java.lang.Override
@@ -203,7 +203,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
       return mCPNIFKDECF_ == null ? emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.getDefaultInstance() : mCPNIFKDECF_;
     }
     /**
-     * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+     * <code>.AbilityString MCPNIFKDECF = 11;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder getMCPNIFKDECFOrBuilder() {
@@ -329,7 +329,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
             8, (int)((java.lang.Integer) entity_));
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getMCPNIFKDECF());
+        output.writeMessage(11, getMCPNIFKDECF());
       }
       if (oBOKABMLGHI_ != 0) {
         output.writeUInt32(20001, oBOKABMLGHI_);
@@ -360,7 +360,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getMCPNIFKDECF());
+          .computeMessageSize(11, getMCPNIFKDECF());
       }
       if (oBOKABMLGHI_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -746,13 +746,13 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
                 entityCase_ = 8;
                 break;
               } // case 64
-              case 160002: {
+              case 90: {
                 input.readMessage(
                     internalGetMCPNIFKDECFFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 90
               case 160008: {
                 oBOKABMLGHI_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -804,14 +804,14 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString, emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.Builder, emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder> mCPNIFKDECFBuilder_;
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        * @return Whether the mCPNIFKDECF field is set.
        */
       public boolean hasMCPNIFKDECF() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        * @return The mCPNIFKDECF.
        */
       public emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString getMCPNIFKDECF() {
@@ -822,7 +822,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
         }
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        */
       public Builder setMCPNIFKDECF(emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString value) {
         if (mCPNIFKDECFBuilder_ == null) {
@@ -836,7 +836,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
         return this;
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        */
       public Builder setMCPNIFKDECF(
           emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.Builder builderForValue) {
@@ -850,7 +850,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
         return this;
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        */
       public Builder mergeMCPNIFKDECF(emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString value) {
         if (mCPNIFKDECFBuilder_ == null) {
@@ -871,7 +871,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
         return this;
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        */
       public Builder clearMCPNIFKDECF() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -884,7 +884,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
         return this;
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        */
       public emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.Builder getMCPNIFKDECFBuilder() {
         bitField0_ |= 0x00000001;
@@ -892,7 +892,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
         return internalGetMCPNIFKDECFFieldBuilder().getBuilder();
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        */
       public emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder getMCPNIFKDECFOrBuilder() {
         if (mCPNIFKDECFBuilder_ != null) {
@@ -903,7 +903,7 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
         }
       }
       /**
-       * <code>.AbilityString MCPNIFKDECF = 20000;</code>
+       * <code>.AbilityString MCPNIFKDECF = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString, emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityString.Builder, emu.grasscutter.net.proto.AbilityStringOuterClass.AbilityStringOrBuilder> 
@@ -1217,14 +1217,14 @@ public final class WorldPlayerDieNotifyOuterClass extends com.google.protobuf.Ge
   static {
     java.lang.String[] descriptorData = {
       "\n\032WorldPlayerDieNotify.proto\032\023AbilityStr" +
-      "ing.proto\032\023PlayerDieType.proto\"\340\001\n\024World" +
-      "PlayerDieNotify\022%\n\013MCPNIFKDECF\030\240\234\001 \001(\0132\016" +
-      ".AbilityString\022 \n\010die_type\030\005 \001(\0162\016.Playe" +
-      "rDieType\022\025\n\013OBOKABMLGHI\030\241\234\001 \001(\r\022\034\n\022murde" +
-      "rer_entity_id\030\242\234\001 \001(\r\022\025\n\013AOMDIHGJMNK\030\243\234\001" +
-      " \001(\r\022\023\n\tgadget_id\030\004 \001(\rH\000\022\024\n\nmonster_id\030" +
-      "\010 \001(\rH\000B\010\n\006entityB\033\n\031emu.grasscutter.net" +
-      ".protob\006proto3"
+      "ing.proto\032\023PlayerDieType.proto\"\336\001\n\024World" +
+      "PlayerDieNotify\022#\n\013MCPNIFKDECF\030\013 \001(\0132\016.A" +
+      "bilityString\022 \n\010die_type\030\005 \001(\0162\016.PlayerD" +
+      "ieType\022\025\n\013OBOKABMLGHI\030\241\234\001 \001(\r\022\034\n\022murdere" +
+      "r_entity_id\030\242\234\001 \001(\r\022\025\n\013AOMDIHGJMNK\030\243\234\001 \001" +
+      "(\r\022\023\n\tgadget_id\030\004 \001(\rH\000\022\024\n\nmonster_id\030\010 " +
+      "\001(\rH\000B\010\n\006entityB\033\n\031emu.grasscutter.net.p" +
+      "rotob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

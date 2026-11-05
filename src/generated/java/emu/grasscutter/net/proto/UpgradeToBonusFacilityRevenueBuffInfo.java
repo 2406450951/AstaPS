@@ -55,13 +55,13 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
         int index);
 
     /**
-     * <code>uint32 MPPNKBJHBOK = 20001;</code>
+     * <code>uint32 MPPNKBJHBOK = 7;</code>
      * @return The mPPNKBJHBOK.
      */
     int getMPPNKBJHBOK();
 
     /**
-     * <code>bool NHLOILJDDIP = 20002;</code>
+     * <code>bool NHLOILJDDIP = 9;</code>
      * @return The nHLOILJDDIP.
      */
     boolean getNHLOILJDDIP();
@@ -150,10 +150,10 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
       return iCLJFFNOEHF_.get(index);
     }
 
-    public static final int MPPNKBJHBOK_FIELD_NUMBER = 20001;
+    public static final int MPPNKBJHBOK_FIELD_NUMBER = 7;
     private int mPPNKBJHBOK_ = 0;
     /**
-     * <code>uint32 MPPNKBJHBOK = 20001;</code>
+     * <code>uint32 MPPNKBJHBOK = 7;</code>
      * @return The mPPNKBJHBOK.
      */
     @java.lang.Override
@@ -161,10 +161,10 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
       return mPPNKBJHBOK_;
     }
 
-    public static final int NHLOILJDDIP_FIELD_NUMBER = 20002;
+    public static final int NHLOILJDDIP_FIELD_NUMBER = 9;
     private boolean nHLOILJDDIP_ = false;
     /**
-     * <code>bool NHLOILJDDIP = 20002;</code>
+     * <code>bool NHLOILJDDIP = 9;</code>
      * @return The nHLOILJDDIP.
      */
     @java.lang.Override
@@ -186,19 +186,27 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < iCLJFFNOEHF_.size(); i++) {
-        output.writeMessage(20000, iCLJFFNOEHF_.get(i));
-      }
       if (mPPNKBJHBOK_ != 0) {
-        output.writeUInt32(20001, mPPNKBJHBOK_);
+        output.writeUInt32(7, mPPNKBJHBOK_);
       }
       if (nHLOILJDDIP_ != false) {
-        output.writeBool(20002, nHLOILJDDIP_);
+        output.writeBool(9, nHLOILJDDIP_);
+      }
+      for (int i = 0; i < iCLJFFNOEHF_.size(); i++) {
+        output.writeMessage(20000, iCLJFFNOEHF_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (mPPNKBJHBOK_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(7, mPPNKBJHBOK_);
+      }
+      if (nHLOILJDDIP_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, nHLOILJDDIP_);
+      }
 
           {
             final int count = iCLJFFNOEHF_.size();
@@ -208,14 +216,6 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
             }
             size += 3 * count;
           }
-      if (mPPNKBJHBOK_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, mPPNKBJHBOK_);
-      }
-      if (nHLOILJDDIP_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20002, nHLOILJDDIP_);
-      }
       return size;
     }
     @java.lang.Override
@@ -528,6 +528,16 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
               case 0:
                 done = true;
                 break;
+              case 56: {
+                mPPNKBJHBOK_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 56
+              case 72: {
+                nHLOILJDDIP_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 72
               case 160002: {
                 emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair m =
                     input.readMessage(
@@ -541,16 +551,6 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
                 }
                 break;
               } // case 160002
-              case 160008: {
-                mPPNKBJHBOK_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160008
-              case 160016: {
-                nHLOILJDDIP_ = input.readBool();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160016
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -804,7 +804,7 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
 
       private int mPPNKBJHBOK_ ;
       /**
-       * <code>uint32 MPPNKBJHBOK = 20001;</code>
+       * <code>uint32 MPPNKBJHBOK = 7;</code>
        * @return The mPPNKBJHBOK.
        */
       @java.lang.Override
@@ -812,7 +812,7 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
         return mPPNKBJHBOK_;
       }
       /**
-       * <code>uint32 MPPNKBJHBOK = 20001;</code>
+       * <code>uint32 MPPNKBJHBOK = 7;</code>
        * @param value The mPPNKBJHBOK to set.
        * @return This builder for chaining.
        */
@@ -824,7 +824,7 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
         return this;
       }
       /**
-       * <code>uint32 MPPNKBJHBOK = 20001;</code>
+       * <code>uint32 MPPNKBJHBOK = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearMPPNKBJHBOK() {
@@ -836,7 +836,7 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
 
       private boolean nHLOILJDDIP_ ;
       /**
-       * <code>bool NHLOILJDDIP = 20002;</code>
+       * <code>bool NHLOILJDDIP = 9;</code>
        * @return The nHLOILJDDIP.
        */
       @java.lang.Override
@@ -844,7 +844,7 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
         return nHLOILJDDIP_;
       }
       /**
-       * <code>bool NHLOILJDDIP = 20002;</code>
+       * <code>bool NHLOILJDDIP = 9;</code>
        * @param value The nHLOILJDDIP to set.
        * @return This builder for chaining.
        */
@@ -856,7 +856,7 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
         return this;
       }
       /**
-       * <code>bool NHLOILJDDIP = 20002;</code>
+       * <code>bool NHLOILJDDIP = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearNHLOILJDDIP() {
@@ -932,11 +932,11 @@ public final class UpgradeToBonusFacilityRevenueBuffInfo extends com.google.prot
   static {
     java.lang.String[] descriptorData = {
       "\n,_UpgradeToBonusFacilityRevenueBuffInfo" +
-      ".proto\032\020Uint32Pair.proto\"z\n&_UpgradeToBo" +
+      ".proto\032\020Uint32Pair.proto\"v\n&_UpgradeToBo" +
       "nusFacilityRevenueBuffInfo\022\"\n\013ICLJFFNOEH" +
-      "F\030\240\234\001 \003(\0132\013.Uint32Pair\022\025\n\013MPPNKBJHBOK\030\241\234" +
-      "\001 \001(\r\022\025\n\013NHLOILJDDIP\030\242\234\001 \001(\010B\033\n\031emu.gras" +
-      "scutter.net.protob\006proto3"
+      "F\030\240\234\001 \003(\0132\013.Uint32Pair\022\023\n\013MPPNKBJHBOK\030\007 " +
+      "\001(\r\022\023\n\013NHLOILJDDIP\030\t \001(\010B\033\n\031emu.grasscut" +
+      "ter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

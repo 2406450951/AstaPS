@@ -31,7 +31,7 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 JDHBFLPNNFK = 20000;</code>
+     * <code>uint32 JDHBFLPNNFK = 13;</code>
      * @return The jDHBFLPNNFK.
      */
     int getJDHBFLPNNFK();
@@ -90,10 +90,10 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
               emu.grasscutter.net.proto.RankedMatchDetailInfo._RankedMatchDetailInfo.class, emu.grasscutter.net.proto.RankedMatchDetailInfo._RankedMatchDetailInfo.Builder.class);
     }
 
-    public static final int JDHBFLPNNFK_FIELD_NUMBER = 20000;
+    public static final int JDHBFLPNNFK_FIELD_NUMBER = 13;
     private int jDHBFLPNNFK_ = 0;
     /**
-     * <code>uint32 JDHBFLPNNFK = 20000;</code>
+     * <code>uint32 JDHBFLPNNFK = 13;</code>
      * @return The jDHBFLPNNFK.
      */
     @java.lang.Override
@@ -138,7 +138,7 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (jDHBFLPNNFK_ != 0) {
-        output.writeUInt32(20000, jDHBFLPNNFK_);
+        output.writeUInt32(13, jDHBFLPNNFK_);
       }
       if (lOGCPKHCCHA_ != 0) {
         output.writeUInt32(20001, lOGCPKHCCHA_);
@@ -152,7 +152,7 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
       int size = 0;
       if (jDHBFLPNNFK_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, jDHBFLPNNFK_);
+          .computeUInt32Size(13, jDHBFLPNNFK_);
       }
       if (lOGCPKHCCHA_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -432,11 +432,11 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 104: {
                 jDHBFLPNNFK_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 104
               case 160008: {
                 lOGCPKHCCHA_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
@@ -466,7 +466,7 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
 
       private int jDHBFLPNNFK_ ;
       /**
-       * <code>uint32 JDHBFLPNNFK = 20000;</code>
+       * <code>uint32 JDHBFLPNNFK = 13;</code>
        * @return The jDHBFLPNNFK.
        */
       @java.lang.Override
@@ -474,7 +474,7 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
         return jDHBFLPNNFK_;
       }
       /**
-       * <code>uint32 JDHBFLPNNFK = 20000;</code>
+       * <code>uint32 JDHBFLPNNFK = 13;</code>
        * @param value The jDHBFLPNNFK to set.
        * @return This builder for chaining.
        */
@@ -486,7 +486,7 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 JDHBFLPNNFK = 20000;</code>
+       * <code>uint32 JDHBFLPNNFK = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearJDHBFLPNNFK() {
@@ -625,11 +625,10 @@ public final class RankedMatchDetailInfo extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034_RankedMatchDetailInfo.proto\"]\n\026_Ranke" +
-      "dMatchDetailInfo\022\025\n\013JDHBFLPNNFK\030\240\234\001 \001(\r\022" +
-      "\025\n\013LOGCPKHCCHA\030\241\234\001 \001(\r\022\025\n\013NFIMEMMGEDE\030\242\234" +
-      "\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006prot" +
-      "o3"
+      "\n\034_RankedMatchDetailInfo.proto\"[\n\026_Ranke" +
+      "dMatchDetailInfo\022\023\n\013JDHBFLPNNFK\030\r \001(\r\022\025\n" +
+      "\013LOGCPKHCCHA\030\241\234\001 \001(\r\022\025\n\013NFIMEMMGEDE\030\242\234\001 " +
+      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

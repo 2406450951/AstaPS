@@ -13,5 +13,5 @@ message _FairyTalesDetailInfo {
   repeated uint32 JLGIAAGNLCO = 20002;
   repeated GBGKDGMAEGA HIIIBLGMMLF = 20003;
   DGAJHBBIDNM FBKBOIEBJCH = 20004;
-  bool ELCGFJCJMNN = 20005;
+  bool ELCGFJCJMNN = 6;
 }

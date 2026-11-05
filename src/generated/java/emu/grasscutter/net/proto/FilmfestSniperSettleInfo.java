@@ -37,13 +37,13 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
     int getLevelId();
 
     /**
-     * <code>float CJFPPKKJLMK = 20000;</code>
+     * <code>float CJFPPKKJLMK = 3;</code>
      * @return The cJFPPKKJLMK.
      */
     float getCJFPPKKJLMK();
 
     /**
-     * <code>uint32 PAGGBIOEHOO = 20001;</code>
+     * <code>uint32 PAGGBIOEHOO = 2;</code>
      * @return The pAGGBIOEHOO.
      */
     int getPAGGBIOEHOO();
@@ -101,10 +101,10 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
       return levelId_;
     }
 
-    public static final int CJFPPKKJLMK_FIELD_NUMBER = 20000;
+    public static final int CJFPPKKJLMK_FIELD_NUMBER = 3;
     private float cJFPPKKJLMK_ = 0F;
     /**
-     * <code>float CJFPPKKJLMK = 20000;</code>
+     * <code>float CJFPPKKJLMK = 3;</code>
      * @return The cJFPPKKJLMK.
      */
     @java.lang.Override
@@ -112,10 +112,10 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
       return cJFPPKKJLMK_;
     }
 
-    public static final int PAGGBIOEHOO_FIELD_NUMBER = 20001;
+    public static final int PAGGBIOEHOO_FIELD_NUMBER = 2;
     private int pAGGBIOEHOO_ = 0;
     /**
-     * <code>uint32 PAGGBIOEHOO = 20001;</code>
+     * <code>uint32 PAGGBIOEHOO = 2;</code>
      * @return The pAGGBIOEHOO.
      */
     @java.lang.Override
@@ -140,11 +140,11 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
       if (levelId_ != 0) {
         output.writeUInt32(1, levelId_);
       }
-      if (java.lang.Float.floatToRawIntBits(cJFPPKKJLMK_) != 0) {
-        output.writeFloat(20000, cJFPPKKJLMK_);
-      }
       if (pAGGBIOEHOO_ != 0) {
-        output.writeUInt32(20001, pAGGBIOEHOO_);
+        output.writeUInt32(2, pAGGBIOEHOO_);
+      }
+      if (java.lang.Float.floatToRawIntBits(cJFPPKKJLMK_) != 0) {
+        output.writeFloat(3, cJFPPKKJLMK_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -154,13 +154,13 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(1, levelId_);
       }
-      if (java.lang.Float.floatToRawIntBits(cJFPPKKJLMK_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(20000, cJFPPKKJLMK_);
-      }
       if (pAGGBIOEHOO_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, pAGGBIOEHOO_);
+          .computeUInt32Size(2, pAGGBIOEHOO_);
+      }
+      if (java.lang.Float.floatToRawIntBits(cJFPPKKJLMK_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, cJFPPKKJLMK_);
       }
       return size;
     }
@@ -439,16 +439,16 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
-              case 160005: {
-                cJFPPKKJLMK_ = input.readFloat();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160005
-              case 160008: {
+              case 16: {
                 pAGGBIOEHOO_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 160008
+              } // case 16
+              case 29: {
+                cJFPPKKJLMK_ = input.readFloat();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 29
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -500,7 +500,7 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
 
       private float cJFPPKKJLMK_ ;
       /**
-       * <code>float CJFPPKKJLMK = 20000;</code>
+       * <code>float CJFPPKKJLMK = 3;</code>
        * @return The cJFPPKKJLMK.
        */
       @java.lang.Override
@@ -508,7 +508,7 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
         return cJFPPKKJLMK_;
       }
       /**
-       * <code>float CJFPPKKJLMK = 20000;</code>
+       * <code>float CJFPPKKJLMK = 3;</code>
        * @param value The cJFPPKKJLMK to set.
        * @return This builder for chaining.
        */
@@ -520,7 +520,7 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>float CJFPPKKJLMK = 20000;</code>
+       * <code>float CJFPPKKJLMK = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearCJFPPKKJLMK() {
@@ -532,7 +532,7 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
 
       private int pAGGBIOEHOO_ ;
       /**
-       * <code>uint32 PAGGBIOEHOO = 20001;</code>
+       * <code>uint32 PAGGBIOEHOO = 2;</code>
        * @return The pAGGBIOEHOO.
        */
       @java.lang.Override
@@ -540,7 +540,7 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
         return pAGGBIOEHOO_;
       }
       /**
-       * <code>uint32 PAGGBIOEHOO = 20001;</code>
+       * <code>uint32 PAGGBIOEHOO = 2;</code>
        * @param value The pAGGBIOEHOO to set.
        * @return This builder for chaining.
        */
@@ -552,7 +552,7 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>uint32 PAGGBIOEHOO = 20001;</code>
+       * <code>uint32 PAGGBIOEHOO = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearPAGGBIOEHOO() {
@@ -627,11 +627,10 @@ public final class FilmfestSniperSettleInfo extends com.google.protobuf.Generate
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037_FilmfestSniperSettleInfo.proto\"[\n\031_Fi" +
+      "\n\037_FilmfestSniperSettleInfo.proto\"W\n\031_Fi" +
       "lmfestSniperSettleInfo\022\020\n\010level_id\030\001 \001(\r" +
-      "\022\025\n\013CJFPPKKJLMK\030\240\234\001 \001(\002\022\025\n\013PAGGBIOEHOO\030\241" +
-      "\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006pro" +
-      "to3"
+      "\022\023\n\013CJFPPKKJLMK\030\003 \001(\002\022\023\n\013PAGGBIOEHOO\030\002 \001" +
+      "(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

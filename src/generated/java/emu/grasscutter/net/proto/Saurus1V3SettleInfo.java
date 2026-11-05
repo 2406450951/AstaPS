@@ -96,7 +96,7 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
         int index);
 
     /**
-     * <code>uint32 LLCEEFFOGBH = 20000;</code>
+     * <code>uint32 LLCEEFFOGBH = 15;</code>
      * @return The lLCEEFFOGBH.
      */
     int getLLCEEFFOGBH();
@@ -264,10 +264,10 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
       return scoreList_.get(index);
     }
 
-    public static final int LLCEEFFOGBH_FIELD_NUMBER = 20000;
+    public static final int LLCEEFFOGBH_FIELD_NUMBER = 15;
     private int lLCEEFFOGBH_ = 0;
     /**
-     * <code>uint32 LLCEEFFOGBH = 20000;</code>
+     * <code>uint32 LLCEEFFOGBH = 15;</code>
      * @return The lLCEEFFOGBH.
      */
     @java.lang.Override
@@ -318,7 +318,7 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
         output.writeMessage(14, scoreList_.get(i));
       }
       if (lLCEEFFOGBH_ != 0) {
-        output.writeUInt32(20000, lLCEEFFOGBH_);
+        output.writeUInt32(15, lLCEEFFOGBH_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -362,7 +362,7 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
           }
       if (lLCEEFFOGBH_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, lLCEEFFOGBH_);
+          .computeUInt32Size(15, lLCEEFFOGBH_);
       }
       return size;
     }
@@ -792,11 +792,11 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
                 }
                 break;
               } // case 114
-              case 160000: {
+              case 120: {
                 lLCEEFFOGBH_ = input.readUInt32();
                 bitField0_ |= 0x00000008;
                 break;
-              } // case 160000
+              } // case 120
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1368,7 +1368,7 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
 
       private int lLCEEFFOGBH_ ;
       /**
-       * <code>uint32 LLCEEFFOGBH = 20000;</code>
+       * <code>uint32 LLCEEFFOGBH = 15;</code>
        * @return The lLCEEFFOGBH.
        */
       @java.lang.Override
@@ -1376,7 +1376,7 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
         return lLCEEFFOGBH_;
       }
       /**
-       * <code>uint32 LLCEEFFOGBH = 20000;</code>
+       * <code>uint32 LLCEEFFOGBH = 15;</code>
        * @param value The lLCEEFFOGBH to set.
        * @return This builder for chaining.
        */
@@ -1388,7 +1388,7 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
         return this;
       }
       /**
-       * <code>uint32 LLCEEFFOGBH = 20000;</code>
+       * <code>uint32 LLCEEFFOGBH = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearLLCEEFFOGBH() {
@@ -1497,12 +1497,12 @@ public final class Saurus1V3SettleInfo extends com.google.protobuf.GeneratedFile
     java.lang.String[] descriptorData = {
       "\n\032_Saurus1V3SettleInfo.proto\032!DungeonSet" +
       "tleExhibitionInfo.proto\032\033ExhibitionDispl" +
-      "ayInfo.proto\"\271\001\n\024_Saurus1V3SettleInfo\022\027\n" +
+      "ayInfo.proto\"\267\001\n\024_Saurus1V3SettleInfo\022\027\n" +
       "\017winner_uid_list\030\t \003(\r\0226\n\020settle_info_li" +
       "st\030\005 \003(\0132\034.DungeonSettleExhibitionInfo\022*" +
       "\n\nscore_list\030\016 \003(\0132\026.ExhibitionDisplayIn" +
-      "fo\022\025\n\013LLCEEFFOGBH\030\240\234\001 \001(\r\022\r\n\005score\030\006 \001(\r" +
-      "B\033\n\031emu.grasscutter.net.protob\006proto3"
+      "fo\022\023\n\013LLCEEFFOGBH\030\017 \001(\r\022\r\n\005score\030\006 \001(\rB\033" +
+      "\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

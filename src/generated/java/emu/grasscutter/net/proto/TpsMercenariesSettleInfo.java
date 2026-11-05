@@ -31,17 +31,17 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+     * <code>repeated uint32 FHINHGGMCEI = 2;</code>
      * @return A list containing the fHINHGGMCEI.
      */
     java.util.List<java.lang.Integer> getFHINHGGMCEIList();
     /**
-     * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+     * <code>repeated uint32 FHINHGGMCEI = 2;</code>
      * @return The count of fHINHGGMCEI.
      */
     int getFHINHGGMCEICount();
     /**
-     * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+     * <code>repeated uint32 FHINHGGMCEI = 2;</code>
      * @param index The index of the element to return.
      * @return The fHINHGGMCEI at the given index.
      */
@@ -120,7 +120,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
     int getDLCKFLBGLPL();
 
     /**
-     * <code>uint32 BKLAKFGNCIH = 20008;</code>
+     * <code>uint32 BKLAKFGNCIH = 1;</code>
      * @return The bKLAKFGNCIH.
      */
     int getBKLAKFGNCIH();
@@ -174,12 +174,12 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
               emu.grasscutter.net.proto.TpsMercenariesSettleInfo._TpsMercenariesSettleInfo.class, emu.grasscutter.net.proto.TpsMercenariesSettleInfo._TpsMercenariesSettleInfo.Builder.class);
     }
 
-    public static final int FHINHGGMCEI_FIELD_NUMBER = 20000;
+    public static final int FHINHGGMCEI_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList fHINHGGMCEI_ =
         emptyIntList();
     /**
-     * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+     * <code>repeated uint32 FHINHGGMCEI = 2;</code>
      * @return A list containing the fHINHGGMCEI.
      */
     @java.lang.Override
@@ -188,14 +188,14 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
       return fHINHGGMCEI_;
     }
     /**
-     * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+     * <code>repeated uint32 FHINHGGMCEI = 2;</code>
      * @return The count of fHINHGGMCEI.
      */
     public int getFHINHGGMCEICount() {
       return fHINHGGMCEI_.size();
     }
     /**
-     * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+     * <code>repeated uint32 FHINHGGMCEI = 2;</code>
      * @param index The index of the element to return.
      * @return The fHINHGGMCEI at the given index.
      */
@@ -336,10 +336,10 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
       return dLCKFLBGLPL_;
     }
 
-    public static final int BKLAKFGNCIH_FIELD_NUMBER = 20008;
+    public static final int BKLAKFGNCIH_FIELD_NUMBER = 1;
     private int bKLAKFGNCIH_ = 0;
     /**
-     * <code>uint32 BKLAKFGNCIH = 20008;</code>
+     * <code>uint32 BKLAKFGNCIH = 1;</code>
      * @return The bKLAKFGNCIH.
      */
     @java.lang.Override
@@ -373,6 +373,16 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (bKLAKFGNCIH_ != 0) {
+        output.writeUInt32(1, bKLAKFGNCIH_);
+      }
+      if (getFHINHGGMCEIList().size() > 0) {
+        output.writeUInt32NoTag(18);
+        output.writeUInt32NoTag(fHINHGGMCEIMemoizedSerializedSize);
+      }
+      for (int i = 0; i < fHINHGGMCEI_.size(); i++) {
+        output.writeUInt32NoTag(fHINHGGMCEI_.getInt(i));
+      }
       if (leftTime_ != 0) {
         output.writeUInt32(3, leftTime_);
       }
@@ -390,13 +400,6 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
       }
       if (useTime_ != 0) {
         output.writeUInt32(13, useTime_);
-      }
-      if (getFHINHGGMCEIList().size() > 0) {
-        output.writeUInt32NoTag(160002);
-        output.writeUInt32NoTag(fHINHGGMCEIMemoizedSerializedSize);
-      }
-      for (int i = 0; i < fHINHGGMCEI_.size(); i++) {
-        output.writeUInt32NoTag(fHINHGGMCEI_.getInt(i));
       }
       if (java.lang.Float.floatToRawIntBits(lCGFBJHGFHF_) != 0) {
         output.writeFloat(20001, lCGFBJHGFHF_);
@@ -419,13 +422,28 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
       if (dLCKFLBGLPL_ != 0) {
         output.writeUInt32(20007, dLCKFLBGLPL_);
       }
-      if (bKLAKFGNCIH_ != 0) {
-        output.writeUInt32(20008, bKLAKFGNCIH_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (bKLAKFGNCIH_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, bKLAKFGNCIH_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < fHINHGGMCEI_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(fHINHGGMCEI_.getInt(i));
+        }
+        size += dataSize;
+        if (!getFHINHGGMCEIList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        fHINHGGMCEIMemoizedSerializedSize = dataSize;
+      }
       if (leftTime_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(3, leftTime_);
@@ -449,20 +467,6 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
       if (useTime_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(13, useTime_);
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < fHINHGGMCEI_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeUInt32SizeNoTag(fHINHGGMCEI_.getInt(i));
-        }
-        size += dataSize;
-        if (!getFHINHGGMCEIList().isEmpty()) {
-          size += 3;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        fHINHGGMCEIMemoizedSerializedSize = dataSize;
       }
       if (java.lang.Float.floatToRawIntBits(lCGFBJHGFHF_) != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -491,10 +495,6 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
       if (dLCKFLBGLPL_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20007, dLCKFLBGLPL_);
-      }
-      if (bKLAKFGNCIH_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20008, bKLAKFGNCIH_);
       }
       return size;
     }
@@ -915,6 +915,27 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
               case 0:
                 done = true;
                 break;
+              case 8: {
+                bKLAKFGNCIH_ = input.readUInt32();
+                bitField0_ |= 0x00002000;
+                break;
+              } // case 8
+              case 16: {
+                int v = input.readUInt32();
+                ensureFHINHGGMCEIIsMutable();
+                fHINHGGMCEI_.addInt(v);
+                break;
+              } // case 16
+              case 18: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureFHINHGGMCEIIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  fHINHGGMCEI_.addInt(input.readUInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 18
               case 24: {
                 leftTime_ = input.readUInt32();
                 bitField0_ |= 0x00000020;
@@ -945,22 +966,6 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
                 bitField0_ |= 0x00004000;
                 break;
               } // case 104
-              case 160000: {
-                int v = input.readUInt32();
-                ensureFHINHGGMCEIIsMutable();
-                fHINHGGMCEI_.addInt(v);
-                break;
-              } // case 160000
-              case 160002: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                ensureFHINHGGMCEIIsMutable();
-                while (input.getBytesUntilLimit() > 0) {
-                  fHINHGGMCEI_.addInt(input.readUInt32());
-                }
-                input.popLimit(limit);
-                break;
-              } // case 160002
               case 160013: {
                 lCGFBJHGFHF_ = input.readFloat();
                 bitField0_ |= 0x00000002;
@@ -996,11 +1001,6 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
                 bitField0_ |= 0x00001000;
                 break;
               } // case 160056
-              case 160064: {
-                bKLAKFGNCIH_ = input.readUInt32();
-                bitField0_ |= 0x00002000;
-                break;
-              } // case 160064
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1026,7 +1026,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
         bitField0_ |= 0x00000001;
       }
       /**
-       * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+       * <code>repeated uint32 FHINHGGMCEI = 2;</code>
        * @return A list containing the fHINHGGMCEI.
        */
       public java.util.List<java.lang.Integer>
@@ -1035,14 +1035,14 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
         return fHINHGGMCEI_;
       }
       /**
-       * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+       * <code>repeated uint32 FHINHGGMCEI = 2;</code>
        * @return The count of fHINHGGMCEI.
        */
       public int getFHINHGGMCEICount() {
         return fHINHGGMCEI_.size();
       }
       /**
-       * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+       * <code>repeated uint32 FHINHGGMCEI = 2;</code>
        * @param index The index of the element to return.
        * @return The fHINHGGMCEI at the given index.
        */
@@ -1050,7 +1050,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
         return fHINHGGMCEI_.getInt(index);
       }
       /**
-       * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+       * <code>repeated uint32 FHINHGGMCEI = 2;</code>
        * @param index The index to set the value at.
        * @param value The fHINHGGMCEI to set.
        * @return This builder for chaining.
@@ -1065,7 +1065,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+       * <code>repeated uint32 FHINHGGMCEI = 2;</code>
        * @param value The fHINHGGMCEI to add.
        * @return This builder for chaining.
        */
@@ -1078,7 +1078,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+       * <code>repeated uint32 FHINHGGMCEI = 2;</code>
        * @param values The fHINHGGMCEI to add.
        * @return This builder for chaining.
        */
@@ -1092,7 +1092,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>repeated uint32 FHINHGGMCEI = 20000;</code>
+       * <code>repeated uint32 FHINHGGMCEI = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearFHINHGGMCEI() {
@@ -1488,7 +1488,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
 
       private int bKLAKFGNCIH_ ;
       /**
-       * <code>uint32 BKLAKFGNCIH = 20008;</code>
+       * <code>uint32 BKLAKFGNCIH = 1;</code>
        * @return The bKLAKFGNCIH.
        */
       @java.lang.Override
@@ -1496,7 +1496,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
         return bKLAKFGNCIH_;
       }
       /**
-       * <code>uint32 BKLAKFGNCIH = 20008;</code>
+       * <code>uint32 BKLAKFGNCIH = 1;</code>
        * @param value The bKLAKFGNCIH to set.
        * @return This builder for chaining.
        */
@@ -1508,7 +1508,7 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>uint32 BKLAKFGNCIH = 20008;</code>
+       * <code>uint32 BKLAKFGNCIH = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearBKLAKFGNCIH() {
@@ -1615,17 +1615,17 @@ public final class TpsMercenariesSettleInfo extends com.google.protobuf.Generate
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\037_TpsMercenariesSettleInfo.proto\"\333\002\n\031_T" +
-      "psMercenariesSettleInfo\022\025\n\013FHINHGGMCEI\030\240" +
-      "\234\001 \003(\r\022\025\n\013LCGFBJHGFHF\030\241\234\001 \001(\002\022\025\n\013ICLCODD" +
-      "OBDM\030\242\234\001 \001(\r\022\025\n\013NBFANLFNCCO\030\243\234\001 \001(\002\022\020\n\010l" +
-      "evel_id\030\005 \001(\r\022\021\n\tleft_time\030\003 \001(\r\022\022\n\ndiff" +
-      "iculty\030\n \001(\r\022\025\n\013ICBLEOKBPAJ\030\244\234\001 \001(\010\022\025\n\ri" +
-      "s_new_record\030\013 \001(\010\022\r\n\005score\030\006 \001(\r\022\025\n\013GAD" +
-      "NKLEDPAK\030\245\234\001 \001(\r\022\025\n\013KDLJHPGCKEK\030\246\234\001 \001(\r\022" +
-      "\025\n\013DLCKFLBGLPL\030\247\234\001 \001(\r\022\025\n\013BKLAKFGNCIH\030\250\234" +
-      "\001 \001(\r\022\020\n\010use_time\030\r \001(\rB\033\n\031emu.grasscutt" +
-      "er.net.protob\006proto3"
+      "\n\037_TpsMercenariesSettleInfo.proto\"\327\002\n\031_T" +
+      "psMercenariesSettleInfo\022\023\n\013FHINHGGMCEI\030\002" +
+      " \003(\r\022\025\n\013LCGFBJHGFHF\030\241\234\001 \001(\002\022\025\n\013ICLCODDOB" +
+      "DM\030\242\234\001 \001(\r\022\025\n\013NBFANLFNCCO\030\243\234\001 \001(\002\022\020\n\010lev" +
+      "el_id\030\005 \001(\r\022\021\n\tleft_time\030\003 \001(\r\022\022\n\ndiffic" +
+      "ulty\030\n \001(\r\022\025\n\013ICBLEOKBPAJ\030\244\234\001 \001(\010\022\025\n\ris_" +
+      "new_record\030\013 \001(\010\022\r\n\005score\030\006 \001(\r\022\025\n\013GADNK" +
+      "LEDPAK\030\245\234\001 \001(\r\022\025\n\013KDLJHPGCKEK\030\246\234\001 \001(\r\022\025\n" +
+      "\013DLCKFLBGLPL\030\247\234\001 \001(\r\022\023\n\013BKLAKFGNCIH\030\001 \001(" +
+      "\r\022\020\n\010use_time\030\r \001(\rB\033\n\031emu.grasscutter.n" +
+      "et.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -31,17 +31,17 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+     * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
      * @return Whether the musicGameInfo field is set.
      */
     boolean hasMusicGameInfo();
     /**
-     * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+     * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
      * @return The musicGameInfo.
      */
     emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo getMusicGameInfo();
     /**
-     * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+     * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
      */
     emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfoOrBuilder getMusicGameInfoOrBuilder();
 
@@ -118,10 +118,10 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
     }
 
     private int bitField0_;
-    public static final int MUSIC_GAME_INFO_FIELD_NUMBER = 20000;
+    public static final int MUSIC_GAME_INFO_FIELD_NUMBER = 3;
     private emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo musicGameInfo_;
     /**
-     * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+     * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
      * @return Whether the musicGameInfo field is set.
      */
     @java.lang.Override
@@ -129,7 +129,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+     * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
      * @return The musicGameInfo.
      */
     @java.lang.Override
@@ -137,7 +137,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
       return musicGameInfo_ == null ? emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo.getDefaultInstance() : musicGameInfo_;
     }
     /**
-     * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+     * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfoOrBuilder getMusicGameInfoOrBuilder() {
@@ -214,7 +214,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
         output.writeMessage(1, getPhotoInfo());
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getMusicGameInfo());
+        output.writeMessage(3, getMusicGameInfo());
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(20001, getPacmanInfo());
@@ -229,7 +229,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getMusicGameInfo());
+          .computeMessageSize(3, getMusicGameInfo());
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -558,13 +558,13 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000004;
                 break;
               } // case 10
-              case 160002: {
+              case 26: {
                 input.readMessage(
                     internalGetMusicGameInfoFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 26
               case 160010: {
                 input.readMessage(
                     internalGetPacmanInfoFieldBuilder().getBuilder(),
@@ -593,14 +593,14 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo, emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo.Builder, emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfoOrBuilder> musicGameInfoBuilder_;
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        * @return Whether the musicGameInfo field is set.
        */
       public boolean hasMusicGameInfo() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        * @return The musicGameInfo.
        */
       public emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo getMusicGameInfo() {
@@ -611,7 +611,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
         }
       }
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        */
       public Builder setMusicGameInfo(emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo value) {
         if (musicGameInfoBuilder_ == null) {
@@ -625,7 +625,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        */
       public Builder setMusicGameInfo(
           emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo.Builder builderForValue) {
@@ -639,7 +639,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        */
       public Builder mergeMusicGameInfo(emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo value) {
         if (musicGameInfoBuilder_ == null) {
@@ -660,7 +660,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        */
       public Builder clearMusicGameInfo() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -673,7 +673,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        */
       public emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo.Builder getMusicGameInfoBuilder() {
         bitField0_ |= 0x00000001;
@@ -681,7 +681,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
         return internalGetMusicGameInfoFieldBuilder().getBuilder();
       }
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        */
       public emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfoOrBuilder getMusicGameInfoOrBuilder() {
         if (musicGameInfoBuilder_ != null) {
@@ -692,7 +692,7 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
         }
       }
       /**
-       * <code>.FleurFairV2MusicGameInfo music_game_info = 20000;</code>
+       * <code>.FleurFairV2MusicGameInfo music_game_info = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo, emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfo.Builder, emu.grasscutter.net.proto.FleurFairV2MusicGameInfoOuterClass.FleurFairV2MusicGameInfoOrBuilder> 
@@ -1014,12 +1014,12 @@ public final class FleurFairV2DetailInfo extends com.google.protobuf.GeneratedFi
       "\n\034_FleurFairV2DetailInfo.proto\032\036FleurFai" +
       "rV2MusicGameInfo.proto\032\033FleurFairV2Pacma" +
       "nInfo.proto\032\032FleurFairV2PhotoInfo.proto\"" +
-      "\250\001\n\026_FleurFairV2DetailInfo\0224\n\017music_game" +
-      "_info\030\240\234\001 \001(\0132\031.FleurFairV2MusicGameInfo" +
-      "\022-\n\013pacman_info\030\241\234\001 \001(\0132\026.FleurFairV2Pac" +
-      "manInfo\022)\n\nphoto_info\030\001 \001(\0132\025.FleurFairV" +
-      "2PhotoInfoB\033\n\031emu.grasscutter.net.protob" +
-      "\006proto3"
+      "\246\001\n\026_FleurFairV2DetailInfo\0222\n\017music_game" +
+      "_info\030\003 \001(\0132\031.FleurFairV2MusicGameInfo\022-" +
+      "\n\013pacman_info\030\241\234\001 \001(\0132\026.FleurFairV2Pacma" +
+      "nInfo\022)\n\nphoto_info\030\001 \001(\0132\025.FleurFairV2P" +
+      "hotoInfoB\033\n\031emu.grasscutter.net.protob\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -48,17 +48,17 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
     long getAvatarGuidList(int index);
 
     /**
-     * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+     * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
      * @return A list containing the failAvatarGuidList.
      */
     java.util.List<java.lang.Long> getFailAvatarGuidListList();
     /**
-     * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+     * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
      * @return The count of failAvatarGuidList.
      */
     int getFailAvatarGuidListCount();
     /**
-     * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+     * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
      * @param index The index of the element to return.
      * @return The failAvatarGuidList at the given index.
      */
@@ -150,12 +150,12 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
     }
     private int avatarGuidListMemoizedSerializedSize = -1;
 
-    public static final int FAIL_AVATAR_GUID_LIST_FIELD_NUMBER = 20000;
+    public static final int FAIL_AVATAR_GUID_LIST_FIELD_NUMBER = 5;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.LongList failAvatarGuidList_ =
         emptyLongList();
     /**
-     * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+     * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
      * @return A list containing the failAvatarGuidList.
      */
     @java.lang.Override
@@ -164,14 +164,14 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
       return failAvatarGuidList_;
     }
     /**
-     * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+     * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
      * @return The count of failAvatarGuidList.
      */
     public int getFailAvatarGuidListCount() {
       return failAvatarGuidList_.size();
     }
     /**
-     * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+     * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
      * @param index The index of the element to return.
      * @return The failAvatarGuidList at the given index.
      */
@@ -227,15 +227,15 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
       if (weaponSkinId_ != 0) {
         output.writeUInt32(4, weaponSkinId_);
       }
-      if (retcode_ != 0) {
-        output.writeInt32(10, retcode_);
-      }
       if (getFailAvatarGuidListList().size() > 0) {
-        output.writeUInt32NoTag(160002);
+        output.writeUInt32NoTag(42);
         output.writeUInt32NoTag(failAvatarGuidListMemoizedSerializedSize);
       }
       for (int i = 0; i < failAvatarGuidList_.size(); i++) {
         output.writeUInt64NoTag(failAvatarGuidList_.getLong(i));
+      }
+      if (retcode_ != 0) {
+        output.writeInt32(10, retcode_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -259,10 +259,6 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(4, weaponSkinId_);
       }
-      if (retcode_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, retcode_);
-      }
       {
         int dataSize = 0;
         for (int i = 0; i < failAvatarGuidList_.size(); i++) {
@@ -271,11 +267,15 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
         }
         size += dataSize;
         if (!getFailAvatarGuidListList().isEmpty()) {
-          size += 3;
+          size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
         failAvatarGuidListMemoizedSerializedSize = dataSize;
+      }
+      if (retcode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(10, retcode_);
       }
       return size;
     }
@@ -601,18 +601,13 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
                 bitField0_ |= 0x00000004;
                 break;
               } // case 32
-              case 80: {
-                retcode_ = input.readInt32();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 80
-              case 160000: {
+              case 40: {
                 long v = input.readUInt64();
                 ensureFailAvatarGuidListIsMutable();
                 failAvatarGuidList_.addLong(v);
                 break;
-              } // case 160000
-              case 160002: {
+              } // case 40
+              case 42: {
                 int length = input.readRawVarint32();
                 int limit = input.pushLimit(length);
                 ensureFailAvatarGuidListIsMutable();
@@ -621,7 +616,12 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
                 }
                 input.popLimit(limit);
                 break;
-              } // case 160002
+              } // case 42
+              case 80: {
+                retcode_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 80
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -731,7 +731,7 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
         bitField0_ |= 0x00000002;
       }
       /**
-       * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+       * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
        * @return A list containing the failAvatarGuidList.
        */
       public java.util.List<java.lang.Long>
@@ -740,14 +740,14 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
         return failAvatarGuidList_;
       }
       /**
-       * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+       * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
        * @return The count of failAvatarGuidList.
        */
       public int getFailAvatarGuidListCount() {
         return failAvatarGuidList_.size();
       }
       /**
-       * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+       * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
        * @param index The index of the element to return.
        * @return The failAvatarGuidList at the given index.
        */
@@ -755,7 +755,7 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
         return failAvatarGuidList_.getLong(index);
       }
       /**
-       * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+       * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
        * @param index The index to set the value at.
        * @param value The failAvatarGuidList to set.
        * @return This builder for chaining.
@@ -770,7 +770,7 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+       * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
        * @param value The failAvatarGuidList to add.
        * @return This builder for chaining.
        */
@@ -783,7 +783,7 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+       * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
        * @param values The failAvatarGuidList to add.
        * @return This builder for chaining.
        */
@@ -797,7 +797,7 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>repeated uint64 fail_avatar_guid_list = 20000;</code>
+       * <code>repeated uint64 fail_avatar_guid_list = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearFailAvatarGuidList() {
@@ -936,12 +936,11 @@ public final class AvatarChangeWeaponSkinRsp extends com.google.protobuf.Generat
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n _AvatarChangeWeaponSkinRsp.proto\"\200\001\n\032_" +
-      "AvatarChangeWeaponSkinRsp\022\030\n\020avatar_guid" +
-      "_list\030\001 \003(\004\022\037\n\025fail_avatar_guid_list\030\240\234\001" +
-      " \003(\004\022\026\n\016weapon_skin_id\030\004 \001(\r\022\017\n\007retcode\030" +
-      "\n \001(\005B\033\n\031emu.grasscutter.net.protob\006prot" +
-      "o3"
+      "\n _AvatarChangeWeaponSkinRsp.proto\"~\n\032_A" +
+      "vatarChangeWeaponSkinRsp\022\030\n\020avatar_guid_" +
+      "list\030\001 \003(\004\022\035\n\025fail_avatar_guid_list\030\005 \003(" +
+      "\004\022\026\n\016weapon_skin_id\030\004 \001(\r\022\017\n\007retcode\030\n \001" +
+      "(\005B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

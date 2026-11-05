@@ -9,6 +9,6 @@ import "NPLDPCGLKMK.proto";
 message _FilmfestDetailInfo {
   repeated NPLDPCGLKMK OFIOKIABKNN = 20000;
   repeated NEHIBHKFNEG JLMEBPAKPNE = 20001;
-  repeated FMNPNEKAICI HGNLKDCGLBO = 20002;
+  repeated FMNPNEKAICI HGNLKDCGLBO = 1;
   bool JLNGANGGJLH = 20003;
 }

@@ -17,6 +17,6 @@ message _BeyondBattlePassSchedule {
   uint32 CPNNNCPCOBI = 20001;
   _BeyondBattlePassUnlockStatus unlock_status = 10;
   uint32 schedule_id = 2;
-  uint32 GOKJFDPPOHF = 20002;
+  uint32 GOKJFDPPOHF = 8;
   uint32 level = 14;
 }

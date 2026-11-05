@@ -6,7 +6,7 @@ import "MathQuaternion.proto";
 import "Vector.proto";
 
 message _RotateMoverInfo {
-  Vector IMFDIHLBFEN = 20000;
+  Vector IMFDIHLBFEN = 1;
   MathQuaternion GMDLGOECLKP = 20001;
-  float LAIKIBMMJKD = 20002;
+  float LAIKIBMMJKD = 2;
 }

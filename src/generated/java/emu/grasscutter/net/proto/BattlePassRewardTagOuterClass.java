@@ -31,7 +31,7 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 CNJOFMDBADE = 20000;</code>
+     * <code>uint32 CNJOFMDBADE = 3;</code>
      * @return The cNJOFMDBADE.
      */
     int getCNJOFMDBADE();
@@ -102,10 +102,10 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
               emu.grasscutter.net.proto.BattlePassRewardTagOuterClass.BattlePassRewardTag.class, emu.grasscutter.net.proto.BattlePassRewardTagOuterClass.BattlePassRewardTag.Builder.class);
     }
 
-    public static final int CNJOFMDBADE_FIELD_NUMBER = 20000;
+    public static final int CNJOFMDBADE_FIELD_NUMBER = 3;
     private int cNJOFMDBADE_ = 0;
     /**
-     * <code>uint32 CNJOFMDBADE = 20000;</code>
+     * <code>uint32 CNJOFMDBADE = 3;</code>
      * @return The cNJOFMDBADE.
      */
     @java.lang.Override
@@ -167,6 +167,9 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (cNJOFMDBADE_ != 0) {
+        output.writeUInt32(3, cNJOFMDBADE_);
+      }
       if (level_ != 0) {
         output.writeUInt32(6, level_);
       }
@@ -176,13 +179,14 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
       if (unlockStatus_ != emu.grasscutter.net.proto.BattlePassUnlockStatusOuterClass.BattlePassUnlockStatus.BattlePassUnlockStatus_BATTLE_PASS_UNLOCK_INVALID.getNumber()) {
         output.writeEnum(12, unlockStatus_);
       }
-      if (cNJOFMDBADE_ != 0) {
-        output.writeUInt32(20000, cNJOFMDBADE_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (cNJOFMDBADE_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, cNJOFMDBADE_);
+      }
       if (level_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(6, level_);
@@ -194,10 +198,6 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
       if (unlockStatus_ != emu.grasscutter.net.proto.BattlePassUnlockStatusOuterClass.BattlePassUnlockStatus.BattlePassUnlockStatus_BATTLE_PASS_UNLOCK_INVALID.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(12, unlockStatus_);
-      }
-      if (cNJOFMDBADE_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, cNJOFMDBADE_);
       }
       return size;
     }
@@ -479,6 +479,11 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
               case 0:
                 done = true;
                 break;
+              case 24: {
+                cNJOFMDBADE_ = input.readUInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 24
               case 48: {
                 level_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -494,11 +499,6 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
                 bitField0_ |= 0x00000008;
                 break;
               } // case 96
-              case 160000: {
-                cNJOFMDBADE_ = input.readUInt32();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -518,7 +518,7 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
 
       private int cNJOFMDBADE_ ;
       /**
-       * <code>uint32 CNJOFMDBADE = 20000;</code>
+       * <code>uint32 CNJOFMDBADE = 3;</code>
        * @return The cNJOFMDBADE.
        */
       @java.lang.Override
@@ -526,7 +526,7 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
         return cNJOFMDBADE_;
       }
       /**
-       * <code>uint32 CNJOFMDBADE = 20000;</code>
+       * <code>uint32 CNJOFMDBADE = 3;</code>
        * @param value The cNJOFMDBADE to set.
        * @return This builder for chaining.
        */
@@ -538,7 +538,7 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
         return this;
       }
       /**
-       * <code>uint32 CNJOFMDBADE = 20000;</code>
+       * <code>uint32 CNJOFMDBADE = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearCNJOFMDBADE() {
@@ -730,11 +730,11 @@ public final class BattlePassRewardTagOuterClass extends com.google.protobuf.Gen
   static {
     java.lang.String[] descriptorData = {
       "\n\031BattlePassRewardTag.proto\032\034BattlePassU" +
-      "nlockStatus.proto\"~\n\023BattlePassRewardTag" +
-      "\022\025\n\013CNJOFMDBADE\030\240\234\001 \001(\r\022\021\n\treward_id\030\t \001" +
-      "(\r\022\r\n\005level\030\006 \001(\r\022.\n\runlock_status\030\014 \001(\016" +
-      "2\027.BattlePassUnlockStatusB\033\n\031emu.grasscu" +
-      "tter.net.protob\006proto3"
+      "nlockStatus.proto\"|\n\023BattlePassRewardTag" +
+      "\022\023\n\013CNJOFMDBADE\030\003 \001(\r\022\021\n\treward_id\030\t \001(\r" +
+      "\022\r\n\005level\030\006 \001(\r\022.\n\runlock_status\030\014 \001(\0162\027" +
+      ".BattlePassUnlockStatusB\033\n\031emu.grasscutt" +
+      "er.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

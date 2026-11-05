@@ -31,7 +31,7 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 HKBMJEAPLJO = 20000;</code>
+     * <code>uint32 HKBMJEAPLJO = 10;</code>
      * @return The hKBMJEAPLJO.
      */
     int getHKBMJEAPLJO();
@@ -78,10 +78,10 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
               emu.grasscutter.net.proto.BubbleDramaDetailInfo._BubbleDramaDetailInfo.class, emu.grasscutter.net.proto.BubbleDramaDetailInfo._BubbleDramaDetailInfo.Builder.class);
     }
 
-    public static final int HKBMJEAPLJO_FIELD_NUMBER = 20000;
+    public static final int HKBMJEAPLJO_FIELD_NUMBER = 10;
     private int hKBMJEAPLJO_ = 0;
     /**
-     * <code>uint32 HKBMJEAPLJO = 20000;</code>
+     * <code>uint32 HKBMJEAPLJO = 10;</code>
      * @return The hKBMJEAPLJO.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (hKBMJEAPLJO_ != 0) {
-        output.writeUInt32(20000, hKBMJEAPLJO_);
+        output.writeUInt32(10, hKBMJEAPLJO_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
       int size = 0;
       if (hKBMJEAPLJO_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, hKBMJEAPLJO_);
+          .computeUInt32Size(10, hKBMJEAPLJO_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 80: {
                 hKBMJEAPLJO_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 80
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
 
       private int hKBMJEAPLJO_ ;
       /**
-       * <code>uint32 HKBMJEAPLJO = 20000;</code>
+       * <code>uint32 HKBMJEAPLJO = 10;</code>
        * @return The hKBMJEAPLJO.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
         return hKBMJEAPLJO_;
       }
       /**
-       * <code>uint32 HKBMJEAPLJO = 20000;</code>
+       * <code>uint32 HKBMJEAPLJO = 10;</code>
        * @param value The hKBMJEAPLJO to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 HKBMJEAPLJO = 20000;</code>
+       * <code>uint32 HKBMJEAPLJO = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearHKBMJEAPLJO() {
@@ -481,9 +481,9 @@ public final class BubbleDramaDetailInfo extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034_BubbleDramaDetailInfo.proto\"/\n\026_Bubbl" +
-      "eDramaDetailInfo\022\025\n\013HKBMJEAPLJO\030\240\234\001 \001(\rB" +
-      "\033\n\031emu.grasscutter.net.protob\006proto3"
+      "\n\034_BubbleDramaDetailInfo.proto\"-\n\026_Bubbl" +
+      "eDramaDetailInfo\022\023\n\013HKBMJEAPLJO\030\n \001(\rB\033\n" +
+      "\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

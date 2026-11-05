@@ -55,24 +55,24 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         int index);
 
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 10;</code>
      * @return A list containing the eEOIMNHKALK.
      */
     java.util.List<java.lang.String>
         getEEOIMNHKALKList();
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 10;</code>
      * @return The count of eEOIMNHKALK.
      */
     int getEEOIMNHKALKCount();
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 10;</code>
      * @param index The index of the element to return.
      * @return The eEOIMNHKALK at the given index.
      */
     java.lang.String getEEOIMNHKALK(int index);
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 10;</code>
      * @param index The index of the value to return.
      * @return The bytes of the eEOIMNHKALK at the given index.
      */
@@ -127,7 +127,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
     int getMoveReliableSeq();
 
     /**
-     * <code>uint32 LDAODDFLPGB = 20001;</code>
+     * <code>uint32 LDAODDFLPGB = 4;</code>
      * @return The lDAODDFLPGB.
      */
     int getLDAODDFLPGB();
@@ -226,12 +226,12 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
       return serverBuffList_.get(index);
     }
 
-    public static final int EEOIMNHKALK_FIELD_NUMBER = 20000;
+    public static final int EEOIMNHKALK_FIELD_NUMBER = 10;
     @SuppressWarnings("serial")
     private com.google.protobuf.LazyStringArrayList eEOIMNHKALK_ =
         com.google.protobuf.LazyStringArrayList.emptyList();
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 10;</code>
      * @return A list containing the eEOIMNHKALK.
      */
     public com.google.protobuf.ProtocolStringList
@@ -239,14 +239,14 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
       return eEOIMNHKALK_;
     }
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 10;</code>
      * @return The count of eEOIMNHKALK.
      */
     public int getEEOIMNHKALKCount() {
       return eEOIMNHKALK_.size();
     }
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 10;</code>
      * @param index The index of the element to return.
      * @return The eEOIMNHKALK at the given index.
      */
@@ -254,7 +254,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
       return eEOIMNHKALK_.get(index);
     }
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 10;</code>
      * @param index The index of the value to return.
      * @return The bytes of the eEOIMNHKALK at the given index.
      */
@@ -364,10 +364,10 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
       return moveReliableSeq_;
     }
 
-    public static final int LDAODDFLPGB_FIELD_NUMBER = 20001;
+    public static final int LDAODDFLPGB_FIELD_NUMBER = 4;
     private int lDAODDFLPGB_ = 0;
     /**
-     * <code>uint32 LDAODDFLPGB = 20001;</code>
+     * <code>uint32 LDAODDFLPGB = 4;</code>
      * @return The lDAODDFLPGB.
      */
     @java.lang.Override
@@ -409,8 +409,14 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
       if (dieType_ != emu.grasscutter.net.proto.PlayerDieTypeOuterClass.PlayerDieType.PlayerDieType_PLAYER_DIE_NONE.getNumber()) {
         output.writeEnum(3, dieType_);
       }
+      if (lDAODDFLPGB_ != 0) {
+        output.writeUInt32(4, lDAODDFLPGB_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(attackTag_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 7, attackTag_);
+      }
+      for (int i = 0; i < eEOIMNHKALK_.size(); i++) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 10, eEOIMNHKALK_.getRaw(i));
       }
       if (lifeState_ != 0) {
         output.writeUInt32(11, lifeState_);
@@ -423,12 +429,6 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
       }
       for (int i = 0; i < serverBuffList_.size(); i++) {
         output.writeMessage(15, serverBuffList_.get(i));
-      }
-      for (int i = 0; i < eEOIMNHKALK_.size(); i++) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 20000, eEOIMNHKALK_.getRaw(i));
-      }
-      if (lDAODDFLPGB_ != 0) {
-        output.writeUInt32(20001, lDAODDFLPGB_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -446,8 +446,20 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, dieType_);
       }
+      if (lDAODDFLPGB_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, lDAODDFLPGB_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(attackTag_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(7, attackTag_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < eEOIMNHKALK_.size(); i++) {
+          dataSize += computeStringSizeNoTag(eEOIMNHKALK_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getEEOIMNHKALKList().size();
       }
       if (lifeState_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -470,18 +482,6 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
             }
             size += 1 * count;
           }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < eEOIMNHKALK_.size(); i++) {
-          dataSize += computeStringSizeNoTag(eEOIMNHKALK_.getRaw(i));
-        }
-        size += dataSize;
-        size += 3 * getEEOIMNHKALKList().size();
-      }
-      if (lDAODDFLPGB_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, lDAODDFLPGB_);
-      }
       return size;
     }
     @java.lang.Override
@@ -898,11 +898,21 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
                 bitField0_ |= 0x00000008;
                 break;
               } // case 24
+              case 32: {
+                lDAODDFLPGB_ = input.readUInt32();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 32
               case 58: {
                 attackTag_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 58
+              case 82: {
+                ensureEEOIMNHKALKIsMutable();
+                eEOIMNHKALK_.add(input.readStringRequireUtf8());
+                break;
+              } // case 82
               case 88: {
                 lifeState_ = input.readUInt32();
                 bitField0_ |= 0x00000010;
@@ -931,16 +941,6 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
                 }
                 break;
               } // case 122
-              case 160002: {
-                ensureEEOIMNHKALKIsMutable();
-                eEOIMNHKALK_.add(input.readStringRequireUtf8());
-                break;
-              } // case 160002
-              case 160008: {
-                lDAODDFLPGB_ = input.readUInt32();
-                bitField0_ |= 0x00000100;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1201,7 +1201,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         bitField0_ |= 0x00000002;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @return A list containing the eEOIMNHKALK.
        */
       public com.google.protobuf.ProtocolStringList
@@ -1210,14 +1210,14 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return eEOIMNHKALK_;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @return The count of eEOIMNHKALK.
        */
       public int getEEOIMNHKALKCount() {
         return eEOIMNHKALK_.size();
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @param index The index of the element to return.
        * @return The eEOIMNHKALK at the given index.
        */
@@ -1225,7 +1225,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return eEOIMNHKALK_.get(index);
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @param index The index of the value to return.
        * @return The bytes of the eEOIMNHKALK at the given index.
        */
@@ -1234,7 +1234,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return eEOIMNHKALK_.getByteString(index);
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @param index The index to set the value at.
        * @param value The eEOIMNHKALK to set.
        * @return This builder for chaining.
@@ -1249,7 +1249,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return this;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @param value The eEOIMNHKALK to add.
        * @return This builder for chaining.
        */
@@ -1263,7 +1263,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return this;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @param values The eEOIMNHKALK to add.
        * @return This builder for chaining.
        */
@@ -1277,7 +1277,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return this;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearEEOIMNHKALK() {
@@ -1288,7 +1288,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return this;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 10;</code>
        * @param value The bytes of the eEOIMNHKALK to add.
        * @return This builder for chaining.
        */
@@ -1557,7 +1557,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
 
       private int lDAODDFLPGB_ ;
       /**
-       * <code>uint32 LDAODDFLPGB = 20001;</code>
+       * <code>uint32 LDAODDFLPGB = 4;</code>
        * @return The lDAODDFLPGB.
        */
       @java.lang.Override
@@ -1565,7 +1565,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return lDAODDFLPGB_;
       }
       /**
-       * <code>uint32 LDAODDFLPGB = 20001;</code>
+       * <code>uint32 LDAODDFLPGB = 4;</code>
        * @param value The lDAODDFLPGB to set.
        * @return This builder for chaining.
        */
@@ -1577,7 +1577,7 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
         return this;
       }
       /**
-       * <code>uint32 LDAODDFLPGB = 20001;</code>
+       * <code>uint32 LDAODDFLPGB = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearLDAODDFLPGB() {
@@ -1685,16 +1685,15 @@ public final class AvatarLifeStateChangeNotifyOuterClass extends com.google.prot
   static {
     java.lang.String[] descriptorData = {
       "\n!AvatarLifeStateChangeNotify.proto\032\023Pla" +
-      "yerDieType.proto\032\020ServerBuff.proto\"\242\002\n\033A" +
+      "yerDieType.proto\032\020ServerBuff.proto\"\236\002\n\033A" +
       "vatarLifeStateChangeNotify\022%\n\020server_buf" +
-      "f_list\030\017 \003(\0132\013.ServerBuff\022\025\n\013EEOIMNHKALK" +
-      "\030\240\234\001 \003(\t\022\022\n\nattack_tag\030\007 \001(\t\022 \n\010die_type" +
-      "\030\003 \001(\0162\016.PlayerDieType\022\022\n\nlife_state\030\013 \001" +
-      "(\r\022\023\n\013avatar_guid\030\014 \001(\004\022\032\n\022client_sequen" +
-      "ce_id\030\016 \001(\r\022\031\n\021move_reliable_seq\030\002 \001(\r\022\025" +
-      "\n\013LDAODDFLPGB\030\241\234\001 \001(\r\022\030\n\020source_entity_i" +
-      "d\030\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006pr" +
-      "oto3"
+      "f_list\030\017 \003(\0132\013.ServerBuff\022\023\n\013EEOIMNHKALK" +
+      "\030\n \003(\t\022\022\n\nattack_tag\030\007 \001(\t\022 \n\010die_type\030\003" +
+      " \001(\0162\016.PlayerDieType\022\022\n\nlife_state\030\013 \001(\r" +
+      "\022\023\n\013avatar_guid\030\014 \001(\004\022\032\n\022client_sequence" +
+      "_id\030\016 \001(\r\022\031\n\021move_reliable_seq\030\002 \001(\r\022\023\n\013" +
+      "LDAODDFLPGB\030\004 \001(\r\022\030\n\020source_entity_id\030\001 " +
+      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

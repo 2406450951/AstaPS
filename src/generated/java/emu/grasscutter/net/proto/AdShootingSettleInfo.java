@@ -31,25 +31,25 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     java.util.List<emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair> 
         getBGKNOBGMOIPList();
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair getBGKNOBGMOIP(int index);
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     int getBGKNOBGMOIPCount();
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32PairOrBuilder> 
         getBGKNOBGMOIPOrBuilderList();
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32PairOrBuilder getBGKNOBGMOIPOrBuilder(
         int index);
@@ -155,18 +155,18 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
     }
 
     private int bitField0_;
-    public static final int BGKNOBGMOIP_FIELD_NUMBER = 20000;
+    public static final int BGKNOBGMOIP_FIELD_NUMBER = 15;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair> bGKNOBGMOIP_;
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair> getBGKNOBGMOIPList() {
       return bGKNOBGMOIP_;
     }
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32PairOrBuilder> 
@@ -174,21 +174,21 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
       return bGKNOBGMOIP_;
     }
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     @java.lang.Override
     public int getBGKNOBGMOIPCount() {
       return bGKNOBGMOIP_.size();
     }
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair getBGKNOBGMOIP(int index) {
       return bGKNOBGMOIP_.get(index);
     }
     /**
-     * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+     * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32PairOrBuilder getBGKNOBGMOIPOrBuilder(
@@ -322,7 +322,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         output.writeUInt32(14, levelId_);
       }
       for (int i = 0; i < bGKNOBGMOIP_.size(); i++) {
-        output.writeMessage(20000, bGKNOBGMOIP_.get(i));
+        output.writeMessage(15, bGKNOBGMOIP_.get(i));
       }
       if (aAPHBOOLCJJ_ != false) {
         output.writeBool(20001, aAPHBOOLCJJ_);
@@ -360,7 +360,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
               size += com.google.protobuf.CodedOutputStream
                 .computeMessageSizeNoTag(bGKNOBGMOIP_.get(i));
             }
-            size += 3 * count;
+            size += 1 * count;
           }
       if (aAPHBOOLCJJ_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -785,7 +785,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00000040;
                 break;
               } // case 112
-              case 160002: {
+              case 122: {
                 emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair m =
                     input.readMessage(
                         emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.parser(),
@@ -797,7 +797,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
                   bGKNOBGMOIPBuilder_.addMessage(m);
                 }
                 break;
-              } // case 160002
+              } // case 122
               case 160008: {
                 aAPHBOOLCJJ_ = input.readBool();
                 bitField0_ |= 0x00000004;
@@ -843,7 +843,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
           emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair, emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.Builder, emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32PairOrBuilder> bGKNOBGMOIPBuilder_;
 
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair> getBGKNOBGMOIPList() {
         if (bGKNOBGMOIPBuilder_ == null) {
@@ -853,7 +853,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         }
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public int getBGKNOBGMOIPCount() {
         if (bGKNOBGMOIPBuilder_ == null) {
@@ -863,7 +863,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         }
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair getBGKNOBGMOIP(int index) {
         if (bGKNOBGMOIPBuilder_ == null) {
@@ -873,7 +873,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         }
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder setBGKNOBGMOIP(
           int index, emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair value) {
@@ -888,7 +888,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder setBGKNOBGMOIP(
           int index, emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.Builder builderForValue) {
@@ -902,7 +902,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder addBGKNOBGMOIP(emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair value) {
         if (bGKNOBGMOIPBuilder_ == null) {
@@ -916,7 +916,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder addBGKNOBGMOIP(
           int index, emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair value) {
@@ -931,7 +931,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder addBGKNOBGMOIP(
           emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.Builder builderForValue) {
@@ -945,7 +945,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder addBGKNOBGMOIP(
           int index, emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.Builder builderForValue) {
@@ -959,7 +959,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder addAllBGKNOBGMOIP(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair> values) {
@@ -974,7 +974,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder clearBGKNOBGMOIP() {
         if (bGKNOBGMOIPBuilder_ == null) {
@@ -987,7 +987,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public Builder removeBGKNOBGMOIP(int index) {
         if (bGKNOBGMOIPBuilder_ == null) {
@@ -1000,14 +1000,14 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.Builder getBGKNOBGMOIPBuilder(
           int index) {
         return internalGetBGKNOBGMOIPFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32PairOrBuilder getBGKNOBGMOIPOrBuilder(
           int index) {
@@ -1017,7 +1017,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         }
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32PairOrBuilder> 
            getBGKNOBGMOIPOrBuilderList() {
@@ -1028,14 +1028,14 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
         }
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.Builder addBGKNOBGMOIPBuilder() {
         return internalGetBGKNOBGMOIPFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.getDefaultInstance());
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.Builder addBGKNOBGMOIPBuilder(
           int index) {
@@ -1043,7 +1043,7 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
             index, emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.getDefaultInstance());
       }
       /**
-       * <code>repeated .Uint32Pair BGKNOBGMOIP = 20000;</code>
+       * <code>repeated .Uint32Pair BGKNOBGMOIP = 15;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.Uint32PairOuterClass.Uint32Pair.Builder> 
            getBGKNOBGMOIPBuilderList() {
@@ -1462,13 +1462,13 @@ public final class AdShootingSettleInfo extends com.google.protobuf.GeneratedFil
     java.lang.String[] descriptorData = {
       "\n\033_AdShootingSettleInfo.proto\032\021FriendBri" +
       "ef.proto\032\021NBKIIACAEDE.proto\032\020Uint32Pair." +
-      "proto\"\342\001\n\025_AdShootingSettleInfo\022\"\n\013BGKNO" +
-      "BGMOIP\030\240\234\001 \003(\0132\013.Uint32Pair\022#\n\r_friend_b" +
-      "rief\030\001 \001(\0132\014.FriendBrief\022\025\n\013AAPHBOOLCJJ\030" +
-      "\241\234\001 \001(\010\022\025\n\013AIMJHJLEPEM\030\242\234\001 \001(\010\022\025\n\013JDOMIN" +
-      "LKBJH\030\243\234\001 \001(\010\022\r\n\005score\030\005 \001(\r\022\020\n\010level_id" +
-      "\030\016 \001(\r\022\032\n\004type\030\010 \001(\0162\014.NBKIIACAEDEB\033\n\031em" +
-      "u.grasscutter.net.protob\006proto3"
+      "proto\"\340\001\n\025_AdShootingSettleInfo\022 \n\013BGKNO" +
+      "BGMOIP\030\017 \003(\0132\013.Uint32Pair\022#\n\r_friend_bri" +
+      "ef\030\001 \001(\0132\014.FriendBrief\022\025\n\013AAPHBOOLCJJ\030\241\234" +
+      "\001 \001(\010\022\025\n\013AIMJHJLEPEM\030\242\234\001 \001(\010\022\025\n\013JDOMINLK" +
+      "BJH\030\243\234\001 \001(\010\022\r\n\005score\030\005 \001(\r\022\020\n\010level_id\030\016" +
+      " \001(\r\022\032\n\004type\030\010 \001(\0162\014.NBKIIACAEDEB\033\n\031emu." +
+      "grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

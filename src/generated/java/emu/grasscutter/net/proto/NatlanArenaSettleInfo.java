@@ -43,7 +43,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
     int getLevelId();
 
     /**
-     * <code>uint32 EKLLGJEHJPA = 20000;</code>
+     * <code>uint32 EKLLGJEHJPA = 15;</code>
      * @return The eKLLGJEHJPA.
      */
     int getEKLLGJEHJPA();
@@ -55,7 +55,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
     boolean getIsNewRecord();
 
     /**
-     * <code>bool DAGLJBFPHEK = 20001;</code>
+     * <code>bool DAGLJBFPHEK = 1;</code>
      * @return The dAGLJBFPHEK.
      */
     boolean getDAGLJBFPHEK();
@@ -154,10 +154,10 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
       return levelId_;
     }
 
-    public static final int EKLLGJEHJPA_FIELD_NUMBER = 20000;
+    public static final int EKLLGJEHJPA_FIELD_NUMBER = 15;
     private int eKLLGJEHJPA_ = 0;
     /**
-     * <code>uint32 EKLLGJEHJPA = 20000;</code>
+     * <code>uint32 EKLLGJEHJPA = 15;</code>
      * @return The eKLLGJEHJPA.
      */
     @java.lang.Override
@@ -176,10 +176,10 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
       return isNewRecord_;
     }
 
-    public static final int DAGLJBFPHEK_FIELD_NUMBER = 20001;
+    public static final int DAGLJBFPHEK_FIELD_NUMBER = 1;
     private boolean dAGLJBFPHEK_ = false;
     /**
-     * <code>bool DAGLJBFPHEK = 20001;</code>
+     * <code>bool DAGLJBFPHEK = 1;</code>
      * @return The dAGLJBFPHEK.
      */
     @java.lang.Override
@@ -256,6 +256,9 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (dAGLJBFPHEK_ != false) {
+        output.writeBool(1, dAGLJBFPHEK_);
+      }
       if (levelId_ != 0) {
         output.writeUInt32(6, levelId_);
       }
@@ -269,10 +272,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
         output.writeUInt32(13, difficulty_);
       }
       if (eKLLGJEHJPA_ != 0) {
-        output.writeUInt32(20000, eKLLGJEHJPA_);
-      }
-      if (dAGLJBFPHEK_ != false) {
-        output.writeBool(20001, dAGLJBFPHEK_);
+        output.writeUInt32(15, eKLLGJEHJPA_);
       }
       if (lDMJHAPIDNA_ != false) {
         output.writeBool(20002, lDMJHAPIDNA_);
@@ -290,6 +290,10 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (dAGLJBFPHEK_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, dAGLJBFPHEK_);
+      }
       if (levelId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(6, levelId_);
@@ -308,11 +312,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
       }
       if (eKLLGJEHJPA_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, eKLLGJEHJPA_);
-      }
-      if (dAGLJBFPHEK_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20001, dAGLJBFPHEK_);
+          .computeUInt32Size(15, eKLLGJEHJPA_);
       }
       if (lDMJHAPIDNA_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -680,6 +680,11 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
               case 0:
                 done = true;
                 break;
+              case 8: {
+                dAGLJBFPHEK_ = input.readBool();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 8
               case 48: {
                 levelId_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
@@ -700,16 +705,11 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000001;
                 break;
               } // case 104
-              case 160000: {
+              case 120: {
                 eKLLGJEHJPA_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 160000
-              case 160008: {
-                dAGLJBFPHEK_ = input.readBool();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160008
+              } // case 120
               case 160016: {
                 lDMJHAPIDNA_ = input.readBool();
                 bitField0_ |= 0x00000020;
@@ -813,7 +813,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
 
       private int eKLLGJEHJPA_ ;
       /**
-       * <code>uint32 EKLLGJEHJPA = 20000;</code>
+       * <code>uint32 EKLLGJEHJPA = 15;</code>
        * @return The eKLLGJEHJPA.
        */
       @java.lang.Override
@@ -821,7 +821,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
         return eKLLGJEHJPA_;
       }
       /**
-       * <code>uint32 EKLLGJEHJPA = 20000;</code>
+       * <code>uint32 EKLLGJEHJPA = 15;</code>
        * @param value The eKLLGJEHJPA to set.
        * @return This builder for chaining.
        */
@@ -833,7 +833,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 EKLLGJEHJPA = 20000;</code>
+       * <code>uint32 EKLLGJEHJPA = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearEKLLGJEHJPA() {
@@ -877,7 +877,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
 
       private boolean dAGLJBFPHEK_ ;
       /**
-       * <code>bool DAGLJBFPHEK = 20001;</code>
+       * <code>bool DAGLJBFPHEK = 1;</code>
        * @return The dAGLJBFPHEK.
        */
       @java.lang.Override
@@ -885,7 +885,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
         return dAGLJBFPHEK_;
       }
       /**
-       * <code>bool DAGLJBFPHEK = 20001;</code>
+       * <code>bool DAGLJBFPHEK = 1;</code>
        * @param value The dAGLJBFPHEK to set.
        * @return This builder for chaining.
        */
@@ -897,7 +897,7 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>bool DAGLJBFPHEK = 20001;</code>
+       * <code>bool DAGLJBFPHEK = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearDAGLJBFPHEK() {
@@ -1132,14 +1132,14 @@ public final class NatlanArenaSettleInfo extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034_NatlanArenaSettleInfo.proto\"\362\001\n\026_Natl" +
+      "\n\034_NatlanArenaSettleInfo.proto\"\356\001\n\026_Natl" +
       "anArenaSettleInfo\022\022\n\ndifficulty\030\r \001(\r\022\020\n" +
-      "\010level_id\030\006 \001(\r\022\025\n\013EKLLGJEHJPA\030\240\234\001 \001(\r\022\025" +
-      "\n\ris_new_record\030\007 \001(\010\022\025\n\013DAGLJBFPHEK\030\241\234\001" +
-      " \001(\010\022\025\n\013LDMJHAPIDNA\030\242\234\001 \001(\010\022\021\n\tcost_time" +
-      "\030\010 \001(\r\022\025\n\013JGLPDDIMNAC\030\243\234\001 \001(\r\022\025\n\013MDFOCKG" +
-      "PHEN\030\244\234\001 \001(\r\022\025\n\013BBHKPGDIDOP\030\245\234\001 \001(\rB\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "\010level_id\030\006 \001(\r\022\023\n\013EKLLGJEHJPA\030\017 \001(\r\022\025\n\r" +
+      "is_new_record\030\007 \001(\010\022\023\n\013DAGLJBFPHEK\030\001 \001(\010" +
+      "\022\025\n\013LDMJHAPIDNA\030\242\234\001 \001(\010\022\021\n\tcost_time\030\010 \001" +
+      "(\r\022\025\n\013JGLPDDIMNAC\030\243\234\001 \001(\r\022\025\n\013MDFOCKGPHEN" +
+      "\030\244\234\001 \001(\r\022\025\n\013BBHKPGDIDOP\030\245\234\001 \001(\rB\033\n\031emu.g" +
+      "rasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -4,5 +4,5 @@ option java_package = "emu.grasscutter.net.proto";
 
 message _ThemeParkParkourSettleInfo {
   uint32 level_id = 1;
-  bool OABFNCIAGMK = 20000;
+  bool OABFNCIAGMK = 14;
 }

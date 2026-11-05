@@ -43,7 +43,7 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
     int getMaterialId();
 
     /**
-     * <code>uint32 KHEMKPBBNHC = 20000;</code>
+     * <code>uint32 KHEMKPBBNHC = 4;</code>
      * @return The kHEMKPBBNHC.
      */
     int getKHEMKPBBNHC();
@@ -220,10 +220,10 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
       return materialId_;
     }
 
-    public static final int KHEMKPBBNHC_FIELD_NUMBER = 20000;
+    public static final int KHEMKPBBNHC_FIELD_NUMBER = 4;
     private int kHEMKPBBNHC_ = 0;
     /**
-     * <code>uint32 KHEMKPBBNHC = 20000;</code>
+     * <code>uint32 KHEMKPBBNHC = 4;</code>
      * @return The kHEMKPBBNHC.
      */
     @java.lang.Override
@@ -372,6 +372,9 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
       if (paramCase_ == 1) {
         output.writeMessage(1, (emu.grasscutter.net.proto.ClientCollectorDataOuterClass.ClientCollectorData) param_);
       }
+      if (kHEMKPBBNHC_ != 0) {
+        output.writeUInt32(4, kHEMKPBBNHC_);
+      }
       if (materialId_ != 0) {
         output.writeUInt32(9, materialId_);
       }
@@ -387,9 +390,6 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
       if (paramCase_ == 9577) {
         output.writeMessage(9577, (emu.grasscutter.net.proto.ClientDetectorResult._ClientDetectorResult) param_);
       }
-      if (kHEMKPBBNHC_ != 0) {
-        output.writeUInt32(20000, kHEMKPBBNHC_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
@@ -397,6 +397,10 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
       if (paramCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, (emu.grasscutter.net.proto.ClientCollectorDataOuterClass.ClientCollectorData) param_);
+      }
+      if (kHEMKPBBNHC_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, kHEMKPBBNHC_);
       }
       if (materialId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -417,10 +421,6 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
       if (paramCase_ == 9577) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9577, (emu.grasscutter.net.proto.ClientDetectorResult._ClientDetectorResult) param_);
-      }
-      if (kHEMKPBBNHC_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, kHEMKPBBNHC_);
       }
       return size;
     }
@@ -797,6 +797,11 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
                 paramCase_ = 1;
                 break;
               } // case 10
+              case 32: {
+                kHEMKPBBNHC_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 32
               case 72: {
                 materialId_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
@@ -828,11 +833,6 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
                 paramCase_ = 9577;
                 break;
               } // case 76618
-              case 160000: {
-                kHEMKPBBNHC_ = input.readUInt32();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -931,7 +931,7 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
 
       private int kHEMKPBBNHC_ ;
       /**
-       * <code>uint32 KHEMKPBBNHC = 20000;</code>
+       * <code>uint32 KHEMKPBBNHC = 4;</code>
        * @return The kHEMKPBBNHC.
        */
       @java.lang.Override
@@ -939,7 +939,7 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
         return kHEMKPBBNHC_;
       }
       /**
-       * <code>uint32 KHEMKPBBNHC = 20000;</code>
+       * <code>uint32 KHEMKPBBNHC = 4;</code>
        * @param value The kHEMKPBBNHC to set.
        * @return This builder for chaining.
        */
@@ -951,7 +951,7 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>uint32 KHEMKPBBNHC = 20000;</code>
+       * <code>uint32 KHEMKPBBNHC = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearKHEMKPBBNHC() {
@@ -1589,17 +1589,17 @@ public final class QuickUseWidgetRspOuterClass extends com.google.protobuf.Gener
       "\n\027QuickUseWidgetRsp.proto\032\031ClientCollect" +
       "orData.proto\032#OneoffGatherPointDetectorD" +
       "ata.proto\032&SkyCrystalDetectorQuickUseRes" +
-      "ult.proto\032\033_ClientDetectorResult.proto\"\331" +
+      "ult.proto\032\033_ClientDetectorResult.proto\"\327" +
       "\002\n\021QuickUseWidgetRsp\022\017\n\007retcode\030\n \001(\005\022\023\n" +
-      "\013material_id\030\t \001(\r\022\025\n\013KHEMKPBBNHC\030\240\234\001 \001(" +
-      "\r\0227\n\rdetector_data\030\013 \001(\0132\036.OneoffGatherP" +
-      "ointDetectorDataH\000\0225\n\025client_collector_d" +
-      "ata\030\001 \001(\0132\024.ClientCollectorDataH\000\022S\n%sky" +
-      "_crystal_detector_quick_use_result\030\370\020 \001(" +
-      "\0132!.SkyCrystalDetectorQuickUseResultH\000\0229" +
-      "\n\026client_detector_result\030\351J \001(\0132\026._Clien" +
-      "tDetectorResultH\000B\007\n\005paramB\033\n\031emu.grassc" +
-      "utter.net.protob\006proto3"
+      "\013material_id\030\t \001(\r\022\023\n\013KHEMKPBBNHC\030\004 \001(\r\022" +
+      "7\n\rdetector_data\030\013 \001(\0132\036.OneoffGatherPoi" +
+      "ntDetectorDataH\000\0225\n\025client_collector_dat" +
+      "a\030\001 \001(\0132\024.ClientCollectorDataH\000\022S\n%sky_c" +
+      "rystal_detector_quick_use_result\030\370\020 \001(\0132" +
+      "!.SkyCrystalDetectorQuickUseResultH\000\0229\n\026" +
+      "client_detector_result\030\351J \001(\0132\026._ClientD" +
+      "etectorResultH\000B\007\n\005paramB\033\n\031emu.grasscut" +
+      "ter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

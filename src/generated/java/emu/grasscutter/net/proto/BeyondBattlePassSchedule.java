@@ -123,7 +123,7 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
     int getScheduleId();
 
     /**
-     * <code>uint32 GOKJFDPPOHF = 20002;</code>
+     * <code>uint32 GOKJFDPPOHF = 8;</code>
      * @return The gOKJFDPPOHF.
      */
     int getGOKJFDPPOHF();
@@ -341,10 +341,10 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
       return scheduleId_;
     }
 
-    public static final int GOKJFDPPOHF_FIELD_NUMBER = 20002;
+    public static final int GOKJFDPPOHF_FIELD_NUMBER = 8;
     private int gOKJFDPPOHF_ = 0;
     /**
-     * <code>uint32 GOKJFDPPOHF = 20002;</code>
+     * <code>uint32 GOKJFDPPOHF = 8;</code>
      * @return The gOKJFDPPOHF.
      */
     @java.lang.Override
@@ -389,6 +389,9 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
       if (point_ != 0) {
         output.writeUInt32(7, point_);
       }
+      if (gOKJFDPPOHF_ != 0) {
+        output.writeUInt32(8, gOKJFDPPOHF_);
+      }
       if (unlockStatus_ != emu.grasscutter.net.proto.BeyondBattlePassUnlockStatus._BeyondBattlePassUnlockStatus._BeyondBattlePassUnlockStatus_BEYOND_BATTLE_PASS_INVALID.getNumber()) {
         output.writeEnum(10, unlockStatus_);
       }
@@ -409,9 +412,6 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
       }
       if (cPNNNCPCOBI_ != 0) {
         output.writeUInt32(20001, cPNNNCPCOBI_);
-      }
-      if (gOKJFDPPOHF_ != 0) {
-        output.writeUInt32(20002, gOKJFDPPOHF_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -437,6 +437,10 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
       if (point_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(7, point_);
+      }
+      if (gOKJFDPPOHF_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(8, gOKJFDPPOHF_);
       }
       if (unlockStatus_ != emu.grasscutter.net.proto.BeyondBattlePassUnlockStatus._BeyondBattlePassUnlockStatus._BeyondBattlePassUnlockStatus_BEYOND_BATTLE_PASS_INVALID.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -465,10 +469,6 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
       if (cPNNNCPCOBI_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20001, cPNNNCPCOBI_);
-      }
-      if (gOKJFDPPOHF_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20002, gOKJFDPPOHF_);
       }
       return size;
     }
@@ -930,6 +930,11 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
                 bitField0_ |= 0x00000010;
                 break;
               } // case 56
+              case 64: {
+                gOKJFDPPOHF_ = input.readUInt32();
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 64
               case 80: {
                 unlockStatus_ = input.readEnum();
                 bitField0_ |= 0x00000100;
@@ -967,11 +972,6 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
                 bitField0_ |= 0x00000080;
                 break;
               } // case 160008
-              case 160016: {
-                gOKJFDPPOHF_ = input.readUInt32();
-                bitField0_ |= 0x00000400;
-                break;
-              } // case 160016
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1620,7 +1620,7 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
 
       private int gOKJFDPPOHF_ ;
       /**
-       * <code>uint32 GOKJFDPPOHF = 20002;</code>
+       * <code>uint32 GOKJFDPPOHF = 8;</code>
        * @return The gOKJFDPPOHF.
        */
       @java.lang.Override
@@ -1628,7 +1628,7 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
         return gOKJFDPPOHF_;
       }
       /**
-       * <code>uint32 GOKJFDPPOHF = 20002;</code>
+       * <code>uint32 GOKJFDPPOHF = 8;</code>
        * @param value The gOKJFDPPOHF to set.
        * @return This builder for chaining.
        */
@@ -1640,7 +1640,7 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>uint32 GOKJFDPPOHF = 20002;</code>
+       * <code>uint32 GOKJFDPPOHF = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearGOKJFDPPOHF() {
@@ -1750,7 +1750,7 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
       "\n\037_BeyondBattlePassSchedule.proto\032\036_Beyo" +
       "ndBattlePassProduct.proto\032 _BeyondBattle" +
       "PassRewardTag.proto\032#_BeyondBattlePassUn" +
-      "lockStatus.proto\"\375\002\n\031_BeyondBattlePassSc" +
+      "lockStatus.proto\"\373\002\n\031_BeyondBattlePassSc" +
       "hedule\0226\n\021reward_taken_list\030\006 \003(\0132\033._Bey" +
       "ondBattlePassRewardTag\022/\n\014product_info\030\r" +
       " \001(\0132\031._BeyondBattlePassProduct\022\025\n\013OEGGI" +
@@ -1759,8 +1759,8 @@ public final class BeyondBattlePassSchedule extends com.google.protobuf.Generate
       "\001(\r\022\022\n\nbegin_time\030\003 \001(\r\022\025\n\013CPNNNCPCOBI\030\241" +
       "\234\001 \001(\r\0225\n\runlock_status\030\n \001(\0162\036._BeyondB" +
       "attlePassUnlockStatus\022\023\n\013schedule_id\030\002 \001" +
-      "(\r\022\025\n\013GOKJFDPPOHF\030\242\234\001 \001(\r\022\r\n\005level\030\016 \001(\r" +
-      "B\033\n\031emu.grasscutter.net.protob\006proto3"
+      "(\r\022\023\n\013GOKJFDPPOHF\030\010 \001(\r\022\r\n\005level\030\016 \001(\rB\033" +
+      "\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

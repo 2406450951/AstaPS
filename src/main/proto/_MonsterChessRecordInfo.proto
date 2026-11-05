@@ -7,6 +7,6 @@ import "_MonsterChessCardDetail.proto";
 message _MonsterChessRecordInfo {
   repeated _MonsterChessCardDetail monster_list = 15;
   repeated uint32 _win_round_list = 12;
-  repeated uint32 OHBPLEJNHBF = 20000;
+  repeated uint32 OHBPLEJNHBF = 5;
   uint32 timestamp = 13;
 }

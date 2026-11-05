@@ -48,7 +48,7 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
     int getDCGOIJMIJMG(int index);
 
     /**
-     * <code>bool GJFFLCIHPIN = 20001;</code>
+     * <code>bool GJFFLCIHPIN = 6;</code>
      * @return The gJFFLCIHPIN.
      */
     boolean getGJFFLCIHPIN();
@@ -126,10 +126,10 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
     }
     private int dCGOIJMIJMGMemoizedSerializedSize = -1;
 
-    public static final int GJFFLCIHPIN_FIELD_NUMBER = 20001;
+    public static final int GJFFLCIHPIN_FIELD_NUMBER = 6;
     private boolean gJFFLCIHPIN_ = false;
     /**
-     * <code>bool GJFFLCIHPIN = 20001;</code>
+     * <code>bool GJFFLCIHPIN = 6;</code>
      * @return The gJFFLCIHPIN.
      */
     @java.lang.Override
@@ -152,6 +152,9 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (gJFFLCIHPIN_ != false) {
+        output.writeBool(6, gJFFLCIHPIN_);
+      }
       if (getDCGOIJMIJMGList().size() > 0) {
         output.writeUInt32NoTag(160002);
         output.writeUInt32NoTag(dCGOIJMIJMGMemoizedSerializedSize);
@@ -159,13 +162,14 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
       for (int i = 0; i < dCGOIJMIJMG_.size(); i++) {
         output.writeUInt32NoTag(dCGOIJMIJMG_.getInt(i));
       }
-      if (gJFFLCIHPIN_ != false) {
-        output.writeBool(20001, gJFFLCIHPIN_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (gJFFLCIHPIN_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, gJFFLCIHPIN_);
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < dCGOIJMIJMG_.size(); i++) {
@@ -179,10 +183,6 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
               .computeInt32SizeNoTag(dataSize);
         }
         dCGOIJMIJMGMemoizedSerializedSize = dataSize;
-      }
-      if (gJFFLCIHPIN_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20001, gJFFLCIHPIN_);
       }
       return size;
     }
@@ -455,6 +455,11 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
               case 0:
                 done = true;
                 break;
+              case 48: {
+                gJFFLCIHPIN_ = input.readBool();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 48
               case 160000: {
                 int v = input.readUInt32();
                 ensureDCGOIJMIJMGIsMutable();
@@ -471,11 +476,6 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
                 input.popLimit(limit);
                 break;
               } // case 160002
-              case 160008: {
-                gJFFLCIHPIN_ = input.readBool();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -579,7 +579,7 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
 
       private boolean gJFFLCIHPIN_ ;
       /**
-       * <code>bool GJFFLCIHPIN = 20001;</code>
+       * <code>bool GJFFLCIHPIN = 6;</code>
        * @return The gJFFLCIHPIN.
        */
       @java.lang.Override
@@ -587,7 +587,7 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
         return gJFFLCIHPIN_;
       }
       /**
-       * <code>bool GJFFLCIHPIN = 20001;</code>
+       * <code>bool GJFFLCIHPIN = 6;</code>
        * @param value The gJFFLCIHPIN to set.
        * @return This builder for chaining.
        */
@@ -599,7 +599,7 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>bool GJFFLCIHPIN = 20001;</code>
+       * <code>bool GJFFLCIHPIN = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearGJFFLCIHPIN() {
@@ -674,10 +674,10 @@ public final class ClientDetectorResult extends com.google.protobuf.GeneratedFil
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\033_ClientDetectorResult.proto\"E\n\025_Client" +
-      "DetectorResult\022\025\n\013DCGOIJMIJMG\030\240\234\001 \003(\r\022\025\n" +
-      "\013GJFFLCIHPIN\030\241\234\001 \001(\010B\033\n\031emu.grasscutter." +
-      "net.protob\006proto3"
+      "\n\033_ClientDetectorResult.proto\"C\n\025_Client" +
+      "DetectorResult\022\025\n\013DCGOIJMIJMG\030\240\234\001 \003(\r\022\023\n" +
+      "\013GJFFLCIHPIN\030\006 \001(\010B\033\n\031emu.grasscutter.ne" +
+      "t.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

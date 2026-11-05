@@ -43,7 +43,7 @@ public final class LevelStateMachineComp extends com.google.protobuf.GeneratedFi
         getGACOKFFCBJOBytes();
 
     /**
-     * <code>int32 BIFLHAOJNJO = 20001;</code>
+     * <code>int32 BIFLHAOJNJO = 1;</code>
      * @return The bIFLHAOJNJO.
      */
     int getBIFLHAOJNJO();
@@ -130,10 +130,10 @@ public final class LevelStateMachineComp extends com.google.protobuf.GeneratedFi
       }
     }
 
-    public static final int BIFLHAOJNJO_FIELD_NUMBER = 20001;
+    public static final int BIFLHAOJNJO_FIELD_NUMBER = 1;
     private int bIFLHAOJNJO_ = 0;
     /**
-     * <code>int32 BIFLHAOJNJO = 20001;</code>
+     * <code>int32 BIFLHAOJNJO = 1;</code>
      * @return The bIFLHAOJNJO.
      */
     @java.lang.Override
@@ -155,22 +155,22 @@ public final class LevelStateMachineComp extends com.google.protobuf.GeneratedFi
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (bIFLHAOJNJO_ != 0) {
+        output.writeInt32(1, bIFLHAOJNJO_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gACOKFFCBJO_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 20000, gACOKFFCBJO_);
-      }
-      if (bIFLHAOJNJO_ != 0) {
-        output.writeInt32(20001, bIFLHAOJNJO_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gACOKFFCBJO_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(20000, gACOKFFCBJO_);
-      }
       if (bIFLHAOJNJO_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(20001, bIFLHAOJNJO_);
+          .computeInt32Size(1, bIFLHAOJNJO_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gACOKFFCBJO_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(20000, gACOKFFCBJO_);
       }
       return size;
     }
@@ -433,16 +433,16 @@ public final class LevelStateMachineComp extends com.google.protobuf.GeneratedFi
               case 0:
                 done = true;
                 break;
+              case 8: {
+                bIFLHAOJNJO_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 8
               case 160002: {
                 gACOKFFCBJO_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 160002
-              case 160008: {
-                bIFLHAOJNJO_ = input.readInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -534,7 +534,7 @@ public final class LevelStateMachineComp extends com.google.protobuf.GeneratedFi
 
       private int bIFLHAOJNJO_ ;
       /**
-       * <code>int32 BIFLHAOJNJO = 20001;</code>
+       * <code>int32 BIFLHAOJNJO = 1;</code>
        * @return The bIFLHAOJNJO.
        */
       @java.lang.Override
@@ -542,7 +542,7 @@ public final class LevelStateMachineComp extends com.google.protobuf.GeneratedFi
         return bIFLHAOJNJO_;
       }
       /**
-       * <code>int32 BIFLHAOJNJO = 20001;</code>
+       * <code>int32 BIFLHAOJNJO = 1;</code>
        * @param value The bIFLHAOJNJO to set.
        * @return This builder for chaining.
        */
@@ -554,7 +554,7 @@ public final class LevelStateMachineComp extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>int32 BIFLHAOJNJO = 20001;</code>
+       * <code>int32 BIFLHAOJNJO = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearBIFLHAOJNJO() {
@@ -629,10 +629,10 @@ public final class LevelStateMachineComp extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034_LevelStateMachineComp.proto\"F\n\026_Level" +
+      "\n\034_LevelStateMachineComp.proto\"D\n\026_Level" +
       "StateMachineComp\022\025\n\013GACOKFFCBJO\030\240\234\001 \001(\t\022" +
-      "\025\n\013BIFLHAOJNJO\030\241\234\001 \001(\005B\033\n\031emu.grasscutte" +
-      "r.net.protob\006proto3"
+      "\023\n\013BIFLHAOJNJO\030\001 \001(\005B\033\n\031emu.grasscutter." +
+      "net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

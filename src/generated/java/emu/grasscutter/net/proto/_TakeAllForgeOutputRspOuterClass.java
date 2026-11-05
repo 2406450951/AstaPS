@@ -103,17 +103,17 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
         int index);
 
     /**
-     * <code>repeated int32 unknown_list = 20002;</code>
+     * <code>repeated int32 unknown_list = 3;</code>
      * @return A list containing the unknownList.
      */
     java.util.List<java.lang.Integer> getUnknownListList();
     /**
-     * <code>repeated int32 unknown_list = 20002;</code>
+     * <code>repeated int32 unknown_list = 3;</code>
      * @return The count of unknownList.
      */
     int getUnknownListCount();
     /**
-     * <code>repeated int32 unknown_list = 20002;</code>
+     * <code>repeated int32 unknown_list = 3;</code>
      * @param index The index of the element to return.
      * @return The unknownList at the given index.
      */
@@ -294,12 +294,12 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
       return returnItemList_.get(index);
     }
 
-    public static final int UNKNOWN_LIST_FIELD_NUMBER = 20002;
+    public static final int UNKNOWN_LIST_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList unknownList_ =
         emptyIntList();
     /**
-     * <code>repeated int32 unknown_list = 20002;</code>
+     * <code>repeated int32 unknown_list = 3;</code>
      * @return A list containing the unknownList.
      */
     @java.lang.Override
@@ -308,14 +308,14 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
       return unknownList_;
     }
     /**
-     * <code>repeated int32 unknown_list = 20002;</code>
+     * <code>repeated int32 unknown_list = 3;</code>
      * @return The count of unknownList.
      */
     public int getUnknownListCount() {
       return unknownList_.size();
     }
     /**
-     * <code>repeated int32 unknown_list = 20002;</code>
+     * <code>repeated int32 unknown_list = 3;</code>
      * @param index The index of the element to return.
      * @return The unknownList at the given index.
      */
@@ -350,6 +350,13 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (getUnknownListList().size() > 0) {
+        output.writeUInt32NoTag(26);
+        output.writeUInt32NoTag(unknownListMemoizedSerializedSize);
+      }
+      for (int i = 0; i < unknownList_.size(); i++) {
+        output.writeInt32NoTag(unknownList_.getInt(i));
+      }
       if (retcode_ != 0) {
         output.writeInt32(12, retcode_);
       }
@@ -362,17 +369,24 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
       for (int i = 0; i < returnItemList_.size(); i++) {
         output.writeMessage(20001, returnItemList_.get(i));
       }
-      if (getUnknownListList().size() > 0) {
-        output.writeUInt32NoTag(160018);
-        output.writeUInt32NoTag(unknownListMemoizedSerializedSize);
-      }
-      for (int i = 0; i < unknownList_.size(); i++) {
-        output.writeInt32NoTag(unknownList_.getInt(i));
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < unknownList_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(unknownList_.getInt(i));
+        }
+        size += dataSize;
+        if (!getUnknownListList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        unknownListMemoizedSerializedSize = dataSize;
+      }
       if (retcode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(12, retcode_);
@@ -404,20 +418,6 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
             }
             size += 3 * count;
           }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < unknownList_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(unknownList_.getInt(i));
-        }
-        size += dataSize;
-        if (!getUnknownListList().isEmpty()) {
-          size += 3;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        unknownListMemoizedSerializedSize = dataSize;
-      }
       return size;
     }
     @java.lang.Override
@@ -836,6 +836,22 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
               case 0:
                 done = true;
                 break;
+              case 24: {
+                int v = input.readInt32();
+                ensureUnknownListIsMutable();
+                unknownList_.addInt(v);
+                break;
+              } // case 24
+              case 26: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureUnknownListIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  unknownList_.addInt(input.readInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 26
               case 96: {
                 retcode_ = input.readInt32();
                 bitField0_ |= 0x00000010;
@@ -880,22 +896,6 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
                 }
                 break;
               } // case 160010
-              case 160016: {
-                int v = input.readInt32();
-                ensureUnknownListIsMutable();
-                unknownList_.addInt(v);
-                break;
-              } // case 160016
-              case 160018: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                ensureUnknownListIsMutable();
-                while (input.getBytesUntilLimit() > 0) {
-                  unknownList_.addInt(input.readInt32());
-                }
-                input.popLimit(limit);
-                break;
-              } // case 160018
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1623,7 +1623,7 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
         bitField0_ |= 0x00000008;
       }
       /**
-       * <code>repeated int32 unknown_list = 20002;</code>
+       * <code>repeated int32 unknown_list = 3;</code>
        * @return A list containing the unknownList.
        */
       public java.util.List<java.lang.Integer>
@@ -1632,14 +1632,14 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
         return unknownList_;
       }
       /**
-       * <code>repeated int32 unknown_list = 20002;</code>
+       * <code>repeated int32 unknown_list = 3;</code>
        * @return The count of unknownList.
        */
       public int getUnknownListCount() {
         return unknownList_.size();
       }
       /**
-       * <code>repeated int32 unknown_list = 20002;</code>
+       * <code>repeated int32 unknown_list = 3;</code>
        * @param index The index of the element to return.
        * @return The unknownList at the given index.
        */
@@ -1647,7 +1647,7 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
         return unknownList_.getInt(index);
       }
       /**
-       * <code>repeated int32 unknown_list = 20002;</code>
+       * <code>repeated int32 unknown_list = 3;</code>
        * @param index The index to set the value at.
        * @param value The unknownList to set.
        * @return This builder for chaining.
@@ -1662,7 +1662,7 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated int32 unknown_list = 20002;</code>
+       * <code>repeated int32 unknown_list = 3;</code>
        * @param value The unknownList to add.
        * @return This builder for chaining.
        */
@@ -1675,7 +1675,7 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated int32 unknown_list = 20002;</code>
+       * <code>repeated int32 unknown_list = 3;</code>
        * @param values The unknownList to add.
        * @return This builder for chaining.
        */
@@ -1689,7 +1689,7 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>repeated int32 unknown_list = 20002;</code>
+       * <code>repeated int32 unknown_list = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearUnknownList() {
@@ -1797,13 +1797,13 @@ public final class _TakeAllForgeOutputRspOuterClass extends com.google.protobuf.
   static {
     java.lang.String[] descriptorData = {
       "\n\034_TakeAllForgeOutputRsp.proto\032\016ItemHint" +
-      ".proto\"\272\001\n\026_TakeAllForgeOutputRsp\022%\n\020out" +
+      ".proto\"\270\001\n\026_TakeAllForgeOutputRsp\022%\n\020out" +
       "put_item_list\030\240\234\001 \003(\0132\t.ItemHint\022)\n\026extr" +
       "a_output_item_list\030\r \003(\0132\t.ItemHint\022%\n\020r" +
-      "eturn_item_list\030\241\234\001 \003(\0132\t.ItemHint\022\026\n\014un" +
-      "known_list\030\242\234\001 \003(\005\022\017\n\007retcode\030\014 \001(\005B=\n\031e" +
-      "mu.grasscutter.net.protoB _TakeAllForgeO" +
-      "utputRspOuterClassb\006proto3"
+      "eturn_item_list\030\241\234\001 \003(\0132\t.ItemHint\022\024\n\014un" +
+      "known_list\030\003 \003(\005\022\017\n\007retcode\030\014 \001(\005B=\n\031emu" +
+      ".grasscutter.net.protoB _TakeAllForgeOut" +
+      "putRspOuterClassb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

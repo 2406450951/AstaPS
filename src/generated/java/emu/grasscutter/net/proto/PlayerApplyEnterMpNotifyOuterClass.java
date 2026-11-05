@@ -52,7 +52,7 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
     int getSrcThreadIndex();
 
     /**
-     * <code>bool EEHKAIMJJDO = 20001;</code>
+     * <code>bool EEHKAIMJJDO = 2;</code>
      * @return The eEHKAIMJJDO.
      */
     boolean getEEHKAIMJJDO();
@@ -143,10 +143,10 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
       return srcThreadIndex_;
     }
 
-    public static final int EEHKAIMJJDO_FIELD_NUMBER = 20001;
+    public static final int EEHKAIMJJDO_FIELD_NUMBER = 2;
     private boolean eEHKAIMJJDO_ = false;
     /**
-     * <code>bool EEHKAIMJJDO = 20001;</code>
+     * <code>bool EEHKAIMJJDO = 2;</code>
      * @return The eEHKAIMJJDO.
      */
     @java.lang.Override
@@ -179,14 +179,14 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (eEHKAIMJJDO_ != false) {
+        output.writeBool(2, eEHKAIMJJDO_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(5, getSrcPlayerInfo());
       }
       if (srcThreadIndex_ != 0) {
         output.writeUInt32(20000, srcThreadIndex_);
-      }
-      if (eEHKAIMJJDO_ != false) {
-        output.writeBool(20001, eEHKAIMJJDO_);
       }
       if (srcAppId_ != 0) {
         output.writeUInt32(20002, srcAppId_);
@@ -195,6 +195,10 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (eEHKAIMJJDO_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, eEHKAIMJJDO_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getSrcPlayerInfo());
@@ -202,10 +206,6 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
       if (srcThreadIndex_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20000, srcThreadIndex_);
-      }
-      if (eEHKAIMJJDO_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20001, eEHKAIMJJDO_);
       }
       if (srcAppId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -513,6 +513,11 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
               case 0:
                 done = true;
                 break;
+              case 16: {
+                eEHKAIMJJDO_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 16
               case 42: {
                 input.readMessage(
                     internalGetSrcPlayerInfoFieldBuilder().getBuilder(),
@@ -525,11 +530,6 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
                 bitField0_ |= 0x00000002;
                 break;
               } // case 160000
-              case 160008: {
-                eEHKAIMJJDO_ = input.readBool();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160008
               case 160016: {
                 srcAppId_ = input.readUInt32();
                 bitField0_ |= 0x00000008;
@@ -705,7 +705,7 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
 
       private boolean eEHKAIMJJDO_ ;
       /**
-       * <code>bool EEHKAIMJJDO = 20001;</code>
+       * <code>bool EEHKAIMJJDO = 2;</code>
        * @return The eEHKAIMJJDO.
        */
       @java.lang.Override
@@ -713,7 +713,7 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
         return eEHKAIMJJDO_;
       }
       /**
-       * <code>bool EEHKAIMJJDO = 20001;</code>
+       * <code>bool EEHKAIMJJDO = 2;</code>
        * @param value The eEHKAIMJJDO to set.
        * @return This builder for chaining.
        */
@@ -725,7 +725,7 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
         return this;
       }
       /**
-       * <code>bool EEHKAIMJJDO = 20001;</code>
+       * <code>bool EEHKAIMJJDO = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearEEHKAIMJJDO() {
@@ -833,11 +833,11 @@ public final class PlayerApplyEnterMpNotifyOuterClass extends com.google.protobu
   static {
     java.lang.String[] descriptorData = {
       "\n\036PlayerApplyEnterMpNotify.proto\032\026Online" +
-      "PlayerInfo.proto\"\217\001\n\030PlayerApplyEnterMpN" +
+      "PlayerInfo.proto\"\215\001\n\030PlayerApplyEnterMpN" +
       "otify\022*\n\017src_player_info\030\005 \001(\0132\021.OnlineP" +
-      "layerInfo\022\032\n\020src_thread_index\030\240\234\001 \001(\r\022\025\n" +
-      "\013EEHKAIMJJDO\030\241\234\001 \001(\010\022\024\n\nsrc_app_id\030\242\234\001 \001" +
-      "(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
+      "layerInfo\022\032\n\020src_thread_index\030\240\234\001 \001(\r\022\023\n" +
+      "\013EEHKAIMJJDO\030\002 \001(\010\022\024\n\nsrc_app_id\030\242\234\001 \001(\r" +
+      "B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

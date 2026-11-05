@@ -37,7 +37,7 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
     int getLevelId();
 
     /**
-     * <code>bool OABFNCIAGMK = 20000;</code>
+     * <code>bool OABFNCIAGMK = 14;</code>
      * @return The oABFNCIAGMK.
      */
     boolean getOABFNCIAGMK();
@@ -95,10 +95,10 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
       return levelId_;
     }
 
-    public static final int OABFNCIAGMK_FIELD_NUMBER = 20000;
+    public static final int OABFNCIAGMK_FIELD_NUMBER = 14;
     private boolean oABFNCIAGMK_ = false;
     /**
-     * <code>bool OABFNCIAGMK = 20000;</code>
+     * <code>bool OABFNCIAGMK = 14;</code>
      * @return The oABFNCIAGMK.
      */
     @java.lang.Override
@@ -124,7 +124,7 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
         output.writeUInt32(1, levelId_);
       }
       if (oABFNCIAGMK_ != false) {
-        output.writeBool(20000, oABFNCIAGMK_);
+        output.writeBool(14, oABFNCIAGMK_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -136,7 +136,7 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
       }
       if (oABFNCIAGMK_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, oABFNCIAGMK_);
+          .computeBoolSize(14, oABFNCIAGMK_);
       }
       return size;
     }
@@ -403,11 +403,11 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
-              case 160000: {
+              case 112: {
                 oABFNCIAGMK_ = input.readBool();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160000
+              } // case 112
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -459,7 +459,7 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
 
       private boolean oABFNCIAGMK_ ;
       /**
-       * <code>bool OABFNCIAGMK = 20000;</code>
+       * <code>bool OABFNCIAGMK = 14;</code>
        * @return The oABFNCIAGMK.
        */
       @java.lang.Override
@@ -467,7 +467,7 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
         return oABFNCIAGMK_;
       }
       /**
-       * <code>bool OABFNCIAGMK = 20000;</code>
+       * <code>bool OABFNCIAGMK = 14;</code>
        * @param value The oABFNCIAGMK to set.
        * @return This builder for chaining.
        */
@@ -479,7 +479,7 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>bool OABFNCIAGMK = 20000;</code>
+       * <code>bool OABFNCIAGMK = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearOABFNCIAGMK() {
@@ -554,10 +554,10 @@ public final class ThemeParkParkourSettleInfo extends com.google.protobuf.Genera
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n!_ThemeParkParkourSettleInfo.proto\"F\n\033_" +
+      "\n!_ThemeParkParkourSettleInfo.proto\"D\n\033_" +
       "ThemeParkParkourSettleInfo\022\020\n\010level_id\030\001" +
-      " \001(\r\022\025\n\013OABFNCIAGMK\030\240\234\001 \001(\010B\033\n\031emu.grass" +
-      "cutter.net.protob\006proto3"
+      " \001(\r\022\023\n\013OABFNCIAGMK\030\016 \001(\010B\033\n\031emu.grasscu" +
+      "tter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

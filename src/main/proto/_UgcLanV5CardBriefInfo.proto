@@ -15,7 +15,7 @@ message _UgcLanV5CardBriefInfo {
   bool is_liked = 8;
   bool is_stored = 11;
   uint32 save_time = 6;
-  uint32 BHBJOKCFMPN = 20002;
+  uint32 BHBJOKCFMPN = 10;
   uint32 slot_id = 1;
-  uint32 PNLPELDJLFL = 20003;
+  uint32 PNLPELDJLFL = 7;
 }

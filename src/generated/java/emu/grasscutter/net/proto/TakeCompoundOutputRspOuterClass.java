@@ -55,17 +55,17 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         int index);
 
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 11;</code>
      * @return A list containing the aNAMNOCEICO.
      */
     java.util.List<java.lang.Integer> getANAMNOCEICOList();
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 11;</code>
      * @return The count of aNAMNOCEICO.
      */
     int getANAMNOCEICOCount();
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 11;</code>
      * @param index The index of the element to return.
      * @return The aNAMNOCEICO at the given index.
      */
@@ -162,12 +162,12 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
       return itemList_.get(index);
     }
 
-    public static final int ANAMNOCEICO_FIELD_NUMBER = 20000;
+    public static final int ANAMNOCEICO_FIELD_NUMBER = 11;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList aNAMNOCEICO_ =
         emptyIntList();
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 11;</code>
      * @return A list containing the aNAMNOCEICO.
      */
     @java.lang.Override
@@ -176,14 +176,14 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
       return aNAMNOCEICO_;
     }
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 11;</code>
      * @return The count of aNAMNOCEICO.
      */
     public int getANAMNOCEICOCount() {
       return aNAMNOCEICO_.size();
     }
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 11;</code>
      * @param index The index of the element to return.
      * @return The aNAMNOCEICO at the given index.
      */
@@ -225,7 +225,7 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         output.writeInt32(8, retcode_);
       }
       if (getANAMNOCEICOList().size() > 0) {
-        output.writeUInt32NoTag(160002);
+        output.writeUInt32NoTag(90);
         output.writeUInt32NoTag(aNAMNOCEICOMemoizedSerializedSize);
       }
       for (int i = 0; i < aNAMNOCEICO_.size(); i++) {
@@ -256,7 +256,7 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         }
         size += dataSize;
         if (!getANAMNOCEICOList().isEmpty()) {
-          size += 3;
+          size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
@@ -602,13 +602,13 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
                 bitField0_ |= 0x00000004;
                 break;
               } // case 64
-              case 160000: {
+              case 88: {
                 int v = input.readInt32();
                 ensureANAMNOCEICOIsMutable();
                 aNAMNOCEICO_.addInt(v);
                 break;
-              } // case 160000
-              case 160002: {
+              } // case 88
+              case 90: {
                 int length = input.readRawVarint32();
                 int limit = input.pushLimit(length);
                 ensureANAMNOCEICOIsMutable();
@@ -617,7 +617,7 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
                 }
                 input.popLimit(limit);
                 break;
-              } // case 160002
+              } // case 90
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -877,7 +877,7 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         bitField0_ |= 0x00000002;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 11;</code>
        * @return A list containing the aNAMNOCEICO.
        */
       public java.util.List<java.lang.Integer>
@@ -886,14 +886,14 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         return aNAMNOCEICO_;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 11;</code>
        * @return The count of aNAMNOCEICO.
        */
       public int getANAMNOCEICOCount() {
         return aNAMNOCEICO_.size();
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 11;</code>
        * @param index The index of the element to return.
        * @return The aNAMNOCEICO at the given index.
        */
@@ -901,7 +901,7 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         return aNAMNOCEICO_.getInt(index);
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 11;</code>
        * @param index The index to set the value at.
        * @param value The aNAMNOCEICO to set.
        * @return This builder for chaining.
@@ -916,7 +916,7 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 11;</code>
        * @param value The aNAMNOCEICO to add.
        * @return This builder for chaining.
        */
@@ -929,7 +929,7 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 11;</code>
        * @param values The aNAMNOCEICO to add.
        * @return This builder for chaining.
        */
@@ -943,7 +943,7 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearANAMNOCEICO() {
@@ -1051,10 +1051,10 @@ public final class TakeCompoundOutputRspOuterClass extends com.google.protobuf.G
   static {
     java.lang.String[] descriptorData = {
       "\n\033TakeCompoundOutputRsp.proto\032\017ItemParam" +
-      ".proto\"^\n\025TakeCompoundOutputRsp\022\035\n\titem_" +
-      "list\030\005 \003(\0132\n.ItemParam\022\025\n\013ANAMNOCEICO\030\240\234" +
-      "\001 \003(\005\022\017\n\007retcode\030\010 \001(\005B\033\n\031emu.grasscutte" +
-      "r.net.protob\006proto3"
+      ".proto\"\\\n\025TakeCompoundOutputRsp\022\035\n\titem_" +
+      "list\030\005 \003(\0132\n.ItemParam\022\023\n\013ANAMNOCEICO\030\013 " +
+      "\003(\005\022\017\n\007retcode\030\010 \001(\005B\033\n\031emu.grasscutter." +
+      "net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

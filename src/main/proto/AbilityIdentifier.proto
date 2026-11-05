@@ -5,7 +5,7 @@ option java_package = "emu.grasscutter.net.proto";
 import "LJGEHMILKEM.proto";
 
 message AbilityIdentifier {
-  LJGEHMILKEM FPDAONBEBHK = 20000;
+  LJGEHMILKEM FPDAONBEBHK = 1;
   int32 local_id = 8;
   uint32 NBHCDKPBBOI = 20001;
   uint32 DLLKGHINFBJ = 20002;

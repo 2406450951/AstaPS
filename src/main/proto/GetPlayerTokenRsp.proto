@@ -17,7 +17,7 @@ message GetPlayerTokenRsp {
   string secret_key = 8;
   string account_uid = 5;
   string token = 6;
-  string GGKODKLBGFD = 20000;
+  string GGKODKLBGFD = 1745;
   string server_rand_key = 477;
   string game_biz = 410;
   string psn_id = 954;

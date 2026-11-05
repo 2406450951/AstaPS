@@ -31,7 +31,7 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 kill_elite_monster_num = 20000;</code>
+     * <code>uint32 kill_elite_monster_num = 6;</code>
      * @return The killEliteMonsterNum.
      */
     int getKillEliteMonsterNum();
@@ -67,7 +67,7 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
     int getLevelId();
 
     /**
-     * <code>uint32 kill_normal_mosnter_num = 20002;</code>
+     * <code>uint32 kill_normal_mosnter_num = 5;</code>
      * @return The killNormalMosnterNum.
      */
     int getKillNormalMosnterNum();
@@ -114,10 +114,10 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
               emu.grasscutter.net.proto.CrystalLinkDungeonSettleInfoOuterClass.CrystalLinkDungeonSettleInfo.class, emu.grasscutter.net.proto.CrystalLinkDungeonSettleInfoOuterClass.CrystalLinkDungeonSettleInfo.Builder.class);
     }
 
-    public static final int KILL_ELITE_MONSTER_NUM_FIELD_NUMBER = 20000;
+    public static final int KILL_ELITE_MONSTER_NUM_FIELD_NUMBER = 6;
     private int killEliteMonsterNum_ = 0;
     /**
-     * <code>uint32 kill_elite_monster_num = 20000;</code>
+     * <code>uint32 kill_elite_monster_num = 6;</code>
      * @return The killEliteMonsterNum.
      */
     @java.lang.Override
@@ -180,10 +180,10 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
       return levelId_;
     }
 
-    public static final int KILL_NORMAL_MOSNTER_NUM_FIELD_NUMBER = 20002;
+    public static final int KILL_NORMAL_MOSNTER_NUM_FIELD_NUMBER = 5;
     private int killNormalMosnterNum_ = 0;
     /**
-     * <code>uint32 kill_normal_mosnter_num = 20002;</code>
+     * <code>uint32 kill_normal_mosnter_num = 5;</code>
      * @return The killNormalMosnterNum.
      */
     @java.lang.Override
@@ -217,14 +217,14 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
       if (isNewRecord_ != false) {
         output.writeBool(4, isNewRecord_);
       }
+      if (killNormalMosnterNum_ != 0) {
+        output.writeUInt32(5, killNormalMosnterNum_);
+      }
       if (killEliteMonsterNum_ != 0) {
-        output.writeUInt32(20000, killEliteMonsterNum_);
+        output.writeUInt32(6, killEliteMonsterNum_);
       }
       if (fCNCJGEEOPL_ != false) {
         output.writeBool(20001, fCNCJGEEOPL_);
-      }
-      if (killNormalMosnterNum_ != 0) {
-        output.writeUInt32(20002, killNormalMosnterNum_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -246,17 +246,17 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(4, isNewRecord_);
       }
+      if (killNormalMosnterNum_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, killNormalMosnterNum_);
+      }
       if (killEliteMonsterNum_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, killEliteMonsterNum_);
+          .computeUInt32Size(6, killEliteMonsterNum_);
       }
       if (fCNCJGEEOPL_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20001, fCNCJGEEOPL_);
-      }
-      if (killNormalMosnterNum_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20002, killNormalMosnterNum_);
       }
       return size;
     }
@@ -594,21 +594,21 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
                 bitField0_ |= 0x00000010;
                 break;
               } // case 32
-              case 160000: {
+              case 40: {
+                killNormalMosnterNum_ = input.readUInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 40
+              case 48: {
                 killEliteMonsterNum_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 48
               case 160008: {
                 fCNCJGEEOPL_ = input.readBool();
                 bitField0_ |= 0x00000008;
                 break;
               } // case 160008
-              case 160016: {
-                killNormalMosnterNum_ = input.readUInt32();
-                bitField0_ |= 0x00000040;
-                break;
-              } // case 160016
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -628,7 +628,7 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
 
       private int killEliteMonsterNum_ ;
       /**
-       * <code>uint32 kill_elite_monster_num = 20000;</code>
+       * <code>uint32 kill_elite_monster_num = 6;</code>
        * @return The killEliteMonsterNum.
        */
       @java.lang.Override
@@ -636,7 +636,7 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
         return killEliteMonsterNum_;
       }
       /**
-       * <code>uint32 kill_elite_monster_num = 20000;</code>
+       * <code>uint32 kill_elite_monster_num = 6;</code>
        * @param value The killEliteMonsterNum to set.
        * @return This builder for chaining.
        */
@@ -648,7 +648,7 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
         return this;
       }
       /**
-       * <code>uint32 kill_elite_monster_num = 20000;</code>
+       * <code>uint32 kill_elite_monster_num = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearKillEliteMonsterNum() {
@@ -820,7 +820,7 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
 
       private int killNormalMosnterNum_ ;
       /**
-       * <code>uint32 kill_normal_mosnter_num = 20002;</code>
+       * <code>uint32 kill_normal_mosnter_num = 5;</code>
        * @return The killNormalMosnterNum.
        */
       @java.lang.Override
@@ -828,7 +828,7 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
         return killNormalMosnterNum_;
       }
       /**
-       * <code>uint32 kill_normal_mosnter_num = 20002;</code>
+       * <code>uint32 kill_normal_mosnter_num = 5;</code>
        * @param value The killNormalMosnterNum to set.
        * @return This builder for chaining.
        */
@@ -840,7 +840,7 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
         return this;
       }
       /**
-       * <code>uint32 kill_normal_mosnter_num = 20002;</code>
+       * <code>uint32 kill_normal_mosnter_num = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearKillNormalMosnterNum() {
@@ -915,14 +915,13 @@ public final class CrystalLinkDungeonSettleInfoOuterClass extends com.google.pro
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\"CrystalLinkDungeonSettleInfo.proto\"\317\001\n" +
-      "\034CrystalLinkDungeonSettleInfo\022 \n\026kill_el" +
-      "ite_monster_num\030\240\234\001 \001(\r\022\025\n\rdifficulty_id" +
-      "\030\002 \001(\r\022\023\n\013final_score\030\003 \001(\r\022\025\n\013FCNCJGEEO" +
-      "PL\030\241\234\001 \001(\010\022\025\n\ris_new_record\030\004 \001(\010\022\020\n\010lev" +
-      "el_id\030\001 \001(\r\022!\n\027kill_normal_mosnter_num\030\242" +
-      "\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006pro" +
-      "to3"
+      "\n\"CrystalLinkDungeonSettleInfo.proto\"\313\001\n" +
+      "\034CrystalLinkDungeonSettleInfo\022\036\n\026kill_el" +
+      "ite_monster_num\030\006 \001(\r\022\025\n\rdifficulty_id\030\002" +
+      " \001(\r\022\023\n\013final_score\030\003 \001(\r\022\025\n\013FCNCJGEEOPL" +
+      "\030\241\234\001 \001(\010\022\025\n\ris_new_record\030\004 \001(\010\022\020\n\010level" +
+      "_id\030\001 \001(\r\022\037\n\027kill_normal_mosnter_num\030\005 \001" +
+      "(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

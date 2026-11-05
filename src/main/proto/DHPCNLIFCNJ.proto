@@ -19,10 +19,10 @@ message DHPCNLIFCNJ {
   }
   repeated _ActivityAvatarInfo CKFFOEMBBGD = 20000;
   repeated _ActivityAvatarInfo KJGGFDABONJ = 20001;
-  DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 20002;
+  DHPCNLIFCNJ.DGJFGKJJDAK MFJAFOAHPDA = 9;
   repeated DHPCNLIFCNJ.NFPOBMPOEKA CIFCCNMBLFA = 20003;
   bool is_open = 1;
-  bool DAGLJBFPHEK = 20004;
+  bool DAGLJBFPHEK = 14;
   bool is_finish = 8;
   uint32 cost_time = 4;
   uint32 level_id = 2;

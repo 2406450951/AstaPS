@@ -113,7 +113,7 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
         int index);
 
     /**
-     * <code>bool LBCGNOOJDIC = 20004;</code>
+     * <code>bool LBCGNOOJDIC = 13;</code>
      * @return The lBCGNOOJDIC.
      */
     boolean getLBCGNOOJDIC();
@@ -306,10 +306,10 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
       return eDECCPJFDAF_.get(index);
     }
 
-    public static final int LBCGNOOJDIC_FIELD_NUMBER = 20004;
+    public static final int LBCGNOOJDIC_FIELD_NUMBER = 13;
     private boolean lBCGNOOJDIC_ = false;
     /**
-     * <code>bool LBCGNOOJDIC = 20004;</code>
+     * <code>bool LBCGNOOJDIC = 13;</code>
      * @return The lBCGNOOJDIC.
      */
     @java.lang.Override
@@ -332,6 +332,9 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (lBCGNOOJDIC_ != false) {
+        output.writeBool(13, lBCGNOOJDIC_);
+      }
       for (int i = 0; i < lINFLLHOJEE_.size(); i++) {
         output.writeMessage(20000, lINFLLHOJEE_.get(i));
       }
@@ -352,13 +355,14 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
       for (int i = 0; i < eDECCPJFDAF_.size(); i++) {
         output.writeMessage(20003, eDECCPJFDAF_.get(i));
       }
-      if (lBCGNOOJDIC_ != false) {
-        output.writeBool(20004, lBCGNOOJDIC_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (lBCGNOOJDIC_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(13, lBCGNOOJDIC_);
+      }
 
           {
             final int count = lINFLLHOJEE_.size();
@@ -405,10 +409,6 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
             }
             size += 3 * count;
           }
-      if (lBCGNOOJDIC_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20004, lBCGNOOJDIC_);
-      }
       return size;
     }
     @java.lang.Override
@@ -802,6 +802,11 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
               case 0:
                 done = true;
                 break;
+              case 104: {
+                lBCGNOOJDIC_ = input.readBool();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 104
               case 160002: {
                 emu.grasscutter.net.proto.BCMGBIKCCFBOuterClass.BCMGBIKCCFB m =
                     input.readMessage(
@@ -860,11 +865,6 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
                 }
                 break;
               } // case 160026
-              case 160032: {
-                lBCGNOOJDIC_ = input.readBool();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160032
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1520,7 +1520,7 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
 
       private boolean lBCGNOOJDIC_ ;
       /**
-       * <code>bool LBCGNOOJDIC = 20004;</code>
+       * <code>bool LBCGNOOJDIC = 13;</code>
        * @return The lBCGNOOJDIC.
        */
       @java.lang.Override
@@ -1528,7 +1528,7 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
         return lBCGNOOJDIC_;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20004;</code>
+       * <code>bool LBCGNOOJDIC = 13;</code>
        * @param value The lBCGNOOJDIC to set.
        * @return This builder for chaining.
        */
@@ -1540,7 +1540,7 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>bool LBCGNOOJDIC = 20004;</code>
+       * <code>bool LBCGNOOJDIC = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearLBCGNOOJDIC() {
@@ -1616,12 +1616,12 @@ public final class HideAndSeekV4ActivityDetailInfo extends com.google.protobuf.G
   static {
     java.lang.String[] descriptorData = {
       "\n&_HideAndSeekV4ActivityDetailInfo.proto" +
-      "\032\021BCMGBIKCCFB.proto\"\261\001\n _HideAndSeekV4Ac" +
+      "\032\021BCMGBIKCCFB.proto\"\257\001\n _HideAndSeekV4Ac" +
       "tivityDetailInfo\022#\n\013LINFLLHOJEE\030\240\234\001 \003(\0132" +
       "\014.BCMGBIKCCFB\022\025\n\013BBKJJPHJADK\030\241\234\001 \003(\r\022\025\n\013" +
       "KNDGADIAKME\030\242\234\001 \003(\r\022#\n\013EDECCPJFDAF\030\243\234\001 \003" +
-      "(\0132\014.BCMGBIKCCFB\022\025\n\013LBCGNOOJDIC\030\244\234\001 \001(\010B" +
-      "\033\n\031emu.grasscutter.net.protob\006proto3"
+      "(\0132\014.BCMGBIKCCFB\022\023\n\013LBCGNOOJDIC\030\r \001(\010B\033\n" +
+      "\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

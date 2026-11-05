@@ -7,7 +7,7 @@ import "MDGFOMDDDEF.proto";
 import "Vector.proto";
 
 message _GadgetBase {
-  Vector OLIPGCONBJC = 20000;
+  Vector OLIPGCONBJC = 3;
   repeated JGFGJGJGLPD FAHAJIEGCEP = 20001;
   MDGFOMDDDEF JPIGMAONIDJ = 20002;
   uint32 GACKKCOFACA = 20003;

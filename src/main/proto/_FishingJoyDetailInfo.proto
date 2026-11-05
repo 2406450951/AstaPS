@@ -4,6 +4,6 @@ option java_package = "emu.grasscutter.net.proto";
 
 message _FishingJoyDetailInfo {
   bool FPKBKGBKGEG = 20000;
-  bool LBCGNOOJDIC = 20001;
-  uint32 PLEDFNKONLB = 20002;
+  bool LBCGNOOJDIC = 2;
+  uint32 PLEDFNKONLB = 7;
 }

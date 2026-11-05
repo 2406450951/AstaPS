@@ -55,12 +55,12 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
         int index);
 
     /**
-     * <code>string PANOOKHHBPD = 20001;</code>
+     * <code>string PANOOKHHBPD = 501;</code>
      * @return The pANOOKHHBPD.
      */
     java.lang.String getPANOOKHHBPD();
     /**
-     * <code>string PANOOKHHBPD = 20001;</code>
+     * <code>string PANOOKHHBPD = 501;</code>
      * @return The bytes for pANOOKHHBPD.
      */
     com.google.protobuf.ByteString
@@ -181,11 +181,11 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
       return nBGLBHHCFKH_.get(index);
     }
 
-    public static final int PANOOKHHBPD_FIELD_NUMBER = 20001;
+    public static final int PANOOKHHBPD_FIELD_NUMBER = 501;
     @SuppressWarnings("serial")
     private volatile java.lang.Object pANOOKHHBPD_ = "";
     /**
-     * <code>string PANOOKHHBPD = 20001;</code>
+     * <code>string PANOOKHHBPD = 501;</code>
      * @return The pANOOKHHBPD.
      */
     @java.lang.Override
@@ -202,7 +202,7 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
       }
     }
     /**
-     * <code>string PANOOKHHBPD = 20001;</code>
+     * <code>string PANOOKHHBPD = 501;</code>
      * @return The bytes for pANOOKHHBPD.
      */
     @java.lang.Override
@@ -289,11 +289,11 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(pANOOKHHBPD_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 501, pANOOKHHBPD_);
+      }
       for (int i = 0; i < nBGLBHHCFKH_.size(); i++) {
         output.writeMessage(20000, nBGLBHHCFKH_.get(i));
-      }
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(pANOOKHHBPD_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 20001, pANOOKHHBPD_);
       }
       if (jONFNJGGCOE_ != false) {
         output.writeBool(20002, jONFNJGGCOE_);
@@ -314,6 +314,9 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(pANOOKHHBPD_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(501, pANOOKHHBPD_);
+      }
 
           {
             final int count = nBGLBHHCFKH_.size();
@@ -323,9 +326,6 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
             }
             size += 3 * count;
           }
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(pANOOKHHBPD_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(20001, pANOOKHHBPD_);
-      }
       if (jONFNJGGCOE_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20002, jONFNJGGCOE_);
@@ -706,6 +706,11 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
               case 0:
                 done = true;
                 break;
+              case 4010: {
+                pANOOKHHBPD_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 4010
               case 160002: {
                 emu.grasscutter.net.proto.HOIHHDKMFIFOuterClass.HOIHHDKMFIF m =
                     input.readMessage(
@@ -719,11 +724,6 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
                 }
                 break;
               } // case 160002
-              case 160010: {
-                pANOOKHHBPD_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160010
               case 160016: {
                 jONFNJGGCOE_ = input.readBool();
                 bitField0_ |= 0x00000004;
@@ -1002,7 +1002,7 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
 
       private java.lang.Object pANOOKHHBPD_ = "";
       /**
-       * <code>string PANOOKHHBPD = 20001;</code>
+       * <code>string PANOOKHHBPD = 501;</code>
        * @return The pANOOKHHBPD.
        */
       public java.lang.String getPANOOKHHBPD() {
@@ -1018,7 +1018,7 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
         }
       }
       /**
-       * <code>string PANOOKHHBPD = 20001;</code>
+       * <code>string PANOOKHHBPD = 501;</code>
        * @return The bytes for pANOOKHHBPD.
        */
       public com.google.protobuf.ByteString
@@ -1035,7 +1035,7 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
         }
       }
       /**
-       * <code>string PANOOKHHBPD = 20001;</code>
+       * <code>string PANOOKHHBPD = 501;</code>
        * @param value The pANOOKHHBPD to set.
        * @return This builder for chaining.
        */
@@ -1048,7 +1048,7 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>string PANOOKHHBPD = 20001;</code>
+       * <code>string PANOOKHHBPD = 501;</code>
        * @return This builder for chaining.
        */
       public Builder clearPANOOKHHBPD() {
@@ -1058,7 +1058,7 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>string PANOOKHHBPD = 20001;</code>
+       * <code>string PANOOKHHBPD = 501;</code>
        * @param value The bytes for pANOOKHHBPD to set.
        * @return This builder for chaining.
        */
@@ -1297,13 +1297,13 @@ public final class DBMABEGBDENOuterClass extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021DBMABEGBDEN.proto\032\021HOIHHDKMFIF.proto\"\274" +
+      "\n\021DBMABEGBDEN.proto\032\021HOIHHDKMFIF.proto\"\273" +
       "\001\n\013DBMABEGBDEN\022#\n\013NBGLBHHCFKH\030\240\234\001 \003(\0132\014." +
-      "HOIHHDKMFIF\022\025\n\013PANOOKHHBPD\030\241\234\001 \001(\t\022\025\n\013JO" +
-      "NFNJGGCOE\030\242\234\001 \001(\010\022\025\n\013FNLCEOICIDK\030\243\234\001 \001(\010" +
-      "\022\025\n\013PACIOEOBAED\030\244\234\001 \001(\010\022\025\n\013AKCFELJHHJG\030\245" +
-      "\234\001 \001(\r\022\025\n\013FPFMABFBJJM\030\246\234\001 \001(\rB\033\n\031emu.gra" +
-      "sscutter.net.protob\006proto3"
+      "HOIHHDKMFIF\022\024\n\013PANOOKHHBPD\030\365\003 \001(\t\022\025\n\013JON" +
+      "FNJGGCOE\030\242\234\001 \001(\010\022\025\n\013FNLCEOICIDK\030\243\234\001 \001(\010\022" +
+      "\025\n\013PACIOEOBAED\030\244\234\001 \001(\010\022\025\n\013AKCFELJHHJG\030\245\234" +
+      "\001 \001(\r\022\025\n\013FPFMABFBJJM\030\246\234\001 \001(\rB\033\n\031emu.gras" +
+      "scutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

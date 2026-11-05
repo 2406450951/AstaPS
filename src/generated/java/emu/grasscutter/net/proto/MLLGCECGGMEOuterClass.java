@@ -61,7 +61,7 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
     boolean getIsOpen();
 
     /**
-     * <code>uint32 KHJHFLNMNPC = 20001;</code>
+     * <code>uint32 KHJHFLNMNPC = 5;</code>
      * @return The kHJHFLNMNPC.
      */
     int getKHJHFLNMNPC();
@@ -161,10 +161,10 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
       return isOpen_;
     }
 
-    public static final int KHJHFLNMNPC_FIELD_NUMBER = 20001;
+    public static final int KHJHFLNMNPC_FIELD_NUMBER = 5;
     private int kHJHFLNMNPC_ = 0;
     /**
-     * <code>uint32 KHJHFLNMNPC = 20001;</code>
+     * <code>uint32 KHJHFLNMNPC = 5;</code>
      * @return The kHJHFLNMNPC.
      */
     @java.lang.Override
@@ -186,19 +186,23 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (kHJHFLNMNPC_ != 0) {
+        output.writeUInt32(5, kHJHFLNMNPC_);
+      }
       if (isOpen_ != false) {
         output.writeBool(14, isOpen_);
       }
       for (int i = 0; i < iOEDAJLIHPC_.size(); i++) {
         output.writeMessage(20000, iOEDAJLIHPC_.get(i));
       }
-      if (kHJHFLNMNPC_ != 0) {
-        output.writeUInt32(20001, kHJHFLNMNPC_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (kHJHFLNMNPC_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, kHJHFLNMNPC_);
+      }
       if (isOpen_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(14, isOpen_);
@@ -212,10 +216,6 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
             }
             size += 3 * count;
           }
-      if (kHJHFLNMNPC_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, kHJHFLNMNPC_);
-      }
       return size;
     }
     @java.lang.Override
@@ -528,6 +528,11 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
               case 0:
                 done = true;
                 break;
+              case 40: {
+                kHJHFLNMNPC_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 40
               case 112: {
                 isOpen_ = input.readBool();
                 bitField0_ |= 0x00000002;
@@ -546,11 +551,6 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
                 }
                 break;
               } // case 160002
-              case 160008: {
-                kHJHFLNMNPC_ = input.readUInt32();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -836,7 +836,7 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
 
       private int kHJHFLNMNPC_ ;
       /**
-       * <code>uint32 KHJHFLNMNPC = 20001;</code>
+       * <code>uint32 KHJHFLNMNPC = 5;</code>
        * @return The kHJHFLNMNPC.
        */
       @java.lang.Override
@@ -844,7 +844,7 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
         return kHJHFLNMNPC_;
       }
       /**
-       * <code>uint32 KHJHFLNMNPC = 20001;</code>
+       * <code>uint32 KHJHFLNMNPC = 5;</code>
        * @param value The kHJHFLNMNPC to set.
        * @return This builder for chaining.
        */
@@ -856,7 +856,7 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 KHJHFLNMNPC = 20001;</code>
+       * <code>uint32 KHJHFLNMNPC = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearKHJHFLNMNPC() {
@@ -931,11 +931,11 @@ public final class MLLGCECGGMEOuterClass extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021MLLGCECGGME.proto\032\021BHJLAGLDHCO.proto\"Z" +
+      "\n\021MLLGCECGGME.proto\032\021BHJLAGLDHCO.proto\"X" +
       "\n\013MLLGCECGGME\022#\n\013IOEDAJLIHPC\030\240\234\001 \003(\0132\014.B" +
-      "HJLAGLDHCO\022\017\n\007is_open\030\016 \001(\010\022\025\n\013KHJHFLNMN" +
-      "PC\030\241\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob" +
-      "\006proto3"
+      "HJLAGLDHCO\022\017\n\007is_open\030\016 \001(\010\022\023\n\013KHJHFLNMN" +
+      "PC\030\005 \001(\rB\033\n\031emu.grasscutter.net.protob\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

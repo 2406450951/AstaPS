@@ -31,41 +31,41 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     java.util.List<emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE> 
         getKMMMLDEIBGEList();
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE getKMMMLDEIBGE(int index);
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     int getKMMMLDEIBGECount();
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGEOrBuilder> 
         getKMMMLDEIBGEOrBuilderList();
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGEOrBuilder getKMMMLDEIBGEOrBuilder(
         int index);
 
     /**
-     * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+     * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
      * @return Whether the kHLECDECHLM field is set.
      */
     boolean hasKHLECDECHLM();
     /**
-     * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+     * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
      * @return The kHLECDECHLM.
      */
     emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN getKHLECDECHLM();
     /**
-     * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+     * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
      */
     emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDNOrBuilder getKHLECDECHLMOrBuilder();
 
@@ -88,7 +88,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
     boolean getOLKMOICPKBG();
 
     /**
-     * <code>float KLPDNIINGMM = 20005;</code>
+     * <code>float KLPDNIINGMM = 1;</code>
      * @return The kLPDNIINGMM.
      */
     float getKLPDNIINGMM();
@@ -143,18 +143,18 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
     }
 
     private int bitField0_;
-    public static final int KMMMLDEIBGE_FIELD_NUMBER = 20000;
+    public static final int KMMMLDEIBGE_FIELD_NUMBER = 6;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE> kMMMLDEIBGE_;
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE> getKMMMLDEIBGEList() {
       return kMMMLDEIBGE_;
     }
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGEOrBuilder> 
@@ -162,21 +162,21 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       return kMMMLDEIBGE_;
     }
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     @java.lang.Override
     public int getKMMMLDEIBGECount() {
       return kMMMLDEIBGE_.size();
     }
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE getKMMMLDEIBGE(int index) {
       return kMMMLDEIBGE_.get(index);
     }
     /**
-     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+     * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGEOrBuilder getKMMMLDEIBGEOrBuilder(
@@ -184,10 +184,10 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       return kMMMLDEIBGE_.get(index);
     }
 
-    public static final int KHLECDECHLM_FIELD_NUMBER = 20001;
+    public static final int KHLECDECHLM_FIELD_NUMBER = 7;
     private emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN kHLECDECHLM_;
     /**
-     * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+     * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
      * @return Whether the kHLECDECHLM field is set.
      */
     @java.lang.Override
@@ -195,7 +195,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+     * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
      * @return The kHLECDECHLM.
      */
     @java.lang.Override
@@ -203,7 +203,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       return kHLECDECHLM_ == null ? emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN.getDefaultInstance() : kHLECDECHLM_;
     }
     /**
-     * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+     * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDNOrBuilder getKHLECDECHLMOrBuilder() {
@@ -243,10 +243,10 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       return oLKMOICPKBG_;
     }
 
-    public static final int KLPDNIINGMM_FIELD_NUMBER = 20005;
+    public static final int KLPDNIINGMM_FIELD_NUMBER = 1;
     private float kLPDNIINGMM_ = 0F;
     /**
-     * <code>float KLPDNIINGMM = 20005;</code>
+     * <code>float KLPDNIINGMM = 1;</code>
      * @return The kLPDNIINGMM.
      */
     @java.lang.Override
@@ -279,11 +279,14 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (java.lang.Float.floatToRawIntBits(kLPDNIINGMM_) != 0) {
+        output.writeFloat(1, kLPDNIINGMM_);
+      }
       for (int i = 0; i < kMMMLDEIBGE_.size(); i++) {
-        output.writeMessage(20000, kMMMLDEIBGE_.get(i));
+        output.writeMessage(6, kMMMLDEIBGE_.get(i));
       }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20001, getKHLECDECHLM());
+        output.writeMessage(7, getKHLECDECHLM());
       }
       if (mNFGHFFJKFH_ != 0) {
         output.writeInt32(20002, mNFGHFFJKFH_);
@@ -294,9 +297,6 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       if (oLKMOICPKBG_ != false) {
         output.writeBool(20004, oLKMOICPKBG_);
       }
-      if (java.lang.Float.floatToRawIntBits(kLPDNIINGMM_) != 0) {
-        output.writeFloat(20005, kLPDNIINGMM_);
-      }
       if (java.lang.Float.floatToRawIntBits(kEGCKDGDPGL_) != 0) {
         output.writeFloat(20006, kEGCKDGDPGL_);
       }
@@ -304,6 +304,10 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (java.lang.Float.floatToRawIntBits(kLPDNIINGMM_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(1, kLPDNIINGMM_);
+      }
 
           {
             final int count = kMMMLDEIBGE_.size();
@@ -311,11 +315,11 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
               size += com.google.protobuf.CodedOutputStream
                 .computeMessageSizeNoTag(kMMMLDEIBGE_.get(i));
             }
-            size += 3 * count;
+            size += 1 * count;
           }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20001, getKHLECDECHLM());
+          .computeMessageSize(7, getKHLECDECHLM());
       }
       if (mNFGHFFJKFH_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -328,10 +332,6 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       if (oLKMOICPKBG_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20004, oLKMOICPKBG_);
-      }
-      if (java.lang.Float.floatToRawIntBits(kLPDNIINGMM_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(20005, kLPDNIINGMM_);
       }
       if (java.lang.Float.floatToRawIntBits(kEGCKDGDPGL_) != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -719,7 +719,12 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 13: {
+                kLPDNIINGMM_ = input.readFloat();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 13
+              case 50: {
                 emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE m =
                     input.readMessage(
                         emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.parser(),
@@ -731,14 +736,14 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
                   kMMMLDEIBGEBuilder_.addMessage(m);
                 }
                 break;
-              } // case 160002
-              case 160010: {
+              } // case 50
+              case 58: {
                 input.readMessage(
                     internalGetKHLECDECHLMFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160010
+              } // case 58
               case 160016: {
                 mNFGHFFJKFH_ = input.readInt32();
                 bitField0_ |= 0x00000004;
@@ -754,11 +759,6 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000010;
                 break;
               } // case 160032
-              case 160045: {
-                kLPDNIINGMM_ = input.readFloat();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160045
               case 160053: {
                 kEGCKDGDPGL_ = input.readFloat();
                 bitField0_ |= 0x00000040;
@@ -794,7 +794,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
           emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE, emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.Builder, emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGEOrBuilder> kMMMLDEIBGEBuilder_;
 
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE> getKMMMLDEIBGEList() {
         if (kMMMLDEIBGEBuilder_ == null) {
@@ -804,7 +804,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public int getKMMMLDEIBGECount() {
         if (kMMMLDEIBGEBuilder_ == null) {
@@ -814,7 +814,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE getKMMMLDEIBGE(int index) {
         if (kMMMLDEIBGEBuilder_ == null) {
@@ -824,7 +824,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder setKMMMLDEIBGE(
           int index, emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE value) {
@@ -839,7 +839,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder setKMMMLDEIBGE(
           int index, emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.Builder builderForValue) {
@@ -853,7 +853,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder addKMMMLDEIBGE(emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE value) {
         if (kMMMLDEIBGEBuilder_ == null) {
@@ -867,7 +867,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder addKMMMLDEIBGE(
           int index, emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE value) {
@@ -882,7 +882,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder addKMMMLDEIBGE(
           emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.Builder builderForValue) {
@@ -896,7 +896,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder addKMMMLDEIBGE(
           int index, emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.Builder builderForValue) {
@@ -910,7 +910,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder addAllKMMMLDEIBGE(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE> values) {
@@ -925,7 +925,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder clearKMMMLDEIBGE() {
         if (kMMMLDEIBGEBuilder_ == null) {
@@ -938,7 +938,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public Builder removeKMMMLDEIBGE(int index) {
         if (kMMMLDEIBGEBuilder_ == null) {
@@ -951,14 +951,14 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.Builder getKMMMLDEIBGEBuilder(
           int index) {
         return internalGetKMMMLDEIBGEFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGEOrBuilder getKMMMLDEIBGEOrBuilder(
           int index) {
@@ -968,7 +968,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGEOrBuilder> 
            getKMMMLDEIBGEOrBuilderList() {
@@ -979,14 +979,14 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.Builder addKMMMLDEIBGEBuilder() {
         return internalGetKMMMLDEIBGEFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.getDefaultInstance());
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.Builder addKMMMLDEIBGEBuilder(
           int index) {
@@ -994,7 +994,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
             index, emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.getDefaultInstance());
       }
       /**
-       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 20000;</code>
+       * <code>repeated .LLAKPLJOMGE KMMMLDEIBGE = 6;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.LLAKPLJOMGEOuterClass.LLAKPLJOMGE.Builder> 
            getKMMMLDEIBGEBuilderList() {
@@ -1019,14 +1019,14 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN, emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN.Builder, emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDNOrBuilder> kHLECDECHLMBuilder_;
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        * @return Whether the kHLECDECHLM field is set.
        */
       public boolean hasKHLECDECHLM() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        * @return The kHLECDECHLM.
        */
       public emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN getKHLECDECHLM() {
@@ -1037,7 +1037,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        */
       public Builder setKHLECDECHLM(emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN value) {
         if (kHLECDECHLMBuilder_ == null) {
@@ -1051,7 +1051,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        */
       public Builder setKHLECDECHLM(
           emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN.Builder builderForValue) {
@@ -1065,7 +1065,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        */
       public Builder mergeKHLECDECHLM(emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN value) {
         if (kHLECDECHLMBuilder_ == null) {
@@ -1086,7 +1086,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        */
       public Builder clearKHLECDECHLM() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1099,7 +1099,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        */
       public emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN.Builder getKHLECDECHLMBuilder() {
         bitField0_ |= 0x00000002;
@@ -1107,7 +1107,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return internalGetKHLECDECHLMFieldBuilder().getBuilder();
       }
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        */
       public emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDNOrBuilder getKHLECDECHLMOrBuilder() {
         if (kHLECDECHLMBuilder_ != null) {
@@ -1118,7 +1118,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.MFBOLEHLNDN KHLECDECHLM = 20001;</code>
+       * <code>.MFBOLEHLNDN KHLECDECHLM = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN, emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDN.Builder, emu.grasscutter.net.proto.MFBOLEHLNDNOuterClass.MFBOLEHLNDNOrBuilder> 
@@ -1232,7 +1232,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
 
       private float kLPDNIINGMM_ ;
       /**
-       * <code>float KLPDNIINGMM = 20005;</code>
+       * <code>float KLPDNIINGMM = 1;</code>
        * @return The kLPDNIINGMM.
        */
       @java.lang.Override
@@ -1240,7 +1240,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return kLPDNIINGMM_;
       }
       /**
-       * <code>float KLPDNIINGMM = 20005;</code>
+       * <code>float KLPDNIINGMM = 1;</code>
        * @param value The kLPDNIINGMM to set.
        * @return This builder for chaining.
        */
@@ -1252,7 +1252,7 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>float KLPDNIINGMM = 20005;</code>
+       * <code>float KLPDNIINGMM = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearKLPDNIINGMM() {
@@ -1360,13 +1360,13 @@ public final class Heal extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\013_Heal.proto\032\021LLAKPLJOMGE.proto\032\021MFBOLE" +
-      "HLNDN.proto\"\304\001\n\005_Heal\022#\n\013KMMMLDEIBGE\030\240\234\001" +
-      " \003(\0132\014.LLAKPLJOMGE\022#\n\013KHLECDECHLM\030\241\234\001 \001(" +
-      "\0132\014.MFBOLEHLNDN\022\025\n\013MNFGHFFJKFH\030\242\234\001 \001(\005\022\025" +
-      "\n\013KAEOAODMGNH\030\243\234\001 \001(\010\022\025\n\013OLKMOICPKBG\030\244\234\001" +
-      " \001(\010\022\025\n\013KLPDNIINGMM\030\245\234\001 \001(\002\022\025\n\013KEGCKDGDP" +
-      "GL\030\246\234\001 \001(\002B\033\n\031emu.grasscutter.net.protob" +
-      "\006proto3"
+      "HLNDN.proto\"\276\001\n\005_Heal\022!\n\013KMMMLDEIBGE\030\006 \003" +
+      "(\0132\014.LLAKPLJOMGE\022!\n\013KHLECDECHLM\030\007 \001(\0132\014." +
+      "MFBOLEHLNDN\022\025\n\013MNFGHFFJKFH\030\242\234\001 \001(\005\022\025\n\013KA" +
+      "EOAODMGNH\030\243\234\001 \001(\010\022\025\n\013OLKMOICPKBG\030\244\234\001 \001(\010" +
+      "\022\023\n\013KLPDNIINGMM\030\001 \001(\002\022\025\n\013KEGCKDGDPGL\030\246\234\001" +
+      " \001(\002B\033\n\031emu.grasscutter.net.protob\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

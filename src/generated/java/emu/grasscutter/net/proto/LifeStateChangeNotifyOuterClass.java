@@ -31,24 +31,24 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 14;</code>
      * @return A list containing the eEOIMNHKALK.
      */
     java.util.List<java.lang.String>
         getEEOIMNHKALKList();
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 14;</code>
      * @return The count of eEOIMNHKALK.
      */
     int getEEOIMNHKALKCount();
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 14;</code>
      * @param index The index of the element to return.
      * @return The eEOIMNHKALK at the given index.
      */
     java.lang.String getEEOIMNHKALK(int index);
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 14;</code>
      * @param index The index of the value to return.
      * @return The bytes of the eEOIMNHKALK at the given index.
      */
@@ -122,13 +122,13 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
     int getLifeState();
 
     /**
-     * <code>uint32 AFPBFDHCDNK = 20001;</code>
+     * <code>uint32 AFPBFDHCDNK = 8;</code>
      * @return The aFPBFDHCDNK.
      */
     int getAFPBFDHCDNK();
 
     /**
-     * <code>uint32 LDAODDFLPGB = 20002;</code>
+     * <code>uint32 LDAODDFLPGB = 15;</code>
      * @return The lDAODDFLPGB.
      */
     int getLDAODDFLPGB();
@@ -191,12 +191,12 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
               emu.grasscutter.net.proto.LifeStateChangeNotifyOuterClass.LifeStateChangeNotify.class, emu.grasscutter.net.proto.LifeStateChangeNotifyOuterClass.LifeStateChangeNotify.Builder.class);
     }
 
-    public static final int EEOIMNHKALK_FIELD_NUMBER = 20000;
+    public static final int EEOIMNHKALK_FIELD_NUMBER = 14;
     @SuppressWarnings("serial")
     private com.google.protobuf.LazyStringArrayList eEOIMNHKALK_ =
         com.google.protobuf.LazyStringArrayList.emptyList();
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 14;</code>
      * @return A list containing the eEOIMNHKALK.
      */
     public com.google.protobuf.ProtocolStringList
@@ -204,14 +204,14 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
       return eEOIMNHKALK_;
     }
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 14;</code>
      * @return The count of eEOIMNHKALK.
      */
     public int getEEOIMNHKALKCount() {
       return eEOIMNHKALK_.size();
     }
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 14;</code>
      * @param index The index of the element to return.
      * @return The eEOIMNHKALK at the given index.
      */
@@ -219,7 +219,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
       return eEOIMNHKALK_.get(index);
     }
     /**
-     * <code>repeated string EEOIMNHKALK = 20000;</code>
+     * <code>repeated string EEOIMNHKALK = 14;</code>
      * @param index The index of the value to return.
      * @return The bytes of the eEOIMNHKALK at the given index.
      */
@@ -363,10 +363,10 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
       return lifeState_;
     }
 
-    public static final int AFPBFDHCDNK_FIELD_NUMBER = 20001;
+    public static final int AFPBFDHCDNK_FIELD_NUMBER = 8;
     private int aFPBFDHCDNK_ = 0;
     /**
-     * <code>uint32 AFPBFDHCDNK = 20001;</code>
+     * <code>uint32 AFPBFDHCDNK = 8;</code>
      * @return The aFPBFDHCDNK.
      */
     @java.lang.Override
@@ -374,10 +374,10 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
       return aFPBFDHCDNK_;
     }
 
-    public static final int LDAODDFLPGB_FIELD_NUMBER = 20002;
+    public static final int LDAODDFLPGB_FIELD_NUMBER = 15;
     private int lDAODDFLPGB_ = 0;
     /**
-     * <code>uint32 LDAODDFLPGB = 20002;</code>
+     * <code>uint32 LDAODDFLPGB = 15;</code>
      * @return The lDAODDFLPGB.
      */
     @java.lang.Override
@@ -429,6 +429,9 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
       if (sourceEntityId_ != 0) {
         output.writeUInt32(7, sourceEntityId_);
       }
+      if (aFPBFDHCDNK_ != 0) {
+        output.writeUInt32(8, aFPBFDHCDNK_);
+      }
       if (dieType_ != emu.grasscutter.net.proto.PlayerDieTypeOuterClass.PlayerDieType.PlayerDieType_PLAYER_DIE_NONE.getNumber()) {
         output.writeEnum(9, dieType_);
       }
@@ -442,13 +445,10 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         output.writeUInt32(13, lifeState_);
       }
       for (int i = 0; i < eEOIMNHKALK_.size(); i++) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 20000, eEOIMNHKALK_.getRaw(i));
-      }
-      if (aFPBFDHCDNK_ != 0) {
-        output.writeUInt32(20001, aFPBFDHCDNK_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 14, eEOIMNHKALK_.getRaw(i));
       }
       if (lDAODDFLPGB_ != 0) {
-        output.writeUInt32(20002, lDAODDFLPGB_);
+        output.writeUInt32(15, lDAODDFLPGB_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -475,6 +475,10 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(7, sourceEntityId_);
       }
+      if (aFPBFDHCDNK_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(8, aFPBFDHCDNK_);
+      }
       if (dieType_ != emu.grasscutter.net.proto.PlayerDieTypeOuterClass.PlayerDieType.PlayerDieType_PLAYER_DIE_NONE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(9, dieType_);
@@ -496,15 +500,11 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
           dataSize += computeStringSizeNoTag(eEOIMNHKALK_.getRaw(i));
         }
         size += dataSize;
-        size += 3 * getEEOIMNHKALKList().size();
-      }
-      if (aFPBFDHCDNK_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, aFPBFDHCDNK_);
+        size += 1 * getEEOIMNHKALKList().size();
       }
       if (lDAODDFLPGB_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20002, lDAODDFLPGB_);
+          .computeUInt32Size(15, lDAODDFLPGB_);
       }
       return size;
     }
@@ -945,6 +945,11 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
                 bitField0_ |= 0x00000010;
                 break;
               } // case 56
+              case 64: {
+                aFPBFDHCDNK_ = input.readUInt32();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 64
               case 72: {
                 dieType_ = input.readEnum();
                 bitField0_ |= 0x00000400;
@@ -965,21 +970,16 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
                 bitField0_ |= 0x00000080;
                 break;
               } // case 104
-              case 160002: {
+              case 114: {
                 ensureEEOIMNHKALKIsMutable();
                 eEOIMNHKALK_.add(input.readStringRequireUtf8());
                 break;
-              } // case 160002
-              case 160008: {
-                aFPBFDHCDNK_ = input.readUInt32();
-                bitField0_ |= 0x00000100;
-                break;
-              } // case 160008
-              case 160016: {
+              } // case 114
+              case 120: {
                 lDAODDFLPGB_ = input.readUInt32();
                 bitField0_ |= 0x00000200;
                 break;
-              } // case 160016
+              } // case 120
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1006,7 +1006,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         bitField0_ |= 0x00000001;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @return A list containing the eEOIMNHKALK.
        */
       public com.google.protobuf.ProtocolStringList
@@ -1015,14 +1015,14 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return eEOIMNHKALK_;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @return The count of eEOIMNHKALK.
        */
       public int getEEOIMNHKALKCount() {
         return eEOIMNHKALK_.size();
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @param index The index of the element to return.
        * @return The eEOIMNHKALK at the given index.
        */
@@ -1030,7 +1030,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return eEOIMNHKALK_.get(index);
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @param index The index of the value to return.
        * @return The bytes of the eEOIMNHKALK at the given index.
        */
@@ -1039,7 +1039,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return eEOIMNHKALK_.getByteString(index);
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @param index The index to set the value at.
        * @param value The eEOIMNHKALK to set.
        * @return This builder for chaining.
@@ -1054,7 +1054,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @param value The eEOIMNHKALK to add.
        * @return This builder for chaining.
        */
@@ -1068,7 +1068,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @param values The eEOIMNHKALK to add.
        * @return This builder for chaining.
        */
@@ -1082,7 +1082,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearEEOIMNHKALK() {
@@ -1093,7 +1093,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated string EEOIMNHKALK = 20000;</code>
+       * <code>repeated string EEOIMNHKALK = 14;</code>
        * @param value The bytes of the eEOIMNHKALK to add.
        * @return This builder for chaining.
        */
@@ -1576,7 +1576,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
 
       private int aFPBFDHCDNK_ ;
       /**
-       * <code>uint32 AFPBFDHCDNK = 20001;</code>
+       * <code>uint32 AFPBFDHCDNK = 8;</code>
        * @return The aFPBFDHCDNK.
        */
       @java.lang.Override
@@ -1584,7 +1584,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return aFPBFDHCDNK_;
       }
       /**
-       * <code>uint32 AFPBFDHCDNK = 20001;</code>
+       * <code>uint32 AFPBFDHCDNK = 8;</code>
        * @param value The aFPBFDHCDNK to set.
        * @return This builder for chaining.
        */
@@ -1596,7 +1596,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 AFPBFDHCDNK = 20001;</code>
+       * <code>uint32 AFPBFDHCDNK = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearAFPBFDHCDNK() {
@@ -1608,7 +1608,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
 
       private int lDAODDFLPGB_ ;
       /**
-       * <code>uint32 LDAODDFLPGB = 20002;</code>
+       * <code>uint32 LDAODDFLPGB = 15;</code>
        * @return The lDAODDFLPGB.
        */
       @java.lang.Override
@@ -1616,7 +1616,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return lDAODDFLPGB_;
       }
       /**
-       * <code>uint32 LDAODDFLPGB = 20002;</code>
+       * <code>uint32 LDAODDFLPGB = 15;</code>
        * @param value The lDAODDFLPGB to set.
        * @return This builder for chaining.
        */
@@ -1628,7 +1628,7 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>uint32 LDAODDFLPGB = 20002;</code>
+       * <code>uint32 LDAODDFLPGB = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearLDAODDFLPGB() {
@@ -1756,16 +1756,16 @@ public final class LifeStateChangeNotifyOuterClass extends com.google.protobuf.G
   static {
     java.lang.String[] descriptorData = {
       "\n\033LifeStateChangeNotify.proto\032\023PlayerDie" +
-      "Type.proto\032\020ServerBuff.proto\"\261\002\n\025LifeSta" +
-      "teChangeNotify\022\025\n\013EEOIMNHKALK\030\240\234\001 \003(\t\022\022\n" +
-      "\nattack_tag\030\013 \001(\t\022%\n\020server_buff_list\030\001 " +
-      "\003(\0132\013.ServerBuff\022\021\n\tentity_id\030\n \001(\r\022\030\n\020s" +
-      "ource_entity_id\030\007 \001(\r\022\032\n\022client_sequence" +
-      "_id\030\004 \001(\r\022\031\n\021move_reliable_seq\030\002 \001(\r\022\022\n\n" +
-      "life_state\030\r \001(\r\022\025\n\013AFPBFDHCDNK\030\241\234\001 \001(\r\022" +
-      "\025\n\013LDAODDFLPGB\030\242\234\001 \001(\r\022 \n\010die_type\030\t \001(\016" +
-      "2\016.PlayerDieTypeB\033\n\031emu.grasscutter.net." +
-      "protob\006proto3"
+      "Type.proto\032\020ServerBuff.proto\"\253\002\n\025LifeSta" +
+      "teChangeNotify\022\023\n\013EEOIMNHKALK\030\016 \003(\t\022\022\n\na" +
+      "ttack_tag\030\013 \001(\t\022%\n\020server_buff_list\030\001 \003(" +
+      "\0132\013.ServerBuff\022\021\n\tentity_id\030\n \001(\r\022\030\n\020sou" +
+      "rce_entity_id\030\007 \001(\r\022\032\n\022client_sequence_i" +
+      "d\030\004 \001(\r\022\031\n\021move_reliable_seq\030\002 \001(\r\022\022\n\nli" +
+      "fe_state\030\r \001(\r\022\023\n\013AFPBFDHCDNK\030\010 \001(\r\022\023\n\013L" +
+      "DAODDFLPGB\030\017 \001(\r\022 \n\010die_type\030\t \001(\0162\016.Pla" +
+      "yerDieTypeB\033\n\031emu.grasscutter.net.protob" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -31,17 +31,17 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.Vector OHMBANGLFIJ = 20000;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      * @return Whether the oHMBANGLFIJ field is set.
      */
     boolean hasOHMBANGLFIJ();
     /**
-     * <code>.Vector OHMBANGLFIJ = 20000;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      * @return The oHMBANGLFIJ.
      */
     emu.grasscutter.net.proto.VectorOuterClass.Vector getOHMBANGLFIJ();
     /**
-     * <code>.Vector OHMBANGLFIJ = 20000;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      */
     emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOHMBANGLFIJOrBuilder();
   }
@@ -88,10 +88,10 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
     }
 
     private int bitField0_;
-    public static final int OHMBANGLFIJ_FIELD_NUMBER = 20000;
+    public static final int OHMBANGLFIJ_FIELD_NUMBER = 1;
     private emu.grasscutter.net.proto.VectorOuterClass.Vector oHMBANGLFIJ_;
     /**
-     * <code>.Vector OHMBANGLFIJ = 20000;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      * @return Whether the oHMBANGLFIJ field is set.
      */
     @java.lang.Override
@@ -99,7 +99,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.Vector OHMBANGLFIJ = 20000;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      * @return The oHMBANGLFIJ.
      */
     @java.lang.Override
@@ -107,7 +107,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
       return oHMBANGLFIJ_ == null ? emu.grasscutter.net.proto.VectorOuterClass.Vector.getDefaultInstance() : oHMBANGLFIJ_;
     }
     /**
-     * <code>.Vector OHMBANGLFIJ = 20000;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOHMBANGLFIJOrBuilder() {
@@ -129,7 +129,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getOHMBANGLFIJ());
+        output.writeMessage(1, getOHMBANGLFIJ());
       }
       getUnknownFields().writeTo(output);
     }
@@ -137,7 +137,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
       int size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getOHMBANGLFIJ());
+          .computeMessageSize(1, getOHMBANGLFIJ());
       }
       return size;
     }
@@ -407,13 +407,13 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 10: {
                 input.readMessage(
                     internalGetOHMBANGLFIJFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 10
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -435,14 +435,14 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> oHMBANGLFIJBuilder_;
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        * @return Whether the oHMBANGLFIJ field is set.
        */
       public boolean hasOHMBANGLFIJ() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        * @return The oHMBANGLFIJ.
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector getOHMBANGLFIJ() {
@@ -453,7 +453,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public Builder setOHMBANGLFIJ(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (oHMBANGLFIJBuilder_ == null) {
@@ -467,7 +467,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public Builder setOHMBANGLFIJ(
           emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder builderForValue) {
@@ -481,7 +481,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public Builder mergeOHMBANGLFIJ(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (oHMBANGLFIJBuilder_ == null) {
@@ -502,7 +502,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public Builder clearOHMBANGLFIJ() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -515,7 +515,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder getOHMBANGLFIJBuilder() {
         bitField0_ |= 0x00000001;
@@ -523,7 +523,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
         return internalGetOHMBANGLFIJFieldBuilder().getBuilder();
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOHMBANGLFIJOrBuilder() {
         if (oHMBANGLFIJBuilder_ != null) {
@@ -534,7 +534,7 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20000;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> 
@@ -615,10 +615,10 @@ public final class VectorMoverInfo extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026_VectorMoverInfo.proto\032\014Vector.proto\"2" +
-      "\n\020_VectorMoverInfo\022\036\n\013OHMBANGLFIJ\030\240\234\001 \001(" +
-      "\0132\007.VectorB\033\n\031emu.grasscutter.net.protob" +
-      "\006proto3"
+      "\n\026_VectorMoverInfo.proto\032\014Vector.proto\"0" +
+      "\n\020_VectorMoverInfo\022\034\n\013OHMBANGLFIJ\030\001 \001(\0132" +
+      "\007.VectorB\033\n\031emu.grasscutter.net.protob\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

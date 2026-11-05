@@ -76,7 +76,7 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
     int getBattlePassPlan();
 
     /**
-     * <code>bool HBHFBAGFADF = 20000;</code>
+     * <code>bool HBHFBAGFADF = 10;</code>
      * @return The hBHFBAGFADF.
      */
     boolean getHBHFBAGFADF();
@@ -215,10 +215,10 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
       return BattlePassPlan_;
     }
 
-    public static final int HBHFBAGFADF_FIELD_NUMBER = 20000;
+    public static final int HBHFBAGFADF_FIELD_NUMBER = 10;
     private boolean hBHFBAGFADF_ = false;
     /**
-     * <code>bool HBHFBAGFADF = 20000;</code>
+     * <code>bool HBHFBAGFADF = 10;</code>
      * @return The hBHFBAGFADF.
      */
     @java.lang.Override
@@ -271,14 +271,14 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(9, getCurSchedule());
       }
+      if (hBHFBAGFADF_ != false) {
+        output.writeBool(10, hBHFBAGFADF_);
+      }
       if (BattlePassPlan_ != 0) {
         output.writeUInt32(12, BattlePassPlan_);
       }
       if (isViewed_ != false) {
         output.writeBool(13, isViewed_);
-      }
-      if (hBHFBAGFADF_ != false) {
-        output.writeBool(20000, hBHFBAGFADF_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -301,6 +301,10 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, getCurSchedule());
       }
+      if (hBHFBAGFADF_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(10, hBHFBAGFADF_);
+      }
       if (BattlePassPlan_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(12, BattlePassPlan_);
@@ -308,10 +312,6 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
       if (isViewed_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(13, isViewed_);
-      }
-      if (hBHFBAGFADF_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, hBHFBAGFADF_);
       }
       return size;
     }
@@ -706,6 +706,11 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
                 bitField0_ |= 0x00000002;
                 break;
               } // case 74
+              case 80: {
+                hBHFBAGFADF_ = input.readBool();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 80
               case 96: {
                 BattlePassPlan_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -716,11 +721,6 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
                 bitField0_ |= 0x00000010;
                 break;
               } // case 104
-              case 160000: {
-                hBHFBAGFADF_ = input.readBool();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1125,7 +1125,7 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
 
       private boolean hBHFBAGFADF_ ;
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 10;</code>
        * @return The hBHFBAGFADF.
        */
       @java.lang.Override
@@ -1133,7 +1133,7 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
         return hBHFBAGFADF_;
       }
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 10;</code>
        * @param value The hBHFBAGFADF to set.
        * @return This builder for chaining.
        */
@@ -1145,7 +1145,7 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
         return this;
       }
       /**
-       * <code>bool HBHFBAGFADF = 20000;</code>
+       * <code>bool HBHFBAGFADF = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearHBHFBAGFADF() {
@@ -1286,13 +1286,13 @@ public final class BattlePassAllDataNotifyOuterClass extends com.google.protobuf
     java.lang.String[] descriptorData = {
       "\n\035BattlePassAllDataNotify.proto\032\027BattleP" +
       "assMission.proto\032\030BattlePassSchedule.pro" +
-      "to\"\316\001\n\027BattlePassAllDataNotify\022(\n\014missio" +
+      "to\"\314\001\n\027BattlePassAllDataNotify\022(\n\014missio" +
       "n_list\030\004 \003(\0132\022.BattlePassMission\022)\n\014cur_" +
       "schedule\030\t \001(\0132\023.BattlePassSchedule\022\031\n\021_" +
-      "battle_pass_plan\030\014 \001(\r\022\025\n\013HBHFBAGFADF\030\240\234" +
-      "\001 \001(\010\022\021\n\tis_viewed\030\r \001(\010\022\031\n\021have_cur_sch" +
-      "edule\030\005 \001(\010B\033\n\031emu.grasscutter.net.proto" +
-      "b\006proto3"
+      "battle_pass_plan\030\014 \001(\r\022\023\n\013HBHFBAGFADF\030\n " +
+      "\001(\010\022\021\n\tis_viewed\030\r \001(\010\022\031\n\021have_cur_sched" +
+      "ule\030\005 \001(\010B\033\n\031emu.grasscutter.net.protob\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

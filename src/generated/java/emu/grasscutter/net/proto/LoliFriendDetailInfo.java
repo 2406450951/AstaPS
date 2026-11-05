@@ -31,7 +31,7 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 CEDBOCOCINO = 20000;</code>
+     * <code>uint32 CEDBOCOCINO = 11;</code>
      * @return The cEDBOCOCINO.
      */
     int getCEDBOCOCINO();
@@ -78,10 +78,10 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
               emu.grasscutter.net.proto.LoliFriendDetailInfo._LoliFriendDetailInfo.class, emu.grasscutter.net.proto.LoliFriendDetailInfo._LoliFriendDetailInfo.Builder.class);
     }
 
-    public static final int CEDBOCOCINO_FIELD_NUMBER = 20000;
+    public static final int CEDBOCOCINO_FIELD_NUMBER = 11;
     private int cEDBOCOCINO_ = 0;
     /**
-     * <code>uint32 CEDBOCOCINO = 20000;</code>
+     * <code>uint32 CEDBOCOCINO = 11;</code>
      * @return The cEDBOCOCINO.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (cEDBOCOCINO_ != 0) {
-        output.writeUInt32(20000, cEDBOCOCINO_);
+        output.writeUInt32(11, cEDBOCOCINO_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
       int size = 0;
       if (cEDBOCOCINO_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, cEDBOCOCINO_);
+          .computeUInt32Size(11, cEDBOCOCINO_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 88: {
                 cEDBOCOCINO_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 88
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
 
       private int cEDBOCOCINO_ ;
       /**
-       * <code>uint32 CEDBOCOCINO = 20000;</code>
+       * <code>uint32 CEDBOCOCINO = 11;</code>
        * @return The cEDBOCOCINO.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
         return cEDBOCOCINO_;
       }
       /**
-       * <code>uint32 CEDBOCOCINO = 20000;</code>
+       * <code>uint32 CEDBOCOCINO = 11;</code>
        * @param value The cEDBOCOCINO to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>uint32 CEDBOCOCINO = 20000;</code>
+       * <code>uint32 CEDBOCOCINO = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearCEDBOCOCINO() {
@@ -481,9 +481,9 @@ public final class LoliFriendDetailInfo extends com.google.protobuf.GeneratedFil
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\033_LoliFriendDetailInfo.proto\".\n\025_LoliFr" +
-      "iendDetailInfo\022\025\n\013CEDBOCOCINO\030\240\234\001 \001(\rB\033\n" +
-      "\031emu.grasscutter.net.protob\006proto3"
+      "\n\033_LoliFriendDetailInfo.proto\",\n\025_LoliFr" +
+      "iendDetailInfo\022\023\n\013CEDBOCOCINO\030\013 \001(\rB\033\n\031e" +
+      "mu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

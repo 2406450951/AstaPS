@@ -37,17 +37,17 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
     int getNextRefreshTime();
 
     /**
-     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
      * @return Whether the fAEEGIJKFJP field is set.
      */
     boolean hasFAEEGIJKFJP();
     /**
-     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
      * @return The fAEEGIJKFJP.
      */
     emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP getFAEEGIJKFJP();
     /**
-     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
      */
     emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDPOrBuilder getFAEEGIJKFJPOrBuilder();
 
@@ -254,10 +254,10 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       return nextRefreshTime_;
     }
 
-    public static final int FAEEGIJKFJP_FIELD_NUMBER = 20000;
+    public static final int FAEEGIJKFJP_FIELD_NUMBER = 6;
     private emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP fAEEGIJKFJP_;
     /**
-     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
      * @return Whether the fAEEGIJKFJP field is set.
      */
     @java.lang.Override
@@ -265,7 +265,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
      * @return The fAEEGIJKFJP.
      */
     @java.lang.Override
@@ -273,7 +273,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       return fAEEGIJKFJP_ == null ? emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP.getDefaultInstance() : fAEEGIJKFJP_;
     }
     /**
-     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+     * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDPOrBuilder getFAEEGIJKFJPOrBuilder() {
@@ -549,6 +549,9 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       if (cityId_ != 0) {
         output.writeUInt32(5, cityId_);
       }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(6, getFAEEGIJKFJP());
+      }
       for (int i = 0; i < mcoinProductList_.size(); i++) {
         output.writeMessage(7, mcoinProductList_.get(i));
       }
@@ -566,9 +569,6 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       }
       if (shopType_ != 0) {
         output.writeUInt32(15, shopType_);
-      }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getFAEEGIJKFJP());
       }
       if (cityReputationLevel_ != 0) {
         output.writeUInt32(20001, cityReputationLevel_);
@@ -592,6 +592,10 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       if (cityId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(5, cityId_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getFAEEGIJKFJP());
       }
 
           {
@@ -636,10 +640,6 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       if (shopType_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(15, shopType_);
-      }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getFAEEGIJKFJP());
       }
       if (cityReputationLevel_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -1239,6 +1239,13 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000080;
                 break;
               } // case 40
+              case 50: {
+                input.readMessage(
+                    internalGetFAEEGIJKFJPFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 50
               case 58: {
                 emu.grasscutter.net.proto.ShopMcoinProductOuterClass.ShopMcoinProduct m =
                     input.readMessage(
@@ -1301,13 +1308,6 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000400;
                 break;
               } // case 120
-              case 160002: {
-                input.readMessage(
-                    internalGetFAEEGIJKFJPFieldBuilder().getBuilder(),
-                    extensionRegistry);
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160002
               case 160008: {
                 cityReputationLevel_ = input.readUInt32();
                 bitField0_ |= 0x00000008;
@@ -1371,14 +1371,14 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP, emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP.Builder, emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDPOrBuilder> fAEEGIJKFJPBuilder_;
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        * @return Whether the fAEEGIJKFJP field is set.
        */
       public boolean hasFAEEGIJKFJP() {
         return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        * @return The fAEEGIJKFJP.
        */
       public emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP getFAEEGIJKFJP() {
@@ -1389,7 +1389,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        */
       public Builder setFAEEGIJKFJP(emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP value) {
         if (fAEEGIJKFJPBuilder_ == null) {
@@ -1403,7 +1403,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        */
       public Builder setFAEEGIJKFJP(
           emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP.Builder builderForValue) {
@@ -1417,7 +1417,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        */
       public Builder mergeFAEEGIJKFJP(emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP value) {
         if (fAEEGIJKFJPBuilder_ == null) {
@@ -1438,7 +1438,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        */
       public Builder clearFAEEGIJKFJP() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1451,7 +1451,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        */
       public emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP.Builder getFAEEGIJKFJPBuilder() {
         bitField0_ |= 0x00000002;
@@ -1459,7 +1459,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
         return internalGetFAEEGIJKFJPFieldBuilder().getBuilder();
       }
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        */
       public emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDPOrBuilder getFAEEGIJKFJPOrBuilder() {
         if (fAEEGIJKFJPBuilder_ != null) {
@@ -1470,7 +1470,7 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 20000;</code>
+       * <code>.OLFKDMCHEDP FAEEGIJKFJP = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP, emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDP.Builder, emu.grasscutter.net.proto.OLFKDMCHEDPOuterClass.OLFKDMCHEDPOrBuilder> 
@@ -2852,19 +2852,19 @@ public final class ShopOuterClass extends com.google.protobuf.GeneratedFile {
       "\n\nShop.proto\032\021OLFKDMCHEDP.proto\032\025ShopCar" +
       "dProduct.proto\032\030ShopConcertProduct.proto" +
       "\032\017ShopGoods.proto\032\026ShopMcoinProduct.prot" +
-      "o\032\035_ShopBeyondMcoinProduct.proto\"\217\003\n\004Sho" +
-      "p\022\031\n\021next_refresh_time\030\010 \001(\r\022#\n\013FAEEGIJK" +
-      "FJP\030\240\234\001 \001(\0132\014.OLFKDMCHEDP\022+\n\021card_produc" +
-      "t_list\030\r \003(\0132\020.ShopCardProduct\022\037\n\025city_r" +
-      "eputation_level\030\241\234\001 \001(\r\022<\n\032_beyond_mcoin" +
-      "_product_list\030\n \003(\0132\030._ShopBeyondMcoinPr" +
-      "oduct\022\036\n\ngoods_list\030\004 \003(\0132\n.ShopGoods\022\025\n" +
-      "\013hogdkcckgap\030\242\234\001 \001(\r\022\017\n\007city_id\030\005 \001(\r\0221\n" +
-      "\024concert_product_list\030\014 \003(\0132\023.ShopConcer" +
-      "tProduct\022-\n\022mcoin_product_list\030\007 \003(\0132\021.S" +
-      "hopMcoinProduct\022\021\n\tshop_type\030\017 \001(\rB+\n\031em" +
-      "u.grasscutter.net.protoB\016ShopOuterClassb" +
-      "\006proto3"
+      "o\032\035_ShopBeyondMcoinProduct.proto\"\215\003\n\004Sho" +
+      "p\022\031\n\021next_refresh_time\030\010 \001(\r\022!\n\013FAEEGIJK" +
+      "FJP\030\006 \001(\0132\014.OLFKDMCHEDP\022+\n\021card_product_" +
+      "list\030\r \003(\0132\020.ShopCardProduct\022\037\n\025city_rep" +
+      "utation_level\030\241\234\001 \001(\r\022<\n\032_beyond_mcoin_p" +
+      "roduct_list\030\n \003(\0132\030._ShopBeyondMcoinProd" +
+      "uct\022\036\n\ngoods_list\030\004 \003(\0132\n.ShopGoods\022\025\n\013h" +
+      "ogdkcckgap\030\242\234\001 \001(\r\022\017\n\007city_id\030\005 \001(\r\0221\n\024c" +
+      "oncert_product_list\030\014 \003(\0132\023.ShopConcertP" +
+      "roduct\022-\n\022mcoin_product_list\030\007 \003(\0132\021.Sho" +
+      "pMcoinProduct\022\021\n\tshop_type\030\017 \001(\rB+\n\031emu." +
+      "grasscutter.net.protoB\016ShopOuterClassb\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

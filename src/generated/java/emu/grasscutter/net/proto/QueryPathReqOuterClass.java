@@ -100,17 +100,17 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
     emu.grasscutter.net.proto.QueryFilterOuterClass.QueryFilterOrBuilder getFilterOrBuilder();
 
     /**
-     * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+     * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
      * @return Whether the fLFPHIAAGME field is set.
      */
     boolean hasFLFPHIAAGME();
     /**
-     * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+     * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
      * @return The fLFPHIAAGME.
      */
     emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC getFLFPHIAAGME();
     /**
-     * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+     * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
      */
     emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODECOrBuilder getFLFPHIAAGMEOrBuilder();
 
@@ -451,10 +451,10 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
       return filter_ == null ? emu.grasscutter.net.proto.QueryFilterOuterClass.QueryFilter.getDefaultInstance() : filter_;
     }
 
-    public static final int FLFPHIAAGME_FIELD_NUMBER = 20001;
+    public static final int FLFPHIAAGME_FIELD_NUMBER = 5;
     private emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC fLFPHIAAGME_;
     /**
-     * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+     * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
      * @return Whether the fLFPHIAAGME field is set.
      */
     @java.lang.Override
@@ -462,7 +462,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
-     * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+     * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
      * @return The fLFPHIAAGME.
      */
     @java.lang.Override
@@ -470,7 +470,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
       return fLFPHIAAGME_ == null ? emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC.getDefaultInstance() : fLFPHIAAGME_;
     }
     /**
-     * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+     * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODECOrBuilder getFLFPHIAAGMEOrBuilder() {
@@ -569,6 +569,9 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
       if (((bitField0_ & 0x00000004) != 0)) {
         output.writeMessage(4, getFilter());
       }
+      if (((bitField0_ & 0x00000008) != 0)) {
+        output.writeMessage(5, getFLFPHIAAGME());
+      }
       for (int i = 0; i < destinationPos_.size(); i++) {
         output.writeMessage(8, destinationPos_.get(i));
       }
@@ -577,9 +580,6 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20000, getGEAKGEBKLGB());
-      }
-      if (((bitField0_ & 0x00000008) != 0)) {
-        output.writeMessage(20001, getFLFPHIAAGME());
       }
       if (((bitField0_ & 0x00000010) != 0)) {
         output.writeMessage(20002, getCPMFACKILJN());
@@ -604,6 +604,10 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getFilter());
       }
+      if (((bitField0_ & 0x00000008) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getFLFPHIAAGME());
+      }
 
           {
             final int count = destinationPos_.size();
@@ -620,10 +624,6 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20000, getGEAKGEBKLGB());
-      }
-      if (((bitField0_ & 0x00000008) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20001, getFLFPHIAAGME());
       }
       if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1102,6 +1102,13 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x00000008;
                 break;
               } // case 34
+              case 42: {
+                input.readMessage(
+                    internalGetFLFPHIAAGMEFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
               case 66: {
                 emu.grasscutter.net.proto.VectorOuterClass.Vector m =
                     input.readMessage(
@@ -1127,13 +1134,6 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x00000001;
                 break;
               } // case 160002
-              case 160010: {
-                input.readMessage(
-                    internalGetFLFPHIAAGMEFieldBuilder().getBuilder(),
-                    extensionRegistry);
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160010
               case 160018: {
                 input.readMessage(
                     internalGetCPMFACKILJNFieldBuilder().getBuilder(),
@@ -1753,14 +1753,14 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC, emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC.Builder, emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODECOrBuilder> fLFPHIAAGMEBuilder_;
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        * @return Whether the fLFPHIAAGME field is set.
        */
       public boolean hasFLFPHIAAGME() {
         return ((bitField0_ & 0x00000010) != 0);
       }
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        * @return The fLFPHIAAGME.
        */
       public emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC getFLFPHIAAGME() {
@@ -1771,7 +1771,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
         }
       }
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        */
       public Builder setFLFPHIAAGME(emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC value) {
         if (fLFPHIAAGMEBuilder_ == null) {
@@ -1785,7 +1785,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        */
       public Builder setFLFPHIAAGME(
           emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC.Builder builderForValue) {
@@ -1799,7 +1799,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        */
       public Builder mergeFLFPHIAAGME(emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC value) {
         if (fLFPHIAAGMEBuilder_ == null) {
@@ -1820,7 +1820,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        */
       public Builder clearFLFPHIAAGME() {
         bitField0_ = (bitField0_ & ~0x00000010);
@@ -1833,7 +1833,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        */
       public emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC.Builder getFLFPHIAAGMEBuilder() {
         bitField0_ |= 0x00000010;
@@ -1841,7 +1841,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
         return internalGetFLFPHIAAGMEFieldBuilder().getBuilder();
       }
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        */
       public emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODECOrBuilder getFLFPHIAAGMEOrBuilder() {
         if (fLFPHIAAGMEBuilder_ != null) {
@@ -1852,7 +1852,7 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
         }
       }
       /**
-       * <code>.DICLKEBODEC FLFPHIAAGME = 20001;</code>
+       * <code>.DICLKEBODEC FLFPHIAAGME = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC, emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODEC.Builder, emu.grasscutter.net.proto.DICLKEBODECOuterClass.DICLKEBODECOrBuilder> 
@@ -2170,19 +2170,19 @@ public final class QueryPathReqOuterClass extends com.google.protobuf.GeneratedF
     java.lang.String[] descriptorData = {
       "\n\022QueryPathReq.proto\032\021DICLKEBODEC.proto\032" +
       "\021QueryFilter.proto\032\014Vector.proto\032\020Vector" +
-      "3Int.proto\"\310\003\n\014QueryPathReq\022\"\n\013GEAKGEBKL" +
+      "3Int.proto\"\306\003\n\014QueryPathReq\022\"\n\013GEAKGEBKL" +
       "GB\030\240\234\001 \001(\0132\013.Vector3Int\022 \n\017destination_p" +
       "os\030\010 \003(\0132\007.Vector\022\033\n\nsource_pos\030\003 \001(\0132\007." +
-      "Vector\022\034\n\006filter\030\004 \001(\0132\014.QueryFilter\022#\n\013" +
-      "FLFPHIAAGME\030\241\234\001 \001(\0132\014.DICLKEBODEC\022\"\n\013CPM" +
-      "FACKILJN\030\242\234\001 \001(\0132\013.Vector3Int\022,\n\nquery_t" +
-      "ype\030\t \001(\0162\030.QueryPathReq.OptionType\022\020\n\010s" +
-      "cene_id\030\001 \001(\r\022\020\n\010query_id\030\002 \001(\005\"\233\001\n\nOpti" +
-      "onType\022\032\n\026OptionType_OPTION_NONE\020\000\022\034\n\030Op" +
-      "tionType_OPTION_NORMAL\020\001\022\"\n\036OptionType_O" +
-      "PTION_FIRST_CAN_GO\020\002\022/\n+OptionType_OPTIO" +
-      "N_FIRST_CAN_GO_SUCCESS_ONLY\020\003B\033\n\031emu.gra" +
-      "sscutter.net.protob\006proto3"
+      "Vector\022\034\n\006filter\030\004 \001(\0132\014.QueryFilter\022!\n\013" +
+      "FLFPHIAAGME\030\005 \001(\0132\014.DICLKEBODEC\022\"\n\013CPMFA" +
+      "CKILJN\030\242\234\001 \001(\0132\013.Vector3Int\022,\n\nquery_typ" +
+      "e\030\t \001(\0162\030.QueryPathReq.OptionType\022\020\n\010sce" +
+      "ne_id\030\001 \001(\r\022\020\n\010query_id\030\002 \001(\005\"\233\001\n\nOption" +
+      "Type\022\032\n\026OptionType_OPTION_NONE\020\000\022\034\n\030Opti" +
+      "onType_OPTION_NORMAL\020\001\022\"\n\036OptionType_OPT" +
+      "ION_FIRST_CAN_GO\020\002\022/\n+OptionType_OPTION_" +
+      "FIRST_CAN_GO_SUCCESS_ONLY\020\003B\033\n\031emu.grass" +
+      "cutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -32,5 +32,5 @@ message _CooperateChallengeSettleInfo {
   repeated uint32 MIFCBDAIKNH = 20001;
   _CooperateChallengeSettleInfo.EACPNCPOKGE EBGPHJCLGKC = 20002;
   uint32 difficulty_id = 6;
-  uint32 IKLNEBCKENF = 20003;
+  uint32 IKLNEBCKENF = 3;
 }

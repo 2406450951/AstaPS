@@ -5,7 +5,7 @@ option java_package = "emu.grasscutter.net.proto";
 import "LIEDMPJGMED.proto";
 
 message _ComboJump {
-  repeated LIEDMPJGMED PEDAILGLAIF = 20000;
+  repeated LIEDMPJGMED PEDAILGLAIF = 2;
   float GCNFBILIMAN = 20001;
   float BCFFJHMCNJC = 20002;
   bool OIMIDKCFJKC = 20003;

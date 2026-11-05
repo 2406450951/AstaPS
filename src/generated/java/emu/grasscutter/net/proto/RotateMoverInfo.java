@@ -31,17 +31,17 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 1;</code>
      * @return Whether the iMFDIHLBFEN field is set.
      */
     boolean hasIMFDIHLBFEN();
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 1;</code>
      * @return The iMFDIHLBFEN.
      */
     emu.grasscutter.net.proto.VectorOuterClass.Vector getIMFDIHLBFEN();
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 1;</code>
      */
     emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getIMFDIHLBFENOrBuilder();
 
@@ -61,7 +61,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
     emu.grasscutter.net.proto.MathQuaternionOuterClass.MathQuaternionOrBuilder getGMDLGOECLKPOrBuilder();
 
     /**
-     * <code>float LAIKIBMMJKD = 20002;</code>
+     * <code>float LAIKIBMMJKD = 2;</code>
      * @return The lAIKIBMMJKD.
      */
     float getLAIKIBMMJKD();
@@ -109,10 +109,10 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
     }
 
     private int bitField0_;
-    public static final int IMFDIHLBFEN_FIELD_NUMBER = 20000;
+    public static final int IMFDIHLBFEN_FIELD_NUMBER = 1;
     private emu.grasscutter.net.proto.VectorOuterClass.Vector iMFDIHLBFEN_;
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 1;</code>
      * @return Whether the iMFDIHLBFEN field is set.
      */
     @java.lang.Override
@@ -120,7 +120,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 1;</code>
      * @return The iMFDIHLBFEN.
      */
     @java.lang.Override
@@ -128,7 +128,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
       return iMFDIHLBFEN_ == null ? emu.grasscutter.net.proto.VectorOuterClass.Vector.getDefaultInstance() : iMFDIHLBFEN_;
     }
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 1;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getIMFDIHLBFENOrBuilder() {
@@ -161,10 +161,10 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
       return gMDLGOECLKP_ == null ? emu.grasscutter.net.proto.MathQuaternionOuterClass.MathQuaternion.getDefaultInstance() : gMDLGOECLKP_;
     }
 
-    public static final int LAIKIBMMJKD_FIELD_NUMBER = 20002;
+    public static final int LAIKIBMMJKD_FIELD_NUMBER = 2;
     private float lAIKIBMMJKD_ = 0F;
     /**
-     * <code>float LAIKIBMMJKD = 20002;</code>
+     * <code>float LAIKIBMMJKD = 2;</code>
      * @return The lAIKIBMMJKD.
      */
     @java.lang.Override
@@ -187,13 +187,13 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getIMFDIHLBFEN());
+        output.writeMessage(1, getIMFDIHLBFEN());
+      }
+      if (java.lang.Float.floatToRawIntBits(lAIKIBMMJKD_) != 0) {
+        output.writeFloat(2, lAIKIBMMJKD_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(20001, getGMDLGOECLKP());
-      }
-      if (java.lang.Float.floatToRawIntBits(lAIKIBMMJKD_) != 0) {
-        output.writeFloat(20002, lAIKIBMMJKD_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -201,15 +201,15 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
       int size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getIMFDIHLBFEN());
+          .computeMessageSize(1, getIMFDIHLBFEN());
+      }
+      if (java.lang.Float.floatToRawIntBits(lAIKIBMMJKD_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, lAIKIBMMJKD_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20001, getGMDLGOECLKP());
-      }
-      if (java.lang.Float.floatToRawIntBits(lAIKIBMMJKD_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(20002, lAIKIBMMJKD_);
       }
       return size;
     }
@@ -516,13 +516,18 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 10: {
                 input.readMessage(
                     internalGetIMFDIHLBFENFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 10
+              case 21: {
+                lAIKIBMMJKD_ = input.readFloat();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 21
               case 160010: {
                 input.readMessage(
                     internalGetGMDLGOECLKPFieldBuilder().getBuilder(),
@@ -530,11 +535,6 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 160010
-              case 160021: {
-                lAIKIBMMJKD_ = input.readFloat();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160021
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -556,14 +556,14 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> iMFDIHLBFENBuilder_;
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        * @return Whether the iMFDIHLBFEN field is set.
        */
       public boolean hasIMFDIHLBFEN() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        * @return The iMFDIHLBFEN.
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector getIMFDIHLBFEN() {
@@ -574,7 +574,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        */
       public Builder setIMFDIHLBFEN(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (iMFDIHLBFENBuilder_ == null) {
@@ -588,7 +588,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        */
       public Builder setIMFDIHLBFEN(
           emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder builderForValue) {
@@ -602,7 +602,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        */
       public Builder mergeIMFDIHLBFEN(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (iMFDIHLBFENBuilder_ == null) {
@@ -623,7 +623,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        */
       public Builder clearIMFDIHLBFEN() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -636,7 +636,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder getIMFDIHLBFENBuilder() {
         bitField0_ |= 0x00000001;
@@ -644,7 +644,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         return internalGetIMFDIHLBFENFieldBuilder().getBuilder();
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getIMFDIHLBFENOrBuilder() {
         if (iMFDIHLBFENBuilder_ != null) {
@@ -655,7 +655,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> 
@@ -792,7 +792,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
 
       private float lAIKIBMMJKD_ ;
       /**
-       * <code>float LAIKIBMMJKD = 20002;</code>
+       * <code>float LAIKIBMMJKD = 2;</code>
        * @return The lAIKIBMMJKD.
        */
       @java.lang.Override
@@ -800,7 +800,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         return lAIKIBMMJKD_;
       }
       /**
-       * <code>float LAIKIBMMJKD = 20002;</code>
+       * <code>float LAIKIBMMJKD = 2;</code>
        * @param value The lAIKIBMMJKD to set.
        * @return This builder for chaining.
        */
@@ -812,7 +812,7 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>float LAIKIBMMJKD = 20002;</code>
+       * <code>float LAIKIBMMJKD = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearLAIKIBMMJKD() {
@@ -888,11 +888,11 @@ public final class RotateMoverInfo extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\026_RotateMoverInfo.proto\032\024MathQuaternion" +
-      ".proto\032\014Vector.proto\"q\n\020_RotateMoverInfo" +
-      "\022\036\n\013IMFDIHLBFEN\030\240\234\001 \001(\0132\007.Vector\022&\n\013GMDL" +
-      "GOECLKP\030\241\234\001 \001(\0132\017.MathQuaternion\022\025\n\013LAIK" +
-      "IBMMJKD\030\242\234\001 \001(\002B\033\n\031emu.grasscutter.net.p" +
-      "rotob\006proto3"
+      ".proto\032\014Vector.proto\"m\n\020_RotateMoverInfo" +
+      "\022\034\n\013IMFDIHLBFEN\030\001 \001(\0132\007.Vector\022&\n\013GMDLGO" +
+      "ECLKP\030\241\234\001 \001(\0132\017.MathQuaternion\022\023\n\013LAIKIB" +
+      "MMJKD\030\002 \001(\002B\033\n\031emu.grasscutter.net.proto" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

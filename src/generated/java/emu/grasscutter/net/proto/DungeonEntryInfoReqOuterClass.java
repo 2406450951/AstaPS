@@ -61,7 +61,7 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
     int getPointId();
 
     /**
-     * <code>bool HGBKKNDDABP = 20000;</code>
+     * <code>bool HGBKKNDDABP = 13;</code>
      * @return The hGBKKNDDABP.
      */
     boolean getHGBKKNDDABP();
@@ -167,10 +167,10 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
       return pointId_;
     }
 
-    public static final int HGBKKNDDABP_FIELD_NUMBER = 20000;
+    public static final int HGBKKNDDABP_FIELD_NUMBER = 13;
     private boolean hGBKKNDDABP_ = false;
     /**
-     * <code>bool HGBKKNDDABP = 20000;</code>
+     * <code>bool HGBKKNDDABP = 13;</code>
      * @return The hGBKKNDDABP.
      */
     @java.lang.Override
@@ -213,7 +213,7 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
         output.writeUInt32(10, sceneId_);
       }
       if (hGBKKNDDABP_ != false) {
-        output.writeBool(20000, hGBKKNDDABP_);
+        output.writeBool(13, hGBKKNDDABP_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -238,7 +238,7 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
       }
       if (hGBKKNDDABP_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, hGBKKNDDABP_);
+          .computeBoolSize(13, hGBKKNDDABP_);
       }
       return size;
     }
@@ -586,11 +586,11 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
                 bitField0_ |= 0x00000008;
                 break;
               } // case 80
-              case 160000: {
+              case 104: {
                 hGBKKNDDABP_ = input.readBool();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 160000
+              } // case 104
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -876,7 +876,7 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
 
       private boolean hGBKKNDDABP_ ;
       /**
-       * <code>bool HGBKKNDDABP = 20000;</code>
+       * <code>bool HGBKKNDDABP = 13;</code>
        * @return The hGBKKNDDABP.
        */
       @java.lang.Override
@@ -884,7 +884,7 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
         return hGBKKNDDABP_;
       }
       /**
-       * <code>bool HGBKKNDDABP = 20000;</code>
+       * <code>bool HGBKKNDDABP = 13;</code>
        * @param value The hGBKKNDDABP to set.
        * @return This builder for chaining.
        */
@@ -896,7 +896,7 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
         return this;
       }
       /**
-       * <code>bool HGBKKNDDABP = 20000;</code>
+       * <code>bool HGBKKNDDABP = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearHGBKKNDDABP() {
@@ -1004,11 +1004,11 @@ public final class DungeonEntryInfoReqOuterClass extends com.google.protobuf.Gen
   static {
     java.lang.String[] descriptorData = {
       "\n\031DungeonEntryInfoReq.proto\032\020Uint32Pair." +
-      "proto\"z\n\023DungeonEntryInfoReq\022(\n\023scene_po" +
+      "proto\"x\n\023DungeonEntryInfoReq\022(\n\023scene_po" +
       "int_id_list\030\010 \003(\0132\013.Uint32Pair\022\020\n\010point_" +
-      "id\030\t \001(\r\022\025\n\013HGBKKNDDABP\030\240\234\001 \001(\010\022\020\n\010scene" +
-      "_id\030\n \001(\rB\033\n\031emu.grasscutter.net.protob\006" +
-      "proto3"
+      "id\030\t \001(\r\022\023\n\013HGBKKNDDABP\030\r \001(\010\022\020\n\010scene_i" +
+      "d\030\n \001(\rB\033\n\031emu.grasscutter.net.protob\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

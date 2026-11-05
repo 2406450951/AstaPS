@@ -12,10 +12,10 @@ message GAALHKEALCN {
   repeated NMPMEMFEOMA EPLCNHFNDPA = 20002;
   uint32 level_id = 10;
   uint32 cost_time = 6;
-  uint32 AKCPFFADDOP = 20003;
+  uint32 AKCPFFADDOP = 15;
   bool is_open = 8;
   bool OGBLPLNCKIF = 20004;
   bool is_finish = 3;
   uint32 EGGHBMLGLHC = 20005;
-  uint32 DEADDOKKEHM = 20006;
+  uint32 DEADDOKKEHM = 4;
 }

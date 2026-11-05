@@ -40,7 +40,7 @@ message SceneGadgetInfo {
   GadgetPlayInfo play_info = 100;
   _JourneyGearGadgetInfo _journey_gear_operator_info = 102;
   _UgcTowerLevelUpGadgetInfo _ugc_tower_level_up_gadget_info = 101;
-  BMJNJLKCODG CFOMFPNHLJF = 20000;
+  BMJNJLKCODG CFOMFPNHLJF = 27;
   repeated uint32 affix_list = 29;
   repeated uint32 interact_uid_list = 24;
   PlatformInfo platform = 23;

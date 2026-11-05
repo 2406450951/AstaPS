@@ -337,7 +337,7 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
     int getKillNum();
 
     /**
-     * <code>uint32 AAKAOLKKNGC = 20018;</code>
+     * <code>uint32 AAKAOLKKNGC = 15;</code>
      * @return The aAKAOLKKNGC.
      */
     int getAAKAOLKKNGC();
@@ -975,10 +975,10 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
       return killNum_;
     }
 
-    public static final int AAKAOLKKNGC_FIELD_NUMBER = 20018;
+    public static final int AAKAOLKKNGC_FIELD_NUMBER = 15;
     private int aAKAOLKKNGC_ = 0;
     /**
-     * <code>uint32 AAKAOLKKNGC = 20018;</code>
+     * <code>uint32 AAKAOLKKNGC = 15;</code>
      * @return The aAKAOLKKNGC.
      */
     @java.lang.Override
@@ -1103,6 +1103,9 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
       if (score_ != 0) {
         output.writeUInt32(14, score_);
       }
+      if (aAKAOLKKNGC_ != 0) {
+        output.writeUInt32(15, aAKAOLKKNGC_);
+      }
       if (isSucc_ != false) {
         output.writeBool(361, isSucc_);
       }
@@ -1166,9 +1169,6 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
       if (gOGAJJBGNGA_ != 0) {
         output.writeFixed32(20017, gOGAJJBGNGA_);
       }
-      if (aAKAOLKKNGC_ != 0) {
-        output.writeUInt32(20018, aAKAOLKKNGC_);
-      }
       if (hMEOCELGIHL_ != 0) {
         output.writeUInt32(20019, hMEOCELGIHL_);
       }
@@ -1210,6 +1210,10 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
       if (score_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(14, score_);
+      }
+      if (aAKAOLKKNGC_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(15, aAKAOLKKNGC_);
       }
       if (isSucc_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -1334,10 +1338,6 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
       if (gOGAJJBGNGA_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFixed32Size(20017, gOGAJJBGNGA_);
-      }
-      if (aAKAOLKKNGC_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20018, aAKAOLKKNGC_);
       }
       if (hMEOCELGIHL_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -2344,6 +2344,11 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00002000;
                 break;
               } // case 112
+              case 120: {
+                aAKAOLKKNGC_ = input.readUInt32();
+                bitField0_ |= 0x01000000;
+                break;
+              } // case 120
               case 2888: {
                 isSucc_ = input.readBool();
                 bitField0_ |= 0x00020000;
@@ -2517,11 +2522,6 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00400000;
                 break;
               } // case 160141
-              case 160144: {
-                aAKAOLKKNGC_ = input.readUInt32();
-                bitField0_ |= 0x01000000;
-                break;
-              } // case 160144
               case 160152: {
                 hMEOCELGIHL_ = input.readUInt32();
                 bitField0_ |= 0x02000000;
@@ -5130,7 +5130,7 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
 
       private int aAKAOLKKNGC_ ;
       /**
-       * <code>uint32 AAKAOLKKNGC = 20018;</code>
+       * <code>uint32 AAKAOLKKNGC = 15;</code>
        * @return The aAKAOLKKNGC.
        */
       @java.lang.Override
@@ -5138,7 +5138,7 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
         return aAKAOLKKNGC_;
       }
       /**
-       * <code>uint32 AAKAOLKKNGC = 20018;</code>
+       * <code>uint32 AAKAOLKKNGC = 15;</code>
        * @param value The aAKAOLKKNGC to set.
        * @return This builder for chaining.
        */
@@ -5150,7 +5150,7 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 AAKAOLKKNGC = 20018;</code>
+       * <code>uint32 AAKAOLKKNGC = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearAAKAOLKKNGC() {
@@ -5485,7 +5485,7 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
       "proto\032\021FPDFKKCLABC.proto\032\021GIBOKGAOIPM.pr" +
       "oto\032\021HGJIDLNNCFH.proto\032\021HNHADJKJBDG.prot" +
       "o\032\021KBEDMDPADOA.proto\032\021KMNMLECJJPL.proto\"" +
-      "\210\007\n\022_RogueBallSnapshot\022#\n\013DAIIEJDGBBG\030\240\234" +
+      "\206\007\n\022_RogueBallSnapshot\022#\n\013DAIIEJDGBBG\030\240\234" +
       "\001 \003(\0132\014.GIBOKGAOIPM\022#\n\013AMBJOPDFKJL\030\241\234\001 \001" +
       "(\0132\014.FPDFKKCLABC\022#\n\013NHCBKFECGCC\030\242\234\001 \003(\0132" +
       "\014.DPIFNBBLBCI\022#\n\013PAEFJALLLNP\030\243\234\001 \003(\0132\014.K" +
@@ -5502,13 +5502,13 @@ public final class RogueBallSnapshot extends com.google.protobuf.GeneratedFile {
       "\001(\010\022\025\n\013OEIMBKPACKF\030\255\234\001 \001(\010\022\025\n\013FPBLBCKIKI" +
       "K\030\256\234\001 \001(\r\022\025\n\013IKJMLCNHBIM\030\257\234\001 \001(\r\022\025\n\013LHIG" +
       "KHHFONB\030\260\234\001 \001(\r\022\025\n\013GOGAJJBGNGA\030\261\234\001 \001(\007\022\021" +
-      "\n\010kill_num\030\303\017 \001(\r\022\025\n\013AAKAOLKKNGC\030\262\234\001 \001(\r" +
-      "\022\025\n\013HMEOCELGIHL\030\263\234\001 \001(\r\022\024\n\014player_level\030" +
-      "\007 \001(\r\022\025\n\013IOLDKPFFJMM\030\264\234\001 \001(\r\022\025\n\013PLEOIAMM" +
-      "EDC\030\265\234\001 \001(\r\022\030\n\020element_ball_num\030\004 \001(\r\022\025\n" +
-      "\013CPGIKKNENKA\030\266\234\001 \001(\r\022\025\n\013DNGACHHMPBL\030\267\234\001 " +
-      "\001(\r\022\025\n\013IAPKLIIEINM\030\270\234\001 \001(\rB\033\n\031emu.grassc" +
-      "utter.net.protob\006proto3"
+      "\n\010kill_num\030\303\017 \001(\r\022\023\n\013AAKAOLKKNGC\030\017 \001(\r\022\025" +
+      "\n\013HMEOCELGIHL\030\263\234\001 \001(\r\022\024\n\014player_level\030\007 " +
+      "\001(\r\022\025\n\013IOLDKPFFJMM\030\264\234\001 \001(\r\022\025\n\013PLEOIAMMED" +
+      "C\030\265\234\001 \001(\r\022\030\n\020element_ball_num\030\004 \001(\r\022\025\n\013C" +
+      "PGIKKNENKA\030\266\234\001 \001(\r\022\025\n\013DNGACHHMPBL\030\267\234\001 \001(" +
+      "\r\022\025\n\013IAPKLIIEINM\030\270\234\001 \001(\rB\033\n\031emu.grasscut" +
+      "ter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

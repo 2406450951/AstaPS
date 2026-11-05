@@ -95,7 +95,7 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
     int getArtifactIdList(int index);
 
     /**
-     * <code>bool NBCEKJJNAHJ = 20002;</code>
+     * <code>bool NBCEKJJNAHJ = 12;</code>
      * @return The nBCEKJJNAHJ.
      */
     boolean getNBCEKJJNAHJ();
@@ -119,7 +119,7 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
     int getTimestamp();
 
     /**
-     * <code>uint32 HOAOJBKJFLE = 20004;</code>
+     * <code>uint32 HOAOJBKJFLE = 5;</code>
      * @return The hOAOJBKJFLE.
      */
     int getHOAOJBKJFLE();
@@ -305,10 +305,10 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
     }
     private int ArtifactIdListMemoizedSerializedSize = -1;
 
-    public static final int NBCEKJJNAHJ_FIELD_NUMBER = 20002;
+    public static final int NBCEKJJNAHJ_FIELD_NUMBER = 12;
     private boolean nBCEKJJNAHJ_ = false;
     /**
-     * <code>bool NBCEKJJNAHJ = 20002;</code>
+     * <code>bool NBCEKJJNAHJ = 12;</code>
      * @return The nBCEKJJNAHJ.
      */
     @java.lang.Override
@@ -349,10 +349,10 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
       return timestamp_;
     }
 
-    public static final int HOAOJBKJFLE_FIELD_NUMBER = 20004;
+    public static final int HOAOJBKJFLE_FIELD_NUMBER = 5;
     private int hOAOJBKJFLE_ = 0;
     /**
-     * <code>uint32 HOAOJBKJFLE = 20004;</code>
+     * <code>uint32 HOAOJBKJFLE = 5;</code>
      * @return The hOAOJBKJFLE.
      */
     @java.lang.Override
@@ -425,11 +425,17 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(3, getProgress());
       }
+      if (hOAOJBKJFLE_ != 0) {
+        output.writeUInt32(5, hOAOJBKJFLE_);
+      }
       if (timestamp_ != 0) {
         output.writeUInt32(7, timestamp_);
       }
       if (maxHp_ != 0) {
         output.writeUInt32(11, maxHp_);
+      }
+      if (nBCEKJJNAHJ_ != false) {
+        output.writeBool(12, nBCEKJJNAHJ_);
       }
       if (coin_ != 0) {
         output.writeUInt32(14, coin_);
@@ -451,14 +457,8 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
       for (int i = 0; i < hDKMGJJKEMA_.size(); i++) {
         output.writeUInt32NoTag(hDKMGJJKEMA_.getInt(i));
       }
-      if (nBCEKJJNAHJ_ != false) {
-        output.writeBool(20002, nBCEKJJNAHJ_);
-      }
       if (aFDKEOOHHPA_ != 0) {
         output.writeUInt32(20003, aFDKEOOHHPA_);
-      }
-      if (hOAOJBKJFLE_ != 0) {
-        output.writeUInt32(20004, hOAOJBKJFLE_);
       }
       if (lKPNNFDCJLF_ != 0) {
         output.writeUInt32(20005, lKPNNFDCJLF_);
@@ -478,6 +478,10 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getProgress());
       }
+      if (hOAOJBKJFLE_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, hOAOJBKJFLE_);
+      }
       if (timestamp_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(7, timestamp_);
@@ -485,6 +489,10 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
       if (maxHp_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(11, maxHp_);
+      }
+      if (nBCEKJJNAHJ_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(12, nBCEKJJNAHJ_);
       }
       if (coin_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -522,17 +530,9 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
         }
         hDKMGJJKEMAMemoizedSerializedSize = dataSize;
       }
-      if (nBCEKJJNAHJ_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20002, nBCEKJJNAHJ_);
-      }
       if (aFDKEOOHHPA_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20003, aFDKEOOHHPA_);
-      }
-      if (hOAOJBKJFLE_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20004, hOAOJBKJFLE_);
       }
       if (lKPNNFDCJLF_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -990,6 +990,11 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000004;
                 break;
               } // case 26
+              case 40: {
+                hOAOJBKJFLE_ = input.readUInt32();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 40
               case 56: {
                 timestamp_ = input.readUInt32();
                 bitField0_ |= 0x00000080;
@@ -1000,6 +1005,11 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000800;
                 break;
               } // case 88
+              case 96: {
+                nBCEKJJNAHJ_ = input.readBool();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 96
               case 112: {
                 coin_ = input.readUInt32();
                 bitField0_ |= 0x00001000;
@@ -1044,21 +1054,11 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
                 input.popLimit(limit);
                 break;
               } // case 160010
-              case 160016: {
-                nBCEKJJNAHJ_ = input.readBool();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160016
               case 160024: {
                 aFDKEOOHHPA_ = input.readUInt32();
                 bitField0_ |= 0x00000040;
                 break;
               } // case 160024
-              case 160032: {
-                hOAOJBKJFLE_ = input.readUInt32();
-                bitField0_ |= 0x00000100;
-                break;
-              } // case 160032
               case 160040: {
                 lKPNNFDCJLF_ = input.readUInt32();
                 bitField0_ |= 0x00000200;
@@ -1494,7 +1494,7 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
 
       private boolean nBCEKJJNAHJ_ ;
       /**
-       * <code>bool NBCEKJJNAHJ = 20002;</code>
+       * <code>bool NBCEKJJNAHJ = 12;</code>
        * @return The nBCEKJJNAHJ.
        */
       @java.lang.Override
@@ -1502,7 +1502,7 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
         return nBCEKJJNAHJ_;
       }
       /**
-       * <code>bool NBCEKJJNAHJ = 20002;</code>
+       * <code>bool NBCEKJJNAHJ = 12;</code>
        * @param value The nBCEKJJNAHJ to set.
        * @return This builder for chaining.
        */
@@ -1514,7 +1514,7 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>bool NBCEKJJNAHJ = 20002;</code>
+       * <code>bool NBCEKJJNAHJ = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearNBCEKJJNAHJ() {
@@ -1622,7 +1622,7 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
 
       private int hOAOJBKJFLE_ ;
       /**
-       * <code>uint32 HOAOJBKJFLE = 20004;</code>
+       * <code>uint32 HOAOJBKJFLE = 5;</code>
        * @return The hOAOJBKJFLE.
        */
       @java.lang.Override
@@ -1630,7 +1630,7 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
         return hOAOJBKJFLE_;
       }
       /**
-       * <code>uint32 HOAOJBKJFLE = 20004;</code>
+       * <code>uint32 HOAOJBKJFLE = 5;</code>
        * @param value The hOAOJBKJFLE to set.
        * @return This builder for chaining.
        */
@@ -1642,7 +1642,7 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>uint32 HOAOJBKJFLE = 20004;</code>
+       * <code>uint32 HOAOJBKJFLE = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearHOAOJBKJFLE() {
@@ -1846,16 +1846,16 @@ public final class AutochessRecordSocialBrief extends com.google.protobuf.Genera
   static {
     java.lang.String[] descriptorData = {
       "\n!_AutochessRecordSocialBrief.proto\032\021KHF" +
-      "BAMPCPPF.proto\032\020Uint32Pair.proto\"\303\002\n\033_Au" +
+      "BAMPCPPF.proto\032\020Uint32Pair.proto\"\277\002\n\033_Au" +
       "tochessRecordSocialBrief\022#\n\013DNBEJHIILMM\030" +
       "\240\234\001 \001(\0132\014.KHFBAMPCPPF\022\025\n\013HDKMGJJKEMA\030\241\234\001" +
       " \003(\r\022\035\n\010progress\030\003 \001(\0132\013.Uint32Pair\022\031\n\021_" +
-      "artifact_id_list\030\017 \003(\r\022\025\n\013NBCEKJJNAHJ\030\242\234" +
-      "\001 \001(\010\022\n\n\002hp\030\002 \001(\r\022\025\n\013AFDKEOOHHPA\030\243\234\001 \001(\r" +
-      "\022\021\n\ttimestamp\030\007 \001(\r\022\025\n\013HOAOJBKJFLE\030\244\234\001 \001" +
-      "(\r\022\025\n\013LKPNNFDCJLF\030\245\234\001 \001(\r\022\025\n\013GBAIFJIKOON" +
-      "\030\246\234\001 \001(\r\022\016\n\006max_hp\030\013 \001(\r\022\014\n\004coin\030\016 \001(\rB\033" +
-      "\n\031emu.grasscutter.net.protob\006proto3"
+      "artifact_id_list\030\017 \003(\r\022\023\n\013NBCEKJJNAHJ\030\014 " +
+      "\001(\010\022\n\n\002hp\030\002 \001(\r\022\025\n\013AFDKEOOHHPA\030\243\234\001 \001(\r\022\021" +
+      "\n\ttimestamp\030\007 \001(\r\022\023\n\013HOAOJBKJFLE\030\005 \001(\r\022\025" +
+      "\n\013LKPNNFDCJLF\030\245\234\001 \001(\r\022\025\n\013GBAIFJIKOON\030\246\234\001" +
+      " \001(\r\022\016\n\006max_hp\030\013 \001(\r\022\014\n\004coin\030\016 \001(\rB\033\n\031em" +
+      "u.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

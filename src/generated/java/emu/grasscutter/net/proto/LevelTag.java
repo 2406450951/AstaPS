@@ -54,7 +54,7 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
     int getRewardId();
 
     /**
-     * <code>uint32 CNJOFMDBADE = 20000;</code>
+     * <code>uint32 CNJOFMDBADE = 5;</code>
      * @return The cNJOFMDBADE.
      */
     int getCNJOFMDBADE();
@@ -142,10 +142,10 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
       return rewardId_;
     }
 
-    public static final int CNJOFMDBADE_FIELD_NUMBER = 20000;
+    public static final int CNJOFMDBADE_FIELD_NUMBER = 5;
     private int cNJOFMDBADE_ = 0;
     /**
-     * <code>uint32 CNJOFMDBADE = 20000;</code>
+     * <code>uint32 CNJOFMDBADE = 5;</code>
      * @return The cNJOFMDBADE.
      */
     @java.lang.Override
@@ -170,14 +170,14 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
       if (level_ != 0) {
         output.writeUInt32(1, level_);
       }
+      if (cNJOFMDBADE_ != 0) {
+        output.writeUInt32(5, cNJOFMDBADE_);
+      }
       if (rewardId_ != 0) {
         output.writeUInt32(12, rewardId_);
       }
       if (RewardType_ != emu.grasscutter.net.proto.BeyondBattlePassLevelRewardType._BeyondBattlePassLevelRewardType._BeyondBattlePassLevelRewardType_BEYOND_BATTLE_PASS_LEVEL_REWARD_INVALID.getNumber()) {
         output.writeEnum(14, RewardType_);
-      }
-      if (cNJOFMDBADE_ != 0) {
-        output.writeUInt32(20000, cNJOFMDBADE_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -187,6 +187,10 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(1, level_);
       }
+      if (cNJOFMDBADE_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, cNJOFMDBADE_);
+      }
       if (rewardId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(12, rewardId_);
@@ -194,10 +198,6 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
       if (RewardType_ != emu.grasscutter.net.proto.BeyondBattlePassLevelRewardType._BeyondBattlePassLevelRewardType._BeyondBattlePassLevelRewardType_BEYOND_BATTLE_PASS_LEVEL_REWARD_INVALID.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(14, RewardType_);
-      }
-      if (cNJOFMDBADE_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, cNJOFMDBADE_);
       }
       return size;
     }
@@ -484,6 +484,11 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
+              case 40: {
+                cNJOFMDBADE_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 40
               case 96: {
                 rewardId_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -494,11 +499,6 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 112
-              case 160000: {
-                cNJOFMDBADE_ = input.readUInt32();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -634,7 +634,7 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
 
       private int cNJOFMDBADE_ ;
       /**
-       * <code>uint32 CNJOFMDBADE = 20000;</code>
+       * <code>uint32 CNJOFMDBADE = 5;</code>
        * @return The cNJOFMDBADE.
        */
       @java.lang.Override
@@ -642,7 +642,7 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
         return cNJOFMDBADE_;
       }
       /**
-       * <code>uint32 CNJOFMDBADE = 20000;</code>
+       * <code>uint32 CNJOFMDBADE = 5;</code>
        * @param value The cNJOFMDBADE to set.
        * @return This builder for chaining.
        */
@@ -654,7 +654,7 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 CNJOFMDBADE = 20000;</code>
+       * <code>uint32 CNJOFMDBADE = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearCNJOFMDBADE() {
@@ -730,11 +730,11 @@ public final class LevelTag extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\017_LevelTag.proto\032&_BeyondBattlePassLeve" +
-      "lRewardType.proto\"}\n\t_LevelTag\022\r\n\005level\030" +
+      "lRewardType.proto\"{\n\t_LevelTag\022\r\n\005level\030" +
       "\001 \001(\r\0227\n\014_reward_type\030\016 \001(\0162!._BeyondBat" +
       "tlePassLevelRewardType\022\021\n\treward_id\030\014 \001(" +
-      "\r\022\025\n\013CNJOFMDBADE\030\240\234\001 \001(\rB\033\n\031emu.grasscut" +
-      "ter.net.protob\006proto3"
+      "\r\022\023\n\013CNJOFMDBADE\030\005 \001(\rB\033\n\031emu.grasscutte" +
+      "r.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

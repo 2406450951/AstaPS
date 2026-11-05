@@ -135,7 +135,7 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
     emu.grasscutter.net.proto.DGAJHBBIDNMOuterClass.DGAJHBBIDNMOrBuilder getFBKBOIEBJCHOrBuilder();
 
     /**
-     * <code>bool ELCGFJCJMNN = 20005;</code>
+     * <code>bool ELCGFJCJMNN = 6;</code>
      * @return The eLCGFJCJMNN.
      */
     boolean getELCGFJCJMNN();
@@ -366,10 +366,10 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
       return fBKBOIEBJCH_ == null ? emu.grasscutter.net.proto.DGAJHBBIDNMOuterClass.DGAJHBBIDNM.getDefaultInstance() : fBKBOIEBJCH_;
     }
 
-    public static final int ELCGFJCJMNN_FIELD_NUMBER = 20005;
+    public static final int ELCGFJCJMNN_FIELD_NUMBER = 6;
     private boolean eLCGFJCJMNN_ = false;
     /**
-     * <code>bool ELCGFJCJMNN = 20005;</code>
+     * <code>bool ELCGFJCJMNN = 6;</code>
      * @return The eLCGFJCJMNN.
      */
     @java.lang.Override
@@ -392,6 +392,9 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (eLCGFJCJMNN_ != false) {
+        output.writeBool(6, eLCGFJCJMNN_);
+      }
       for (int i = 0; i < pKAOIMANLKC_.size(); i++) {
         output.writeMessage(20000, pKAOIMANLKC_.get(i));
       }
@@ -411,13 +414,14 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20004, getFBKBOIEBJCH());
       }
-      if (eLCGFJCJMNN_ != false) {
-        output.writeBool(20005, eLCGFJCJMNN_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (eLCGFJCJMNN_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, eLCGFJCJMNN_);
+      }
 
           {
             final int count = pKAOIMANLKC_.size();
@@ -462,10 +466,6 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20004, getFBKBOIEBJCH());
-      }
-      if (eLCGFJCJMNN_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20005, eLCGFJCJMNN_);
       }
       return size;
     }
@@ -920,6 +920,11 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
               case 0:
                 done = true;
                 break;
+              case 48: {
+                eLCGFJCJMNN_ = input.readBool();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
               case 160002: {
                 emu.grasscutter.net.proto.MPAFKGBDMGDOuterClass.MPAFKGBDMGD m =
                     input.readMessage(
@@ -982,11 +987,6 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00000010;
                 break;
               } // case 160034
-              case 160040: {
-                eLCGFJCJMNN_ = input.readBool();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160040
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1911,7 +1911,7 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
 
       private boolean eLCGFJCJMNN_ ;
       /**
-       * <code>bool ELCGFJCJMNN = 20005;</code>
+       * <code>bool ELCGFJCJMNN = 6;</code>
        * @return The eLCGFJCJMNN.
        */
       @java.lang.Override
@@ -1919,7 +1919,7 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
         return eLCGFJCJMNN_;
       }
       /**
-       * <code>bool ELCGFJCJMNN = 20005;</code>
+       * <code>bool ELCGFJCJMNN = 6;</code>
        * @param value The eLCGFJCJMNN to set.
        * @return This builder for chaining.
        */
@@ -1931,7 +1931,7 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>bool ELCGFJCJMNN = 20005;</code>
+       * <code>bool ELCGFJCJMNN = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearELCGFJCJMNN() {
@@ -2008,14 +2008,13 @@ public final class FairyTalesDetailInfo extends com.google.protobuf.GeneratedFil
     java.lang.String[] descriptorData = {
       "\n\033_FairyTalesDetailInfo.proto\032\021DGAJHBBID" +
       "NM.proto\032\021GBGKDGMAEGA.proto\032\021JIEHJMIEHPM" +
-      ".proto\032\021MPAFKGBDMGD.proto\"\331\001\n\025_FairyTale" +
+      ".proto\032\021MPAFKGBDMGD.proto\"\327\001\n\025_FairyTale" +
       "sDetailInfo\022#\n\013PKAOIMANLKC\030\240\234\001 \003(\0132\014.MPA" +
       "FKGBDMGD\022#\n\013ICALMLAHAAL\030\241\234\001 \003(\0132\014.JIEHJM" +
       "IEHPM\022\025\n\013JLGIAAGNLCO\030\242\234\001 \003(\r\022#\n\013HIIIBLGM" +
       "MLF\030\243\234\001 \003(\0132\014.GBGKDGMAEGA\022#\n\013FBKBOIEBJCH" +
-      "\030\244\234\001 \001(\0132\014.DGAJHBBIDNM\022\025\n\013ELCGFJCJMNN\030\245\234" +
-      "\001 \001(\010B\033\n\031emu.grasscutter.net.protob\006prot" +
-      "o3"
+      "\030\244\234\001 \001(\0132\014.DGAJHBBIDNM\022\023\n\013ELCGFJCJMNN\030\006 " +
+      "\001(\010B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

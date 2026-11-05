@@ -37,7 +37,7 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
     int getGadgetEntityId();
 
     /**
-     * <code>uint32 CJIPKAIPCIB = 20000;</code>
+     * <code>uint32 CJIPKAIPCIB = 3;</code>
      * @return The cJIPKAIPCIB.
      */
     int getCJIPKAIPCIB();
@@ -101,10 +101,10 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
       return gadgetEntityId_;
     }
 
-    public static final int CJIPKAIPCIB_FIELD_NUMBER = 20000;
+    public static final int CJIPKAIPCIB_FIELD_NUMBER = 3;
     private int cJIPKAIPCIB_ = 0;
     /**
-     * <code>uint32 CJIPKAIPCIB = 20000;</code>
+     * <code>uint32 CJIPKAIPCIB = 3;</code>
      * @return The cJIPKAIPCIB.
      */
     @java.lang.Override
@@ -137,19 +137,23 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (cJIPKAIPCIB_ != 0) {
+        output.writeUInt32(3, cJIPKAIPCIB_);
+      }
       if (optionId_ != 0) {
         output.writeUInt32(9, optionId_);
       }
       if (gadgetEntityId_ != 0) {
         output.writeUInt32(15, gadgetEntityId_);
       }
-      if (cJIPKAIPCIB_ != 0) {
-        output.writeUInt32(20000, cJIPKAIPCIB_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (cJIPKAIPCIB_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, cJIPKAIPCIB_);
+      }
       if (optionId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(9, optionId_);
@@ -157,10 +161,6 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
       if (gadgetEntityId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(15, gadgetEntityId_);
-      }
-      if (cJIPKAIPCIB_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, cJIPKAIPCIB_);
       }
       return size;
     }
@@ -432,6 +432,11 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
               case 0:
                 done = true;
                 break;
+              case 24: {
+                cJIPKAIPCIB_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 24
               case 72: {
                 optionId_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -442,11 +447,6 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
                 bitField0_ |= 0x00000001;
                 break;
               } // case 120
-              case 160000: {
-                cJIPKAIPCIB_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -498,7 +498,7 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
 
       private int cJIPKAIPCIB_ ;
       /**
-       * <code>uint32 CJIPKAIPCIB = 20000;</code>
+       * <code>uint32 CJIPKAIPCIB = 3;</code>
        * @return The cJIPKAIPCIB.
        */
       @java.lang.Override
@@ -506,7 +506,7 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
         return cJIPKAIPCIB_;
       }
       /**
-       * <code>uint32 CJIPKAIPCIB = 20000;</code>
+       * <code>uint32 CJIPKAIPCIB = 3;</code>
        * @param value The cJIPKAIPCIB to set.
        * @return This builder for chaining.
        */
@@ -518,7 +518,7 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>uint32 CJIPKAIPCIB = 20000;</code>
+       * <code>uint32 CJIPKAIPCIB = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearCJIPKAIPCIB() {
@@ -625,11 +625,10 @@ public final class SelectWorktopOptionReqOuterClass extends com.google.protobuf.
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034SelectWorktopOptionReq.proto\"\\\n\026Select" +
+      "\n\034SelectWorktopOptionReq.proto\"Z\n\026Select" +
       "WorktopOptionReq\022\030\n\020gadget_entity_id\030\017 \001" +
-      "(\r\022\025\n\013CJIPKAIPCIB\030\240\234\001 \001(\r\022\021\n\toption_id\030\t" +
-      " \001(\rB\033\n\031emu.grasscutter.net.protob\006proto" +
-      "3"
+      "(\r\022\023\n\013CJIPKAIPCIB\030\003 \001(\r\022\021\n\toption_id\030\t \001" +
+      "(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

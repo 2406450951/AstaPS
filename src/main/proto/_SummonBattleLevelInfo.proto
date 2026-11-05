@@ -6,6 +6,6 @@ import "_ActivityAvatarInfo.proto";
 
 message _SummonBattleLevelInfo {
   repeated _ActivityAvatarInfo avatar_list = 2;
-  uint32 DEADDOKKEHM = 20000;
+  uint32 DEADDOKKEHM = 6;
   uint32 PHICBDKBDDH = 20001;
 }

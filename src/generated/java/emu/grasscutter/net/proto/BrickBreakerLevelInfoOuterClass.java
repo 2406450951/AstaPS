@@ -48,34 +48,34 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
     int getChosenAvatarList(int index);
 
     /**
-     * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+     * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
      * @return A list containing the cFMEKCCEEPD.
      */
     java.util.List<java.lang.Integer> getCFMEKCCEEPDList();
     /**
-     * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+     * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
      * @return The count of cFMEKCCEEPD.
      */
     int getCFMEKCCEEPDCount();
     /**
-     * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+     * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
      * @param index The index of the element to return.
      * @return The cFMEKCCEEPD at the given index.
      */
     int getCFMEKCCEEPD(int index);
 
     /**
-     * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+     * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
      * @return A list containing the nDLGNCEFMFD.
      */
     java.util.List<java.lang.Integer> getNDLGNCEFMFDList();
     /**
-     * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+     * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
      * @return The count of nDLGNCEFMFD.
      */
     int getNDLGNCEFMFDCount();
     /**
-     * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+     * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
      * @param index The index of the element to return.
      * @return The nDLGNCEFMFD at the given index.
      */
@@ -180,12 +180,12 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
     }
     private int chosenAvatarListMemoizedSerializedSize = -1;
 
-    public static final int CFMEKCCEEPD_FIELD_NUMBER = 20000;
+    public static final int CFMEKCCEEPD_FIELD_NUMBER = 7;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList cFMEKCCEEPD_ =
         emptyIntList();
     /**
-     * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+     * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
      * @return A list containing the cFMEKCCEEPD.
      */
     @java.lang.Override
@@ -194,14 +194,14 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
       return cFMEKCCEEPD_;
     }
     /**
-     * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+     * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
      * @return The count of cFMEKCCEEPD.
      */
     public int getCFMEKCCEEPDCount() {
       return cFMEKCCEEPD_.size();
     }
     /**
-     * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+     * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
      * @param index The index of the element to return.
      * @return The cFMEKCCEEPD at the given index.
      */
@@ -210,12 +210,12 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
     }
     private int cFMEKCCEEPDMemoizedSerializedSize = -1;
 
-    public static final int NDLGNCEFMFD_FIELD_NUMBER = 20001;
+    public static final int NDLGNCEFMFD_FIELD_NUMBER = 4;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList nDLGNCEFMFD_ =
         emptyIntList();
     /**
-     * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+     * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
      * @return A list containing the nDLGNCEFMFD.
      */
     @java.lang.Override
@@ -224,14 +224,14 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
       return nDLGNCEFMFD_;
     }
     /**
-     * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+     * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
      * @return The count of nDLGNCEFMFD.
      */
     public int getNDLGNCEFMFDCount() {
       return nDLGNCEFMFD_.size();
     }
     /**
-     * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+     * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
      * @param index The index of the element to return.
      * @return The nDLGNCEFMFD at the given index.
      */
@@ -312,6 +312,13 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
       for (int i = 0; i < chosenAvatarList_.size(); i++) {
         output.writeUInt32NoTag(chosenAvatarList_.getInt(i));
       }
+      if (getNDLGNCEFMFDList().size() > 0) {
+        output.writeUInt32NoTag(34);
+        output.writeUInt32NoTag(nDLGNCEFMFDMemoizedSerializedSize);
+      }
+      for (int i = 0; i < nDLGNCEFMFD_.size(); i++) {
+        output.writeUInt32NoTag(nDLGNCEFMFD_.getInt(i));
+      }
       if (maxScore_ != 0) {
         output.writeUInt32(5, maxScore_);
       }
@@ -319,18 +326,11 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         output.writeBool(6, isCanStart_);
       }
       if (getCFMEKCCEEPDList().size() > 0) {
-        output.writeUInt32NoTag(160002);
+        output.writeUInt32NoTag(58);
         output.writeUInt32NoTag(cFMEKCCEEPDMemoizedSerializedSize);
       }
       for (int i = 0; i < cFMEKCCEEPD_.size(); i++) {
         output.writeUInt32NoTag(cFMEKCCEEPD_.getInt(i));
-      }
-      if (getNDLGNCEFMFDList().size() > 0) {
-        output.writeUInt32NoTag(160010);
-        output.writeUInt32NoTag(nDLGNCEFMFDMemoizedSerializedSize);
-      }
-      for (int i = 0; i < nDLGNCEFMFD_.size(); i++) {
-        output.writeUInt32NoTag(nDLGNCEFMFD_.getInt(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -358,6 +358,20 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         }
         chosenAvatarListMemoizedSerializedSize = dataSize;
       }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < nDLGNCEFMFD_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(nDLGNCEFMFD_.getInt(i));
+        }
+        size += dataSize;
+        if (!getNDLGNCEFMFDList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        nDLGNCEFMFDMemoizedSerializedSize = dataSize;
+      }
       if (maxScore_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(5, maxScore_);
@@ -374,25 +388,11 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         }
         size += dataSize;
         if (!getCFMEKCCEEPDList().isEmpty()) {
-          size += 3;
+          size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
         cFMEKCCEEPDMemoizedSerializedSize = dataSize;
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < nDLGNCEFMFD_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeUInt32SizeNoTag(nDLGNCEFMFD_.getInt(i));
-        }
-        size += dataSize;
-        if (!getNDLGNCEFMFDList().isEmpty()) {
-          size += 3;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        nDLGNCEFMFDMemoizedSerializedSize = dataSize;
       }
       return size;
     }
@@ -769,6 +769,22 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
                 input.popLimit(limit);
                 break;
               } // case 26
+              case 32: {
+                int v = input.readUInt32();
+                ensureNDLGNCEFMFDIsMutable();
+                nDLGNCEFMFD_.addInt(v);
+                break;
+              } // case 32
+              case 34: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureNDLGNCEFMFDIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  nDLGNCEFMFD_.addInt(input.readUInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 34
               case 40: {
                 maxScore_ = input.readUInt32();
                 bitField0_ |= 0x00000040;
@@ -779,13 +795,13 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
                 bitField0_ |= 0x00000010;
                 break;
               } // case 48
-              case 160000: {
+              case 56: {
                 int v = input.readUInt32();
                 ensureCFMEKCCEEPDIsMutable();
                 cFMEKCCEEPD_.addInt(v);
                 break;
-              } // case 160000
-              case 160002: {
+              } // case 56
+              case 58: {
                 int length = input.readRawVarint32();
                 int limit = input.pushLimit(length);
                 ensureCFMEKCCEEPDIsMutable();
@@ -794,23 +810,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
                 }
                 input.popLimit(limit);
                 break;
-              } // case 160002
-              case 160008: {
-                int v = input.readUInt32();
-                ensureNDLGNCEFMFDIsMutable();
-                nDLGNCEFMFD_.addInt(v);
-                break;
-              } // case 160008
-              case 160010: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                ensureNDLGNCEFMFDIsMutable();
-                while (input.getBytesUntilLimit() > 0) {
-                  nDLGNCEFMFD_.addInt(input.readUInt32());
-                }
-                input.popLimit(limit);
-                break;
-              } // case 160010
+              } // case 58
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -920,7 +920,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         bitField0_ |= 0x00000002;
       }
       /**
-       * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+       * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
        * @return A list containing the cFMEKCCEEPD.
        */
       public java.util.List<java.lang.Integer>
@@ -929,14 +929,14 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return cFMEKCCEEPD_;
       }
       /**
-       * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+       * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
        * @return The count of cFMEKCCEEPD.
        */
       public int getCFMEKCCEEPDCount() {
         return cFMEKCCEEPD_.size();
       }
       /**
-       * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+       * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
        * @param index The index of the element to return.
        * @return The cFMEKCCEEPD at the given index.
        */
@@ -944,7 +944,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return cFMEKCCEEPD_.getInt(index);
       }
       /**
-       * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+       * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
        * @param index The index to set the value at.
        * @param value The cFMEKCCEEPD to set.
        * @return This builder for chaining.
@@ -959,7 +959,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+       * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
        * @param value The cFMEKCCEEPD to add.
        * @return This builder for chaining.
        */
@@ -972,7 +972,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+       * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
        * @param values The cFMEKCCEEPD to add.
        * @return This builder for chaining.
        */
@@ -986,7 +986,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated uint32 CFMEKCCEEPD = 20000;</code>
+       * <code>repeated uint32 CFMEKCCEEPD = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearCFMEKCCEEPD() {
@@ -1004,7 +1004,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         bitField0_ |= 0x00000004;
       }
       /**
-       * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+       * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
        * @return A list containing the nDLGNCEFMFD.
        */
       public java.util.List<java.lang.Integer>
@@ -1013,14 +1013,14 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return nDLGNCEFMFD_;
       }
       /**
-       * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+       * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
        * @return The count of nDLGNCEFMFD.
        */
       public int getNDLGNCEFMFDCount() {
         return nDLGNCEFMFD_.size();
       }
       /**
-       * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+       * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
        * @param index The index of the element to return.
        * @return The nDLGNCEFMFD at the given index.
        */
@@ -1028,7 +1028,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return nDLGNCEFMFD_.getInt(index);
       }
       /**
-       * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+       * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
        * @param index The index to set the value at.
        * @param value The nDLGNCEFMFD to set.
        * @return This builder for chaining.
@@ -1043,7 +1043,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+       * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
        * @param value The nDLGNCEFMFD to add.
        * @return This builder for chaining.
        */
@@ -1056,7 +1056,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+       * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
        * @param values The nDLGNCEFMFD to add.
        * @return This builder for chaining.
        */
@@ -1070,7 +1070,7 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
         return this;
       }
       /**
-       * <code>repeated uint32 NDLGNCEFMFD = 20001;</code>
+       * <code>repeated uint32 NDLGNCEFMFD = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearNDLGNCEFMFD() {
@@ -1273,13 +1273,12 @@ public final class BrickBreakerLevelInfoOuterClass extends com.google.protobuf.G
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\033BrickBreakerLevelInfo.proto\"\257\001\n\025BrickB" +
+      "\n\033BrickBreakerLevelInfo.proto\"\253\001\n\025BrickB" +
       "reakerLevelInfo\022\032\n\022chosen_avatar_list\030\003 " +
-      "\003(\r\022\025\n\013CFMEKCCEEPD\030\240\234\001 \003(\r\022\025\n\013NDLGNCEFMF" +
-      "D\030\241\234\001 \003(\r\022\020\n\010level_id\030\001 \001(\r\022\024\n\014is_can_st" +
-      "art\030\006 \001(\010\022\021\n\tis_finish\030\002 \001(\010\022\021\n\tmax_scor" +
-      "e\030\005 \001(\rB\033\n\031emu.grasscutter.net.protob\006pr" +
-      "oto3"
+      "\003(\r\022\023\n\013CFMEKCCEEPD\030\007 \003(\r\022\023\n\013NDLGNCEFMFD\030" +
+      "\004 \003(\r\022\020\n\010level_id\030\001 \001(\r\022\024\n\014is_can_start\030" +
+      "\006 \001(\010\022\021\n\tis_finish\030\002 \001(\010\022\021\n\tmax_score\030\005 " +
+      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

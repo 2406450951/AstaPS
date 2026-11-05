@@ -55,7 +55,7 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
         int index);
 
     /**
-     * <code>uint32 HNIKLMLMNPA = 20000;</code>
+     * <code>uint32 HNIKLMLMNPA = 8;</code>
      * @return The hNIKLMLMNPA.
      */
     int getHNIKLMLMNPA();
@@ -144,10 +144,10 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
       return varList_.get(index);
     }
 
-    public static final int HNIKLMLMNPA_FIELD_NUMBER = 20000;
+    public static final int HNIKLMLMNPA_FIELD_NUMBER = 8;
     private int hNIKLMLMNPA_ = 0;
     /**
-     * <code>uint32 HNIKLMLMNPA = 20000;</code>
+     * <code>uint32 HNIKLMLMNPA = 8;</code>
      * @return The hNIKLMLMNPA.
      */
     @java.lang.Override
@@ -169,16 +169,20 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (hNIKLMLMNPA_ != 0) {
+        output.writeUInt32(8, hNIKLMLMNPA_);
+      }
       for (int i = 0; i < varList_.size(); i++) {
         output.writeMessage(15, varList_.get(i));
-      }
-      if (hNIKLMLMNPA_ != 0) {
-        output.writeUInt32(20000, hNIKLMLMNPA_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (hNIKLMLMNPA_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(8, hNIKLMLMNPA_);
+      }
 
           {
             final int count = varList_.size();
@@ -188,10 +192,6 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
             }
             size += 1 * count;
           }
-      if (hNIKLMLMNPA_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, hNIKLMLMNPA_);
-      }
       return size;
     }
     @java.lang.Override
@@ -492,6 +492,11 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
               case 0:
                 done = true;
                 break;
+              case 64: {
+                hNIKLMLMNPA_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 64
               case 122: {
                 emu.grasscutter.net.proto.BeyondActivityWatcherVar._BeyondActivityWatcherVar m =
                     input.readMessage(
@@ -505,11 +510,6 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
                 }
                 break;
               } // case 122
-              case 160000: {
-                hNIKLMLMNPA_ = input.readUInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -763,7 +763,7 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
 
       private int hNIKLMLMNPA_ ;
       /**
-       * <code>uint32 HNIKLMLMNPA = 20000;</code>
+       * <code>uint32 HNIKLMLMNPA = 8;</code>
        * @return The hNIKLMLMNPA.
        */
       @java.lang.Override
@@ -771,7 +771,7 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
         return hNIKLMLMNPA_;
       }
       /**
-       * <code>uint32 HNIKLMLMNPA = 20000;</code>
+       * <code>uint32 HNIKLMLMNPA = 8;</code>
        * @param value The hNIKLMLMNPA to set.
        * @return This builder for chaining.
        */
@@ -783,7 +783,7 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 HNIKLMLMNPA = 20000;</code>
+       * <code>uint32 HNIKLMLMNPA = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearHNIKLMLMNPA() {
@@ -859,10 +859,10 @@ public final class CBNPFLLFAJGOuterClass extends com.google.protobuf.GeneratedFi
   static {
     java.lang.String[] descriptorData = {
       "\n\021CBNPFLLFAJG.proto\032\037_BeyondActivityWatc" +
-      "herVar.proto\"R\n\013CBNPFLLFAJG\022,\n\010var_list\030" +
-      "\017 \003(\0132\032._BeyondActivityWatcherVar\022\025\n\013HNI" +
-      "KLMLMNPA\030\240\234\001 \001(\rB\033\n\031emu.grasscutter.net." +
-      "protob\006proto3"
+      "herVar.proto\"P\n\013CBNPFLLFAJG\022,\n\010var_list\030" +
+      "\017 \003(\0132\032._BeyondActivityWatcherVar\022\023\n\013HNI" +
+      "KLMLMNPA\030\010 \001(\rB\033\n\031emu.grasscutter.net.pr" +
+      "otob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

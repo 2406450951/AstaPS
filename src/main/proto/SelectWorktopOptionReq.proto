@@ -4,6 +4,6 @@ option java_package = "emu.grasscutter.net.proto";
 
 message SelectWorktopOptionReq {
   uint32 gadget_entity_id = 15;
-  uint32 CJIPKAIPCIB = 20000;
+  uint32 CJIPKAIPCIB = 3;
   uint32 option_id = 9;
 }

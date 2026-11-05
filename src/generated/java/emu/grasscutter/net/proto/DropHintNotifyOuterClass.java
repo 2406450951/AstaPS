@@ -78,7 +78,7 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
     emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getPositionOrBuilder();
 
     /**
-     * <code>bool AJDBEGMCGKD = 20000;</code>
+     * <code>bool AJDBEGMCGKD = 15;</code>
      * @return The aJDBEGMCGKD.
      */
     boolean getAJDBEGMCGKD();
@@ -215,10 +215,10 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
       return position_ == null ? emu.grasscutter.net.proto.VectorOuterClass.Vector.getDefaultInstance() : position_;
     }
 
-    public static final int AJDBEGMCGKD_FIELD_NUMBER = 20000;
+    public static final int AJDBEGMCGKD_FIELD_NUMBER = 15;
     private boolean aJDBEGMCGKD_ = false;
     /**
-     * <code>bool AJDBEGMCGKD = 20000;</code>
+     * <code>bool AJDBEGMCGKD = 15;</code>
      * @return The aJDBEGMCGKD.
      */
     @java.lang.Override
@@ -269,7 +269,7 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
         output.writeUInt32(14, entityId_);
       }
       if (aJDBEGMCGKD_ != false) {
-        output.writeBool(20000, aJDBEGMCGKD_);
+        output.writeBool(15, aJDBEGMCGKD_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -303,7 +303,7 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
       }
       if (aJDBEGMCGKD_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, aJDBEGMCGKD_);
+          .computeBoolSize(15, aJDBEGMCGKD_);
       }
       return size;
     }
@@ -677,11 +677,11 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
                 bitField0_ |= 0x00000010;
                 break;
               } // case 112
-              case 160000: {
+              case 120: {
                 aJDBEGMCGKD_ = input.readBool();
                 bitField0_ |= 0x00000008;
                 break;
-              } // case 160000
+              } // case 120
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1023,7 +1023,7 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
 
       private boolean aJDBEGMCGKD_ ;
       /**
-       * <code>bool AJDBEGMCGKD = 20000;</code>
+       * <code>bool AJDBEGMCGKD = 15;</code>
        * @return The aJDBEGMCGKD.
        */
       @java.lang.Override
@@ -1031,7 +1031,7 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
         return aJDBEGMCGKD_;
       }
       /**
-       * <code>bool AJDBEGMCGKD = 20000;</code>
+       * <code>bool AJDBEGMCGKD = 15;</code>
        * @param value The aJDBEGMCGKD to set.
        * @return This builder for chaining.
        */
@@ -1043,7 +1043,7 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>bool AJDBEGMCGKD = 20000;</code>
+       * <code>bool AJDBEGMCGKD = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearAJDBEGMCGKD() {
@@ -1150,12 +1150,12 @@ public final class DropHintNotifyOuterClass extends com.google.protobuf.Generate
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024DropHintNotify.proto\032\014Vector.proto\"\206\001\n" +
+      "\n\024DropHintNotify.proto\032\014Vector.proto\"\204\001\n" +
       "\016DropHintNotify\022\031\n\010rotation\030\014 \001(\0132\007.Vect" +
       "or\022\024\n\014item_id_list\030\005 \003(\r\022\031\n\010position\030\007 \001" +
-      "(\0132\007.Vector\022\025\n\013AJDBEGMCGKD\030\240\234\001 \001(\010\022\021\n\ten" +
-      "tity_id\030\016 \001(\rB\033\n\031emu.grasscutter.net.pro" +
-      "tob\006proto3"
+      "(\0132\007.Vector\022\023\n\013AJDBEGMCGKD\030\017 \001(\010\022\021\n\tenti" +
+      "ty_id\030\016 \001(\rB\033\n\031emu.grasscutter.net.proto" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

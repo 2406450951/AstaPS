@@ -11,5 +11,5 @@ message _BeyondBattlePassAllDataNotify {
   _BeyondBattlePassProduct product_info = 11;
   repeated _BeyondBattlePassMission mission_list = 2;
   bool _have_cur_beyond_schedule = 8;
-  uint32 GOKJFDPPOHF = 20000;
+  uint32 GOKJFDPPOHF = 6;
 }

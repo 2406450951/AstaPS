@@ -31,7 +31,7 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+     * <code>uint32 FDNLFLGDJBJ = 3;</code>
      * @return The fDNLFLGDJBJ.
      */
     int getFDNLFLGDJBJ();
@@ -78,10 +78,10 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
               emu.grasscutter.net.proto.LoliJumpLevelInfo._LoliJumpLevelInfo.class, emu.grasscutter.net.proto.LoliJumpLevelInfo._LoliJumpLevelInfo.Builder.class);
     }
 
-    public static final int FDNLFLGDJBJ_FIELD_NUMBER = 20000;
+    public static final int FDNLFLGDJBJ_FIELD_NUMBER = 3;
     private int fDNLFLGDJBJ_ = 0;
     /**
-     * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+     * <code>uint32 FDNLFLGDJBJ = 3;</code>
      * @return The fDNLFLGDJBJ.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (fDNLFLGDJBJ_ != 0) {
-        output.writeUInt32(20000, fDNLFLGDJBJ_);
+        output.writeUInt32(3, fDNLFLGDJBJ_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
       int size = 0;
       if (fDNLFLGDJBJ_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, fDNLFLGDJBJ_);
+          .computeUInt32Size(3, fDNLFLGDJBJ_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 24: {
                 fDNLFLGDJBJ_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 24
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
 
       private int fDNLFLGDJBJ_ ;
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 3;</code>
        * @return The fDNLFLGDJBJ.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
         return fDNLFLGDJBJ_;
       }
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 3;</code>
        * @param value The fDNLFLGDJBJ to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearFDNLFLGDJBJ() {
@@ -481,9 +481,9 @@ public final class LoliJumpLevelInfo extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\030_LoliJumpLevelInfo.proto\"+\n\022_LoliJumpL" +
-      "evelInfo\022\025\n\013FDNLFLGDJBJ\030\240\234\001 \001(\rB\033\n\031emu.g" +
-      "rasscutter.net.protob\006proto3"
+      "\n\030_LoliJumpLevelInfo.proto\")\n\022_LoliJumpL" +
+      "evelInfo\022\023\n\013FDNLFLGDJBJ\030\003 \001(\rB\033\n\031emu.gra" +
+      "sscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

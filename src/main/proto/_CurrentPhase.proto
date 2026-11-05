@@ -5,6 +5,6 @@ option java_package = "emu.grasscutter.net.proto";
 import "DEGDFAOEICK.proto";
 
 message _CurrentPhase {
-  uint32 EMBJNKGJLFN = 20000;
+  uint32 EMBJNKGJLFN = 2;
   DEGDFAOEICK KKFBGJGDAJI = 20001;
 }

@@ -4,6 +4,6 @@ option java_package = "emu.grasscutter.net.proto";
 
 message DungeonEntryToBeExploreNotify {
   uint32 scene_id = 4;
-  uint32 dungeon_entry_scene_point_id = 20000;
+  uint32 dungeon_entry_scene_point_id = 6;
   uint32 dungeon_entry_config_id = 15;
 }

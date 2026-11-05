@@ -3,6 +3,6 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message _BeyondWorldInfo {
-  repeated uint64 AIFEJOGBAKK = 20000;
+  repeated uint64 AIFEJOGBAKK = 2;
   uint32 OBONBLEEHBK = 20001;
 }

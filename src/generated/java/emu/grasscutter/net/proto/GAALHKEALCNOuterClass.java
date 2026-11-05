@@ -125,7 +125,7 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
     int getCostTime();
 
     /**
-     * <code>uint32 AKCPFFADDOP = 20003;</code>
+     * <code>uint32 AKCPFFADDOP = 15;</code>
      * @return The aKCPFFADDOP.
      */
     int getAKCPFFADDOP();
@@ -155,7 +155,7 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
     int getEGGHBMLGLHC();
 
     /**
-     * <code>uint32 DEADDOKKEHM = 20006;</code>
+     * <code>uint32 DEADDOKKEHM = 4;</code>
      * @return The dEADDOKKEHM.
      */
     int getDEADDOKKEHM();
@@ -370,10 +370,10 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
       return costTime_;
     }
 
-    public static final int AKCPFFADDOP_FIELD_NUMBER = 20003;
+    public static final int AKCPFFADDOP_FIELD_NUMBER = 15;
     private int aKCPFFADDOP_ = 0;
     /**
-     * <code>uint32 AKCPFFADDOP = 20003;</code>
+     * <code>uint32 AKCPFFADDOP = 15;</code>
      * @return The aKCPFFADDOP.
      */
     @java.lang.Override
@@ -425,10 +425,10 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
       return eGGHBMLGLHC_;
     }
 
-    public static final int DEADDOKKEHM_FIELD_NUMBER = 20006;
+    public static final int DEADDOKKEHM_FIELD_NUMBER = 4;
     private int dEADDOKKEHM_ = 0;
     /**
-     * <code>uint32 DEADDOKKEHM = 20006;</code>
+     * <code>uint32 DEADDOKKEHM = 4;</code>
      * @return The dEADDOKKEHM.
      */
     @java.lang.Override
@@ -457,6 +457,9 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
       if (isFinish_ != false) {
         output.writeBool(3, isFinish_);
       }
+      if (dEADDOKKEHM_ != 0) {
+        output.writeUInt32(4, dEADDOKKEHM_);
+      }
       if (costTime_ != 0) {
         output.writeUInt32(6, costTime_);
       }
@@ -465,6 +468,9 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
       }
       if (levelId_ != 0) {
         output.writeUInt32(10, levelId_);
+      }
+      if (aKCPFFADDOP_ != 0) {
+        output.writeUInt32(15, aKCPFFADDOP_);
       }
       if (getODGDINNDMGEList().size() > 0) {
         output.writeUInt32NoTag(160002);
@@ -483,17 +489,11 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
       for (int i = 0; i < ePLCNHFNDPA_.size(); i++) {
         output.writeMessage(20002, ePLCNHFNDPA_.get(i));
       }
-      if (aKCPFFADDOP_ != 0) {
-        output.writeUInt32(20003, aKCPFFADDOP_);
-      }
       if (oGBLPLNCKIF_ != false) {
         output.writeBool(20004, oGBLPLNCKIF_);
       }
       if (eGGHBMLGLHC_ != 0) {
         output.writeUInt32(20005, eGGHBMLGLHC_);
-      }
-      if (dEADDOKKEHM_ != 0) {
-        output.writeUInt32(20006, dEADDOKKEHM_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -512,6 +512,10 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(3, isFinish_);
       }
+      if (dEADDOKKEHM_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, dEADDOKKEHM_);
+      }
       if (costTime_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(6, costTime_);
@@ -523,6 +527,10 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
       if (levelId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(10, levelId_);
+      }
+      if (aKCPFFADDOP_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(15, aKCPFFADDOP_);
       }
       {
         int dataSize = 0;
@@ -561,10 +569,6 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
             }
             size += 3 * count;
           }
-      if (aKCPFFADDOP_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20003, aKCPFFADDOP_);
-      }
       if (oGBLPLNCKIF_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20004, oGBLPLNCKIF_);
@@ -572,10 +576,6 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
       if (eGGHBMLGLHC_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20005, eGGHBMLGLHC_);
-      }
-      if (dEADDOKKEHM_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20006, dEADDOKKEHM_);
       }
       return size;
     }
@@ -1067,6 +1067,11 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000200;
                 break;
               } // case 24
+              case 32: {
+                dEADDOKKEHM_ = input.readUInt32();
+                bitField0_ |= 0x00000800;
+                break;
+              } // case 32
               case 48: {
                 costTime_ = input.readUInt32();
                 bitField0_ |= 0x00000020;
@@ -1082,6 +1087,11 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000010;
                 break;
               } // case 80
+              case 120: {
+                aKCPFFADDOP_ = input.readUInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 120
               case 160000: {
                 int v = input.readUInt32();
                 ensureODGDINNDMGEIsMutable();
@@ -1127,11 +1137,6 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
                 }
                 break;
               } // case 160018
-              case 160024: {
-                aKCPFFADDOP_ = input.readUInt32();
-                bitField0_ |= 0x00000040;
-                break;
-              } // case 160024
               case 160032: {
                 oGBLPLNCKIF_ = input.readBool();
                 bitField0_ |= 0x00000100;
@@ -1142,11 +1147,6 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000400;
                 break;
               } // case 160040
-              case 160048: {
-                dEADDOKKEHM_ = input.readUInt32();
-                bitField0_ |= 0x00000800;
-                break;
-              } // case 160048
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1866,7 +1866,7 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
 
       private int aKCPFFADDOP_ ;
       /**
-       * <code>uint32 AKCPFFADDOP = 20003;</code>
+       * <code>uint32 AKCPFFADDOP = 15;</code>
        * @return The aKCPFFADDOP.
        */
       @java.lang.Override
@@ -1874,7 +1874,7 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
         return aKCPFFADDOP_;
       }
       /**
-       * <code>uint32 AKCPFFADDOP = 20003;</code>
+       * <code>uint32 AKCPFFADDOP = 15;</code>
        * @param value The aKCPFFADDOP to set.
        * @return This builder for chaining.
        */
@@ -1886,7 +1886,7 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 AKCPFFADDOP = 20003;</code>
+       * <code>uint32 AKCPFFADDOP = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearAKCPFFADDOP() {
@@ -2026,7 +2026,7 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
 
       private int dEADDOKKEHM_ ;
       /**
-       * <code>uint32 DEADDOKKEHM = 20006;</code>
+       * <code>uint32 DEADDOKKEHM = 4;</code>
        * @return The dEADDOKKEHM.
        */
       @java.lang.Override
@@ -2034,7 +2034,7 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
         return dEADDOKKEHM_;
       }
       /**
-       * <code>uint32 DEADDOKKEHM = 20006;</code>
+       * <code>uint32 DEADDOKKEHM = 4;</code>
        * @param value The dEADDOKKEHM to set.
        * @return This builder for chaining.
        */
@@ -2046,7 +2046,7 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 DEADDOKKEHM = 20006;</code>
+       * <code>uint32 DEADDOKKEHM = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearDEADDOKKEHM() {
@@ -2122,16 +2122,16 @@ public final class GAALHKEALCNOuterClass extends com.google.protobuf.GeneratedFi
   static {
     java.lang.String[] descriptorData = {
       "\n\021GAALHKEALCN.proto\032\021NMPMEMFEOMA.proto\032\024" +
-      "ShowAvatarInfo.proto\"\265\002\n\013GAALHKEALCN\022\025\n\013" +
+      "ShowAvatarInfo.proto\"\261\002\n\013GAALHKEALCN\022\025\n\013" +
       "ODGDINNDMGE\030\240\234\001 \003(\r\022.\n\025show_avatar_info_" +
       "list\030\001 \003(\0132\017.ShowAvatarInfo\022\025\n\013AGFGCHIHN" +
       "EE\030\241\234\001 \003(\r\022#\n\013EPLCNHFNDPA\030\242\234\001 \003(\0132\014.NMPM" +
       "EMFEOMA\022\020\n\010level_id\030\n \001(\r\022\021\n\tcost_time\030\006" +
-      " \001(\r\022\025\n\013AKCPFFADDOP\030\243\234\001 \001(\r\022\017\n\007is_open\030\010" +
-      " \001(\010\022\025\n\013OGBLPLNCKIF\030\244\234\001 \001(\010\022\021\n\tis_finish" +
-      "\030\003 \001(\010\022\025\n\013EGGHBMLGLHC\030\245\234\001 \001(\r\022\025\n\013DEADDOK" +
-      "KEHM\030\246\234\001 \001(\rB\033\n\031emu.grasscutter.net.prot" +
-      "ob\006proto3"
+      " \001(\r\022\023\n\013AKCPFFADDOP\030\017 \001(\r\022\017\n\007is_open\030\010 \001" +
+      "(\010\022\025\n\013OGBLPLNCKIF\030\244\234\001 \001(\010\022\021\n\tis_finish\030\003" +
+      " \001(\010\022\025\n\013EGGHBMLGLHC\030\245\234\001 \001(\r\022\023\n\013DEADDOKKE" +
+      "HM\030\004 \001(\rB\033\n\031emu.grasscutter.net.protob\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

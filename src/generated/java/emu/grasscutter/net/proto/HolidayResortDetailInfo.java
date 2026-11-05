@@ -31,7 +31,7 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 HKBMJEAPLJO = 20000;</code>
+     * <code>uint32 HKBMJEAPLJO = 1;</code>
      * @return The hKBMJEAPLJO.
      */
     int getHKBMJEAPLJO();
@@ -78,10 +78,10 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
               emu.grasscutter.net.proto.HolidayResortDetailInfo._HolidayResortDetailInfo.class, emu.grasscutter.net.proto.HolidayResortDetailInfo._HolidayResortDetailInfo.Builder.class);
     }
 
-    public static final int HKBMJEAPLJO_FIELD_NUMBER = 20000;
+    public static final int HKBMJEAPLJO_FIELD_NUMBER = 1;
     private int hKBMJEAPLJO_ = 0;
     /**
-     * <code>uint32 HKBMJEAPLJO = 20000;</code>
+     * <code>uint32 HKBMJEAPLJO = 1;</code>
      * @return The hKBMJEAPLJO.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (hKBMJEAPLJO_ != 0) {
-        output.writeUInt32(20000, hKBMJEAPLJO_);
+        output.writeUInt32(1, hKBMJEAPLJO_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
       int size = 0;
       if (hKBMJEAPLJO_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, hKBMJEAPLJO_);
+          .computeUInt32Size(1, hKBMJEAPLJO_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 8: {
                 hKBMJEAPLJO_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 8
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
 
       private int hKBMJEAPLJO_ ;
       /**
-       * <code>uint32 HKBMJEAPLJO = 20000;</code>
+       * <code>uint32 HKBMJEAPLJO = 1;</code>
        * @return The hKBMJEAPLJO.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
         return hKBMJEAPLJO_;
       }
       /**
-       * <code>uint32 HKBMJEAPLJO = 20000;</code>
+       * <code>uint32 HKBMJEAPLJO = 1;</code>
        * @param value The hKBMJEAPLJO to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>uint32 HKBMJEAPLJO = 20000;</code>
+       * <code>uint32 HKBMJEAPLJO = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearHKBMJEAPLJO() {
@@ -481,9 +481,9 @@ public final class HolidayResortDetailInfo extends com.google.protobuf.Generated
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\036_HolidayResortDetailInfo.proto\"1\n\030_Hol" +
-      "idayResortDetailInfo\022\025\n\013HKBMJEAPLJO\030\240\234\001 " +
-      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
+      "\n\036_HolidayResortDetailInfo.proto\"/\n\030_Hol" +
+      "idayResortDetailInfo\022\023\n\013HKBMJEAPLJO\030\001 \001(" +
+      "\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

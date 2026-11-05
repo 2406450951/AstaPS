@@ -186,7 +186,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
     float getOOFNGENKHKG();
 
     /**
-     * <code>uint32 MOEKEMAHBNN = 20006;</code>
+     * <code>uint32 MOEKEMAHBNN = 550;</code>
      * @return The mOEKEMAHBNN.
      */
     int getMOEKEMAHBNN();
@@ -258,7 +258,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
     float getNJFMEBDIICN();
 
     /**
-     * <code>uint32 AFPBFDHCDNK = 20016;</code>
+     * <code>uint32 AFPBFDHCDNK = 6;</code>
      * @return The aFPBFDHCDNK.
      */
     int getAFPBFDHCDNK();
@@ -312,7 +312,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
     int getMHJDKCODNAA();
 
     /**
-     * <code>uint32 BNBBLJCDMPJ = 20024;</code>
+     * <code>uint32 BNBBLJCDMPJ = 155;</code>
      * @return The bNBBLJCDMPJ.
      */
     int getBNBBLJCDMPJ();
@@ -348,7 +348,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
     int getJCPDJCGGJCC();
 
     /**
-     * <code>uint32 JILIGGDCLDH = 20028;</code>
+     * <code>uint32 JILIGGDCLDH = 1900;</code>
      * @return The jILIGGDCLDH.
      */
     int getJILIGGDCLDH();
@@ -692,10 +692,10 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       return oOFNGENKHKG_;
     }
 
-    public static final int MOEKEMAHBNN_FIELD_NUMBER = 20006;
+    public static final int MOEKEMAHBNN_FIELD_NUMBER = 550;
     private int mOEKEMAHBNN_ = 0;
     /**
-     * <code>uint32 MOEKEMAHBNN = 20006;</code>
+     * <code>uint32 MOEKEMAHBNN = 550;</code>
      * @return The mOEKEMAHBNN.
      */
     @java.lang.Override
@@ -824,10 +824,10 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       return nJFMEBDIICN_;
     }
 
-    public static final int AFPBFDHCDNK_FIELD_NUMBER = 20016;
+    public static final int AFPBFDHCDNK_FIELD_NUMBER = 6;
     private int aFPBFDHCDNK_ = 0;
     /**
-     * <code>uint32 AFPBFDHCDNK = 20016;</code>
+     * <code>uint32 AFPBFDHCDNK = 6;</code>
      * @return The aFPBFDHCDNK.
      */
     @java.lang.Override
@@ -923,10 +923,10 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       return mHJDKCODNAA_;
     }
 
-    public static final int BNBBLJCDMPJ_FIELD_NUMBER = 20024;
+    public static final int BNBBLJCDMPJ_FIELD_NUMBER = 155;
     private int bNBBLJCDMPJ_ = 0;
     /**
-     * <code>uint32 BNBBLJCDMPJ = 20024;</code>
+     * <code>uint32 BNBBLJCDMPJ = 155;</code>
      * @return The bNBBLJCDMPJ.
      */
     @java.lang.Override
@@ -989,10 +989,10 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       return jCPDJCGGJCC_;
     }
 
-    public static final int JILIGGDCLDH_FIELD_NUMBER = 20028;
+    public static final int JILIGGDCLDH_FIELD_NUMBER = 1900;
     private int jILIGGDCLDH_ = 0;
     /**
-     * <code>uint32 JILIGGDCLDH = 20028;</code>
+     * <code>uint32 JILIGGDCLDH = 1900;</code>
      * @return The jILIGGDCLDH.
      */
     @java.lang.Override
@@ -1041,6 +1041,9 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       if (((bitField0_ & 0x00000004) != 0)) {
         output.writeMessage(5, getHitCollision());
       }
+      if (aFPBFDHCDNK_ != 0) {
+        output.writeUInt32(6, aFPBFDHCDNK_);
+      }
       if (hitRetreatAngleCompat_ != 0) {
         output.writeInt32(11, hitRetreatAngleCompat_);
       }
@@ -1053,8 +1056,17 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       if (java.lang.Float.floatToRawIntBits(damage_) != 0) {
         output.writeFloat(14, damage_);
       }
+      if (bNBBLJCDMPJ_ != 0) {
+        output.writeUInt32(155, bNBBLJCDMPJ_);
+      }
+      if (mOEKEMAHBNN_ != 0) {
+        output.writeUInt32(550, mOEKEMAHBNN_);
+      }
       if (((bitField0_ & 0x00000020) != 0)) {
         output.writeMessage(867, getInterpolateMoveInfo());
+      }
+      if (jILIGGDCLDH_ != 0) {
+        output.writeUInt32(1900, jILIGGDCLDH_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20000, getResolvedDir());
@@ -1077,9 +1089,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       }
       if (java.lang.Float.floatToRawIntBits(oOFNGENKHKG_) != 0) {
         output.writeFloat(20005, oOFNGENKHKG_);
-      }
-      if (mOEKEMAHBNN_ != 0) {
-        output.writeUInt32(20006, mOEKEMAHBNN_);
       }
       if (fDEGAMMGNGI_ != 0) {
         output.writeUInt32(20007, fDEGAMMGNGI_);
@@ -1108,9 +1117,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       if (java.lang.Float.floatToRawIntBits(nJFMEBDIICN_) != 0) {
         output.writeFloat(20015, nJFMEBDIICN_);
       }
-      if (aFPBFDHCDNK_ != 0) {
-        output.writeUInt32(20016, aFPBFDHCDNK_);
-      }
       if (iDENIGMCBJB_ != 0) {
         output.writeUInt32(20017, iDENIGMCBJB_);
       }
@@ -1132,9 +1138,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       if (mHJDKCODNAA_ != 0) {
         output.writeUInt32(20023, mHJDKCODNAA_);
       }
-      if (bNBBLJCDMPJ_ != 0) {
-        output.writeUInt32(20024, bNBBLJCDMPJ_);
-      }
       if (java.lang.Float.floatToRawIntBits(mDECMKGHDAK_) != 0) {
         output.writeFloat(20025, mDECMKGHDAK_);
       }
@@ -1143,9 +1146,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       }
       if (jCPDJCGGJCC_ != 0) {
         output.writeUInt32(20027, jCPDJCGGJCC_);
-      }
-      if (jILIGGDCLDH_ != 0) {
-        output.writeUInt32(20028, jILIGGDCLDH_);
       }
       if (bJHAEPGOAKM_ != 0) {
         output.writeUInt32(20029, bJHAEPGOAKM_);
@@ -1174,6 +1174,10 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getHitCollision());
       }
+      if (aFPBFDHCDNK_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(6, aFPBFDHCDNK_);
+      }
       if (hitRetreatAngleCompat_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(11, hitRetreatAngleCompat_);
@@ -1189,9 +1193,21 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(14, damage_);
       }
+      if (bNBBLJCDMPJ_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(155, bNBBLJCDMPJ_);
+      }
+      if (mOEKEMAHBNN_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(550, mOEKEMAHBNN_);
+      }
       if (((bitField0_ & 0x00000020) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(867, getInterpolateMoveInfo());
+      }
+      if (jILIGGDCLDH_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1900, jILIGGDCLDH_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1226,10 +1242,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       if (java.lang.Float.floatToRawIntBits(oOFNGENKHKG_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(20005, oOFNGENKHKG_);
-      }
-      if (mOEKEMAHBNN_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20006, mOEKEMAHBNN_);
       }
       if (fDEGAMMGNGI_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -1267,10 +1279,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(20015, nJFMEBDIICN_);
       }
-      if (aFPBFDHCDNK_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20016, aFPBFDHCDNK_);
-      }
       if (iDENIGMCBJB_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20017, iDENIGMCBJB_);
@@ -1283,6 +1291,10 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20019, oMJGKPMPFBI_);
       }
+      return size;
+    }
+    private int computeSerializedSize_1() {
+      int size = 0;
       if (gGAMPLOEPMG_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20020, gGAMPLOEPMG_);
@@ -1291,10 +1303,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20021, pLNPCMILPPD_);
       }
-      return size;
-    }
-    private int computeSerializedSize_1() {
-      int size = 0;
       if (java.lang.Float.floatToRawIntBits(nILAPFIGLLH_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(20022, nILAPFIGLLH_);
@@ -1302,10 +1310,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       if (mHJDKCODNAA_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20023, mHJDKCODNAA_);
-      }
-      if (bNBBLJCDMPJ_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20024, bNBBLJCDMPJ_);
       }
       if (java.lang.Float.floatToRawIntBits(mDECMKGHDAK_) != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -1318,10 +1322,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       if (jCPDJCGGJCC_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20027, jCPDJCGGJCC_);
-      }
-      if (jILIGGDCLDH_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20028, jILIGGDCLDH_);
       }
       if (bJHAEPGOAKM_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -2181,6 +2181,11 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x00000004;
                 break;
               } // case 42
+              case 48: {
+                aFPBFDHCDNK_ = input.readUInt32();
+                bitField0_ |= 0x00800000;
+                break;
+              } // case 48
               case 88: {
                 hitRetreatAngleCompat_ = input.readInt32();
                 bitField1_ |= 0x00000008;
@@ -2203,6 +2208,16 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x00200000;
                 break;
               } // case 117
+              case 1240: {
+                bNBBLJCDMPJ_ = input.readUInt32();
+                bitField1_ |= 0x00000001;
+                break;
+              } // case 1240
+              case 4400: {
+                mOEKEMAHBNN_ = input.readUInt32();
+                bitField0_ |= 0x00000800;
+                break;
+              } // case 4400
               case 6938: {
                 input.readMessage(
                     internalGetInterpolateMoveInfoFieldBuilder().getBuilder(),
@@ -2210,6 +2225,11 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x00000080;
                 break;
               } // case 6938
+              case 15200: {
+                jILIGGDCLDH_ = input.readUInt32();
+                bitField1_ |= 0x00000040;
+                break;
+              } // case 15200
               case 160002: {
                 input.readMessage(
                     internalGetResolvedDirFieldBuilder().getBuilder(),
@@ -2259,11 +2279,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x00000400;
                 break;
               } // case 160045
-              case 160048: {
-                mOEKEMAHBNN_ = input.readUInt32();
-                bitField0_ |= 0x00000800;
-                break;
-              } // case 160048
               case 160056: {
                 fDEGAMMGNGI_ = input.readUInt32();
                 bitField0_ |= 0x00001000;
@@ -2309,11 +2324,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x00400000;
                 break;
               } // case 160125
-              case 160128: {
-                aFPBFDHCDNK_ = input.readUInt32();
-                bitField0_ |= 0x00800000;
-                break;
-              } // case 160128
               case 160136: {
                 iDENIGMCBJB_ = input.readUInt32();
                 bitField0_ |= 0x01000000;
@@ -2349,11 +2359,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
                 bitField0_ |= 0x80000000;
                 break;
               } // case 160184
-              case 160192: {
-                bNBBLJCDMPJ_ = input.readUInt32();
-                bitField1_ |= 0x00000001;
-                break;
-              } // case 160192
               case 160205: {
                 mDECMKGHDAK_ = input.readFloat();
                 bitField1_ |= 0x00000004;
@@ -2369,11 +2374,6 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
                 bitField1_ |= 0x00000020;
                 break;
               } // case 160216
-              case 160224: {
-                jILIGGDCLDH_ = input.readUInt32();
-                bitField1_ |= 0x00000040;
-                break;
-              } // case 160224
               case 160232: {
                 bJHAEPGOAKM_ = input.readUInt32();
                 bitField1_ |= 0x00000080;
@@ -3539,7 +3539,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
 
       private int mOEKEMAHBNN_ ;
       /**
-       * <code>uint32 MOEKEMAHBNN = 20006;</code>
+       * <code>uint32 MOEKEMAHBNN = 550;</code>
        * @return The mOEKEMAHBNN.
        */
       @java.lang.Override
@@ -3547,7 +3547,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         return mOEKEMAHBNN_;
       }
       /**
-       * <code>uint32 MOEKEMAHBNN = 20006;</code>
+       * <code>uint32 MOEKEMAHBNN = 550;</code>
        * @param value The mOEKEMAHBNN to set.
        * @return This builder for chaining.
        */
@@ -3559,7 +3559,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>uint32 MOEKEMAHBNN = 20006;</code>
+       * <code>uint32 MOEKEMAHBNN = 550;</code>
        * @return This builder for chaining.
        */
       public Builder clearMOEKEMAHBNN() {
@@ -3923,7 +3923,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
 
       private int aFPBFDHCDNK_ ;
       /**
-       * <code>uint32 AFPBFDHCDNK = 20016;</code>
+       * <code>uint32 AFPBFDHCDNK = 6;</code>
        * @return The aFPBFDHCDNK.
        */
       @java.lang.Override
@@ -3931,7 +3931,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         return aFPBFDHCDNK_;
       }
       /**
-       * <code>uint32 AFPBFDHCDNK = 20016;</code>
+       * <code>uint32 AFPBFDHCDNK = 6;</code>
        * @param value The aFPBFDHCDNK to set.
        * @return This builder for chaining.
        */
@@ -3943,7 +3943,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>uint32 AFPBFDHCDNK = 20016;</code>
+       * <code>uint32 AFPBFDHCDNK = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearAFPBFDHCDNK() {
@@ -4211,7 +4211,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
 
       private int bNBBLJCDMPJ_ ;
       /**
-       * <code>uint32 BNBBLJCDMPJ = 20024;</code>
+       * <code>uint32 BNBBLJCDMPJ = 155;</code>
        * @return The bNBBLJCDMPJ.
        */
       @java.lang.Override
@@ -4219,7 +4219,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         return bNBBLJCDMPJ_;
       }
       /**
-       * <code>uint32 BNBBLJCDMPJ = 20024;</code>
+       * <code>uint32 BNBBLJCDMPJ = 155;</code>
        * @param value The bNBBLJCDMPJ to set.
        * @return This builder for chaining.
        */
@@ -4231,7 +4231,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>uint32 BNBBLJCDMPJ = 20024;</code>
+       * <code>uint32 BNBBLJCDMPJ = 155;</code>
        * @return This builder for chaining.
        */
       public Builder clearBNBBLJCDMPJ() {
@@ -4403,7 +4403,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
 
       private int jILIGGDCLDH_ ;
       /**
-       * <code>uint32 JILIGGDCLDH = 20028;</code>
+       * <code>uint32 JILIGGDCLDH = 1900;</code>
        * @return The jILIGGDCLDH.
        */
       @java.lang.Override
@@ -4411,7 +4411,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         return jILIGGDCLDH_;
       }
       /**
-       * <code>uint32 JILIGGDCLDH = 20028;</code>
+       * <code>uint32 JILIGGDCLDH = 1900;</code>
        * @param value The jILIGGDCLDH to set.
        * @return This builder for chaining.
        */
@@ -4423,7 +4423,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>uint32 JILIGGDCLDH = 20028;</code>
+       * <code>uint32 JILIGGDCLDH = 1900;</code>
        * @return This builder for chaining.
        */
       public Builder clearJILIGGDCLDH() {
@@ -4534,7 +4534,7 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       "proto\032\033AttackHitEffectResult.proto\032\021CIHE" +
       "NMDCMGJ.proto\032\021HIMBAGFLEHM.proto\032\022HitCol" +
       "lision.proto\032\014Vector.proto\032\032_Interpolate" +
-      "MoveInfo.proto\"\265\010\n\014AttackResult\022\037\n\014resol" +
+      "MoveInfo.proto\"\260\010\n\014AttackResult\022\037\n\014resol" +
       "ved_dir\030\240\234\001 \001(\0132\007.Vector\022.\n\022ability_iden" +
       "tifier\030\r \001(\0132\022.AbilityIdentifier\022$\n\rhit_" +
       "collision\030\005 \001(\0132\r.HitCollision\022.\n\016hit_ef" +
@@ -4544,25 +4544,25 @@ public final class AttackResultOuterClass extends com.google.protobuf.GeneratedF
       "_interpolate_move_info\030\343\006 \001(\0132\025._Interpo" +
       "lateMoveInfo\022#\n\013EFBFOAOJADK\030\243\234\001 \001(\0132\014.CI" +
       "HENMDCMGJ\022#\n\013PGPBACPJGNM\030\244\234\001 \001(\0132\014.HIMBA" +
-      "GFLEHM\022\025\n\013OOFNGENKHKG\030\245\234\001 \001(\002\022\025\n\013MOEKEMA" +
-      "HBNN\030\246\234\001 \001(\r\022\025\n\013FDEGAMMGNGI\030\247\234\001 \001(\r\022\025\n\013C" +
-      "FKHDFPCHCL\030\250\234\001 \001(\r\022\025\n\013EKDNPKHMJIE\030\251\234\001 \001(" +
-      "\r\022\025\n\013MDBPICGKMLB\030\252\234\001 \001(\002\022\025\n\013LNFCPOINHKK\030" +
-      "\253\234\001 \001(\r\022\025\n\013IFHJIFEBKAO\030\254\234\001 \001(\r\022\025\n\013EPLABA" +
-      "AGCKE\030\255\234\001 \001(\010\022\025\n\013DMIEAHDCHFA\030\256\234\001 \001(\010\022\024\n\014" +
-      "element_type\030\002 \001(\r\022\016\n\006damage\030\016 \001(\002\022\025\n\013NJ" +
-      "FMEBDIICN\030\257\234\001 \001(\002\022\025\n\013AFPBFDHCDNK\030\260\234\001 \001(\r" +
-      "\022\025\n\013IDENIGMCBJB\030\261\234\001 \001(\r\022\022\n\ndefense_id\030\004 " +
-      "\001(\r\022\025\n\013PKOFLCBFEOA\030\262\234\001 \001(\010\022\025\n\013OMJGKPMPFB" +
-      "I\030\263\234\001 \001(\010\022\025\n\013GGAMPLOEPMG\030\264\234\001 \001(\010\022\025\n\013PLNP" +
-      "CMILPPD\030\265\234\001 \001(\r\022\025\n\013NILAPFIGLLH\030\266\234\001 \001(\002\022\025" +
-      "\n\013MHJDKCODNAA\030\267\234\001 \001(\r\022\025\n\013BNBBLJCDMPJ\030\270\234\001" +
-      " \001(\r\022\023\n\013attacker_id\030\001 \001(\r\022\025\n\013MDECMKGHDAK" +
-      "\030\271\234\001 \001(\002\022 \n\030hit_retreat_angle_compat\030\013 \001" +
-      "(\005\022\025\n\013GMNALDFDANK\030\272\234\001 \001(\r\022\025\n\013JCPDJCGGJCC" +
-      "\030\273\234\001 \001(\r\022\025\n\013JILIGGDCLDH\030\274\234\001 \001(\r\022\025\n\013BJHAE" +
-      "PGOAKM\030\275\234\001 \001(\rB\033\n\031emu.grasscutter.net.pr" +
-      "otob\006proto3"
+      "GFLEHM\022\025\n\013OOFNGENKHKG\030\245\234\001 \001(\002\022\024\n\013MOEKEMA" +
+      "HBNN\030\246\004 \001(\r\022\025\n\013FDEGAMMGNGI\030\247\234\001 \001(\r\022\025\n\013CF" +
+      "KHDFPCHCL\030\250\234\001 \001(\r\022\025\n\013EKDNPKHMJIE\030\251\234\001 \001(\r" +
+      "\022\025\n\013MDBPICGKMLB\030\252\234\001 \001(\002\022\025\n\013LNFCPOINHKK\030\253" +
+      "\234\001 \001(\r\022\025\n\013IFHJIFEBKAO\030\254\234\001 \001(\r\022\025\n\013EPLABAA" +
+      "GCKE\030\255\234\001 \001(\010\022\025\n\013DMIEAHDCHFA\030\256\234\001 \001(\010\022\024\n\014e" +
+      "lement_type\030\002 \001(\r\022\016\n\006damage\030\016 \001(\002\022\025\n\013NJF" +
+      "MEBDIICN\030\257\234\001 \001(\002\022\023\n\013AFPBFDHCDNK\030\006 \001(\r\022\025\n" +
+      "\013IDENIGMCBJB\030\261\234\001 \001(\r\022\022\n\ndefense_id\030\004 \001(\r" +
+      "\022\025\n\013PKOFLCBFEOA\030\262\234\001 \001(\010\022\025\n\013OMJGKPMPFBI\030\263" +
+      "\234\001 \001(\010\022\025\n\013GGAMPLOEPMG\030\264\234\001 \001(\010\022\025\n\013PLNPCMI" +
+      "LPPD\030\265\234\001 \001(\r\022\025\n\013NILAPFIGLLH\030\266\234\001 \001(\002\022\025\n\013M" +
+      "HJDKCODNAA\030\267\234\001 \001(\r\022\024\n\013BNBBLJCDMPJ\030\233\001 \001(\r" +
+      "\022\023\n\013attacker_id\030\001 \001(\r\022\025\n\013MDECMKGHDAK\030\271\234\001" +
+      " \001(\002\022 \n\030hit_retreat_angle_compat\030\013 \001(\005\022\025" +
+      "\n\013GMNALDFDANK\030\272\234\001 \001(\r\022\025\n\013JCPDJCGGJCC\030\273\234\001" +
+      " \001(\r\022\024\n\013JILIGGDCLDH\030\354\016 \001(\r\022\025\n\013BJHAEPGOAK" +
+      "M\030\275\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

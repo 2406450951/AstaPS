@@ -14,16 +14,16 @@ message _MusicBriefInfo {
   uint32 max_score = 12;
   uint32 _beatmap_entry_type = 775;
   uint64 ugc_guid = 3;
-  uint32 MLAJCIMGINA = 20001;
+  uint32 MLAJCIMGINA = 1697;
   bool _is_allow_import = 8;
   bool is_psn_platform = 14;
   bool is_stored = 9;
   bool is_played = 11;
   uint32 self_max_score = 20002;
-  uint32 PGHGCGNLNPG = 20003;
+  uint32 PGHGCGNLNPG = 15;
   uint32 music_id = 5;
   uint32 publish_time = 6;
   uint32 note_count = 20004;
   uint32 MOIDOMCHPFG = 20005;
-  uint32 PNLPELDJLFL = 20006;
+  uint32 PNLPELDJLFL = 13;
 }

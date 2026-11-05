@@ -31,13 +31,13 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 KHJHFLNMNPC = 20000;</code>
+     * <code>uint32 KHJHFLNMNPC = 1;</code>
      * @return The kHJHFLNMNPC.
      */
     int getKHJHFLNMNPC();
 
     /**
-     * <code>uint32 BLCPLGCJEBJ = 20001;</code>
+     * <code>uint32 BLCPLGCJEBJ = 2;</code>
      * @return The bLCPLGCJEBJ.
      */
     int getBLCPLGCJEBJ();
@@ -84,10 +84,10 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
               emu.grasscutter.net.proto.ArenaChallengeMonsterLevelOuterClass.ArenaChallengeMonsterLevel.class, emu.grasscutter.net.proto.ArenaChallengeMonsterLevelOuterClass.ArenaChallengeMonsterLevel.Builder.class);
     }
 
-    public static final int KHJHFLNMNPC_FIELD_NUMBER = 20000;
+    public static final int KHJHFLNMNPC_FIELD_NUMBER = 1;
     private int kHJHFLNMNPC_ = 0;
     /**
-     * <code>uint32 KHJHFLNMNPC = 20000;</code>
+     * <code>uint32 KHJHFLNMNPC = 1;</code>
      * @return The kHJHFLNMNPC.
      */
     @java.lang.Override
@@ -95,10 +95,10 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
       return kHJHFLNMNPC_;
     }
 
-    public static final int BLCPLGCJEBJ_FIELD_NUMBER = 20001;
+    public static final int BLCPLGCJEBJ_FIELD_NUMBER = 2;
     private int bLCPLGCJEBJ_ = 0;
     /**
-     * <code>uint32 BLCPLGCJEBJ = 20001;</code>
+     * <code>uint32 BLCPLGCJEBJ = 2;</code>
      * @return The bLCPLGCJEBJ.
      */
     @java.lang.Override
@@ -121,10 +121,10 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (kHJHFLNMNPC_ != 0) {
-        output.writeUInt32(20000, kHJHFLNMNPC_);
+        output.writeUInt32(1, kHJHFLNMNPC_);
       }
       if (bLCPLGCJEBJ_ != 0) {
-        output.writeUInt32(20001, bLCPLGCJEBJ_);
+        output.writeUInt32(2, bLCPLGCJEBJ_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -132,11 +132,11 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
       int size = 0;
       if (kHJHFLNMNPC_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, kHJHFLNMNPC_);
+          .computeUInt32Size(1, kHJHFLNMNPC_);
       }
       if (bLCPLGCJEBJ_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, bLCPLGCJEBJ_);
+          .computeUInt32Size(2, bLCPLGCJEBJ_);
       }
       return size;
     }
@@ -397,16 +397,16 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 8: {
                 kHJHFLNMNPC_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
-              case 160008: {
+              } // case 8
+              case 16: {
                 bLCPLGCJEBJ_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160008
+              } // case 16
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -426,7 +426,7 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
 
       private int kHJHFLNMNPC_ ;
       /**
-       * <code>uint32 KHJHFLNMNPC = 20000;</code>
+       * <code>uint32 KHJHFLNMNPC = 1;</code>
        * @return The kHJHFLNMNPC.
        */
       @java.lang.Override
@@ -434,7 +434,7 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
         return kHJHFLNMNPC_;
       }
       /**
-       * <code>uint32 KHJHFLNMNPC = 20000;</code>
+       * <code>uint32 KHJHFLNMNPC = 1;</code>
        * @param value The kHJHFLNMNPC to set.
        * @return This builder for chaining.
        */
@@ -446,7 +446,7 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>uint32 KHJHFLNMNPC = 20000;</code>
+       * <code>uint32 KHJHFLNMNPC = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearKHJHFLNMNPC() {
@@ -458,7 +458,7 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
 
       private int bLCPLGCJEBJ_ ;
       /**
-       * <code>uint32 BLCPLGCJEBJ = 20001;</code>
+       * <code>uint32 BLCPLGCJEBJ = 2;</code>
        * @return The bLCPLGCJEBJ.
        */
       @java.lang.Override
@@ -466,7 +466,7 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
         return bLCPLGCJEBJ_;
       }
       /**
-       * <code>uint32 BLCPLGCJEBJ = 20001;</code>
+       * <code>uint32 BLCPLGCJEBJ = 2;</code>
        * @param value The bLCPLGCJEBJ to set.
        * @return This builder for chaining.
        */
@@ -478,7 +478,7 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
         return this;
       }
       /**
-       * <code>uint32 BLCPLGCJEBJ = 20001;</code>
+       * <code>uint32 BLCPLGCJEBJ = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearBLCPLGCJEBJ() {
@@ -553,10 +553,10 @@ public final class ArenaChallengeMonsterLevelOuterClass extends com.google.proto
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n ArenaChallengeMonsterLevel.proto\"J\n\032Ar" +
-      "enaChallengeMonsterLevel\022\025\n\013KHJHFLNMNPC\030" +
-      "\240\234\001 \001(\r\022\025\n\013BLCPLGCJEBJ\030\241\234\001 \001(\rB\033\n\031emu.gr" +
-      "asscutter.net.protob\006proto3"
+      "\n ArenaChallengeMonsterLevel.proto\"F\n\032Ar" +
+      "enaChallengeMonsterLevel\022\023\n\013KHJHFLNMNPC\030" +
+      "\001 \001(\r\022\023\n\013BLCPLGCJEBJ\030\002 \001(\rB\033\n\031emu.grassc" +
+      "utter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

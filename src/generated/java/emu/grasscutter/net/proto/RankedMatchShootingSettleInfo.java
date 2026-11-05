@@ -54,7 +54,7 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
     int getItemNum();
 
     /**
-     * <code>uint32 MOEKEMAHBNN = 20000;</code>
+     * <code>uint32 MOEKEMAHBNN = 10;</code>
      * @return The mOEKEMAHBNN.
      */
     int getMOEKEMAHBNN();
@@ -154,10 +154,10 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
       return itemNum_;
     }
 
-    public static final int MOEKEMAHBNN_FIELD_NUMBER = 20000;
+    public static final int MOEKEMAHBNN_FIELD_NUMBER = 10;
     private int mOEKEMAHBNN_ = 0;
     /**
-     * <code>uint32 MOEKEMAHBNN = 20000;</code>
+     * <code>uint32 MOEKEMAHBNN = 10;</code>
      * @return The mOEKEMAHBNN.
      */
     @java.lang.Override
@@ -217,7 +217,7 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
         output.writeUInt32(8, levelId_);
       }
       if (mOEKEMAHBNN_ != 0) {
-        output.writeUInt32(20000, mOEKEMAHBNN_);
+        output.writeUInt32(10, mOEKEMAHBNN_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -245,7 +245,7 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
       }
       if (mOEKEMAHBNN_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, mOEKEMAHBNN_);
+          .computeUInt32Size(10, mOEKEMAHBNN_);
       }
       return size;
     }
@@ -575,11 +575,11 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
                 bitField0_ |= 0x00000010;
                 break;
               } // case 64
-              case 160000: {
+              case 80: {
                 mOEKEMAHBNN_ = input.readUInt32();
                 bitField0_ |= 0x00000008;
                 break;
-              } // case 160000
+              } // case 80
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -715,7 +715,7 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
 
       private int mOEKEMAHBNN_ ;
       /**
-       * <code>uint32 MOEKEMAHBNN = 20000;</code>
+       * <code>uint32 MOEKEMAHBNN = 10;</code>
        * @return The mOEKEMAHBNN.
        */
       @java.lang.Override
@@ -723,7 +723,7 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
         return mOEKEMAHBNN_;
       }
       /**
-       * <code>uint32 MOEKEMAHBNN = 20000;</code>
+       * <code>uint32 MOEKEMAHBNN = 10;</code>
        * @param value The mOEKEMAHBNN to set.
        * @return This builder for chaining.
        */
@@ -735,7 +735,7 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
         return this;
       }
       /**
-       * <code>uint32 MOEKEMAHBNN = 20000;</code>
+       * <code>uint32 MOEKEMAHBNN = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearMOEKEMAHBNN() {
@@ -875,12 +875,12 @@ public final class RankedMatchShootingSettleInfo extends com.google.protobuf.Gen
   static {
     java.lang.String[] descriptorData = {
       "\n$_RankedMatchShootingSettleInfo.proto\032\027" +
-      "GalleryStopReason.proto\"\245\001\n\036_RankedMatch" +
+      "GalleryStopReason.proto\"\243\001\n\036_RankedMatch" +
       "ShootingSettleInfo\022\025\n\ris_new_record\030\003 \001(" +
       "\010\022\"\n\006reason\030\004 \001(\0162\022.GalleryStopReason\022\020\n" +
-      "\010item_num\030\002 \001(\r\022\025\n\013MOEKEMAHBNN\030\240\234\001 \001(\r\022\020" +
-      "\n\010level_id\030\010 \001(\r\022\r\n\005score\030\006 \001(\rB\033\n\031emu.g" +
-      "rasscutter.net.protob\006proto3"
+      "\010item_num\030\002 \001(\r\022\023\n\013MOEKEMAHBNN\030\n \001(\r\022\020\n\010" +
+      "level_id\030\010 \001(\r\022\r\n\005score\030\006 \001(\rB\033\n\031emu.gra" +
+      "sscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

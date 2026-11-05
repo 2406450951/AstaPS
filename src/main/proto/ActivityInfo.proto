@@ -169,7 +169,7 @@ import "_WeekActiveDetailInfo.proto";
 message ActivityInfo {
   map<uint32, uint32> wish_gift_num_map = 1060;
   repeated ActivityPushTipsData activity_push_tips_data_list = 1814;
-  repeated uint64 OPCOMCJHGAJ = 20000;
+  repeated uint64 OPCOMCJHGAJ = 862;
   repeated uint32 taken_reward_list = 341;
   POODJGCIHIE JJFJONCHEIK = 20001;
   repeated ActivityWatcherInfo watcher_info_list = 9;

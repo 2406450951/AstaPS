@@ -13,7 +13,7 @@ import "_UgcShortVideoRecord.proto";
 message SaveUgcReq {
   UgcType ugc_type = 14;
   uint32 schedule_id = 1;
-  KLALGJNDAFD HMODKDEMFDE = 20000;
+  KLALGJNDAFD HMODKDEMFDE = 11;
   oneof record {
     UgcMusicRecord music_record = 5;
     _UgcLanV5CardRecord lan_v_5_card_record = 9;

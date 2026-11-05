@@ -66,7 +66,7 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
     boolean getIsNewRecord();
 
     /**
-     * <code>uint32 DPFLJBCLGDJ = 20000;</code>
+     * <code>uint32 DPFLJBCLGDJ = 11;</code>
      * @return The dPFLJBCLGDJ.
      */
     int getDPFLJBCLGDJ();
@@ -182,10 +182,10 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
       return isNewRecord_;
     }
 
-    public static final int DPFLJBCLGDJ_FIELD_NUMBER = 20000;
+    public static final int DPFLJBCLGDJ_FIELD_NUMBER = 11;
     private int dPFLJBCLGDJ_ = 0;
     /**
-     * <code>uint32 DPFLJBCLGDJ = 20000;</code>
+     * <code>uint32 DPFLJBCLGDJ = 11;</code>
      * @return The dPFLJBCLGDJ.
      */
     @java.lang.Override
@@ -233,11 +233,11 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
       if (useTime_ != 0) {
         output.writeUInt32(9, useTime_);
       }
+      if (dPFLJBCLGDJ_ != 0) {
+        output.writeUInt32(11, dPFLJBCLGDJ_);
+      }
       if (score_ != 0) {
         output.writeUInt32(13, score_);
-      }
-      if (dPFLJBCLGDJ_ != 0) {
-        output.writeUInt32(20000, dPFLJBCLGDJ_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -263,13 +263,13 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(9, useTime_);
       }
+      if (dPFLJBCLGDJ_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(11, dPFLJBCLGDJ_);
+      }
       if (score_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(13, score_);
-      }
-      if (dPFLJBCLGDJ_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, dPFLJBCLGDJ_);
       }
       return size;
     }
@@ -610,16 +610,16 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000002;
                 break;
               } // case 72
+              case 88: {
+                dPFLJBCLGDJ_ = input.readUInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 88
               case 104: {
                 score_ = input.readUInt32();
                 bitField0_ |= 0x00000008;
                 break;
               } // case 104
-              case 160000: {
-                dPFLJBCLGDJ_ = input.readUInt32();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -819,7 +819,7 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
 
       private int dPFLJBCLGDJ_ ;
       /**
-       * <code>uint32 DPFLJBCLGDJ = 20000;</code>
+       * <code>uint32 DPFLJBCLGDJ = 11;</code>
        * @return The dPFLJBCLGDJ.
        */
       @java.lang.Override
@@ -827,7 +827,7 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
         return dPFLJBCLGDJ_;
       }
       /**
-       * <code>uint32 DPFLJBCLGDJ = 20000;</code>
+       * <code>uint32 DPFLJBCLGDJ = 11;</code>
        * @param value The dPFLJBCLGDJ to set.
        * @return This builder for chaining.
        */
@@ -839,7 +839,7 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>uint32 DPFLJBCLGDJ = 20000;</code>
+       * <code>uint32 DPFLJBCLGDJ = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearDPFLJBCLGDJ() {
@@ -947,12 +947,12 @@ public final class RankedMatchTrainSettleInfo extends com.google.protobuf.Genera
   static {
     java.lang.String[] descriptorData = {
       "\n!_RankedMatchTrainSettleInfo.proto\032\027Gal" +
-      "leryStopReason.proto\"\264\001\n\033_RankedMatchTra" +
+      "leryStopReason.proto\"\262\001\n\033_RankedMatchTra" +
       "inSettleInfo\022\020\n\010item_num\030\005 \001(\r\022\020\n\010use_ti" +
       "me\030\t \001(\r\022\"\n\006reason\030\004 \001(\0162\022.GalleryStopRe" +
       "ason\022\r\n\005score\030\r \001(\r\022\025\n\ris_new_record\030\002 \001" +
-      "(\010\022\025\n\013DPFLJBCLGDJ\030\240\234\001 \001(\r\022\020\n\010level_id\030\007 " +
-      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
+      "(\010\022\023\n\013DPFLJBCLGDJ\030\013 \001(\r\022\020\n\010level_id\030\007 \001(" +
+      "\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

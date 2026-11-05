@@ -11,7 +11,7 @@ message _LoliGolfDungeonSettleInfo {
   uint32 JOELLBHNGDL = 20003;
   uint32 BMMIKCIJLHN = 20004;
   uint32 AFOELHPKJOP = 20005;
-  uint32 qte_count = 20006;
+  uint32 qte_count = 9;
   uint32 score = 1;
   uint32 level_id = 13;
   uint32 IDJGDOGIJFE = 20007;

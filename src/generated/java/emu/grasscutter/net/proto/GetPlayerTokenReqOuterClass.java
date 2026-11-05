@@ -31,12 +31,12 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string BKIICHHOJAF = 20000;</code>
+     * <code>string BKIICHHOJAF = 1730;</code>
      * @return The bKIICHHOJAF.
      */
     java.lang.String getBKIICHHOJAF();
     /**
-     * <code>string BKIICHHOJAF = 20000;</code>
+     * <code>string BKIICHHOJAF = 1730;</code>
      * @return The bytes for bKIICHHOJAF.
      */
     com.google.protobuf.ByteString
@@ -115,12 +115,12 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         getOnlineIdBytes();
 
     /**
-     * <code>string GGKODKLBGFD = 20001;</code>
+     * <code>string GGKODKLBGFD = 1300;</code>
      * @return The gGKODKLBGFD.
      */
     java.lang.String getGGKODKLBGFD();
     /**
-     * <code>string GGKODKLBGFD = 20001;</code>
+     * <code>string GGKODKLBGFD = 1300;</code>
      * @return The bytes for gGKODKLBGFD.
      */
     com.google.protobuf.ByteString
@@ -352,11 +352,11 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
               emu.grasscutter.net.proto.GetPlayerTokenReqOuterClass.GetPlayerTokenReq.class, emu.grasscutter.net.proto.GetPlayerTokenReqOuterClass.GetPlayerTokenReq.Builder.class);
     }
 
-    public static final int BKIICHHOJAF_FIELD_NUMBER = 20000;
+    public static final int BKIICHHOJAF_FIELD_NUMBER = 1730;
     @SuppressWarnings("serial")
     private volatile java.lang.Object bKIICHHOJAF_ = "";
     /**
-     * <code>string BKIICHHOJAF = 20000;</code>
+     * <code>string BKIICHHOJAF = 1730;</code>
      * @return The bKIICHHOJAF.
      */
     @java.lang.Override
@@ -373,7 +373,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
       }
     }
     /**
-     * <code>string BKIICHHOJAF = 20000;</code>
+     * <code>string BKIICHHOJAF = 1730;</code>
      * @return The bytes for bKIICHHOJAF.
      */
     @java.lang.Override
@@ -625,11 +625,11 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
       }
     }
 
-    public static final int GGKODKLBGFD_FIELD_NUMBER = 20001;
+    public static final int GGKODKLBGFD_FIELD_NUMBER = 1300;
     @SuppressWarnings("serial")
     private volatile java.lang.Object gGKODKLBGFD_ = "";
     /**
-     * <code>string GGKODKLBGFD = 20001;</code>
+     * <code>string GGKODKLBGFD = 1300;</code>
      * @return The gGKODKLBGFD.
      */
     @java.lang.Override
@@ -646,7 +646,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
       }
     }
     /**
-     * <code>string GGKODKLBGFD = 20001;</code>
+     * <code>string GGKODKLBGFD = 1300;</code>
      * @return The bytes for gGKODKLBGFD.
      */
     @java.lang.Override
@@ -1188,11 +1188,11 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(XboxGamertag_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1283, XboxGamertag_);
       }
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(bKIICHHOJAF_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 20000, bKIICHHOJAF_);
-      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gGKODKLBGFD_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 20001, gGKODKLBGFD_);
+        com.google.protobuf.GeneratedMessage.writeString(output, 1300, gGKODKLBGFD_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(bKIICHHOJAF_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1730, bKIICHHOJAF_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(bIIJMKDGAGI_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 20002, bIIJMKDGAGI_);
@@ -1286,11 +1286,11 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(XboxGamertag_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1283, XboxGamertag_);
       }
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(bKIICHHOJAF_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(20000, bKIICHHOJAF_);
-      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gGKODKLBGFD_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(20001, gGKODKLBGFD_);
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1300, gGKODKLBGFD_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(bKIICHHOJAF_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1730, bKIICHHOJAF_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(bIIJMKDGAGI_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(20002, bIIJMKDGAGI_);
@@ -1994,16 +1994,16 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000020;
                 break;
               } // case 10266
-              case 160002: {
-                bKIICHHOJAF_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 160002
-              case 160010: {
+              case 10402: {
                 gGKODKLBGFD_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000080;
                 break;
-              } // case 160010
+              } // case 10402
+              case 13842: {
+                bKIICHHOJAF_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 13842
               case 160018: {
                 bIIJMKDGAGI_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00002000;
@@ -2043,7 +2043,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
 
       private java.lang.Object bKIICHHOJAF_ = "";
       /**
-       * <code>string BKIICHHOJAF = 20000;</code>
+       * <code>string BKIICHHOJAF = 1730;</code>
        * @return The bKIICHHOJAF.
        */
       public java.lang.String getBKIICHHOJAF() {
@@ -2059,7 +2059,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         }
       }
       /**
-       * <code>string BKIICHHOJAF = 20000;</code>
+       * <code>string BKIICHHOJAF = 1730;</code>
        * @return The bytes for bKIICHHOJAF.
        */
       public com.google.protobuf.ByteString
@@ -2076,7 +2076,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         }
       }
       /**
-       * <code>string BKIICHHOJAF = 20000;</code>
+       * <code>string BKIICHHOJAF = 1730;</code>
        * @param value The bKIICHHOJAF to set.
        * @return This builder for chaining.
        */
@@ -2089,7 +2089,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>string BKIICHHOJAF = 20000;</code>
+       * <code>string BKIICHHOJAF = 1730;</code>
        * @return This builder for chaining.
        */
       public Builder clearBKIICHHOJAF() {
@@ -2099,7 +2099,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>string BKIICHHOJAF = 20000;</code>
+       * <code>string BKIICHHOJAF = 1730;</code>
        * @param value The bytes for bKIICHHOJAF to set.
        * @return This builder for chaining.
        */
@@ -2547,7 +2547,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
 
       private java.lang.Object gGKODKLBGFD_ = "";
       /**
-       * <code>string GGKODKLBGFD = 20001;</code>
+       * <code>string GGKODKLBGFD = 1300;</code>
        * @return The gGKODKLBGFD.
        */
       public java.lang.String getGGKODKLBGFD() {
@@ -2563,7 +2563,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         }
       }
       /**
-       * <code>string GGKODKLBGFD = 20001;</code>
+       * <code>string GGKODKLBGFD = 1300;</code>
        * @return The bytes for gGKODKLBGFD.
        */
       public com.google.protobuf.ByteString
@@ -2580,7 +2580,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         }
       }
       /**
-       * <code>string GGKODKLBGFD = 20001;</code>
+       * <code>string GGKODKLBGFD = 1300;</code>
        * @param value The gGKODKLBGFD to set.
        * @return This builder for chaining.
        */
@@ -2593,7 +2593,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>string GGKODKLBGFD = 20001;</code>
+       * <code>string GGKODKLBGFD = 1300;</code>
        * @return This builder for chaining.
        */
       public Builder clearGGKODKLBGFD() {
@@ -2603,7 +2603,7 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>string GGKODKLBGFD = 20001;</code>
+       * <code>string GGKODKLBGFD = 1300;</code>
        * @param value The bytes for gGKODKLBGFD to set.
        * @return This builder for chaining.
        */
@@ -3642,24 +3642,23 @@ public final class GetPlayerTokenReqOuterClass extends com.google.protobuf.Gener
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\027GetPlayerTokenReq.proto\"\350\004\n\021GetPlayerT" +
-      "okenReq\022\025\n\013BKIICHHOJAF\030\240\234\001 \001(\t\022\021\n\010birthd" +
-      "ay\030\234\007 \001(\t\022\024\n\014country_code\030\010 \001(\t\022\025\n\raccou" +
-      "nt_token\030\002 \001(\t\022\025\n\rclient_ip_str\030\006 \001(\t\022\027\n" +
-      "\016_xbox_gamertag\030\203\n \001(\t\022\021\n\tonline_id\030\016 \001(" +
-      "\t\022\025\n\013GGKODKLBGFD\030\241\234\001 \001(\t\022\016\n\005_xuid\030\364\006 \001(\t" +
-      "\022\022\n\nauth_appid\030S \001(\t\022\030\n\017client_rand_key\030" +
-      "\357\004 \001(\t\022\016\n\006psn_id\030\r \001(\t\022\023\n\013account_uid\030\t " +
-      "\001(\t\022\025\n\013BIIJMKDGAGI\030\242\234\001 \001(\t\022\024\n\013FDCECMCNKG" +
-      "C\030\305\007 \001(\t\022\026\n\014_gate_ticket\030\243\234\001 \001(\t\022\r\n\004lang" +
-      "\030\231\006 \001(\r\022\024\n\013authkey_ver\030\261\004 \001(\r\022\013\n\003uid\030\014 \001" +
-      "(\r\022\025\n\rplatform_type\030\007 \001(\r\022\033\n\022minors_reg_" +
-      "min_age\030\205\005 \001(\r\022\022\n\nchannel_id\030\003 \001(\r\022\022\n\tsi" +
-      "gn_type\030\266\t \001(\r\022\020\n\010is_guest\030\013 \001(\010\022\026\n\014acco" +
-      "unt_type\030\244\234\001 \001(\r\022\030\n\016sub_channel_id\030\245\234\001 \001" +
-      "(\r\022\027\n\017cloud_client_ip\030\004 \001(\r\022\017\n\006key_id\030\240\t" +
-      " \001(\rB\033\n\031emu.grasscutter.net.protob\006proto" +
-      "3"
+      "\n\027GetPlayerTokenReq.proto\"\346\004\n\021GetPlayerT" +
+      "okenReq\022\024\n\013BKIICHHOJAF\030\302\r \001(\t\022\021\n\010birthda" +
+      "y\030\234\007 \001(\t\022\024\n\014country_code\030\010 \001(\t\022\025\n\raccoun" +
+      "t_token\030\002 \001(\t\022\025\n\rclient_ip_str\030\006 \001(\t\022\027\n\016" +
+      "_xbox_gamertag\030\203\n \001(\t\022\021\n\tonline_id\030\016 \001(\t" +
+      "\022\024\n\013GGKODKLBGFD\030\224\n \001(\t\022\016\n\005_xuid\030\364\006 \001(\t\022\022" +
+      "\n\nauth_appid\030S \001(\t\022\030\n\017client_rand_key\030\357\004" +
+      " \001(\t\022\016\n\006psn_id\030\r \001(\t\022\023\n\013account_uid\030\t \001(" +
+      "\t\022\025\n\013BIIJMKDGAGI\030\242\234\001 \001(\t\022\024\n\013FDCECMCNKGC\030" +
+      "\305\007 \001(\t\022\026\n\014_gate_ticket\030\243\234\001 \001(\t\022\r\n\004lang\030\231" +
+      "\006 \001(\r\022\024\n\013authkey_ver\030\261\004 \001(\r\022\013\n\003uid\030\014 \001(\r" +
+      "\022\025\n\rplatform_type\030\007 \001(\r\022\033\n\022minors_reg_mi" +
+      "n_age\030\205\005 \001(\r\022\022\n\nchannel_id\030\003 \001(\r\022\022\n\tsign" +
+      "_type\030\266\t \001(\r\022\020\n\010is_guest\030\013 \001(\010\022\026\n\014accoun" +
+      "t_type\030\244\234\001 \001(\r\022\030\n\016sub_channel_id\030\245\234\001 \001(\r" +
+      "\022\027\n\017cloud_client_ip\030\004 \001(\r\022\017\n\006key_id\030\240\t \001" +
+      "(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

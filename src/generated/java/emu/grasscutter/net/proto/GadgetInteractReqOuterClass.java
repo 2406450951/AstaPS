@@ -55,7 +55,7 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
     boolean getIKDIFBEOEKM();
 
     /**
-     * <code>bool AJDBEGMCGKD = 20004;</code>
+     * <code>bool AJDBEGMCGKD = 8;</code>
      * @return The aJDBEGMCGKD.
      */
     boolean getAJDBEGMCGKD();
@@ -113,7 +113,7 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
     int getGadgetEntityId();
 
     /**
-     * <code>uint32 CJIPKAIPCIB = 20008;</code>
+     * <code>uint32 CJIPKAIPCIB = 12;</code>
      * @return The cJIPKAIPCIB.
      */
     int getCJIPKAIPCIB();
@@ -206,10 +206,10 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
       return iKDIFBEOEKM_;
     }
 
-    public static final int AJDBEGMCGKD_FIELD_NUMBER = 20004;
+    public static final int AJDBEGMCGKD_FIELD_NUMBER = 8;
     private boolean aJDBEGMCGKD_ = false;
     /**
-     * <code>bool AJDBEGMCGKD = 20004;</code>
+     * <code>bool AJDBEGMCGKD = 8;</code>
      * @return The aJDBEGMCGKD.
      */
     @java.lang.Override
@@ -308,10 +308,10 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
       return gadgetEntityId_;
     }
 
-    public static final int CJIPKAIPCIB_FIELD_NUMBER = 20008;
+    public static final int CJIPKAIPCIB_FIELD_NUMBER = 12;
     private int cJIPKAIPCIB_ = 0;
     /**
-     * <code>uint32 CJIPKAIPCIB = 20008;</code>
+     * <code>uint32 CJIPKAIPCIB = 12;</code>
      * @return The cJIPKAIPCIB.
      */
     @java.lang.Override
@@ -342,8 +342,14 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
       if (gadgetId_ != 0) {
         output.writeUInt32(7, gadgetId_);
       }
+      if (aJDBEGMCGKD_ != false) {
+        output.writeBool(8, aJDBEGMCGKD_);
+      }
       if (gadgetEntityId_ != 0) {
         output.writeUInt32(11, gadgetEntityId_);
+      }
+      if (cJIPKAIPCIB_ != 0) {
+        output.writeUInt32(12, cJIPKAIPCIB_);
       }
       if (dOGHJJCHDLF_ != false) {
         output.writeBool(20000, dOGHJJCHDLF_);
@@ -357,9 +363,6 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
       if (iKDIFBEOEKM_ != false) {
         output.writeBool(20003, iKDIFBEOEKM_);
       }
-      if (aJDBEGMCGKD_ != false) {
-        output.writeBool(20004, aJDBEGMCGKD_);
-      }
       if (hDJABIODGCI_ != false) {
         output.writeBool(20005, hDJABIODGCI_);
       }
@@ -368,9 +371,6 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
       }
       if (aLLPOOBNNPH_ != 0) {
         output.writeUInt32(20007, aLLPOOBNNPH_);
-      }
-      if (cJIPKAIPCIB_ != 0) {
-        output.writeUInt32(20008, cJIPKAIPCIB_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -388,9 +388,17 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(7, gadgetId_);
       }
+      if (aJDBEGMCGKD_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, aJDBEGMCGKD_);
+      }
       if (gadgetEntityId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(11, gadgetEntityId_);
+      }
+      if (cJIPKAIPCIB_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(12, cJIPKAIPCIB_);
       }
       if (dOGHJJCHDLF_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -408,10 +416,6 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20003, iKDIFBEOEKM_);
       }
-      if (aJDBEGMCGKD_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20004, aJDBEGMCGKD_);
-      }
       if (hDJABIODGCI_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20005, hDJABIODGCI_);
@@ -423,10 +427,6 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
       if (aLLPOOBNNPH_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20007, aLLPOOBNNPH_);
-      }
-      if (cJIPKAIPCIB_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20008, cJIPKAIPCIB_);
       }
       return size;
     }
@@ -827,11 +827,21 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000200;
                 break;
               } // case 56
+              case 64: {
+                aJDBEGMCGKD_ = input.readBool();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 64
               case 88: {
                 gadgetEntityId_ = input.readUInt32();
                 bitField0_ |= 0x00000800;
                 break;
               } // case 88
+              case 96: {
+                cJIPKAIPCIB_ = input.readUInt32();
+                bitField0_ |= 0x00001000;
+                break;
+              } // case 96
               case 160000: {
                 dOGHJJCHDLF_ = input.readBool();
                 bitField0_ |= 0x00000001;
@@ -852,11 +862,6 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000008;
                 break;
               } // case 160024
-              case 160032: {
-                aJDBEGMCGKD_ = input.readBool();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160032
               case 160040: {
                 hDJABIODGCI_ = input.readBool();
                 bitField0_ |= 0x00000020;
@@ -872,11 +877,6 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000400;
                 break;
               } // case 160056
-              case 160064: {
-                cJIPKAIPCIB_ = input.readUInt32();
-                bitField0_ |= 0x00001000;
-                break;
-              } // case 160064
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1024,7 +1024,7 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
 
       private boolean aJDBEGMCGKD_ ;
       /**
-       * <code>bool AJDBEGMCGKD = 20004;</code>
+       * <code>bool AJDBEGMCGKD = 8;</code>
        * @return The aJDBEGMCGKD.
        */
       @java.lang.Override
@@ -1032,7 +1032,7 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
         return aJDBEGMCGKD_;
       }
       /**
-       * <code>bool AJDBEGMCGKD = 20004;</code>
+       * <code>bool AJDBEGMCGKD = 8;</code>
        * @param value The aJDBEGMCGKD to set.
        * @return This builder for chaining.
        */
@@ -1044,7 +1044,7 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>bool AJDBEGMCGKD = 20004;</code>
+       * <code>bool AJDBEGMCGKD = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearAJDBEGMCGKD() {
@@ -1320,7 +1320,7 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
 
       private int cJIPKAIPCIB_ ;
       /**
-       * <code>uint32 CJIPKAIPCIB = 20008;</code>
+       * <code>uint32 CJIPKAIPCIB = 12;</code>
        * @return The cJIPKAIPCIB.
        */
       @java.lang.Override
@@ -1328,7 +1328,7 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
         return cJIPKAIPCIB_;
       }
       /**
-       * <code>uint32 CJIPKAIPCIB = 20008;</code>
+       * <code>uint32 CJIPKAIPCIB = 12;</code>
        * @param value The cJIPKAIPCIB to set.
        * @return This builder for chaining.
        */
@@ -1340,7 +1340,7 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>uint32 CJIPKAIPCIB = 20008;</code>
+       * <code>uint32 CJIPKAIPCIB = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearCJIPKAIPCIB() {
@@ -1416,17 +1416,17 @@ public final class GadgetInteractReqOuterClass extends com.google.protobuf.Gener
   static {
     java.lang.String[] descriptorData = {
       "\n\027GadgetInteractReq.proto\032\021InterOpType.p" +
-      "roto\032\023ResinCostType.proto\"\327\002\n\021GadgetInte" +
+      "roto\032\023ResinCostType.proto\"\323\002\n\021GadgetInte" +
       "ractReq\022\025\n\013DOGHJJCHDLF\030\240\234\001 \001(\010\022\025\n\013IKMNHO" +
       "HNBKJ\030\241\234\001 \001(\010\022\025\n\013LPCDPGNKGFL\030\242\234\001 \001(\010\022\025\n\013" +
-      "IKDIFBEOEKM\030\243\234\001 \001(\010\022\025\n\013AJDBEGMCGKD\030\244\234\001 \001" +
-      "(\010\022\025\n\013HDJABIODGCI\030\245\234\001 \001(\010\022\035\n\007op_type\030\005 \001" +
-      "(\0162\014.InterOpType\022\025\n\013EBEELPIEKEL\030\246\234\001 \001(\r\022" +
-      "\'\n\017resin_cost_type\030\006 \001(\0162\016.ResinCostType" +
-      "\022\021\n\tgadget_id\030\007 \001(\r\022\025\n\013ALLPOOBNNPH\030\247\234\001 \001" +
-      "(\r\022\030\n\020gadget_entity_id\030\013 \001(\r\022\025\n\013CJIPKAIP" +
-      "CIB\030\250\234\001 \001(\rB\033\n\031emu.grasscutter.net.proto" +
-      "b\006proto3"
+      "IKDIFBEOEKM\030\243\234\001 \001(\010\022\023\n\013AJDBEGMCGKD\030\010 \001(\010" +
+      "\022\025\n\013HDJABIODGCI\030\245\234\001 \001(\010\022\035\n\007op_type\030\005 \001(\016" +
+      "2\014.InterOpType\022\025\n\013EBEELPIEKEL\030\246\234\001 \001(\r\022\'\n" +
+      "\017resin_cost_type\030\006 \001(\0162\016.ResinCostType\022\021" +
+      "\n\tgadget_id\030\007 \001(\r\022\025\n\013ALLPOOBNNPH\030\247\234\001 \001(\r" +
+      "\022\030\n\020gadget_entity_id\030\013 \001(\r\022\023\n\013CJIPKAIPCI" +
+      "B\030\014 \001(\rB\033\n\031emu.grasscutter.net.protob\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -71,12 +71,12 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
     int getFCOJGHNMIKK();
 
     /**
-     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
      * @return The enum numeric value on the wire for bHHGGMIGHHL.
      */
     int getBHHGGMIGHHLValue();
     /**
-     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
      * @return The bHHGGMIGHHL.
      */
     emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE getBHHGGMIGHHL();
@@ -88,13 +88,13 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
     int getId();
 
     /**
-     * <code>uint32 GCKDBLEMLNM = 20003;</code>
+     * <code>uint32 GCKDBLEMLNM = 3;</code>
      * @return The gCKDBLEMLNM.
      */
     int getGCKDBLEMLNM();
 
     /**
-     * <code>bool LKIIDNBEBIM = 20004;</code>
+     * <code>bool LKIIDNBEBIM = 14;</code>
      * @return The lKIIDNBEBIM.
      */
     boolean getLKIIDNBEBIM();
@@ -221,17 +221,17 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
       return fCOJGHNMIKK_;
     }
 
-    public static final int BHHGGMIGHHL_FIELD_NUMBER = 20002;
+    public static final int BHHGGMIGHHL_FIELD_NUMBER = 13;
     private int bHHGGMIGHHL_ = 0;
     /**
-     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
      * @return The enum numeric value on the wire for bHHGGMIGHHL.
      */
     @java.lang.Override public int getBHHGGMIGHHLValue() {
       return bHHGGMIGHHL_;
     }
     /**
-     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
      * @return The bHHGGMIGHHL.
      */
     @java.lang.Override public emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE getBHHGGMIGHHL() {
@@ -250,10 +250,10 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
       return id_;
     }
 
-    public static final int GCKDBLEMLNM_FIELD_NUMBER = 20003;
+    public static final int GCKDBLEMLNM_FIELD_NUMBER = 3;
     private int gCKDBLEMLNM_ = 0;
     /**
-     * <code>uint32 GCKDBLEMLNM = 20003;</code>
+     * <code>uint32 GCKDBLEMLNM = 3;</code>
      * @return The gCKDBLEMLNM.
      */
     @java.lang.Override
@@ -261,10 +261,10 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
       return gCKDBLEMLNM_;
     }
 
-    public static final int LKIIDNBEBIM_FIELD_NUMBER = 20004;
+    public static final int LKIIDNBEBIM_FIELD_NUMBER = 14;
     private boolean lKIIDNBEBIM_ = false;
     /**
-     * <code>bool LKIIDNBEBIM = 20004;</code>
+     * <code>bool LKIIDNBEBIM = 14;</code>
      * @return The lKIIDNBEBIM.
      */
     @java.lang.Override
@@ -298,6 +298,9 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (gCKDBLEMLNM_ != 0) {
+        output.writeUInt32(3, gCKDBLEMLNM_);
+      }
       if (id_ != 0) {
         output.writeUInt32(8, id_);
       }
@@ -307,6 +310,12 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
       }
       for (int i = 0; i < npcIdList_.size(); i++) {
         output.writeUInt32NoTag(npcIdList_.getInt(i));
+      }
+      if (bHHGGMIGHHL_ != emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.FGJFGPAPOHE_NONE.getNumber()) {
+        output.writeEnum(13, bHHGGMIGHHL_);
+      }
+      if (lKIIDNBEBIM_ != false) {
+        output.writeBool(14, lKIIDNBEBIM_);
       }
       if (getCKBLJCHDKPOList().size() > 0) {
         output.writeUInt32NoTag(160002);
@@ -318,15 +327,6 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
       if (fCOJGHNMIKK_ != 0) {
         output.writeUInt32(20001, fCOJGHNMIKK_);
       }
-      if (bHHGGMIGHHL_ != emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.FGJFGPAPOHE_NONE.getNumber()) {
-        output.writeEnum(20002, bHHGGMIGHHL_);
-      }
-      if (gCKDBLEMLNM_ != 0) {
-        output.writeUInt32(20003, gCKDBLEMLNM_);
-      }
-      if (lKIIDNBEBIM_ != false) {
-        output.writeBool(20004, lKIIDNBEBIM_);
-      }
       if (lBIEHJGLEFK_ != false) {
         output.writeBool(20005, lBIEHJGLEFK_);
       }
@@ -334,6 +334,10 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (gCKDBLEMLNM_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, gCKDBLEMLNM_);
+      }
       if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(8, id_);
@@ -352,6 +356,14 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
         }
         npcIdListMemoizedSerializedSize = dataSize;
       }
+      if (bHHGGMIGHHL_ != emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.FGJFGPAPOHE_NONE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(13, bHHGGMIGHHL_);
+      }
+      if (lKIIDNBEBIM_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(14, lKIIDNBEBIM_);
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < cKBLJCHDKPO_.size(); i++) {
@@ -369,18 +381,6 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
       if (fCOJGHNMIKK_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20001, fCOJGHNMIKK_);
-      }
-      if (bHHGGMIGHHL_ != emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.FGJFGPAPOHE_NONE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(20002, bHHGGMIGHHL_);
-      }
-      if (gCKDBLEMLNM_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20003, gCKDBLEMLNM_);
-      }
-      if (lKIIDNBEBIM_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20004, lKIIDNBEBIM_);
       }
       if (lBIEHJGLEFK_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -734,6 +734,11 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
+              case 24: {
+                gCKDBLEMLNM_ = input.readUInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 24
               case 64: {
                 id_ = input.readUInt32();
                 bitField0_ |= 0x00000010;
@@ -755,6 +760,16 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
                 input.popLimit(limit);
                 break;
               } // case 74
+              case 104: {
+                bHHGGMIGHHL_ = input.readEnum();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 104
+              case 112: {
+                lKIIDNBEBIM_ = input.readBool();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 112
               case 160000: {
                 int v = input.readUInt32();
                 ensureCKBLJCHDKPOIsMutable();
@@ -776,21 +791,6 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000004;
                 break;
               } // case 160008
-              case 160016: {
-                bHHGGMIGHHL_ = input.readEnum();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160016
-              case 160024: {
-                gCKDBLEMLNM_ = input.readUInt32();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160024
-              case 160032: {
-                lKIIDNBEBIM_ = input.readBool();
-                bitField0_ |= 0x00000040;
-                break;
-              } // case 160032
               case 160040: {
                 lBIEHJGLEFK_ = input.readBool();
                 bitField0_ |= 0x00000080;
@@ -1015,14 +1015,14 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
 
       private int bHHGGMIGHHL_ = 0;
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
        * @return The enum numeric value on the wire for bHHGGMIGHHL.
        */
       @java.lang.Override public int getBHHGGMIGHHLValue() {
         return bHHGGMIGHHL_;
       }
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
        * @param value The enum numeric value on the wire for bHHGGMIGHHL to set.
        * @return This builder for chaining.
        */
@@ -1033,7 +1033,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
        * @return The bHHGGMIGHHL.
        */
       @java.lang.Override
@@ -1042,7 +1042,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
         return result == null ? emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.UNRECOGNIZED : result;
       }
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
        * @param value The bHHGGMIGHHL to set.
        * @throws IllegalArgumentException if UNRECOGNIZED is provided.
        * @return This builder for chaining.
@@ -1055,7 +1055,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20002;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearBHHGGMIGHHL() {
@@ -1099,7 +1099,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
 
       private int gCKDBLEMLNM_ ;
       /**
-       * <code>uint32 GCKDBLEMLNM = 20003;</code>
+       * <code>uint32 GCKDBLEMLNM = 3;</code>
        * @return The gCKDBLEMLNM.
        */
       @java.lang.Override
@@ -1107,7 +1107,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
         return gCKDBLEMLNM_;
       }
       /**
-       * <code>uint32 GCKDBLEMLNM = 20003;</code>
+       * <code>uint32 GCKDBLEMLNM = 3;</code>
        * @param value The gCKDBLEMLNM to set.
        * @return This builder for chaining.
        */
@@ -1119,7 +1119,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 GCKDBLEMLNM = 20003;</code>
+       * <code>uint32 GCKDBLEMLNM = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearGCKDBLEMLNM() {
@@ -1131,7 +1131,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
 
       private boolean lKIIDNBEBIM_ ;
       /**
-       * <code>bool LKIIDNBEBIM = 20004;</code>
+       * <code>bool LKIIDNBEBIM = 14;</code>
        * @return The lKIIDNBEBIM.
        */
       @java.lang.Override
@@ -1139,7 +1139,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
         return lKIIDNBEBIM_;
       }
       /**
-       * <code>bool LKIIDNBEBIM = 20004;</code>
+       * <code>bool LKIIDNBEBIM = 14;</code>
        * @param value The lKIIDNBEBIM to set.
        * @return This builder for chaining.
        */
@@ -1151,7 +1151,7 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>bool LKIIDNBEBIM = 20004;</code>
+       * <code>bool LKIIDNBEBIM = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearLKIIDNBEBIM() {
@@ -1258,13 +1258,13 @@ public final class ExamInfo extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017_ExamInfo.proto\032\021FGJFGPAPOHE.proto\"\304\001\n" +
+      "\n\017_ExamInfo.proto\032\021FGJFGPAPOHE.proto\"\276\001\n" +
       "\t_ExamInfo\022\025\n\013CKBLJCHDKPO\030\240\234\001 \003(\r\022\023\n\013npc" +
-      "_id_list\030\t \003(\r\022\025\n\013FCOJGHNMIKK\030\241\234\001 \001(\r\022#\n" +
-      "\013BHHGGMIGHHL\030\242\234\001 \001(\0162\014.FGJFGPAPOHE\022\n\n\002id" +
-      "\030\010 \001(\r\022\025\n\013GCKDBLEMLNM\030\243\234\001 \001(\r\022\025\n\013LKIIDNB" +
-      "EBIM\030\244\234\001 \001(\010\022\025\n\013LBIEHJGLEFK\030\245\234\001 \001(\010B\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "_id_list\030\t \003(\r\022\025\n\013FCOJGHNMIKK\030\241\234\001 \001(\r\022!\n" +
+      "\013BHHGGMIGHHL\030\r \001(\0162\014.FGJFGPAPOHE\022\n\n\002id\030\010" +
+      " \001(\r\022\023\n\013GCKDBLEMLNM\030\003 \001(\r\022\023\n\013LKIIDNBEBIM" +
+      "\030\016 \001(\010\022\025\n\013LBIEHJGLEFK\030\245\234\001 \001(\010B\033\n\031emu.gra" +
+      "sscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

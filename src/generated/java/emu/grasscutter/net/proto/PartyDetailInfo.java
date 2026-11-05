@@ -37,7 +37,7 @@ public final class PartyDetailInfo extends com.google.protobuf.GeneratedFile {
     boolean getGEHDFDEEKEL();
 
     /**
-     * <code>bool DHONHHFBAKP = 20001;</code>
+     * <code>bool DHONHHFBAKP = 9;</code>
      * @return The dHONHHFBAKP.
      */
     boolean getDHONHHFBAKP();
@@ -95,10 +95,10 @@ public final class PartyDetailInfo extends com.google.protobuf.GeneratedFile {
       return gEHDFDEEKEL_;
     }
 
-    public static final int DHONHHFBAKP_FIELD_NUMBER = 20001;
+    public static final int DHONHHFBAKP_FIELD_NUMBER = 9;
     private boolean dHONHHFBAKP_ = false;
     /**
-     * <code>bool DHONHHFBAKP = 20001;</code>
+     * <code>bool DHONHHFBAKP = 9;</code>
      * @return The dHONHHFBAKP.
      */
     @java.lang.Override
@@ -120,23 +120,23 @@ public final class PartyDetailInfo extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (dHONHHFBAKP_ != false) {
+        output.writeBool(9, dHONHHFBAKP_);
+      }
       if (gEHDFDEEKEL_ != false) {
         output.writeBool(20000, gEHDFDEEKEL_);
-      }
-      if (dHONHHFBAKP_ != false) {
-        output.writeBool(20001, dHONHHFBAKP_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (dHONHHFBAKP_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, dHONHHFBAKP_);
+      }
       if (gEHDFDEEKEL_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20000, gEHDFDEEKEL_);
-      }
-      if (dHONHHFBAKP_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20001, dHONHHFBAKP_);
       }
       return size;
     }
@@ -399,16 +399,16 @@ public final class PartyDetailInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
+              case 72: {
+                dHONHHFBAKP_ = input.readBool();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 72
               case 160000: {
                 gEHDFDEEKEL_ = input.readBool();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 160000
-              case 160008: {
-                dHONHHFBAKP_ = input.readBool();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160008
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -460,7 +460,7 @@ public final class PartyDetailInfo extends com.google.protobuf.GeneratedFile {
 
       private boolean dHONHHFBAKP_ ;
       /**
-       * <code>bool DHONHHFBAKP = 20001;</code>
+       * <code>bool DHONHHFBAKP = 9;</code>
        * @return The dHONHHFBAKP.
        */
       @java.lang.Override
@@ -468,7 +468,7 @@ public final class PartyDetailInfo extends com.google.protobuf.GeneratedFile {
         return dHONHHFBAKP_;
       }
       /**
-       * <code>bool DHONHHFBAKP = 20001;</code>
+       * <code>bool DHONHHFBAKP = 9;</code>
        * @param value The dHONHHFBAKP to set.
        * @return This builder for chaining.
        */
@@ -480,7 +480,7 @@ public final class PartyDetailInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>bool DHONHHFBAKP = 20001;</code>
+       * <code>bool DHONHHFBAKP = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearDHONHHFBAKP() {
@@ -555,10 +555,10 @@ public final class PartyDetailInfo extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026_PartyDetailInfo.proto\"@\n\020_PartyDetail" +
-      "Info\022\025\n\013GEHDFDEEKEL\030\240\234\001 \001(\010\022\025\n\013DHONHHFBA" +
-      "KP\030\241\234\001 \001(\010B\033\n\031emu.grasscutter.net.protob" +
-      "\006proto3"
+      "\n\026_PartyDetailInfo.proto\">\n\020_PartyDetail" +
+      "Info\022\025\n\013GEHDFDEEKEL\030\240\234\001 \001(\010\022\023\n\013DHONHHFBA" +
+      "KP\030\t \001(\010B\033\n\031emu.grasscutter.net.protob\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

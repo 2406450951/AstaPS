@@ -60,7 +60,7 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
     int getActionListValue(int index);
 
     /**
-     * <code>bool NHLOILJDDIP = 20000;</code>
+     * <code>bool NHLOILJDDIP = 15;</code>
      * @return The nHLOILJDDIP.
      */
     boolean getNHLOILJDDIP();
@@ -167,10 +167,10 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
     }
     private int actionListMemoizedSerializedSize;
 
-    public static final int NHLOILJDDIP_FIELD_NUMBER = 20000;
+    public static final int NHLOILJDDIP_FIELD_NUMBER = 15;
     private boolean nHLOILJDDIP_ = false;
     /**
-     * <code>bool NHLOILJDDIP = 20000;</code>
+     * <code>bool NHLOILJDDIP = 15;</code>
      * @return The nHLOILJDDIP.
      */
     @java.lang.Override
@@ -201,7 +201,7 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
         output.writeEnumNoTag(actionList_.getInt(i));
       }
       if (nHLOILJDDIP_ != false) {
-        output.writeBool(20000, nHLOILJDDIP_);
+        output.writeBool(15, nHLOILJDDIP_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -221,7 +221,7 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
       }
       if (nHLOILJDDIP_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, nHLOILJDDIP_);
+          .computeBoolSize(15, nHLOILJDDIP_);
       }
       return size;
     }
@@ -509,11 +509,11 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
                 input.popLimit(limit);
                 break;
               } // case 58
-              case 160000: {
+              case 120: {
                 nHLOILJDDIP_ = input.readBool();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160000
+              } // case 120
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -671,7 +671,7 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
 
       private boolean nHLOILJDDIP_ ;
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 15;</code>
        * @return The nHLOILJDDIP.
        */
       @java.lang.Override
@@ -679,7 +679,7 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
         return nHLOILJDDIP_;
       }
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 15;</code>
        * @param value The nHLOILJDDIP to set.
        * @return This builder for chaining.
        */
@@ -691,7 +691,7 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
         return this;
       }
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearNHLOILJDDIP() {
@@ -767,11 +767,11 @@ public final class AddTotalRevenueAfterActionsExecBuffInfo extends com.google.pr
   static {
     java.lang.String[] descriptorData = {
       "\n._AddTotalRevenueAfterActionsExecBuffIn" +
-      "fo.proto\032\021NGGGDAFGJDL.proto\"d\n(_AddTotal" +
+      "fo.proto\032\021NGGGDAFGJDL.proto\"b\n(_AddTotal" +
       "RevenueAfterActionsExecBuffInfo\022!\n\013actio" +
-      "n_list\030\007 \003(\0162\014.NGGGDAFGJDL\022\025\n\013NHLOILJDDI" +
-      "P\030\240\234\001 \001(\010B\033\n\031emu.grasscutter.net.protob\006" +
-      "proto3"
+      "n_list\030\007 \003(\0162\014.NGGGDAFGJDL\022\023\n\013NHLOILJDDI" +
+      "P\030\017 \001(\010B\033\n\031emu.grasscutter.net.protob\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

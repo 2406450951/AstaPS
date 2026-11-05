@@ -31,17 +31,17 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 2;</code>
      * @return Whether the iMFDIHLBFEN field is set.
      */
     boolean hasIMFDIHLBFEN();
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 2;</code>
      * @return The iMFDIHLBFEN.
      */
     emu.grasscutter.net.proto.VectorOuterClass.Vector getIMFDIHLBFEN();
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 2;</code>
      */
     emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getIMFDIHLBFENOrBuilder();
 
@@ -61,22 +61,22 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
     emu.grasscutter.net.proto.MathQuaternionOuterClass.MathQuaternionOrBuilder getMGIHDBMCCPKOrBuilder();
 
     /**
-     * <code>.Vector OHMBANGLFIJ = 20002;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      * @return Whether the oHMBANGLFIJ field is set.
      */
     boolean hasOHMBANGLFIJ();
     /**
-     * <code>.Vector OHMBANGLFIJ = 20002;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      * @return The oHMBANGLFIJ.
      */
     emu.grasscutter.net.proto.VectorOuterClass.Vector getOHMBANGLFIJ();
     /**
-     * <code>.Vector OHMBANGLFIJ = 20002;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      */
     emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOHMBANGLFIJOrBuilder();
 
     /**
-     * <code>float LAIKIBMMJKD = 20003;</code>
+     * <code>float LAIKIBMMJKD = 3;</code>
      * @return The lAIKIBMMJKD.
      */
     float getLAIKIBMMJKD();
@@ -124,10 +124,10 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
     }
 
     private int bitField0_;
-    public static final int IMFDIHLBFEN_FIELD_NUMBER = 20000;
+    public static final int IMFDIHLBFEN_FIELD_NUMBER = 2;
     private emu.grasscutter.net.proto.VectorOuterClass.Vector iMFDIHLBFEN_;
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 2;</code>
      * @return Whether the iMFDIHLBFEN field is set.
      */
     @java.lang.Override
@@ -135,7 +135,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 2;</code>
      * @return The iMFDIHLBFEN.
      */
     @java.lang.Override
@@ -143,7 +143,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
       return iMFDIHLBFEN_ == null ? emu.grasscutter.net.proto.VectorOuterClass.Vector.getDefaultInstance() : iMFDIHLBFEN_;
     }
     /**
-     * <code>.Vector IMFDIHLBFEN = 20000;</code>
+     * <code>.Vector IMFDIHLBFEN = 2;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getIMFDIHLBFENOrBuilder() {
@@ -176,10 +176,10 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
       return mGIHDBMCCPK_ == null ? emu.grasscutter.net.proto.MathQuaternionOuterClass.MathQuaternion.getDefaultInstance() : mGIHDBMCCPK_;
     }
 
-    public static final int OHMBANGLFIJ_FIELD_NUMBER = 20002;
+    public static final int OHMBANGLFIJ_FIELD_NUMBER = 1;
     private emu.grasscutter.net.proto.VectorOuterClass.Vector oHMBANGLFIJ_;
     /**
-     * <code>.Vector OHMBANGLFIJ = 20002;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      * @return Whether the oHMBANGLFIJ field is set.
      */
     @java.lang.Override
@@ -187,7 +187,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
-     * <code>.Vector OHMBANGLFIJ = 20002;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      * @return The oHMBANGLFIJ.
      */
     @java.lang.Override
@@ -195,17 +195,17 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
       return oHMBANGLFIJ_ == null ? emu.grasscutter.net.proto.VectorOuterClass.Vector.getDefaultInstance() : oHMBANGLFIJ_;
     }
     /**
-     * <code>.Vector OHMBANGLFIJ = 20002;</code>
+     * <code>.Vector OHMBANGLFIJ = 1;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOHMBANGLFIJOrBuilder() {
       return oHMBANGLFIJ_ == null ? emu.grasscutter.net.proto.VectorOuterClass.Vector.getDefaultInstance() : oHMBANGLFIJ_;
     }
 
-    public static final int LAIKIBMMJKD_FIELD_NUMBER = 20003;
+    public static final int LAIKIBMMJKD_FIELD_NUMBER = 3;
     private float lAIKIBMMJKD_ = 0F;
     /**
-     * <code>float LAIKIBMMJKD = 20003;</code>
+     * <code>float LAIKIBMMJKD = 3;</code>
      * @return The lAIKIBMMJKD.
      */
     @java.lang.Override
@@ -227,37 +227,37 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (((bitField0_ & 0x00000004) != 0)) {
+        output.writeMessage(1, getOHMBANGLFIJ());
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getIMFDIHLBFEN());
+        output.writeMessage(2, getIMFDIHLBFEN());
+      }
+      if (java.lang.Float.floatToRawIntBits(lAIKIBMMJKD_) != 0) {
+        output.writeFloat(3, lAIKIBMMJKD_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(20001, getMGIHDBMCCPK());
-      }
-      if (((bitField0_ & 0x00000004) != 0)) {
-        output.writeMessage(20002, getOHMBANGLFIJ());
-      }
-      if (java.lang.Float.floatToRawIntBits(lAIKIBMMJKD_) != 0) {
-        output.writeFloat(20003, lAIKIBMMJKD_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (((bitField0_ & 0x00000004) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getOHMBANGLFIJ());
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getIMFDIHLBFEN());
+          .computeMessageSize(2, getIMFDIHLBFEN());
+      }
+      if (java.lang.Float.floatToRawIntBits(lAIKIBMMJKD_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(3, lAIKIBMMJKD_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20001, getMGIHDBMCCPK());
-      }
-      if (((bitField0_ & 0x00000004) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20002, getOHMBANGLFIJ());
-      }
-      if (java.lang.Float.floatToRawIntBits(lAIKIBMMJKD_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(20003, lAIKIBMMJKD_);
       }
       return size;
     }
@@ -588,13 +588,25 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 10: {
+                input.readMessage(
+                    internalGetOHMBANGLFIJFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 10
+              case 18: {
                 input.readMessage(
                     internalGetIMFDIHLBFENFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 18
+              case 29: {
+                lAIKIBMMJKD_ = input.readFloat();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 29
               case 160010: {
                 input.readMessage(
                     internalGetMGIHDBMCCPKFieldBuilder().getBuilder(),
@@ -602,18 +614,6 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 160010
-              case 160018: {
-                input.readMessage(
-                    internalGetOHMBANGLFIJFieldBuilder().getBuilder(),
-                    extensionRegistry);
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160018
-              case 160029: {
-                lAIKIBMMJKD_ = input.readFloat();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160029
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -635,14 +635,14 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> iMFDIHLBFENBuilder_;
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        * @return Whether the iMFDIHLBFEN field is set.
        */
       public boolean hasIMFDIHLBFEN() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        * @return The iMFDIHLBFEN.
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector getIMFDIHLBFEN() {
@@ -653,7 +653,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        */
       public Builder setIMFDIHLBFEN(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (iMFDIHLBFENBuilder_ == null) {
@@ -667,7 +667,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        */
       public Builder setIMFDIHLBFEN(
           emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder builderForValue) {
@@ -681,7 +681,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        */
       public Builder mergeIMFDIHLBFEN(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (iMFDIHLBFENBuilder_ == null) {
@@ -702,7 +702,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        */
       public Builder clearIMFDIHLBFEN() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -715,7 +715,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder getIMFDIHLBFENBuilder() {
         bitField0_ |= 0x00000001;
@@ -723,7 +723,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return internalGetIMFDIHLBFENFieldBuilder().getBuilder();
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getIMFDIHLBFENOrBuilder() {
         if (iMFDIHLBFENBuilder_ != null) {
@@ -734,7 +734,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector IMFDIHLBFEN = 20000;</code>
+       * <code>.Vector IMFDIHLBFEN = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> 
@@ -873,14 +873,14 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> oHMBANGLFIJBuilder_;
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        * @return Whether the oHMBANGLFIJ field is set.
        */
       public boolean hasOHMBANGLFIJ() {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        * @return The oHMBANGLFIJ.
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector getOHMBANGLFIJ() {
@@ -891,7 +891,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public Builder setOHMBANGLFIJ(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (oHMBANGLFIJBuilder_ == null) {
@@ -905,7 +905,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public Builder setOHMBANGLFIJ(
           emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder builderForValue) {
@@ -919,7 +919,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public Builder mergeOHMBANGLFIJ(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (oHMBANGLFIJBuilder_ == null) {
@@ -940,7 +940,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public Builder clearOHMBANGLFIJ() {
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -953,7 +953,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder getOHMBANGLFIJBuilder() {
         bitField0_ |= 0x00000004;
@@ -961,7 +961,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return internalGetOHMBANGLFIJFieldBuilder().getBuilder();
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOHMBANGLFIJOrBuilder() {
         if (oHMBANGLFIJBuilder_ != null) {
@@ -972,7 +972,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector OHMBANGLFIJ = 20002;</code>
+       * <code>.Vector OHMBANGLFIJ = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> 
@@ -990,7 +990,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
 
       private float lAIKIBMMJKD_ ;
       /**
-       * <code>float LAIKIBMMJKD = 20003;</code>
+       * <code>float LAIKIBMMJKD = 3;</code>
        * @return The lAIKIBMMJKD.
        */
       @java.lang.Override
@@ -998,7 +998,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return lAIKIBMMJKD_;
       }
       /**
-       * <code>float LAIKIBMMJKD = 20003;</code>
+       * <code>float LAIKIBMMJKD = 3;</code>
        * @param value The lAIKIBMMJKD to set.
        * @return This builder for chaining.
        */
@@ -1010,7 +1010,7 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>float LAIKIBMMJKD = 20003;</code>
+       * <code>float LAIKIBMMJKD = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearLAIKIBMMJKD() {
@@ -1086,12 +1086,11 @@ public final class FixedMoverInfo extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\025_FixedMoverInfo.proto\032\024MathQuaternion." +
-      "proto\032\014Vector.proto\"\220\001\n\017_FixedMoverInfo\022" +
-      "\036\n\013IMFDIHLBFEN\030\240\234\001 \001(\0132\007.Vector\022&\n\013MGIHD" +
-      "BMCCPK\030\241\234\001 \001(\0132\017.MathQuaternion\022\036\n\013OHMBA" +
-      "NGLFIJ\030\242\234\001 \001(\0132\007.Vector\022\025\n\013LAIKIBMMJKD\030\243" +
-      "\234\001 \001(\002B\033\n\031emu.grasscutter.net.protob\006pro" +
-      "to3"
+      "proto\032\014Vector.proto\"\212\001\n\017_FixedMoverInfo\022" +
+      "\034\n\013IMFDIHLBFEN\030\002 \001(\0132\007.Vector\022&\n\013MGIHDBM" +
+      "CCPK\030\241\234\001 \001(\0132\017.MathQuaternion\022\034\n\013OHMBANG" +
+      "LFIJ\030\001 \001(\0132\007.Vector\022\023\n\013LAIKIBMMJKD\030\003 \001(\002" +
+      "B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

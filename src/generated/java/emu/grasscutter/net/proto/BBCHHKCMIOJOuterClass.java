@@ -71,7 +71,7 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
     emu.grasscutter.net.proto.IKMNGJDGMEJOuterClass.IKMNGJDGMEJ getPLNEHJMGOGH();
 
     /**
-     * <code>uint32 IOBMOJHECOE = 20004;</code>
+     * <code>uint32 IOBMOJHECOE = 14;</code>
      * @return The iOBMOJHECOE.
      */
     int getIOBMOJHECOE();
@@ -208,10 +208,10 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
       return result == null ? emu.grasscutter.net.proto.IKMNGJDGMEJOuterClass.IKMNGJDGMEJ.UNRECOGNIZED : result;
     }
 
-    public static final int IOBMOJHECOE_FIELD_NUMBER = 20004;
+    public static final int IOBMOJHECOE_FIELD_NUMBER = 14;
     private int iOBMOJHECOE_ = 0;
     /**
-     * <code>uint32 IOBMOJHECOE = 20004;</code>
+     * <code>uint32 IOBMOJHECOE = 14;</code>
      * @return The iOBMOJHECOE.
      */
     @java.lang.Override
@@ -267,6 +267,9 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (iOBMOJHECOE_ != 0) {
+        output.writeUInt32(14, iOBMOJHECOE_);
+      }
       if (getODNNOLLINHBList().size() > 0) {
         output.writeUInt32NoTag(160002);
         output.writeUInt32NoTag(oDNNOLLINHBMemoizedSerializedSize);
@@ -283,9 +286,6 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
       if (pLNEHJMGOGH_ != emu.grasscutter.net.proto.IKMNGJDGMEJOuterClass.IKMNGJDGMEJ.IKMNGJDGMEJ_NONE.getNumber()) {
         output.writeEnum(20003, pLNEHJMGOGH_);
       }
-      if (iOBMOJHECOE_ != 0) {
-        output.writeUInt32(20004, iOBMOJHECOE_);
-      }
       if (oKLJCACJAPL_ != 0) {
         output.writeUInt32(20005, oKLJCACJAPL_);
       }
@@ -299,6 +299,10 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (iOBMOJHECOE_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(14, iOBMOJHECOE_);
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < oDNNOLLINHB_.size(); i++) {
@@ -324,10 +328,6 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
       if (pLNEHJMGOGH_ != emu.grasscutter.net.proto.IKMNGJDGMEJOuterClass.IKMNGJDGMEJ.IKMNGJDGMEJ_NONE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(20003, pLNEHJMGOGH_);
-      }
-      if (iOBMOJHECOE_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20004, iOBMOJHECOE_);
       }
       if (oKLJCACJAPL_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -677,6 +677,11 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
               case 0:
                 done = true;
                 break;
+              case 112: {
+                iOBMOJHECOE_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 112
               case 160000: {
                 int v = input.readUInt32();
                 ensureODNNOLLINHBIsMutable();
@@ -708,11 +713,6 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000008;
                 break;
               } // case 160024
-              case 160032: {
-                iOBMOJHECOE_ = input.readUInt32();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160032
               case 160040: {
                 oKLJCACJAPL_ = input.readUInt32();
                 bitField0_ |= 0x00000020;
@@ -947,7 +947,7 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
 
       private int iOBMOJHECOE_ ;
       /**
-       * <code>uint32 IOBMOJHECOE = 20004;</code>
+       * <code>uint32 IOBMOJHECOE = 14;</code>
        * @return The iOBMOJHECOE.
        */
       @java.lang.Override
@@ -955,7 +955,7 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
         return iOBMOJHECOE_;
       }
       /**
-       * <code>uint32 IOBMOJHECOE = 20004;</code>
+       * <code>uint32 IOBMOJHECOE = 14;</code>
        * @param value The iOBMOJHECOE to set.
        * @return This builder for chaining.
        */
@@ -967,7 +967,7 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 IOBMOJHECOE = 20004;</code>
+       * <code>uint32 IOBMOJHECOE = 14;</code>
        * @return This builder for chaining.
        */
       public Builder clearIOBMOJHECOE() {
@@ -1138,14 +1138,14 @@ public final class BBCHHKCMIOJOuterClass extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021BBCHHKCMIOJ.proto\032\021IKMNGJDGMEJ.proto\"\323" +
+      "\n\021BBCHHKCMIOJ.proto\032\021IKMNGJDGMEJ.proto\"\321" +
       "\001\n\013BBCHHKCMIOJ\022\025\n\013ODNNOLLINHB\030\240\234\001 \003(\r\022\025\n" +
       "\013INGBIKNBFEH\030\241\234\001 \001(\010\022\025\n\013NIHKLACPEAC\030\242\234\001 " +
       "\001(\r\022#\n\013PLNEHJMGOGH\030\243\234\001 \001(\0162\014.IKMNGJDGMEJ" +
-      "\022\025\n\013IOBMOJHECOE\030\244\234\001 \001(\r\022\025\n\013OKLJCACJAPL\030\245" +
-      "\234\001 \001(\r\022\025\n\013LDIIGMAACGI\030\246\234\001 \001(\r\022\025\n\013GKIFJKO" +
-      "FKMD\030\247\234\001 \001(\rB\033\n\031emu.grasscutter.net.prot" +
-      "ob\006proto3"
+      "\022\023\n\013IOBMOJHECOE\030\016 \001(\r\022\025\n\013OKLJCACJAPL\030\245\234\001" +
+      " \001(\r\022\025\n\013LDIIGMAACGI\030\246\234\001 \001(\r\022\025\n\013GKIFJKOFK" +
+      "MD\030\247\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

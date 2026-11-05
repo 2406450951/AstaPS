@@ -48,12 +48,12 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
     int getNpcIdList(int index);
 
     /**
-     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
      * @return The enum numeric value on the wire for bHHGGMIGHHL.
      */
     int getBHHGGMIGHHLValue();
     /**
-     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
      * @return The bHHGGMIGHHL.
      */
     emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE getBHHGGMIGHHL();
@@ -65,13 +65,13 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
     int getId();
 
     /**
-     * <code>uint32 GCKDBLEMLNM = 20001;</code>
+     * <code>uint32 GCKDBLEMLNM = 6;</code>
      * @return The gCKDBLEMLNM.
      */
     int getGCKDBLEMLNM();
 
     /**
-     * <code>bool LKIIDNBEBIM = 20002;</code>
+     * <code>bool LKIIDNBEBIM = 8;</code>
      * @return The lKIIDNBEBIM.
      */
     boolean getLKIIDNBEBIM();
@@ -150,17 +150,17 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
     }
     private int npcIdListMemoizedSerializedSize = -1;
 
-    public static final int BHHGGMIGHHL_FIELD_NUMBER = 20000;
+    public static final int BHHGGMIGHHL_FIELD_NUMBER = 10;
     private int bHHGGMIGHHL_ = 0;
     /**
-     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
      * @return The enum numeric value on the wire for bHHGGMIGHHL.
      */
     @java.lang.Override public int getBHHGGMIGHHLValue() {
       return bHHGGMIGHHL_;
     }
     /**
-     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+     * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
      * @return The bHHGGMIGHHL.
      */
     @java.lang.Override public emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE getBHHGGMIGHHL() {
@@ -179,10 +179,10 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
       return id_;
     }
 
-    public static final int GCKDBLEMLNM_FIELD_NUMBER = 20001;
+    public static final int GCKDBLEMLNM_FIELD_NUMBER = 6;
     private int gCKDBLEMLNM_ = 0;
     /**
-     * <code>uint32 GCKDBLEMLNM = 20001;</code>
+     * <code>uint32 GCKDBLEMLNM = 6;</code>
      * @return The gCKDBLEMLNM.
      */
     @java.lang.Override
@@ -190,10 +190,10 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
       return gCKDBLEMLNM_;
     }
 
-    public static final int LKIIDNBEBIM_FIELD_NUMBER = 20002;
+    public static final int LKIIDNBEBIM_FIELD_NUMBER = 8;
     private boolean lKIIDNBEBIM_ = false;
     /**
-     * <code>bool LKIIDNBEBIM = 20002;</code>
+     * <code>bool LKIIDNBEBIM = 8;</code>
      * @return The lKIIDNBEBIM.
      */
     @java.lang.Override
@@ -223,17 +223,17 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
       for (int i = 0; i < npcIdList_.size(); i++) {
         output.writeUInt32NoTag(npcIdList_.getInt(i));
       }
-      if (id_ != 0) {
-        output.writeUInt32(15, id_);
-      }
-      if (bHHGGMIGHHL_ != emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.FGJFGPAPOHE_NONE.getNumber()) {
-        output.writeEnum(20000, bHHGGMIGHHL_);
-      }
       if (gCKDBLEMLNM_ != 0) {
-        output.writeUInt32(20001, gCKDBLEMLNM_);
+        output.writeUInt32(6, gCKDBLEMLNM_);
       }
       if (lKIIDNBEBIM_ != false) {
-        output.writeBool(20002, lKIIDNBEBIM_);
+        output.writeBool(8, lKIIDNBEBIM_);
+      }
+      if (bHHGGMIGHHL_ != emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.FGJFGPAPOHE_NONE.getNumber()) {
+        output.writeEnum(10, bHHGGMIGHHL_);
+      }
+      if (id_ != 0) {
+        output.writeUInt32(15, id_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -253,21 +253,21 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
         }
         npcIdListMemoizedSerializedSize = dataSize;
       }
-      if (id_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(15, id_);
-      }
-      if (bHHGGMIGHHL_ != emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.FGJFGPAPOHE_NONE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(20000, bHHGGMIGHHL_);
-      }
       if (gCKDBLEMLNM_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, gCKDBLEMLNM_);
+          .computeUInt32Size(6, gCKDBLEMLNM_);
       }
       if (lKIIDNBEBIM_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20002, lKIIDNBEBIM_);
+          .computeBoolSize(8, lKIIDNBEBIM_);
+      }
+      if (bHHGGMIGHHL_ != emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.FGJFGPAPOHE_NONE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(10, bHHGGMIGHHL_);
+      }
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(15, id_);
       }
       return size;
     }
@@ -588,26 +588,26 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
                 input.popLimit(limit);
                 break;
               } // case 26
+              case 48: {
+                gCKDBLEMLNM_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 48
+              case 64: {
+                lKIIDNBEBIM_ = input.readBool();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 64
+              case 80: {
+                bHHGGMIGHHL_ = input.readEnum();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 80
               case 120: {
                 id_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 120
-              case 160000: {
-                bHHGGMIGHHL_ = input.readEnum();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160000
-              case 160008: {
-                gCKDBLEMLNM_ = input.readUInt32();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160008
-              case 160016: {
-                lKIIDNBEBIM_ = input.readBool();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160016
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -711,14 +711,14 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
 
       private int bHHGGMIGHHL_ = 0;
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
        * @return The enum numeric value on the wire for bHHGGMIGHHL.
        */
       @java.lang.Override public int getBHHGGMIGHHLValue() {
         return bHHGGMIGHHL_;
       }
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
        * @param value The enum numeric value on the wire for bHHGGMIGHHL to set.
        * @return This builder for chaining.
        */
@@ -729,7 +729,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
        * @return The bHHGGMIGHHL.
        */
       @java.lang.Override
@@ -738,7 +738,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
         return result == null ? emu.grasscutter.net.proto.FGJFGPAPOHEOuterClass.FGJFGPAPOHE.UNRECOGNIZED : result;
       }
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
        * @param value The bHHGGMIGHHL to set.
        * @throws IllegalArgumentException if UNRECOGNIZED is provided.
        * @return This builder for chaining.
@@ -751,7 +751,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 20000;</code>
+       * <code>.FGJFGPAPOHE BHHGGMIGHHL = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearBHHGGMIGHHL() {
@@ -795,7 +795,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
 
       private int gCKDBLEMLNM_ ;
       /**
-       * <code>uint32 GCKDBLEMLNM = 20001;</code>
+       * <code>uint32 GCKDBLEMLNM = 6;</code>
        * @return The gCKDBLEMLNM.
        */
       @java.lang.Override
@@ -803,7 +803,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
         return gCKDBLEMLNM_;
       }
       /**
-       * <code>uint32 GCKDBLEMLNM = 20001;</code>
+       * <code>uint32 GCKDBLEMLNM = 6;</code>
        * @param value The gCKDBLEMLNM to set.
        * @return This builder for chaining.
        */
@@ -815,7 +815,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 GCKDBLEMLNM = 20001;</code>
+       * <code>uint32 GCKDBLEMLNM = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearGCKDBLEMLNM() {
@@ -827,7 +827,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
 
       private boolean lKIIDNBEBIM_ ;
       /**
-       * <code>bool LKIIDNBEBIM = 20002;</code>
+       * <code>bool LKIIDNBEBIM = 8;</code>
        * @return The lKIIDNBEBIM.
        */
       @java.lang.Override
@@ -835,7 +835,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
         return lKIIDNBEBIM_;
       }
       /**
-       * <code>bool LKIIDNBEBIM = 20002;</code>
+       * <code>bool LKIIDNBEBIM = 8;</code>
        * @param value The lKIIDNBEBIM to set.
        * @return This builder for chaining.
        */
@@ -847,7 +847,7 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>bool LKIIDNBEBIM = 20002;</code>
+       * <code>bool LKIIDNBEBIM = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearLKIIDNBEBIM() {
@@ -922,12 +922,11 @@ public final class OrderInfo extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020_OrderInfo.proto\032\021FGJFGPAPOHE.proto\"\200\001" +
-      "\n\n_OrderInfo\022\023\n\013npc_id_list\030\003 \003(\r\022#\n\013BHH" +
-      "GGMIGHHL\030\240\234\001 \001(\0162\014.FGJFGPAPOHE\022\n\n\002id\030\017 \001" +
-      "(\r\022\025\n\013GCKDBLEMLNM\030\241\234\001 \001(\r\022\025\n\013LKIIDNBEBIM" +
-      "\030\242\234\001 \001(\010B\033\n\031emu.grasscutter.net.protob\006p" +
-      "roto3"
+      "\n\020_OrderInfo.proto\032\021FGJFGPAPOHE.proto\"z\n" +
+      "\n_OrderInfo\022\023\n\013npc_id_list\030\003 \003(\r\022!\n\013BHHG" +
+      "GMIGHHL\030\n \001(\0162\014.FGJFGPAPOHE\022\n\n\002id\030\017 \001(\r\022" +
+      "\023\n\013GCKDBLEMLNM\030\006 \001(\r\022\023\n\013LKIIDNBEBIM\030\010 \001(" +
+      "\010B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

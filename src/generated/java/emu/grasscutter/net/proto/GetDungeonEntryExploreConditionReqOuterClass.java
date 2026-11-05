@@ -31,7 +31,7 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 dungeon_entry_scene_point_id = 20000;</code>
+     * <code>uint32 dungeon_entry_scene_point_id = 5;</code>
      * @return The dungeonEntryScenePointId.
      */
     int getDungeonEntryScenePointId();
@@ -90,10 +90,10 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
               emu.grasscutter.net.proto.GetDungeonEntryExploreConditionReqOuterClass.GetDungeonEntryExploreConditionReq.class, emu.grasscutter.net.proto.GetDungeonEntryExploreConditionReqOuterClass.GetDungeonEntryExploreConditionReq.Builder.class);
     }
 
-    public static final int DUNGEON_ENTRY_SCENE_POINT_ID_FIELD_NUMBER = 20000;
+    public static final int DUNGEON_ENTRY_SCENE_POINT_ID_FIELD_NUMBER = 5;
     private int dungeonEntryScenePointId_ = 0;
     /**
-     * <code>uint32 dungeon_entry_scene_point_id = 20000;</code>
+     * <code>uint32 dungeon_entry_scene_point_id = 5;</code>
      * @return The dungeonEntryScenePointId.
      */
     @java.lang.Override
@@ -144,7 +144,7 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
         output.writeUInt32(4, dungeonEntryConfigId_);
       }
       if (dungeonEntryScenePointId_ != 0) {
-        output.writeUInt32(20000, dungeonEntryScenePointId_);
+        output.writeUInt32(5, dungeonEntryScenePointId_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -160,7 +160,7 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
       }
       if (dungeonEntryScenePointId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, dungeonEntryScenePointId_);
+          .computeUInt32Size(5, dungeonEntryScenePointId_);
       }
       return size;
     }
@@ -442,11 +442,11 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
                 bitField0_ |= 0x00000004;
                 break;
               } // case 32
-              case 160000: {
+              case 40: {
                 dungeonEntryScenePointId_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 40
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -466,7 +466,7 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
 
       private int dungeonEntryScenePointId_ ;
       /**
-       * <code>uint32 dungeon_entry_scene_point_id = 20000;</code>
+       * <code>uint32 dungeon_entry_scene_point_id = 5;</code>
        * @return The dungeonEntryScenePointId.
        */
       @java.lang.Override
@@ -474,7 +474,7 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
         return dungeonEntryScenePointId_;
       }
       /**
-       * <code>uint32 dungeon_entry_scene_point_id = 20000;</code>
+       * <code>uint32 dungeon_entry_scene_point_id = 5;</code>
        * @param value The dungeonEntryScenePointId to set.
        * @return This builder for chaining.
        */
@@ -486,7 +486,7 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
         return this;
       }
       /**
-       * <code>uint32 dungeon_entry_scene_point_id = 20000;</code>
+       * <code>uint32 dungeon_entry_scene_point_id = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearDungeonEntryScenePointId() {
@@ -626,11 +626,11 @@ public final class GetDungeonEntryExploreConditionReqOuterClass extends com.goog
   static {
     java.lang.String[] descriptorData = {
       "\n(GetDungeonEntryExploreConditionReq.pro" +
-      "to\"\177\n\"GetDungeonEntryExploreConditionReq" +
-      "\022&\n\034dungeon_entry_scene_point_id\030\240\234\001 \001(\r" +
-      "\022\020\n\010scene_id\030\001 \001(\r\022\037\n\027dungeon_entry_conf" +
-      "ig_id\030\004 \001(\rB\033\n\031emu.grasscutter.net.proto" +
-      "b\006proto3"
+      "to\"}\n\"GetDungeonEntryExploreConditionReq" +
+      "\022$\n\034dungeon_entry_scene_point_id\030\005 \001(\r\022\020" +
+      "\n\010scene_id\030\001 \001(\r\022\037\n\027dungeon_entry_config" +
+      "_id\030\004 \001(\rB\033\n\031emu.grasscutter.net.protob\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

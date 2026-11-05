@@ -31,17 +31,17 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.Vector OLIPGCONBJC = 20000;</code>
+     * <code>.Vector OLIPGCONBJC = 3;</code>
      * @return Whether the oLIPGCONBJC field is set.
      */
     boolean hasOLIPGCONBJC();
     /**
-     * <code>.Vector OLIPGCONBJC = 20000;</code>
+     * <code>.Vector OLIPGCONBJC = 3;</code>
      * @return The oLIPGCONBJC.
      */
     emu.grasscutter.net.proto.VectorOuterClass.Vector getOLIPGCONBJC();
     /**
-     * <code>.Vector OLIPGCONBJC = 20000;</code>
+     * <code>.Vector OLIPGCONBJC = 3;</code>
      */
     emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOLIPGCONBJCOrBuilder();
 
@@ -134,10 +134,10 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
     }
 
     private int bitField0_;
-    public static final int OLIPGCONBJC_FIELD_NUMBER = 20000;
+    public static final int OLIPGCONBJC_FIELD_NUMBER = 3;
     private emu.grasscutter.net.proto.VectorOuterClass.Vector oLIPGCONBJC_;
     /**
-     * <code>.Vector OLIPGCONBJC = 20000;</code>
+     * <code>.Vector OLIPGCONBJC = 3;</code>
      * @return Whether the oLIPGCONBJC field is set.
      */
     @java.lang.Override
@@ -145,7 +145,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.Vector OLIPGCONBJC = 20000;</code>
+     * <code>.Vector OLIPGCONBJC = 3;</code>
      * @return The oLIPGCONBJC.
      */
     @java.lang.Override
@@ -153,7 +153,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
       return oLIPGCONBJC_ == null ? emu.grasscutter.net.proto.VectorOuterClass.Vector.getDefaultInstance() : oLIPGCONBJC_;
     }
     /**
-     * <code>.Vector OLIPGCONBJC = 20000;</code>
+     * <code>.Vector OLIPGCONBJC = 3;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOLIPGCONBJCOrBuilder() {
@@ -253,7 +253,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getOLIPGCONBJC());
+        output.writeMessage(3, getOLIPGCONBJC());
       }
       for (int i = 0; i < fAHAJIEGCEP_.size(); i++) {
         output.writeMessage(20001, fAHAJIEGCEP_.get(i));
@@ -270,7 +270,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
       int size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getOLIPGCONBJC());
+          .computeMessageSize(3, getOLIPGCONBJC());
       }
 
           {
@@ -645,13 +645,13 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 26: {
                 input.readMessage(
                     internalGetOLIPGCONBJCFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 26
               case 160010: {
                 emu.grasscutter.net.proto.JGFGJGJGLPDOuterClass.JGFGJGJGLPD m =
                     input.readMessage(
@@ -698,14 +698,14 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> oLIPGCONBJCBuilder_;
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        * @return Whether the oLIPGCONBJC field is set.
        */
       public boolean hasOLIPGCONBJC() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        * @return The oLIPGCONBJC.
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector getOLIPGCONBJC() {
@@ -716,7 +716,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        */
       public Builder setOLIPGCONBJC(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (oLIPGCONBJCBuilder_ == null) {
@@ -730,7 +730,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        */
       public Builder setOLIPGCONBJC(
           emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder builderForValue) {
@@ -744,7 +744,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        */
       public Builder mergeOLIPGCONBJC(emu.grasscutter.net.proto.VectorOuterClass.Vector value) {
         if (oLIPGCONBJCBuilder_ == null) {
@@ -765,7 +765,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        */
       public Builder clearOLIPGCONBJC() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -778,7 +778,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder getOLIPGCONBJCBuilder() {
         bitField0_ |= 0x00000001;
@@ -786,7 +786,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
         return internalGetOLIPGCONBJCFieldBuilder().getBuilder();
       }
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        */
       public emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder getOLIPGCONBJCOrBuilder() {
         if (oLIPGCONBJCBuilder_ != null) {
@@ -797,7 +797,7 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>.Vector OLIPGCONBJC = 20000;</code>
+       * <code>.Vector OLIPGCONBJC = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.VectorOuterClass.Vector, emu.grasscutter.net.proto.VectorOuterClass.Vector.Builder, emu.grasscutter.net.proto.VectorOuterClass.VectorOrBuilder> 
@@ -1264,12 +1264,12 @@ public final class GadgetBase extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\021_GadgetBase.proto\032\021JGFGJGJGLPD.proto\032\021" +
-      "MDGFOMDDDEF.proto\032\014Vector.proto\"\216\001\n\013_Gad" +
-      "getBase\022\036\n\013OLIPGCONBJC\030\240\234\001 \001(\0132\007.Vector\022" +
-      "#\n\013FAHAJIEGCEP\030\241\234\001 \003(\0132\014.JGFGJGJGLPD\022#\n\013" +
-      "JPIGMAONIDJ\030\242\234\001 \001(\0132\014.MDGFOMDDDEF\022\025\n\013GAC" +
-      "KKCOFACA\030\243\234\001 \001(\rB\033\n\031emu.grasscutter.net." +
-      "protob\006proto3"
+      "MDGFOMDDDEF.proto\032\014Vector.proto\"\214\001\n\013_Gad" +
+      "getBase\022\034\n\013OLIPGCONBJC\030\003 \001(\0132\007.Vector\022#\n" +
+      "\013FAHAJIEGCEP\030\241\234\001 \003(\0132\014.JGFGJGJGLPD\022#\n\013JP" +
+      "IGMAONIDJ\030\242\234\001 \001(\0132\014.MDGFOMDDDEF\022\025\n\013GACKK" +
+      "COFACA\030\243\234\001 \001(\rB\033\n\031emu.grasscutter.net.pr" +
+      "otob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

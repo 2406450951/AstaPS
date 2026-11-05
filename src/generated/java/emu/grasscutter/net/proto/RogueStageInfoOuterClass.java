@@ -76,7 +76,7 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
     boolean getDHLBAPDOFMF();
 
     /**
-     * <code>bool KAJLCAPNCFA = 20001;</code>
+     * <code>bool KAJLCAPNCFA = 5;</code>
      * @return The kAJLCAPNCFA.
      */
     boolean getKAJLCAPNCFA();
@@ -269,10 +269,10 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
       return dHLBAPDOFMF_;
     }
 
-    public static final int KAJLCAPNCFA_FIELD_NUMBER = 20001;
+    public static final int KAJLCAPNCFA_FIELD_NUMBER = 5;
     private boolean kAJLCAPNCFA_ = false;
     /**
-     * <code>bool KAJLCAPNCFA = 20001;</code>
+     * <code>bool KAJLCAPNCFA = 5;</code>
      * @return The kAJLCAPNCFA.
      */
     @java.lang.Override
@@ -421,6 +421,9 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
       if (isOpen_ != false) {
         output.writeBool(2, isOpen_);
       }
+      if (kAJLCAPNCFA_ != false) {
+        output.writeBool(5, kAJLCAPNCFA_);
+      }
       if (isPassed_ != false) {
         output.writeBool(6, isPassed_);
       }
@@ -438,9 +441,6 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
       }
       if (dHLBAPDOFMF_ != false) {
         output.writeBool(20000, dHLBAPDOFMF_);
-      }
-      if (kAJLCAPNCFA_ != false) {
-        output.writeBool(20001, kAJLCAPNCFA_);
       }
       if (kKJFEBAPLHL_ != 0) {
         output.writeUInt32(20002, kKJFEBAPLHL_);
@@ -472,6 +472,10 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(2, isOpen_);
       }
+      if (kAJLCAPNCFA_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, kAJLCAPNCFA_);
+      }
       if (isPassed_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(6, isPassed_);
@@ -500,10 +504,6 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
       if (dHLBAPDOFMF_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20000, dHLBAPDOFMF_);
-      }
-      if (kAJLCAPNCFA_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20001, kAJLCAPNCFA_);
       }
       if (kKJFEBAPLHL_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -1008,6 +1008,11 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
                 bitField0_ |= 0x00000400;
                 break;
               } // case 16
+              case 40: {
+                kAJLCAPNCFA_ = input.readBool();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 40
               case 48: {
                 isPassed_ = input.readBool();
                 bitField0_ |= 0x00000010;
@@ -1048,11 +1053,6 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
                 bitField0_ |= 0x00000004;
                 break;
               } // case 160000
-              case 160008: {
-                kAJLCAPNCFA_ = input.readBool();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160008
               case 160016: {
                 kKJFEBAPLHL_ = input.readUInt32();
                 bitField0_ |= 0x00000020;
@@ -1487,7 +1487,7 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
 
       private boolean kAJLCAPNCFA_ ;
       /**
-       * <code>bool KAJLCAPNCFA = 20001;</code>
+       * <code>bool KAJLCAPNCFA = 5;</code>
        * @return The kAJLCAPNCFA.
        */
       @java.lang.Override
@@ -1495,7 +1495,7 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
         return kAJLCAPNCFA_;
       }
       /**
-       * <code>bool KAJLCAPNCFA = 20001;</code>
+       * <code>bool KAJLCAPNCFA = 5;</code>
        * @param value The kAJLCAPNCFA to set.
        * @return This builder for chaining.
        */
@@ -1507,7 +1507,7 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>bool KAJLCAPNCFA = 20001;</code>
+       * <code>bool KAJLCAPNCFA = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearKAJLCAPNCFA() {
@@ -1936,18 +1936,17 @@ public final class RogueStageInfoOuterClass extends com.google.protobuf.Generate
     java.lang.String[] descriptorData = {
       "\n\024RogueStageInfo.proto\032\035RogueShowAvatarT" +
       "eamInfo.proto\032\031RoguelikeRuneRecord.proto" +
-      "\"\222\003\n\016RogueStageInfo\022-\n\013avatar_team\030\n \001(\013" +
+      "\"\220\003\n\016RogueStageInfo\022-\n\013avatar_team\030\n \001(\013" +
       "2\030.RogueShowAvatarTeamInfo\022.\n\020rune_recor" +
       "d_list\030\r \003(\0132\024.RoguelikeRuneRecord\022\025\n\013DH" +
-      "LBAPDOFMF\030\240\234\001 \001(\010\022\025\n\013KAJLCAPNCFA\030\241\234\001 \001(\010" +
-      "\022\021\n\tis_passed\030\006 \001(\010\022\025\n\013KKJFEBAPLHL\030\242\234\001 \001" +
-      "(\r\022\036\n\024revise_monster_level\030\243\234\001 \001(\r\022\025\n\013JE" +
-      "EEJLIDCCN\030\244\234\001 \001(\r\022\021\n\tcur_level\030\013 \001(\r\022\027\n\017" +
-      "is_taken_reward\030\007 \001(\010\022\017\n\007is_open\030\002 \001(\010\022\020" +
-      "\n\010stage_id\030\001 \001(\r\022\025\n\013LNLCFJGNECG\030\245\234\001 \001(\r\022" +
-      "\025\n\013CPDHCBHKOEC\030\246\234\001 \001(\r\022\025\n\013JKCCEMMPJIO\030\247\234" +
-      "\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006prot" +
-      "o3"
+      "LBAPDOFMF\030\240\234\001 \001(\010\022\023\n\013KAJLCAPNCFA\030\005 \001(\010\022\021" +
+      "\n\tis_passed\030\006 \001(\010\022\025\n\013KKJFEBAPLHL\030\242\234\001 \001(\r" +
+      "\022\036\n\024revise_monster_level\030\243\234\001 \001(\r\022\025\n\013JEEE" +
+      "JLIDCCN\030\244\234\001 \001(\r\022\021\n\tcur_level\030\013 \001(\r\022\027\n\017is" +
+      "_taken_reward\030\007 \001(\010\022\017\n\007is_open\030\002 \001(\010\022\020\n\010" +
+      "stage_id\030\001 \001(\r\022\025\n\013LNLCFJGNECG\030\245\234\001 \001(\r\022\025\n" +
+      "\013CPDHCBHKOEC\030\246\234\001 \001(\r\022\025\n\013JKCCEMMPJIO\030\247\234\001 " +
+      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

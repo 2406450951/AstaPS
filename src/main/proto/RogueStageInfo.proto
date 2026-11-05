@@ -9,7 +9,7 @@ message RogueStageInfo {
   RogueShowAvatarTeamInfo avatar_team = 10;
   repeated RoguelikeRuneRecord rune_record_list = 13;
   bool DHLBAPDOFMF = 20000;
-  bool KAJLCAPNCFA = 20001;
+  bool KAJLCAPNCFA = 5;
   bool is_passed = 6;
   uint32 KKJFEBAPLHL = 20002;
   uint32 revise_monster_level = 20003;

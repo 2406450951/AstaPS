@@ -3,7 +3,7 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message _QuickTimeCombatSettleInfo {
-  repeated uint32 KKBGBCAOLAP = 20000;
+  repeated uint32 KKBGBCAOLAP = 3;
   uint32 difficulty = 2;
   uint32 total_score = 4;
   bool is_new_record = 5;

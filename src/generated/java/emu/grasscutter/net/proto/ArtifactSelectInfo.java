@@ -31,17 +31,17 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
      * @return A list containing the oHBPLEJNHBF.
      */
     java.util.List<java.lang.Integer> getOHBPLEJNHBFList();
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
      * @return The count of oHBPLEJNHBF.
      */
     int getOHBPLEJNHBFCount();
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
      * @param index The index of the element to return.
      * @return The oHBPLEJNHBF at the given index.
      */
@@ -90,12 +90,12 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
               emu.grasscutter.net.proto.ArtifactSelectInfo._ArtifactSelectInfo.class, emu.grasscutter.net.proto.ArtifactSelectInfo._ArtifactSelectInfo.Builder.class);
     }
 
-    public static final int OHBPLEJNHBF_FIELD_NUMBER = 20000;
+    public static final int OHBPLEJNHBF_FIELD_NUMBER = 13;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList oHBPLEJNHBF_ =
         emptyIntList();
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
      * @return A list containing the oHBPLEJNHBF.
      */
     @java.lang.Override
@@ -104,14 +104,14 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
       return oHBPLEJNHBF_;
     }
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
      * @return The count of oHBPLEJNHBF.
      */
     public int getOHBPLEJNHBFCount() {
       return oHBPLEJNHBF_.size();
     }
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
      * @param index The index of the element to return.
      * @return The oHBPLEJNHBF at the given index.
      */
@@ -136,7 +136,7 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
                         throws java.io.IOException {
       getSerializedSize();
       if (getOHBPLEJNHBFList().size() > 0) {
-        output.writeUInt32NoTag(160002);
+        output.writeUInt32NoTag(106);
         output.writeUInt32NoTag(oHBPLEJNHBFMemoizedSerializedSize);
       }
       for (int i = 0; i < oHBPLEJNHBF_.size(); i++) {
@@ -154,7 +154,7 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
         }
         size += dataSize;
         if (!getOHBPLEJNHBFList().isEmpty()) {
-          size += 3;
+          size += 1;
           size += com.google.protobuf.CodedOutputStream
               .computeInt32SizeNoTag(dataSize);
         }
@@ -419,13 +419,13 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 104: {
                 int v = input.readUInt32();
                 ensureOHBPLEJNHBFIsMutable();
                 oHBPLEJNHBF_.addInt(v);
                 break;
-              } // case 160000
-              case 160002: {
+              } // case 104
+              case 106: {
                 int length = input.readRawVarint32();
                 int limit = input.pushLimit(length);
                 ensureOHBPLEJNHBFIsMutable();
@@ -434,7 +434,7 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
                 }
                 input.popLimit(limit);
                 break;
-              } // case 160002
+              } // case 106
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -460,7 +460,7 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
         bitField0_ |= 0x00000001;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
        * @return A list containing the oHBPLEJNHBF.
        */
       public java.util.List<java.lang.Integer>
@@ -469,14 +469,14 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
         return oHBPLEJNHBF_;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
        * @return The count of oHBPLEJNHBF.
        */
       public int getOHBPLEJNHBFCount() {
         return oHBPLEJNHBF_.size();
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
        * @param index The index of the element to return.
        * @return The oHBPLEJNHBF at the given index.
        */
@@ -484,7 +484,7 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
         return oHBPLEJNHBF_.getInt(index);
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
        * @param index The index to set the value at.
        * @param value The oHBPLEJNHBF to set.
        * @return This builder for chaining.
@@ -499,7 +499,7 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
        * @param value The oHBPLEJNHBF to add.
        * @return This builder for chaining.
        */
@@ -512,7 +512,7 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
        * @param values The oHBPLEJNHBF to add.
        * @return This builder for chaining.
        */
@@ -526,7 +526,7 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
         return this;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearOHBPLEJNHBF() {
@@ -601,9 +601,9 @@ public final class ArtifactSelectInfo extends com.google.protobuf.GeneratedFile 
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\031_ArtifactSelectInfo.proto\",\n\023_Artifact" +
-      "SelectInfo\022\025\n\013OHBPLEJNHBF\030\240\234\001 \003(\rB\033\n\031emu" +
-      ".grasscutter.net.protob\006proto3"
+      "\n\031_ArtifactSelectInfo.proto\"*\n\023_Artifact" +
+      "SelectInfo\022\023\n\013OHBPLEJNHBF\030\r \003(\rB\033\n\031emu.g" +
+      "rasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

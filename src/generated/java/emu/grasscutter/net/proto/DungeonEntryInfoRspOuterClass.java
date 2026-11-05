@@ -85,7 +85,7 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
     int getRecommendDungeonId();
 
     /**
-     * <code>bool HGBKKNDDABP = 20000;</code>
+     * <code>bool HGBKKNDDABP = 9;</code>
      * @return The hGBKKNDDABP.
      */
     boolean getHGBKKNDDABP();
@@ -245,10 +245,10 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
       return recommendDungeonId_;
     }
 
-    public static final int HGBKKNDDABP_FIELD_NUMBER = 20000;
+    public static final int HGBKKNDDABP_FIELD_NUMBER = 9;
     private boolean hGBKKNDDABP_ = false;
     /**
-     * <code>bool HGBKKNDDABP = 20000;</code>
+     * <code>bool HGBKKNDDABP = 9;</code>
      * @return The hGBKKNDDABP.
      */
     @java.lang.Override
@@ -309,6 +309,9 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
       if (recommendDungeonId_ != 0) {
         output.writeUInt32(7, recommendDungeonId_);
       }
+      if (hGBKKNDDABP_ != false) {
+        output.writeBool(9, hGBKKNDDABP_);
+      }
       if (FirstPassRewardStatus_ != 0) {
         output.writeUInt32(10, FirstPassRewardStatus_);
       }
@@ -320,9 +323,6 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
       }
       if (retcode_ != 0) {
         output.writeInt32(14, retcode_);
-      }
-      if (hGBKKNDDABP_ != false) {
-        output.writeBool(20000, hGBKKNDDABP_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -340,6 +340,10 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
       if (recommendDungeonId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(7, recommendDungeonId_);
+      }
+      if (hGBKKNDDABP_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, hGBKKNDDABP_);
       }
       if (FirstPassRewardStatus_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -361,10 +365,6 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
       if (retcode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(14, retcode_);
-      }
-      if (hGBKKNDDABP_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, hGBKKNDDABP_);
       }
       return size;
     }
@@ -777,6 +777,11 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
                 bitField0_ |= 0x00000004;
                 break;
               } // case 56
+              case 72: {
+                hGBKKNDDABP_ = input.readBool();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 72
               case 80: {
                 FirstPassRewardStatus_ = input.readUInt32();
                 bitField0_ |= 0x00000040;
@@ -805,11 +810,6 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
                 bitField0_ |= 0x00000020;
                 break;
               } // case 112
-              case 160000: {
-                hGBKKNDDABP_ = input.readBool();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1329,7 +1329,7 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
 
       private boolean hGBKKNDDABP_ ;
       /**
-       * <code>bool HGBKKNDDABP = 20000;</code>
+       * <code>bool HGBKKNDDABP = 9;</code>
        * @return The hGBKKNDDABP.
        */
       @java.lang.Override
@@ -1337,7 +1337,7 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
         return hGBKKNDDABP_;
       }
       /**
-       * <code>bool HGBKKNDDABP = 20000;</code>
+       * <code>bool HGBKKNDDABP = 9;</code>
        * @param value The hGBKKNDDABP to set.
        * @return This builder for chaining.
        */
@@ -1349,7 +1349,7 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
         return this;
       }
       /**
-       * <code>bool HGBKKNDDABP = 20000;</code>
+       * <code>bool HGBKKNDDABP = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearHGBKKNDDABP() {
@@ -1522,14 +1522,14 @@ public final class DungeonEntryInfoRspOuterClass extends com.google.protobuf.Gen
     java.lang.String[] descriptorData = {
       "\n\031DungeonEntryInfoRsp.proto\032\026DungeonEntr" +
       "yInfo.proto\032\033DungeonEntryPointInfo.proto" +
-      "\"\371\001\n\023DungeonEntryInfoRsp\0228\n\030dungeon_entr" +
+      "\"\367\001\n\023DungeonEntryInfoRsp\0228\n\030dungeon_entr" +
       "y_point_list\030\004 \003(\0132\026.DungeonEntryPointIn" +
       "fo\022-\n\022dungeon_entry_list\030\r \003(\0132\021.Dungeon" +
       "EntryInfo\022\034\n\024recommend_dungeon_id\030\007 \001(\r\022" +
-      "\025\n\013HGBKKNDDABP\030\240\234\001 \001(\010\022\020\n\010point_id\030\014 \001(\r" +
-      "\022\017\n\007retcode\030\016 \001(\005\022!\n\031_first_pass_reward_" +
-      "status\030\n \001(\rB\033\n\031emu.grasscutter.net.prot" +
-      "ob\006proto3"
+      "\023\n\013HGBKKNDDABP\030\t \001(\010\022\020\n\010point_id\030\014 \001(\r\022\017" +
+      "\n\007retcode\030\016 \001(\005\022!\n\031_first_pass_reward_st" +
+      "atus\030\n \001(\rB\033\n\031emu.grasscutter.net.protob" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

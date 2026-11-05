@@ -8,6 +8,6 @@ message IrodoriPoetryThemeData {
   uint32 max_progress = 3;
   uint32 AEHBFKFAAJB = 20002;
   uint32 FECKJOJEHCH = 20003;
-  uint32 show_state = 20004;
+  uint32 show_state = 1;
   uint32 progress = 2;
 }

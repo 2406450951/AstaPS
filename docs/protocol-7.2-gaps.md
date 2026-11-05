@@ -14,117 +14,146 @@ Their field numbers are still the 7.1 ones.
 
 `AbilityMetaSpecialEnergy`, `AvatarChangeElementTypeRsp`, `AvatarDelNotify`, `AvatarTraceEffectChangeNotify`, `BMJNJLKCODG`, `BPAEPJHBOFM`, `BuyBattlePassLevelReq`, `BuyBattlePassLevelRsp`, `CancelCoopTaskReq`, `CheckUgcStateReq`, `CheckUgcStateRsp`, `CheckUgcUpdateReq`, `DelBackupAvatarTeamReq`, `DelMailReq`, `DelTeamEntityNotify`, `DeleteFriendReq`, `DungeonPlayerDieRsp`, `EndCameraSceneLookNotify`, `EnterTrialAvatarActivityDungeonRsp`, `EntityAiKillSelfNotify`, `ExecuteGadgetLuaRsp`, `ExecuteGroupTriggerRsp`, `GetFriendShowAvatarInfoReq`, `GetFriendShowNameCardInfoReq`, `GetHomeLevelUpRewardReq`, `GetHomeLevelUpRewardRsp`, `GetMailItemReq`, `GetPushTipsRewardRsp`, `GetShopReqNew`, `GetShopRspNew`, `GetWorldMpInfoRsp`, `HomeAvatarSummonEventRsp`, `HomeAvatarSummonFinishRsp`, `HomeChangeBgmReq`, `HomeChangeBgmRsp`, `HomeChangeEditModeReq`, `HomeChangeModuleReq`, `HomeChooseModuleReq`, `HomeModuleUnlockNotify`, `HomeResourceTakeFetterExpRsp`, `HomeResourceTakeHomeCoinRsp`, `HomeSceneInitFinishReq`, `HomeSceneJumpRsp`, `IceCreatureAllGadgetInfoNotify`, `IceCreatureBuildReq`, `IceCreatureDataNotify`, `IceCreatureGadgetDisappearNotify`, `IceCreatureGadgetInfo`, `IceCreatureGadgetRemoveReq`, `IceCreatureGadgetRemoveRsp`, `IceCreatureLikeReq`, `IceCreatureLikeRsp`, `IceCreatureSetTypeGadgetReq`, `MarkNewNotify`, `MusicGameSettleReq`, `NALBKOPFIFD`, `PlatformChangeRouteNotify`, `PlatformStartRouteNotify`, `PlatformStopRouteNotify`, `PlayerApplyEnterHomeNotify`, `PlayerApplyEnterHomeResultReq`, `PlayerApplyEnterHomeResultRsp`, `PlayerApplyEnterMpReq`, `PlayerApplyEnterMpResultReq`, `PlayerApplyEnterMpResultRsp`, `PlayerChatRsp`, `PropChangeDetailInfo`, `QuestDelNotify`, `ReadMailNotify`, `ReadPrivateChatRsp`, `ReceivedTrialAvatarActivityRewardReq`, `ReceivedTrialAvatarActivityRewardRsp`, `ReformFireworksRsp`, `SceneEntityDrownReq`, `SceneEntityDrownRsp`, `SceneEntityUpdateNotify`, `SceneKickPlayerReq`, `SetBattlePassViewedRsp`, `SetNameCardReq`, `SetPlayerHeadImageRsp`, `SetPlayerPropRsp`, `SetPlayerSignatureReq`, `ShowClientGuideNotify`, `SkipPlayerGameTimeReq`, `SnezhnayaTrainCallNotify`, `SnezhnayaTrainCallReq`, `SnezhnayaTrainSetRouteReq`, `SnezhnayaTrainStateNotify`, `TowerBuffSelectReq`, `TowerBuffSelectRsp`, `TowerMiddleLevelChangeTeamNotify`, `TowerSurrenderRsp`, `TowerTeamSelectRsp`, `TpsAmmunitionChange`, `TpsAmmunitionChangeNotify`, `TpsEquipChangeNotify`, `TpsWeaponAmmunitionInfo`, `UnfreezeGroupLimitNotify`, `UnlockNameCardNotify`, `UnlockPersonalLineReq`, `WatcherChangeNotify`, `WearTpsEquipReq`, `WearTpsEquipRsp`, `WidgetDoBagRsp`, `WorldPlayerReviveRsp`, `_TakeAllForgeOutputReq`
 
-## Fields with no 7.2 number (331 in 107 messages)
+## Fields with no 7.2 number (284 in 91 messages)
 
-Parked at field 20000 and up, so they are neither read nor written on the wire. Shown as `name=7.1 number`.
+Parked at field 20000 and up, so they are neither read nor written on the wire. `tools/protocol/remap/recover_lost_72.py` already recovered the fields whose 7.1 and 7.2 names are left unmatched together in at least two messages.
 
-- `AbilityIdentifier`: FPDAONBEBHK=10, NBHCDKPBBOI=15, DLLKGHINFBJ=3
-- `AbilityInvokeEntryHead`: FPDAONBEBHK=10
-- `AbilityMetaModifierChange`: MFBDIICANOF=14, NBBGHMGOALL=12, PKJMOLPCEBG=13, OCAMKBCONED=3
-- `AbilityMetaUpdateMoonOvergrowValue`: FOMPMBNENPH=6
-- `AbilityMetaUpdateTpsWeaponAmmunition`: FENKFADBDID=7
-- `ActivityInfo`: OPCOMCJHGAJ=1692, JJFJONCHEIK=330, meet_cond_list=1917, expire_cond_list=12, is_starting=5, OPPDJKGIKBJ=1204, DIEFHMGFNIJ=242, is_common_content_closed=713, is_play_open_anim=774
-- `ActivityTakeWatcherRewardReq`: activity_id=15, watcher_id=3
-- `AddNoGachaAvatarCardNotify`: initial_level=15, initial_promote_level=6
-- `AiSyncInfo`: COFJBBPPANA=8, MBNNMNHEDAB=2
-- `AttackResult`: resolved_dir=13, DNMDKFFCNPJ=1436, OHPEIAGBOIK=1313, EFBFOAOJADK=1567, PGPBACPJGNM=425, OOFNGENKHKG=1572, MOEKEMAHBNN=1391, FDEGAMMGNGI=921, CFKHDFPCHCL=564, EKDNPKHMJIE=623, MDBPICGKMLB=259, LNFCPOINHKK=17, IFHJIFEBKAO=11, EPLABAAGCKE=15, DMIEAHDCHFA=989, NJFMEBDIICN=1227, AFPBFDHCDNK=12, IDENIGMCBJB=1837, PKOFLCBFEOA=345, OMJGKPMPFBI=1831, GGAMPLOEPMG=567, PLNPCMILPPD=1850, NILAPFIGLLH=120, MHJDKCODNAA=1825, BNBBLJCDMPJ=1975, MDECMKGHDAK=496, GMNALDFDANK=266, JCPDJCGGJCC=184, JILIGGDCLDH=748, BJHAEPGOAKM=616
-- `AvatarEnterSceneInfo`: tps_weapon_list=13
-- `AvatarExpeditionGetRewardRsp`: ANAMNOCEICO=12
-- `AvatarExpeditionStartRsp`: ILBIKNLHAKE=1
-- `AvatarInfo`: tps_weapon_list=37
-- `AvatarLifeStateChangeNotify`: EEOIMNHKALK=15, LDAODDFLPGB=11
-- `AvatarWearFlycloakRsp`: MNCEBDCODIE=8
-- `BargainSnapshot`: PGNJBNJCBLP=14, FLCAIJFGLNP=13
-- `BattlePassAllDataNotify`: HBHFBAGFADF=10
-- `BattlePassCurScheduleUpdateNotify`: HBHFBAGFADF=1
-- `BattlePassProduct`: LGOGOFAFJBK=5, extra_product_id=15
-- `BattlePassRewardTag`: CNJOFMDBADE=14
-- `BattlePassSchedule`: JIPEKMKKHOI=5, cur_cycle_points=15, paid_platform_flags=9
-- `CancelCoopTaskRsp`: chapter_id=9
-- `CardProductRewardNotify`: OABOKBGPEHG=4
-- `ChangeAvatarReq`: is_move=12, FGGPBEPIJOG=3
-- `ChatInfo`: ALKIPKCAPFL=8, OIEHJMHHCFB=15
-- `ClientSetGameTimeRsp`: client_game_time=6
-- `CodexDataUpdateNotify`: OBEHJKBNDJG=5
-- `CombatInvokeEntry`: LDAODDFLPGB=10
-- `CompoundQueueData`: wait_count=7, output_time=1, output_count=2
-- `CoopChapter`: ODECGJCJBAB=11, JKAGGEGDKOH=13, lock_reason_list=14
-- `DailyDungeonEntryInfo`: ODDLACNLJOF=2, EDEOIILGGJC=3, AKNPDDFHEKO=1
-- `DelBackupAvatarTeamRsp`: retcode=9
-- `DoGachaRsp`: ten_cost_item_id=50006, cur_schedule_daily_gacha_times=1794, is_epitomized=50012
-- `DropHintNotify`: AJDBEGMCGKD=1
-- `DungeonEntryInfo`: max_boss_chest_num=4, boss_chest_num=10
-- `DungeonEntryInfoReq`: HGBKKNDDABP=8
-- `DungeonEntryInfoRsp`: HGBKKNDDABP=2
-- `DungeonEntryToBeExploreNotify`: dungeon_entry_scene_point_id=11
-- `DungeonPlayerDieNotify`: MCPNIFKDECF=14, murderer_entity_id=13, OBOKABMLGHI=4, AOMDIHGJMNK=15
-- `EnterSceneDoneRsp`: PPKIKFGEINK=15
-- `EntityFightPropChangeReasonNotify`: EFIBMPKIJJH=3
-- `EvtAvatarEnterFocusNotify`: MEBKKKCNDAK=8, PNELCGBOIFM=7, KLNNOPGOMKN=2, IMMFFEBPCJM=12, CCDMIMGNCBM=1, JLNKDGGPICE=5, ADMFCLBHILF=3, KHOIOJCHLNL=13, FDCDPKDKNAL=6, HFFPEFBLBPC=4, JHJBHFINKDK=11, CFNHGMLGPHP=14
-- `EvtBeingHealedNotify`: GOKLCPHOLGL=4, real_heal_amount=8, CMCCNKMGKHG=15, heal_amount=14
-- `EvtBulletHitNotify`: single_bullet_id=15, hit_entity_id=5
-- `EvtBulletMoveNotify`: EOCBPPKDLBH=15
-- `EvtCreateGadgetNotify`: BHJNCGINIJB=1732, KMDOFBPMGAI=80, AAMABJDMIFN=14, LDAODDFLPGB=1349, NHNFGNMNDDE=12, LMLMALLLGBB=1395, PBLACGNNCDF=4
-- `ForgeQueueData`: next_finish_timestamp=7, unfinish_count=3, queue_id=9, total_finish_timestamp=13
-- `ForgeQueueManipulateRsp`: return_item_list=11, output_item_list=2
-- `GachaInfo`: left_gacha_times=13, display_chronicle_5_item_list=1643, HMOJLEMLHDK=410, is_new_wish=1937, title_textmap=7, cur_schedule_daily_gacha_times=1659
-- `GadgetInteractReq`: DOGHJJCHDLF=6, IKMNHOHNBKJ=5, LPCDPGNKGFL=15, IKDIFBEOEKM=1, AJDBEGMCGKD=13, HDJABIODGCI=3, EBEELPIEKEL=14, ALLPOOBNNPH=12, CJIPKAIPCIB=10
-- `GadgetInteractRsp`: CJIPKAIPCIB=5
-- `GetAllMailResultNotify`: total_page_count=12, page_index=5
-- `GetDungeonEntryExploreConditionReq`: dungeon_entry_scene_point_id=6
-- `GetGachaInfoRsp`: BKMCHIJHJJE=6, LHBELFNPPNK=4
-- `GetPlayerTokenReq`: BKIICHHOJAF=1771, GGKODKLBGFD=1299, BIIJMKDGAGI=11, _gate_ticket=1, account_type=3, sub_channel_id=15
-- `GetPlayerTokenRsp`: GGKODKLBGFD=1856, gm_uid=5, reg_platform=1038, MGNAAEGCEDL=802, KONAINKDJCN=1410, CGPIOKGGDPB=1376, is_proficient_player=3, account_type=1528, sub_channel_id=14
-- `GetScenePointRsp`: JHHBKAOPBAH=5, IEMCNADNPED=9, OLEEDBKCAAN=7
-- `GetShopmallDataRsp`: DPHCDGFOLCN=4, MIOFAOEPJEJ=15
-- `HitCollision`: OMEMJMGDNPP=11, EGIAGADINML=13, PFLEHLDGODB=1
-- `HomeBlockArrangementInfo`: deploy_furniure_list=7, persistent_furniture_list=10
-- `HomeMarkPointSceneData`: teapot_spirit_pos=10, safe_point_pos=4
-- `HomeSceneArrangementInfo`: stair_list=6, MEEACPBAEJN=317, IILKHACKPAI=11, door_list=8, block_place_pos_list=1071, OADJEMPMKIF=2, KGGKIAHPDGO=5
-- `IceCreatureBuildRsp`: limit_type=3, ice_creature_gadget_info=9
-- `InvestigationMonsterUpdateNotify`: JDEPBCMJPOP=8
-- `ItemAddHintNotify`: CLKIDLBMBAM=9, BAIIJPFGOKI=15, JAKPAGGBINC=7, OLBMJDOKNAC=1
-- `LifeStateChangeNotify`: EEOIMNHKALK=15, AFPBFDHCDNK=4, LDAODDFLPGB=8
-- `MarkTargetInvestigationMonsterNotify`: GHPPPJJLDJN=8
-- `MassiveEntityElementOpBatchNotify`: user_id=6, op_idx=4, source_element_type=8, reaction_source_type=1
-- `OneoffGatherPointDetectorData`: CBENILCDDCB=13
-- `ParentQuest`: GFFBOKNBJLC=9, HONCJCKFDJE=22, EODCGKGCGDN=652, DDHKDIOKFIF=7
-- `PersonalLineAllDataRsp`: ongoing_personal_line_list=3, can_be_unlocked_personal_line_list=4, NIPKCPGAMKF=2
-- `PingReq`: BLOPFLFBDAE=4, MCCPJDKDNMJ=3
-- `PlayerApplyEnterMpNotify`: src_thread_index=4, EEHKAIMJJDO=1, src_app_id=15
-- `PlayerEnterDungeonReq`: BAEJLCIOPMI=4, CCIOMCLOGDK=9
-- `PlayerEnterSceneNotify`: PCBFOAKLMKG=960, ALLIIBMKFLN=16, HBCAHGNHINM=1048, BGICEPHCGEO=213
-- `PlayerLocationInfo`: HPOIENCPHFN=8
-- `PlayerLoginRsp`: stop_server_info=318, LPFKKMMLFOP=368, KKNBKGBLHDM=1549, KJEMCDAJINF=21, DPPKDPCKANP=600, is_sc_open=1869, CGMBIAPFHGE=1508, is_use_ability_hash=1856, GICKBBGJGCK=2, JBEGCLMHOPF=1, HPHGKOCDPJE=1123, KLKDKMBAPGA=1994, GHAJDNKLEDA=12, MBPNFGLAJOG=653, OEMHPIKBDMB=1056, HACEPFEEKGA=458
-- `PlayerOfferingData`: taken_random_level_reward_map=4
-- `PlayerWorldSceneInfoListNotify`: IIFJABJJJBF=388
-- `ProudSkillExtraLevelNotify`: talent_index=13, talent_type=15
-- `QueryCodexMonsterBeKilledNumRsp`: GOIJKJBPKAF=15, BMCNAMPBGAF=10
-- `QueryPathReq`: GEAKGEBKLGB=5, FLFPHIAAGME=7, CPMFACKILJN=14
-- `QuestTransmitReq`: NCEIBFLFIPM=9
-- `QuickUseWidgetRsp`: KHEMKPBBNHC=3
-- `ReliquaryUpgradeRsp`: old_append_prop_list=9, cur_append_prop_list=2
-- `SaveUgcReq`: HMODKDEMFDE=10
-- `SceneAvatarInfo`: tps_weapon_list=31
-- `SceneGadgetInfo`: CFOMFPNHLJF=27
-- `SceneTeamAvatar`: tps_weapon_list=382
-- `SelectWorktopOptionReq`: CJIPKAIPCIB=5
-- `Shop`: FAEEGIJKFJP=2, city_reputation_level=50000, hogdkcckgap=50001
-- `ShopGoods`: MEODDILKAAD=50000, ELPGDNACFOA=50002, mcoin=50003, OCFMGIPGLDK=50004, scoin=50005, HBFOJABHIND=50006, AJCBLGEDLFK=50008, single_limit=50009, NGPHJJIEDEH=50010, MMMFLNHEDNI=1158, LDCJFLOPNMP=66, AIALJDFIEAI=50011, EKBHAAKJINF=50012, KAGKMENGAFH=1701, MBMIKDBJNAN=50013, DCMBDJMCGGP=50015
-- `StoreWeightLimitNotify`: CDHAIJGOKFC=2, DKIEKFJMMIH=3, OAJHCKBKFPP=15, reliquary_count_limit=4, KADABCKKMGA=8, _beyond_hall_facility_count_limit=10
-- `TakeCompoundOutputRsp`: ANAMNOCEICO=3
-- `TeamEnterSceneInfo`: KAHECAKOMLD=2, JFAHOBMFLFE=11, FOMPMBNENPH=8
-- `TeamEntityInfo`: KAHECAKOMLD=1
-- `TowerAllDataRsp`: commemorative_reward_id=3, EFABCDDNIFA=7, valid_tower_record_num=1, skip_to_floor_index=9, GKIFECKDHKD=5
-- `TowerCurLevelRecord`: cur_level_index=9, cur_floor_id=10
-- `TowerLevelEndNotify`: continue_state=8, next_floor_id=3
-- `TowerLevelStarCondData`: cond_value=8, star_cond_index=5
-- `TrialAvatarActivityDetailInfo`: CBPJGGEBMBI=7
-- `TrialAvatarActivityRewardDetailInfo`: _passed_training_step_list=6, _available_training_step_list=7, is_can_take_reward=8, _is_avatar_owned=15, passed_dungeon=3, _is_skip_training=9, received_reward=10
-- `UgcMusicBriefInfo`: CCJOGFPEKID=673, COAEPKLMKPE=710, self_max_score=1103, HHBOBIJKFPJ=466, NLCMMJILBKJ=37, MLAJCIMGINA=1425, IIPJKAOBBBD=853, MOIDOMCHPFG=15, note_count=4, PGHGCGNLNPG=166, CDEMBFGJAPH=13
-- `WeaponPromoteRsp`: old_promote_level=5, cur_promote_level=11
-- `WorldPlayerDieNotify`: MCPNIFKDECF=15, OBOKABMLGHI=9, murderer_entity_id=10, AOMDIHGJMNK=3
-- `_TakeAllForgeOutputRsp`: output_item_list=12, return_item_list=5, unknown_list=9
+- `AbilityIdentifier`: NBHCDKPBBOI, DLLKGHINFBJ
+- `AbilityMetaModifierChange`: MFBDIICANOF, NBBGHMGOALL, PKJMOLPCEBG, OCAMKBCONED
+- `AbilityMetaUpdateMoonOvergrowValue`: FOMPMBNENPH
+- `AbilityMetaUpdateTpsWeaponAmmunition`: FENKFADBDID
+- `ActivityInfo`: JJFJONCHEIK, meet_cond_list, expire_cond_list, is_starting, OPPDJKGIKBJ, DIEFHMGFNIJ, is_common_content_closed, is_play_open_anim
+- `ActivityTakeWatcherRewardReq`: activity_id, watcher_id
+- `AddNoGachaAvatarCardNotify`: initial_level, initial_promote_level
+- `AiSyncInfo`: COFJBBPPANA, MBNNMNHEDAB
+- `AttackResult`: resolved_dir, DNMDKFFCNPJ, OHPEIAGBOIK, EFBFOAOJADK, PGPBACPJGNM, OOFNGENKHKG, FDEGAMMGNGI, CFKHDFPCHCL, EKDNPKHMJIE, MDBPICGKMLB, LNFCPOINHKK, IFHJIFEBKAO, EPLABAAGCKE, DMIEAHDCHFA, NJFMEBDIICN, IDENIGMCBJB, PKOFLCBFEOA, OMJGKPMPFBI, GGAMPLOEPMG, PLNPCMILPPD, NILAPFIGLLH, MHJDKCODNAA, MDECMKGHDAK, GMNALDFDANK, JCPDJCGGJCC, BJHAEPGOAKM
+- `AvatarEnterSceneInfo`: tps_weapon_list
+- `AvatarExpeditionStartRsp`: ILBIKNLHAKE
+- `AvatarInfo`: tps_weapon_list
+- `BargainSnapshot`: PGNJBNJCBLP, FLCAIJFGLNP
+- `BattlePassProduct`: LGOGOFAFJBK, extra_product_id
+- `BattlePassSchedule`: JIPEKMKKHOI, cur_cycle_points, paid_platform_flags
+- `CancelCoopTaskRsp`: chapter_id
+- `CardProductRewardNotify`: OABOKBGPEHG
+- `ChangeAvatarReq`: is_move, FGGPBEPIJOG
+- `ChapterStateNotify`: MLBMNAKEEOM, EHKKFCAGELK
+- `ChatInfo`: ALKIPKCAPFL, OIEHJMHHCFB
+- `ClientSetGameTimeRsp`: client_game_time
+- `CodexDataUpdateNotify`: OBEHJKBNDJG
+- `CombineRsp`: DAPJDPKECGP, GFDAOGHDHCI, FIHLCAAADMG, FJOLFDOBCIL, FBMBEJKABDH
+- `CompoundQueueData`: wait_count, output_time, output_count
+- `CoopChapter`: ODECGJCJBAB, JKAGGEGDKOH, lock_reason_list
+- `DailyDungeonEntryInfo`: ODDLACNLJOF, EDEOIILGGJC, AKNPDDFHEKO
+- `DelBackupAvatarTeamRsp`: retcode
+- `DoGachaRsp`: is_epitomized
+- `DungeonEntryInfo`: max_boss_chest_num, boss_chest_num
+- `DungeonPlayerDieNotify`: murderer_entity_id, OBOKABMLGHI, AOMDIHGJMNK
+- `EnterSceneDoneRsp`: PPKIKFGEINK
+- `EntityFightPropChangeReasonNotify`: EFIBMPKIJJH
+- `EvtAvatarEnterFocusNotify`: MEBKKKCNDAK, PNELCGBOIFM, KLNNOPGOMKN, IMMFFEBPCJM, CCDMIMGNCBM, JLNKDGGPICE, ADMFCLBHILF, KHOIOJCHLNL, FDCDPKDKNAL, HFFPEFBLBPC, JHJBHFINKDK, CFNHGMLGPHP
+- `EvtBeingHealedNotify`: GOKLCPHOLGL, real_heal_amount, CMCCNKMGKHG, heal_amount
+- `EvtBulletHitNotify`: single_bullet_id, hit_entity_id
+- `EvtBulletMoveNotify`: EOCBPPKDLBH
+- `EvtCreateGadgetNotify`: AAMABJDMIFN, NHNFGNMNDDE, LMLMALLLGBB, PBLACGNNCDF
+- `ForgeQueueData`: next_finish_timestamp, unfinish_count, queue_id, total_finish_timestamp
+- `ForgeQueueManipulateRsp`: return_item_list, output_item_list
+- `FurnitureMakeRsp`: NDADFCDJOBK
+- `GadgetInteractReq`: DOGHJJCHDLF, IKMNHOHNBKJ, LPCDPGNKGFL, IKDIFBEOEKM, HDJABIODGCI, EBEELPIEKEL, ALLPOOBNNPH
+- `GetAllMailResultNotify`: total_page_count, page_index
+- `GetGachaInfoRsp`: BKMCHIJHJJE, LHBELFNPPNK
+- `GetPlayerTokenReq`: BIIJMKDGAGI, _gate_ticket, account_type, sub_channel_id
+- `GetPlayerTokenRsp`: gm_uid, reg_platform, MGNAAEGCEDL, KONAINKDJCN, CGPIOKGGDPB, is_proficient_player, account_type, sub_channel_id
+- `GetScenePointRsp`: JHHBKAOPBAH, IEMCNADNPED, OLEEDBKCAAN
+- `GetShopmallDataRsp`: DPHCDGFOLCN
+- `HitCollision`: OMEMJMGDNPP, EGIAGADINML, PFLEHLDGODB
+- `HomeBlockArrangementInfo`: deploy_furniure_list, persistent_furniture_list
+- `HomeMarkPointSceneData`: teapot_spirit_pos, safe_point_pos
+- `HomeSceneArrangementInfo`: stair_list, MEEACPBAEJN, IILKHACKPAI, door_list, block_place_pos_list, OADJEMPMKIF, KGGKIAHPDGO
+- `IceCreatureBuildRsp`: limit_type, ice_creature_gadget_info
+- `InvestigationMonsterUpdateNotify`: JDEPBCMJPOP
+- `ItemAddHintNotify`: CLKIDLBMBAM, BAIIJPFGOKI, JAKPAGGBINC, OLBMJDOKNAC
+- `MarkTargetInvestigationMonsterNotify`: GHPPPJJLDJN
+- `MassiveEntityElementOpBatchNotify`: user_id, op_idx, source_element_type, reaction_source_type
+- `MusicGameActivityDetailInfo`: NCCMPNEBJLA, EPEEHJNIPNB
+- `OneoffGatherPointDetectorData`: CBENILCDDCB
+- `ParentQuest`: GFFBOKNBJLC, HONCJCKFDJE, EODCGKGCGDN, DDHKDIOKFIF
+- `PersonalLineAllDataRsp`: ongoing_personal_line_list, can_be_unlocked_personal_line_list, NIPKCPGAMKF
+- `PingReq`: BLOPFLFBDAE, MCCPJDKDNMJ
+- `PlayerApplyEnterMpNotify`: src_thread_index, src_app_id
+- `PlayerEnterDungeonReq`: BAEJLCIOPMI, CCIOMCLOGDK
+- `PlayerEnterSceneNotify`: PCBFOAKLMKG, ALLIIBMKFLN, HBCAHGNHINM, BGICEPHCGEO
+- `PlayerLocationInfo`: HPOIENCPHFN
+- `PlayerLoginRsp`: stop_server_info, KKNBKGBLHDM, DPPKDPCKANP, is_sc_open, is_use_ability_hash, GICKBBGJGCK, JBEGCLMHOPF, KLKDKMBAPGA, GHAJDNKLEDA, OEMHPIKBDMB, HACEPFEEKGA
+- `PlayerOfferingData`: taken_random_level_reward_map
+- `PlayerWorldSceneInfoListNotify`: IIFJABJJJBF
+- `ProudSkillExtraLevelNotify`: talent_index, talent_type
+- `QueryCodexMonsterBeKilledNumRsp`: GOIJKJBPKAF, BMCNAMPBGAF
+- `QueryPathReq`: GEAKGEBKLGB, CPMFACKILJN
+- `QueryPathRsp`: INAAJKIFKIF, FBLCJIHADLH
+- `QuestTransmitReq`: NCEIBFLFIPM
+- `ReliquaryUpgradeRsp`: old_append_prop_list, cur_append_prop_list
+- `SceneAvatarInfo`: tps_weapon_list
+- `SceneTeamAvatar`: tps_weapon_list
+- `Shop`: city_reputation_level, hogdkcckgap
+- `ShopGoods`: MEODDILKAAD, ELPGDNACFOA, mcoin, OCFMGIPGLDK, scoin, HBFOJABHIND, AJCBLGEDLFK, single_limit, NGPHJJIEDEH, MMMFLNHEDNI, LDCJFLOPNMP, AIALJDFIEAI, EKBHAAKJINF, KAGKMENGAFH, MBMIKDBJNAN, DCMBDJMCGGP
+- `StoreWeightLimitNotify`: CDHAIJGOKFC, DKIEKFJMMIH, OAJHCKBKFPP, reliquary_count_limit, KADABCKKMGA, _beyond_hall_facility_count_limit
+- `TakeFurnitureMakeRsp`: return_item_list, output_item_list
+- `TeamEnterSceneInfo`: JFAHOBMFLFE, FOMPMBNENPH
+- `TowerAllDataRsp`: commemorative_reward_id, EFABCDDNIFA, valid_tower_record_num, skip_to_floor_index, GKIFECKDHKD
+- `TowerCurLevelRecord`: cur_level_index, cur_floor_id
+- `TowerLevelEndNotify`: continue_state, next_floor_id
+- `TowerLevelStarCondData`: cond_value, star_cond_index
+- `TrialAvatarActivityDetailInfo`: CBPJGGEBMBI
+- `TrialAvatarActivityRewardDetailInfo`: _passed_training_step_list, _available_training_step_list, is_can_take_reward, _is_avatar_owned, passed_dungeon, _is_skip_training, received_reward
+- `UgcMusicBriefInfo`: CCJOGFPEKID, COAEPKLMKPE, self_max_score, HHBOBIJKFPJ, NLCMMJILBKJ, IIPJKAOBBBD, MOIDOMCHPFG, note_count, CDEMBFGJAPH
+- `WeaponPromoteRsp`: old_promote_level, cur_promote_level
+- `WorldPlayerDieNotify`: OBOKABMLGHI, murderer_entity_id, AOMDIHGJMNK
+- `_TakeAllForgeOutputRsp`: output_item_list, return_item_list
+
+### Unconfirmed candidates
+
+Pairs where a message has exactly one unmatched 7.1 field and one unmatched 7.2 field of the same type (`recover_lost_72.py --single`). Not applied: check each against a capture first.
+
+- AbilityMetaModifierChange.MFBDIICANOF: 20000 -> 2  (7.1 LFGDCBHDFIL = 7.2 JHCJKEDLDAD, single-message)
+- AbilityMetaModifierChange.OCAMKBCONED: 20003 -> 4  (7.1 GMEPMCLHEDP = 7.2 HKFKIALDHIO, single-message)
+- AbilityMetaUpdateMoonOvergrowValue.FOMPMBNENPH: 20000 -> 11  (7.1 GCNOLPNPHPA = 7.2 value, single-message)
+- AbilityMetaUpdateTpsWeaponAmmunition.FENKFADBDID: 20000 -> 1  (7.1 FENKFADBDID = 7.2 AEIMHKMPHOG, single-message)
+- TrialAvatarActivityDetailInfo.CBPJGGEBMBI: 20000 -> 6  (7.1 MMHPPBIEGFG = 7.2 OIEPLMDMEAM, single-message)
+- OneoffGatherPointDetectorData.CBENILCDDCB: 20000 -> 1  (7.1 HDCCPLEDJMH = 7.2 CDLEKEGELMD, single-message)
+- AvatarInfo.tps_weapon_list: 20000 -> 37  (7.1 MJGFMDADPJE = 7.2 weapon_list, single-message)
+- SceneAvatarInfo.tps_weapon_list: 20000 -> 31  (7.1 MJGFMDADPJE = 7.2 weapon_list, single-message)
+- AvatarEnterSceneInfo.tps_weapon_list: 20000 -> 12  (7.1 LMAIAOIPHJL = 7.2 weapon_list, single-message)
+- AvatarExpeditionStartRsp.ILBIKNLHAKE: 20000 -> 12  (7.1 KODELLHACAM = 7.2 NEFAGAOLLPG, single-message)
+- BattlePassSchedule.JIPEKMKKHOI: 20000 -> 8  (7.1 DFDNNGJHJIC = 7.2 AMBABCAPMGE, single-message)
+- ShopGoods.KAGKMENGAFH: 20013 -> 1055  (7.1 AEHELDJPPPH = 7.2 LAJHLJGOMPH, single-message)
+- CardProductRewardNotify.OABOKBGPEHG: 20000 -> 8  (7.1 DDOINBPHJMP = 7.2 FOFGCGMLPIB, single-message)
+- ChatInfo.ALKIPKCAPFL: 20000 -> 4  (7.1 LOEJDBPKKNF = 7.2 MIBOFEIBECN, single-message)
+- ChatInfo.OIEHJMHHCFB: 20001 -> 10  (7.1 IEEJEEEHOGA = 7.2 CBPIPDFPBHN, single-message)
+- CodexDataUpdateNotify.OBEHJKBNDJG: 20000 -> 2  (7.1 NELOMLLAKME = 7.2 KBGFCJCMNFP, single-message)
+- DailyDungeonEntryInfo.ODDLACNLJOF: 20000 -> 1  (7.1 HAOOOFEBAMI = 7.2 BMOKOMEOKCP, single-message)
+- EnterSceneDoneRsp.PPKIKFGEINK: 20000 -> 12  (7.1 OGCIHDJAHHL = 7.2 MFLHLEMFIGI, single-message)
+- EntityFightPropChangeReasonNotify.EFIBMPKIJJH: 20000 -> 3  (7.1 HNBCFDELLDN = 7.2 GCFBFOHHHJJ, single-message)
+- EvtAvatarEnterFocusNotify.IMMFFEBPCJM: 20003 -> 1  (7.1 NOLEPJHLGKL = 7.2 IGLKLDNNDND, single-message)
+- EvtBeingHealedNotify.CMCCNKMGKHG: 20002 -> 13  (7.1 AFAHAOFIJJO = 7.2 is_mute, single-message)
+- EvtBeingHealedNotify.GOKLCPHOLGL: 20000 -> 2  (7.1 JONDCAMLJOF = 7.2 heal_tag, single-message)
+- EvtBulletMoveNotify.EOCBPPKDLBH: 20000 -> 14  (7.1 JONDPALHPCF = 7.2 NGLAODHCNHB, single-message)
+- ParentQuest.DDHKDIOKFIF: 20003 -> 4  (7.1 DHMHGDGIMAD = 7.2 JCHFKGKOJPH, single-message)
+- ParentQuest.GFFBOKNBJLC: 20000 -> 7  (7.1 PAJJMIMGHHI = 7.2 KANNCEMKHIG, single-message)
+- FurnitureMakeRsp.NDADFCDJOBK: 20000 -> 11  (7.1 IKCDMDEPMDC = 7.2 OEGCONFIHLI, single-message)
+- InvestigationMonsterUpdateNotify.JDEPBCMJPOP: 20000 -> 4  (7.1 GAKDKMHBFGA = 7.2 ICDBOBCNCMB, single-message)
+- MarkTargetInvestigationMonsterNotify.GHPPPJJLDJN: 20000 -> 5  (7.1 ILJJLKDMFIK = 7.2 JNLDEIPGDPI, single-message)
+- TeamEnterSceneInfo.FOMPMBNENPH: 20002 -> 9  (7.1 GCNOLPNPHPA = 7.2 AGJIEAHJPJC, single-message)
+- PlayerEnterSceneNotify.ALLIIBMKFLN: 20001 -> 763  (7.1 NJEOMOIDMNM = 7.2 LFPEKBJIJNG, single-message)
+- PlayerEnterSceneNotify.BGICEPHCGEO: 20003 -> 46  (7.1 NJDJMFJCMBM = 7.2 LMKLCDPJOBJ, single-message)
+- PlayerLocationInfo.HPOIENCPHFN: 20000 -> 4  (7.1 IEPPHCJANGA = 7.2 HFFCDKKCIMN, single-message)
+- PlayerLoginRsp.KKNBKGBLHDM: 20002 -> 265  (7.1 HMMPPDIBFAO = 7.2 HIHJANHKAMO, single-message)
+- PlayerLoginRsp.stop_server_info: 20000 -> 1314  (7.1 BMCDKDDKIBH = 7.2 LBDHEONCLNL, single-message)
+- PlayerOfferingData.taken_random_level_reward_map: 20000 -> 2  (7.1 PKOKLIFNFIB = 7.2 CBMCLHIIEKD, single-message)
+- PlayerWorldSceneInfoListNotify.IIFJABJJJBF: 20000 -> 693  (7.1 FMIPEDBGOMN = 7.2 unlocked_area_id_list, single-message)
+- QueryPathRsp.FBLCJIHADLH: 20001 -> 3  (7.1 MLPCGBFDBGC = 7.2 OCOOOCJJPCC, single-message)
+- QueryPathRsp.INAAJKIFKIF: 20000 -> 10  (7.1 ANBCOBHEMFO = 7.2 EGDBEDNAFGL, single-message)
+- QuestTransmitReq.NCEIBFLFIPM: 20000 -> 13  (7.1 EOPPLJLCEIJ = 7.2 HEJLIMPMKLL, single-message)
+- SceneTeamAvatar.tps_weapon_list: 20000 -> 645  (7.1 LMAIAOIPHJL = 7.2 weapon_list, single-message)
 
 ## Handwritten parsers
 

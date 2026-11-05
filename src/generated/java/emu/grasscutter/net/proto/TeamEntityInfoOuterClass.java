@@ -31,17 +31,17 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+     * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
      * @return Whether the kAHECAKOMLD field is set.
      */
     boolean hasKAHECAKOMLD();
     /**
-     * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+     * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
      * @return The kAHECAKOMLD.
      */
     emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA getKAHECAKOMLD();
     /**
-     * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+     * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
      */
     emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOAOrBuilder getKAHECAKOMLDOrBuilder();
 
@@ -115,10 +115,10 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
     }
 
     private int bitField0_;
-    public static final int KAHECAKOMLD_FIELD_NUMBER = 20000;
+    public static final int KAHECAKOMLD_FIELD_NUMBER = 7;
     private emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA kAHECAKOMLD_;
     /**
-     * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+     * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
      * @return Whether the kAHECAKOMLD field is set.
      */
     @java.lang.Override
@@ -126,7 +126,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+     * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
      * @return The kAHECAKOMLD.
      */
     @java.lang.Override
@@ -134,7 +134,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
       return kAHECAKOMLD_ == null ? emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA.getDefaultInstance() : kAHECAKOMLD_;
     }
     /**
-     * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+     * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOAOrBuilder getKAHECAKOMLDOrBuilder() {
@@ -203,6 +203,9 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(7, getKAHECAKOMLD());
+      }
       if (teamEntityId_ != 0) {
         output.writeUInt32(8, teamEntityId_);
       }
@@ -212,13 +215,14 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
       if (authorityPeerId_ != 0) {
         output.writeUInt32(13, authorityPeerId_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getKAHECAKOMLD());
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getKAHECAKOMLD());
+      }
       if (teamEntityId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(8, teamEntityId_);
@@ -230,10 +234,6 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
       if (authorityPeerId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(13, authorityPeerId_);
-      }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getKAHECAKOMLD());
       }
       return size;
     }
@@ -549,6 +549,13 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
               case 0:
                 done = true;
                 break;
+              case 58: {
+                input.readMessage(
+                    internalGetKAHECAKOMLDFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 58
               case 64: {
                 teamEntityId_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -566,13 +573,6 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
                 bitField0_ |= 0x00000008;
                 break;
               } // case 104
-              case 160002: {
-                input.readMessage(
-                    internalGetKAHECAKOMLDFieldBuilder().getBuilder(),
-                    extensionRegistry);
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 160002
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -594,14 +594,14 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA, emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA.Builder, emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOAOrBuilder> kAHECAKOMLDBuilder_;
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        * @return Whether the kAHECAKOMLD field is set.
        */
       public boolean hasKAHECAKOMLD() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        * @return The kAHECAKOMLD.
        */
       public emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA getKAHECAKOMLD() {
@@ -612,7 +612,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
         }
       }
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        */
       public Builder setKAHECAKOMLD(emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA value) {
         if (kAHECAKOMLDBuilder_ == null) {
@@ -626,7 +626,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        */
       public Builder setKAHECAKOMLD(
           emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA.Builder builderForValue) {
@@ -640,7 +640,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        */
       public Builder mergeKAHECAKOMLD(emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA value) {
         if (kAHECAKOMLDBuilder_ == null) {
@@ -661,7 +661,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        */
       public Builder clearKAHECAKOMLD() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -674,7 +674,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
         return this;
       }
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        */
       public emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA.Builder getKAHECAKOMLDBuilder() {
         bitField0_ |= 0x00000001;
@@ -682,7 +682,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
         return internalGetKAHECAKOMLDFieldBuilder().getBuilder();
       }
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        */
       public emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOAOrBuilder getKAHECAKOMLDOrBuilder() {
         if (kAHECAKOMLDBuilder_ != null) {
@@ -693,7 +693,7 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
         }
       }
       /**
-       * <code>.ILFPMCGGMOA KAHECAKOMLD = 20000;</code>
+       * <code>.ILFPMCGGMOA KAHECAKOMLD = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA, emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOA.Builder, emu.grasscutter.net.proto.ILFPMCGGMOAOuterClass.ILFPMCGGMOAOrBuilder> 
@@ -958,12 +958,12 @@ public final class TeamEntityInfoOuterClass extends com.google.protobuf.Generate
   static {
     java.lang.String[] descriptorData = {
       "\n\024TeamEntityInfo.proto\032\032AbilitySyncState" +
-      "Info.proto\032\021ILFPMCGGMOA.proto\"\232\001\n\016TeamEn" +
-      "tityInfo\022#\n\013KAHECAKOMLD\030\240\234\001 \001(\0132\014.ILFPMC" +
-      "GGMOA\0220\n\021team_ability_info\030\014 \001(\0132\025.Abili" +
-      "tySyncStateInfo\022\026\n\016team_entity_id\030\010 \001(\r\022" +
-      "\031\n\021authority_peer_id\030\r \001(\rB\033\n\031emu.grassc" +
-      "utter.net.protob\006proto3"
+      "Info.proto\032\021ILFPMCGGMOA.proto\"\230\001\n\016TeamEn" +
+      "tityInfo\022!\n\013KAHECAKOMLD\030\007 \001(\0132\014.ILFPMCGG" +
+      "MOA\0220\n\021team_ability_info\030\014 \001(\0132\025.Ability" +
+      "SyncStateInfo\022\026\n\016team_entity_id\030\010 \001(\r\022\031\n" +
+      "\021authority_peer_id\030\r \001(\rB\033\n\031emu.grasscut" +
+      "ter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

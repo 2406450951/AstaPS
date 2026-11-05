@@ -112,7 +112,7 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
     int getSaveTime();
 
     /**
-     * <code>uint32 BHBJOKCFMPN = 20002;</code>
+     * <code>uint32 BHBJOKCFMPN = 10;</code>
      * @return The bHBJOKCFMPN.
      */
     int getBHBJOKCFMPN();
@@ -124,7 +124,7 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
     int getSlotId();
 
     /**
-     * <code>uint32 PNLPELDJLFL = 20003;</code>
+     * <code>uint32 PNLPELDJLFL = 7;</code>
      * @return The pNLPELDJLFL.
      */
     int getPNLPELDJLFL();
@@ -355,10 +355,10 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
       return saveTime_;
     }
 
-    public static final int BHBJOKCFMPN_FIELD_NUMBER = 20002;
+    public static final int BHBJOKCFMPN_FIELD_NUMBER = 10;
     private int bHBJOKCFMPN_ = 0;
     /**
-     * <code>uint32 BHBJOKCFMPN = 20002;</code>
+     * <code>uint32 BHBJOKCFMPN = 10;</code>
      * @return The bHBJOKCFMPN.
      */
     @java.lang.Override
@@ -377,10 +377,10 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
       return slotId_;
     }
 
-    public static final int PNLPELDJLFL_FIELD_NUMBER = 20003;
+    public static final int PNLPELDJLFL_FIELD_NUMBER = 7;
     private int pNLPELDJLFL_ = 0;
     /**
-     * <code>uint32 PNLPELDJLFL = 20003;</code>
+     * <code>uint32 PNLPELDJLFL = 7;</code>
      * @return The pNLPELDJLFL.
      */
     @java.lang.Override
@@ -420,8 +420,14 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
       if (saveTime_ != 0) {
         output.writeUInt32(6, saveTime_);
       }
+      if (pNLPELDJLFL_ != 0) {
+        output.writeUInt32(7, pNLPELDJLFL_);
+      }
       if (isLiked_ != false) {
         output.writeBool(8, isLiked_);
+      }
+      if (bHBJOKCFMPN_ != 0) {
+        output.writeUInt32(10, bHBJOKCFMPN_);
       }
       if (isStored_ != false) {
         output.writeBool(11, isStored_);
@@ -434,12 +440,6 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
       }
       if (kPEEGKCFFBA_ != false) {
         output.writeBool(20001, kPEEGKCFFBA_);
-      }
-      if (bHBJOKCFMPN_ != 0) {
-        output.writeUInt32(20002, bHBJOKCFMPN_);
-      }
-      if (pNLPELDJLFL_ != 0) {
-        output.writeUInt32(20003, pNLPELDJLFL_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -468,9 +468,17 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(6, saveTime_);
       }
+      if (pNLPELDJLFL_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(7, pNLPELDJLFL_);
+      }
       if (isLiked_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, isLiked_);
+      }
+      if (bHBJOKCFMPN_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(10, bHBJOKCFMPN_);
       }
       if (isStored_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -486,14 +494,6 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
       if (kPEEGKCFFBA_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20001, kPEEGKCFFBA_);
-      }
-      if (bHBJOKCFMPN_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20002, bHBJOKCFMPN_);
-      }
-      if (pNLPELDJLFL_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20003, pNLPELDJLFL_);
       }
       return size;
     }
@@ -934,11 +934,21 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000200;
                 break;
               } // case 48
+              case 56: {
+                pNLPELDJLFL_ = input.readUInt32();
+                bitField0_ |= 0x00001000;
+                break;
+              } // case 56
               case 64: {
                 isLiked_ = input.readBool();
                 bitField0_ |= 0x00000080;
                 break;
               } // case 64
+              case 80: {
+                bHBJOKCFMPN_ = input.readUInt32();
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 80
               case 88: {
                 isStored_ = input.readBool();
                 bitField0_ |= 0x00000100;
@@ -961,16 +971,6 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000040;
                 break;
               } // case 160008
-              case 160016: {
-                bHBJOKCFMPN_ = input.readUInt32();
-                bitField0_ |= 0x00000400;
-                break;
-              } // case 160016
-              case 160024: {
-                pNLPELDJLFL_ = input.readUInt32();
-                bitField0_ |= 0x00001000;
-                break;
-              } // case 160024
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1477,7 +1477,7 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
 
       private int bHBJOKCFMPN_ ;
       /**
-       * <code>uint32 BHBJOKCFMPN = 20002;</code>
+       * <code>uint32 BHBJOKCFMPN = 10;</code>
        * @return The bHBJOKCFMPN.
        */
       @java.lang.Override
@@ -1485,7 +1485,7 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
         return bHBJOKCFMPN_;
       }
       /**
-       * <code>uint32 BHBJOKCFMPN = 20002;</code>
+       * <code>uint32 BHBJOKCFMPN = 10;</code>
        * @param value The bHBJOKCFMPN to set.
        * @return This builder for chaining.
        */
@@ -1497,7 +1497,7 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 BHBJOKCFMPN = 20002;</code>
+       * <code>uint32 BHBJOKCFMPN = 10;</code>
        * @return This builder for chaining.
        */
       public Builder clearBHBJOKCFMPN() {
@@ -1541,7 +1541,7 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
 
       private int pNLPELDJLFL_ ;
       /**
-       * <code>uint32 PNLPELDJLFL = 20003;</code>
+       * <code>uint32 PNLPELDJLFL = 7;</code>
        * @return The pNLPELDJLFL.
        */
       @java.lang.Override
@@ -1549,7 +1549,7 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
         return pNLPELDJLFL_;
       }
       /**
-       * <code>uint32 PNLPELDJLFL = 20003;</code>
+       * <code>uint32 PNLPELDJLFL = 7;</code>
        * @param value The pNLPELDJLFL to set.
        * @return This builder for chaining.
        */
@@ -1561,7 +1561,7 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 PNLPELDJLFL = 20003;</code>
+       * <code>uint32 PNLPELDJLFL = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearPNLPELDJLFL() {
@@ -1637,16 +1637,16 @@ public final class UgcLanV5CardBriefInfo extends com.google.protobuf.GeneratedFi
   static {
     java.lang.String[] descriptorData = {
       "\n\034_UgcLanV5CardBriefInfo.proto\032\026_LanV5Ca" +
-      "rdSocial.proto\"\267\002\n\026_UgcLanV5CardBriefInf" +
+      "rdSocial.proto\"\263\002\n\026_UgcLanV5CardBriefInf" +
       "o\022!\n\006social\030\r \001(\0132\021._LanV5CardSocial\022\030\n\020" +
       "creator_nickname\030\003 \001(\t\022\025\n\013FOGGDOBPMJO\030\240\234" +
       "\001 \001(\t\022\020\n\010ugc_guid\030\005 \001(\004\022\023\n\013audit_state\030\002" +
       " \001(\r\022\024\n\014is_published\030\004 \001(\010\022\025\n\013KPEEGKCFFB" +
       "A\030\241\234\001 \001(\010\022\020\n\010is_liked\030\010 \001(\010\022\021\n\tis_stored" +
-      "\030\013 \001(\010\022\021\n\tsave_time\030\006 \001(\r\022\025\n\013BHBJOKCFMPN" +
-      "\030\242\234\001 \001(\r\022\017\n\007slot_id\030\001 \001(\r\022\025\n\013PNLPELDJLFL" +
-      "\030\243\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006p" +
-      "roto3"
+      "\030\013 \001(\010\022\021\n\tsave_time\030\006 \001(\r\022\023\n\013BHBJOKCFMPN" +
+      "\030\n \001(\r\022\017\n\007slot_id\030\001 \001(\r\022\023\n\013PNLPELDJLFL\030\007" +
+      " \001(\rB\033\n\031emu.grasscutter.net.protob\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

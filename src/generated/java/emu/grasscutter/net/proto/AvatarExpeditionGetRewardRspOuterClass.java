@@ -89,17 +89,17 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
         long key);
 
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 5;</code>
      * @return A list containing the aNAMNOCEICO.
      */
     java.util.List<java.lang.Integer> getANAMNOCEICOList();
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 5;</code>
      * @return The count of aNAMNOCEICO.
      */
     int getANAMNOCEICOCount();
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 5;</code>
      * @param index The index of the element to return.
      * @return The aNAMNOCEICO at the given index.
      */
@@ -287,12 +287,12 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
       return map.get(key);
     }
 
-    public static final int ANAMNOCEICO_FIELD_NUMBER = 20000;
+    public static final int ANAMNOCEICO_FIELD_NUMBER = 5;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList aNAMNOCEICO_ =
         emptyIntList();
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 5;</code>
      * @return A list containing the aNAMNOCEICO.
      */
     @java.lang.Override
@@ -301,14 +301,14 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
       return aNAMNOCEICO_;
     }
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 5;</code>
      * @return The count of aNAMNOCEICO.
      */
     public int getANAMNOCEICOCount() {
       return aNAMNOCEICO_.size();
     }
     /**
-     * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+     * <code>repeated int32 ANAMNOCEICO = 5;</code>
      * @param index The index of the element to return.
      * @return The aNAMNOCEICO at the given index.
      */
@@ -343,6 +343,13 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (getANAMNOCEICOList().size() > 0) {
+        output.writeUInt32NoTag(42);
+        output.writeUInt32NoTag(aNAMNOCEICOMemoizedSerializedSize);
+      }
+      for (int i = 0; i < aNAMNOCEICO_.size(); i++) {
+        output.writeInt32NoTag(aNAMNOCEICO_.getInt(i));
+      }
       com.google.protobuf.GeneratedMessage
         .serializeLongMapTo(
           output,
@@ -355,17 +362,24 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
       for (int i = 0; i < ExpeditionRewardList_.size(); i++) {
         output.writeMessage(14, ExpeditionRewardList_.get(i));
       }
-      if (getANAMNOCEICOList().size() > 0) {
-        output.writeUInt32NoTag(160002);
-        output.writeUInt32NoTag(aNAMNOCEICOMemoizedSerializedSize);
-      }
-      for (int i = 0; i < aNAMNOCEICO_.size(); i++) {
-        output.writeInt32NoTag(aNAMNOCEICO_.getInt(i));
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < aNAMNOCEICO_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(aNAMNOCEICO_.getInt(i));
+        }
+        size += dataSize;
+        if (!getANAMNOCEICOList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        aNAMNOCEICOMemoizedSerializedSize = dataSize;
+      }
       for (java.util.Map.Entry<java.lang.Long, emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo> entry
            : internalGetExpeditionInfoMap().getMap().entrySet()) {
         com.google.protobuf.MapEntry<java.lang.Long, emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo>
@@ -389,20 +403,6 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
             }
             size += 1 * count;
           }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < aNAMNOCEICO_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(aNAMNOCEICO_.getInt(i));
-        }
-        size += dataSize;
-        if (!getANAMNOCEICOList().isEmpty()) {
-          size += 3;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        aNAMNOCEICOMemoizedSerializedSize = dataSize;
-      }
       return size;
     }
     @java.lang.Override
@@ -760,6 +760,22 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
               case 0:
                 done = true;
                 break;
+              case 40: {
+                int v = input.readInt32();
+                ensureANAMNOCEICOIsMutable();
+                aNAMNOCEICO_.addInt(v);
+                break;
+              } // case 40
+              case 42: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureANAMNOCEICOIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  aNAMNOCEICO_.addInt(input.readInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 42
               case 74: {
                 com.google.protobuf.MapEntry<java.lang.Long, emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo>
                 expeditionInfoMap__ = input.readMessage(
@@ -787,22 +803,6 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
                 }
                 break;
               } // case 114
-              case 160000: {
-                int v = input.readInt32();
-                ensureANAMNOCEICOIsMutable();
-                aNAMNOCEICO_.addInt(v);
-                break;
-              } // case 160000
-              case 160002: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                ensureANAMNOCEICOIsMutable();
-                while (input.getBytesUntilLimit() > 0) {
-                  aNAMNOCEICO_.addInt(input.readInt32());
-                }
-                input.popLimit(limit);
-                break;
-              } // case 160002
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1216,7 +1216,7 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
         bitField0_ |= 0x00000004;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 5;</code>
        * @return A list containing the aNAMNOCEICO.
        */
       public java.util.List<java.lang.Integer>
@@ -1225,14 +1225,14 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
         return aNAMNOCEICO_;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 5;</code>
        * @return The count of aNAMNOCEICO.
        */
       public int getANAMNOCEICOCount() {
         return aNAMNOCEICO_.size();
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 5;</code>
        * @param index The index of the element to return.
        * @return The aNAMNOCEICO at the given index.
        */
@@ -1240,7 +1240,7 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
         return aNAMNOCEICO_.getInt(index);
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 5;</code>
        * @param index The index to set the value at.
        * @param value The aNAMNOCEICO to set.
        * @return This builder for chaining.
@@ -1255,7 +1255,7 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
         return this;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 5;</code>
        * @param value The aNAMNOCEICO to add.
        * @return This builder for chaining.
        */
@@ -1268,7 +1268,7 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
         return this;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 5;</code>
        * @param values The aNAMNOCEICO to add.
        * @return This builder for chaining.
        */
@@ -1282,7 +1282,7 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
         return this;
       }
       /**
-       * <code>repeated int32 ANAMNOCEICO = 20000;</code>
+       * <code>repeated int32 ANAMNOCEICO = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearANAMNOCEICO() {
@@ -1396,15 +1396,15 @@ emu.grasscutter.net.proto.AvatarExpeditionInfoOuterClass.AvatarExpeditionInfo de
     java.lang.String[] descriptorData = {
       "\n\"AvatarExpeditionGetRewardRsp.proto\032\032Av" +
       "atarExpeditionInfo.proto\032!_AvatarExpedit" +
-      "ionRewardInfo.proto\"\251\002\n\034AvatarExpedition" +
+      "ionRewardInfo.proto\"\247\002\n\034AvatarExpedition" +
       "GetRewardRsp\022=\n\027_expedition_reward_list\030" +
       "\016 \003(\0132\034._AvatarExpeditionRewardInfo\022Q\n\023e" +
       "xpedition_info_map\030\t \003(\01324.AvatarExpedit" +
-      "ionGetRewardRsp.ExpeditionInfoMapEntry\022\025" +
-      "\n\013ANAMNOCEICO\030\240\234\001 \003(\005\022\017\n\007retcode\030\013 \001(\005\032O" +
-      "\n\026ExpeditionInfoMapEntry\022\013\n\003key\030\001 \001(\004\022$\n" +
-      "\005value\030\002 \001(\0132\025.AvatarExpeditionInfo:\0028\001B" +
-      "\033\n\031emu.grasscutter.net.protob\006proto3"
+      "ionGetRewardRsp.ExpeditionInfoMapEntry\022\023" +
+      "\n\013ANAMNOCEICO\030\005 \003(\005\022\017\n\007retcode\030\013 \001(\005\032O\n\026" +
+      "ExpeditionInfoMapEntry\022\013\n\003key\030\001 \001(\004\022$\n\005v" +
+      "alue\030\002 \001(\0132\025.AvatarExpeditionInfo:\0028\001B\033\n" +
+      "\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

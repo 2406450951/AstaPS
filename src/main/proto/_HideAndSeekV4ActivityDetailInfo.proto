@@ -9,5 +9,5 @@ message _HideAndSeekV4ActivityDetailInfo {
   repeated uint32 BBKJJPHJADK = 20001;
   repeated uint32 KNDGADIAKME = 20002;
   repeated BCMGBIKCCFB EDECCPJFDAF = 20003;
-  bool LBCGNOOJDIC = 20004;
+  bool LBCGNOOJDIC = 13;
 }

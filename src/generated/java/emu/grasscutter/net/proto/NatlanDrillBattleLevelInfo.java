@@ -58,7 +58,7 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
     int getMOLLHFILBFO();
 
     /**
-     * <code>uint32 DEADDOKKEHM = 20002;</code>
+     * <code>uint32 DEADDOKKEHM = 7;</code>
      * @return The dEADDOKKEHM.
      */
     int getDEADDOKKEHM();
@@ -172,10 +172,10 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
       return mOLLHFILBFO_;
     }
 
-    public static final int DEADDOKKEHM_FIELD_NUMBER = 20002;
+    public static final int DEADDOKKEHM_FIELD_NUMBER = 7;
     private int dEADDOKKEHM_ = 0;
     /**
-     * <code>uint32 DEADDOKKEHM = 20002;</code>
+     * <code>uint32 DEADDOKKEHM = 7;</code>
      * @return The dEADDOKKEHM.
      */
     @java.lang.Override
@@ -233,14 +233,14 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
       if (isFinished_ != false) {
         output.writeBool(4, isFinished_);
       }
+      if (dEADDOKKEHM_ != 0) {
+        output.writeUInt32(7, dEADDOKKEHM_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(20000, getIANMIFHGOMJ());
       }
       if (mOLLHFILBFO_ != 0) {
         output.writeUInt32(20001, mOLLHFILBFO_);
-      }
-      if (dEADDOKKEHM_ != 0) {
-        output.writeUInt32(20002, dEADDOKKEHM_);
       }
       if (dHIFGDJPNCH_ != 0) {
         output.writeUInt32(20003, dHIFGDJPNCH_);
@@ -259,6 +259,10 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(4, isFinished_);
       }
+      if (dEADDOKKEHM_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(7, dEADDOKKEHM_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20000, getIANMIFHGOMJ());
@@ -266,10 +270,6 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
       if (mOLLHFILBFO_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20001, mOLLHFILBFO_);
-      }
-      if (dEADDOKKEHM_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20002, dEADDOKKEHM_);
       }
       if (dHIFGDJPNCH_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -623,6 +623,11 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000002;
                 break;
               } // case 32
+              case 56: {
+                dEADDOKKEHM_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 56
               case 160002: {
                 input.readMessage(
                     internalGetIANMIFHGOMJFieldBuilder().getBuilder(),
@@ -635,11 +640,6 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000004;
                 break;
               } // case 160008
-              case 160016: {
-                dEADDOKKEHM_ = input.readUInt32();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160016
               case 160024: {
                 dHIFGDJPNCH_ = input.readUInt32();
                 bitField0_ |= 0x00000010;
@@ -857,7 +857,7 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
 
       private int dEADDOKKEHM_ ;
       /**
-       * <code>uint32 DEADDOKKEHM = 20002;</code>
+       * <code>uint32 DEADDOKKEHM = 7;</code>
        * @return The dEADDOKKEHM.
        */
       @java.lang.Override
@@ -865,7 +865,7 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
         return dEADDOKKEHM_;
       }
       /**
-       * <code>uint32 DEADDOKKEHM = 20002;</code>
+       * <code>uint32 DEADDOKKEHM = 7;</code>
        * @param value The dEADDOKKEHM to set.
        * @return This builder for chaining.
        */
@@ -877,7 +877,7 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>uint32 DEADDOKKEHM = 20002;</code>
+       * <code>uint32 DEADDOKKEHM = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearDEADDOKKEHM() {
@@ -1049,13 +1049,13 @@ public final class NatlanDrillBattleLevelInfo extends com.google.protobuf.Genera
   static {
     java.lang.String[] descriptorData = {
       "\n!_NatlanDrillBattleLevelInfo.proto\032\021IPH" +
-      "FKFLNBGH.proto\"\312\001\n\033_NatlanDrillBattleLev" +
+      "FKFLNBGH.proto\"\310\001\n\033_NatlanDrillBattleLev" +
       "elInfo\022#\n\013IANMIFHGOMJ\030\240\234\001 \001(\0132\014.IPHFKFLN" +
       "BGH\022\023\n\013is_finished\030\004 \001(\010\022\025\n\013MOLLHFILBFO\030" +
-      "\241\234\001 \001(\r\022\025\n\013DEADDOKKEHM\030\242\234\001 \001(\r\022\025\n\013DHIFGD" +
-      "JPNCH\030\243\234\001 \001(\r\022\025\n\013KECOPPMCKBN\030\244\234\001 \001(\r\022\025\n\013" +
-      "LGKKNHDOBHE\030\245\234\001 \001(\rB\033\n\031emu.grasscutter.n" +
-      "et.protob\006proto3"
+      "\241\234\001 \001(\r\022\023\n\013DEADDOKKEHM\030\007 \001(\r\022\025\n\013DHIFGDJP" +
+      "NCH\030\243\234\001 \001(\r\022\025\n\013KECOPPMCKBN\030\244\234\001 \001(\r\022\025\n\013LG" +
+      "KKNHDOBHE\030\245\234\001 \001(\rB\033\n\031emu.grasscutter.net" +
+      ".protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

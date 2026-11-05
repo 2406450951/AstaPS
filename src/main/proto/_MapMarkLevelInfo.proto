@@ -5,5 +5,5 @@ option java_package = "emu.grasscutter.net.proto";
 import "_MapMarkRecord.proto";
 
 message _MapMarkLevelInfo {
-  repeated _MapMarkRecord _level_record_list = 20000;
+  repeated _MapMarkRecord _level_record_list = 10;
 }

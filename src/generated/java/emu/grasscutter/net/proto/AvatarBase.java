@@ -66,7 +66,7 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
     emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP getIDLLCHKCKLM();
 
     /**
-     * <code>bool KAJLCAPNCFA = 20002;</code>
+     * <code>bool KAJLCAPNCFA = 2;</code>
      * @return The kAJLCAPNCFA.
      */
     boolean getKAJLCAPNCFA();
@@ -180,10 +180,10 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
       return result == null ? emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP.UNRECOGNIZED : result;
     }
 
-    public static final int KAJLCAPNCFA_FIELD_NUMBER = 20002;
+    public static final int KAJLCAPNCFA_FIELD_NUMBER = 2;
     private boolean kAJLCAPNCFA_ = false;
     /**
-     * <code>bool KAJLCAPNCFA = 20002;</code>
+     * <code>bool KAJLCAPNCFA = 2;</code>
      * @return The kAJLCAPNCFA.
      */
     @java.lang.Override
@@ -216,14 +216,14 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (kAJLCAPNCFA_ != false) {
+        output.writeBool(2, kAJLCAPNCFA_);
+      }
       for (int i = 0; i < iOFBONMICEB_.size(); i++) {
         output.writeMessage(20000, iOFBONMICEB_.get(i));
       }
       if (iDLLCHKCKLM_ != emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP.JEOKDCIGCFP_BEYOND_ENUM_NONE.getNumber()) {
         output.writeEnum(20001, iDLLCHKCKLM_);
-      }
-      if (kAJLCAPNCFA_ != false) {
-        output.writeBool(20002, kAJLCAPNCFA_);
       }
       if (eAFGFOJNJMD_ != 0) {
         output.writeUInt32(20003, eAFGFOJNJMD_);
@@ -232,6 +232,10 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (kAJLCAPNCFA_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, kAJLCAPNCFA_);
+      }
 
           {
             final int count = iOFBONMICEB_.size();
@@ -244,10 +248,6 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
       if (iDLLCHKCKLM_ != emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP.JEOKDCIGCFP_BEYOND_ENUM_NONE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(20001, iDLLCHKCKLM_);
-      }
-      if (kAJLCAPNCFA_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20002, kAJLCAPNCFA_);
       }
       if (eAFGFOJNJMD_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -575,6 +575,11 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
+              case 16: {
+                kAJLCAPNCFA_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 16
               case 160002: {
                 emu.grasscutter.net.proto.EMCDNJLCAEBOuterClass.EMCDNJLCAEB m =
                     input.readMessage(
@@ -593,11 +598,6 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000002;
                 break;
               } // case 160008
-              case 160016: {
-                kAJLCAPNCFA_ = input.readBool();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160016
               case 160024: {
                 eAFGFOJNJMD_ = input.readUInt32();
                 bitField0_ |= 0x00000008;
@@ -908,7 +908,7 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
 
       private boolean kAJLCAPNCFA_ ;
       /**
-       * <code>bool KAJLCAPNCFA = 20002;</code>
+       * <code>bool KAJLCAPNCFA = 2;</code>
        * @return The kAJLCAPNCFA.
        */
       @java.lang.Override
@@ -916,7 +916,7 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
         return kAJLCAPNCFA_;
       }
       /**
-       * <code>bool KAJLCAPNCFA = 20002;</code>
+       * <code>bool KAJLCAPNCFA = 2;</code>
        * @param value The kAJLCAPNCFA to set.
        * @return This builder for chaining.
        */
@@ -928,7 +928,7 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>bool KAJLCAPNCFA = 20002;</code>
+       * <code>bool KAJLCAPNCFA = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearKAJLCAPNCFA() {
@@ -1036,11 +1036,11 @@ public final class AvatarBase extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\021_AvatarBase.proto\032\021EMCDNJLCAEB.proto\032\021" +
-      "JEOKDCIGCFP.proto\"\205\001\n\013_AvatarBase\022#\n\013IOF" +
+      "JEOKDCIGCFP.proto\"\203\001\n\013_AvatarBase\022#\n\013IOF" +
       "BONMICEB\030\240\234\001 \003(\0132\014.EMCDNJLCAEB\022#\n\013IDLLCH" +
-      "KCKLM\030\241\234\001 \001(\0162\014.JEOKDCIGCFP\022\025\n\013KAJLCAPNC" +
-      "FA\030\242\234\001 \001(\010\022\025\n\013EAFGFOJNJMD\030\243\234\001 \001(\rB\033\n\031emu" +
-      ".grasscutter.net.protob\006proto3"
+      "KCKLM\030\241\234\001 \001(\0162\014.JEOKDCIGCFP\022\023\n\013KAJLCAPNC" +
+      "FA\030\002 \001(\010\022\025\n\013EAFGFOJNJMD\030\243\234\001 \001(\rB\033\n\031emu.g" +
+      "rasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

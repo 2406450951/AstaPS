@@ -8,6 +8,6 @@ import "JEOKDCIGCFP.proto";
 message _AvatarBase {
   repeated EMCDNJLCAEB IOFBONMICEB = 20000;
   JEOKDCIGCFP IDLLCHKCKLM = 20001;
-  bool KAJLCAPNCFA = 20002;
+  bool KAJLCAPNCFA = 2;
   uint32 EAFGFOJNJMD = 20003;
 }

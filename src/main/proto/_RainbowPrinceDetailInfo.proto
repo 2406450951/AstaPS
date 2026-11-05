@@ -7,5 +7,5 @@ import "LBGHHNDLACN.proto";
 
 message _RainbowPrinceDetailInfo {
   repeated HEEIDHNNCDM NBALJIPCLAF = 20000;
-  repeated LBGHHNDLACN HGNLKDCGLBO = 20001;
+  repeated LBGHHNDLACN HGNLKDCGLBO = 2;
 }

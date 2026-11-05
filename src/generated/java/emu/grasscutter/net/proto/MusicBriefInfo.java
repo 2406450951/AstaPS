@@ -134,7 +134,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
     long getUgcGuid();
 
     /**
-     * <code>uint32 MLAJCIMGINA = 20001;</code>
+     * <code>uint32 MLAJCIMGINA = 1697;</code>
      * @return The mLAJCIMGINA.
      */
     int getMLAJCIMGINA();
@@ -170,7 +170,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
     int getSelfMaxScore();
 
     /**
-     * <code>uint32 PGHGCGNLNPG = 20003;</code>
+     * <code>uint32 PGHGCGNLNPG = 15;</code>
      * @return The pGHGCGNLNPG.
      */
     int getPGHGCGNLNPG();
@@ -200,7 +200,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
     int getMOIDOMCHPFG();
 
     /**
-     * <code>uint32 PNLPELDJLFL = 20006;</code>
+     * <code>uint32 PNLPELDJLFL = 13;</code>
      * @return The pNLPELDJLFL.
      */
     int getPNLPELDJLFL();
@@ -489,10 +489,10 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
       return ugcGuid_;
     }
 
-    public static final int MLAJCIMGINA_FIELD_NUMBER = 20001;
+    public static final int MLAJCIMGINA_FIELD_NUMBER = 1697;
     private int mLAJCIMGINA_ = 0;
     /**
-     * <code>uint32 MLAJCIMGINA = 20001;</code>
+     * <code>uint32 MLAJCIMGINA = 1697;</code>
      * @return The mLAJCIMGINA.
      */
     @java.lang.Override
@@ -555,10 +555,10 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
       return selfMaxScore_;
     }
 
-    public static final int PGHGCGNLNPG_FIELD_NUMBER = 20003;
+    public static final int PGHGCGNLNPG_FIELD_NUMBER = 15;
     private int pGHGCGNLNPG_ = 0;
     /**
-     * <code>uint32 PGHGCGNLNPG = 20003;</code>
+     * <code>uint32 PGHGCGNLNPG = 15;</code>
      * @return The pGHGCGNLNPG.
      */
     @java.lang.Override
@@ -610,10 +610,10 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
       return mOIDOMCHPFG_;
     }
 
-    public static final int PNLPELDJLFL_FIELD_NUMBER = 20006;
+    public static final int PNLPELDJLFL_FIELD_NUMBER = 13;
     private int pNLPELDJLFL_ = 0;
     /**
-     * <code>uint32 PNLPELDJLFL = 20006;</code>
+     * <code>uint32 PNLPELDJLFL = 13;</code>
      * @return The pNLPELDJLFL.
      */
     @java.lang.Override
@@ -663,8 +663,14 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
       if (maxScore_ != 0) {
         output.writeUInt32(12, maxScore_);
       }
+      if (pNLPELDJLFL_ != 0) {
+        output.writeUInt32(13, pNLPELDJLFL_);
+      }
       if (isPsnPlatform_ != false) {
         output.writeBool(14, isPsnPlatform_);
+      }
+      if (pGHGCGNLNPG_ != 0) {
+        output.writeUInt32(15, pGHGCGNLNPG_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(psnId_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 110, psnId_);
@@ -682,6 +688,9 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(Xuid_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 879, Xuid_);
       }
+      if (mLAJCIMGINA_ != 0) {
+        output.writeUInt32(1697, mLAJCIMGINA_);
+      }
       if (getMELMIHMGOHFList().size() > 0) {
         output.writeUInt32NoTag(160002);
         output.writeUInt32NoTag(mELMIHMGOHFMemoizedSerializedSize);
@@ -689,23 +698,14 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
       for (int i = 0; i < mELMIHMGOHF_.size(); i++) {
         output.writeUInt32NoTag(mELMIHMGOHF_.getInt(i));
       }
-      if (mLAJCIMGINA_ != 0) {
-        output.writeUInt32(20001, mLAJCIMGINA_);
-      }
       if (selfMaxScore_ != 0) {
         output.writeUInt32(20002, selfMaxScore_);
-      }
-      if (pGHGCGNLNPG_ != 0) {
-        output.writeUInt32(20003, pGHGCGNLNPG_);
       }
       if (noteCount_ != 0) {
         output.writeUInt32(20004, noteCount_);
       }
       if (mOIDOMCHPFG_ != 0) {
         output.writeUInt32(20005, mOIDOMCHPFG_);
-      }
-      if (pNLPELDJLFL_ != 0) {
-        output.writeUInt32(20006, pNLPELDJLFL_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -746,9 +746,17 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(12, maxScore_);
       }
+      if (pNLPELDJLFL_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(13, pNLPELDJLFL_);
+      }
       if (isPsnPlatform_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(14, isPsnPlatform_);
+      }
+      if (pGHGCGNLNPG_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(15, pGHGCGNLNPG_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(psnId_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(110, psnId_);
@@ -774,6 +782,10 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(Xuid_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(879, Xuid_);
       }
+      if (mLAJCIMGINA_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1697, mLAJCIMGINA_);
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < mELMIHMGOHF_.size(); i++) {
@@ -788,17 +800,9 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
         }
         mELMIHMGOHFMemoizedSerializedSize = dataSize;
       }
-      if (mLAJCIMGINA_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20001, mLAJCIMGINA_);
-      }
       if (selfMaxScore_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20002, selfMaxScore_);
-      }
-      if (pGHGCGNLNPG_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20003, pGHGCGNLNPG_);
       }
       if (noteCount_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -807,10 +811,6 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
       if (mOIDOMCHPFG_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20005, mOIDOMCHPFG_);
-      }
-      if (pNLPELDJLFL_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20006, pNLPELDJLFL_);
       }
       return size;
     }
@@ -1380,11 +1380,21 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000040;
                 break;
               } // case 96
+              case 104: {
+                pNLPELDJLFL_ = input.readUInt32();
+                bitField0_ |= 0x00100000;
+                break;
+              } // case 104
               case 112: {
                 isPsnPlatform_ = input.readBool();
                 bitField0_ |= 0x00000800;
                 break;
               } // case 112
+              case 120: {
+                pGHGCGNLNPG_ = input.readUInt32();
+                bitField0_ |= 0x00008000;
+                break;
+              } // case 120
               case 882: {
                 psnId_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
@@ -1416,6 +1426,11 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 7034
+              case 13576: {
+                mLAJCIMGINA_ = input.readUInt32();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 13576
               case 160000: {
                 int v = input.readUInt32();
                 ensureMELMIHMGOHFIsMutable();
@@ -1432,21 +1447,11 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
                 input.popLimit(limit);
                 break;
               } // case 160002
-              case 160008: {
-                mLAJCIMGINA_ = input.readUInt32();
-                bitField0_ |= 0x00000200;
-                break;
-              } // case 160008
               case 160016: {
                 selfMaxScore_ = input.readUInt32();
                 bitField0_ |= 0x00004000;
                 break;
               } // case 160016
-              case 160024: {
-                pGHGCGNLNPG_ = input.readUInt32();
-                bitField0_ |= 0x00008000;
-                break;
-              } // case 160024
               case 160032: {
                 noteCount_ = input.readUInt32();
                 bitField0_ |= 0x00040000;
@@ -1457,11 +1462,6 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00080000;
                 break;
               } // case 160040
-              case 160048: {
-                pNLPELDJLFL_ = input.readUInt32();
-                bitField0_ |= 0x00100000;
-                break;
-              } // case 160048
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2080,7 +2080,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
 
       private int mLAJCIMGINA_ ;
       /**
-       * <code>uint32 MLAJCIMGINA = 20001;</code>
+       * <code>uint32 MLAJCIMGINA = 1697;</code>
        * @return The mLAJCIMGINA.
        */
       @java.lang.Override
@@ -2088,7 +2088,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
         return mLAJCIMGINA_;
       }
       /**
-       * <code>uint32 MLAJCIMGINA = 20001;</code>
+       * <code>uint32 MLAJCIMGINA = 1697;</code>
        * @param value The mLAJCIMGINA to set.
        * @return This builder for chaining.
        */
@@ -2100,7 +2100,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 MLAJCIMGINA = 20001;</code>
+       * <code>uint32 MLAJCIMGINA = 1697;</code>
        * @return This builder for chaining.
        */
       public Builder clearMLAJCIMGINA() {
@@ -2272,7 +2272,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
 
       private int pGHGCGNLNPG_ ;
       /**
-       * <code>uint32 PGHGCGNLNPG = 20003;</code>
+       * <code>uint32 PGHGCGNLNPG = 15;</code>
        * @return The pGHGCGNLNPG.
        */
       @java.lang.Override
@@ -2280,7 +2280,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
         return pGHGCGNLNPG_;
       }
       /**
-       * <code>uint32 PGHGCGNLNPG = 20003;</code>
+       * <code>uint32 PGHGCGNLNPG = 15;</code>
        * @param value The pGHGCGNLNPG to set.
        * @return This builder for chaining.
        */
@@ -2292,7 +2292,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 PGHGCGNLNPG = 20003;</code>
+       * <code>uint32 PGHGCGNLNPG = 15;</code>
        * @return This builder for chaining.
        */
       public Builder clearPGHGCGNLNPG() {
@@ -2432,7 +2432,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
 
       private int pNLPELDJLFL_ ;
       /**
-       * <code>uint32 PNLPELDJLFL = 20006;</code>
+       * <code>uint32 PNLPELDJLFL = 13;</code>
        * @return The pNLPELDJLFL.
        */
       @java.lang.Override
@@ -2440,7 +2440,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
         return pNLPELDJLFL_;
       }
       /**
-       * <code>uint32 PNLPELDJLFL = 20006;</code>
+       * <code>uint32 PNLPELDJLFL = 13;</code>
        * @param value The pNLPELDJLFL to set.
        * @return This builder for chaining.
        */
@@ -2452,7 +2452,7 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>uint32 PNLPELDJLFL = 20006;</code>
+       * <code>uint32 PNLPELDJLFL = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearPNLPELDJLFL() {
@@ -2528,20 +2528,20 @@ public final class MusicBriefInfo extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\025_MusicBriefInfo.proto\032\026_MusicGameSocia" +
-      "l.proto\"\371\003\n\017_MusicBriefInfo\022\016\n\005_xuid\030\357\006 " +
+      "l.proto\"\364\003\n\017_MusicBriefInfo\022\016\n\005_xuid\030\357\006 " +
       "\001(\t\022\016\n\006psn_id\030n \001(\t\022!\n\006social\030\004 \001(\0132\021._M" +
       "usicGameSocial\022\030\n\020creator_nickname\030\007 \001(\t" +
       "\022\"\n\031_beatmap_category_id_list\030\336\003 \003(\r\022\025\n\013" +
       "MELMIHMGOHF\030\240\234\001 \003(\r\022\021\n\tmax_score\030\014 \001(\r\022\034" +
       "\n\023_beatmap_entry_type\030\207\006 \001(\r\022\020\n\010ugc_guid" +
-      "\030\003 \001(\004\022\025\n\013MLAJCIMGINA\030\241\234\001 \001(\r\022\030\n\020_is_all" +
-      "ow_import\030\010 \001(\010\022\027\n\017is_psn_platform\030\016 \001(\010" +
-      "\022\021\n\tis_stored\030\t \001(\010\022\021\n\tis_played\030\013 \001(\010\022\030" +
-      "\n\016self_max_score\030\242\234\001 \001(\r\022\025\n\013PGHGCGNLNPG\030" +
-      "\243\234\001 \001(\r\022\020\n\010music_id\030\005 \001(\r\022\024\n\014publish_tim" +
-      "e\030\006 \001(\r\022\024\n\nnote_count\030\244\234\001 \001(\r\022\025\n\013MOIDOMC" +
-      "HPFG\030\245\234\001 \001(\r\022\025\n\013PNLPELDJLFL\030\246\234\001 \001(\rB\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "\030\003 \001(\004\022\024\n\013MLAJCIMGINA\030\241\r \001(\r\022\030\n\020_is_allo" +
+      "w_import\030\010 \001(\010\022\027\n\017is_psn_platform\030\016 \001(\010\022" +
+      "\021\n\tis_stored\030\t \001(\010\022\021\n\tis_played\030\013 \001(\010\022\030\n" +
+      "\016self_max_score\030\242\234\001 \001(\r\022\023\n\013PGHGCGNLNPG\030\017" +
+      " \001(\r\022\020\n\010music_id\030\005 \001(\r\022\024\n\014publish_time\030\006" +
+      " \001(\r\022\024\n\nnote_count\030\244\234\001 \001(\r\022\025\n\013MOIDOMCHPF" +
+      "G\030\245\234\001 \001(\r\022\023\n\013PNLPELDJLFL\030\r \001(\rB\033\n\031emu.gr" +
+      "asscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

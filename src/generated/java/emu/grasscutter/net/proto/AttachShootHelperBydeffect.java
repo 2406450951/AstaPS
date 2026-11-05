@@ -31,17 +31,17 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
      * @return Whether the eHOGLGOAMGJ field is set.
      */
     boolean hasEHOGLGOAMGJ();
     /**
-     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
      * @return The eHOGLGOAMGJ.
      */
     emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO getEHOGLGOAMGJ();
     /**
-     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
      */
     emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFOOrBuilder getEHOGLGOAMGJOrBuilder();
 
@@ -76,30 +76,30 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
     emu.grasscutter.net.proto.HHEDHCFPEKMOuterClass.HHEDHCFPEKMOrBuilder getNNPNDCFIAMAOrBuilder();
 
     /**
-     * <code>uint32 MKFPOCEDFJH = 20003;</code>
+     * <code>uint32 MKFPOCEDFJH = 1;</code>
      * @return The mKFPOCEDFJH.
      */
     int getMKFPOCEDFJH();
 
     /**
-     * <code>bool MCGOLBFHCJI = 20004;</code>
+     * <code>bool MCGOLBFHCJI = 9;</code>
      * @return The mCGOLBFHCJI.
      */
     boolean getMCGOLBFHCJI();
 
     /**
-     * <code>float OLIPGCONBJC = 20005;</code>
+     * <code>float OLIPGCONBJC = 4;</code>
      * @return The oLIPGCONBJC.
      */
     float getOLIPGCONBJC();
 
     /**
-     * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+     * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
      * @return The enum numeric value on the wire for jILIGGDCLDH.
      */
     int getJILIGGDCLDHValue();
     /**
-     * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+     * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
      * @return The jILIGGDCLDH.
      */
     emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP getJILIGGDCLDH();
@@ -160,10 +160,10 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
     }
 
     private int bitField0_;
-    public static final int EHOGLGOAMGJ_FIELD_NUMBER = 20000;
+    public static final int EHOGLGOAMGJ_FIELD_NUMBER = 8;
     private emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO eHOGLGOAMGJ_;
     /**
-     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
      * @return Whether the eHOGLGOAMGJ field is set.
      */
     @java.lang.Override
@@ -171,7 +171,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
      * @return The eHOGLGOAMGJ.
      */
     @java.lang.Override
@@ -179,7 +179,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       return eHOGLGOAMGJ_ == null ? emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO.getDefaultInstance() : eHOGLGOAMGJ_;
     }
     /**
-     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+     * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFOOrBuilder getEHOGLGOAMGJOrBuilder() {
@@ -238,10 +238,10 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       return nNPNDCFIAMA_ == null ? emu.grasscutter.net.proto.HHEDHCFPEKMOuterClass.HHEDHCFPEKM.getDefaultInstance() : nNPNDCFIAMA_;
     }
 
-    public static final int MKFPOCEDFJH_FIELD_NUMBER = 20003;
+    public static final int MKFPOCEDFJH_FIELD_NUMBER = 1;
     private int mKFPOCEDFJH_ = 0;
     /**
-     * <code>uint32 MKFPOCEDFJH = 20003;</code>
+     * <code>uint32 MKFPOCEDFJH = 1;</code>
      * @return The mKFPOCEDFJH.
      */
     @java.lang.Override
@@ -249,10 +249,10 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       return mKFPOCEDFJH_;
     }
 
-    public static final int MCGOLBFHCJI_FIELD_NUMBER = 20004;
+    public static final int MCGOLBFHCJI_FIELD_NUMBER = 9;
     private boolean mCGOLBFHCJI_ = false;
     /**
-     * <code>bool MCGOLBFHCJI = 20004;</code>
+     * <code>bool MCGOLBFHCJI = 9;</code>
      * @return The mCGOLBFHCJI.
      */
     @java.lang.Override
@@ -260,10 +260,10 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       return mCGOLBFHCJI_;
     }
 
-    public static final int OLIPGCONBJC_FIELD_NUMBER = 20005;
+    public static final int OLIPGCONBJC_FIELD_NUMBER = 4;
     private float oLIPGCONBJC_ = 0F;
     /**
-     * <code>float OLIPGCONBJC = 20005;</code>
+     * <code>float OLIPGCONBJC = 4;</code>
      * @return The oLIPGCONBJC.
      */
     @java.lang.Override
@@ -271,17 +271,17 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       return oLIPGCONBJC_;
     }
 
-    public static final int JILIGGDCLDH_FIELD_NUMBER = 20006;
+    public static final int JILIGGDCLDH_FIELD_NUMBER = 5;
     private int jILIGGDCLDH_ = 0;
     /**
-     * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+     * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
      * @return The enum numeric value on the wire for jILIGGDCLDH.
      */
     @java.lang.Override public int getJILIGGDCLDHValue() {
       return jILIGGDCLDH_;
     }
     /**
-     * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+     * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
      * @return The jILIGGDCLDH.
      */
     @java.lang.Override public emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP getJILIGGDCLDH() {
@@ -325,26 +325,26 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (mKFPOCEDFJH_ != 0) {
+        output.writeUInt32(1, mKFPOCEDFJH_);
+      }
+      if (java.lang.Float.floatToRawIntBits(oLIPGCONBJC_) != 0) {
+        output.writeFloat(4, oLIPGCONBJC_);
+      }
+      if (jILIGGDCLDH_ != emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP.JEOKDCIGCFP_BEYOND_ENUM_NONE.getNumber()) {
+        output.writeEnum(5, jILIGGDCLDH_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getEHOGLGOAMGJ());
+        output.writeMessage(8, getEHOGLGOAMGJ());
+      }
+      if (mCGOLBFHCJI_ != false) {
+        output.writeBool(9, mCGOLBFHCJI_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(20001, getNGLCFKKJGFJ());
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         output.writeMessage(20002, getNNPNDCFIAMA());
-      }
-      if (mKFPOCEDFJH_ != 0) {
-        output.writeUInt32(20003, mKFPOCEDFJH_);
-      }
-      if (mCGOLBFHCJI_ != false) {
-        output.writeBool(20004, mCGOLBFHCJI_);
-      }
-      if (java.lang.Float.floatToRawIntBits(oLIPGCONBJC_) != 0) {
-        output.writeFloat(20005, oLIPGCONBJC_);
-      }
-      if (jILIGGDCLDH_ != emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP.JEOKDCIGCFP_BEYOND_ENUM_NONE.getNumber()) {
-        output.writeEnum(20006, jILIGGDCLDH_);
       }
       if (java.lang.Float.floatToRawIntBits(fCKFDIPLOOP_) != 0) {
         output.writeFloat(20007, fCKFDIPLOOP_);
@@ -356,9 +356,25 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (mKFPOCEDFJH_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, mKFPOCEDFJH_);
+      }
+      if (java.lang.Float.floatToRawIntBits(oLIPGCONBJC_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(4, oLIPGCONBJC_);
+      }
+      if (jILIGGDCLDH_ != emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP.JEOKDCIGCFP_BEYOND_ENUM_NONE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(5, jILIGGDCLDH_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getEHOGLGOAMGJ());
+          .computeMessageSize(8, getEHOGLGOAMGJ());
+      }
+      if (mCGOLBFHCJI_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, mCGOLBFHCJI_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -367,22 +383,6 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20002, getNNPNDCFIAMA());
-      }
-      if (mKFPOCEDFJH_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20003, mKFPOCEDFJH_);
-      }
-      if (mCGOLBFHCJI_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20004, mCGOLBFHCJI_);
-      }
-      if (java.lang.Float.floatToRawIntBits(oLIPGCONBJC_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(20005, oLIPGCONBJC_);
-      }
-      if (jILIGGDCLDH_ != emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP.JEOKDCIGCFP_BEYOND_ENUM_NONE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(20006, jILIGGDCLDH_);
       }
       if (java.lang.Float.floatToRawIntBits(fCKFDIPLOOP_) != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -780,13 +780,33 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 8: {
+                mKFPOCEDFJH_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 8
+              case 37: {
+                oLIPGCONBJC_ = input.readFloat();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 37
+              case 40: {
+                jILIGGDCLDH_ = input.readEnum();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 40
+              case 66: {
                 input.readMessage(
                     internalGetEHOGLGOAMGJFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 66
+              case 72: {
+                mCGOLBFHCJI_ = input.readBool();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 72
               case 160010: {
                 input.readMessage(
                     internalGetNGLCFKKJGFJFieldBuilder().getBuilder(),
@@ -801,26 +821,6 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000004;
                 break;
               } // case 160018
-              case 160024: {
-                mKFPOCEDFJH_ = input.readUInt32();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 160024
-              case 160032: {
-                mCGOLBFHCJI_ = input.readBool();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160032
-              case 160045: {
-                oLIPGCONBJC_ = input.readFloat();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160045
-              case 160048: {
-                jILIGGDCLDH_ = input.readEnum();
-                bitField0_ |= 0x00000040;
-                break;
-              } // case 160048
               case 160061: {
                 fCKFDIPLOOP_ = input.readFloat();
                 bitField0_ |= 0x00000080;
@@ -852,14 +852,14 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO, emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO.Builder, emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFOOrBuilder> eHOGLGOAMGJBuilder_;
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        * @return Whether the eHOGLGOAMGJ field is set.
        */
       public boolean hasEHOGLGOAMGJ() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        * @return The eHOGLGOAMGJ.
        */
       public emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO getEHOGLGOAMGJ() {
@@ -870,7 +870,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         }
       }
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        */
       public Builder setEHOGLGOAMGJ(emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO value) {
         if (eHOGLGOAMGJBuilder_ == null) {
@@ -884,7 +884,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        */
       public Builder setEHOGLGOAMGJ(
           emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO.Builder builderForValue) {
@@ -898,7 +898,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        */
       public Builder mergeEHOGLGOAMGJ(emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO value) {
         if (eHOGLGOAMGJBuilder_ == null) {
@@ -919,7 +919,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        */
       public Builder clearEHOGLGOAMGJ() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -932,7 +932,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        */
       public emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO.Builder getEHOGLGOAMGJBuilder() {
         bitField0_ |= 0x00000001;
@@ -940,7 +940,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return internalGetEHOGLGOAMGJFieldBuilder().getBuilder();
       }
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        */
       public emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFOOrBuilder getEHOGLGOAMGJOrBuilder() {
         if (eHOGLGOAMGJBuilder_ != null) {
@@ -951,7 +951,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         }
       }
       /**
-       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 20000;</code>
+       * <code>.PGDMAIHKGFO EHOGLGOAMGJ = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO, emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFO.Builder, emu.grasscutter.net.proto.PGDMAIHKGFOOuterClass.PGDMAIHKGFOOrBuilder> 
@@ -1207,7 +1207,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
 
       private int mKFPOCEDFJH_ ;
       /**
-       * <code>uint32 MKFPOCEDFJH = 20003;</code>
+       * <code>uint32 MKFPOCEDFJH = 1;</code>
        * @return The mKFPOCEDFJH.
        */
       @java.lang.Override
@@ -1215,7 +1215,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return mKFPOCEDFJH_;
       }
       /**
-       * <code>uint32 MKFPOCEDFJH = 20003;</code>
+       * <code>uint32 MKFPOCEDFJH = 1;</code>
        * @param value The mKFPOCEDFJH to set.
        * @return This builder for chaining.
        */
@@ -1227,7 +1227,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>uint32 MKFPOCEDFJH = 20003;</code>
+       * <code>uint32 MKFPOCEDFJH = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearMKFPOCEDFJH() {
@@ -1239,7 +1239,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
 
       private boolean mCGOLBFHCJI_ ;
       /**
-       * <code>bool MCGOLBFHCJI = 20004;</code>
+       * <code>bool MCGOLBFHCJI = 9;</code>
        * @return The mCGOLBFHCJI.
        */
       @java.lang.Override
@@ -1247,7 +1247,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return mCGOLBFHCJI_;
       }
       /**
-       * <code>bool MCGOLBFHCJI = 20004;</code>
+       * <code>bool MCGOLBFHCJI = 9;</code>
        * @param value The mCGOLBFHCJI to set.
        * @return This builder for chaining.
        */
@@ -1259,7 +1259,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>bool MCGOLBFHCJI = 20004;</code>
+       * <code>bool MCGOLBFHCJI = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearMCGOLBFHCJI() {
@@ -1271,7 +1271,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
 
       private float oLIPGCONBJC_ ;
       /**
-       * <code>float OLIPGCONBJC = 20005;</code>
+       * <code>float OLIPGCONBJC = 4;</code>
        * @return The oLIPGCONBJC.
        */
       @java.lang.Override
@@ -1279,7 +1279,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return oLIPGCONBJC_;
       }
       /**
-       * <code>float OLIPGCONBJC = 20005;</code>
+       * <code>float OLIPGCONBJC = 4;</code>
        * @param value The oLIPGCONBJC to set.
        * @return This builder for chaining.
        */
@@ -1291,7 +1291,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>float OLIPGCONBJC = 20005;</code>
+       * <code>float OLIPGCONBJC = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearOLIPGCONBJC() {
@@ -1303,14 +1303,14 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
 
       private int jILIGGDCLDH_ = 0;
       /**
-       * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+       * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
        * @return The enum numeric value on the wire for jILIGGDCLDH.
        */
       @java.lang.Override public int getJILIGGDCLDHValue() {
         return jILIGGDCLDH_;
       }
       /**
-       * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+       * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
        * @param value The enum numeric value on the wire for jILIGGDCLDH to set.
        * @return This builder for chaining.
        */
@@ -1321,7 +1321,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+       * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
        * @return The jILIGGDCLDH.
        */
       @java.lang.Override
@@ -1330,7 +1330,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return result == null ? emu.grasscutter.net.proto.JEOKDCIGCFPOuterClass.JEOKDCIGCFP.UNRECOGNIZED : result;
       }
       /**
-       * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+       * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
        * @param value The jILIGGDCLDH to set.
        * @throws IllegalArgumentException if UNRECOGNIZED is provided.
        * @return This builder for chaining.
@@ -1343,7 +1343,7 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>.JEOKDCIGCFP JILIGGDCLDH = 20006;</code>
+       * <code>.JEOKDCIGCFP JILIGGDCLDH = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearJILIGGDCLDH() {
@@ -1484,15 +1484,15 @@ public final class AttachShootHelperBydeffect extends com.google.protobuf.Genera
     java.lang.String[] descriptorData = {
       "\n!_AttachShootHelperBydeffect.proto\032\021HHE" +
       "DHCFPEKM.proto\032\021JEOKDCIGCFP.proto\032\021PGDMA" +
-      "IHKGFO.proto\"\244\002\n\033_AttachShootHelperBydef" +
-      "fect\022#\n\013EHOGLGOAMGJ\030\240\234\001 \001(\0132\014.PGDMAIHKGF" +
-      "O\022#\n\013NGLCFKKJGFJ\030\241\234\001 \001(\0132\014.HHEDHCFPEKM\022#" +
-      "\n\013NNPNDCFIAMA\030\242\234\001 \001(\0132\014.HHEDHCFPEKM\022\025\n\013M" +
-      "KFPOCEDFJH\030\243\234\001 \001(\r\022\025\n\013MCGOLBFHCJI\030\244\234\001 \001(" +
-      "\010\022\025\n\013OLIPGCONBJC\030\245\234\001 \001(\002\022#\n\013JILIGGDCLDH\030" +
-      "\246\234\001 \001(\0162\014.JEOKDCIGCFP\022\025\n\013FCKFDIPLOOP\030\247\234\001" +
-      " \001(\002\022\025\n\013GNIHLHPHBAI\030\250\234\001 \001(\002B\033\n\031emu.grass" +
-      "cutter.net.protob\006proto3"
+      "IHKGFO.proto\"\232\002\n\033_AttachShootHelperBydef" +
+      "fect\022!\n\013EHOGLGOAMGJ\030\010 \001(\0132\014.PGDMAIHKGFO\022" +
+      "#\n\013NGLCFKKJGFJ\030\241\234\001 \001(\0132\014.HHEDHCFPEKM\022#\n\013" +
+      "NNPNDCFIAMA\030\242\234\001 \001(\0132\014.HHEDHCFPEKM\022\023\n\013MKF" +
+      "POCEDFJH\030\001 \001(\r\022\023\n\013MCGOLBFHCJI\030\t \001(\010\022\023\n\013O" +
+      "LIPGCONBJC\030\004 \001(\002\022!\n\013JILIGGDCLDH\030\005 \001(\0162\014." +
+      "JEOKDCIGCFP\022\025\n\013FCKFDIPLOOP\030\247\234\001 \001(\002\022\025\n\013GN" +
+      "IHLHPHBAI\030\250\234\001 \001(\002B\033\n\031emu.grasscutter.net" +
+      ".protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

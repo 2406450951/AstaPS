@@ -167,7 +167,7 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
     int getMGFHHOPDDKE();
 
     /**
-     * <code>uint32 MLAJCIMGINA = 20008;</code>
+     * <code>uint32 MLAJCIMGINA = 1;</code>
      * @return The mLAJCIMGINA.
      */
     int getMLAJCIMGINA();
@@ -466,10 +466,10 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
       return mGFHHOPDDKE_;
     }
 
-    public static final int MLAJCIMGINA_FIELD_NUMBER = 20008;
+    public static final int MLAJCIMGINA_FIELD_NUMBER = 1;
     private int mLAJCIMGINA_ = 0;
     /**
-     * <code>uint32 MLAJCIMGINA = 20008;</code>
+     * <code>uint32 MLAJCIMGINA = 1;</code>
      * @return The mLAJCIMGINA.
      */
     @java.lang.Override
@@ -503,6 +503,9 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (mLAJCIMGINA_ != 0) {
+        output.writeUInt32(1, mLAJCIMGINA_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(13, getSetting());
       }
@@ -550,9 +553,6 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
       if (mGFHHOPDDKE_ != 0) {
         output.writeUInt32(20007, mGFHHOPDDKE_);
       }
-      if (mLAJCIMGINA_ != 0) {
-        output.writeUInt32(20008, mLAJCIMGINA_);
-      }
       if (jHMFHOECCLH_ != 0) {
         output.writeUInt32(20009, jHMFHOECCLH_);
       }
@@ -560,6 +560,10 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (mLAJCIMGINA_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, mLAJCIMGINA_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, getSetting());
@@ -650,10 +654,6 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
       if (mGFHHOPDDKE_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20007, mGFHHOPDDKE_);
-      }
-      if (mLAJCIMGINA_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20008, mLAJCIMGINA_);
       }
       if (jHMFHOECCLH_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -1135,6 +1135,11 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
               case 0:
                 done = true;
                 break;
+              case 8: {
+                mLAJCIMGINA_ = input.readUInt32();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 8
               case 106: {
                 input.readMessage(
                     internalGetSettingFieldBuilder().getBuilder(),
@@ -1245,11 +1250,6 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
                 bitField0_ |= 0x00000100;
                 break;
               } // case 160056
-              case 160064: {
-                mLAJCIMGINA_ = input.readUInt32();
-                bitField0_ |= 0x00000200;
-                break;
-              } // case 160064
               case 160072: {
                 jHMFHOECCLH_ = input.readUInt32();
                 bitField0_ |= 0x00000400;
@@ -2111,7 +2111,7 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
 
       private int mLAJCIMGINA_ ;
       /**
-       * <code>uint32 MLAJCIMGINA = 20008;</code>
+       * <code>uint32 MLAJCIMGINA = 1;</code>
        * @return The mLAJCIMGINA.
        */
       @java.lang.Override
@@ -2119,7 +2119,7 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
         return mLAJCIMGINA_;
       }
       /**
-       * <code>uint32 MLAJCIMGINA = 20008;</code>
+       * <code>uint32 MLAJCIMGINA = 1;</code>
        * @param value The mLAJCIMGINA to set.
        * @return This builder for chaining.
        */
@@ -2131,7 +2131,7 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
         return this;
       }
       /**
-       * <code>uint32 MLAJCIMGINA = 20008;</code>
+       * <code>uint32 MLAJCIMGINA = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearMLAJCIMGINA() {
@@ -2239,16 +2239,16 @@ public final class MusicGameBookAllDataNotify extends com.google.protobuf.Genera
   static {
     java.lang.String[] descriptorData = {
       "\n!_MusicGameBookAllDataNotify.proto\032\021BDO" +
-      "KHMKLJOM.proto\032\021HALAGNDHLFK.proto\"\266\002\n\033_M" +
+      "KHMKLJOM.proto\032\021HALAGNDHLFK.proto\"\264\002\n\033_M" +
       "usicGameBookAllDataNotify\022\025\n\013LLMELMLCLOE" +
       "\030\240\234\001 \003(\r\022\025\n\013CDDGLKHJJAL\030\241\234\001 \003(\r\022\025\n\013HALON" +
       "GEGOEJ\030\242\234\001 \003(\r\022#\n\013DLOAIHJHANF\030\243\234\001 \003(\0132\014." +
       "HALAGNDHLFK\022\033\n\021push_tips_id_list\030\244\234\001 \003(\r" +
       "\022\025\n\013DHDNMAMDHIP\030\245\234\001 \003(\r\022\035\n\007setting\030\r \001(\013" +
       "2\014.BDOKHMKLJOM\022\025\n\013NNLEPHINEFH\030\246\234\001 \001(\010\022\025\n" +
-      "\013MGFHHOPDDKE\030\247\234\001 \001(\r\022\025\n\013MLAJCIMGINA\030\250\234\001 " +
-      "\001(\r\022\025\n\013JHMFHOECCLH\030\251\234\001 \001(\rB\033\n\031emu.grassc" +
-      "utter.net.protob\006proto3"
+      "\013MGFHHOPDDKE\030\247\234\001 \001(\r\022\023\n\013MLAJCIMGINA\030\001 \001(" +
+      "\r\022\025\n\013JHMFHOECCLH\030\251\234\001 \001(\rB\033\n\031emu.grasscut" +
+      "ter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

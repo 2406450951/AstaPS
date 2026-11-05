@@ -48,7 +48,7 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
     emu.grasscutter.net.proto.ForwardTypeOuterClass.ForwardType getForwardType();
 
     /**
-     * <code>uint32 LDAODDFLPGB = 20000;</code>
+     * <code>uint32 LDAODDFLPGB = 3;</code>
      * @return The lDAODDFLPGB.
      */
     int getLDAODDFLPGB();
@@ -138,10 +138,10 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
       return result == null ? emu.grasscutter.net.proto.ForwardTypeOuterClass.ForwardType.UNRECOGNIZED : result;
     }
 
-    public static final int LDAODDFLPGB_FIELD_NUMBER = 20000;
+    public static final int LDAODDFLPGB_FIELD_NUMBER = 3;
     private int lDAODDFLPGB_ = 0;
     /**
-     * <code>uint32 LDAODDFLPGB = 20000;</code>
+     * <code>uint32 LDAODDFLPGB = 3;</code>
      * @return The lDAODDFLPGB.
      */
     @java.lang.Override
@@ -181,6 +181,9 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (lDAODDFLPGB_ != 0) {
+        output.writeUInt32(3, lDAODDFLPGB_);
+      }
       if (argumentType_ != emu.grasscutter.net.proto.CombatTypeArgumentOuterClass.CombatTypeArgument.CombatTypeArgument_COMBAT_NONE.getNumber()) {
         output.writeEnum(6, argumentType_);
       }
@@ -190,13 +193,14 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
       if (forwardType_ != emu.grasscutter.net.proto.ForwardTypeOuterClass.ForwardType.ForwardType_FORWARD_LOCAL.getNumber()) {
         output.writeEnum(15, forwardType_);
       }
-      if (lDAODDFLPGB_ != 0) {
-        output.writeUInt32(20000, lDAODDFLPGB_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (lDAODDFLPGB_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, lDAODDFLPGB_);
+      }
       if (argumentType_ != emu.grasscutter.net.proto.CombatTypeArgumentOuterClass.CombatTypeArgument.CombatTypeArgument_COMBAT_NONE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, argumentType_);
@@ -208,10 +212,6 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
       if (forwardType_ != emu.grasscutter.net.proto.ForwardTypeOuterClass.ForwardType.ForwardType_FORWARD_LOCAL.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(15, forwardType_);
-      }
-      if (lDAODDFLPGB_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, lDAODDFLPGB_);
       }
       return size;
     }
@@ -492,6 +492,11 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
               case 0:
                 done = true;
                 break;
+              case 24: {
+                lDAODDFLPGB_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
               case 48: {
                 argumentType_ = input.readEnum();
                 bitField0_ |= 0x00000008;
@@ -507,11 +512,6 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00000002;
                 break;
               } // case 120
-              case 160000: {
-                lDAODDFLPGB_ = input.readUInt32();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -615,7 +615,7 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
 
       private int lDAODDFLPGB_ ;
       /**
-       * <code>uint32 LDAODDFLPGB = 20000;</code>
+       * <code>uint32 LDAODDFLPGB = 3;</code>
        * @return The lDAODDFLPGB.
        */
       @java.lang.Override
@@ -623,7 +623,7 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
         return lDAODDFLPGB_;
       }
       /**
-       * <code>uint32 LDAODDFLPGB = 20000;</code>
+       * <code>uint32 LDAODDFLPGB = 3;</code>
        * @param value The lDAODDFLPGB to set.
        * @return This builder for chaining.
        */
@@ -635,7 +635,7 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>uint32 LDAODDFLPGB = 20000;</code>
+       * <code>uint32 LDAODDFLPGB = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearLDAODDFLPGB() {
@@ -763,12 +763,12 @@ public final class CombatInvokeEntryOuterClass extends com.google.protobuf.Gener
   static {
     java.lang.String[] descriptorData = {
       "\n\027CombatInvokeEntry.proto\032\030CombatTypeArg" +
-      "ument.proto\032\021ForwardType.proto\"\217\001\n\021Comba" +
+      "ument.proto\032\021ForwardType.proto\"\215\001\n\021Comba" +
       "tInvokeEntry\022\023\n\013combat_data\030\010 \001(\014\022\"\n\014for" +
-      "ward_type\030\017 \001(\0162\014.ForwardType\022\025\n\013LDAODDF" +
-      "LPGB\030\240\234\001 \001(\r\022*\n\rargument_type\030\006 \001(\0162\023.Co" +
-      "mbatTypeArgumentB\033\n\031emu.grasscutter.net." +
-      "protob\006proto3"
+      "ward_type\030\017 \001(\0162\014.ForwardType\022\023\n\013LDAODDF" +
+      "LPGB\030\003 \001(\r\022*\n\rargument_type\030\006 \001(\0162\023.Comb" +
+      "atTypeArgumentB\033\n\031emu.grasscutter.net.pr" +
+      "otob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

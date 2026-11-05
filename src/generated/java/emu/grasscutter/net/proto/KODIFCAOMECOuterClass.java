@@ -31,7 +31,7 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 DEADDOKKEHM = 20000;</code>
+     * <code>uint32 DEADDOKKEHM = 3;</code>
      * @return The dEADDOKKEHM.
      */
     int getDEADDOKKEHM();
@@ -96,10 +96,10 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
               emu.grasscutter.net.proto.KODIFCAOMECOuterClass.KODIFCAOMEC.class, emu.grasscutter.net.proto.KODIFCAOMECOuterClass.KODIFCAOMEC.Builder.class);
     }
 
-    public static final int DEADDOKKEHM_FIELD_NUMBER = 20000;
+    public static final int DEADDOKKEHM_FIELD_NUMBER = 3;
     private int dEADDOKKEHM_ = 0;
     /**
-     * <code>uint32 DEADDOKKEHM = 20000;</code>
+     * <code>uint32 DEADDOKKEHM = 3;</code>
      * @return The dEADDOKKEHM.
      */
     @java.lang.Override
@@ -161,7 +161,7 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
         output.writeBool(2, isOpen_);
       }
       if (dEADDOKKEHM_ != 0) {
-        output.writeUInt32(20000, dEADDOKKEHM_);
+        output.writeUInt32(3, dEADDOKKEHM_);
       }
       if (cHJDGMGPDPE_ != 0) {
         output.writeUInt32(20001, cHJDGMGPDPE_);
@@ -180,7 +180,7 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
       }
       if (dEADDOKKEHM_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, dEADDOKKEHM_);
+          .computeUInt32Size(3, dEADDOKKEHM_);
       }
       if (cHJDGMGPDPE_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -478,11 +478,11 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000008;
                 break;
               } // case 16
-              case 160000: {
+              case 24: {
                 dEADDOKKEHM_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 24
               case 160008: {
                 cHJDGMGPDPE_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -507,7 +507,7 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
 
       private int dEADDOKKEHM_ ;
       /**
-       * <code>uint32 DEADDOKKEHM = 20000;</code>
+       * <code>uint32 DEADDOKKEHM = 3;</code>
        * @return The dEADDOKKEHM.
        */
       @java.lang.Override
@@ -515,7 +515,7 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
         return dEADDOKKEHM_;
       }
       /**
-       * <code>uint32 DEADDOKKEHM = 20000;</code>
+       * <code>uint32 DEADDOKKEHM = 3;</code>
        * @param value The dEADDOKKEHM to set.
        * @return This builder for chaining.
        */
@@ -527,7 +527,7 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 DEADDOKKEHM = 20000;</code>
+       * <code>uint32 DEADDOKKEHM = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearDEADDOKKEHM() {
@@ -698,10 +698,10 @@ public final class KODIFCAOMECOuterClass extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021KODIFCAOMEC.proto\"^\n\013KODIFCAOMEC\022\025\n\013DE" +
-      "ADDOKKEHM\030\240\234\001 \001(\r\022\020\n\010level_id\030\001 \001(\r\022\025\n\013C" +
-      "HJDGMGPDPE\030\241\234\001 \001(\r\022\017\n\007is_open\030\002 \001(\010B\033\n\031e" +
-      "mu.grasscutter.net.protob\006proto3"
+      "\n\021KODIFCAOMEC.proto\"\\\n\013KODIFCAOMEC\022\023\n\013DE" +
+      "ADDOKKEHM\030\003 \001(\r\022\020\n\010level_id\030\001 \001(\r\022\025\n\013CHJ" +
+      "DGMGPDPE\030\241\234\001 \001(\r\022\017\n\007is_open\030\002 \001(\010B\033\n\031emu" +
+      ".grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

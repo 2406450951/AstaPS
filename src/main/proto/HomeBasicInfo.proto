@@ -7,7 +7,7 @@ import "HomeLimitedShopInfo.proto";
 message HomeBasicInfo {
   string owner_nick_name = 9;
   HomeLimitedShopInfo limited_shop_info = 1;
-  uint32 JDHBFLPNNFK = 20000;
+  uint32 JDHBFLPNNFK = 12;
   bool is_in_edit_mode = 5;
   uint32 home_owner_uid = 3;
   uint32 level = 10;

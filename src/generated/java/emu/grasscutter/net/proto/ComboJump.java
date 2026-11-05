@@ -31,25 +31,25 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     java.util.List<emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED> 
         getPEDAILGLAIFList();
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED getPEDAILGLAIF(int index);
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     int getPEDAILGLAIFCount();
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     java.util.List<? extends emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMEDOrBuilder> 
         getPEDAILGLAIFOrBuilderList();
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMEDOrBuilder getPEDAILGLAIFOrBuilder(
         int index);
@@ -115,18 +115,18 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
               emu.grasscutter.net.proto.ComboJump._ComboJump.class, emu.grasscutter.net.proto.ComboJump._ComboJump.Builder.class);
     }
 
-    public static final int PEDAILGLAIF_FIELD_NUMBER = 20000;
+    public static final int PEDAILGLAIF_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
     private java.util.List<emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED> pEDAILGLAIF_;
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     @java.lang.Override
     public java.util.List<emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED> getPEDAILGLAIFList() {
       return pEDAILGLAIF_;
     }
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     @java.lang.Override
     public java.util.List<? extends emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMEDOrBuilder> 
@@ -134,21 +134,21 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
       return pEDAILGLAIF_;
     }
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     @java.lang.Override
     public int getPEDAILGLAIFCount() {
       return pEDAILGLAIF_.size();
     }
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED getPEDAILGLAIF(int index) {
       return pEDAILGLAIF_.get(index);
     }
     /**
-     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+     * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMEDOrBuilder getPEDAILGLAIFOrBuilder(
@@ -204,7 +204,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < pEDAILGLAIF_.size(); i++) {
-        output.writeMessage(20000, pEDAILGLAIF_.get(i));
+        output.writeMessage(2, pEDAILGLAIF_.get(i));
       }
       if (java.lang.Float.floatToRawIntBits(gCNFBILIMAN_) != 0) {
         output.writeFloat(20001, gCNFBILIMAN_);
@@ -226,7 +226,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
               size += com.google.protobuf.CodedOutputStream
                 .computeMessageSizeNoTag(pEDAILGLAIF_.get(i));
             }
-            size += 3 * count;
+            size += 1 * count;
           }
       if (java.lang.Float.floatToRawIntBits(gCNFBILIMAN_) != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -567,7 +567,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 18: {
                 emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED m =
                     input.readMessage(
                         emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.parser(),
@@ -579,7 +579,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
                   pEDAILGLAIFBuilder_.addMessage(m);
                 }
                 break;
-              } // case 160002
+              } // case 18
               case 160013: {
                 gCNFBILIMAN_ = input.readFloat();
                 bitField0_ |= 0x00000002;
@@ -625,7 +625,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
           emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED, emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.Builder, emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMEDOrBuilder> pEDAILGLAIFBuilder_;
 
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED> getPEDAILGLAIFList() {
         if (pEDAILGLAIFBuilder_ == null) {
@@ -635,7 +635,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public int getPEDAILGLAIFCount() {
         if (pEDAILGLAIFBuilder_ == null) {
@@ -645,7 +645,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED getPEDAILGLAIF(int index) {
         if (pEDAILGLAIFBuilder_ == null) {
@@ -655,7 +655,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder setPEDAILGLAIF(
           int index, emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED value) {
@@ -670,7 +670,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder setPEDAILGLAIF(
           int index, emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.Builder builderForValue) {
@@ -684,7 +684,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder addPEDAILGLAIF(emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED value) {
         if (pEDAILGLAIFBuilder_ == null) {
@@ -698,7 +698,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder addPEDAILGLAIF(
           int index, emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED value) {
@@ -713,7 +713,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder addPEDAILGLAIF(
           emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.Builder builderForValue) {
@@ -727,7 +727,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder addPEDAILGLAIF(
           int index, emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.Builder builderForValue) {
@@ -741,7 +741,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder addAllPEDAILGLAIF(
           java.lang.Iterable<? extends emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED> values) {
@@ -756,7 +756,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder clearPEDAILGLAIF() {
         if (pEDAILGLAIFBuilder_ == null) {
@@ -769,7 +769,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public Builder removePEDAILGLAIF(int index) {
         if (pEDAILGLAIFBuilder_ == null) {
@@ -782,14 +782,14 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.Builder getPEDAILGLAIFBuilder(
           int index) {
         return internalGetPEDAILGLAIFFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMEDOrBuilder getPEDAILGLAIFOrBuilder(
           int index) {
@@ -799,7 +799,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public java.util.List<? extends emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMEDOrBuilder> 
            getPEDAILGLAIFOrBuilderList() {
@@ -810,14 +810,14 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
         }
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.Builder addPEDAILGLAIFBuilder() {
         return internalGetPEDAILGLAIFFieldBuilder().addBuilder(
             emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.getDefaultInstance());
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.Builder addPEDAILGLAIFBuilder(
           int index) {
@@ -825,7 +825,7 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
             index, emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.getDefaultInstance());
       }
       /**
-       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 20000;</code>
+       * <code>repeated .LIEDMPJGMED PEDAILGLAIF = 2;</code>
        */
       public java.util.List<emu.grasscutter.net.proto.LIEDMPJGMEDOuterClass.LIEDMPJGMED.Builder> 
            getPEDAILGLAIFBuilderList() {
@@ -1007,11 +1007,11 @@ public final class ComboJump extends com.google.protobuf.GeneratedFile {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020_ComboJump.proto\032\021LIEDMPJGMED.proto\"v\n" +
-      "\n_ComboJump\022#\n\013PEDAILGLAIF\030\240\234\001 \003(\0132\014.LIE" +
-      "DMPJGMED\022\025\n\013GCNFBILIMAN\030\241\234\001 \001(\002\022\025\n\013BCFFJ" +
-      "HMCNJC\030\242\234\001 \001(\002\022\025\n\013OIMIDKCFJKC\030\243\234\001 \001(\010B\033\n" +
-      "\031emu.grasscutter.net.protob\006proto3"
+      "\n\020_ComboJump.proto\032\021LIEDMPJGMED.proto\"t\n" +
+      "\n_ComboJump\022!\n\013PEDAILGLAIF\030\002 \003(\0132\014.LIEDM" +
+      "PJGMED\022\025\n\013GCNFBILIMAN\030\241\234\001 \001(\002\022\025\n\013BCFFJHM" +
+      "CNJC\030\242\234\001 \001(\002\022\025\n\013OIMIDKCFJKC\030\243\234\001 \001(\010B\033\n\031e" +
+      "mu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

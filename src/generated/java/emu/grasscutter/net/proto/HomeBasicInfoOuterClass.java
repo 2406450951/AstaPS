@@ -58,7 +58,7 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
     emu.grasscutter.net.proto.HomeLimitedShopInfoOuterClass.HomeLimitedShopInfoOrBuilder getLimitedShopInfoOrBuilder();
 
     /**
-     * <code>uint32 JDHBFLPNNFK = 20000;</code>
+     * <code>uint32 JDHBFLPNNFK = 12;</code>
      * @return The jDHBFLPNNFK.
      */
     int getJDHBFLPNNFK();
@@ -208,10 +208,10 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
       return limitedShopInfo_ == null ? emu.grasscutter.net.proto.HomeLimitedShopInfoOuterClass.HomeLimitedShopInfo.getDefaultInstance() : limitedShopInfo_;
     }
 
-    public static final int JDHBFLPNNFK_FIELD_NUMBER = 20000;
+    public static final int JDHBFLPNNFK_FIELD_NUMBER = 12;
     private int jDHBFLPNNFK_ = 0;
     /**
-     * <code>uint32 JDHBFLPNNFK = 20000;</code>
+     * <code>uint32 JDHBFLPNNFK = 12;</code>
      * @return The jDHBFLPNNFK.
      */
     @java.lang.Override
@@ -317,14 +317,14 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
       if (level_ != 0) {
         output.writeUInt32(10, level_);
       }
+      if (jDHBFLPNNFK_ != 0) {
+        output.writeUInt32(12, jDHBFLPNNFK_);
+      }
       if (curModuleId_ != 0) {
         output.writeUInt32(13, curModuleId_);
       }
       if (curRoomSceneId_ != 0) {
         output.writeUInt32(15, curRoomSceneId_);
-      }
-      if (jDHBFLPNNFK_ != 0) {
-        output.writeUInt32(20000, jDHBFLPNNFK_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -353,6 +353,10 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(10, level_);
       }
+      if (jDHBFLPNNFK_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(12, jDHBFLPNNFK_);
+      }
       if (curModuleId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(13, curModuleId_);
@@ -360,10 +364,6 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
       if (curRoomSceneId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(15, curRoomSceneId_);
-      }
-      if (jDHBFLPNNFK_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, jDHBFLPNNFK_);
       }
       return size;
     }
@@ -757,6 +757,11 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
                 bitField0_ |= 0x00000020;
                 break;
               } // case 80
+              case 96: {
+                jDHBFLPNNFK_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 96
               case 104: {
                 curModuleId_ = input.readUInt32();
                 bitField0_ |= 0x00000040;
@@ -767,11 +772,6 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
                 bitField0_ |= 0x00000080;
                 break;
               } // case 120
-              case 160000: {
-                jDHBFLPNNFK_ = input.readUInt32();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -982,7 +982,7 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
 
       private int jDHBFLPNNFK_ ;
       /**
-       * <code>uint32 JDHBFLPNNFK = 20000;</code>
+       * <code>uint32 JDHBFLPNNFK = 12;</code>
        * @return The jDHBFLPNNFK.
        */
       @java.lang.Override
@@ -990,7 +990,7 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
         return jDHBFLPNNFK_;
       }
       /**
-       * <code>uint32 JDHBFLPNNFK = 20000;</code>
+       * <code>uint32 JDHBFLPNNFK = 12;</code>
        * @param value The jDHBFLPNNFK to set.
        * @return This builder for chaining.
        */
@@ -1002,7 +1002,7 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>uint32 JDHBFLPNNFK = 20000;</code>
+       * <code>uint32 JDHBFLPNNFK = 12;</code>
        * @return This builder for chaining.
        */
       public Builder clearJDHBFLPNNFK() {
@@ -1270,14 +1270,14 @@ public final class HomeBasicInfoOuterClass extends com.google.protobuf.Generated
   static {
     java.lang.String[] descriptorData = {
       "\n\023HomeBasicInfo.proto\032\031HomeLimitedShopIn" +
-      "fo.proto\"\357\001\n\rHomeBasicInfo\022\027\n\017owner_nick" +
+      "fo.proto\"\355\001\n\rHomeBasicInfo\022\027\n\017owner_nick" +
       "_name\030\t \001(\t\022/\n\021limited_shop_info\030\001 \001(\0132\024" +
-      ".HomeLimitedShopInfo\022\025\n\013JDHBFLPNNFK\030\240\234\001 " +
-      "\001(\r\022\027\n\017is_in_edit_mode\030\005 \001(\010\022\026\n\016home_own" +
-      "er_uid\030\003 \001(\r\022\r\n\005level\030\n \001(\r\022\025\n\rcur_modul" +
-      "e_id\030\r \001(\r\022\031\n\021cur_room_scene_id\030\017 \001(\r\022\013\n" +
-      "\003exp\030\002 \001(\004B\033\n\031emu.grasscutter.net.protob" +
-      "\006proto3"
+      ".HomeLimitedShopInfo\022\023\n\013JDHBFLPNNFK\030\014 \001(" +
+      "\r\022\027\n\017is_in_edit_mode\030\005 \001(\010\022\026\n\016home_owner" +
+      "_uid\030\003 \001(\r\022\r\n\005level\030\n \001(\r\022\025\n\rcur_module_" +
+      "id\030\r \001(\r\022\031\n\021cur_room_scene_id\030\017 \001(\r\022\013\n\003e" +
+      "xp\030\002 \001(\004B\033\n\031emu.grasscutter.net.protob\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

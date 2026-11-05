@@ -31,7 +31,7 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+     * <code>uint32 FDNLFLGDJBJ = 9;</code>
      * @return The fDNLFLGDJBJ.
      */
     int getFDNLFLGDJBJ();
@@ -78,10 +78,10 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
               emu.grasscutter.net.proto.InazumaBadmintonLevelInfo._InazumaBadmintonLevelInfo.class, emu.grasscutter.net.proto.InazumaBadmintonLevelInfo._InazumaBadmintonLevelInfo.Builder.class);
     }
 
-    public static final int FDNLFLGDJBJ_FIELD_NUMBER = 20000;
+    public static final int FDNLFLGDJBJ_FIELD_NUMBER = 9;
     private int fDNLFLGDJBJ_ = 0;
     /**
-     * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+     * <code>uint32 FDNLFLGDJBJ = 9;</code>
      * @return The fDNLFLGDJBJ.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (fDNLFLGDJBJ_ != 0) {
-        output.writeUInt32(20000, fDNLFLGDJBJ_);
+        output.writeUInt32(9, fDNLFLGDJBJ_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
       int size = 0;
       if (fDNLFLGDJBJ_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, fDNLFLGDJBJ_);
+          .computeUInt32Size(9, fDNLFLGDJBJ_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 72: {
                 fDNLFLGDJBJ_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 72
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
 
       private int fDNLFLGDJBJ_ ;
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 9;</code>
        * @return The fDNLFLGDJBJ.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
         return fDNLFLGDJBJ_;
       }
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 9;</code>
        * @param value The fDNLFLGDJBJ to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 9;</code>
        * @return This builder for chaining.
        */
       public Builder clearFDNLFLGDJBJ() {
@@ -481,10 +481,10 @@ public final class InazumaBadmintonLevelInfo extends com.google.protobuf.Generat
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n _InazumaBadmintonLevelInfo.proto\"3\n\032_I" +
-      "nazumaBadmintonLevelInfo\022\025\n\013FDNLFLGDJBJ\030" +
-      "\240\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006pr" +
-      "oto3"
+      "\n _InazumaBadmintonLevelInfo.proto\"1\n\032_I" +
+      "nazumaBadmintonLevelInfo\022\023\n\013FDNLFLGDJBJ\030" +
+      "\t \001(\rB\033\n\031emu.grasscutter.net.protob\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -37,7 +37,7 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
     int getLevelId();
 
     /**
-     * <code>bool FBHFAMPKPPK = 20000;</code>
+     * <code>bool FBHFAMPKPPK = 11;</code>
      * @return The fBHFAMPKPPK.
      */
     boolean getFBHFAMPKPPK();
@@ -101,10 +101,10 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
       return levelId_;
     }
 
-    public static final int FBHFAMPKPPK_FIELD_NUMBER = 20000;
+    public static final int FBHFAMPKPPK_FIELD_NUMBER = 11;
     private boolean fBHFAMPKPPK_ = false;
     /**
-     * <code>bool FBHFAMPKPPK = 20000;</code>
+     * <code>bool FBHFAMPKPPK = 11;</code>
      * @return The fBHFAMPKPPK.
      */
     @java.lang.Override
@@ -144,7 +144,7 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
         output.writeBool(7, isOpen_);
       }
       if (fBHFAMPKPPK_ != false) {
-        output.writeBool(20000, fBHFAMPKPPK_);
+        output.writeBool(11, fBHFAMPKPPK_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -160,7 +160,7 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
       }
       if (fBHFAMPKPPK_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, fBHFAMPKPPK_);
+          .computeBoolSize(11, fBHFAMPKPPK_);
       }
       return size;
     }
@@ -444,11 +444,11 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000004;
                 break;
               } // case 56
-              case 160000: {
+              case 88: {
                 fBHFAMPKPPK_ = input.readBool();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160000
+              } // case 88
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -500,7 +500,7 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
 
       private boolean fBHFAMPKPPK_ ;
       /**
-       * <code>bool FBHFAMPKPPK = 20000;</code>
+       * <code>bool FBHFAMPKPPK = 11;</code>
        * @return The fBHFAMPKPPK.
        */
       @java.lang.Override
@@ -508,7 +508,7 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
         return fBHFAMPKPPK_;
       }
       /**
-       * <code>bool FBHFAMPKPPK = 20000;</code>
+       * <code>bool FBHFAMPKPPK = 11;</code>
        * @param value The fBHFAMPKPPK to set.
        * @return This builder for chaining.
        */
@@ -520,7 +520,7 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>bool FBHFAMPKPPK = 20000;</code>
+       * <code>bool FBHFAMPKPPK = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearFBHFAMPKPPK() {
@@ -627,10 +627,10 @@ public final class CHOGKFOPCHIOuterClass extends com.google.protobuf.GeneratedFi
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021CHOGKFOPCHI.proto\"G\n\013CHOGKFOPCHI\022\020\n\010le" +
-      "vel_id\030\004 \001(\r\022\025\n\013FBHFAMPKPPK\030\240\234\001 \001(\010\022\017\n\007i" +
-      "s_open\030\007 \001(\010B\033\n\031emu.grasscutter.net.prot" +
-      "ob\006proto3"
+      "\n\021CHOGKFOPCHI.proto\"E\n\013CHOGKFOPCHI\022\020\n\010le" +
+      "vel_id\030\004 \001(\r\022\023\n\013FBHFAMPKPPK\030\013 \001(\010\022\017\n\007is_" +
+      "open\030\007 \001(\010B\033\n\031emu.grasscutter.net.protob" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

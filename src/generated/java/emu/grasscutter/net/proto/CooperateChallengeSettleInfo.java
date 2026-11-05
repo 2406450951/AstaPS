@@ -113,7 +113,7 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
     int getDifficultyId();
 
     /**
-     * <code>uint32 IKLNEBCKENF = 20003;</code>
+     * <code>uint32 IKLNEBCKENF = 3;</code>
      * @return The iKLNEBCKENF.
      */
     int getIKLNEBCKENF();
@@ -2941,10 +2941,10 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
       return difficultyId_;
     }
 
-    public static final int IKLNEBCKENF_FIELD_NUMBER = 20003;
+    public static final int IKLNEBCKENF_FIELD_NUMBER = 3;
     private int iKLNEBCKENF_ = 0;
     /**
-     * <code>uint32 IKLNEBCKENF = 20003;</code>
+     * <code>uint32 IKLNEBCKENF = 3;</code>
      * @return The iKLNEBCKENF.
      */
     @java.lang.Override
@@ -2967,6 +2967,9 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (iKLNEBCKENF_ != 0) {
+        output.writeUInt32(3, iKLNEBCKENF_);
+      }
       for (int i = 0; i < SettleList_.size(); i++) {
         output.writeMessage(5, SettleList_.get(i));
       }
@@ -2986,13 +2989,14 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
       if (eBGPHJCLGKC_ != emu.grasscutter.net.proto.CooperateChallengeSettleInfo._CooperateChallengeSettleInfo.EACPNCPOKGE.EACPNCPOKGE_SETTLE_REASON_NONE.getNumber()) {
         output.writeEnum(20002, eBGPHJCLGKC_);
       }
-      if (iKLNEBCKENF_ != 0) {
-        output.writeUInt32(20003, iKLNEBCKENF_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (iKLNEBCKENF_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, iKLNEBCKENF_);
+      }
 
           {
             final int count = SettleList_.size();
@@ -3032,10 +3036,6 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
       if (eBGPHJCLGKC_ != emu.grasscutter.net.proto.CooperateChallengeSettleInfo._CooperateChallengeSettleInfo.EACPNCPOKGE.EACPNCPOKGE_SETTLE_REASON_NONE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(20002, eBGPHJCLGKC_);
-      }
-      if (iKLNEBCKENF_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20003, iKLNEBCKENF_);
       }
       return size;
     }
@@ -3428,6 +3428,11 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
               case 0:
                 done = true;
                 break;
+              case 24: {
+                iKLNEBCKENF_ = input.readUInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 24
               case 42: {
                 emu.grasscutter.net.proto.CooperateChallengeSettleInfo._CooperateChallengeSettleInfo.JOPDICINNLJ m =
                     input.readMessage(
@@ -3480,11 +3485,6 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
                 bitField0_ |= 0x00000008;
                 break;
               } // case 160016
-              case 160024: {
-                iKLNEBCKENF_ = input.readUInt32();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160024
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -4140,7 +4140,7 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
 
       private int iKLNEBCKENF_ ;
       /**
-       * <code>uint32 IKLNEBCKENF = 20003;</code>
+       * <code>uint32 IKLNEBCKENF = 3;</code>
        * @return The iKLNEBCKENF.
        */
       @java.lang.Override
@@ -4148,7 +4148,7 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
         return iKLNEBCKENF_;
       }
       /**
-       * <code>uint32 IKLNEBCKENF = 20003;</code>
+       * <code>uint32 IKLNEBCKENF = 3;</code>
        * @param value The iKLNEBCKENF to set.
        * @return This builder for chaining.
        */
@@ -4160,7 +4160,7 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
         return this;
       }
       /**
-       * <code>uint32 IKLNEBCKENF = 20003;</code>
+       * <code>uint32 IKLNEBCKENF = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearIKLNEBCKENF() {
@@ -4247,26 +4247,26 @@ public final class CooperateChallengeSettleInfo extends com.google.protobuf.Gene
     java.lang.String[] descriptorData = {
       "\n#_CooperateChallengeSettleInfo.proto\032\033E" +
       "xhibitionDisplayInfo.proto\032\024ProfilePictu" +
-      "re.proto\"\346\005\n\035_CooperateChallengeSettleIn" +
+      "re.proto\"\344\005\n\035_CooperateChallengeSettleIn" +
       "fo\022A\n\013GMNBBBOLHDH\030\240\234\001 \003(\0132*._CooperateCh" +
       "allengeSettleInfo.FGCJMIDEKMB\022@\n\014_settle" +
       "_list\030\005 \003(\0132*._CooperateChallengeSettleI" +
       "nfo.JOPDICINNLJ\022\025\n\013MIFCBDAIKNH\030\241\234\001 \003(\r\022A" +
       "\n\013EBGPHJCLGKC\030\242\234\001 \001(\0162*._CooperateChalle" +
       "ngeSettleInfo.EACPNCPOKGE\022\025\n\rdifficulty_" +
-      "id\030\006 \001(\r\022\025\n\013IKLNEBCKENF\030\243\234\001 \001(\r\032I\n\013FGCJM" +
-      "IDEKMB\022\020\n\010uid_list\030\013 \003(\r\022\023\n\013EOAFEBOFEJB\030" +
-      "\014 \001(\005\022\023\n\013FAFDNMIEMEL\030\r \001(\r\032\343\001\n\013JOPDICINN" +
-      "LJ\022(\n\017profile_picture\030\002 \001(\0132\017.ProfilePic" +
-      "ture\022)\n\tcard_list\030\013 \003(\0132\026.ExhibitionDisp" +
-      "layInfo\022\026\n\016_xbox_gamertag\030\t \001(\t\022\020\n\010nickn" +
-      "ame\030\016 \001(\t\022\023\n\013OFEHCJOPEIG\030\n \003(\r\022\021\n\tonline" +
-      "_id\030\007 \001(\t\022\013\n\003uid\030\014 \001(\r\022\r\n\005score\030\003 \001(\r\022\021\n" +
-      "\tadd_score\030\001 \001(\r\"\206\001\n\013EACPNCPOKGE\022\"\n\036EACP" +
-      "NCPOKGE_SETTLE_REASON_NONE\020\000\022\"\n\036EACPNCPO" +
-      "KGE_SETTLE_REASON_SUCC\020\001\022/\n+EACPNCPOKGE_" +
-      "SETTLE_REASON_PLAYER_NOT_ENOUGH\020\002B\033\n\031emu" +
-      ".grasscutter.net.protob\006proto3"
+      "id\030\006 \001(\r\022\023\n\013IKLNEBCKENF\030\003 \001(\r\032I\n\013FGCJMID" +
+      "EKMB\022\020\n\010uid_list\030\013 \003(\r\022\023\n\013EOAFEBOFEJB\030\014 " +
+      "\001(\005\022\023\n\013FAFDNMIEMEL\030\r \001(\r\032\343\001\n\013JOPDICINNLJ" +
+      "\022(\n\017profile_picture\030\002 \001(\0132\017.ProfilePictu" +
+      "re\022)\n\tcard_list\030\013 \003(\0132\026.ExhibitionDispla" +
+      "yInfo\022\026\n\016_xbox_gamertag\030\t \001(\t\022\020\n\010nicknam" +
+      "e\030\016 \001(\t\022\023\n\013OFEHCJOPEIG\030\n \003(\r\022\021\n\tonline_i" +
+      "d\030\007 \001(\t\022\013\n\003uid\030\014 \001(\r\022\r\n\005score\030\003 \001(\r\022\021\n\ta" +
+      "dd_score\030\001 \001(\r\"\206\001\n\013EACPNCPOKGE\022\"\n\036EACPNC" +
+      "POKGE_SETTLE_REASON_NONE\020\000\022\"\n\036EACPNCPOKG" +
+      "E_SETTLE_REASON_SUCC\020\001\022/\n+EACPNCPOKGE_SE" +
+      "TTLE_REASON_PLAYER_NOT_ENOUGH\020\002B\033\n\031emu.g" +
+      "rasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

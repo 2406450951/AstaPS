@@ -79,7 +79,7 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
     int getOKBGFHDDKCJ();
 
     /**
-     * <code>uint32 BOAKDOGPPPG = 20002;</code>
+     * <code>uint32 BOAKDOGPPPG = 5;</code>
      * @return The bOAKDOGPPPG.
      */
     int getBOAKDOGPPPG();
@@ -218,10 +218,10 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
       return oKBGFHDDKCJ_;
     }
 
-    public static final int BOAKDOGPPPG_FIELD_NUMBER = 20002;
+    public static final int BOAKDOGPPPG_FIELD_NUMBER = 5;
     private int bOAKDOGPPPG_ = 0;
     /**
-     * <code>uint32 BOAKDOGPPPG = 20002;</code>
+     * <code>uint32 BOAKDOGPPPG = 5;</code>
      * @return The bOAKDOGPPPG.
      */
     @java.lang.Override
@@ -260,6 +260,9 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
       if (isFinish_ != false) {
         output.writeBool(3, isFinish_);
       }
+      if (bOAKDOGPPPG_ != 0) {
+        output.writeUInt32(5, bOAKDOGPPPG_);
+      }
       if (levelId_ != 0) {
         output.writeUInt32(11, levelId_);
       }
@@ -272,9 +275,6 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
       if (oKBGFHDDKCJ_ != 0) {
         output.writeUInt32(20001, oKBGFHDDKCJ_);
       }
-      if (bOAKDOGPPPG_ != 0) {
-        output.writeUInt32(20002, bOAKDOGPPPG_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
@@ -286,6 +286,10 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
       if (isFinish_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(3, isFinish_);
+      }
+      if (bOAKDOGPPPG_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, bOAKDOGPPPG_);
       }
       if (levelId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -307,10 +311,6 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
       if (oKBGFHDDKCJ_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20001, oKBGFHDDKCJ_);
-      }
-      if (bOAKDOGPPPG_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20002, bOAKDOGPPPG_);
       }
       return size;
     }
@@ -679,6 +679,11 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000002;
                 break;
               } // case 24
+              case 40: {
+                bOAKDOGPPPG_ = input.readUInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 40
               case 88: {
                 levelId_ = input.readUInt32();
                 bitField0_ |= 0x00000040;
@@ -707,11 +712,6 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
                 bitField0_ |= 0x00000010;
                 break;
               } // case 160008
-              case 160016: {
-                bOAKDOGPPPG_ = input.readUInt32();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160016
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1093,7 +1093,7 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
 
       private int bOAKDOGPPPG_ ;
       /**
-       * <code>uint32 BOAKDOGPPPG = 20002;</code>
+       * <code>uint32 BOAKDOGPPPG = 5;</code>
        * @return The bOAKDOGPPPG.
        */
       @java.lang.Override
@@ -1101,7 +1101,7 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
         return bOAKDOGPPPG_;
       }
       /**
-       * <code>uint32 BOAKDOGPPPG = 20002;</code>
+       * <code>uint32 BOAKDOGPPPG = 5;</code>
        * @param value The bOAKDOGPPPG to set.
        * @return This builder for chaining.
        */
@@ -1113,7 +1113,7 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 BOAKDOGPPPG = 20002;</code>
+       * <code>uint32 BOAKDOGPPPG = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearBOAKDOGPPPG() {
@@ -1221,12 +1221,12 @@ public final class HPIBBLDNIMEOuterClass extends com.google.protobuf.GeneratedFi
   static {
     java.lang.String[] descriptorData = {
       "\n\021HPIBBLDNIME.proto\032\031_ActivityAvatarInfo" +
-      ".proto\"\262\001\n\013HPIBBLDNIME\022+\n\013IHPPKPMKLHN\030\240\234" +
+      ".proto\"\260\001\n\013HPIBBLDNIME\022+\n\013IHPPKPMKLHN\030\240\234" +
       "\001 \003(\0132\024._ActivityAvatarInfo\022\021\n\tis_finish" +
       "\030\003 \001(\010\022\017\n\007is_open\030\001 \001(\010\022\022\n\nbest_score\030\016 " +
-      "\001(\r\022\025\n\013OKBGFHDDKCJ\030\241\234\001 \001(\r\022\025\n\013BOAKDOGPPP" +
-      "G\030\242\234\001 \001(\r\022\020\n\010level_id\030\013 \001(\rB\033\n\031emu.grass" +
-      "cutter.net.protob\006proto3"
+      "\001(\r\022\025\n\013OKBGFHDDKCJ\030\241\234\001 \001(\r\022\023\n\013BOAKDOGPPP" +
+      "G\030\005 \001(\r\022\020\n\010level_id\030\013 \001(\rB\033\n\031emu.grasscu" +
+      "tter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

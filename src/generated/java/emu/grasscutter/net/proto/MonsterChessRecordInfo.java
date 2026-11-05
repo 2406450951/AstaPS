@@ -72,17 +72,17 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
     int getWinRoundList(int index);
 
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
      * @return A list containing the oHBPLEJNHBF.
      */
     java.util.List<java.lang.Integer> getOHBPLEJNHBFList();
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
      * @return The count of oHBPLEJNHBF.
      */
     int getOHBPLEJNHBFCount();
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
      * @param index The index of the element to return.
      * @return The oHBPLEJNHBF at the given index.
      */
@@ -210,12 +210,12 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
     }
     private int WinRoundListMemoizedSerializedSize = -1;
 
-    public static final int OHBPLEJNHBF_FIELD_NUMBER = 20000;
+    public static final int OHBPLEJNHBF_FIELD_NUMBER = 5;
     @SuppressWarnings("serial")
     private com.google.protobuf.Internal.IntList oHBPLEJNHBF_ =
         emptyIntList();
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
      * @return A list containing the oHBPLEJNHBF.
      */
     @java.lang.Override
@@ -224,14 +224,14 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
       return oHBPLEJNHBF_;
     }
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
      * @return The count of oHBPLEJNHBF.
      */
     public int getOHBPLEJNHBFCount() {
       return oHBPLEJNHBF_.size();
     }
     /**
-     * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+     * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
      * @param index The index of the element to return.
      * @return The oHBPLEJNHBF at the given index.
      */
@@ -266,6 +266,13 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (getOHBPLEJNHBFList().size() > 0) {
+        output.writeUInt32NoTag(42);
+        output.writeUInt32NoTag(oHBPLEJNHBFMemoizedSerializedSize);
+      }
+      for (int i = 0; i < oHBPLEJNHBF_.size(); i++) {
+        output.writeUInt32NoTag(oHBPLEJNHBF_.getInt(i));
+      }
       if (getWinRoundListList().size() > 0) {
         output.writeUInt32NoTag(98);
         output.writeUInt32NoTag(WinRoundListMemoizedSerializedSize);
@@ -279,17 +286,24 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
       for (int i = 0; i < monsterList_.size(); i++) {
         output.writeMessage(15, monsterList_.get(i));
       }
-      if (getOHBPLEJNHBFList().size() > 0) {
-        output.writeUInt32NoTag(160002);
-        output.writeUInt32NoTag(oHBPLEJNHBFMemoizedSerializedSize);
-      }
-      for (int i = 0; i < oHBPLEJNHBF_.size(); i++) {
-        output.writeUInt32NoTag(oHBPLEJNHBF_.getInt(i));
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < oHBPLEJNHBF_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(oHBPLEJNHBF_.getInt(i));
+        }
+        size += dataSize;
+        if (!getOHBPLEJNHBFList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        oHBPLEJNHBFMemoizedSerializedSize = dataSize;
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < WinRoundList_.size(); i++) {
@@ -317,20 +331,6 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
             }
             size += 1 * count;
           }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < oHBPLEJNHBF_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeUInt32SizeNoTag(oHBPLEJNHBF_.getInt(i));
-        }
-        size += dataSize;
-        if (!getOHBPLEJNHBFList().isEmpty()) {
-          size += 3;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        oHBPLEJNHBFMemoizedSerializedSize = dataSize;
-      }
       return size;
     }
     @java.lang.Override
@@ -675,6 +675,22 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
               case 0:
                 done = true;
                 break;
+              case 40: {
+                int v = input.readUInt32();
+                ensureOHBPLEJNHBFIsMutable();
+                oHBPLEJNHBF_.addInt(v);
+                break;
+              } // case 40
+              case 42: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureOHBPLEJNHBFIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  oHBPLEJNHBF_.addInt(input.readUInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 42
               case 96: {
                 int v = input.readUInt32();
                 ensureWinRoundListIsMutable();
@@ -709,22 +725,6 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
                 }
                 break;
               } // case 122
-              case 160000: {
-                int v = input.readUInt32();
-                ensureOHBPLEJNHBFIsMutable();
-                oHBPLEJNHBF_.addInt(v);
-                break;
-              } // case 160000
-              case 160002: {
-                int length = input.readRawVarint32();
-                int limit = input.pushLimit(length);
-                ensureOHBPLEJNHBFIsMutable();
-                while (input.getBytesUntilLimit() > 0) {
-                  oHBPLEJNHBF_.addInt(input.readUInt32());
-                }
-                input.popLimit(limit);
-                break;
-              } // case 160002
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1068,7 +1068,7 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
         bitField0_ |= 0x00000004;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
        * @return A list containing the oHBPLEJNHBF.
        */
       public java.util.List<java.lang.Integer>
@@ -1077,14 +1077,14 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
         return oHBPLEJNHBF_;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
        * @return The count of oHBPLEJNHBF.
        */
       public int getOHBPLEJNHBFCount() {
         return oHBPLEJNHBF_.size();
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
        * @param index The index of the element to return.
        * @return The oHBPLEJNHBF at the given index.
        */
@@ -1092,7 +1092,7 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
         return oHBPLEJNHBF_.getInt(index);
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
        * @param index The index to set the value at.
        * @param value The oHBPLEJNHBF to set.
        * @return This builder for chaining.
@@ -1107,7 +1107,7 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
        * @param value The oHBPLEJNHBF to add.
        * @return This builder for chaining.
        */
@@ -1120,7 +1120,7 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
        * @param values The oHBPLEJNHBF to add.
        * @return This builder for chaining.
        */
@@ -1134,7 +1134,7 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
         return this;
       }
       /**
-       * <code>repeated uint32 OHBPLEJNHBF = 20000;</code>
+       * <code>repeated uint32 OHBPLEJNHBF = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearOHBPLEJNHBF() {
@@ -1242,12 +1242,11 @@ public final class MonsterChessRecordInfo extends com.google.protobuf.GeneratedF
   static {
     java.lang.String[] descriptorData = {
       "\n\035_MonsterChessRecordInfo.proto\032\035_Monste" +
-      "rChessCardDetail.proto\"\214\001\n\027_MonsterChess" +
+      "rChessCardDetail.proto\"\212\001\n\027_MonsterChess" +
       "RecordInfo\022.\n\014monster_list\030\017 \003(\0132\030._Mons" +
       "terChessCardDetail\022\027\n\017_win_round_list\030\014 " +
-      "\003(\r\022\025\n\013OHBPLEJNHBF\030\240\234\001 \003(\r\022\021\n\ttimestamp\030" +
-      "\r \001(\rB\033\n\031emu.grasscutter.net.protob\006prot" +
-      "o3"
+      "\003(\r\022\023\n\013OHBPLEJNHBF\030\005 \003(\r\022\021\n\ttimestamp\030\r " +
+      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

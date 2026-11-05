@@ -3,14 +3,14 @@ syntax = "proto3";
 option java_package = "emu.grasscutter.net.proto";
 
 message GetPlayerTokenReq {
-  string BKIICHHOJAF = 20000;
+  string BKIICHHOJAF = 1730;
   string birthday = 924;
   string country_code = 8;
   string account_token = 2;
   string client_ip_str = 6;
   string _xbox_gamertag = 1283;
   string online_id = 14;
-  string GGKODKLBGFD = 20001;
+  string GGKODKLBGFD = 1300;
   string _xuid = 884;
   string auth_appid = 83;
   string client_rand_key = 623;

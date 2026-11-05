@@ -106,17 +106,17 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
     emu.grasscutter.net.proto.UgcTowerLevelUpGadgetInfo._UgcTowerLevelUpGadgetInfoOrBuilder getUgcTowerLevelUpGadgetInfoOrBuilder();
 
     /**
-     * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+     * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
      * @return Whether the cFOMFPNHLJF field is set.
      */
     boolean hasCFOMFPNHLJF();
     /**
-     * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+     * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
      * @return The cFOMFPNHLJF.
      */
     emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG getCFOMFPNHLJF();
     /**
-     * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+     * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
      */
     emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODGOrBuilder getCFOMFPNHLJFOrBuilder();
 
@@ -881,10 +881,10 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
       return UgcTowerLevelUpGadgetInfo_ == null ? emu.grasscutter.net.proto.UgcTowerLevelUpGadgetInfo._UgcTowerLevelUpGadgetInfo.getDefaultInstance() : UgcTowerLevelUpGadgetInfo_;
     }
 
-    public static final int CFOMFPNHLJF_FIELD_NUMBER = 20000;
+    public static final int CFOMFPNHLJF_FIELD_NUMBER = 27;
     private emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG cFOMFPNHLJF_;
     /**
-     * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+     * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
      * @return Whether the cFOMFPNHLJF field is set.
      */
     @java.lang.Override
@@ -892,7 +892,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
       return ((bitField0_ & 0x00000020) != 0);
     }
     /**
-     * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+     * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
      * @return The cFOMFPNHLJF.
      */
     @java.lang.Override
@@ -900,7 +900,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
       return cFOMFPNHLJF_ == null ? emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG.getDefaultInstance() : cFOMFPNHLJF_;
     }
     /**
-     * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+     * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODGOrBuilder getCFOMFPNHLJFOrBuilder() {
@@ -1986,6 +1986,9 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
       if (gadgetTalkState_ != 0) {
         output.writeUInt32(26, gadgetTalkState_);
       }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        output.writeMessage(27, getCFOMFPNHLJF());
+      }
       if (initPoseId_ != 0) {
         output.writeUInt32(28, initPoseId_);
       }
@@ -2061,9 +2064,6 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(106, getAOLIIOCJNLE());
-      }
-      if (((bitField0_ & 0x00000020) != 0)) {
-        output.writeMessage(20000, getCFOMFPNHLJF());
       }
       getUnknownFields().writeTo(output);
     }
@@ -2175,6 +2175,10 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(26, gadgetTalkState_);
       }
+      if (((bitField0_ & 0x00000020) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(27, getCFOMFPNHLJF());
+      }
       if (initPoseId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(28, initPoseId_);
@@ -2213,14 +2217,14 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(45, (emu.grasscutter.net.proto.FoundationInfoOuterClass.FoundationInfo) content_);
       }
-      if (contentCase_ == 46) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(46, (emu.grasscutter.net.proto.VehicleInfoOuterClass.VehicleInfo) content_);
-      }
       return size;
     }
     private int computeSerializedSize_1() {
       int size = 0;
+      if (contentCase_ == 46) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(46, (emu.grasscutter.net.proto.VehicleInfoOuterClass.VehicleInfo) content_);
+      }
       if (contentCase_ == 47) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(47, (emu.grasscutter.net.proto.EchoShellInfoOuterClass.EchoShellInfo) content_);
@@ -2284,10 +2288,6 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(106, getAOLIIOCJNLE());
-      }
-      if (((bitField0_ & 0x00000020) != 0)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getCFOMFPNHLJF());
       }
       return size;
     }
@@ -3552,6 +3552,13 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
                 bitField0_ |= 0x01000000;
                 break;
               } // case 208
+              case 218: {
+                input.readMessage(
+                    internalGetCFOMFPNHLJFFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 218
               case 224: {
                 initPoseId_ = input.readUInt32();
                 bitField0_ |= 0x00400000;
@@ -3725,13 +3732,6 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
                 bitField0_ |= 0x00000001;
                 break;
               } // case 850
-              case 160002: {
-                input.readMessage(
-                    internalGetCFOMFPNHLJFFieldBuilder().getBuilder(),
-                    extensionRegistry);
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160002
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -4364,14 +4364,14 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG, emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG.Builder, emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODGOrBuilder> cFOMFPNHLJFBuilder_;
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        * @return Whether the cFOMFPNHLJF field is set.
        */
       public boolean hasCFOMFPNHLJF() {
         return ((bitField0_ & 0x00000020) != 0);
       }
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        * @return The cFOMFPNHLJF.
        */
       public emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG getCFOMFPNHLJF() {
@@ -4382,7 +4382,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         }
       }
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        */
       public Builder setCFOMFPNHLJF(emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG value) {
         if (cFOMFPNHLJFBuilder_ == null) {
@@ -4396,7 +4396,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        */
       public Builder setCFOMFPNHLJF(
           emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG.Builder builderForValue) {
@@ -4410,7 +4410,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        */
       public Builder mergeCFOMFPNHLJF(emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG value) {
         if (cFOMFPNHLJFBuilder_ == null) {
@@ -4431,7 +4431,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        */
       public Builder clearCFOMFPNHLJF() {
         bitField0_ = (bitField0_ & ~0x00000020);
@@ -4444,7 +4444,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         return this;
       }
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        */
       public emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG.Builder getCFOMFPNHLJFBuilder() {
         bitField0_ |= 0x00000020;
@@ -4452,7 +4452,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         return internalGetCFOMFPNHLJFFieldBuilder().getBuilder();
       }
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        */
       public emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODGOrBuilder getCFOMFPNHLJFOrBuilder() {
         if (cFOMFPNHLJFBuilder_ != null) {
@@ -4463,7 +4463,7 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
         }
       }
       /**
-       * <code>.BMJNJLKCODG CFOMFPNHLJF = 20000;</code>
+       * <code>.BMJNJLKCODG CFOMFPNHLJF = 27;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG, emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODG.Builder, emu.grasscutter.net.proto.BMJNJLKCODGOuterClass.BMJNJLKCODGOrBuilder> 
@@ -8613,54 +8613,54 @@ public final class SceneGadgetInfoOuterClass extends com.google.protobuf.Generat
       "adgetInfo.proto\032\030_LanV6CardTextInfo.prot" +
       "o\032\027_TrifleGadgetInfo.proto\032\033_UgcSpecialG" +
       "adgetInfo.proto\032 _UgcTowerLevelUpGadgetI" +
-      "nfo.proto\"\317\016\n\017SceneGadgetInfo\022!\n\013AOLIIOC" +
+      "nfo.proto\"\315\016\n\017SceneGadgetInfo\022!\n\013AOLIIOC" +
       "JNLE\030j \001(\0132\014.BGBKIIKGFFA\0223\n\026_lan_v6_card" +
       "_text_info\030i \001(\0132\023._LanV6CardTextInfo\022\"\n" +
       "\tplay_info\030d \001(\0132\017.GadgetPlayInfo\022<\n\033_jo" +
       "urney_gear_operator_info\030f \001(\0132\027._Journe" +
       "yGearGadgetInfo\022D\n\037_ugc_tower_level_up_g" +
       "adget_info\030e \001(\0132\033._UgcTowerLevelUpGadge" +
-      "tInfo\022#\n\013CFOMFPNHLJF\030\240\234\001 \001(\0132\014.BMJNJLKCO" +
-      "DG\022\022\n\naffix_list\030\035 \003(\r\022\031\n\021interact_uid_l" +
-      "ist\030\030 \003(\r\022\037\n\010platform\030\027 \001(\0132\r.PlatformIn" +
-      "fo\022;\n\033_ugc_v2_special_gadget_info\030g \001(\0132" +
-      "\026._UgcSpecialGadgetInfo\022\021\n\tconfig_id\030\003 \001" +
-      "(\r\022\030\n\020is_show_cutscene\030\010 \001(\010\022\032\n\022is_enabl" +
-      "e_interact\030\n \001(\010\022\021\n\tgadget_id\030\001 \001(\r\022\020\n\010g" +
-      "roup_id\030\002 \001(\r\022\031\n\021_lan_v6_card_guid\030h \001(\006" +
-      "\022\020\n\010draft_id\030\031 \001(\r\022\027\n\017owner_entity_id\030\004 " +
-      "\001(\r\022\024\n\014gadget_state\030\006 \001(\r\022\023\n\013interact_id" +
-      "\030\013 \001(\r\022\034\n\024prop_owner_entity_id\030\026 \001(\r\022\"\n\t" +
-      "born_type\030\005 \001(\0162\017.GadgetBornType\022\024\n\014init" +
-      "_pose_id\030\034 \001(\r\022\021\n\tmark_flag\030\025 \001(\r\022\031\n\021gad" +
-      "get_talk_state\030\032 \001(\r\022\031\n\021authority_peer_i" +
-      "d\030\t \001(\r\022\023\n\013gadget_type\030\007 \001(\r\022*\n\rgather_g" +
-      "adget\030\r \001(\0132\021.GatherGadgetInfoH\000\022\037\n\007work" +
-      "top\030\016 \001(\0132\014.WorktopInfoH\000\022*\n\rclient_gadg" +
-      "et\030\017 \001(\0132\021.ClientGadgetInfoH\000\022\037\n\007weather" +
-      "\030\021 \001(\0132\014.WeatherInfoH\000\022,\n\016ability_gadget" +
-      "\030\022 \001(\0132\022.AbilityGadgetInfoH\000\022*\n\rstatue_g" +
-      "adget\030\023 \001(\0132\021.StatueGadgetInfoH\000\022$\n\nboss" +
-      "_chest\030\024 \001(\0132\016.BossChestInfoH\000\022*\n\rblosso" +
-      "m_chest\030) \001(\0132\021.BlossomChestInfoH\000\022+\n\016mp" +
-      "_play_reward\030* \001(\0132\021.MpPlayRewardInfoH\000\022" +
-      "2\n\016general_reward\030+ \001(\0132\030.GadgetGeneralR" +
-      "ewardInfoH\000\022&\n\roffering_info\030, \001(\0132\r.Off" +
-      "eringInfoH\000\022*\n\017foundation_info\030- \001(\0132\017.F" +
-      "oundationInfoH\000\022$\n\014vehicle_info\030. \001(\0132\014." +
-      "VehicleInfoH\000\022$\n\nshell_info\030/ \001(\0132\016.Echo" +
-      "ShellInfoH\000\022\"\n\013screen_info\0300 \001(\0132\013.Scree" +
-      "nInfoH\000\022\'\n\016fish_pool_info\030; \001(\0132\r.FishPo" +
-      "olInfoH\000\0228\n\027custom_gadget_tree_info\030< \001(" +
-      "\0132\025.CustomGadgetTreeInfoH\000\0225\n\025roguelike_" +
-      "gadget_info\030= \001(\0132\024.RoguelikeGadgetInfoH" +
-      "\000\0226\n\026night_crow_gadget_info\030> \001(\0132\024.Nigh" +
-      "tCrowGadgetInfoH\000\022@\n\033deshret_obelisk_gad" +
-      "get_info\030? \001(\0132\031.DeshretObeliskGadgetInf" +
-      "oH\000\022>\n\032coin_collect_operator_info\030@ \001(\0132" +
-      "\030.CoinCollectOperatorInfoH\000\022+\n\rtrifle_ga" +
-      "dget\030C \001(\0132\022._TrifleGadgetInfoH\000B\t\n\007cont" +
-      "entB\033\n\031emu.grasscutter.net.protob\006proto3"
+      "tInfo\022!\n\013CFOMFPNHLJF\030\033 \001(\0132\014.BMJNJLKCODG" +
+      "\022\022\n\naffix_list\030\035 \003(\r\022\031\n\021interact_uid_lis" +
+      "t\030\030 \003(\r\022\037\n\010platform\030\027 \001(\0132\r.PlatformInfo" +
+      "\022;\n\033_ugc_v2_special_gadget_info\030g \001(\0132\026." +
+      "_UgcSpecialGadgetInfo\022\021\n\tconfig_id\030\003 \001(\r" +
+      "\022\030\n\020is_show_cutscene\030\010 \001(\010\022\032\n\022is_enable_" +
+      "interact\030\n \001(\010\022\021\n\tgadget_id\030\001 \001(\r\022\020\n\010gro" +
+      "up_id\030\002 \001(\r\022\031\n\021_lan_v6_card_guid\030h \001(\006\022\020" +
+      "\n\010draft_id\030\031 \001(\r\022\027\n\017owner_entity_id\030\004 \001(" +
+      "\r\022\024\n\014gadget_state\030\006 \001(\r\022\023\n\013interact_id\030\013" +
+      " \001(\r\022\034\n\024prop_owner_entity_id\030\026 \001(\r\022\"\n\tbo" +
+      "rn_type\030\005 \001(\0162\017.GadgetBornType\022\024\n\014init_p" +
+      "ose_id\030\034 \001(\r\022\021\n\tmark_flag\030\025 \001(\r\022\031\n\021gadge" +
+      "t_talk_state\030\032 \001(\r\022\031\n\021authority_peer_id\030" +
+      "\t \001(\r\022\023\n\013gadget_type\030\007 \001(\r\022*\n\rgather_gad" +
+      "get\030\r \001(\0132\021.GatherGadgetInfoH\000\022\037\n\007workto" +
+      "p\030\016 \001(\0132\014.WorktopInfoH\000\022*\n\rclient_gadget" +
+      "\030\017 \001(\0132\021.ClientGadgetInfoH\000\022\037\n\007weather\030\021" +
+      " \001(\0132\014.WeatherInfoH\000\022,\n\016ability_gadget\030\022" +
+      " \001(\0132\022.AbilityGadgetInfoH\000\022*\n\rstatue_gad" +
+      "get\030\023 \001(\0132\021.StatueGadgetInfoH\000\022$\n\nboss_c" +
+      "hest\030\024 \001(\0132\016.BossChestInfoH\000\022*\n\rblossom_" +
+      "chest\030) \001(\0132\021.BlossomChestInfoH\000\022+\n\016mp_p" +
+      "lay_reward\030* \001(\0132\021.MpPlayRewardInfoH\000\0222\n" +
+      "\016general_reward\030+ \001(\0132\030.GadgetGeneralRew" +
+      "ardInfoH\000\022&\n\roffering_info\030, \001(\0132\r.Offer" +
+      "ingInfoH\000\022*\n\017foundation_info\030- \001(\0132\017.Fou" +
+      "ndationInfoH\000\022$\n\014vehicle_info\030. \001(\0132\014.Ve" +
+      "hicleInfoH\000\022$\n\nshell_info\030/ \001(\0132\016.EchoSh" +
+      "ellInfoH\000\022\"\n\013screen_info\0300 \001(\0132\013.ScreenI" +
+      "nfoH\000\022\'\n\016fish_pool_info\030; \001(\0132\r.FishPool" +
+      "InfoH\000\0228\n\027custom_gadget_tree_info\030< \001(\0132" +
+      "\025.CustomGadgetTreeInfoH\000\0225\n\025roguelike_ga" +
+      "dget_info\030= \001(\0132\024.RoguelikeGadgetInfoH\000\022" +
+      "6\n\026night_crow_gadget_info\030> \001(\0132\024.NightC" +
+      "rowGadgetInfoH\000\022@\n\033deshret_obelisk_gadge" +
+      "t_info\030? \001(\0132\031.DeshretObeliskGadgetInfoH" +
+      "\000\022>\n\032coin_collect_operator_info\030@ \001(\0132\030." +
+      "CoinCollectOperatorInfoH\000\022+\n\rtrifle_gadg" +
+      "et\030C \001(\0132\022._TrifleGadgetInfoH\000B\t\n\007conten" +
+      "tB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -12,7 +12,7 @@ message _RoleCombatSettleInfo {
   repeated uint64 avatar_guid_list = 11;
   repeated uint32 KNCAOGIMIJJ = 20002;
   DIGMMKNOMJH NAMEIDCGGIF = 20003;
-  bool FBHFAMPKPPK = 20004;
+  bool FBHFAMPKPPK = 4;
   bool INIDHGHIOOO = 20005;
   uint32 difficulty_id = 6;
   uint32 coin_num = 7;

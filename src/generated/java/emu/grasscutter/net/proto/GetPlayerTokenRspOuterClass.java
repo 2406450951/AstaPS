@@ -171,12 +171,12 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
         getTokenBytes();
 
     /**
-     * <code>string GGKODKLBGFD = 20000;</code>
+     * <code>string GGKODKLBGFD = 1745;</code>
      * @return The gGKODKLBGFD.
      */
     java.lang.String getGGKODKLBGFD();
     /**
-     * <code>string GGKODKLBGFD = 20000;</code>
+     * <code>string GGKODKLBGFD = 1745;</code>
      * @return The bytes for gGKODKLBGFD.
      */
     com.google.protobuf.ByteString
@@ -845,11 +845,11 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
       }
     }
 
-    public static final int GGKODKLBGFD_FIELD_NUMBER = 20000;
+    public static final int GGKODKLBGFD_FIELD_NUMBER = 1745;
     @SuppressWarnings("serial")
     private volatile java.lang.Object gGKODKLBGFD_ = "";
     /**
-     * <code>string GGKODKLBGFD = 20000;</code>
+     * <code>string GGKODKLBGFD = 1745;</code>
      * @return The gGKODKLBGFD.
      */
     @java.lang.Override
@@ -866,7 +866,7 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
       }
     }
     /**
-     * <code>string GGKODKLBGFD = 20000;</code>
+     * <code>string GGKODKLBGFD = 1745;</code>
      * @return The bytes for gGKODKLBGFD.
      */
     @java.lang.Override
@@ -1497,14 +1497,14 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(authkey_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1726, authkey_);
       }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gGKODKLBGFD_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1745, gGKODKLBGFD_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(countryCode_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1847, countryCode_);
       }
       if (channelId_ != 0) {
         output.writeUInt32(1915, channelId_);
-      }
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gGKODKLBGFD_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 20000, gGKODKLBGFD_);
       }
       if (gmUid_ != 0) {
         output.writeUInt32(20001, gmUid_);
@@ -1650,19 +1650,19 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(authkey_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1726, authkey_);
       }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gGKODKLBGFD_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1745, gGKODKLBGFD_);
+      }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(countryCode_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1847, countryCode_);
-      }
-      if (channelId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1915, channelId_);
       }
       return size;
     }
     private int computeSerializedSize_1() {
       int size = 0;
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(gGKODKLBGFD_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(20000, gGKODKLBGFD_);
+      if (channelId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1915, channelId_);
       }
       if (gmUid_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -2623,6 +2623,11 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
                 bitField0_ |= 0x00040000;
                 break;
               } // case 13810
+              case 13962: {
+                gGKODKLBGFD_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00001000;
+                break;
+              } // case 13962
               case 14778: {
                 countryCode_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
@@ -2633,11 +2638,6 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
                 bitField1_ |= 0x00000080;
                 break;
               } // case 15320
-              case 160002: {
-                gGKODKLBGFD_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00001000;
-                break;
-              } // case 160002
               case 160008: {
                 gmUid_ = input.readUInt32();
                 bitField0_ |= 0x00200000;
@@ -3541,7 +3541,7 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
 
       private java.lang.Object gGKODKLBGFD_ = "";
       /**
-       * <code>string GGKODKLBGFD = 20000;</code>
+       * <code>string GGKODKLBGFD = 1745;</code>
        * @return The gGKODKLBGFD.
        */
       public java.lang.String getGGKODKLBGFD() {
@@ -3557,7 +3557,7 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
         }
       }
       /**
-       * <code>string GGKODKLBGFD = 20000;</code>
+       * <code>string GGKODKLBGFD = 1745;</code>
        * @return The bytes for gGKODKLBGFD.
        */
       public com.google.protobuf.ByteString
@@ -3574,7 +3574,7 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
         }
       }
       /**
-       * <code>string GGKODKLBGFD = 20000;</code>
+       * <code>string GGKODKLBGFD = 1745;</code>
        * @param value The gGKODKLBGFD to set.
        * @return This builder for chaining.
        */
@@ -3587,7 +3587,7 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>string GGKODKLBGFD = 20000;</code>
+       * <code>string GGKODKLBGFD = 1745;</code>
        * @return This builder for chaining.
        */
       public Builder clearGGKODKLBGFD() {
@@ -3597,7 +3597,7 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
         return this;
       }
       /**
-       * <code>string GGKODKLBGFD = 20000;</code>
+       * <code>string GGKODKLBGFD = 1745;</code>
        * @param value The bytes for gGKODKLBGFD to set.
        * @return This builder for chaining.
        */
@@ -4853,31 +4853,31 @@ public final class GetPlayerTokenRspOuterClass extends com.google.protobuf.Gener
   static {
     java.lang.String[] descriptorData = {
       "\n\027GetPlayerTokenRsp.proto\032\024StopServerInf" +
-      "o.proto\"\252\007\n\021GetPlayerTokenRsp\022\"\n\031finish_" +
+      "o.proto\"\251\007\n\021GetPlayerTokenRsp\022\"\n\031finish_" +
       "collection_id_list\030\370\002 \003(\r\022\025\n\014country_cod" +
       "e\030\267\016 \001(\t\022\026\n\016extra_bin_data\030\017 \001(\014\022\016\n\005_xui" +
       "d\030\222\t \001(\t\022\023\n\nauth_appid\030\250\006 \001(\t\022\021\n\010birthda" +
       "y\030\211\013 \001(\t\022\r\n\004sign\030\320\001 \001(\t\022\027\n\016_security_fil" +
       "e\030\306\006 \001(\014\022%\n\013stop_server\030\306\003 \001(\0132\017.StopSer" +
       "verInfo\022\022\n\nsecret_key\030\010 \001(\t\022\023\n\013account_u" +
-      "id\030\005 \001(\t\022\r\n\005token\030\006 \001(\t\022\025\n\013GGKODKLBGFD\030\240" +
-      "\234\001 \001(\t\022\030\n\017server_rand_key\030\335\003 \001(\t\022\021\n\010game" +
-      "_biz\030\232\003 \001(\t\022\017\n\006psn_id\030\272\007 \001(\t\022\026\n\rclient_i" +
-      "p_str\030\344\013 \001(\t\022\"\n\031client_version_random_ke" +
-      "y\030\222\005 \001(\t\022\020\n\007authkey\030\276\r \001(\t\022\033\n\023security_c" +
-      "md_buffer\030\003 \001(\014\022\013\n\003msg\030\r \001(\t\022\020\n\006gm_uid\030\241" +
-      "\234\001 \001(\r\022\017\n\007retcode\030\016 \001(\005\022\024\n\013authkey_ver\030\207" +
-      "\010 \001(\r\022\033\n\022minors_reg_min_age\030\331\013 \001(\r\022\026\n\014re" +
-      "g_platform\030\242\234\001 \001(\r\022\032\n\022black_uid_end_time" +
-      "\030\014 \001(\r\022\027\n\017secret_key_seed\030\007 \001(\004\022\013\n\003uid\030\t" +
-      " \001(\r\022\025\n\013MGNAAEGCEDL\030\243\234\001 \001(\010\022\025\n\013KONAINKDJ" +
-      "CN\030\244\234\001 \001(\010\022\025\n\013CGPIOKGGDPB\030\245\234\001 \001(\010\022\036\n\024is_" +
-      "proficient_player\030\246\234\001 \001(\010\022\020\n\010is_guest\030\013 " +
-      "\001(\010\022\022\n\tsign_type\030\242\014 \001(\r\022\026\n\014account_type\030" +
-      "\247\234\001 \001(\r\022\014\n\003tag\030\210\014 \001(\r\022\017\n\006key_id\030\270\003 \001(\r\022\030" +
-      "\n\016sub_channel_id\030\250\234\001 \001(\r\022\023\n\nchannel_id\030\373" +
-      "\016 \001(\r\022\025\n\rplatform_type\030\004 \001(\rB\033\n\031emu.gras" +
-      "scutter.net.protob\006proto3"
+      "id\030\005 \001(\t\022\r\n\005token\030\006 \001(\t\022\024\n\013GGKODKLBGFD\030\321" +
+      "\r \001(\t\022\030\n\017server_rand_key\030\335\003 \001(\t\022\021\n\010game_" +
+      "biz\030\232\003 \001(\t\022\017\n\006psn_id\030\272\007 \001(\t\022\026\n\rclient_ip" +
+      "_str\030\344\013 \001(\t\022\"\n\031client_version_random_key" +
+      "\030\222\005 \001(\t\022\020\n\007authkey\030\276\r \001(\t\022\033\n\023security_cm" +
+      "d_buffer\030\003 \001(\014\022\013\n\003msg\030\r \001(\t\022\020\n\006gm_uid\030\241\234" +
+      "\001 \001(\r\022\017\n\007retcode\030\016 \001(\005\022\024\n\013authkey_ver\030\207\010" +
+      " \001(\r\022\033\n\022minors_reg_min_age\030\331\013 \001(\r\022\026\n\014reg" +
+      "_platform\030\242\234\001 \001(\r\022\032\n\022black_uid_end_time\030" +
+      "\014 \001(\r\022\027\n\017secret_key_seed\030\007 \001(\004\022\013\n\003uid\030\t " +
+      "\001(\r\022\025\n\013MGNAAEGCEDL\030\243\234\001 \001(\010\022\025\n\013KONAINKDJC" +
+      "N\030\244\234\001 \001(\010\022\025\n\013CGPIOKGGDPB\030\245\234\001 \001(\010\022\036\n\024is_p" +
+      "roficient_player\030\246\234\001 \001(\010\022\020\n\010is_guest\030\013 \001" +
+      "(\010\022\022\n\tsign_type\030\242\014 \001(\r\022\026\n\014account_type\030\247" +
+      "\234\001 \001(\r\022\014\n\003tag\030\210\014 \001(\r\022\017\n\006key_id\030\270\003 \001(\r\022\030\n" +
+      "\016sub_channel_id\030\250\234\001 \001(\r\022\023\n\nchannel_id\030\373\016" +
+      " \001(\r\022\025\n\rplatform_type\030\004 \001(\rB\033\n\031emu.grass" +
+      "cutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

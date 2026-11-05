@@ -55,7 +55,7 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
         int index);
 
     /**
-     * <code>bool is_gcg_pve_mode_open = 20000;</code>
+     * <code>bool is_gcg_pve_mode_open = 3;</code>
      * @return The isGcgPveModeOpen.
      */
     boolean getIsGcgPveModeOpen();
@@ -144,10 +144,10 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
       return levelDataList_.get(index);
     }
 
-    public static final int IS_GCG_PVE_MODE_OPEN_FIELD_NUMBER = 20000;
+    public static final int IS_GCG_PVE_MODE_OPEN_FIELD_NUMBER = 3;
     private boolean isGcgPveModeOpen_ = false;
     /**
-     * <code>bool is_gcg_pve_mode_open = 20000;</code>
+     * <code>bool is_gcg_pve_mode_open = 3;</code>
      * @return The isGcgPveModeOpen.
      */
     @java.lang.Override
@@ -169,16 +169,20 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (isGcgPveModeOpen_ != false) {
+        output.writeBool(3, isGcgPveModeOpen_);
+      }
       for (int i = 0; i < levelDataList_.size(); i++) {
         output.writeMessage(5, levelDataList_.get(i));
-      }
-      if (isGcgPveModeOpen_ != false) {
-        output.writeBool(20000, isGcgPveModeOpen_);
       }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (isGcgPveModeOpen_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, isGcgPveModeOpen_);
+      }
 
           {
             final int count = levelDataList_.size();
@@ -188,10 +192,6 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
             }
             size += 1 * count;
           }
-      if (isGcgPveModeOpen_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, isGcgPveModeOpen_);
-      }
       return size;
     }
     @java.lang.Override
@@ -493,6 +493,11 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
               case 0:
                 done = true;
                 break;
+              case 24: {
+                isGcgPveModeOpen_ = input.readBool();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 24
               case 42: {
                 emu.grasscutter.net.proto.GCGPVELevelDataInfoOuterClass.GCGPVELevelDataInfo m =
                     input.readMessage(
@@ -506,11 +511,6 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
                 }
                 break;
               } // case 42
-              case 160000: {
-                isGcgPveModeOpen_ = input.readBool();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -764,7 +764,7 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
 
       private boolean isGcgPveModeOpen_ ;
       /**
-       * <code>bool is_gcg_pve_mode_open = 20000;</code>
+       * <code>bool is_gcg_pve_mode_open = 3;</code>
        * @return The isGcgPveModeOpen.
        */
       @java.lang.Override
@@ -772,7 +772,7 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
         return isGcgPveModeOpen_;
       }
       /**
-       * <code>bool is_gcg_pve_mode_open = 20000;</code>
+       * <code>bool is_gcg_pve_mode_open = 3;</code>
        * @param value The isGcgPveModeOpen to set.
        * @return This builder for chaining.
        */
@@ -784,7 +784,7 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
         return this;
       }
       /**
-       * <code>bool is_gcg_pve_mode_open = 20000;</code>
+       * <code>bool is_gcg_pve_mode_open = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearIsGcgPveModeOpen() {
@@ -860,10 +860,10 @@ public final class GCGPveDetailInfo extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\027_GCGPveDetailInfo.proto\032\031GCGPVELevelDa" +
-      "taInfo.proto\"b\n\021_GCGPveDetailInfo\022-\n\017lev" +
+      "taInfo.proto\"`\n\021_GCGPveDetailInfo\022-\n\017lev" +
       "el_data_list\030\005 \003(\0132\024.GCGPVELevelDataInfo" +
-      "\022\036\n\024is_gcg_pve_mode_open\030\240\234\001 \001(\010B\033\n\031emu." +
-      "grasscutter.net.protob\006proto3"
+      "\022\034\n\024is_gcg_pve_mode_open\030\003 \001(\010B\033\n\031emu.gr" +
+      "asscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

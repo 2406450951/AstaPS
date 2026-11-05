@@ -83,7 +83,7 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
     int getFECKJOJEHCH();
 
     /**
-     * <code>uint32 show_state = 20004;</code>
+     * <code>uint32 show_state = 1;</code>
      * @return The showState.
      */
     int getShowState();
@@ -231,10 +231,10 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
       return fECKJOJEHCH_;
     }
 
-    public static final int SHOW_STATE_FIELD_NUMBER = 20004;
+    public static final int SHOW_STATE_FIELD_NUMBER = 1;
     private int showState_ = 0;
     /**
-     * <code>uint32 show_state = 20004;</code>
+     * <code>uint32 show_state = 1;</code>
      * @return The showState.
      */
     @java.lang.Override
@@ -268,6 +268,9 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (showState_ != 0) {
+        output.writeUInt32(1, showState_);
+      }
       if (progress_ != 0) {
         output.writeUInt32(2, progress_);
       }
@@ -294,13 +297,14 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
       if (fECKJOJEHCH_ != 0) {
         output.writeUInt32(20003, fECKJOJEHCH_);
       }
-      if (showState_ != 0) {
-        output.writeUInt32(20004, showState_);
-      }
       getUnknownFields().writeTo(output);
     }
     private int computeSerializedSize_0() {
       int size = 0;
+      if (showState_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, showState_);
+      }
       if (progress_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, progress_);
@@ -344,10 +348,6 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
       if (fECKJOJEHCH_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20003, fECKJOJEHCH_);
-      }
-      if (showState_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20004, showState_);
       }
       return size;
     }
@@ -685,6 +685,11 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
               case 0:
                 done = true;
                 break;
+              case 8: {
+                showState_ = input.readUInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 8
               case 16: {
                 progress_ = input.readUInt32();
                 bitField0_ |= 0x00000040;
@@ -737,11 +742,6 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
                 bitField0_ |= 0x00000010;
                 break;
               } // case 160024
-              case 160032: {
-                showState_ = input.readUInt32();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 160032
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1025,7 +1025,7 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
 
       private int showState_ ;
       /**
-       * <code>uint32 show_state = 20004;</code>
+       * <code>uint32 show_state = 1;</code>
        * @return The showState.
        */
       @java.lang.Override
@@ -1033,7 +1033,7 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
         return showState_;
       }
       /**
-       * <code>uint32 show_state = 20004;</code>
+       * <code>uint32 show_state = 1;</code>
        * @param value The showState to set.
        * @return This builder for chaining.
        */
@@ -1045,7 +1045,7 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
         return this;
       }
       /**
-       * <code>uint32 show_state = 20004;</code>
+       * <code>uint32 show_state = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearShowState() {
@@ -1152,13 +1152,13 @@ public final class IrodoriPoetryThemeDataOuterClass extends com.google.protobuf.
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034IrodoriPoetryThemeData.proto\"\262\001\n\026Irodo" +
+      "\n\034IrodoriPoetryThemeData.proto\"\260\001\n\026Irodo" +
       "riPoetryThemeData\022\025\n\013JKBNGDCEFOB\030\240\234\001 \003(\r" +
       "\022\025\n\013EGEJCLMEEIO\030\241\234\001 \003(\r\022\024\n\014max_progress\030" +
       "\003 \001(\r\022\025\n\013AEHBFKFAAJB\030\242\234\001 \001(\r\022\025\n\013FECKJOJE" +
-      "HCH\030\243\234\001 \001(\r\022\024\n\nshow_state\030\244\234\001 \001(\r\022\020\n\010pro" +
-      "gress\030\002 \001(\rB\033\n\031emu.grasscutter.net.proto" +
-      "b\006proto3"
+      "HCH\030\243\234\001 \001(\r\022\022\n\nshow_state\030\001 \001(\r\022\020\n\010progr" +
+      "ess\030\002 \001(\rB\033\n\031emu.grasscutter.net.protob\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

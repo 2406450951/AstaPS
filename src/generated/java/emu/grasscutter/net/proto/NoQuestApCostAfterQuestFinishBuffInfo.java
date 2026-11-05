@@ -37,7 +37,7 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
     int getProgress();
 
     /**
-     * <code>bool NHLOILJDDIP = 20000;</code>
+     * <code>bool NHLOILJDDIP = 6;</code>
      * @return The nHLOILJDDIP.
      */
     boolean getNHLOILJDDIP();
@@ -95,10 +95,10 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
       return progress_;
     }
 
-    public static final int NHLOILJDDIP_FIELD_NUMBER = 20000;
+    public static final int NHLOILJDDIP_FIELD_NUMBER = 6;
     private boolean nHLOILJDDIP_ = false;
     /**
-     * <code>bool NHLOILJDDIP = 20000;</code>
+     * <code>bool NHLOILJDDIP = 6;</code>
      * @return The nHLOILJDDIP.
      */
     @java.lang.Override
@@ -124,7 +124,7 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
         output.writeUInt32(5, progress_);
       }
       if (nHLOILJDDIP_ != false) {
-        output.writeBool(20000, nHLOILJDDIP_);
+        output.writeBool(6, nHLOILJDDIP_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -136,7 +136,7 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
       }
       if (nHLOILJDDIP_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(20000, nHLOILJDDIP_);
+          .computeBoolSize(6, nHLOILJDDIP_);
       }
       return size;
     }
@@ -403,11 +403,11 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
                 bitField0_ |= 0x00000001;
                 break;
               } // case 40
-              case 160000: {
+              case 48: {
                 nHLOILJDDIP_ = input.readBool();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160000
+              } // case 48
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -459,7 +459,7 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
 
       private boolean nHLOILJDDIP_ ;
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 6;</code>
        * @return The nHLOILJDDIP.
        */
       @java.lang.Override
@@ -467,7 +467,7 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
         return nHLOILJDDIP_;
       }
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 6;</code>
        * @param value The nHLOILJDDIP to set.
        * @return This builder for chaining.
        */
@@ -479,7 +479,7 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
         return this;
       }
       /**
-       * <code>bool NHLOILJDDIP = 20000;</code>
+       * <code>bool NHLOILJDDIP = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearNHLOILJDDIP() {
@@ -555,10 +555,10 @@ public final class NoQuestApCostAfterQuestFinishBuffInfo extends com.google.prot
   static {
     java.lang.String[] descriptorData = {
       "\n,_NoQuestApCostAfterQuestFinishBuffInfo" +
-      ".proto\"Q\n&_NoQuestApCostAfterQuestFinish" +
-      "BuffInfo\022\020\n\010progress\030\005 \001(\r\022\025\n\013NHLOILJDDI" +
-      "P\030\240\234\001 \001(\010B\033\n\031emu.grasscutter.net.protob\006" +
-      "proto3"
+      ".proto\"O\n&_NoQuestApCostAfterQuestFinish" +
+      "BuffInfo\022\020\n\010progress\030\005 \001(\r\022\023\n\013NHLOILJDDI" +
+      "P\030\006 \001(\010B\033\n\031emu.grasscutter.net.protob\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

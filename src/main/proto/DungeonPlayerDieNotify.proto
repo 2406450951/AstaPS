@@ -8,7 +8,7 @@ import "StrengthenPointData.proto";
 
 message DungeonPlayerDieNotify {
   map<uint32, StrengthenPointData> strengthen_point_data_map = 9;
-  AbilityString MCPNIFKDECF = 20000;
+  AbilityString MCPNIFKDECF = 15;
   uint32 murderer_entity_id = 20001;
   uint32 revive_count = 1;
   PlayerDieType die_type = 10;

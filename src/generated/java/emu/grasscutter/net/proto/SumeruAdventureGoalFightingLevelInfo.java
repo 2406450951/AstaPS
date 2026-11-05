@@ -31,17 +31,17 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
      * @return Whether the mFJAFOAHPDA field is set.
      */
     boolean hasMFJAFOAHPDA();
     /**
-     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
      * @return The mFJAFOAHPDA.
      */
     emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ getMFJAFOAHPDA();
     /**
-     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
      */
     emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJOrBuilder getMFJAFOAHPDAOrBuilder();
 
@@ -94,10 +94,10 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
     }
 
     private int bitField0_;
-    public static final int MFJAFOAHPDA_FIELD_NUMBER = 20000;
+    public static final int MFJAFOAHPDA_FIELD_NUMBER = 11;
     private emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ mFJAFOAHPDA_;
     /**
-     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
      * @return Whether the mFJAFOAHPDA field is set.
      */
     @java.lang.Override
@@ -105,7 +105,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
      * @return The mFJAFOAHPDA.
      */
     @java.lang.Override
@@ -113,7 +113,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
       return mFJAFOAHPDA_ == null ? emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ.getDefaultInstance() : mFJAFOAHPDA_;
     }
     /**
-     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+     * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
      */
     @java.lang.Override
     public emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJOrBuilder getMFJAFOAHPDAOrBuilder() {
@@ -146,7 +146,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(20000, getMFJAFOAHPDA());
+        output.writeMessage(11, getMFJAFOAHPDA());
       }
       if (lLGCHCADBJF_ != 0) {
         output.writeUInt32(20001, lLGCHCADBJF_);
@@ -157,7 +157,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
       int size = 0;
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(20000, getMFJAFOAHPDA());
+          .computeMessageSize(11, getMFJAFOAHPDA());
       }
       if (lLGCHCADBJF_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -442,13 +442,13 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
               case 0:
                 done = true;
                 break;
-              case 160002: {
+              case 90: {
                 input.readMessage(
                     internalGetMFJAFOAHPDAFieldBuilder().getBuilder(),
                     extensionRegistry);
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160002
+              } // case 90
               case 160008: {
                 lLGCHCADBJF_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
@@ -475,14 +475,14 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ, emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ.Builder, emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJOrBuilder> mFJAFOAHPDABuilder_;
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        * @return Whether the mFJAFOAHPDA field is set.
        */
       public boolean hasMFJAFOAHPDA() {
         return ((bitField0_ & 0x00000001) != 0);
       }
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        * @return The mFJAFOAHPDA.
        */
       public emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ getMFJAFOAHPDA() {
@@ -493,7 +493,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
         }
       }
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        */
       public Builder setMFJAFOAHPDA(emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ value) {
         if (mFJAFOAHPDABuilder_ == null) {
@@ -507,7 +507,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
         return this;
       }
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        */
       public Builder setMFJAFOAHPDA(
           emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ.Builder builderForValue) {
@@ -521,7 +521,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
         return this;
       }
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        */
       public Builder mergeMFJAFOAHPDA(emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ value) {
         if (mFJAFOAHPDABuilder_ == null) {
@@ -542,7 +542,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
         return this;
       }
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        */
       public Builder clearMFJAFOAHPDA() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -555,7 +555,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
         return this;
       }
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        */
       public emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ.Builder getMFJAFOAHPDABuilder() {
         bitField0_ |= 0x00000001;
@@ -563,7 +563,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
         return internalGetMFJAFOAHPDAFieldBuilder().getBuilder();
       }
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        */
       public emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJOrBuilder getMFJAFOAHPDAOrBuilder() {
         if (mFJAFOAHPDABuilder_ != null) {
@@ -574,7 +574,7 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
         }
       }
       /**
-       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 20000;</code>
+       * <code>.NOJCFCNEIMJ MFJAFOAHPDA = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ, emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJ.Builder, emu.grasscutter.net.proto.NOJCFCNEIMJOuterClass.NOJCFCNEIMJOrBuilder> 
@@ -688,11 +688,10 @@ public final class SumeruAdventureGoalFightingLevelInfo extends com.google.proto
   static {
     java.lang.String[] descriptorData = {
       "\n+_SumeruAdventureGoalFightingLevelInfo." +
-      "proto\032\021NOJCFCNEIMJ.proto\"c\n%_SumeruAdven" +
-      "tureGoalFightingLevelInfo\022#\n\013MFJAFOAHPDA" +
-      "\030\240\234\001 \001(\0132\014.NOJCFCNEIMJ\022\025\n\013LLGCHCADBJF\030\241\234" +
-      "\001 \001(\rB\033\n\031emu.grasscutter.net.protob\006prot" +
-      "o3"
+      "proto\032\021NOJCFCNEIMJ.proto\"a\n%_SumeruAdven" +
+      "tureGoalFightingLevelInfo\022!\n\013MFJAFOAHPDA" +
+      "\030\013 \001(\0132\014.NOJCFCNEIMJ\022\025\n\013LLGCHCADBJF\030\241\234\001 " +
+      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

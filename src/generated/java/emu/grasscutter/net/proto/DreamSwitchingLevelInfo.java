@@ -31,7 +31,7 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+     * <code>uint32 FDNLFLGDJBJ = 13;</code>
      * @return The fDNLFLGDJBJ.
      */
     int getFDNLFLGDJBJ();
@@ -78,10 +78,10 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
               emu.grasscutter.net.proto.DreamSwitchingLevelInfo._DreamSwitchingLevelInfo.class, emu.grasscutter.net.proto.DreamSwitchingLevelInfo._DreamSwitchingLevelInfo.Builder.class);
     }
 
-    public static final int FDNLFLGDJBJ_FIELD_NUMBER = 20000;
+    public static final int FDNLFLGDJBJ_FIELD_NUMBER = 13;
     private int fDNLFLGDJBJ_ = 0;
     /**
-     * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+     * <code>uint32 FDNLFLGDJBJ = 13;</code>
      * @return The fDNLFLGDJBJ.
      */
     @java.lang.Override
@@ -104,7 +104,7 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (fDNLFLGDJBJ_ != 0) {
-        output.writeUInt32(20000, fDNLFLGDJBJ_);
+        output.writeUInt32(13, fDNLFLGDJBJ_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -112,7 +112,7 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
       int size = 0;
       if (fDNLFLGDJBJ_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, fDNLFLGDJBJ_);
+          .computeUInt32Size(13, fDNLFLGDJBJ_);
       }
       return size;
     }
@@ -362,11 +362,11 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
               case 0:
                 done = true;
                 break;
-              case 160000: {
+              case 104: {
                 fDNLFLGDJBJ_ = input.readUInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 160000
+              } // case 104
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -386,7 +386,7 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
 
       private int fDNLFLGDJBJ_ ;
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 13;</code>
        * @return The fDNLFLGDJBJ.
        */
       @java.lang.Override
@@ -394,7 +394,7 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
         return fDNLFLGDJBJ_;
       }
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 13;</code>
        * @param value The fDNLFLGDJBJ to set.
        * @return This builder for chaining.
        */
@@ -406,7 +406,7 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
         return this;
       }
       /**
-       * <code>uint32 FDNLFLGDJBJ = 20000;</code>
+       * <code>uint32 FDNLFLGDJBJ = 13;</code>
        * @return This builder for chaining.
        */
       public Builder clearFDNLFLGDJBJ() {
@@ -481,9 +481,9 @@ public final class DreamSwitchingLevelInfo extends com.google.protobuf.Generated
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\036_DreamSwitchingLevelInfo.proto\"1\n\030_Dre" +
-      "amSwitchingLevelInfo\022\025\n\013FDNLFLGDJBJ\030\240\234\001 " +
-      "\001(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
+      "\n\036_DreamSwitchingLevelInfo.proto\"/\n\030_Dre" +
+      "amSwitchingLevelInfo\022\023\n\013FDNLFLGDJBJ\030\r \001(" +
+      "\rB\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

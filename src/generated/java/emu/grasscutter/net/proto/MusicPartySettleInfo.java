@@ -102,7 +102,7 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
     int getScore();
 
     /**
-     * <code>uint32 LLCEEFFOGBH = 20000;</code>
+     * <code>uint32 LLCEEFFOGBH = 11;</code>
      * @return The lLCEEFFOGBH.
      */
     int getLLCEEFFOGBH();
@@ -275,10 +275,10 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
       return score_;
     }
 
-    public static final int LLCEEFFOGBH_FIELD_NUMBER = 20000;
+    public static final int LLCEEFFOGBH_FIELD_NUMBER = 11;
     private int lLCEEFFOGBH_ = 0;
     /**
-     * <code>uint32 LLCEEFFOGBH = 20000;</code>
+     * <code>uint32 LLCEEFFOGBH = 11;</code>
      * @return The lLCEEFFOGBH.
      */
     @java.lang.Override
@@ -307,6 +307,9 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
       if (score_ != 0) {
         output.writeUInt32(3, score_);
       }
+      if (lLCEEFFOGBH_ != 0) {
+        output.writeUInt32(11, lLCEEFFOGBH_);
+      }
       if (getWinnerUidListList().size() > 0) {
         output.writeUInt32NoTag(114);
         output.writeUInt32NoTag(winnerUidListMemoizedSerializedSize);
@@ -316,9 +319,6 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
       }
       for (int i = 0; i < scoreList_.size(); i++) {
         output.writeMessage(15, scoreList_.get(i));
-      }
-      if (lLCEEFFOGBH_ != 0) {
-        output.writeUInt32(20000, lLCEEFFOGBH_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -336,6 +336,10 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
       if (score_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(3, score_);
+      }
+      if (lLCEEFFOGBH_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(11, lLCEEFFOGBH_);
       }
       {
         int dataSize = 0;
@@ -360,10 +364,6 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
             }
             size += 1 * count;
           }
-      if (lLCEEFFOGBH_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, lLCEEFFOGBH_);
-      }
       return size;
     }
     @java.lang.Override
@@ -763,6 +763,11 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
                 bitField0_ |= 0x00000008;
                 break;
               } // case 24
+              case 88: {
+                lLCEEFFOGBH_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 88
               case 112: {
                 int v = input.readUInt32();
                 ensureWinnerUidListIsMutable();
@@ -792,11 +797,6 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
                 }
                 break;
               } // case 122
-              case 160000: {
-                lLCEEFFOGBH_ = input.readUInt32();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 160000
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1400,7 +1400,7 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
 
       private int lLCEEFFOGBH_ ;
       /**
-       * <code>uint32 LLCEEFFOGBH = 20000;</code>
+       * <code>uint32 LLCEEFFOGBH = 11;</code>
        * @return The lLCEEFFOGBH.
        */
       @java.lang.Override
@@ -1408,7 +1408,7 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
         return lLCEEFFOGBH_;
       }
       /**
-       * <code>uint32 LLCEEFFOGBH = 20000;</code>
+       * <code>uint32 LLCEEFFOGBH = 11;</code>
        * @param value The lLCEEFFOGBH to set.
        * @return This builder for chaining.
        */
@@ -1420,7 +1420,7 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
         return this;
       }
       /**
-       * <code>uint32 LLCEEFFOGBH = 20000;</code>
+       * <code>uint32 LLCEEFFOGBH = 11;</code>
        * @return This builder for chaining.
        */
       public Builder clearLLCEEFFOGBH() {
@@ -1497,12 +1497,12 @@ public final class MusicPartySettleInfo extends com.google.protobuf.GeneratedFil
     java.lang.String[] descriptorData = {
       "\n\033_MusicPartySettleInfo.proto\032!DungeonSe" +
       "ttleExhibitionInfo.proto\032\033ExhibitionDisp" +
-      "layInfo.proto\"\272\001\n\025_MusicPartySettleInfo\022" +
+      "layInfo.proto\"\270\001\n\025_MusicPartySettleInfo\022" +
       "*\n\nscore_list\030\017 \003(\0132\026.ExhibitionDisplayI" +
       "nfo\0226\n\020settle_info_list\030\002 \003(\0132\034.DungeonS" +
       "ettleExhibitionInfo\022\027\n\017winner_uid_list\030\016" +
-      " \003(\r\022\r\n\005score\030\003 \001(\r\022\025\n\013LLCEEFFOGBH\030\240\234\001 \001" +
-      "(\rB\033\n\031emu.grasscutter.net.protob\006proto3"
+      " \003(\r\022\r\n\005score\030\003 \001(\r\022\023\n\013LLCEEFFOGBH\030\013 \001(\r" +
+      "B\033\n\031emu.grasscutter.net.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

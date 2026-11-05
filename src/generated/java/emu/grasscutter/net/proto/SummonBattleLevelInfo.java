@@ -55,7 +55,7 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
         int index);
 
     /**
-     * <code>uint32 DEADDOKKEHM = 20000;</code>
+     * <code>uint32 DEADDOKKEHM = 6;</code>
      * @return The dEADDOKKEHM.
      */
     int getDEADDOKKEHM();
@@ -150,10 +150,10 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
       return avatarList_.get(index);
     }
 
-    public static final int DEADDOKKEHM_FIELD_NUMBER = 20000;
+    public static final int DEADDOKKEHM_FIELD_NUMBER = 6;
     private int dEADDOKKEHM_ = 0;
     /**
-     * <code>uint32 DEADDOKKEHM = 20000;</code>
+     * <code>uint32 DEADDOKKEHM = 6;</code>
      * @return The dEADDOKKEHM.
      */
     @java.lang.Override
@@ -190,7 +190,7 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
         output.writeMessage(2, avatarList_.get(i));
       }
       if (dEADDOKKEHM_ != 0) {
-        output.writeUInt32(20000, dEADDOKKEHM_);
+        output.writeUInt32(6, dEADDOKKEHM_);
       }
       if (pHICBDKBDDH_ != 0) {
         output.writeUInt32(20001, pHICBDKBDDH_);
@@ -210,7 +210,7 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
           }
       if (dEADDOKKEHM_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(20000, dEADDOKKEHM_);
+          .computeUInt32Size(6, dEADDOKKEHM_);
       }
       if (pHICBDKBDDH_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -540,11 +540,11 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
                 }
                 break;
               } // case 18
-              case 160000: {
+              case 48: {
                 dEADDOKKEHM_ = input.readUInt32();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 160000
+              } // case 48
               case 160008: {
                 pHICBDKBDDH_ = input.readUInt32();
                 bitField0_ |= 0x00000004;
@@ -803,7 +803,7 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
 
       private int dEADDOKKEHM_ ;
       /**
-       * <code>uint32 DEADDOKKEHM = 20000;</code>
+       * <code>uint32 DEADDOKKEHM = 6;</code>
        * @return The dEADDOKKEHM.
        */
       @java.lang.Override
@@ -811,7 +811,7 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
         return dEADDOKKEHM_;
       }
       /**
-       * <code>uint32 DEADDOKKEHM = 20000;</code>
+       * <code>uint32 DEADDOKKEHM = 6;</code>
        * @param value The dEADDOKKEHM to set.
        * @return This builder for chaining.
        */
@@ -823,7 +823,7 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
         return this;
       }
       /**
-       * <code>uint32 DEADDOKKEHM = 20000;</code>
+       * <code>uint32 DEADDOKKEHM = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearDEADDOKKEHM() {
@@ -931,11 +931,11 @@ public final class SummonBattleLevelInfo extends com.google.protobuf.GeneratedFi
   static {
     java.lang.String[] descriptorData = {
       "\n\034_SummonBattleLevelInfo.proto\032\031_Activit" +
-      "yAvatarInfo.proto\"q\n\026_SummonBattleLevelI" +
+      "yAvatarInfo.proto\"o\n\026_SummonBattleLevelI" +
       "nfo\022)\n\013avatar_list\030\002 \003(\0132\024._ActivityAvat" +
-      "arInfo\022\025\n\013DEADDOKKEHM\030\240\234\001 \001(\r\022\025\n\013PHICBDK" +
-      "BDDH\030\241\234\001 \001(\rB\033\n\031emu.grasscutter.net.prot" +
-      "ob\006proto3"
+      "arInfo\022\023\n\013DEADDOKKEHM\030\006 \001(\r\022\025\n\013PHICBDKBD" +
+      "DH\030\241\234\001 \001(\rB\033\n\031emu.grasscutter.net.protob" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
