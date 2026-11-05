@@ -73,4 +73,4 @@ give 202 --amount 3 @10001
 
 ## Proto 來源
 
-協議定義來自 **Shizuki♡**。7.2 的 `.nt` 名稱翻譯檔來自 **Shizuki♡**。
+協議定義來自 **Shizuki♡**。NT 來自 **Shizuki♡**。

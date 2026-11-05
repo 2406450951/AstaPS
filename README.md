@@ -141,4 +141,4 @@ The import commit at the root of this repository credits by name the authors who
 
 ## Proto Sources
 
-Protocol definitions sourced from **Shizuki♡**. The 7.2 `.nt` name translation file is from **Shizuki♡**.
+Protocol definitions sourced from **Shizuki♡**. NT is from **Shizuki♡**.
