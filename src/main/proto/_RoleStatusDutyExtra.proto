@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_RoleStatusDutyExtraOuterClass";
-import "KJPAHKDIGKE.proto";
-
-message _RoleStatusDutyExtra {
-  repeated KJPAHKDIGKE NFPIKKFCBJK = 1;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_RogueBallEnterInfoOuterClass";
-message _RogueBallEnterInfo {
-  uint32 _auto_chess_equip_id = 13;
-  bool _is_restart = 15;
-}

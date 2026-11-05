@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GOBLDIADDAKOuterClass";
-import "IJGLKMANAFK.proto";
-
-message GOBLDIADDAK {
-  repeated IJGLKMANAFK DNCCDOBDHPE = 1;
-}

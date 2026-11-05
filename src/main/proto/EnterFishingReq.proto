@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EnterFishingReqOuterClass";
-// 7.2 CmdId 21676
-message EnterFishingReq {
-  uint32 fish_pool_id = 6;
-}

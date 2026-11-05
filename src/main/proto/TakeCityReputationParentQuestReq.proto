@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "TakeCityReputationParentQuestReqOuterClass";
-// 7.2 CmdId 3863
-message TakeCityReputationParentQuestReq {
-  repeated uint32 parent_quest_list = 14;
-  uint32 city_id = 15;
-}

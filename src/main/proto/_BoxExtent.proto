@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BoxExtentOuterClass";
-message _BoxExtent {
-  sfixed64 y = 3;
-  sfixed64 x = 13;
-}

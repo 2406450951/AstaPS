@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AdventurerStatueDriftBottleReplyReqOuterClass";
-// 7.2 CmdId 28540
-message _AdventurerStatueDriftBottleReplyReq {
-  fixed64 guid = 13;
-  uint32 _sticker_id = 15;
-}

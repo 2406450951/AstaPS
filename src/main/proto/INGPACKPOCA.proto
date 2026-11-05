@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "INGPACKPOCAOuterClass";
-message INGPACKPOCA {
-  int32 BPNMKKHNIGI = 1;
-  repeated uint32 CDFKDDKDLJM = 2;
-  repeated uint32 PAAGPDNHFLI = 3;
-}

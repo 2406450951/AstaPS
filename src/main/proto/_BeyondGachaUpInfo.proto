@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondGachaUpInfoOuterClass";
-message _BeyondGachaUpInfo {
-  uint32 _beyond_item_parent_type = 4;
-  repeated uint32 item_id_list = 13;
-}

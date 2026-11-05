@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AvatarRenameCooldownInfoOuterClass";
-message AvatarRenameCooldownInfo {
-  uint32 rename_id = 1;
-  fixed32 cd_time = 2;
-}

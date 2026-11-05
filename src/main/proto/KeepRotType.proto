@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "KeepRotTypeOuterClass";
-enum KeepRotType {
-  KEEP_ROT_TYPE_KEEP_ROT_X = 0;
-  KEEP_ROT_TYPE_KEEP_ROT_XY = 1;
-}

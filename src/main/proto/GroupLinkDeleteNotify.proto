@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GroupLinkDeleteNotifyOuterClass";
-// 7.2 CmdId 24562
-message GroupLinkDeleteNotify {
-  uint32 bundle_id = 13;
-}

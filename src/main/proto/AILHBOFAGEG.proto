@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AILHBOFAGEGOuterClass";
-message AILHBOFAGEG {
-  uint32 FADCCNMBGIM = 1;
-  int32 FGIAAFKHPDA = 2;
-}

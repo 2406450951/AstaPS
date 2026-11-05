@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ADBJDJGMMEBOuterClass";
-enum ADBJDJGMMEB {
-  ADBJDJGMMEB_ONLY_HIGH_SPEED = 0;
-  ADBJDJGMMEB_ALWAYS = 1;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_UgcChestGadgetOuterClass";
-import "_UgcGadgetItemInfo.proto";
-
-message _UgcChestGadget {
-  repeated _UgcGadgetItemInfo _chest_drop_item_info_list = 4;
-}

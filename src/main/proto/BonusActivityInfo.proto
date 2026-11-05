@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BonusActivityInfoOuterClass";
-message BonusActivityInfo {
-  uint32 bonus_activity_id = 2;
-  uint32 reward_index = 3;
-  uint32 state = 13;
-}

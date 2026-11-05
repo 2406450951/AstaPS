@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HomeRacingRecordOuterClass";
-import "HomeRacingGalleryRecord.proto";
-
-message HomeRacingRecord {
-  repeated HomeRacingGalleryRecord record_list = 2;
-}

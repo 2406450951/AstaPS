@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BartenderCancelOrderRspOuterClass";
-message BartenderCancelOrderRsp {
-  int32 retcode = 1;
-  uint32 quest_id = 2;
-}

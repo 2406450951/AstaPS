@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SetEquipLockStateBatchRspOuterClass";
-// 7.2 CmdId 26917
-message SetEquipLockStateBatchRsp {
-  bool is_locked = 4;
-  int32 retcode = 14;
-}

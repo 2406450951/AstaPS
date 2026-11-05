@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EOMDDNJBDHNOuterClass";
-enum EOMDDNJBDHN {
-  EOMDDNJBDHN_NONE = 0;
-  EOMDDNJBDHN_ALL = 1;
-  EOMDDNJBDHN_SPECIFIC = 2;
-}

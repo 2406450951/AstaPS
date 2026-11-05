@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "UseMiracleRingRspOuterClass";
-// 7.2 CmdId 1851
-message UseMiracleRingRsp {
-  uint32 miracle_ring_op_type = 6;
-  int32 retcode = 12;
-}

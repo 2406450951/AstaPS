@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GetBeyondPlayerSocialInfoReqOuterClass";
-// 7.2 CmdId 6368
-message _GetBeyondPlayerSocialInfoReq {
-  repeated uint32 player_uid_list = 7;
-  uint32 param = 9;
-}

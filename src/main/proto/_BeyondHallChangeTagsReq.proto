@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondHallChangeTagsReqOuterClass";
-// 7.2 CmdId 26215
-message _BeyondHallChangeTagsReq {
-  repeated uint32 tag_list = 5;
-}

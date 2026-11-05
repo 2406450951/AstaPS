@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_FurnitureMakeSlotUnlockReqOuterClass";
-// 7.2 CmdId 3084
-message _FurnitureMakeSlotUnlockReq {
-  uint32 _furniture_make_slot_num = 15;
-}

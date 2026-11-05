@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FLMLGIKNGDCOuterClass";
-message FLMLGIKNGDC {
-  uint32 uid = 2;
-  uint32 BNIOPDFNOBH = 15;
-}

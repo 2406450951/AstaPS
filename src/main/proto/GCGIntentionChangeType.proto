@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GCGIntentionChangeTypeOuterClass";
-enum GCGIntentionChangeType {
-  GCGINTENTION_CHANGE_TYPE_GCG_INTENTION_CHANGE_NONE = 0;
-  GCGINTENTION_CHANGE_TYPE_GCG_INTENTION_CHANGE_RM = 1;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "DungeonCandidateTeamCreateReqOuterClass";
-// 7.2 CmdId 9387
-message DungeonCandidateTeamCreateReq {
-  uint32 point_id = 8;
-  uint32 dungeon_id = 13;
-}

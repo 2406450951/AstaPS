@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SceneGalleryHideAndSeekInfoOuterClass";
-message SceneGalleryHideAndSeekInfo {
-  repeated uint32 OCABKICDMLM = 1;
-  repeated uint32 IEPJCDJCILN = 2;
-}

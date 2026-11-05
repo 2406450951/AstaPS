@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EHNCPBDLCKIOuterClass";
-enum EHNCPBDLCKI {
-  EHNCPBDLCKI_BASE_PROP = 0;
-  EHNCPBDLCKI_CUSTOM = 1;
-  EHNCPBDLCKI_ROLE_STATUS = 2;
-}

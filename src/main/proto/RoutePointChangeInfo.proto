@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RoutePointChangeInfoOuterClass";
-message RoutePointChangeInfo {
-  uint32 point_index = 4;
-  float target_velocity = 6;
-  float wait_time = 10;
-}

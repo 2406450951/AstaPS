@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BlessingAcceptAllGivePicRspOuterClass";
-message BlessingAcceptAllGivePicRsp {
-  int32 retcode = 1;
-  map<uint32, uint32> accept_pic_num_map = 2;
-  repeated uint32 accept_index_list = 3;
-}

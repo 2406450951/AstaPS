@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GCGOperationVehicleOuterClass";
-message _GCGOperationVehicle {
-  repeated uint32 target_card_guid_list = 3;
-  uint32 skill_id = 8;
-  repeated uint32 cost_dice_index_list = 11;
-}

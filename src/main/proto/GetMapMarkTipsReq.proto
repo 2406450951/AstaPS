@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GetMapMarkTipsReqOuterClass";
-// 7.2 CmdId 20856
-message GetMapMarkTipsReq {
-}

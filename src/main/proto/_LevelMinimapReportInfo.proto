@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_LevelMinimapReportInfoOuterClass";
-message _LevelMinimapReportInfo {
-  uint32 OFHIEKJIOCE = 5;
-  uint64 dungeon_guid = 15;
-}

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_CustomProfilePictureReportInfoOuterClass";
-message _CustomProfilePictureReportInfo {
-  uint32 target_uid = 10;
-}

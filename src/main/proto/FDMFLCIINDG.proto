@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FDMFLCIINDGOuterClass";
-message FDMFLCIINDG {
-  uint32 NBFHKIOFPBC = 1;
-  int32 DLLKMFNGIAE = 2;
-  int32 MAABBEMEOJL = 3;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "NBLKLNJOLHGOuterClass";
-import "DGPJEBBPICC.proto";
-
-message NBLKLNJOLHG {
-  repeated DGPJEBBPICC PICADGNIOOE = 1;
-}

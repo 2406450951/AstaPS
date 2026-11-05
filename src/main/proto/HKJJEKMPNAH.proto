@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HKJJEKMPNAHOuterClass";
-enum HKJJEKMPNAH {
-  HKJJEKMPNAH_OBTAIN = 0;
-  HKJJEKMPNAH_WEAR = 1;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "OEJONGMLDMEOuterClass";
-import "ECDKOGBJPBN.proto";
-
-message OEJONGMLDME {
-  repeated ECDKOGBJPBN FKMDCNIKLKI = 1;
-}

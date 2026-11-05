@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HomeStakeRecordOuterClass";
-import "HomeStakePlayRecord.proto";
-
-message HomeStakeRecord {
-  repeated HomeStakePlayRecord record_list = 14;
-}

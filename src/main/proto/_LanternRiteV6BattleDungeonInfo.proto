@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_LanternRiteV6BattleDungeonInfoOuterClass";
-message _LanternRiteV6BattleDungeonInfo {
-  uint32 difficulty = 3;
-  uint32 level_id = 5;
-}

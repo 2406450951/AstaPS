@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FMFNKGODEBIOuterClass";
-message FMFNKGODEBI {
-  float GGBKGDKCPKB = 1;
-  uint32 EGDMKJCIBML = 10;
-  float ACAINLDMHPP = 15;
-}

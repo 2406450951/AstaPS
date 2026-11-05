@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ELAIPJPOFDGOuterClass";
-enum ELAIPJPOFDG {
-  ELAIPJPOFDG_NONE = 0;
-  ELAIPJPOFDG_PAIR = 1;
-  ELAIPJPOFDG_CHIP = 2;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "NFNANMDNADAOuterClass";
-message NFNANMDNADA {
-  bool NIHEKCGCJMO = 1;
-  repeated string JHJAIBFOBIP = 2;
-  bool LGOHOMBGIAN = 3;
-}

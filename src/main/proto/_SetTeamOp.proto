@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_SetTeamOpOuterClass";
-import "_DungeonTeamBuilderTeamInfo.proto";
-
-message _SetTeamOp {
-  repeated _DungeonTeamBuilderTeamInfo team_info_list = 1;
-}

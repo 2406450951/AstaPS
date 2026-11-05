@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "OKEMKODPPMDOuterClass";
-enum OKEMKODPPMD {
-  OKEMKODPPMD_NORMAL = 0;
-  OKEMKODPPMD_MULTI = 1;
-}

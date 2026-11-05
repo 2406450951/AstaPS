@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FMMNHPFHHHIOuterClass";
-message FMMNHPFHHHI {
-  float value = 501;
-  bool GMMAHKDHJHG = 502;
-  string CMHHNFBNCCE = 503;
-}

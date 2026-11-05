@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GOIMIPIPCDNOuterClass";
-enum GOIMIPIPCDN {
-  GOIMIPIPCDN_NONE = 0;
-  GOIMIPIPCDN_MAP_IMAGE = 1;
-}

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AnecdoteAreaInfoOuterClass";
-message _AnecdoteAreaInfo {
-  repeated uint32 unlock_area_list = 9;
-}

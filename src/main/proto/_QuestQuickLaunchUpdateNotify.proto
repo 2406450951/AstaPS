@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_QuestQuickLaunchUpdateNotifyOuterClass";
-// 7.2 CmdId 4893
-message _QuestQuickLaunchUpdateNotify {
-  repeated uint32 _quest_id_list = 10;
-}

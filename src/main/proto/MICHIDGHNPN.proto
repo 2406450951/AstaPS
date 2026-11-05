@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MICHIDGHNPNOuterClass";
-import "BAOJHCJBKMD.proto";
-
-message MICHIDGHNPN {
-  repeated BAOJHCJBKMD DNCCDOBDHPE = 1;
-}

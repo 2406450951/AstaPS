@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GameplayRecommendationElementReliquarySetRequestOuterClass";
-message _GameplayRecommendationElementReliquarySetRequest {
-  uint32 element_type = 6;
-}

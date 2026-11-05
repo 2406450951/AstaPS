@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EFIILPJJPJDOuterClass";
-enum EFIILPJJPJD {
-  EFIILPJJPJD_SKILL_CAST_SPEED = 0;
-  EFIILPJJPJD_SKILL_CD_RATIO = 1;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "IDCMLMHGDLLOuterClass";
-message IDCMLMHGDLL {
-  int32 BEMPKIOFLIM = 1;
-  string JMKLDOJOIMM = 2;
-  int32 FGKDHACCBKG = 3;
-}

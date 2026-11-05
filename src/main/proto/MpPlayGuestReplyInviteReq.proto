@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MpPlayGuestReplyInviteReqOuterClass";
-// 7.2 CmdId 21206
-message MpPlayGuestReplyInviteReq {
-  bool is_agree = 11;
-  uint32 mp_play_id = 12;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RoleCombatTakeStarRewardReqOuterClass";
-// 7.2 CmdId 29629
-message RoleCombatTakeStarRewardReq {
-  repeated uint32 star_reward_level_list = 10;
-}

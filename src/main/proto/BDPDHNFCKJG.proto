@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BDPDHNFCKJGOuterClass";
-enum BDPDHNFCKJG {
-  BDPDHNFCKJG_DEFAULT = 0;
-  BDPDHNFCKJG_MUTI_THREAD = 1;
-}

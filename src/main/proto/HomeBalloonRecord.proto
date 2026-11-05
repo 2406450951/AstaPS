@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HomeBalloonRecordOuterClass";
-import "HomeBalloonGalleryRecord.proto";
-
-message HomeBalloonRecord {
-  repeated HomeBalloonGalleryRecord record_list = 15;
-}

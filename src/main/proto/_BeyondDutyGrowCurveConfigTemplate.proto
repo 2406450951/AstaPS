@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondDutyGrowCurveConfigTemplateOuterClass";
-import "GHNOHNMPIJG.proto";
-
-message _BeyondDutyGrowCurveConfigTemplate {
-  repeated GHNOHNMPIJG ENMBGCFKKDK = 1;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AOMJOOAIJFIOuterClass";
-enum AOMJOOAIJFI {
-  AOMJOOAIJFI_HIGH = 0;
-  AOMJOOAIJFI_MIDDLE = 1;
-  AOMJOOAIJFI_LOW = 2;
-}

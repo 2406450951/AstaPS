@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EMACAOCGFGCOuterClass";
-message EMACAOCGFGC {
-  bool HALKPFBALGE = 1;
-  bool KJOCLHHKAED = 501;
-  int32 OPAPEDDOEJI = 502;
-}

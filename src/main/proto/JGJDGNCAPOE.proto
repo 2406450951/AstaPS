@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "JGJDGNCAPOEOuterClass";
-message JGJDGNCAPOE {
-  uint32 CJBPFKMFCCI = 1;
-  uint32 DLJDIHPCAKD = 3;
-  uint32 DNJPLFPPAMB = 11;
-}

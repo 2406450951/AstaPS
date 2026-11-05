@@ -21,7 +21,7 @@ The server's 7.1 protocol (base descriptors, `compat` corrections and TPS rename
 `tools/protocol/remap/export_proto_72.py` then wrote `src/main/proto`:
 
 - Every server type with a readable name is kept, plus the obfuscated types those, or the Java code, refer to.
-- Named NT messages the server did not have are added. References to types the server already has use the server's name. NT enums (`message X { enum Value }`) become plain enums whose values are prefixed with the enum name.
+- Named NT messages the server does not use are left out, to keep the jar small. Passing `--with-nt-additions` adds them: references to types the server already has use the server's name, and NT enums (`message X { enum Value }`) become plain enums whose values are prefixed with the enum name.
 
 Rerunning both scripts needs the 7.1 server descriptor set, built from a commit that still has `protocol/7.1`, plus the kitkat 7.1.0 and NT 7.2 dumps:
 
@@ -29,7 +29,8 @@ Rerunning both scripts needs the 7.1 server descriptor set, built from a commit 
 python3 -I tools/protocol/remap/remap_71_to_72.py <7.1 server.desc> <kitkat Deobfuscated.proto> <NT .proto> \
     src/main/java/emu/grasscutter/net/packet/PacketOpcodes.java out72.desc report.json
 python3 -I tools/protocol/remap/export_proto_72.py out72.desc <7.1 server.desc> <kitkat Deobfuscated.proto> \
-    <NT .proto> src/main/java/emu/grasscutter/net/packet/PacketOpcodes.java <java-refs.txt> src/main/proto
+    <NT .proto> src/main/java/emu/grasscutter/net/packet/PacketOpcodes.java <java-refs.txt> src/main/proto \
+    [--with-nt-additions]
 ```
 
 What is still missing is listed in `protocol-7.2-gaps.md`.

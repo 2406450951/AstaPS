@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PlayerFishingDataNotifyOuterClass";
-// 7.2 CmdId 4851
-message PlayerFishingDataNotify {
-  uint32 last_fish_rod_id = 11;
-}

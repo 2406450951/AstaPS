@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SceneGalleryCoinCollectInfoOuterClass";
-message SceneGalleryCoinCollectInfo {
-  uint32 DPGGHJGDJCK = 1;
-  uint32 KEPKIDFMNLP = 2;
-}

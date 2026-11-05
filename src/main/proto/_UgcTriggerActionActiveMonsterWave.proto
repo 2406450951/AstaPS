@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_UgcTriggerActionActiveMonsterWaveOuterClass";
-message _UgcTriggerActionActiveMonsterWave {
-  uint32 _monster_wave_guid = 9;
-}

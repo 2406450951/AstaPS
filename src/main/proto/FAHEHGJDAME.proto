@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FAHEHGJDAMEOuterClass";
-message FAHEHGJDAME {
-  string ACPEPMIINBF = 1;
-  uint32 client_version = 2;
-  uint32 GICIOGGEAFG = 3;
-}

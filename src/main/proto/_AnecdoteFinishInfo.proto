@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AnecdoteFinishInfoOuterClass";
-message _AnecdoteFinishInfo {
-  uint32 _anecdote_id = 11;
-  bool _is_new_anecdote = 13;
-}

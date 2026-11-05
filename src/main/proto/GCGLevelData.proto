@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GCGLevelDataOuterClass";
-message GCGLevelData {
-  uint32 level_id = 7;
-  repeated uint32 finished_challenge_id_list = 13;
-}

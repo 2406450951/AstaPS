@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "DBOEONNJMCCOuterClass";
-message DBOEONNJMCC {
-  uint32 MGCBGDDFJJJ = 1;
-  uint32 DJLKLNNCENO = 2;
-  uint32 DEJOJANOABA = 3;
-}

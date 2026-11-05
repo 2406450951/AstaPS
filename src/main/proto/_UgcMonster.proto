@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_UgcMonsterOuterClass";
-import "_UgcEntityBasicInfo.proto";
-
-message _UgcMonster {
-  _UgcEntityBasicInfo basic_info = 15;
-}

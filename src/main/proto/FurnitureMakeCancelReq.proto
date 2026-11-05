@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FurnitureMakeCancelReqOuterClass";
-// 7.2 CmdId 6034
-message FurnitureMakeCancelReq {
-  uint32 make_id = 9;
-  uint32 index = 14;
-}

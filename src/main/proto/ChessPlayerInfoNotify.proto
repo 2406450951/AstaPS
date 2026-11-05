@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ChessPlayerInfoNotifyOuterClass";
-import "ChessPlayerInfo.proto";
-
-message ChessPlayerInfoNotify {
-  ChessPlayerInfo player_info = 1;
-}

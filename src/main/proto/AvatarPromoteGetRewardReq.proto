@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AvatarPromoteGetRewardReqOuterClass";
-// 7.2 CmdId 28280
-message AvatarPromoteGetRewardReq {
-  uint32 promote_level = 11;
-  uint64 avatar_guid = 12;
-}

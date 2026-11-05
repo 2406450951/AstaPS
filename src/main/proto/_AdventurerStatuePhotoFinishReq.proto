@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AdventurerStatuePhotoFinishReqOuterClass";
-// 7.2 CmdId 28592
-message _AdventurerStatuePhotoFinishReq {
-  uint32 _posture_id = 7;
-  uint32 _goal_id = 10;
-}

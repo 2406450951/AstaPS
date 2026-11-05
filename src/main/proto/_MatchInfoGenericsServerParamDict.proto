@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_MatchInfoGenericsServerParamDictOuterClass";
-message _MatchInfoGenericsServerParamDict {
-  uint32 HOAIHCMEAJC = 1;
-  uint32 CKELCNODEJJ = 2;
-}

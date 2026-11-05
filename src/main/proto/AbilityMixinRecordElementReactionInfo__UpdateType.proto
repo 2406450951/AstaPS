@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityMixinRecordElementReactionInfo__UpdateTypeOuterClass";
-enum AbilityMixinRecordElementReactionInfo__UpdateType {
-  ABILITY_MIXIN_RECORD_ELEMENT_REACTION_INFO__UPDATE_TYPE_ALL = 0;
-  ABILITY_MIXIN_RECORD_ELEMENT_REACTION_INFO__UPDATE_TYPE_ADD = 1;
-  ABILITY_MIXIN_RECORD_ELEMENT_REACTION_INFO__UPDATE_TYPE_CLEAR = 2;
-}

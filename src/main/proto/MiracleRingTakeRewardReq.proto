@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MiracleRingTakeRewardReqOuterClass";
-// 7.2 CmdId 28879
-message MiracleRingTakeRewardReq {
-  uint32 gadget_id = 2;
-  uint32 gadget_entity_id = 13;
-}

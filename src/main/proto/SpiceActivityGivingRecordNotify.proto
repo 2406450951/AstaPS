@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SpiceActivityGivingRecordNotifyOuterClass";
-message SpiceActivityGivingRecordNotify {
-  uint32 AHHCPGBGCMC = 1;
-  uint32 current_increase_avatar_fetter_times = 2;
-  uint32 avatar_id = 3;
-}

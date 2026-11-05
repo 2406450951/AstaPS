@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PDBOEGCJGBGOuterClass";
-message PDBOEGCJGBG {
-  int32 ALBAIFHPDNC = 501;
-  bool IKJGLDLKHED = 502;
-  int32 JJEHBNGPDGE = 503;
-}

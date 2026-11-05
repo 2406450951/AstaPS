@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GameplayRecommendationReliquaryMainPropDataOuterClass";
-message GameplayRecommendationReliquaryMainPropData {
-  uint32 permillage = 2;
-  uint32 main_prop_id = 9;
-}

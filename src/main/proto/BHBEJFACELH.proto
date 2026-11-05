@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BHBEJFACELHOuterClass";
-enum BHBEJFACELH {
-  BHBEJFACELH_NONE = 0;
-  BHBEJFACELH_STRUCT_INSTANCE_ID = 1;
-}

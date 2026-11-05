@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ENKNAKDGBDDOuterClass";
-enum ENKNAKDGBDD {
-  ENKNAKDGBDD_BAG = 0;
-  ENKNAKDGBDD_CUSTOM = 1;
-}

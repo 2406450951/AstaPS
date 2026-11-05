@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityMixinFrequencyShieldBarOuterClass";
-message AbilityMixinFrequencyShieldBar {
-  uint32 shield = 1;
-  uint32 max_shield = 3;
-  uint32 player_num = 6;
-}

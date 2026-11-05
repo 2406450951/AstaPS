@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityActionTriggerNewElementReactionAttackEventOuterClass";
-message AbilityActionTriggerNewElementReactionAttackEvent {
-  repeated uint32 PKPOMHGIJOG = 5;
-  uint32 ACHPIMGGEGM = 11;
-}

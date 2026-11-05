@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_FilmfestBallGameSyncFinishGameOuterClass";
-message _FilmfestBallGameSyncFinishGame {
-  bool is_win = 1;
-  uint64 server_game_time = 15;
-}

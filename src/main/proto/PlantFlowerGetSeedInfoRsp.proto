@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PlantFlowerGetSeedInfoRspOuterClass";
-message PlantFlowerGetSeedInfoRsp {
-  int32 retcode = 1;
-  uint32 schedule_id = 2;
-  uint32 seed_reward_id = 3;
-}

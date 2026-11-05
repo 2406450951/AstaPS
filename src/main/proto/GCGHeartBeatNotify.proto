@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GCGHeartBeatNotifyOuterClass";
-// 7.2 CmdId 5990
-message GCGHeartBeatNotify {
-  uint32 server_seq = 3;
-}

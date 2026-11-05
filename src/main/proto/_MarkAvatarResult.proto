@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_MarkAvatarResultOuterClass";
-message _MarkAvatarResult {
-  repeated uint32 avatar_id_list = 14;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GetActivityPreviewAvatarInfoReqOuterClass";
-// 7.2 CmdId 668
-message _GetActivityPreviewAvatarInfoReq {
-  uint32 _avatar_trial_id = 13;
-}

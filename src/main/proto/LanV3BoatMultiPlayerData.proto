@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "LanV3BoatMultiPlayerDataOuterClass";
-message LanV3BoatMultiPlayerData {
-  uint32 uid = 1;
-  uint32 accumulate_coin_num = 2;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PNEFNMPJAEPOuterClass";
-enum PNEFNMPJAEP {
-  PNEFNMPJAEP_BEYOND_ROOM_DUNGEON_IDLE = 0;
-  PNEFNMPJAEP_BEYOND_ROOM_DUNGEON_DOWNLOAD_COMPLETE = 1;
-  PNEFNMPJAEP_BEYOND_ROOM_DUNGEON_UNPUBLISHED = 2;
-}

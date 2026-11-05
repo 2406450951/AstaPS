@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GalleryInitNotifyOuterClass";
-// 7.2 CmdId 21625
-message GalleryInitNotify {
-  uint32 gallery_id = 5;
-  uint64 gallery_transaction = 15;
-}

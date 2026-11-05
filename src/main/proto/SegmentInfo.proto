@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SegmentInfoOuterClass";
-message SegmentInfo {
-  uint32 EJKDAPKHBKM = 3;
-  uint32 offset = 11;
-  uint32 AGBDJKDAIII = 15;
-}

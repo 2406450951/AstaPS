@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_ColorPaletteeHistoryDataOuterClass";
-import "INGPACKPOCA.proto";
-
-message _ColorPaletteeHistoryData {
-  repeated INGPACKPOCA GBNKAIJLAII = 1;
-}

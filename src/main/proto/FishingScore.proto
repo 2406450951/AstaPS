@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FishingScoreOuterClass";
-message FishingScore {
-  uint32 fishing_score = 1;
-  bool is_new_record = 2;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_SettleReasonOuterClass";
-enum _SettleReason {
-  _SETTLE_REASON_TIME_OUT = 0;
-  _SETTLE_REASON_SETTLE_PLAY_END = 1;
-  _SETTLE_REASON_SETTLE_PLAYER_QUIT = 2;
-}

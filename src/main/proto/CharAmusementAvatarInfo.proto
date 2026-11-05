@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "CharAmusementAvatarInfoOuterClass";
-message CharAmusementAvatarInfo {
-  uint32 uid = 1;
-  repeated uint32 avatar_id_list = 2;
-  uint32 punish_time = 3;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HACENOHHIMGOuterClass";
-message HACENOHHIMG {
-  int32 HJBKBOFBOLC = 501;
-  string name = 502;
-  uint32 OOINPCIPGDF = 503;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ItemCdGroupTimeNotifyOuterClass";
-// 7.2 CmdId 1609
-message ItemCdGroupTimeNotify {
-  map<uint32, uint64> item_cd_map = 14;
-}

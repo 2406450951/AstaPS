@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "JNBEOAJGDLNOuterClass";
-message JNBEOAJGDLN {
-  uint32 buff_id = 2;
-  uint32 guid = 3;
-  uint32 IJACNFFGBBB = 13;
-}

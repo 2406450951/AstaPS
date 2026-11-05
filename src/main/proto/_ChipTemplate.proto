@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_ChipTemplateOuterClass";
-import "GBCCLDDFNHK.proto";
-
-message _ChipTemplate {
-  GBCCLDDFNHK data = 1;
-}

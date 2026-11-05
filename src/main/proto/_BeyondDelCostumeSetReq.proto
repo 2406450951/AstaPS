@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondDelCostumeSetReqOuterClass";
-// 7.2 CmdId 480
-message _BeyondDelCostumeSetReq {
-  uint32 _costume_set_index = 2;
-  uint64 avatar_guid = 14;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondChangeEnmityValueByRatioMpActionConfigOuterClass";
-message _BeyondChangeEnmityValueByRatioMpActionConfig {
-  int32 GDMPLJMCCJF = 1;
-  float BBMEKJMCIKH = 2;
-}

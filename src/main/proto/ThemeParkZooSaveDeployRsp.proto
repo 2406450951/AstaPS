@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ThemeParkZooSaveDeployRspOuterClass";
-// 7.2 CmdId 7933
-message ThemeParkZooSaveDeployRsp {
-  int32 retcode = 5;
-}

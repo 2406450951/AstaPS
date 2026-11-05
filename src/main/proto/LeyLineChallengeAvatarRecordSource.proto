@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "LeyLineChallengeAvatarRecordSourceOuterClass";
-enum LeyLineChallengeAvatarRecordSource {
-  LEY_LINE_CHALLENGE_AVATAR_RECORD_SOURCE_NONE = 0;
-  LEY_LINE_CHALLENGE_AVATAR_RECORD_SOURCE_MAX_DIFFICULTY = 1;
-  LEY_LINE_CHALLENGE_AVATAR_RECORD_SOURCE_MAX_DIFFICULTY_EXTRA = 2;
-}

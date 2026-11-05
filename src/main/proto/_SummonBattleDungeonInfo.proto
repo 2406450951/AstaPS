@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_SummonBattleDungeonInfoOuterClass";
-message _SummonBattleDungeonInfo {
-  uint32 difficulty = 9;
-  uint32 level_id = 10;
-}

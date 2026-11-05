@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AllSeenMonsterNotifyOuterClass";
-// 7.2 CmdId 22409
-message AllSeenMonsterNotify {
-  repeated uint32 monster_id_list = 5;
-}

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "OCJGAONILIDOuterClass";
-message OCJGAONILID {
-  repeated int32 tag_list = 1;
-}

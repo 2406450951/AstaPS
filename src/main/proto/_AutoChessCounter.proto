@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AutoChessCounterOuterClass";
-message _AutoChessCounter {
-  uint32 type = 8;
-  uint32 value = 14;
-}

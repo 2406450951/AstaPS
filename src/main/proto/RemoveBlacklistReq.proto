@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RemoveBlacklistReqOuterClass";
-// 7.2 CmdId 20093
-message RemoveBlacklistReq {
-  uint32 target_uid = 1;
-}

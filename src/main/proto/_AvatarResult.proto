@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AvatarResultOuterClass";
-message _AvatarResult {
-  repeated uint64 avatar_guid_list = 9;
-  uint32 LHHMIFAGHCG = 12;
-}

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SceneGalleryFungusFighterCaptureInfoOuterClass";
-message SceneGalleryFungusFighterCaptureInfo {
-  bool is_hide_progress = 1;
-}

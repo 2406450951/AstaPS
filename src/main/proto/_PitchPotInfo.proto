@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_PitchPotInfoOuterClass";
-message _PitchPotInfo {
-  uint32 match_id = 1;
-  uint32 level_id = 2;
-  repeated uint32 player_uid_list = 3;
-}

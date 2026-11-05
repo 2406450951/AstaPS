@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HideAndSeekV4PlayerReadyNotifyOuterClass";
-// 7.2 CmdId 27576
-message HideAndSeekV4PlayerReadyNotify {
-  repeated uint32 uid_list = 13;
-}

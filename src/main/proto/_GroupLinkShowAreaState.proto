@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GroupLinkShowAreaStateOuterClass";
-enum _GroupLinkShowAreaState {
-  _GROUP_LINK_SHOW_AREA_STATE_NONE = 0;
-  _GROUP_LINK_SHOW_AREA_STATE_TRANSCULENT = 1;
-}

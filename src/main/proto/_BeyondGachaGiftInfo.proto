@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondGachaGiftInfoOuterClass";
-message _BeyondGachaGiftInfo {
-  repeated uint32 NOAAKEBKBDC = 9;
-}

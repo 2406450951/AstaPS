@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MPOLMKMGLCPOuterClass";
-message MPOLMKMGLCP {
-  repeated uint32 avatar_id_list = 1;
-  fixed32 begin_time = 7;
-  fixed32 end_time = 12;
-}

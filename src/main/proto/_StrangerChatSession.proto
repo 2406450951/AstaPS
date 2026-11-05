@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_StrangerChatSessionOuterClass";
-message _StrangerChatSession {
-  uint32 target_uid = 4;
-  uint32 BNBIPJPMAFD = 6;
-  bool _is_unread = 11;
-}

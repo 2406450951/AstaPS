@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "CityReputationLevelupNotifyOuterClass";
-// 7.2 CmdId 25466
-message CityReputationLevelupNotify {
-  uint32 city_id = 3;
-  uint32 level = 13;
-}

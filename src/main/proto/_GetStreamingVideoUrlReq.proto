@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GetStreamingVideoUrlReqOuterClass";
-// 7.2 CmdId 27510
-message _GetStreamingVideoUrlReq {
-  uint32 _streaming_video_id = 15;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_QuestMutualShowNotifyOuterClass";
-// 7.2 CmdId 21232
-message _QuestMutualShowNotify {
-  repeated uint32 _mutual_place_list = 2;
-  uint32 quest_id = 3;
-}

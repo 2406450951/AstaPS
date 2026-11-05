@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ChangeWidgetBackgroundActiveStateReqOuterClass";
-// 7.2 CmdId 5053
-message ChangeWidgetBackgroundActiveStateReq {
-  bool is_active = 5;
-  uint32 material_id = 10;
-}

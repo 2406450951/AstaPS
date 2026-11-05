@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GCGOperationOnStageSelectOuterClass";
-message GCGOperationOnStageSelect {
-  repeated uint32 cost_dice_index_list = 9;
-  uint32 card_guid = 13;
-}

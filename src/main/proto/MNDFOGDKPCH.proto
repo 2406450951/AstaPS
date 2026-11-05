@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MNDFOGDKPCHOuterClass";
-enum MNDFOGDKPCH {
-  MNDFOGDKPCH_OFFICIAL = 0;
-  MNDFOGDKPCH_CUSTOM = 1;
-}

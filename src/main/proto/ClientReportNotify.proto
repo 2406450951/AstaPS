@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ClientReportNotifyOuterClass";
-// 7.2 CmdId 21877
-message ClientReportNotify {
-  string report_type = 2;
-  string report_value = 7;
-}

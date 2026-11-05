@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_QuestEventArchiveInfoOuterClass";
-import "_QuestEventArchive.proto";
-
-message _QuestEventArchiveInfo {
-  repeated _QuestEventArchive _quest_event_archive = 7;
-}

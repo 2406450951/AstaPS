@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GCGMsgElementMasteryChangeOuterClass";
-message _GCGMsgElementMasteryChange {
-  uint32 value = 5;
-  uint32 controller_id = 8;
-}

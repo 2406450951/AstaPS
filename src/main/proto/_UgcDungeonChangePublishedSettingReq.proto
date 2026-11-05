@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_UgcDungeonChangePublishedSettingReqOuterClass";
-// 7.2 CmdId 4571
-message _UgcDungeonChangePublishedSettingReq {
-  uint64 guid = 1;
-  bool _is_allow_import = 2;
-}

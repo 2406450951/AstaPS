@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityActionCallPlayerSnezhnayaTrainOuterClass";
-import "VineManRunPlatformInfo.proto";
-
-message AbilityActionCallPlayerSnezhnayaTrain {
-  VineManRunPlatformInfo vine_man_run_platform = 4;
-}

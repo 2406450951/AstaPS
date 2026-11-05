@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_EnmityOuterClass";
-message _Enmity {
-  float OEHCGHOAEKB = 1;
-  bool MPFGKOIAPEC = 2;
-  bool IHHEIOOHHHH = 3;
-}

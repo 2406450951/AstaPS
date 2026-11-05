@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AnecdoteFinishReqOuterClass";
-// 7.2 CmdId 3169
-message _AnecdoteFinishReq {
-  uint32 _anecdote_id = 1;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_TowerChallengeSocialBriefOuterClass";
-message _TowerChallengeSocialBrief {
-  uint32 NNAKBBMBDCO = 6;
-  uint32 FOBLIJCJJFJ = 7;
-  uint32 EJFAOKGPBLE = 8;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SalesmanTakeRewardReqOuterClass";
-// 7.2 CmdId 23930
-message SalesmanTakeRewardReq {
-  uint32 schedule_id = 10;
-  uint32 position = 12;
-}

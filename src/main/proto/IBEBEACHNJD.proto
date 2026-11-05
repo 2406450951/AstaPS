@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "IBEBEACHNJDOuterClass";
-enum IBEBEACHNJD {
-  IBEBEACHNJD_NONE = 0;
-  IBEBEACHNJD_OCEAN_CURRENT = 1;
-}

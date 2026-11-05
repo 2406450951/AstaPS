@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GCGSkillPreviewOnstageChangeInfoOuterClass";
-message GCGSkillPreviewOnstageChangeInfo {
-  uint32 HIGKCJIAPDL = 7;
-  uint32 MPJLKFJFCDF = 10;
-}

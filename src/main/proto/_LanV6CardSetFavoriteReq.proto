@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_LanV6CardSetFavoriteReqOuterClass";
-// 7.2 CmdId 6307
-message _LanV6CardSetFavoriteReq {
-  fixed64 card_guid = 1;
-  bool _is_favorite = 12;
-}

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityMetaLoseHpOuterClass";
-message AbilityMetaLoseHp {
-  uint32 lose_hp_config_idx = 13;
-}

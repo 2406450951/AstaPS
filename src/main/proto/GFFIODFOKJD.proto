@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GFFIODFOKJDOuterClass";
-message GFFIODFOKJD {
-  uint32 like_num = 5;
-  uint32 npc_id = 7;
-  fixed64 guid = 11;
-}

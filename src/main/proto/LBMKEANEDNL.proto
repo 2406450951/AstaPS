@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "LBMKEANEDNLOuterClass";
-message LBMKEANEDNL {
-  float OEHCGHOAEKB = 1;
-}

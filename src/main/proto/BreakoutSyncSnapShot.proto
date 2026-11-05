@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BreakoutSyncSnapShotOuterClass";
-import "BreakoutSnapShot.proto";
-
-message BreakoutSyncSnapShot {
-  BreakoutSnapShot snap_shot = 7;
-}

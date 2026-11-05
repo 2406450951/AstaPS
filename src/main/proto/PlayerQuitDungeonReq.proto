@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PlayerQuitDungeonReqOuterClass";
-// 7.2 CmdId 6698
-message PlayerQuitDungeonReq {
-  bool is_quit_immediately = 3;
-  uint32 point_id = 8;
-}

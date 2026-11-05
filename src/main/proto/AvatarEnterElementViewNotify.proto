@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AvatarEnterElementViewNotifyOuterClass";
-// 7.2 CmdId 948
-message AvatarEnterElementViewNotify {
-  uint32 avatar_entity_id = 1;
-  bool is_triggerd = 8;
-}

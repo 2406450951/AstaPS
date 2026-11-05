@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_CeremonyGhostInfoOuterClass";
-message _CeremonyGhostInfo {
-  bool MIEFFBIGBOK = 2;
-  uint32 match_id = 13;
-  uint32 level_id = 15;
-}

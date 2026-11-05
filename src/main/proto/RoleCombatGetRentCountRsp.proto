@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RoleCombatGetRentCountRspOuterClass";
-// 7.2 CmdId 3785
-message RoleCombatGetRentCountRsp {
-  uint32 MJJBKFIKFOI = 10;
-  int32 retcode = 14;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_DungeonTeamBuilderPlayerStateOuterClass";
-enum _DungeonTeamBuilderPlayerState {
-  _DUNGEON_TEAM_BUILDER_PLAYER_STATE_IDLE = 0;
-  _DUNGEON_TEAM_BUILDER_PLAYER_STATE_CHANGING_AVATAR = 1;
-  _DUNGEON_TEAM_BUILDER_PLAYER_STATE_READY = 2;
-}

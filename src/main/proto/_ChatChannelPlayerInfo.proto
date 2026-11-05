@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_ChatChannelPlayerInfoOuterClass";
-message _ChatChannelPlayerInfo {
-  repeated uint32 uid_list = 6;
-  uint32 channel_id = 10;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BuildOpInfoOuterClass";
-message _BuildOpInfo {
-  uint32 _tower_gadget_id = 12;
-  uint32 _grid_index = 14;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BeyondCostumeDisplayInfoOuterClass";
-message BeyondCostumeDisplayInfo {
-  uint64 avatar_guid = 1;
-  repeated uint32 display_style_index_list = 2;
-}

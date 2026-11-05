@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PullRecentChatReqOuterClass";
-// 7.2 CmdId 1556
-message PullRecentChatReq {
-  uint32 begin_sequence = 3;
-  uint32 pull_num = 13;
-}

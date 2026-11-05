@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "DMKNNKLDKCGOuterClass";
-message DMKNNKLDKCG {
-  uint32 LNPBPOCOGJE = 1;
-  uint32 HFMOEHLCDFO = 2;
-}

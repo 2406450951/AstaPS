@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SceneGallerySumoInfoOuterClass";
-message SceneGallerySumoInfo {
-  uint32 score = 1;
-  uint32 ALKEJNIHGBE = 2;
-  uint32 ODECGMENCMF = 3;
-}

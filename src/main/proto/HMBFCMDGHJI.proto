@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HMBFCMDGHJIOuterClass";
-import "IJAIMMJIGAA.proto";
-
-message HMBFCMDGHJI {
-  repeated IJAIMMJIGAA MHGNPEDNKBO = 2;
-}

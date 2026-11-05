@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "TaskVarOuterClass";
-message TaskVar {
-  repeated int32 value_list = 9;
-  uint32 key = 13;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityMetaBatchGlobalFloatValueOuterClass";
-import "AbilityScalarValueEntry.proto";
-
-message AbilityMetaBatchGlobalFloatValue {
-  repeated AbilityScalarValueEntry scalar_value_entries = 14;
-}

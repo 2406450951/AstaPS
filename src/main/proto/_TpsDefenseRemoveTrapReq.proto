@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_TpsDefenseRemoveTrapReqOuterClass";
-// 7.2 CmdId 21076
-message _TpsDefenseRemoveTrapReq {
-  uint32 _grid_index = 8;
-}

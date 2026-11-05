@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_SceneGalleryTowerDefenseInfoOuterClass";
-message _SceneGalleryTowerDefenseInfo {
-  repeated uint32 _selected_artifact_id_list = 6;
-  uint32 _left_redraws = 8;
-  repeated uint32 _artifact_id_list = 10;
-}

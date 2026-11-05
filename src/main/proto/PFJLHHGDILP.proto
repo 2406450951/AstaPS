@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PFJLHHGDILPOuterClass";
-enum PFJLHHGDILP {
-  PFJLHHGDILP_BEYOND_ENERGY_INCREASE_ANYWAY = 0;
-  PFJLHHGDILP_BEYOND_ENERGY_HOLD_WHEN_UNUSE = 1;
-  PFJLHHGDILP_BEYOND_ENERGY_CLEAR_WHEN_UNUSE = 2;
-}

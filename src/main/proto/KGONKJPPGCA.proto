@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "KGONKJPPGCAOuterClass";
-message KGONKJPPGCA {
-  uint32 fungus_id = 1;
-  bool is_alive = 2;
-  uint64 OPDLNBKKHDI = 3;
-}

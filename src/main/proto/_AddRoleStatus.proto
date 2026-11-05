@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AddRoleStatusOuterClass";
-message _AddRoleStatus {
-  uint32 MDHPAKEAAEC = 1;
-  int32 KGHMGPPEOGA = 3;
-}

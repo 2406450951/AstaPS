@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FishInfoOuterClass";
-message FishInfo {
-  uint32 BHNLLNCCKAF = 1;
-  uint32 NNOGLEMOFML = 2;
-}

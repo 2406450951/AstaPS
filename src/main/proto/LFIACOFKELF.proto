@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "LFIACOFKELFOuterClass";
-enum LFIACOFKELF {
-  LFIACOFKELF_ENTER_COMBAT = 0;
-  LFIACOFKELF_LEAVE_COMBAT = 1;
-}

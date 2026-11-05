@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HOGHHJKFONEOuterClass";
-message HOGHHJKFONE {
-  bool PNKDKELMCGL = 502;
-  uint32 GHGFLHPNLKH = 503;
-  uint32 OIIDFEAGLKF = 504;
-}

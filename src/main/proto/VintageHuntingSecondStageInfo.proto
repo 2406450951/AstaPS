@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "VintageHuntingSecondStageInfoOuterClass";
-message VintageHuntingSecondStageInfo {
-  uint32 capture_animal_num = 1;
-  uint32 left_num = 2;
-  uint32 total_num = 3;
-}

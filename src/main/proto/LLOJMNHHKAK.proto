@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "LLOJMNHHKAKOuterClass";
-import "CONDKONJHLC.proto";
-
-message LLOJMNHHKAK {
-  repeated CONDKONJHLC DNIEBKNDCPJ = 501;
-}

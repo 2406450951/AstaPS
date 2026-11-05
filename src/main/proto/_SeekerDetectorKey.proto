@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_SeekerDetectorKeyOuterClass";
-message _SeekerDetectorKey {
-  uint32 group_id = 2;
-  uint32 config_id = 3;
-  bool _is_chest_hidden = 6;
-}

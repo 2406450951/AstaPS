@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GCGInviteBattleNotifyOuterClass";
-// 7.2 CmdId 9200
-message GCGInviteBattleNotify {
-  uint32 festival_mode_type = 7;
-  uint32 confirm_end_time = 10;
-}

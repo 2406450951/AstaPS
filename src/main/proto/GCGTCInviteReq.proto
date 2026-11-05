@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GCGTCInviteReqOuterClass";
-// 7.2 CmdId 8457
-message GCGTCInviteReq {
-  uint32 character_id = 9;
-  uint32 level_id = 12;
-}

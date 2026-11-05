@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_ExecuteGroupInterActionRspOuterClass";
-// 7.2 CmdId 22392
-message _ExecuteGroupInterActionRsp {
-  uint32 token = 4;
-  int32 retcode = 13;
-}

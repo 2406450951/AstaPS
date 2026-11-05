@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondClientFrogprintParamValueEnumListOuterClass";
-import "FAGMGLAJFNL.proto";
-
-message _BeyondClientFrogprintParamValueEnumList {
-  repeated FAGMGLAJFNL value_list = 1;
-}

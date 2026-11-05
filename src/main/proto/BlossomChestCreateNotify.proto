@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BlossomChestCreateNotifyOuterClass";
-// 7.2 CmdId 1107
-message BlossomChestCreateNotify {
-  uint32 circle_camp_id = 2;
-  uint32 refresh_id = 7;
-}

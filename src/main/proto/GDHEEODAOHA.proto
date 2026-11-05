@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GDHEEODAOHAOuterClass";
-message GDHEEODAOHA {
-  int32 retcode = 6;
-  uint32 uid = 8;
-  uint32 punish_end_time = 15;
-}

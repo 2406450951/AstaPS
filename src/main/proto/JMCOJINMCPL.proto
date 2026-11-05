@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "JMCOJINMCPLOuterClass";
-enum JMCOJINMCPL {
-  JMCOJINMCPL_NONE = 0;
-  JMCOJINMCPL_VALUE_STRUCTURE = 1;
-}

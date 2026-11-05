@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_StrangerChatHintTypeOuterClass";
-enum _StrangerChatHintType {
-  _STRANGER_CHAT_HINT_TYPE_HINT_TYPE_NONE = 0;
-  _STRANGER_CHAT_HINT_TYPE_HINT_TYPE_ALL = 1;
-  _STRANGER_CHAT_HINT_TYPE_HINT_TYPE_ONLY_RECV = 2;
-}

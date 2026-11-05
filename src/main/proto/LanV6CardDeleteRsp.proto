@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "LanV6CardDeleteRspOuterClass";
-// 7.2 CmdId 7660
-message LanV6CardDeleteRsp {
-  repeated uint64 card_guid_list = 2;
-  int32 retcode = 10;
-}

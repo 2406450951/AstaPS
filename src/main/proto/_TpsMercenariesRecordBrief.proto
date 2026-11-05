@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_TpsMercenariesRecordBriefOuterClass";
-message _TpsMercenariesRecordBrief {
-  uint32 level_id = 1;
-  uint32 score = 2;
-  uint32 KJEGKMJKMDB = 3;
-}

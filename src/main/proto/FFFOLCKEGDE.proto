@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FFFOLCKEGDEOuterClass";
-enum FFFOLCKEGDE {
-  FFFOLCKEGDE_NONE = 0;
-  FFFOLCKEGDE_SERVER_PARAM = 1;
-  FFFOLCKEGDE_FROG = 2;
-}

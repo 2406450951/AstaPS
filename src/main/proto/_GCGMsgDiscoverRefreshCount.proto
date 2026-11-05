@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GCGMsgDiscoverRefreshCountOuterClass";
-message _GCGMsgDiscoverRefreshCount {
-  uint32 BOIJOOLJPFE = 11;
-  uint32 controller_id = 12;
-}

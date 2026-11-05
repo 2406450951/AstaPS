@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "JGMKLBBAELFOuterClass";
-enum JGMKLBBAELF {
-  JGMKLBBAELF_NONE = 0;
-  JGMKLBBAELF_CHANGING = 1;
-  JGMKLBBAELF_READY = 2;
-}

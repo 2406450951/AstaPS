@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondClientEnvironmentConfigTemplateOuterClass";
-import "GCKGDHAFNOL.proto";
-
-message _BeyondClientEnvironmentConfigTemplate {
-  GCKGDHAFNOL HKPIFCAPKFD = 1;
-}

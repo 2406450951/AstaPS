@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GCGArenaHistoryDeckDetailInfoOuterClass";
-message _GCGArenaHistoryDeckDetailInfo {
-  uint32 _win_count = 5;
-  repeated uint32 card_list = 9;
-  repeated uint32 character_card_list = 14;
-}

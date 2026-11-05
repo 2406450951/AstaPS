@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondTryStartCustomSkillByIdMpActionConfigOuterClass";
-message _BeyondTryStartCustomSkillByIdMpActionConfig {
-  int32 AFKGNPFBAKF = 1;
-  bool OEPPDGIAJEI = 2;
-}

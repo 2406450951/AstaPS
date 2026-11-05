@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PlantFlowerGetCanGiveFriendFlowerRspOuterClass";
-message PlantFlowerGetCanGiveFriendFlowerRsp {
-  int32 retcode = 1;
-  uint32 schedule_id = 2;
-  map<uint32, uint32> flower_num_map = 3;
-}

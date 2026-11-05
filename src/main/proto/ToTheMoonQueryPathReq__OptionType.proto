@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ToTheMoonQueryPathReq__OptionTypeOuterClass";
-enum ToTheMoonQueryPathReq__OptionType {
-  TO_THE_MOON_QUERY_PATH_REQ__OPTION_TYPE_OPTION_NONE = 0;
-  TO_THE_MOON_QUERY_PATH_REQ__OPTION_TYPE_OPTION_NORMAL = 1;
-  TO_THE_MOON_QUERY_PATH_REQ__OPTION_TYPE_OPTION_FIRST_CAN_GO = 2;
-}

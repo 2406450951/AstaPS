@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "KCEHFIDEILGOuterClass";
-import "KFGDFNGHGMP.proto";
-
-message KCEHFIDEILG {
-  repeated KFGDFNGHGMP skill_list = 2;
-}

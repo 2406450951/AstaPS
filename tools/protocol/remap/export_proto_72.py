@@ -6,8 +6,9 @@ and a list of protocol classes the Java code references.
 
 - Every server type with a readable name is kept, plus obfuscated types they or the Java
   code reference. Other obfuscated types are dropped.
-- Named NT messages the server does not have yet are added. Their references to types the
-  server already has use the server's name; other referenced types are added too.
+- With --with-nt-additions, named NT messages the server does not have yet are added. Their
+  references to types the server already has use the server's name; other referenced types
+  are added too. Without it only the server's own types are written.
   NT enums (`message X { enum Value }`) become plain enums with prefixed value names.
 """
 import os
@@ -159,7 +160,8 @@ def upper_snake(name):
     return re.sub(r'[^A-Za-z0-9]', '_', s).upper()
 
 
-def main(server72, server71, kitkat, r72, opcodes71, java_refs, out_dir):
+def main(server72, server71, kitkat, r72, opcodes71, java_refs, out_dir, *flags):
+    with_nt_additions = '--with-nt-additions' in flags
     fds72 = descriptor_pb2.FileDescriptorSet()
     fds72.ParseFromString(open(server72, 'rb').read())
     files = {f.name: f for f in fds72.file}
@@ -242,10 +244,11 @@ def main(server72, server71, kitkat, r72, opcodes71, java_refs, out_dir):
         n = emitted_name(base)
         return n, n + '.proto'
 
-    for name in nt:
-        if obf(name) or name in is_enum or name in r2s or name in s_messages:
-            continue
-        emitted_name(name)
+    if with_nt_additions:
+        for name in nt:
+            if obf(name) or name in is_enum or name in r2s or name in s_messages:
+                continue
+            emitted_name(name)
 
     defs = {}  # emitted name -> (new type deps, server files, text)
     dropped_fields = 0

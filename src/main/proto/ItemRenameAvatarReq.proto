@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ItemRenameAvatarReqOuterClass";
-// 7.2 CmdId 7985
-message ItemRenameAvatarReq {
-  string avatar_name = 2;
-  uint32 rename_id = 14;
-}

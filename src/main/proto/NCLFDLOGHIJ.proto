@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "NCLFDLOGHIJOuterClass";
-message NCLFDLOGHIJ {
-  string name = 501;
-  bool FIALLJHLFEP = 502;
-}

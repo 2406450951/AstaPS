@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EventTriggerTypeOuterClass";
-enum EventTriggerType {
-  EVENT_TRIGGER_TYPE_EVENT_TRIGGER_NONE = 0;
-  EVENT_TRIGGER_TYPE_EVENT_TRIGGER_ENTER_FORCE = 1;
-}

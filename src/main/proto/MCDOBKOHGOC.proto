@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MCDOBKOHGOCOuterClass";
-import "AOJOPOCLCHP.proto";
-
-message MCDOBKOHGOC {
-  repeated AOJOPOCLCHP HFABELJMLFA = 1;
-}

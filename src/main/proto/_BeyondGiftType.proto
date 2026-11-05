@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondGiftTypeOuterClass";
-enum _BeyondGiftType {
-  _BEYOND_GIFT_TYPE_NONE = 0;
-  _BEYOND_GIFT_TYPE_GACHA = 1;
-  _BEYOND_GIFT_TYPE_SHOP = 2;
-}

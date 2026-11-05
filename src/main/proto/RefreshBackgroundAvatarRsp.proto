@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RefreshBackgroundAvatarRspOuterClass";
-// 7.2 CmdId 27037
-message RefreshBackgroundAvatarRsp {
-  map<uint64, uint32> hp_full_time_map = 5;
-  int32 retcode = 8;
-}

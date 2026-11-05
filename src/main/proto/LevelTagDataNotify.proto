@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "LevelTagDataNotifyOuterClass";
-// 7.2 CmdId 25174
-message LevelTagDataNotify {
-  repeated uint32 level_tag_id_list = 14;
-}

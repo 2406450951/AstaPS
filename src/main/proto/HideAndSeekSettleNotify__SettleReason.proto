@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HideAndSeekSettleNotify__SettleReasonOuterClass";
-enum HideAndSeekSettleNotify__SettleReason {
-  HIDE_AND_SEEK_SETTLE_NOTIFY__SETTLE_REASON_TIME_OUT = 0;
-  HIDE_AND_SEEK_SETTLE_NOTIFY__SETTLE_REASON_SETTLE_PLAY_END = 1;
-  HIDE_AND_SEEK_SETTLE_NOTIFY__SETTLE_REASON_SETTLE_PLAYER_QUIT = 2;
-}

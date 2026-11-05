@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_LevelScoreLevelInfoOuterClass";
-message _LevelScoreLevelInfo {
-  uint32 level_type = 2;
-  repeated uint64 PFPDOKGABDK = 11;
-}

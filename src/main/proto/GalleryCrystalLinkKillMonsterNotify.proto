@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GalleryCrystalLinkKillMonsterNotifyOuterClass";
-message GalleryCrystalLinkKillMonsterNotify {
-  uint32 gallery_id = 1;
-  uint32 score = 2;
-}

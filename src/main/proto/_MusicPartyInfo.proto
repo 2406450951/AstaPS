@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_MusicPartyInfoOuterClass";
-message _MusicPartyInfo {
-  uint32 level_id = 10;
-  bool NIDLPEDKFMK = 14;
-  uint32 IOGDNPKDNLE = 15;
-}

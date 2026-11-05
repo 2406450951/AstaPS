@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "DungeonCandidateTeamChangeAvatarRspOuterClass";
-// 7.2 CmdId 3491
-message DungeonCandidateTeamChangeAvatarRsp {
-  int32 retcode = 4;
-}

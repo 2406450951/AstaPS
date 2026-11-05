@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ToTheMoonQueryPathRsp__PathStatusTypeOuterClass";
-enum ToTheMoonQueryPathRsp__PathStatusType {
-  TO_THE_MOON_QUERY_PATH_RSP__PATH_STATUS_TYPE_STATUS_FAIL = 0;
-  TO_THE_MOON_QUERY_PATH_RSP__PATH_STATUS_TYPE_STATUS_SUCC = 1;
-  TO_THE_MOON_QUERY_PATH_RSP__PATH_STATUS_TYPE_STATUS_PARTIAL = 2;
-}

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AquariumFishingEnterInfoOuterClass";
-message _AquariumFishingEnterInfo {
-  uint32 _fishing_avatar_id = 13;
-}

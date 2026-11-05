@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "CFIAPPGFGKOOuterClass";
-import "MBGJBIBBCBJ.proto";
-
-message CFIAPPGFGKO {
-  repeated MBGJBIBBCBJ DNCCDOBDHPE = 1;
-}

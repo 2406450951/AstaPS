@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RequestLiveInfoReqOuterClass";
-// 7.2 CmdId 23856
-message RequestLiveInfoReq {
-  uint32 live_id = 3;
-}

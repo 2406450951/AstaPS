@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MiracleRingDropResultNotifyOuterClass";
-// 7.2 CmdId 24840
-message MiracleRingDropResultNotify {
-  uint32 last_take_reward_time = 12;
-  int32 drop_result = 13;
-}

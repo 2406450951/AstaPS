@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PHNGFEGNPONOuterClass";
-message PHNGFEGNPON {
-  string JDJMHIMAGJN = 501;
-  float IPGKOBCONPC = 502;
-  float APJELLDNGFK = 503;
-}

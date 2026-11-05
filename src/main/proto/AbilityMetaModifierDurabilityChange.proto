@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityMetaModifierDurabilityChangeOuterClass";
-message AbilityMetaModifierDurabilityChange {
-  bool is_serverbuff_modifier = 4;
-  float PKBFBPCPCBI = 5;
-  float KEIJCCMBCBN = 9;
-}

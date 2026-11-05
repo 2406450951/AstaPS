@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RemoveBlacklistRspOuterClass";
-// 7.2 CmdId 5960
-message RemoveBlacklistRsp {
-  int32 retcode = 2;
-  uint32 target_uid = 5;
-}

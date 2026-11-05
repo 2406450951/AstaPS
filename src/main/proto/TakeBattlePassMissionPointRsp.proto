@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "TakeBattlePassMissionPointRspOuterClass";
-// 7.2 CmdId 21012
-message TakeBattlePassMissionPointRsp {
-  repeated uint32 mission_id_list = 3;
-  int32 retcode = 6;
-}

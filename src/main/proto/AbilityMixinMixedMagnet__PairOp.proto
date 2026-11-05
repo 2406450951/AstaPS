@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityMixinMixedMagnet__PairOpOuterClass";
-message AbilityMixinMixedMagnet__PairOp {
-  uint32 KDHAOJFJFIP = 1;
-  uint32 OLBGFLGJBCI = 4;
-}

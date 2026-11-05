@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "CoinCollectPrepareStageNotifyOuterClass";
-import "CoinCollectStageInfo.proto";
-
-message CoinCollectPrepareStageNotify {
-  CoinCollectStageInfo coin_collect_info = 1;
-}

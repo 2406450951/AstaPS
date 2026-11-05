@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_MiscRenameInfoOuterClass";
-message _MiscRenameInfo {
-  string name = 1;
-  uint32 rename_id = 7;
-}

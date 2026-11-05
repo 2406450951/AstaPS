@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FinishMainCoopReqOuterClass";
-// 7.2 CmdId 28348
-message FinishMainCoopReq {
-  uint32 id = 9;
-  uint32 ending_save_point_id = 10;
-}

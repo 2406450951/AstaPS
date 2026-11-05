@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BigTalentPointConvertReqOuterClass";
-// 7.2 CmdId 9422
-message BigTalentPointConvertReq {
-  uint64 avatar_guid = 2;
-  repeated uint64 item_guid_list = 6;
-}

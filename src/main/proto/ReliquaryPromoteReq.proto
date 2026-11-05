@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ReliquaryPromoteReqOuterClass";
-// 7.2 CmdId 4982
-message ReliquaryPromoteReq {
-  uint64 target_guid = 9;
-  uint64 item_guid = 11;
-}

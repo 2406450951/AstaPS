@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "LIGOKCGOLLIOuterClass";
-enum LIGOKCGOLLI {
-  LIGOKCGOLLI_PURE_NUMBER = 0;
-  LIGOKCGOLLI_TIME = 1;
-  LIGOKCGOLLI_PERCENTAGE = 2;
-}

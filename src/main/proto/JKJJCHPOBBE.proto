@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "JKJJCHPOBBEOuterClass";
-message JKJJCHPOBBE {
-  string name = 501;
-  bool is_active = 502;
-  bool CCFFGIFAACN = 503;
-}

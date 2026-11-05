@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_PlayerShellCodeLuaShellNotifyOuterClass";
-// 7.2 CmdId 3645
-message _PlayerShellCodeLuaShellNotify {
-  bytes _payload = 1;
-  uint32 config_id = 12;
-}

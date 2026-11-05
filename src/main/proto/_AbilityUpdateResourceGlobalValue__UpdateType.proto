@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AbilityUpdateResourceGlobalValue__UpdateTypeOuterClass";
-enum _AbilityUpdateResourceGlobalValue__UpdateType {
-  _ABILITY_UPDATE_RESOURCE_GLOBAL_VALUE__UPDATE_TYPE_INVALUE = 0;
-  _ABILITY_UPDATE_RESOURCE_GLOBAL_VALUE__UPDATE_TYPE_SET = 1;
-}

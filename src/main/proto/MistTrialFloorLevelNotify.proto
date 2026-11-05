@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MistTrialFloorLevelNotifyOuterClass";
-// 7.2 CmdId 29696
-message MistTrialFloorLevelNotify {
-  uint32 dungeon_scene_id = 2;
-  uint32 floor_level = 13;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "DungeonQuickOpenRspOuterClass";
-// 7.2 CmdId 539
-message DungeonQuickOpenRsp {
-  int32 retcode = 4;
-  uint32 dungeon_entry_config_id = 14;
-}

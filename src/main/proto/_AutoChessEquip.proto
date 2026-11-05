@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AutoChessEquipOuterClass";
-message _AutoChessEquip {
-  uint32 _auto_chess_equip_id = 6;
-  uint32 guid = 9;
-}

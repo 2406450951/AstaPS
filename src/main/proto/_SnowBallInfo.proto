@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_SnowBallInfoOuterClass";
-message _SnowBallInfo {
-  uint32 level_id = 12;
-}

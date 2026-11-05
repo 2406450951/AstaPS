@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_ValueUintOuterClass";
-message _ValueUint {
-  uint32 value = 1;
-}

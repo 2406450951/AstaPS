@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "CreateReasonOuterClass";
-enum CreateReason {
-  CREATE_REASON_CREATE_NONE = 0;
-  CREATE_REASON_CREATE_QUEST = 1;
-  CREATE_REASON_CREATE_ENERGY = 2;
-}

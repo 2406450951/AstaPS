@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_QuestSceneryInfoOuterClass";
-import "_QuestScenery.proto";
-
-message _QuestSceneryInfo {
-  repeated _QuestScenery _quest_scenery_list = 7;
-}

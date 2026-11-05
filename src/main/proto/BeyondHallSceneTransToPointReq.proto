@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BeyondHallSceneTransToPointReqOuterClass";
-// 7.2 CmdId 4436
-message BeyondHallSceneTransToPointReq {
-  uint32 point_id = 1;
-}

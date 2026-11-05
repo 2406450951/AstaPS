@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MDPJDLPDPFAOuterClass";
-message MDPJDLPDPFA {
-  string HIFJMHBKFJG = 501;
-  int32 MAABBEMEOJL = 502;
-}

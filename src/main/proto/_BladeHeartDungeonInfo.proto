@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BladeHeartDungeonInfoOuterClass";
-message _BladeHeartDungeonInfo {
-  uint32 level_id = 4;
-  bool EKBIJJFHIAC = 8;
-  bool _is_restart = 9;
-}

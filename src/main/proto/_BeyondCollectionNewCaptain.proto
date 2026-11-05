@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondCollectionNewCaptainOuterClass";
-message _BeyondCollectionNewCaptain {
-  uint32 PENKNGAGFAC = 2;
-  string HPGJJPGJHFB = 8;
-  uint32 LLOKNGIOCNO = 13;
-}

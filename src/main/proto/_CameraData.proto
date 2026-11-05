@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_CameraDataOuterClass";
-import "LJKEAGOJPGE.proto";
-
-message _CameraData {
-  LJKEAGOJPGE data = 1;
-}

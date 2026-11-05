@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_DungeonLowerDifficultyReqOuterClass";
-// 7.2 CmdId 7120
-message _DungeonLowerDifficultyReq {
-  uint32 dungeon_id = 2;
-  uint32 LCHLCAGDMON = 14;
-}

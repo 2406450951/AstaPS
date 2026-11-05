@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_HomeExplosionRecordOuterClass";
-import "JJEOGHKPGDO.proto";
-
-message _HomeExplosionRecord {
-  repeated JJEOGHKPGDO record_list = 6;
-}

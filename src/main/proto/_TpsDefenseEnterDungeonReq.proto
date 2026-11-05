@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_TpsDefenseEnterDungeonReqOuterClass";
-// 7.2 CmdId 28384
-message _TpsDefenseEnterDungeonReq {
-  uint32 level_id = 2;
-  repeated uint32 _trap_id_list = 14;
-}

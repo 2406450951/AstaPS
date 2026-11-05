@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "PhotoActivityFinishReqOuterClass";
-// 7.2 CmdId 22586
-message PhotoActivityFinishReq {
-  bool is_succ = 3;
-}

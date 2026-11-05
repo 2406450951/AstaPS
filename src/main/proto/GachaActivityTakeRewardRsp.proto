@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GachaActivityTakeRewardRspOuterClass";
-message GachaActivityTakeRewardRsp {
-  int32 retcode = 1;
-  map<uint32, uint32> robot_num_map = 2;
-}

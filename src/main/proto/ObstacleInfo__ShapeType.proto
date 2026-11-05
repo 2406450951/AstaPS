@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ObstacleInfo__ShapeTypeOuterClass";
-enum ObstacleInfo__ShapeType {
-  OBSTACLE_INFO__SHAPE_TYPE_OBSTACLE_SHAPE_CAPSULE = 0;
-  OBSTACLE_INFO__SHAPE_TYPE_OBSTACLE_SHAPE_BOX = 1;
-}

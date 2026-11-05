@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EnterMapLayerRspOuterClass";
-// 7.2 CmdId 8723
-message EnterMapLayerRsp {
-  int32 retcode = 12;
-}

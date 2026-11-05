@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GalleryContextInfoOuterClass";
-import "_GalleryContextData.proto";
-
-message _GalleryContextInfo {
-  repeated _GalleryContextData data_list = 9;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EADKDFKJENCOuterClass";
-message EADKDFKJENC {
-  float x = 501;
-  float y = 502;
-}

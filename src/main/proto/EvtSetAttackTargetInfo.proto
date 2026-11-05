@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "EvtSetAttackTargetInfoOuterClass";
-message EvtSetAttackTargetInfo {
-  uint32 select_point_index = 1;
-  uint32 attack_target_id = 4;
-  uint32 entity_id = 13;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HomeSetBlueprintFriendOptionReqOuterClass";
-// 7.2 CmdId 28739
-message HomeSetBlueprintFriendOptionReq {
-  bool is_copy_need_owner_approval = 7;
-  bool is_allow_friend_copy = 13;
-}

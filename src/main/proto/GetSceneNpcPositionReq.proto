@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GetSceneNpcPositionReqOuterClass";
-// 7.2 CmdId 23366
-message GetSceneNpcPositionReq {
-  uint32 scene_id = 8;
-  repeated uint32 npc_id_list = 15;
-}

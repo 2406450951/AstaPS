@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "WidgetExtraCdTypeOuterClass";
-enum WidgetExtraCdType {
-  WIDGET_EXTRA_CD_TYPE_NONE = 0;
-  WIDGET_EXTRA_CD_TYPE_ESKILL_SHARED = 1;
-}

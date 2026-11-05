@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_MonsterChessV2FlagUpgradeRspOuterClass";
-// 7.2 CmdId 3798
-message _MonsterChessV2FlagUpgradeRsp {
-  int32 retcode = 3;
-  uint32 _flag_guid = 5;
-}

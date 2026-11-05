@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "WidgetWeatherWizardDataNotifyOuterClass";
-// 7.2 CmdId 25712
-message WidgetWeatherWizardDataNotify {
-  uint32 shield_value = 5;
-}

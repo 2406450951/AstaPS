@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondTurnDirectionMpActionConfigOuterClass";
-import "FAGMGLAJFNL.proto";
-
-message _BeyondTurnDirectionMpActionConfig {
-  FAGMGLAJFNL LGDOKJMNAHN = 1;
-}

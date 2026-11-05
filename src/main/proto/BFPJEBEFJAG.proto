@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BFPJEBEFJAGOuterClass";
-enum BFPJEBEFJAG {
-  BFPJEBEFJAG_BEYOND_ROOM_MEMBER_NONE = 0;
-  BFPJEBEFJAG_BEYOND_ROOM_MEMBER_READY = 1;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RoleCombatSetSupportAvatarRspOuterClass";
-// 7.2 CmdId 8467
-message RoleCombatSetSupportAvatarRsp {
-  int32 retcode = 10;
-  repeated uint32 avatar_id_list = 14;
-}

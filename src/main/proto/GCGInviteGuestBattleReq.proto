@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GCGInviteGuestBattleReqOuterClass";
-// 7.2 CmdId 8032
-message GCGInviteGuestBattleReq {
-  uint32 uid = 4;
-  uint32 festival_mode_type = 14;
-}

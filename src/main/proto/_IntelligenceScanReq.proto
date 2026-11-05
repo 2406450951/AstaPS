@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_IntelligenceScanReqOuterClass";
-// 7.2 CmdId 8727
-message _IntelligenceScanReq {
-  uint32 avatar_id = 10;
-  uint32 id = 12;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RoleCombatGetAvatarScoreRspOuterClass";
-// 7.2 CmdId 6617
-message RoleCombatGetAvatarScoreRsp {
-  int32 retcode = 3;
-  map<uint32, float> avatar_score_map = 13;
-}

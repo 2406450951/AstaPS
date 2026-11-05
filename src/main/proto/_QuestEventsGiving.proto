@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_QuestEventsGivingOuterClass";
-message _QuestEventsGiving {
-  bool MOCNDPDNJKG = 5;
-  repeated uint32 FFBGCCIEJAI = 10;
-  uint32 _quest_events_giving_id = 11;
-}

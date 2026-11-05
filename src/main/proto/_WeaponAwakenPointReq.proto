@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_WeaponAwakenPointReqOuterClass";
-// 7.2 CmdId 1321
-message _WeaponAwakenPointReq {
-  uint32 _awaken_point_id = 1;
-  uint64 target_weapon_guid = 8;
-}

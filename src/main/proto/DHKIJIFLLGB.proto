@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "DHKIJIFLLGBOuterClass";
-message DHKIJIFLLGB {
-  bool OKAMAEKCEHL = 1;
-  uint64 KNFJIBDMFNH = 2;
-  uint32 OJMONNFBEFK = 4;
-}

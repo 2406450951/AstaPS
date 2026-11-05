@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ClosedItemNotifyOuterClass";
-// 7.2 CmdId 6620
-message ClosedItemNotify {
-  repeated uint32 item_id_list = 14;
-}

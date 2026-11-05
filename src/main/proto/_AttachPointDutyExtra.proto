@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AttachPointDutyExtraOuterClass";
-import "DOHACCGNGLA.proto";
-
-message _AttachPointDutyExtra {
-  repeated DOHACCGNGLA LDEGGIANPAL = 1;
-}

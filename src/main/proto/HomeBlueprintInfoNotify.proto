@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HomeBlueprintInfoNotifyOuterClass";
-// 7.2 CmdId 22111
-message HomeBlueprintInfoNotify {
-  bool is_allow_friend_copy = 1;
-  bool is_copy_need_owner_approval = 10;
-}

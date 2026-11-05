@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SaveCoopDialogReqOuterClass";
-// 7.2 CmdId 9800
-message SaveCoopDialogReq {
-  uint32 chapter_id = 13;
-  uint32 dialog_id = 14;
-}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AnecdoteWishInfoOuterClass";
-message _AnecdoteWishInfo {
-  uint32 HDDAFCJEOHE = 6;
-  uint32 AJKFIKJFDDM = 14;
-}

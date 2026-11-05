@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GCGMsgUseLegendOuterClass";
-message _GCGMsgUseLegend {
-  bool GOEEHELLNIM = 7;
-  uint32 card_guid = 12;
-  uint32 controller_id = 14;
-}

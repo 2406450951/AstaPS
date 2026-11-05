@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HomePlantWeedReqOuterClass";
-// 7.2 CmdId 25383
-message HomePlantWeedReq {
-  uint32 field_guid = 2;
-  uint32 index = 14;
-}

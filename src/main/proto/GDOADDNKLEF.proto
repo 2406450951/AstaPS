@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GDOADDNKLEFOuterClass";
-import "EFABEBGEJGA.proto";
-
-message GDOADDNKLEF {
-  repeated EFABEBGEJGA GOAKAPLIFEF = 1;
-}

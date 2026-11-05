@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "TakeReunionWatcherRewardReqOuterClass";
-// 7.2 CmdId 9145
-message TakeReunionWatcherRewardReq {
-  uint32 watcher_id = 11;
-  uint32 mission_id = 15;
-}

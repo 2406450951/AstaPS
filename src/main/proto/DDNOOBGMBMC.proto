@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "DDNOOBGMBMCOuterClass";
-enum DDNOOBGMBMC {
-  DDNOOBGMBMC_UNSPECIFIED = 0;
-  DDNOOBGMBMC_LONG = 1;
-  DDNOOBGMBMC_SHORT = 2;
-}

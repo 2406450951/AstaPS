@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "RefreshSeedOuterClass";
-import "Vector.proto";
-
-message RefreshSeed {
-  repeated Vector pos_list = 13;
-}

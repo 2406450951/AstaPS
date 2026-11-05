@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_SceneVarInfoOuterClass";
-message _SceneVarInfo {
-  float cur_value = 5;
-  int32 hash_value = 8;
-}

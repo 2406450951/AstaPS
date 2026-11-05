@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HomeGalleryInPlayingNotifyOuterClass";
-// 7.2 CmdId 26875
-message HomeGalleryInPlayingNotify {
-  uint32 gallery_id = 7;
-}

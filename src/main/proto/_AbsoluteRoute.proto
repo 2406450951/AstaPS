@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_AbsoluteRouteOuterClass";
-import "PIABOHJBKMC.proto";
-
-message _AbsoluteRoute {
-  PIABOHJBKMC data = 1;
-}

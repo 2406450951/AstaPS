@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_SnowRaceCombatDungeonInfoOuterClass";
-message _SnowRaceCombatDungeonInfo {
-  uint32 difficulty = 6;
-  uint32 level_id = 13;
-  repeated uint32 _combat_badge_id_list = 15;
-}

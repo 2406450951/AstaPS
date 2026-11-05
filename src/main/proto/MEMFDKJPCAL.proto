@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "MEMFDKJPCALOuterClass";
-message MEMFDKJPCAL {
-  uint32 ENAHOONFKBL = 501;
-  int32 GDJCIKJILLJ = 502;
-}

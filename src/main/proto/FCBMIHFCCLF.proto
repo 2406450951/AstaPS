@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FCBMIHFCCLFOuterClass";
-import "BBGGOGJHBLC.proto";
-
-message FCBMIHFCCLF {
-  repeated BBGGOGJHBLC FKMDCNIKLKI = 501;
-}

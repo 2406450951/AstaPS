@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HGJBLJALKOEOuterClass";
-message HGJBLJALKOE {
-  uint32 item_id = 1;
-  uint32 item_count = 2;
-}

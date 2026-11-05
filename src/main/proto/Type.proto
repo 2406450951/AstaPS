@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "TypeOuterClass";
-enum Type {
-  TYPE_NULL = 0;
-  TYPE_ACTIVE = 1;
-  TYPE_PASSIVE = 2;
-}

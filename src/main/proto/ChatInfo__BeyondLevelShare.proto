@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "ChatInfo__BeyondLevelShareOuterClass";
-message ChatInfo__BeyondLevelShare {
-  string MKHJKMHCKDF = 4;
-  uint64 dungeon_guid = 7;
-}

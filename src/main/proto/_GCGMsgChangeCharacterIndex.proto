@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_GCGMsgChangeCharacterIndexOuterClass";
-message _GCGMsgChangeCharacterIndex {
-  uint32 controller_id = 10;
-  repeated uint32 IBKPCJKGLCD = 12;
-}

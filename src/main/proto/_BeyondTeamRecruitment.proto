@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondTeamRecruitmentOuterClass";
-message _BeyondTeamRecruitment {
-  uint32 PAICLIPMNHL = 9;
-  uint32 POHJLPNIGDK = 12;
-  uint32 HKEOABAJBEG = 13;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "BKCIBOCALMBOuterClass";
-enum BKCIBOCALMB {
-  BKCIBOCALMB_BY_NONE = 0;
-  BKCIBOCALMB_BY_SECTOR = 1;
-  BKCIBOCALMB_BY_CYLINDER = 2;
-}

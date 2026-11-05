@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "IFFOPCANBBKOuterClass";
-enum IFFOPCANBBK {
-  IFFOPCANBBK_NORMAL = 0;
-  IFFOPCANBBK_DEFAULT = 1;
-  IFFOPCANBBK_CUSTOM = 2;
-}

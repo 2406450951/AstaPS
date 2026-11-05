@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FinishedTalkIdListNotifyOuterClass";
-// 7.2 CmdId 28276
-message FinishedTalkIdListNotify {
-  repeated uint32 finished_talk_id_list = 14;
-}

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AACLLCPBOICOuterClass";
-message AACLLCPBOIC {
-  repeated uint32 KIFHBIINLCL = 3;
-  uint32 uid = 8;
-  repeated uint32 KILAJBFPPCM = 10;
-}

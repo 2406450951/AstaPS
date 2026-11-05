@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "TakeReunionSignInRewardReqOuterClass";
-// 7.2 CmdId 22721
-message TakeReunionSignInRewardReq {
-  uint32 reward_day = 2;
-  uint32 config_id = 6;
-}

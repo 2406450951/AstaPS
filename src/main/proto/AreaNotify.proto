@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AreaNotifyOuterClass";
-message AreaNotify {
-  uint32 area_type = 1;
-  bytes area_code = 6;
-  uint32 area_id = 11;
-}

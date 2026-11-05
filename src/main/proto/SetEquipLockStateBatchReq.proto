@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "SetEquipLockStateBatchReqOuterClass";
-// 7.2 CmdId 1555
-message SetEquipLockStateBatchReq {
-  bool is_locked = 3;
-  repeated uint64 equip_guid_list = 6;
-}

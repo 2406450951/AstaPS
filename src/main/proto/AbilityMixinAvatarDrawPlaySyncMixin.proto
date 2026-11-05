@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityMixinAvatarDrawPlaySyncMixinOuterClass";
-message AbilityMixinAvatarDrawPlaySyncMixin {
-  repeated uint32 ABBODGKNDEP = 1;
-  bool is_host = 14;
-  repeated uint32 KGMKPEBKEFF = 15;
-}

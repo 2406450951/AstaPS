@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_DutyEditClientPropertyGrowCurveConfigOuterClass";
-import "GHNOHNMPIJG.proto";
-
-message _DutyEditClientPropertyGrowCurveConfig {
-  repeated GHNOHNMPIJG GJHILLJCLHB = 1;
-}

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_UgcTriggerActionDeactiveGadgetOuterClass";
-message _UgcTriggerActionDeactiveGadget {
-  uint32 _gadget_guid = 10;
-}

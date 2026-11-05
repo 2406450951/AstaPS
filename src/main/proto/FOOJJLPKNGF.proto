@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "FOOJJLPKNGFOuterClass";
-enum FOOJJLPKNGF {
-  FOOJJLPKNGF_STATE_NONE = 0;
-  FOOJJLPKNGF_STATE_SCAN = 1;
-  FOOJJLPKNGF_STATE_ACTION = 2;
-}

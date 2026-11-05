@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondClientFrogprintParamValueEntityReferenceListOuterClass";
-import "JHMDEHJDKEN.proto";
-
-message _BeyondClientFrogprintParamValueEntityReferenceList {
-  repeated JHMDEHJDKEN value_list = 1;
-}

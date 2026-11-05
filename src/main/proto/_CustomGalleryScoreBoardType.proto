@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_CustomGalleryScoreBoardTypeOuterClass";
-enum _CustomGalleryScoreBoardType {
-  _CUSTOM_GALLERY_SCORE_BOARD_TYPE_CUSTOM_GALLERY_SCORE_BOARD_NORMAL = 0;
-  _CUSTOM_GALLERY_SCORE_BOARD_TYPE_CUSTOM_GALLERY_SCORE_BOARD_COUNTDOWN = 1;
-  _CUSTOM_GALLERY_SCORE_BOARD_TYPE_CUSTOM_GALLERY_SCORE_BOARD_TIMER = 2;
-}

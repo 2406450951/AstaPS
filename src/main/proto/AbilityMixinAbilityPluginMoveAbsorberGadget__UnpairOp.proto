@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "AbilityMixinAbilityPluginMoveAbsorberGadget__UnpairOpOuterClass";
-message AbilityMixinAbilityPluginMoveAbsorberGadget__UnpairOp {
-  uint32 OLBGFLGJBCI = 6;
-}

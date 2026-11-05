@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "GalleryCrystalLinkBuffInfoNotifyOuterClass";
-// 7.2 CmdId 29535
-message GalleryCrystalLinkBuffInfoNotify {
-  bool is_buff_valid = 9;
-  uint32 gallery_id = 13;
-}

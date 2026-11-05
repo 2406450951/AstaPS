@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_MonsterChessV2FlagSelectReqOuterClass";
-// 7.2 CmdId 2870
-message _MonsterChessV2FlagSelectReq {
-  uint32 _flag_id = 3;
-}

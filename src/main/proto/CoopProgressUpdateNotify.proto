@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "CoopProgressUpdateNotifyOuterClass";
-// 7.2 CmdId 8104
-message CoopProgressUpdateNotify {
-  bool is_have_progress = 10;
-  uint32 cur_coop_point = 14;
-}

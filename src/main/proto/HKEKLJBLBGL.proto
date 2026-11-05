@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "HKEKLJBLBGLOuterClass";
-enum HKEKLJBLBGL {
-  HKEKLJBLBGL_NONE = 0;
-  HKEKLJBLBGL_BY_TIME = 1;
-  HKEKLJBLBGL_BY_SPEED = 2;
-}

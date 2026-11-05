@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option java_package = "emu.grasscutter.net.proto";
-option java_outer_classname = "_BeyondRemoveVelocityForceMpActionConfigOuterClass";
-import "FAGMGLAJFNL.proto";
-
-message _BeyondRemoveVelocityForceMpActionConfig {
-  FAGMGLAJFNL LMHMANKKKPI = 1;
-}
