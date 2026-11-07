@@ -163,6 +163,9 @@ static volatile int g_flyMode = 0;          // 0= 1=原生飞行状 2=速度覆�
 static volatile int g_flyNoClip = 0;
 static volatile int g_flyFlags = 0x7;       // bit0 forceAirStateFly bit1 up/down bit2 重力 bit3 忽略重力
 static volatile float g_flySpeed = 6.0f;
+static volatile float g_speedBoost = 1.0f;
+static float g_boostLast[3] = {0, 0, 0};
+static bool g_boostHave = false;
 static volatile float g_flyDescend = 2.5f;   // 慢降速度 m/s    // 速度覆写模式下的水平速度 m/s
 static volatile int g_projFailLogged = 0;
 
@@ -2258,13 +2261,7 @@ static bool bearingImpl(float x, float y, float z, float* outDeg, float* outDist
 // 思路：不去伪造坐标，而是把游戏自己的"飞行状 开关打开，让它自己算位移/同步
 static void applyFlyTick() {
     // V ????????????????? .now ??
-    static bool vDown = false;
-    const bool vNow = (GetAsyncKeyState('V') & 0x8000) != 0;
-    if (vNow && !vDown) {
-        g_flyMode = (g_flyMode == 9) ? 0 : 9;
-        logLine("fly: hotkey V -> mode %d (9=NoClip position write)", (int)g_flyMode);
-    }
-    vDown = vNow;
+    // NoClip 开关改由菜单配置（menu::tickHotkeys 处理）。
 
     const uintptr_t mod = overlayMod();
     if (!mod) return;
@@ -2301,7 +2298,7 @@ static void applyFlyTick() {
     static bool brDown = false, blDown = false;
     const bool brNow = (GetAsyncKeyState(VK_OEM_6) & 0x8000) != 0;
     const bool blNow = (GetAsyncKeyState(VK_OEM_4) & 0x8000) != 0;
-    if (brNow && !brDown) { g_flySpeed = (g_flySpeed < 40.f) ? g_flySpeed + 1.f : 40.f; logLine("fly: speed -> %.0f", g_flySpeed); }
+    if (brNow && !brDown) { g_flySpeed = (g_flySpeed < 100.f) ? g_flySpeed + 1.f : 100.f; logLine("fly: speed -> %.0f", g_flySpeed); }
     if (blNow && !blDown) { g_flySpeed = (g_flySpeed > 1.f) ? g_flySpeed - 1.f : 1.f; logLine("fly: speed -> %.0f", g_flySpeed); }
     brDown = brNow;
     blDown = blNow;
@@ -2407,7 +2404,7 @@ void flySetImpl(bool on) { g_flyMode = on ? 1 : 0; logLine("fly: %s (mode %d)", 
 bool flyGetImpl() { return g_flyMode != 0; }
 void flySpeedSetImpl(float v) {
     if (v < 1.f) v = 1.f;
-    if (v > 40.f) v = 40.f;
+    if (v > 100.f) v = 100.f;
     g_flySpeed = v;
 }
 float flySpeedGetImpl() { return g_flySpeed; }
@@ -2432,6 +2429,7 @@ static volatile int g_hcAReq = 0;
 static volatile int g_hcBReq = 0;
 static volatile int g_entfReq = 0;
 static volatile int g_entclsReq = 0;
+static volatile int g_spdReq = 0;
 static volatile int g_elBtnReq = 0;
 static volatile int g_elBtnVal = 1;
 static volatile int g_elRefReq = 0;
@@ -2562,6 +2560,7 @@ static void applyCmdFile() {
         else if (!strcmp(k, "fog")) g_fogOp = atoi(v) ? 1 : 2;
         else if (!strcmp(k, "hideui")) g_hideUiOp = atoi(v) ? 1 : 2;
         else if (!strcmp(k, "uiprobe")) g_uiProbeReq = 1;
+        else if (!strcmp(k, "boost")) { float bb = (float)atof(v); g_speedBoost = (bb > 1.f && bb < 4.f) ? bb : 1.f; g_boostHave = false; }
         else {
             logLine("cmd: unknown key '%s'", k);
             continue;
@@ -3486,6 +3485,12 @@ static void applyFly7Tick() {
     using GetDtFn = float (*)(void* mi);
     float dt = ((GetDtFn)(mod + 0x19BE86F0ull))(nullptr);
     if (dt <= 0.f || dt > 0.2f) dt = 0.016f;
+    if (dt > 0.15f) {
+        // 帧长突然跳大 = 客户端卡了一下：自动关 NoClip，不然下一步会跳出去
+        g_flyMode = 0;
+        logLine("noclip: frame stall (dt=%.3f) - auto off", dt);
+        return;
+    }
 
     float av[4] = {0, 0, 0, 0};
     ((GetVec3)(mod + 0x13AAF060ull))(av, nullptr);
@@ -3522,9 +3527,78 @@ static void applyFly7Tick() {
 // 和 set_velocity 一样用"指针传 Vector3"（这个约定已经在��行 mode 2 里验证过）
 static int g_rbKinApplied = 0;
 
+static void* safePtr(void* addr) {
+    if (!addr) return nullptr;
+    MEMORY_BASIC_INFORMATION mbi{};
+    if (!VirtualQuery(addr, &mbi, sizeof(mbi)) || mbi.State != MEM_COMMIT) return nullptr;
+    if (mbi.Protect & (PAGE_NOACCESS | PAGE_GUARD)) return nullptr;
+    void* v = nullptr;
+    SIZE_T got = 0;
+    if (!ReadProcessMemory(GetCurrentProcess(), addr, &v, sizeof(v), &got) || got != sizeof(v))
+        return nullptr;
+    return v;
+}
+
+static uint64_t safeU64(void* addr) {
+    if (!addr) return 0;
+    MEMORY_BASIC_INFORMATION mbi{};
+    if (!VirtualQuery(addr, &mbi, sizeof(mbi)) || mbi.State != MEM_COMMIT) return 0;
+    if (mbi.Protect & (PAGE_NOACCESS | PAGE_GUARD)) return 0;
+    uint64_t v = 0;
+    SIZE_T got = 0;
+    if (!ReadProcessMemory(GetCurrentProcess(), addr, &v, sizeof(v), &got) || got != sizeof(v)) return 0;
+    return v;
+}
+
+// 找玩家自己那一个 VCHumanoidMove（用 footTrans 投影后的坐标和 avatar 对比）
+static void* playerVchmCached() {
+    static void* cached = nullptr;
+    static DWORD last = 0;
+    const DWORD now = GetTickCount();
+    if (cached && now - last < 1000) return cached;
+    last = now;
+    const uintptr_t mod = overlayMod();
+    if (!mod) return cached;
+    using GetVec3 = void (*)(void* retBuf, void* mi);
+    float av[4] = {0, 0, 0, 0};
+    ((GetVec3)(mod + 0x13AAF060ull))(av, nullptr);
+    void* best = nullptr;
+    float bestScore = 1e9f;
+    for (long i = 0; i < g_vchmInstCount && i < 512; ++i) {
+        void* a = g_vchmInst[i];
+        if (!a || safeU64(a) != 0x500026f1fe0ull) continue;
+        void* xf = safePtr((uint8_t*)a + 0x700);
+        if (!xf) continue;
+        float p3[3] = {0, 0, 0};
+        if (!readXfPos(xf, p3)) continue;
+        const float s = fabsf(-p3[0] - av[0]) + fabsf(-p3[2] - av[2]);
+        if (s < bestScore) { bestScore = s; best = a; }
+    }
+    cached = (bestScore < 50.f) ? best : nullptr;
+    return cached;
+}
+
 static void restoreRbState() {
     if (!g_rbKinApplied) return;
     g_rbKinApplied = 0;
+    const uintptr_t modR = overlayMod();
+    // 先抬高 1.5m：如果停在地面/墙里，直接还原刚体会让物理撞穿拉扯致卡顿
+    if (modR) {
+        using MoveDeltaR = void (*)(void* self, void* vec, void* mi);
+        float lift[3] = {0.f, 1.5f, 0.f};
+        int ln = 0;
+        for (long i = 0; i < g_vchmInstCount && i < 512; ++i) {
+            void* a = g_vchmInst[i];
+            if (!a || safeU64(a) != 0x500026f1fe0ull) continue;
+            void* rb = safePtr((uint8_t*)a + 0x570);
+            if (!rb || safeU64(rb) != 0x500014137b0ull) continue;
+            ((MoveDeltaR)(modR + 0x19C5E650ull))(rb, lift, nullptr);
+            ++ln;
+        }
+        logLine("noclip: lifted %d body(s) by 1.5m before restore", ln);
+    }
+    // 先用"类名 + 实例扫描"重刷新一遍实例表，
+    // 否则玩家换了 VCHumanoidMove 实例就会漏掉，角色一直卡住不能动。
     const uintptr_t mod = overlayMod();
     if (!mod) return;
     using SetBoolFn = void (*)(void* self, unsigned char v, void* mi);
@@ -3534,9 +3608,11 @@ static void restoreRbState() {
     const long total = g_vchmInstCount;
     for (long i = 0; i < total && i < 512; ++i) {
         void* a = g_vchmInst[i];
-        if (!a || *(uint64_t*)a != 0x500026f1fe0ull) continue;
-        void* rb = *(void**)((uint8_t*)a + 0x570);
-        if (!rb || *(uint64_t*)rb != 0x500014137b0ull) continue;
+        if (!a) continue;
+        if (safeU64(a) != 0x500026f1fe0ull) continue;
+        void* rb = safePtr((uint8_t*)a + 0x570);
+        if (!rb) continue;
+        if (safeU64(rb) != 0x500014137b0ull) continue;
         setKin(rb, 0, nullptr);
         setDet(rb, 1, nullptr);
         ++n;
@@ -3586,6 +3662,11 @@ static void applyRbPosTick(int variant) {
     if (GetAsyncKeyState(VK_LCONTROL) & 0x8000) mvy = -1.f;
 
     // 安全阀：坐标爆掉就自动停
+    if (av[1] < 0.f || av[1] > 8000.f || fabsf(av[0]) > 20000.f || fabsf(av[2]) > 20000.f) {
+        g_flyMode = 0;
+        logLine("noclip: out of bounds (%.0f %.0f %.0f) - auto off", av[0], av[1], av[2]);
+        return;
+    }
     if (fabsf(av[0]) > 100000.f || fabsf(av[2]) > 100000.f) {
         g_flyMode = 0;
         logLine("rbpos: position runaway (%.1f %.1f), fly forced off", av[0], av[2]);
@@ -3593,17 +3674,22 @@ static void applyRbPosTick(int variant) {
     }
     float target[3] = {av[0] + mvx * g_flySpeed * dt, av[1] + mvy * g_flySpeed * dt,
                        av[2] + mvz * g_flySpeed * dt};
-    // delta 用"镜像局部"空间：x/z 取负
-    float delta[3] = {-mvx * g_flySpeed * dt, mvy * g_flySpeed * dt, -mvz * g_flySpeed * dt};
+    // MovePositionDelta 接的是\u4e16\u754c\u5411\u91cf：早先\u53d6\u53cd\u5bfc\u81f4 W/S\u3001A/D \u5168\u53cd
+    float spd = g_flySpeed; if (spd > 100.f) spd = 100.f; if (spd < 1.f) spd = 1.f;
+    float delta[3] = {mvx * spd * dt, mvy * spd * dt, mvz * spd * dt};
+    const float maxStep = 2.0f;
+    for (int ax = 0; ax < 3; ++ax) {
+        if (delta[ax] > maxStep) delta[ax] = maxStep;
+        if (delta[ax] < -maxStep) delta[ax] = -maxStep;
+    }
     float zero[3] = {0.f, 0.f, 0.f};
 
     int n = 0;
-    const long total = g_vchmInstCount;
-    for (long i = 0; i < total && i < 512; ++i) {
+    for (long i = 0; i < g_vchmInstCount && i < 512; ++i) {
         void* a = g_vchmInst[i];
-        if (!a || *(uint64_t*)a != 0x500026f1fe0ull) continue;
-        void* rb = *(void**)((uint8_t*)a + 0x570);
-        if (!rb || *(uint64_t*)rb != 0x500014137b0ull) continue;
+        if (!a || safeU64(a) != 0x500026f1fe0ull) continue;
+        void* rb = safePtr((uint8_t*)a + 0x570);
+        if (!rb || safeU64(rb) != 0x500014137b0ull) continue;
         if (variant == 9) {
             using SetBoolFn = void (*)(void* self, unsigned char v, void* mi);
             ((SetBoolFn)(mod + 0x19C5E250ull))(rb, 1, nullptr);          // set_isKinematic(true)
@@ -3979,6 +4065,136 @@ static void entClsProbe() {
     logLine("entcls[%s]: %d instance(s) hold the monster position", line, posHit);
 }
 
+
+// 移速加速（客户端）：按上一帧的真实位移方向补一段额外位移
+// 不动 kinematic（不改正常移动），只往前多推一点点
+static void applySpeedBoostTick() {
+    const uintptr_t mod = overlayMod();
+    if (!mod) return;
+    if (g_speedBoost <= 1.01f) { g_boostHave = false; return; }
+    using GetVec3 = void (*)(void* retBuf, void* mi);
+    using MoveDelta = void (*)(void* self, void* vec, void* mi);
+
+    float cur[4] = {0, 0, 0, 0};
+    ((GetVec3)(mod + 0x13AAF060ull))(cur, nullptr);
+    if (fabsf(cur[0]) < 1.f) return;
+    if (!g_boostHave) {
+        g_boostLast[0] = cur[0]; g_boostLast[2] = cur[2];
+        g_boostHave = true;
+        return;
+    }
+    const float dx = cur[0] - g_boostLast[0];
+    const float dz = cur[2] - g_boostLast[2];
+    g_boostLast[0] = cur[0]; g_boostLast[2] = cur[2];
+    const float h = sqrtf(dx * dx + dz * dz);
+    if (h < 0.004f || h > 2.5f) return;   // 没在走 / 位移突变，不加
+
+    const float k = g_speedBoost - 1.f;
+    float extra[3] = {dx * k, 0.f, dz * k};
+
+    int n = 0;
+    const long total = g_vchmInstCount;
+    for (long i = 0; i < total && i < 512; ++i) {
+        void* a = g_vchmInst[i];
+        if (!a || *(uint64_t*)a != 0x500026f1fe0ull) continue;
+        void* rb = *(void**)((uint8_t*)a + 0x570);
+        if (!rb || *(uint64_t*)rb != 0x500014137b0ull) continue;
+        ((MoveDelta)(mod + 0x19C5E650ull))(rb, extra, nullptr);
+        ++n;
+    }
+    static int beat = 0;
+    if ((beat++ % 90) == 0)
+        logLine("boost: k=%.2f moved=%.2f extra=%.2f rb=%d", g_speedBoost, h, sqrtf(extra[0]*extra[0]+extra[2]*extra[2]), n);
+}
+
+void Gs71SpeedBoost(float k) {
+    g_speedBoost = (k > 1.f && k < 4.f) ? k : 1.f;
+    g_boostHave = false;
+    logLine("boost: set %.2f", g_speedBoost);
+}
+
+
+// ---------------------------------------------------------------- 移速字段探针
+// spd.now: 第1次存 A（站着），第2次存 B（跑着），第3次打差异
+// 找 VCHumanoidMove 和 moveData 里随移动变化的 float
+static float g_spdA[512];
+static float g_spdB[512];
+static int g_spdStage = 0;
+
+static void* playerVchm() {
+    const uintptr_t mod = overlayMod();
+    if (!mod) return nullptr;
+    using GetVec3 = void (*)(void* retBuf, void* mi);
+    float av[4] = {0, 0, 0, 0};
+    ((GetVec3)(mod + 0x13AAF060ull))(av, nullptr);
+    void* best = nullptr;
+    float bestScore = 1e9f;
+    const long total = g_vchmInstCount;
+    for (long i = 0; i < total && i < 512; ++i) {
+        void* a = g_vchmInst[i];
+        if (!a || *(uint64_t*)a != 0x500026f1fe0ull) continue;
+        void* xf = *(void**)((uint8_t*)a + 0x700);
+        if (!xf) continue;
+        float p3[3] = {0, 0, 0};
+        if (!readXfPos(xf, p3)) continue;
+        const float s = fabsf(-p3[0] - av[0]) + fabsf(-p3[2] - av[2]);
+        if (s < bestScore) { bestScore = s; best = a; }
+    }
+    return bestScore < 50.f ? best : nullptr;
+}
+
+static void captureFloats(void* base, int len, float* out) {
+    if (!base) return;
+    static uint8_t buf[0x800];
+    SIZE_T got = 0;
+    if (!ReadProcessMemory(GetCurrentProcess(), base, buf, sizeof(buf), &got)) return;
+    const int lim = (int)(got < sizeof(buf) ? got : sizeof(buf));
+    int idx = 0;
+    for (int off = 0; off + 4 <= lim && idx < len; off += 4) {
+        const float f = *(const float*)(buf + off);
+        out[idx++] = (f == f) ? f : -1.f;
+    }
+}
+
+static void spdProbe() {
+    void* v = playerVchm();
+    if (!v) { logLine("spd: no player vchm"); return; }
+    void* md = *(void**)((uint8_t*)v + 0x6d0);
+    const int n = 512;
+    if (g_spdStage == 0) {
+        captureFloats((uint8_t*)v, n, g_spdA);
+        logLine("spd: A captured (vchm=%p, moveData=%p) - now start running", v, md);
+        g_spdStage = 1;
+        return;
+    }
+    if (g_spdStage == 1) {
+        captureFloats((uint8_t*)v, n, g_spdB);
+        logLine("spd: B captured - diff (only 0.3..40 range):");
+        for (int i = 0; i < n; ++i) {
+            const float a = g_spdA[i], b = g_spdB[i];
+            if (!(a == a && b == b)) continue;
+            if (a > 0.3f && a < 40.f && b > 0.3f && b < 40.f && fabsf(a - b) > 0.05f)
+                logLine("spd:   vchm+0x%03X  %.3f -> %.3f", i * 4, a, b);
+        }
+        if (md) {
+            static uint8_t mb[0x400];
+            SIZE_T g2 = 0;
+            if (ReadProcessMemory(GetCurrentProcess(), md, mb, sizeof(mb), &g2) && g2 > 32) {
+                logLine("spd: moveData floats 0.3..40:");
+                for (int off = 0; off + 4 < (int)g2; off += 4) {
+                    const float f = *(const float*)(mb + off);
+                    if (f == f && f > 0.3f && f < 40.f)
+                        logLine("spd:   moveData+0x%03X  %.3f", off, f);
+                }
+            }
+        }
+        g_spdStage = 2;
+        return;
+    }
+    logLine("spd: reset, next trigger starts over");
+    g_spdStage = 0;
+}
+
 void Gs71TxProbe(bool on) { installTransmitProbe(on); }
 void Gs71LuaProbe(bool on) { installLuaProbe(on); }
 
@@ -3999,6 +4215,7 @@ void mainThreadTick() {
     // 世界/登录阶段一律不碰 IL2CPP：
     // 游戏自己此刻正在初始化 ActorUtils，抢先调会崩在 cctor+0x13
     if (!serverInWorld()) return;
+    applySpeedBoostTick();
     // ---- 每帧飞行：读当前位置  沿相机前方推   AvatarMoveTo ----
     applyUnityOps();
     if (g_uiProbeReq) { g_uiProbeReq = 0; hideUiProbe(); }
@@ -4020,6 +4237,7 @@ void mainThreadTick() {
     if (g_hcBReq) { g_hcBReq = 0; hcSnapshotB(); }
     if (g_entfReq) { g_entfReq = 0; entFindProbe(); }
     if (g_entclsReq) { g_entclsReq = 0; entClsProbe(); }
+    if (g_spdReq) { g_spdReq = 0; spdProbe(); }
     if (g_elRefReq) { g_elRefReq = 0; elRefreshProbe(); }
     refreshCamFrame();
     applyHideUiTick();
@@ -6124,6 +6342,10 @@ DWORD WINAPI scanNowWatcher(LPVOID) {
         if (GetFileAttributesA("D:\\Programs\\gs71-runtime\\entcls.now") != INVALID_FILE_ATTRIBUTES) {
             DeleteFileA("D:\\Programs\\gs71-runtime\\entcls.now");
             g_entclsReq = 1;
+        }
+        if (GetFileAttributesA("D:\\Programs\\gs71-runtime\\spd.now") != INVALID_FILE_ATTRIBUTES) {
+            DeleteFileA("D:\\Programs\\gs71-runtime\\spd.now");
+            g_spdReq = 1;
         }
         if (GetFileAttributesA("D:\\Programs\\gs71-runtime\\cmd.now") != INVALID_FILE_ATTRIBUTES) {
             applyCmdFile();

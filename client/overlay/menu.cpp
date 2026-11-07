@@ -71,6 +71,8 @@ bool Gs71HideUiGet();
 
 #include "bridge.h"
 
+
+namespace menu { void saveConfigImpl(); }
 namespace {
 
 constexpr const char* kHotkeys[] = {"INSERT", "DELETE"};
@@ -142,11 +144,27 @@ void action(const char* fmt, ...) {
 // ---------------------------------------------------------------- 作弊快捷键
 //
 // 表里每行：显示名、绑定到哪个 VK 字段、切换哪个开关、下发给服务端时用哪个字段名。
+enum HkAction {
+    HA_SERVER = 0,
+    HA_NOCLIP,
+    HA_FLY,
+    HA_ELEM,
+    HA_RUN,
+    HA_CUT,
+    HA_HIDEUI,
+    HA_SPD_DN,
+    HA_SPD_UP
+};
+
+static bool g_hkSkipCut = false;
+static bool g_hkHideUi = false;
+
 struct CheatHotkey {
     const char* name;
     int* vk;
     bool* value;
     const char* field;
+    int action;
 };
 
 CheatHotkey g_hotkeys_cheat[] = {
@@ -161,6 +179,15 @@ CheatHotkey g_hotkeys_cheat[] = {
     {"怪物吸附", &g_cfg.hkMobVac, &g_cfg.mobVac, "mobvac"},
     {"无限大招", &g_cfg.hkBurst, &g_cfg.burst, "burst"},
     {"技能可用", &g_cfg.hkSkill, &g_cfg.skillReady, "skillready"},
+    {"NoClip 真·自由移动", &g_cfg.hkNoClip, nullptr, "", HA_NOCLIP},
+    {"NoClip 备用键", &g_cfg.hkNoClip2, nullptr, "", HA_NOCLIP},
+    {"速度覆写飞行", &g_cfg.hkFly, nullptr, "", HA_FLY},
+    {"元素视野", &g_cfg.hkElem, nullptr, "", HA_ELEM},
+    {"自动奔跑", &g_cfg.hkRun, nullptr, "", HA_RUN},
+    {"跳过过场", &g_cfg.hkCut, nullptr, "", HA_CUT},
+    {"隐藏 UI", &g_cfg.hkHideUi, nullptr, "", HA_HIDEUI},
+    {"飞行速度 -", &g_cfg.hkSpdDn, nullptr, "", HA_SPD_DN},
+    {"飞行速度 +", &g_cfg.hkSpdUp, nullptr, "", HA_SPD_UP},
 };
 const int g_hotkeyCount = (int)(sizeof(g_hotkeys_cheat) / sizeof(g_hotkeys_cheat[0]));
 
@@ -199,12 +226,23 @@ void pollCheatHotkeys() {
         bool down = (GetAsyncKeyState(vk) & 0x8000) != 0;
         static bool was[32] = {false};
         if (down && !was[i]) {
-            *g_hotkeys_cheat[i].value = !*g_hotkeys_cheat[i].value;
-            bool on = *g_hotkeys_cheat[i].value;
-            push("%s=%d", g_hotkeys_cheat[i].field, on ? 1 : 0);
-            if (!strcmp(g_hotkeys_cheat[i].field, "mobvac")) {
-                // 这两个是本地开关，服务端字段名不同，单独补一条
-                push("mobvac=%d", on ? 1 : 0);
+            switch (g_hotkeys_cheat[i].action) {
+                case HA_NOCLIP: Gs71FlyMode(Gs71FlyModeGet() == 9 ? 0 : 9); break;
+                case HA_FLY: Gs71FlySet(!Gs71FlyGet()); break;
+                case HA_ELEM: Gs71ElemView(!Gs71ElemViewGet()); break;
+                case HA_RUN: Gs71FlyMode(Gs71FlyModeGet() == 3 ? 0 : 3); break;
+                case HA_CUT: g_hkSkipCut = !g_hkSkipCut; Gs71CutsceneSkip(g_hkSkipCut); break;
+                case HA_HIDEUI: g_hkHideUi = !g_hkHideUi; Gs71HideUi(g_hkHideUi); break;
+                case HA_SPD_DN: Gs71FlySpeedSet(Gs71FlySpeedGet() - 1.f); break;
+                case HA_SPD_UP: Gs71FlySpeedSet(Gs71FlySpeedGet() + 1.f); break;
+                case HA_SERVER:
+                default:
+                    *g_hotkeys_cheat[i].value = !*g_hotkeys_cheat[i].value;
+                    bool on = *g_hotkeys_cheat[i].value;
+                    push("%s=%d", g_hotkeys_cheat[i].field, on ? 1 : 0);
+                    if (!strcmp(g_hotkeys_cheat[i].field, "mobvac"))
+                        push("mobvac=%d", on ? 1 : 0);
+                    break;
             }
         }
         was[i] = down;
@@ -222,6 +260,37 @@ void syncFromServer(const Snapshot& s) {
 }
 
 // ---------------------------------------------------------------- widgets
+
+static int g_keyCapture = 0;
+
+static const char* gs71KeyName(int vk) {
+    static char buf[32];
+    if (!vk) return "-";
+    if (vk >= 'A' && vk <= 'Z') { snprintf(buf, sizeof(buf), "%c", vk); return buf; }
+    if (vk >= '0' && vk <= '9') { snprintf(buf, sizeof(buf), "%c", vk); return buf; }
+    if (vk >= VK_F1 && vk <= VK_F12) { snprintf(buf, sizeof(buf), "F%d", vk - VK_F1 + 1); return buf; }
+    switch (vk) {
+        case VK_SPACE: return "SPACE";
+        case VK_TAB: return "TAB";
+        case VK_LSHIFT: return "LSHIFT";
+        case VK_RSHIFT: return "RSHIFT";
+        case VK_LCONTROL: return "LCTRL";
+        case VK_RCONTROL: return "RCTRL";
+        case VK_LMENU: return "LALT";
+        case VK_RMENU: return "RALT";
+        case VK_INSERT: return "INSERT";
+        case VK_DELETE: return "DELETE";
+        case VK_HOME: return "HOME";
+        case VK_END: return "END";
+        case VK_OEM_3: return "`";
+        case VK_OEM_4: return "[";
+        case VK_OEM_6: return "]";
+        case VK_OEM_5: return "\\";
+        default: break;
+    }
+    snprintf(buf, sizeof(buf), "VK_%d", vk);
+    return buf;
+}
 
 void sectionHeader(const char* text) {
     ImGui::Spacing();
@@ -278,6 +347,40 @@ void actionQuery(const char* label, const char* query) {
 
 // ---------------------------------------------------------------- tabs
 
+static void saveConfigImpl();
+
+enum HotkeyAction {
+    HK_NOCLIP = 0, HK_NOCLIP2, HK_FLY, HK_ELEM, HK_ESP, HK_RUN,
+    HK_CUT, HK_HIDEUI, HK_GOD, HK_AURA, HK_FREEZE, HK_LOOT,
+    HK_STAMINA, HK_SPDN, HK_SPDUP, HK_COUNT
+};
+
+struct HotkeyRow {
+    const char* label;
+    int defVk;
+};
+
+static const HotkeyRow kHkRows[HK_COUNT] = {
+    {"NoClip 真·自由移动", VK_F1},
+    {"NoClip 备用键", 'V'},
+    {"速度覆写飞行", VK_F2},
+    {"元素视野", VK_F3},
+    {"ESP 透视", VK_F4},
+    {"自动奔跑", VK_F5},
+    {"跳过过场", VK_F6},
+    {"隐藏 UI", VK_F7},
+    {"无敌 God Mode", VK_F8},
+    {"杀戮光环", VK_F9},
+    {"时间冻结", VK_F10},
+    {"自动拾取", VK_F11},
+    {"无限体力", VK_F12},
+    {"飞行速度 -", VK_OEM_4},
+    {"飞行速度 +", VK_OEM_6},
+};
+
+static bool g_hkPrev[HK_COUNT] = {false};
+int g_captureRow = -1;   // >=0: 等待按键绑定
+
 void tabPlayer(const Snapshot& s) {
     sectionHeader("生存");
     toggleRow("无敌 (God Mode)", &g_st.god, "god");
@@ -300,9 +403,15 @@ void tabPlayer(const Snapshot& s) {
     }
 
     sectionHeader("移动速度（原生移速药）");
-    if (ImGui::Checkbox("开启 +30%（数据内置值）", &g_speedOn)) {
-        if (g_speedOn) action("c=speed&r=1.3");
+    if (ImGui::Checkbox("开启移动加速", &g_speedOn)) {
+        if (g_speedOn) action("c=speed&r=%.2f", g_speedRatio);
         else action("c=speed&on=0");
+    }
+    if (g_speedOn) {
+        ImGui::SetNextItemWidth(240);
+        if (ImGui::SliderFloat("加速倍数##speedr", &g_speedRatio, 1.1f, 2.5f, "x%.2f"))
+            action("c=speed&r=%.2f", g_speedRatio);
+        ImGui::TextDisabled("服务端下发 Animator_MoveSpeedRatio + 移速 buff，约 0.5 秒生效");
     }
     ImGui::TextDisabled("走游戏原生 buff（170201 移速增加药品），客户端只认数据里的 0.3；");
 
@@ -717,6 +826,7 @@ void tabSettings(const Snapshot& s) {
         if (ImGui::Button(idc, ImVec2(80, 0))) {
             *g_hotkeys_cheat[i].vk = 0;
             if (binding == i) binding = -1;
+            menu::saveConfigImpl();
         }
         if (binding == i) {
             for (int vk = 1; vk < 256; ++vk) {
@@ -727,6 +837,7 @@ void tabSettings(const Snapshot& s) {
                 } else {
                     *g_hotkeys_cheat[i].vk = vk;
                     binding = -1;
+                    menu::saveConfigImpl();
                 }
                 break;
             }
@@ -755,23 +866,6 @@ void tabSettings(const Snapshot& s) {
     ImGui::SliderFloat("##accent_b", &g_cfg.accent[2], 0.f, 1.f, "蓝 %.2f");
 
     ImGui::Spacing();
-    sectionHeader("快捷键（仅游戏窗口在前台时生效）");
-    {
-        static const char* rows[][2] = {
-            {"F1", "NoClip 真·自由移动"}, {"F2", "速度覆写飞行"}, {"F3", "元素视野"},
-            {"F4", "ESP 透视"},           {"F5", "自动奔跑"},     {"F6", "跳过过场"},
-            {"F7", "隐藏 UI"},            {"F8", "无敌"},         {"F9", "杀戮光环"},
-            {"F10", "时间冻结"},          {"F11", "自动拾取"},    {"F12", "无限体力"},
-            {"[ / ]", "飞行速度 -/+"},    {"INSERT", "开关菜单"}, {"V", "NoClip 快捷开关"},
-        };
-        for (const auto& r : rows) {
-            ImGui::TextColored(ImVec4(0.74f, 0.62f, 1.0f, 1.f), "%-7s", r[0]);
-            ImGui::SameLine(92);
-            ImGui::TextUnformatted(r[1]);
-        }
-        ImGui::TextDisabled("切到后台/别的窗口后，这些键不再触发");
-    }
-
     sectionHeader("连接");
     ImGui::Text("服务端   %s", bridge::connected() ? "已连接 (127.0.0.1:8890)" : "未连接");
     ImGui::Text("延迟     %lld ms", bridge::ageMs());
@@ -832,59 +926,16 @@ void applyTheme() {
 
 namespace menu {
 
-// ---------------------------------------------------------------- hotkeys
-//
-// å¨é¨å¿«æ·é®é½ç» gs71InputFocused() é¨æ§ï¼æ¸¸æçªå£ä¸å¨åå°æ¶ä¸å¾ä¸çæã
-struct HotkeyDef {
-    int vk;
-    const char* key;
-    const char* what;
-};
-
-static const HotkeyDef kHotkeyTable[] = {
-    {VK_F1, "F1", "NoClip çÂ·èªç±ç§»å¨"},
-    {VK_F2, "F2", "éåº¦è¦åé£è¡"},
-    {VK_F3, "F3", "åç´ è§é"},
-    {VK_F4, "F4", "ESP éè§"},
-    {VK_F5, "F5", "èªå¨å¥è·"},
-    {VK_F6, "F6", "è·³è¿è¿åº"},
-    {VK_F7, "F7", "éè UI"},
-    {VK_F8, "F8", "æ æ God Mode"},
-    {VK_F9, "F9", "ææ®åç¯"},
-    {VK_F10, "F10", "æ¶é´å»ç»"},
-    {VK_F11, "F11", "èªå¨æ¾å"},
-    {VK_F12, "F12", "æ éä½å"},
-};
-static const int kHotkeyCount = (int)(sizeof(kHotkeyTable) / sizeof(kHotkeyTable[0]));
-static bool g_hkPrev[16] = {false};
-static bool g_hkSkipCut = false;
-static bool g_hkHideUi = false;
-
 void tickHotkeys() {
-    if (!gs71InputFocused()) {
-        for (int i = 0; i < 16; ++i) g_hkPrev[i] = false;
-        return;
-    }
-    for (int i = 0; i < kHotkeyCount && i < 16; ++i) {
-        const bool down = (::GetAsyncKeyState(kHotkeyTable[i].vk) & 0x8000) != 0;
-        if (down && !g_hkPrev[i]) {
-            switch (i) {
-                case 0: Gs71FlyMode(Gs71FlyModeGet() == 9 ? 0 : 9); Gs71Log("F1 noclip"); break;
-                case 1: Gs71FlySet(!Gs71FlyGet()); break;
-                case 2: Gs71ElemView(!Gs71ElemViewGet()); break;
-                case 3: g_cfg.espWorld = !g_cfg.espWorld; Gs71Log(g_cfg.espWorld ? "F4 esp on" : "F4 esp off"); break;
-                case 4: Gs71FlyMode(Gs71FlyModeGet() == 3 ? 0 : 3); break;
-                case 5: g_hkSkipCut = !g_hkSkipCut; Gs71CutsceneSkip(g_hkSkipCut); break;
-                case 6: g_hkHideUi = !g_hkHideUi; Gs71HideUi(g_hkHideUi); break;
-                case 7: g_st.god = !g_st.god; push("god=%d", g_st.god ? 1 : 0); Gs71Log(g_st.god ? "F8 god on" : "F8 god off"); break;
-                case 8: g_st.aura = !g_st.aura; push("aura=%d", g_st.aura ? 1 : 0); break;
-                case 9: g_st.freeze = !g_st.freeze; push("freeze=%d", g_st.freeze ? 1 : 0); break;
-                case 10: g_st.loot = !g_st.loot; push("loot=%d", g_st.loot ? 1 : 0); break;
-                case 11: g_st.stamina = !g_st.stamina; push("stamina=%d", g_st.stamina ? 1 : 0); break;
-                default: break;
-            }
-        }
-        g_hkPrev[i] = down;
+    if (!gs71InputFocused()) return;
+    pollCheatHotkeys();
+
+    // E??????? CD??????
+    {
+        static bool ePrev = false;
+        const bool eDown = (::GetAsyncKeyState('E') & 0x8000) != 0;
+        if (eDown && !ePrev && g_cfg.skillReady) bridge::set("skillclear=1");
+        ePrev = eDown;
     }
 }
 
@@ -911,7 +962,7 @@ static void cfgPath(char* out, size_t cap) {
     snprintf(out, cap, "%sgs71_menu.cfg", p);
 }
 
-static void saveConfig() {
+void saveConfigImpl() {
     char path[MAX_PATH];
     cfgPath(path, sizeof(path));
     FILE* f = fopen(path, "w");
@@ -943,6 +994,15 @@ static void saveConfig() {
     fprintf(f, "hkburst=%d\n", g_cfg.hkBurst);
     fprintf(f, "hkskill=%d\n", g_cfg.hkSkill);
     fprintf(f, "hkspeed=%d\n", g_cfg.hkSpeed);
+    fprintf(f, "hknoclip=%d\n", g_cfg.hkNoClip);
+    fprintf(f, "hknoclip2=%d\n", g_cfg.hkNoClip2);
+    fprintf(f, "hkfly=%d\n", g_cfg.hkFly);
+    fprintf(f, "hkelem=%d\n", g_cfg.hkElem);
+    fprintf(f, "hkrun=%d\n", g_cfg.hkRun);
+    fprintf(f, "hkcut=%d\n", g_cfg.hkCut);
+    fprintf(f, "hkui=%d\n", g_cfg.hkHideUi);
+    fprintf(f, "hkspddn=%d\n", g_cfg.hkSpdDn);
+    fprintf(f, "hkspdup=%d\n", g_cfg.hkSpdUp);
     fprintf(f, "mobvac=%d\n", g_cfg.mobVac ? 1 : 0);
     fprintf(f, "mobvarr=%.1f\n", g_cfg.mobVacR);
     fprintf(f, "burst=%d\n", g_cfg.burst ? 1 : 0);
@@ -971,7 +1031,7 @@ static bool loadConfig() {
     char path[MAX_PATH];
     cfgPath(path, sizeof(path));
     FILE* f = fopen(path, "r");
-    if (!f) { saveConfig(); return false; }
+    if (!f) { saveConfigImpl(); return false; }
 
     char line[256];
     while (fgets(line, sizeof(line), f)) {
@@ -1008,6 +1068,15 @@ static bool loadConfig() {
         else if (!strcmp(k, "hkburst")) g_cfg.hkBurst = atoi(v);
         else if (!strcmp(k, "hkskill")) g_cfg.hkSkill = atoi(v);
         else if (!strcmp(k, "hkspeed")) g_cfg.hkSpeed = atoi(v);
+        else if (!strcmp(k, "hknoclip")) g_cfg.hkNoClip = atoi(v);
+        else if (!strcmp(k, "hknoclip2")) g_cfg.hkNoClip2 = atoi(v);
+        else if (!strcmp(k, "hkfly")) g_cfg.hkFly = atoi(v);
+        else if (!strcmp(k, "hkelem")) g_cfg.hkElem = atoi(v);
+        else if (!strcmp(k, "hkrun")) g_cfg.hkRun = atoi(v);
+        else if (!strcmp(k, "hkcut")) g_cfg.hkCut = atoi(v);
+        else if (!strcmp(k, "hkui")) g_cfg.hkHideUi = atoi(v);
+        else if (!strcmp(k, "hkspddn")) g_cfg.hkSpdDn = atoi(v);
+        else if (!strcmp(k, "hkspdup")) g_cfg.hkSpdUp = atoi(v);
         else if (!strcmp(k, "mobvac")) g_cfg.mobVac = isOn(v);
         else if (!strcmp(k, "mobvarr")) g_cfg.mobVacR = (float)atof(v);
         else if (!strcmp(k, "burst")) g_cfg.burst = isOn(v);
@@ -1414,7 +1483,7 @@ void draw() {
     // Persist whenever something actually changed (cheap: compares against the last saved copy).
     if (memcmp(&g_st, &lastSaved, sizeof(CheatState)) != 0 ||
         memcmp(&g_cfg, &lastCfg, sizeof(ClientConfig)) != 0) {
-        saveConfig();
+        menu::saveConfigImpl();
         lastSaved = g_st;
         lastCfg = g_cfg;
     }

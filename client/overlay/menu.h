@@ -45,9 +45,18 @@ struct ClientConfig {
     bool burst = false;
     bool skillReady = false;
 
-    // 每项作弊的快捷键（0 = 未绑定）
-    int hkGod = 0, hkFall = 0, hkLoot = 0, hkStamina = 0, hkAutoheal = 0;
-    int hkAura = 0, hkFreeze = 0, hkEsp = 0, hkMobVac = 0, hkBurst = 0;
+    // hotkeys (VK code, 0 = unbound). F1=0x70 .. F12=0x7B, 'V'=0x56, '['=0xDB, ']'=0xDD
+    int hkNoClip = 0x70;   // F1  NoClip primary
+    int hkNoClip2 = 0x56;  // V   NoClip alternate
+    int hkFly = 0x71;      // F2  velocity fly
+    int hkElem = 0x72;     // F3  elemental sight
+    int hkRun = 0x74;      // F5  auto run
+    int hkCut = 0x75;      // F6  skip cutscene
+    int hkHideUi = 0x76;   // F7  hide UI
+    int hkSpdDn = 0xDB;    // [
+    int hkSpdUp = 0xDD;    // ]
+    int hkGod = 0x77, hkFall = 0, hkLoot = 0x7A, hkStamina = 0x7B, hkAutoheal = 0;
+    int hkAura = 0x78, hkFreeze = 0x79, hkEsp = 0x73, hkMobVac = 0, hkBurst = 0;
     int hkSkill = 0, hkSpeed = 0;
 };
 ClientConfig& config();
