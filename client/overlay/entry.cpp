@@ -3544,9 +3544,25 @@ static void restoreRbState() {
     logLine("noclip: rigidbody state restored on %d body(s)", n);
 }
 
+static void vchmFallbackScan() {
+    static DWORD last = 0;
+    const DWORD now = GetTickCount();
+    if (now - last < 1500) return;
+    last = now;
+    const uintptr_t klass = findClassByName("VCHumanoidMove");
+    if (!klass) return;
+    static uintptr_t objs[64];
+    const int cnt = collectInstances(klass, objs, 64, 1200);
+    if (cnt <= 0) return;
+    g_vchmInstCount = cnt;
+    for (int i = 0; i < cnt && i < 512; ++i) g_vchmInst[i] = (void*)objs[i];
+    logLine("vchm: fallback scan -> %d instance(s)", cnt);
+}
+
 static void applyRbPosTick(int variant) {
     const uintptr_t mod = overlayMod();
     if (!mod) return;
+    if (g_vchmInstCount <= 0) vchmFallbackScan();
     using GetVec3 = void (*)(void* retBuf, void* mi);
     using GetDtFn = float (*)(void* mi);
     using SetVecFn = void (*)(void* self, void* vec, void* mi);
@@ -3966,7 +3982,15 @@ static void entClsProbe() {
 void Gs71TxProbe(bool on) { installTransmitProbe(on); }
 void Gs71LuaProbe(bool on) { installLuaProbe(on); }
 
+static DWORD g_bootTick = 0;
+
+// 判断"可以碰 IL2CPP"了没有。两个条件都要满足：
+//   1) 启动后至少 20 秒（加载界面阶段崩在 ≈启动后 13 秒）
+//   2) 服务端报 online。注意：单看 online 不够——
+//      杀掉客户端重开时旧会话还在，服务端会短时说 online=1
 static bool serverInWorld() {
+    if (g_bootTick == 0) g_bootTick = GetTickCount();
+    if (GetTickCount() - g_bootTick < 20000) return false;
     Snapshot s = bridge::get();
     return s.valid && s.online;
 }
@@ -4681,9 +4705,12 @@ DWORD WINAPI boot(LPVOID) {
     CreateThread(nullptr, 0, posWriteThread, nullptr, 0, nullptr);
     CreateThread(nullptr, 0, xrefProbeThread, nullptr, 0, nullptr);
     CreateThread(nullptr, 0, dumpMappedMetadata, nullptr, 0, nullptr);
+    // VCHumanoidMove 实例捕获必须无条件安装：
+    // NoClip / 飞行 / ESP 全靠这个数组；以前挂在 ctor_auto.on 上，
+    // 那个文件一删，所有功能就默默失效。
+    installVchmCtorCapture();
     if (GetFileAttributesA("D:\\Programs\\gs71-runtime\\ctor_auto.on") != INVALID_FILE_ATTRIBUTES) {
         installCtorCapture(true);
-        installVchmCtorCapture();
     }
     if (GetFileAttributesA("D:\\Programs\\gs71-runtime\\probe.on") != INVALID_FILE_ATTRIBUTES) {
         installMetadataHooks();

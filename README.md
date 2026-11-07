@@ -1,11 +1,43 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.9.1**
+**版本 1.9.2**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
+
+## 1.9.2 修正（功能全失效 + 间歇崩溃）
+
+**症状 A**：在线、菜单能开，但 NoClip / 飞行 / ESP 全都没反应，`Astrolabe.log` 里 `rbpos9: rb=0`。
+
+原因：`VCHumanoidMove::.ctor` 的实例捕获钩子之前挂在调试开关
+`ctor_auto.on` 上，那个文件不在就不装钩子 → `g_vchmInst[]` 为空 →
+所有依赖实例列表的功能失效（纯服务端的 god/loot 照常，所以看起来像部分失效）。
+
+修法：
+
+- `installVchmCtorCapture()` 改成**无条件安装**（它是功能依赖，不是探针）
+- 加兜底：`applyRbPosTick()` 发现 `g_vchmInstCount <= 0` 时，每 1.5 秒用
+  `findClassByName + collectInstances` 重新填表
+
+**症状 B**：修完 A 之后又闪退一次（还是 1.9.1 那个 `ActorUtils::.cctor` 崩溃）。
+
+原因：**上一局会话在服务端没断**，`/snap` 仍然返回 `online 1`，
+新客户端刚启动、世界还没加载完，`serverInWorld()` 就被这个"别人的 online"骗过去了。
+
+修法：门控加启动宽限（崩溃点固定在启动后 ≈ 13 秒）：
+
+```cpp
+static bool serverInWorld() {
+    if (g_bootTick == 0) g_bootTick = GetTickCount();
+    if (GetTickCount() - g_bootTick < 20000) return false;   // 启动后 20 秒内一律不动
+    Snapshot s = bridge::get();
+    return s.valid && s.online;
+}
+```
+
+代价：启动后最多多等 20 秒才能开菜单（进世界通常就超过了，体感几乎不变）。
 
 ## 1.9.1 修正（启动崩溃）
 
