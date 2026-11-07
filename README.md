@@ -1,11 +1,45 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.9.0**
+**版本 1.9.1**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
+
+## 1.9.1 修正（启动崩溃）
+
+**症状**：客户端启动十几秒后直接消失（进不到登录界面），`Astrolabe.log` 里是：
+
+```
+VEH exception=0xC0000005 at GenshinImpact.exe+0x1FC75F0
+   [7] GenshinImpact.exe+0x13ABFFF3     <- MoleMole.ActorUtils::.cctor + 0x13
+```
+
+**原因**：overlay 在**登录/加载阶段**就调用了 IL2CPP
+（`Camera.get_main` / `GetAvatarPos` / ImGui 初始化），而游戏自己此刻正在初始化 `ActorUtils` 静态构造，
+两边撞在一起就崩在 cctor+0x13。时间上就是“启动后 ~12 秒”。
+
+**修法**：所有 IL2CPP 调用都等到**服务端报 online**（人已经在世界里）之后才开始：
+
+```cpp
+static bool serverInWorld() { Snapshot s = bridge::get(); return s.valid && s.online; }
+
+void mainThreadTick() {
+    if (!serverInWorld()) return;        // 没进世界就一律不碰 IL2CPP
+    ...
+}
+
+// Present 钩子里
+const bool inWorld = serverInWorld();
+if (inWorld && !g_imguiReady && !failed) initImGui(swap);
+if (inWorld && g_imguiReady) { /* 渲染 */ }
+```
+
+副作用：登录界面不再显示菜单（本来也没东西可看），进世界后一切照旧。
+
+**排查提示**：启动后几秒内就消失 → 看 `Astrolabe.log` 的 `VEH exception`；
+卡在“网络错误 4201” → 是服务端/443 没起，与 overlay 无关。
 
 ## 1.9.0 新增（重点）
 

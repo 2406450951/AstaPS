@@ -861,8 +861,6 @@ static bool g_hkSkipCut = false;
 static bool g_hkHideUi = false;
 
 void tickHotkeys() {
-    static int dbg = 0;
-    if ((dbg++ % 120) == 0) Gs71Log(Gs71Focused() ? "tick focus=1" : "tick focus=0");
     if (!gs71InputFocused()) {
         for (int i = 0; i < 16; ++i) g_hkPrev[i] = false;
         return;

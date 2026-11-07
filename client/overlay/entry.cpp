@@ -3966,7 +3966,15 @@ static void entClsProbe() {
 void Gs71TxProbe(bool on) { installTransmitProbe(on); }
 void Gs71LuaProbe(bool on) { installLuaProbe(on); }
 
+static bool serverInWorld() {
+    Snapshot s = bridge::get();
+    return s.valid && s.online;
+}
+
 void mainThreadTick() {
+    // 世界/登录阶段一律不碰 IL2CPP：
+    // 游戏自己此刻正在初始化 ActorUtils，抢先调会崩在 cctor+0x13
+    if (!serverInWorld()) return;
     // ---- 每帧飞行：读当前位置  沿相机前方推   AvatarMoveTo ----
     applyUnityOps();
     if (g_uiProbeReq) { g_uiProbeReq = 0; hideUiProbe(); }
@@ -4057,12 +4065,13 @@ HRESULT WINAPI hkPresent(IDXGISwapChain* swap, UINT sync, UINT flags) {
     // Map/Unmap 钩子已禁用：每秒百万次回调会拖垮帧率，且相机矩阵不在这些缓冲 
     static bool failed = false;
 
-    if (!g_imguiReady && !failed) {
+    const bool inWorld = serverInWorld();
+    if (inWorld && !g_imguiReady && !failed) {
         initImGui(swap);
         if (!g_imguiReady) failed = true;
     }
 
-    if (g_imguiReady) {
+    if (inWorld && g_imguiReady) {
         if (!g_rtv) createRenderTarget(swap);
 
         pollHotkeys();
