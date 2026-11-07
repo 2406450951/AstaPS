@@ -11,6 +11,9 @@ void draw();
 // Draws the always-on HUD (watermark / nearby entities), independent of the menu.
 void drawHud();
 
+// å¿«æ·é®å¤çï¼æ¯å¸§è°ç¨ï¼å·²åç¦ç¹é¨æ§ï¼
+void tickHotkeys();
+
 bool isOpen();
 void setOpen(bool open);
 void toggle();
@@ -29,6 +32,13 @@ struct ClientConfig {
     bool glow = true;
     float accent[3] = {0.62f, 0.45f, 0.98f};
     int theme = 0;
+    // 世界投影 ESP（客户端侧：服务端实体流坐标 + 相机投影，不读内存）
+    bool espWorld = true;
+    int espStyle = 2;      // 0=点 1=方框 2=方框+连线+血条
+    bool espMobs = true;   // ESP 只显示怪物
+    bool espGadgets = true;// 机关/宝箱类
+    bool espItems = true;  // 掉落物
+    bool chestArrow = true;// 宝箱指引箭头
     // 新增：服务端侧的三个开关，存进 gs71_menu.cfg
     bool mobVac = false;
     float mobVacR = 20.0f;

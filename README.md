@@ -1,11 +1,88 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.8.1**
+**版本 1.9.0**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
+
+## 1.9.0 新增（重点）
+
+### NoClip 真·自由移动（客户端写位置，不再靠 teleport）
+
+把上一版“服务端往角色方向 teleport”换成了**客户端直接写位置**：
+
+1. `Rigidbody.set_isKinematic(true)`（先把刚体变成运动学刚体，否则物理会把位置拉回去）
+2. `Rigidbody.set_detectCollisions(false)`（关碰撞，穿墙）
+3. 每帧 `Rigidbody.MovePositionDelta(delta)`，**delta 用镜像局部空间**（x/z 取反）
+4. 顺手清零 `set_velocity`，关闭时自动恢复 `isKinematic(false)` + `detectCollisions(true)`
+
+实测：`pos 2239.12 209.99 -934.18 → 2242.47 213.57 -939.91`（W+空格 3 秒），不掉血，
+关闭时日志 `rigidbody state restored on 5 body(s)`。
+
+> 顺带说明：之前试过的 `Transform::SetPosition`（按值/按指针两种 ABI）都会崩，
+> 不要再走那条路。
+
+### 元素视野（走游戏自己的 UI 开关）
+
+不伪造状态，直接按游戏的 UI 逻辑点亮：
+`MonoInLevelMainPage.get_elemViewButton() → UnityEngine.UI.Toggle.set_isOn(true)`。
+开/关画面平均像素差 87~105（实测）。
+
+### 快捷键全部绑定 + 焦点门控（不再是全局快捷键）
+
+| 键 | 功能 | 键 | 功能 |
+|---|---|---|---|
+| F1 / V | NoClip 真·自由移动 | F7 | 隐藏 UI |
+| F2 | 速度覆写飞行 | F8 | 无敌 |
+| F3 | 元素视野 | F9 | 杀戮光环 |
+| F4 | ESP 透视 | F10 | 时间冻结 |
+| F5 | 自动奔跑 | F11 | 自动拾取 |
+| F6 | 跳过过场 | F12 | 无限体力 |
+| `[` / `]` | 飞行速度 -/+ | INSERT | 开关菜单 |
+
+**之前所有按键用 `GetAsyncKeyState` 轮询，是全局的**（在别的窗口按一下也会触发）。
+现在统一走一个门控：
+
+```cpp
+bool gs71InputFocused() {
+    HWND fg = GetForegroundWindow();
+    if (!fg) return false;
+    if (g_hwnd && fg == g_hwnd) return true;
+    DWORD pid = 0; GetWindowThreadProcessId(fg, &pid);
+    return pid == GetCurrentProcessId();
+}
+#define GetAsyncKeyState(vk) (gs71InputFocused() ? ::GetAsyncKeyState(vk) : 0)
+```
+
+entry.cpp 里 55 处轮询点被这个宏一次接管；菜单里的快捷键表另外显式判焦点。
+实测：游戏前台按 F8 → `god 0→1`；切到记事本按 F8 → 无动作。
+
+### ESP 分类 + 神瞳识别
+
+- 实体流分类：怪 `M` / 宝箱 `C` / 机关 `K` / 采集 `I` / **神瞳 `O`**
+- 查实了神瞳的真实 id（`gadscan` 证明神瞳不是 gadget，`itemgd` 查出 item→gadgetId）：
+  - `100001 → 70540003`（风神瞳）
+  - `100002 → 70540021`（岩神瞳）
+- 按 id 段传送：`c=gadgettp&idmin=70540000&idmax=70540030`
+
+### 工具箱
+
+- 类名解析：`klass + 0x18` → 类名字符串
+- **方法表：`klass + 0x20` → `MethodInfo*[]`，`MethodInfo + 0x0` = 函数地址**（用 LuaManager 三个已知 RVA 验证 3/3）
+- `mdump`（按类名/TypeInfo 打方法表）、`gadscan` / `itemscan` / `itemgd`
+
+### 修复
+
+- `Gs71FlyMode()` 原来钳制 `0..3`，把 NoClip 的 `9` 吞掉了 —— 菜单里那个“真·自由移动”复选框之前实际没生效
+- 菜单里“冻结敌人”其实绑的是服务端 `timeFreeze`（冻结时间），已改名并如实标注
+
+### 未完成（已停）
+
+笨蛋敌人 / 冻结敌人 / 无 CD —— 共同前置是客户端实体+组件枚举，
+7.1 类名全混淆（`MonsterAI`/`AIController`/`VCMonster` 在 ida 表与运行时类名表均 0 命中），
+实体又是对象池复用导致类差分无效。当前用 F8 无敌 + F9 光环 + `skillready/burst` 代替。
 
 ## 1.8.1 修正
 

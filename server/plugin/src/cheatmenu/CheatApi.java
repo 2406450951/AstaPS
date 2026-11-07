@@ -7,6 +7,7 @@ import emu.grasscutter.net.proto.SceneAreaWeatherNotifyOuterClass.SceneAreaWeath
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import emu.grasscutter.Grasscutter;
+import emu.grasscutter.data.GameData;
 import emu.grasscutter.game.entity.EntityAvatar;
 import emu.grasscutter.game.entity.EntityGadget;
 import emu.grasscutter.game.entity.EntityItem;
@@ -67,8 +68,17 @@ public final class CheatApi {
     private static volatile boolean running = false;
     private static volatile String lastAction = "ready";
     private static volatile long lastActionAt = 0L;
+    /** 客户端 T 键是否按住（按住 T + 点地图 = 传送，传完自动删针） */
+    private static volatile boolean tKeyHeld = false;
 
     // 吸附怪物 / 无限大招 / 技能可用
+    public static boolean noclip = false;    // 连续穿墙（会白屏，默认关）
+    public static float noclipSpeed = 4f;    // 放大倍数
+    public static boolean autoTp = false;   // 扎针即刻传送（大地图点哪传哪）
+    public static boolean gravOn = false;   // 反重力（流浪者飞行模拟）
+    public static boolean autoint = true;
+    public static boolean puzzle = false;   // 自动解神：广域交互所有机关   // 自动交互（宝箱/机关）
+    public static int hits = 1;   // 多段伤害：一刀打几次
     public static boolean mobVac = false;
     public static float mobVacRadius = 20f;
     public static boolean burst = false;
@@ -86,6 +96,12 @@ public final class CheatApi {
     private static long lastFlyMs = 0L;
 
     private static long lastLootMs = 0L;
+    private static long lastIntMs = 0L;
+    private static long lastGravMs = 0L;
+    private static long lastAutoTpMs = 0L;
+    private static long lastNoclipMs = 0L;
+    private static final java.util.Set<String> seenMarks = new java.util.HashSet<>();
+    private static int seenUid = -1;
     private static long lastTimeMs = 0L;
     private static long lastHealMs = 0L;
     private static long lastSnapMs = 0L;
@@ -162,6 +178,109 @@ public final class CheatApi {
             for (Player player : players) {
                 try {
                     owner.vacuum(player, lootRadius);
+
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        // ---- 扎针即刻传送：客户端每扎一根针都会同步到服务端，这里监听新增的标记
+        if (autoTp && now - lastAutoTpMs >= 400L) {
+            lastAutoTpMs = now;
+            for (Player p4 : players) {
+                try {
+                    var mgr = p4.getMapMarksManager();
+                    var marks = mgr == null ? null : mgr.getMapMarks();
+                    if (marks == null) continue;
+                    if (seenUid != p4.getUid()) {
+                        seenUid = p4.getUid();
+                        seenMarks.clear();
+                        seenMarks.addAll(marks.keySet());
+                        continue;   // 第一次只记录，不传
+                    }
+                    StringBuilder pinDebug = new StringBuilder();
+                    for (var e : marks.entrySet()) {
+                        if (seenMarks.contains(e.getKey())) continue;
+                        seenMarks.add(e.getKey());
+                        var mark = e.getValue();
+                        if (mark != null) {
+                            pinDebug.append(String.format(Locale.ROOT, "new[t=%s scene=%d tkey=%d]; ",
+                                    mark.getMapMarkPointType(), mark.getSceneId(), tKeyHeld ? 1 : 0));
+                        }
+                        if (mark == null || mark.getPosition() == null) continue;
+                        if (mark.getSceneId() != p4.getSceneId()) continue;
+                        // 只认玩家自己扎的针（SPECIAL）；NPC/任务/矿点/怪物标点一律忽略
+                        if (mark.getMapMarkPointType()
+                                != emu.grasscutter.net.proto.MapMarkPointTypeOuterClass
+                                        .MapMarkPointType.MapMarkPointType_SPECIAL) {
+                            continue;
+                        }
+                        // 只有按住 T 才传送；否则当作普通扎针，不打扰
+                        if (!tKeyHeld) continue;
+                        Position target = mark.getPosition();
+                        float y = target.getY();
+                        if (y <= 1.0f) {
+                            Position cur = p4.getPosition();
+                            y = (cur == null ? 200f : cur.getY()) + 1f;
+                        }
+                        Position safe = new Position(target.getX(), y + 1f, target.getZ());
+                        {
+                            p4.teleport(safe);
+                            lastAction = String.format(Locale.ROOT, "autotp: %.0f,%.0f,%.0f",
+                                    safe.getX(), safe.getY(), safe.getZ());
+                            // 按住 T 触发时，把钉子删掉，地图保持干净
+                            if (tKeyHeld && mgr != null) {
+                                try {
+                                    mgr.removeMapMark(target);
+                                    seenMarks.remove(e.getKey());
+                                } catch (Throwable ignored) {
+                                }
+                            }
+                        }
+                    }
+                    if (pinDebug.length() > 0) lastAction = pinDebug.toString();
+                    // 清理已被删除的针
+                    seenMarks.retainAll(marks.keySet());
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        if (gravOn && now - lastGravMs >= 1000L) {
+            lastGravMs = now;
+            for (Player p3 : players) {
+                try {
+                    owner.applyGravity(p3, -2.0f);
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        if (autoint && now - lastIntMs >= 500L) {
+            lastIntMs = now;
+            for (Player p2 : players) {
+                if (p2.getScene() == null) continue;
+                try {
+                    int opened = owner.interactAll(p2, lootRadius);
+                    if (opened > 0) lastAction = "chest opened x" + opened;
+                    if (puzzle) {
+                        int n2 = owner.interactBroad(p2, lootRadius, true);
+                        if (n2 > 0) lastAction = "puzzle interact x" + n2;
+                    }
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        if (noclip && now - lastNoclipMs >= 80L) {
+            lastNoclipMs = now;
+            for (Player p5 : players) {
+                if (p5.getScene() == null) continue;
+                try {
+                    float moved = owner.noclipStep(p5, noclipSpeed);
+                    if (moved > 0f) {
+                        lastAction = String.format(Locale.ROOT, "noclip: +%.1fm", moved);
+                    }
                 } catch (Throwable ignored) {
                 }
             }
@@ -234,7 +353,8 @@ public final class CheatApi {
             lastSkillMs = now;
             for (Player player : players) {
                 try {
-                    owner.pingSkillReady(player);
+                    owner.pingSkillReady(player);   // 让客户端知道"可以放"
+                    owner.resetSkillCd(player);     // 把冷却清零
                 } catch (Throwable ignored) {
                 }
             }
@@ -253,6 +373,17 @@ public final class CheatApi {
     }
 
     // ---------------------------------------------------------------- actions
+
+    /** 地图针的 Y 经常是 0，直接传会摔死或者卡进地里。用玩家当前高度兜底。 */
+    private static Position safePos(Player player, Position p) {
+        if (p == null) return null;
+        float y = p.getY();
+        if (y <= 1.0f) {
+            Position cur = player.getPosition();
+            y = cur == null ? 200f : cur.getY();
+        }
+        return new Position(p.getX(), y + 1.0f, p.getZ());
+    }
 
     private static void runAction(CheatMenu owner, String cmd, String arg) {
         List<Player> players = owner.onlinePlayers();
@@ -321,7 +452,37 @@ public final class CheatApi {
                 actor.sendPacket(packet);
                 weather = climate;
                 lastAction = "weather: climate=" + climate + " area=" + area;
-            }            case "fly" -> {
+            }            case "anchors" -> {
+                var list = owner.anchorList(actor);
+                StringBuilder sb = new StringBuilder("anchors(" + list.size() + "):");
+                int idx = 0;
+                for (int[] a : list) {
+                    Position pos = owner.anchorPos(a[1], a[0]);
+                    sb.append(" [").append(idx++).append("]id=").append(a[0]);
+                    if (pos != null)
+                        sb.append("@").append(Math.round(pos.getX())).append(",")
+                          .append(Math.round(pos.getY())).append(",")
+                          .append(Math.round(pos.getZ()));
+                    if (idx >= 12) break;
+                }
+                lastAction = sb.toString();
+            }
+            case "goanchor" -> {
+                int want = (int) f(q, "i", 0);
+                var list = owner.anchorList(actor);
+                lastAction = "goanchor: no such index";
+                if (want >= 0 && want < list.size()) {
+                    int[] a = list.get(want);
+                    Position pos = owner.anchorPos(a[1], a[0]);
+                    if (pos != null) {
+                        pos = safePos(actor, pos);
+                        actor.teleport(pos);
+                        lastAction = "goanchor: " + want + " (" + Math.round(pos.getX()) + ","
+                                + Math.round(pos.getY()) + "," + Math.round(pos.getZ()) + ")";
+                    }
+                }
+            }
+            case "fly" -> {
                 flyOn = !"0".equals(q.getOrDefault("on", "1"));
                 flySpeed = Math.max(1f, Math.min(60f, f(q, "speed", flySpeed)));
                 if (q.containsKey("up")) flyUp = (int) f(q, "up", flyUp);
@@ -337,11 +498,369 @@ public final class CheatApi {
                 lastAction = "speed: " + (speedOn ? "+" + Math.round((speedRatio - 1f) * 100) + "%" : "off")
                         + (ok ? "" : " (no avatar?)");
             }
-            case "mapgo" -> {
+            case "questnow" -> {
+                // 列出玩家当前的主线任务与子任务状态（用于排查卡任务）
+                try {
+                    var qm = actor.getQuestManager();
+                    var actives = qm == null ? null : qm.getActiveMainQuests();
+                    if (actives == null || actives.isEmpty()) {
+                        lastAction = "questnow: none";
+                    } else {
+                        StringBuilder sb = new StringBuilder("questnow:");
+                        int i = 0;
+                        for (var mq : actives) {
+                            if (i++ >= 6) break;
+                            sb.append(" main=");
+                            try {
+                                var subs = mq.getActiveQuests();
+                                if (subs != null) {
+                                    int j = 0;
+                                    for (var sq : subs) {
+                                        if (j++ >= 4) break;
+                                        sb.append("|").append(sq.getSubQuestId()).append(":")
+                                          .append(sq.getState());
+                                    }
+                                }
+                            } catch (Throwable ignored) {
+                            }
+                        }
+                        lastAction = sb.toString();
+                    }
+                } catch (Throwable t) {
+                    lastAction = "questnow: error " + t;
+                }
+            }
+            case "marks" -> {
+                // 调试：把服务端收到的全部地图标点打出来，看客户端到底同步了什么
+                var mgr = actor.getMapMarksManager();
+                var marks = mgr == null ? null : mgr.getMapMarks();
+                if (marks == null || marks.isEmpty()) {
+                    lastAction = "marks: none";
+                } else {
+                    StringBuilder sb = new StringBuilder("marks(" + marks.size() + "):");
+                    int i = 0;
+                    for (var m : marks.values()) {
+                        if (i++ >= 10) break;
+                        var p2 = m.getPosition();
+                        sb.append(" [").append(i - 1).append("]q=").append(m.getQuestId())
+                          .append(",t=").append(m.getMapMarkPointType())
+                          .append(",sc=").append(m.getSceneId());
+                        if (p2 != null)
+                            sb.append("@").append(Math.round(p2.getX())).append(",")
+                              .append(Math.round(p2.getY())).append(",")
+                              .append(Math.round(p2.getZ()));
+                    }
+                    lastAction = sb.toString();
+                }
+            }
+            case "ncstep" -> {
+                // 单次穿墙步进：沿面朝方向瞬移 d 米。单次 teleport 不会触发加载页。
+                float d = (float) f(q, "d", 5.0f);
+                if (d < 0.5f) d = 0.5f;
+                if (d > 60.f) d = 60.f;
+                Position cur = actor.getPosition();
+                if (cur == null) {
+                    lastAction = "ncstep: no position";
+                } else {
+                    double yaw = 0;
+                    try {
+                        yaw = actor.getRotation() == null ? 0 : actor.getRotation().getY();
+                    } catch (Throwable ignored) {
+                    }
+                    // 原神朝向：yaw=0 面向 +Z；角度按 Z 轴顺时针
+                    double rad = Math.toRadians(yaw);
+                    float nx = (float) (cur.getX() + Math.sin(rad) * d);
+                    float nz = (float) (cur.getZ() + Math.cos(rad) * d);
+                    float ny = cur.getY() + 0.5f;
+                    // 垂直方向：up=1 上浮 / up=-1 下降
+                    float up = (float) f(q, "up", 0f);
+                    if (up != 0f) ny += up * d;
+                    String mode = q == null ? "" : q.getOrDefault("mode", "");
+                    boolean smooth = mode.contains("mode=sm");
+                    if (smooth) {
+                        boolean ok = owner.smoothMove(actor, nx, ny, nz);
+                        lastAction = String.format(Locale.ROOT, "ncstep(sm=%s): %.1fm -> %.0f,%.0f,%.0f",
+                                ok, d, nx, ny, nz);
+                    } else {
+                        actor.teleport(new Position(nx, ny, nz));
+                        lastAction = String.format(Locale.ROOT, "ncstep: %.1fm -> %.0f,%.0f,%.0f", d,
+                                nx, ny, nz);
+                    }
+                }
+            }
+            case "allanchors" -> {
+                // 列出玩家在所有场景里解锁过的传送点（跨场景传送用）
+                StringBuilder sb = new StringBuilder("allanchors:");
+                int idx = 0;
+                try {
+                    var map = actor.getUnlockedScenePoints();
+                    if (map == null || map.isEmpty()) {
+                        lastAction = "allanchors: none";
+                    } else {
+                        for (var e : map.entrySet()) {
+                            int sceneId = e.getKey();
+                            var ids = e.getValue();
+                            if (ids == null || ids.isEmpty()) continue;
+                            sb.append(" [s").append(sceneId).append(":").append(ids.size()).append("]");
+                            int shown = 0;
+                            for (int pid : ids) {
+                                if (shown++ >= 3) break;
+                                Position pos = owner.anchorPos(sceneId, pid);
+                                sb.append(" ").append(sceneId).append("/").append(pid);
+                                if (pos != null)
+                                    sb.append("@").append(Math.round(pos.getX())).append(",")
+                                      .append(Math.round(pos.getY())).append(",")
+                                      .append(Math.round(pos.getZ()));
+                                idx++;
+                                if (idx >= 12) break;
+                            }
+                            if (idx >= 12) break;
+                        }
+                        lastAction = sb.toString();
+                    }
+                } catch (Throwable t) {
+                    lastAction = "allanchors: error " + t;
+                }
+            }
+            case "gotopoint" -> {
+                int sceneId = (int) f(q, "s", 0);
+                int pointId = (int) f(q, "id", 0);
+                Position pos = owner.anchorPos(sceneId, pointId);
+                if (pos == null) {
+                    lastAction = "gotopoint: point not found";
+                } else {
+                    // 跨场景：先切场景（会走一次加载，但只有一次），再定位
+                    if (sceneId != actor.getSceneId()) {
+                        try {
+                            var entry = emu.grasscutter.data.GameData
+                                    .getScenePointEntryById(sceneId, pointId);
+                            if (entry != null && entry.getPointData() != null) {
+                                actor.getWorld().transferPlayerToScene(actor, sceneId,
+                                        entry.getPointData().getTranPos() != null
+                                                ? entry.getPointData().getTranPos()
+                                                : entry.getPointData().getPos());
+                                lastAction = String.format(Locale.ROOT,
+                                        "gotopoint: scene %d @ %.0f,%.0f,%.0f", sceneId,
+                                        pos.getX(), pos.getY(), pos.getZ());
+                            } else {
+                                lastAction = "gotopoint: no scene entry";
+                            }
+                        } catch (Throwable t) {
+                            lastAction = "gotopoint: transfer failed " + t;
+                        }
+                    } else {
+                        Position safe = new Position(pos.getX(), pos.getY() + 1f, pos.getZ());
+                        actor.teleport(safe);
+                        lastAction = String.format(Locale.ROOT, "gotopoint: %.0f,%.0f,%.0f",
+                                safe.getX(), safe.getY(), safe.getZ());
+                    }
+                }
+            }
+            case "itemgd" -> {
+                int lo = (int) fl(q.getOrDefault("lo", "100001"), 100001);
+                int hi = (int) fl(q.getOrDefault("hi", "100010"), 100010);
+                var sb4 = new StringBuilder("itemgd [" + lo + ".." + hi + "]\n");
+                var imap = GameData.getItemDataMap();
+                for (int i = lo; i <= hi; i++) {
+                    var it2 = imap == null ? null : imap.get(i);
+                    if (it2 == null) {
+                        sb4.append("  ").append(i).append("  <missing>\n");
+                        continue;
+                    }
+                    int g4 = 0;
+                    try {
+                        g4 = it2.getGadgetId();
+                    } catch (Throwable ignored) {
+                    }
+                    sb4.append("  ").append(i).append("  gadgetId=").append(g4).append('\n');
+                }
+                owner.getLogger().info(sb4.toString());
+                lastAction = "itemgd done";
+            }
+            case "itemscan" -> {
+                String match2 = q.getOrDefault("match", "Oculus");
+                String mu2 = match2.toUpperCase(java.util.Locale.ROOT);
+                var map2 = GameData.getItemDataMap();
+                var hb = new StringBuilder();
+                int c2 = 0, t2 = 0;
+                if (map2 != null) {
+                    t2 = map2.size();
+                    for (var en2 : map2.entrySet()) {
+                        var it = en2.getValue();
+                        if (it == null) continue;
+                        String nm;
+                        String js;
+                        try {
+                            nm = String.valueOf(it.getEffectName());
+                        } catch (Throwable t) {
+                            nm = "";
+                        }
+                        try {
+                            js = String.valueOf(it.getIcon());
+                        } catch (Throwable t) {
+                            js = "";
+                        }
+                        int gidIt = 0;
+                        try {
+                            gidIt = it.getGadgetId();
+                        } catch (Throwable ignored) {
+                        }
+                        String hay = nm + " " + js + " " + gidIt;
+                        if (!hay.toUpperCase(java.util.Locale.ROOT).contains(mu2)) continue;
+                        hb.append("  ").append(en2.getKey()).append("  gadgetId=").append(gidIt)
+                                .append("  icon=").append(js).append("  eff=").append(nm).append('\n');
+                        if (++c2 >= 40) break;
+                    }
+                }
+                owner.getLogger().info("itemscan [" + match2 + "] total=" + t2 + " hits=" + c2 + "\n" + hb);
+                lastAction = "itemscan " + match2 + ": " + c2 + " hit(s) of " + t2;
+            }
+            case "gadscan" -> {
+                String match = q.getOrDefault("match", "Oculus");
+                String mu = match.toUpperCase(java.util.Locale.ROOT);
+                var map = GameData.getGadgetDataMap();
+                var hits = new StringBuilder();
+                int count = 0, total = 0;
+                if (map != null) {
+                    total = map.size();
+                    for (var en : map.entrySet()) {
+                        var gd = en.getValue();
+                        String jn = gd == null ? null : gd.getJsonName();
+                        if (jn == null) continue;
+                        if (!jn.toUpperCase(java.util.Locale.ROOT).contains(mu)) continue;
+                        hits.append("  ").append(en.getKey()).append("  ").append(jn).append('\n');
+                        if (++count >= 50) break;
+                    }
+                }
+                owner.getLogger().info("gadscan [" + match + "] total=" + total + " hits=" + count + "\n" + hits);
+                lastAction = "gadscan " + match + ": " + count + " hit(s) of " + total + " gadget data";
+            }
+            case "gadids" -> {
+                Scene sc3 = actor.getScene();
+                java.util.TreeMap<Integer, String> ids = new java.util.TreeMap<>();
+                if (sc3 != null) {
+                    for (var ge3 : sc3.getEntities().values()) {
+                        if (!(ge3 instanceof EntityGadget g3)) continue;
+                        int gid3 = g3.getGadgetId();
+                        if (ids.containsKey(gid3)) continue;
+                        String jn3 = "?";
+                        try {
+                            var gd3 = GameData.getGadgetDataMap().get(gid3);
+                            if (gd3 != null && gd3.getJsonName() != null) jn3 = gd3.getJsonName();
+                        } catch (Throwable ignored) {
+                        }
+                        ids.put(gid3, jn3);
+                    }
+                }
+                var sb3 = new StringBuilder("gadids count=" + ids.size() + "\n");
+                int shown3 = 0;
+                for (var en3 : ids.entrySet()) {
+                    sb3.append("  ").append(en3.getKey()).append("  ").append(en3.getValue()).append('\n');
+                    if (++shown3 >= 80) break;
+                }
+                owner.getLogger().info(sb3.toString());
+                lastAction = "gadids: " + ids.size() + " distinct gadget id(s), see server.log";
+            }
+            case "gadtags" -> {
+                Scene sc = actor.getScene();
+                java.util.Map<String, Integer> cnt = new java.util.TreeMap<>();
+                int scanned = 0;
+                if (sc != null) {
+                    for (var ge : sc.getEntities().values()) {
+                        if (!(ge instanceof EntityGadget g2)) continue;
+                        scanned++;
+                        try {
+                            var gd2 = GameData.getGadgetDataMap().get(g2.getGadgetId());
+                            if (gd2 == null || gd2.getTags() == null) continue;
+                            for (String tg : gd2.getTags()) {
+                                if (tg == null) continue;
+                                cnt.merge(tg, 1, Integer::sum);
+                            }
+                        } catch (Throwable ignored) {
+                        }
+                    }
+                }
+                var sb2 = new StringBuilder("gadtags scanned=" + scanned + "\n");
+                int shown = 0;
+                for (var en : cnt.entrySet()) {
+                    sb2.append("  ").append(en.getKey()).append(" x").append(en.getValue()).append('\n');
+                    if (++shown >= 60) break;
+                }
+                owner.getLogger().info(sb2.toString());
+                lastAction = "gadtags: scanned=" + scanned + " tags=" + cnt.size() + " (see server.log)";
+            }
+            case "gadgettp" -> {
+                int idmin = (int) fl(q.getOrDefault("idmin", "0"), 0);
+                int idmax = (int) fl(q.getOrDefault("idmax", "0"), 0);
+                String tag = q.getOrDefault("tag", "");
+                Position target =
+                        (idmax > 0)
+                                ? owner.nearestGadgetByIdRange(actor, idmin, idmax)
+                                : owner.nearestGadgetByTag(actor, tag);
+                if (target != null) {
+                    try {
+                        actor.teleport(new Position(target.getX(), target.getY() + 1.5f, target.getZ()));
+                    } catch (Throwable ignored) {
+                    }
+                }
+                lastAction =
+                        target == null
+                                ? ("gadgettp: no target in this scene")
+                                : String.format(
+                                        java.util.Locale.ROOT,
+                                        "gadgettp %s: %.0f,%.0f,%.0f",
+                                        tag,
+                                        target.getX(),
+                                        target.getY(),
+                                        target.getZ());
+            }
+            case "chesttp" -> {
+                Position target = owner.chestTeleport(actor);
+                lastAction = target == null
+                        ? "chesttp: no chest in this scene"
+                        : String.format(Locale.ROOT, "chesttp: %.0f,%.0f,%.0f", target.getX(),
+                                target.getY(), target.getZ());
+            }
+            case "interactnow" -> {
+                int n = owner.interactAll(actor, lootRadius);
+                lastAction = "interactnow: opened " + n;
+            }
+            case "questtp" -> {
+                Position[] out = new Position[1];
+                String label = owner.questTarget(actor, out);
+                if (label == null || out[0] == null) {
+                    lastAction = "questtp: no quest marker in this scene";
+                } else {
+                    out[0] = safePos(actor, out[0]);
+                    actor.teleport(out[0]);
+                    lastAction = String.format(Locale.ROOT, "questtp: %s @ %.0f,%.0f,%.0f", label,
+                            out[0].getX(), out[0].getY(), out[0].getZ());
+                }
+            }
+            case "mapstat" -> {
+            // 诊断：报告运行时真实的解锁状态
+            try {
+                int scene = actor.getSceneId();
+                var pts = actor.getUnlockedScenePoints(scene);
+                var areas = actor.getUnlockedSceneAreas(scene);
+                var marks = actor.getMapMarksManager() == null ? null
+                        : actor.getMapMarksManager().getMapMarks();
+                lastAction = String.format(Locale.ROOT,
+                        "mapstat: scene=%d points=%d areas=%d openStates=%d marks=%d",
+                        scene, pts == null ? -1 : pts.size(),
+                        areas == null ? -1 : areas.size(),
+                        actor.getOpenStates() == null ? -1 : actor.getOpenStates().size(),
+                        marks == null ? -1 : marks.size());
+            } catch (Throwable t) {
+                lastAction = "mapstat err: " + t;
+            }
+        }
+        case "mapgo" -> {
                 Position pin = owner.mapPinPosition(actor);
                 if (pin == null) {
                     lastAction = "mapgo: no pin in this scene";
                 } else {
+                    pin = safePos(actor, pin);
                     actor.teleport(pin);
                     lastAction = String.format(Locale.ROOT, "mapgo: %.1f %.1f %.1f",
                             pin.getX(), pin.getY(), pin.getZ());
@@ -465,6 +984,14 @@ public final class CheatApi {
                 case "timem" -> timeM = clamp((int) fl(v, timeM), 0, 59);
                 case "weather" -> weather = (int) fl(v, weather);
                 case "lootr" -> lootRadius = Math.max(1f, Math.min(120f, fl(v, lootRadius)));
+                case "noclip" -> noclip = b(v);
+                case "noclipspeed" -> noclipSpeed = Math.max(1f, Math.min(20f, fl(v, noclipSpeed)));
+                case "autotp" -> autoTp = b(v);
+        case "tkey" -> tKeyHeld = b(v);
+                case "grav" -> gravOn = b(v);
+                case "autoint" -> autoint = b(v);
+            case "puzzle" -> puzzle = b(v);
+                case "hits" -> hits = clamp((int) fl(v, hits), 1, 30);
                 case "mobvac" -> mobVac = b(v);
                 case "mobvarr" -> mobVacRadius = Math.max(5f, Math.min(80f, fl(v, mobVacRadius)));
                 case "burst" -> burst = b(v);
@@ -554,7 +1081,18 @@ public final class CheatApi {
                     char kind;
                     int typeId = e.getEntityTypeId();
                     if (e instanceof EntityMonster) kind = 'M';
-                    else if (e instanceof EntityGadget) kind = 'G';
+                    else if (e instanceof EntityGadget gd0) {
+                        // 按 gadgetId 段细分（实测：GadgetData.getTags() 全是 "item"，不可用）
+                        kind = 'G';
+                        {
+                            int gid0 = gd0.getGadgetId();
+                            if (gid0 == 70540003 || gid0 == 70540021) kind = 'O';
+                            else if (gid0 >= 70200000 && gid0 < 70300000) kind = 'C';        // 宝箱 70211xxx
+                            else if (gid0 >= 70500000 && gid0 < 70600000) kind = 'I';   // 采集物 705x
+                            else if (gid0 >= 71700000 && gid0 < 71800000) kind = 'I';   // 采集物 717x
+                            else if (gid0 >= 70360000 && gid0 < 70370000) kind = 'K';   // 机关/Gear
+                        }
+                    }
                     else if (e instanceof EntityItem) kind = 'I';
                     else if (e instanceof EntityAvatar) kind = 'A';
                     else kind = 'E';

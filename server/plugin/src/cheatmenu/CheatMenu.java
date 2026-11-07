@@ -1,5 +1,16 @@
 package cheatmenu;
 
+import emu.grasscutter.server.packet.send.PacketScenePlayerLocationNotify;
+
+import emu.grasscutter.game.entity.gadget.GadgetChest;
+import emu.grasscutter.net.proto.InterOpTypeOuterClass.InterOpType;
+import emu.grasscutter.net.proto.InteractTypeOuterClass.InteractType;
+
+import emu.grasscutter.net.proto.AvatarSkillInfoNotifyOuterClass.AvatarSkillInfoNotify;
+import emu.grasscutter.net.proto.AvatarSkillInfoOuterClass.AvatarSkillInfo;
+
+import emu.grasscutter.data.GameData;
+
 import emu.grasscutter.game.entity.gadget.GadgetGatherObject;
 import emu.grasscutter.net.proto.GadgetInteractReqOuterClass.GadgetInteractReq;
 
@@ -131,6 +142,8 @@ public final class CheatMenu extends Plugin {
 
     // ---------------------------------------------------------------- events
 
+    private boolean extraHitBusy = false;
+
     private void onDamage(EntityDamageEvent event) {
         try {
             GameEntity damager = event.getDamager();
@@ -139,6 +152,25 @@ public final class CheatMenu extends Plugin {
             if (this.mult != 1.0f && damager instanceof EntityAvatar attacker
                     && attacker.getPlayer() != null) {
                 event.setDamage(event.getDamage() * this.mult);
+            }
+
+            // 多段伤害：一刀打出 N 次伤害（Akebi 的 multi-hit）
+            // 用 extraHitBusy 防止补的伤害再次触发本回调形成递归
+            if (CheatApi.hits > 1 && !extraHitBusy && damager instanceof EntityAvatar hitter
+                    && hitter.getPlayer() != null) {
+                GameEntity target = event.getEntity();
+                if (target != null && target.isAlive()) {
+                    extraHitBusy = true;
+                    try {
+                        final float base = event.getDamage();
+                        final int extra = CheatApi.hits - 1;
+                        for (int i = 0; i < extra && target.isAlive(); ++i) {
+                            target.damage(base, hitter.getId(), event.getAttackElementType());
+                        }
+                    } finally {
+                        extraHitBusy = false;
+                    }
+                }
             }
 
             if (!(event.getEntity() instanceof EntityAvatar avatar)) return;
@@ -372,6 +404,12 @@ public final class CheatMenu extends Plugin {
             if (!player.getBuffManager().hasBuff(21)) {
                 player.getBuffManager().addBuff(170201, 600f, avatar.getAvatar());
             }
+            // 第二个原生移速 buff（爬塔用的 MoveSpeed_Dungeon，数据上也是 +30%），
+            // 两个 groupId 不同可以叠加，实测能到 +50~60%
+            try {
+                player.getBuffManager().addBuff(701018, 600f, avatar.getAvatar());
+            } catch (Throwable ignored) {
+            }
             // 2) 用真实 ability 名覆盖属性值
             var key = AbilityString.newBuilder().setStr("Animator_MoveSpeedRatio").build();
             var prop = ModifierProperty.newBuilder().setKey(key).setValue(ratio).build();
@@ -410,6 +448,57 @@ public final class CheatMenu extends Plugin {
         }
     }
 
+    /**
+     * 反重力（模拟流浪者 E 的悬空）。
+     *
+     * <p>从 ConfigAbility_Avatar_Wanderer.json 挖出来的原始数据：
+     *
+     * <pre>
+     * ability  Avatar_Wanderer_ElementalArt_HoverAir
+     * modifier Initialize
+     *   properties { Actor_AddGravityScale: -2.0 }
+     * </pre>
+     *
+     * <p>也就是说"飞行"本质上是给角色挂一个负重力修饰器。这里直接把同一个属性发给当前角色，
+     * 看客户端认不认（能力配置是全局的，所有客户端都有这份文件，所以有希望）。
+     */
+    public boolean applyGravity(Player player, float scale) {
+        try {
+            EntityAvatar avatar = player.getTeamManager().getCurrentAvatarEntity();
+            if (avatar == null) return false;
+
+            var key = AbilityString.newBuilder().setStr("Actor_AddGravityScale").build();
+            var prop = ModifierProperty.newBuilder().setKey(key).setValue(scale).build();
+            var change =
+                    AbilityMetaModifierChange.newBuilder()
+                            .setParentAbilityName(
+                                    AbilityString.newBuilder()
+                                            .setStr("Avatar_Wanderer_ElementalArt_HoverAir"))
+                            .setModifierLocalId(0)
+                            .addProperties(prop)
+                            .build();
+            var head = AbilityInvokeEntryHead.newBuilder().setInstancedAbilityId(0).build();
+            var entry =
+                    AbilityInvokeEntry.newBuilder()
+                            .setEntityId(avatar.getId())
+                            .setArgumentType(
+                                    AbilityInvokeArgument
+                                            .AbilityInvokeArgument_ABILITY_META_MODIFIER_CHANGE)
+                            .setForwardType(ForwardType.ForwardType_FORWARD_TO_ALL)
+                            .setHead(head)
+                            .setAbilityData(change.toByteString())
+                            .build();
+            player.sendPacket(new PacketAbilityInvocationsNotify(entry));
+            this.lastGravitySent = scale;
+            return true;
+        } catch (Throwable t) {
+            this.getLogger().debug("[CheatMenu] gravity failed: {}", t.toString());
+            return false;
+        }
+    }
+
+    public float lastGravitySent = 0f;
+
     public float lastSpeedSent = 0f;
 
     /**
@@ -425,6 +514,31 @@ public final class CheatMenu extends Plugin {
      * teleport。但 teleport 内部是 transferPlayerToScene，**高频调用会让客户端进加载页卡死**，
      * 因此调用方必须控制频率（800ms 一次、一步 6~8 米），做成"跳跃式"飞行。
      */
+    /** 列出玩家在当前场景已解锁的传送点（含坐标），"第一开锚点"就是列表里第一个。 */
+    public java.util.List<int[]> anchorList(Player player) {
+        java.util.List<int[]> out = new java.util.ArrayList<>();
+        if (player.getScene() == null) return out;
+        int sceneId = player.getSceneId();
+        var points = player.getUnlockedScenePoints(sceneId);
+        if (points == null) return out;
+        for (int id : points) {
+            out.add(new int[] {id, sceneId});
+        }
+        return out;
+    }
+
+    public Position anchorPos(int sceneId, int pointId) {
+        try {
+            var entry = GameData.getScenePointEntryById(sceneId, pointId);
+            if (entry == null) return null;
+            var pd = entry.getPointData();
+            if (pd == null) return null;
+            return pd.getTranPos() != null ? pd.getTranPos() : pd.getPos();
+        } catch (Throwable t) {
+            return null;
+        }
+    }
+
     public boolean flyStep(Player player, float meters) {
         try {
             Position pos = player.getPosition();
@@ -509,6 +623,212 @@ public final class CheatMenu extends Plugin {
     }
 
     /** 取当前场景里离玩家最远的地图标点（就是刚在图上扎的那根针）。 */
+    /**
+     * 任务地点：客户端把"追踪中的任务"作为地图标点同步给服务端，MapMark 里带 questId。
+     * 找当前场景里 questId > 0 的那个标点，就是任务要你去的位置。
+     */
+    /**
+     * 自动交互：把范围内所有可交互的宝箱/机关直接打开。
+     *
+     * <p>走的是 GadgetContent.onInteract —— 和玩家自己点 F 是同一条服务端路径，
+     * 所以奖励、任务进度、开启记录都会正常结算。
+     */
+    /** 每个玩家上一次的坐标，用来判断"他正在往哪走"。 */
+    private final java.util.Map<Integer, Position> lastPos = new java.util.concurrent.ConcurrentHashMap<>();
+    private final java.util.Map<Integer, Long> lastInteractAt = new java.util.concurrent.ConcurrentHashMap<>();
+
+    /**
+     * 穿墙（noclip）：teleport 不检查碰撞，所以沿玩家移动方向做小步瞬移就能穿墙/穿山/穿地板。
+     *
+     * @return 实际移动了多少米（0 表示这一帧玩家没动）
+     */
+    /**
+     * 平滑移动：只改服务端记录的坐标并广播位置包，不触发 transferPlayerToScene（不白屏）。
+     *
+     * <p>官方也在用 ScenePlayerLocationNotify 纠正玩家位置（源码注释 "official does send this"），
+     * 所以客户端有机会接受这种"软"位移。
+     */
+    public boolean smoothMove(Player player, float x, float y, float z) {
+        try {
+            Position pos = player.getPosition();
+            if (pos == null) return false;
+            pos.setX(x);
+            pos.setY(y);
+            pos.setZ(z);
+            var scene = player.getScene();
+            if (scene != null) {
+                scene.broadcastPacket(new PacketScenePlayerLocationNotify(scene));
+            } else {
+                player.sendPacket(new PacketScenePlayerLocationNotify(player.getScene()));
+            }
+            return true;
+        } catch (Throwable t) {
+            this.getLogger().debug("[CheatMenu] smoothMove failed: {}", t.toString());
+            return false;
+        }
+    }
+
+    public float noclipStep(Player player, float factor) {
+        Position now = player.getPosition();
+        if (now == null) return 0f;
+        Position prev = this.lastPos.put(player.getUid(), new Position(now));
+        if (prev == null) return 0f;
+
+        final float dx = now.getX() - prev.getX();
+        final float dy = now.getY() - prev.getY();
+        final float dz = now.getZ() - prev.getZ();
+        final float dist = (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+        // 正常走路一帧位移很小；超过 30 米说明是传送，不要放大
+        if (dist < 0.02f || dist > 30.f) return 0f;
+
+        final float extra = dist * (factor - 1f);
+        if (extra <= 0.01f) return 0f;
+        final float nx = now.getX() + dx / dist * extra;
+        final float ny = now.getY() + dy / dist * extra + 0.5f;   // 抬高一点，避免卡进地面
+        final float nz = now.getZ() + dz / dist * extra;
+        player.teleport(new Position(nx, ny, nz));
+        return extra;
+    }
+
+    public void forgetPos(int uid) { this.lastPos.remove(uid); }
+
+    /**
+     * 宝箱传送：把玩家传到当前场景里最近的宝箱旁边（Akebi 的"宝箱传送"）。
+     * 只找 GadgetChest，所以不会误传到机关/神像上。
+     *
+     * @return 找到了就 teleport 并返回宝箱坐标，否则返回 null
+     */
+    public Position chestTeleport(Player player) {
+        Scene scene = player.getScene();
+        if (scene == null) return null;
+        Position origin = player.getPosition();
+        if (origin == null) return null;
+
+        Position best = null;
+        double bestD = Double.MAX_VALUE;
+        for (GameEntity entity : scene.getEntities().values()) {
+            if (!(entity instanceof EntityGadget gadget)) continue;
+            var content = gadget.getContent();
+            if (!(content instanceof GadgetChest)) continue;
+            Position p = gadget.getPosition();
+            if (p == null) continue;
+            double d = distance2(origin, p);
+            if (d < bestD) {
+                bestD = d;
+                best = p;
+            }
+        }
+        if (best == null) return null;
+        Position safe = new Position(best.getX(), best.getY() + 1.5f, best.getZ());
+        player.teleport(safe);
+        return safe;
+    }
+
+    public int interactAll(Player player, float radius) {
+        Scene scene = player.getScene();
+        if (scene == null) return 0;
+        Position origin = player.getPosition();
+        if (origin == null) return 0;
+        final float r2 = radius * radius;
+        int done = 0;
+        for (GameEntity entity : scene.getEntities().values()) {
+            if (!(entity instanceof EntityGadget gadget)) continue;
+            var content = gadget.getContent();
+            if (content == null) continue;
+            // 只碰宝箱类，其它机关（神像、工作台、献祭）逻辑各不相同，乱调会出问题
+            if (!(content instanceof GadgetChest)) continue;
+            Position p = gadget.getPosition();
+            if (p == null) continue;
+            if (distance2(origin, p) > r2) continue;
+            try {
+                var req =
+                        GadgetInteractReq.newBuilder()
+                                .setGadgetEntityId(gadget.getId())
+                                .setOpType(InterOpType.InterOpType_INTER_OP_FINISH)
+                                .build();
+                if (content.onInteract(player, req)) done++;
+            } catch (Throwable t) {
+                this.getLogger().debug("[CheatMenu] chest {} interact failed: {}",
+                        gadget.getId(), t.toString());
+            }
+        }
+        return done;
+    }
+
+    public int interactBroad(Player player, float radius, boolean includeAll) {
+        Scene scene = player.getScene();
+        if (scene == null) return 0;
+        Position origin = player.getPosition();
+        if (origin == null) return 0;
+        final double r2 = (double) radius * radius;
+        int done = 0, tried = 0;
+        for (GameEntity entity : scene.getEntities().values()) {
+            if (!(entity instanceof EntityGadget gadget)) continue;
+            var content = gadget.getContent();
+            if (content == null) continue;
+            boolean chest = content instanceof GadgetChest;
+            boolean gather = content instanceof GadgetGatherObject;
+            if (!chest && !gather && !includeAll) continue;
+            Position p = gadget.getPosition();
+            if (p == null) continue;
+            if (distance2(origin, p) > r2) continue;
+            // 冷却：同一个 gadget 3 秒内不重复触发（否则会刷屏/刷物品）
+            final int gid = gadget.getId();
+            final long nowMs = System.currentTimeMillis();
+            Long lastAt = lastInteractAt.get(gid);
+            if (lastAt != null && nowMs - lastAt < 3000L) continue;
+            lastInteractAt.put(gid, nowMs);
+            if (lastInteractAt.size() > 4096) lastInteractAt.clear();
+            tried++;
+            try {
+                var req = GadgetInteractReq.newBuilder()
+                        .setGadgetEntityId(gadget.getId())
+                        .setOpType(InterOpType.InterOpType_INTER_OP_FINISH)
+                        .build();
+                if (content.onInteract(player, req)) {
+                    done++;
+                    this.getLogger().debug("[CheatMenu] interact ok gadget={} content={}",
+                            gadget.getConfigId(), content.getClass().getSimpleName());
+                }
+            } catch (Throwable t) {
+                this.getLogger().debug("[CheatMenu] interact fail gadget={}: {}",
+                        gadget.getConfigId(), t.toString());
+            }
+        }
+        if (includeAll) {
+            this.getLogger().debug("[CheatMenu] broad interact tried={} done={}", tried, done);
+        }
+        return done;
+    }
+
+    public String questTarget(Player player, Position[] outPos) {
+        if (player.getMapMarksManager() == null) return null;
+        var marks = player.getMapMarksManager().getMapMarks();
+        if (marks == null || marks.isEmpty()) return null;
+
+        Position origin = player.getPosition();
+        Position best = null;
+        int bestQuest = 0;
+        String bestName = null;
+        double bestD = Double.MAX_VALUE;
+        for (var mark : marks.values()) {
+            if (mark.getQuestId() <= 0) continue;
+            if (mark.getSceneId() != player.getSceneId()) continue;
+            Position p = mark.getPosition();
+            if (p == null) continue;
+            double d = origin == null ? 0 : distance2(origin, p);
+            if (d < bestD) {
+                bestD = d;
+                best = p;
+                bestQuest = mark.getQuestId();
+                bestName = mark.getName();
+            }
+        }
+        if (best == null) return null;
+        if (outPos != null && outPos.length > 0) outPos[0] = best;
+        return "quest " + bestQuest + (bestName != null && !bestName.isEmpty() ? " (" + bestName + ")" : "");
+    }
+
     public Position mapPinPosition(Player player) {
         if (player.getMapMarksManager() == null) return null;
         var marks = player.getMapMarksManager().getMapMarks();
@@ -518,6 +838,7 @@ public final class CheatMenu extends Plugin {
         Position best = null;
         double bestD = -1;
         for (var mark : marks.values()) {
+            if (mark.getMapMarkPointType() != emu.grasscutter.net.proto.MapMarkPointTypeOuterClass.MapMarkPointType.MapMarkPointType_SPECIAL) continue;
             if (mark.getSceneId() != player.getSceneId()) continue;
             Position p = mark.getPosition();
             if (p == null) continue;
@@ -548,6 +869,43 @@ public final class CheatMenu extends Plugin {
     }
 
     /** 告诉客户端"技能可以用"，用来顶掉战技冷却的表现。 */
+    /**
+     * 无限技能：直接把每个技能的冷却时间清零并通知客户端。
+     *
+     * <p>CD 是客户端本地计时的，光发 "CanUseSkill" 不会重置。服务端有 AvatarSkillInfoNotify，
+     * 里面带 passCdTime / fullCdTimeList —— 发 0 就等于告诉客户端"这个技能已经好了"。
+     */
+    public int resetSkillCd(Player player) {
+        EntityAvatar entity = player.getTeamManager().getCurrentAvatarEntity();
+        if (entity == null) return 0;
+        var avatar = entity.getAvatar();
+        if (avatar == null) return 0;
+        var depot = avatar.getSkillDepot();
+        if (depot == null) return 0;
+
+        var notify = AvatarSkillInfoNotify.newBuilder().setGuid(avatar.getGuid());
+        int count = 0;
+        try {
+            for (int skillId : depot.getSkillsAndEnergySkill().toArray()) {
+                if (skillId <= 0) continue;
+                notify.putSkillMap(
+                        skillId,
+                        AvatarSkillInfo.newBuilder()
+                                .setPassCdTime(0)
+                                .addFullCdTimeList(0)
+                                .setMaxChargeCount(1)
+                                .build());
+                count++;
+            }
+            BasePacket packet = new BasePacket(PacketOpcodes.AvatarSkillInfoNotify);
+            packet.setData(notify.build());
+            player.sendPacket(packet);
+        } catch (Throwable t) {
+            this.getLogger().debug("[CheatMenu] resetCd failed: {}", t.toString());
+        }
+        return count;
+    }
+
     public void pingSkillReady(Player player) {
         player.sendPacket(new PacketCanUseSkillNotify(true));
     }
@@ -586,6 +944,62 @@ public final class CheatMenu extends Plugin {
                 })
                 .min(Comparator.comparingDouble(g -> distance2(origin, g.getPosition())))
                 .orElse(null);
+    }
+
+    public Position nearestGadgetByTag(Player player, String tag) {
+        Scene scene = player.getScene();
+        if (scene == null || tag == null) return null;
+        Position origin = player.getPosition();
+        if (origin == null) return null;
+        final String want = tag.toUpperCase(java.util.Locale.ROOT);
+        EntityGadget best = null;
+        double bestD = Double.MAX_VALUE;
+        for (GameEntity e : scene.getEntities().values()) {
+            if (!(e instanceof EntityGadget g)) continue;
+            Position p = g.getPosition();
+            if (p == null) continue;
+            boolean match = false;
+            try {
+                var gdata = GameData.getGadgetDataMap().get(g.getGadgetId());
+                if (gdata != null && gdata.getTags() != null) {
+                    for (String t : gdata.getTags()) {
+                        if (t != null && t.toUpperCase(java.util.Locale.ROOT).contains(want)) {
+                            match = true;
+                            break;
+                        }
+                    }
+                }
+            } catch (Throwable ignored) {
+            }
+            if (!match) continue;
+            double d = distance2(origin, p);
+            if (d < bestD) {
+                bestD = d;
+                best = g;
+            }
+        }
+        return best == null ? null : best.getPosition();
+    }
+
+    public Position nearestGadgetByIdRange(Player player, int idMin, int idMax) {
+        Scene scene = player.getScene();
+        if (scene == null || idMax <= idMin) return null;
+        Position origin = player.getPosition();
+        if (origin == null) return null;
+        GameEntity best = null;
+        double bestD = Double.MAX_VALUE;
+        for (GameEntity e : scene.getEntities().values()) {
+            int id = e.getEntityTypeId();
+            if (id < idMin || id >= idMax) continue;
+            Position p = e.getPosition();
+            if (p == null) continue;
+            double d = distance2(origin, p);
+            if (d < bestD) {
+                bestD = d;
+                best = e;
+            }
+        }
+        return best == null ? null : best.getPosition();
     }
 
     public List<Player> onlinePlayers() {
