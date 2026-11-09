@@ -83,6 +83,10 @@ public final class CheatApi {
     public static float mobVacRadius = 20f;
     public static boolean burst = false;
     public static boolean skillReady = false;
+    /** true = 按需清 CD（客户端按 E 时发一次）；否则 500ms 连续刷新 */
+    public static boolean skillOnDemand = true;
+    /** 下一次 tick 清一次 CD（客户端按 E 时置） */
+    public static volatile boolean skillClearReq = false;
     public static boolean speedOn = false;
     public static float speedRatio = 1.5f;
     public static boolean flyOn = false;
@@ -91,6 +95,7 @@ public final class CheatApi {
     public static int flyDir = 1;
     private static long lastMobVacMs = 0L;
     private static long lastBurstMs = 0L;
+    private static boolean burstUsageOff = false;
     private static long lastSkillMs = 0L;
     private static long lastSpeedMs = 0L;
     private static long lastFlyMs = 0L;
@@ -316,11 +321,19 @@ public final class CheatApi {
             }
         }
 
+        if (!burst && !players.isEmpty() && burstUsageOff) {
+            burstUsageOff = false;
+            for (Player pl : players) {
+                try { pl.getEnergyManager().setEnergyUsage(true); } catch (Throwable ignored) { }
+            }
+        }
         if (burst && !players.isEmpty() && now - lastBurstMs >= 1000L) {
             lastBurstMs = now;
+            burstUsageOff = true;
             for (Player player : players) {
                 try {
                     owner.refillBurst(player);
+                    owner.resetSkillCd(player);   // 大招 CD 也一起清掉
                 } catch (Throwable ignored) {
                 }
             }
@@ -339,7 +352,7 @@ public final class CheatApi {
             }
         }
 
-        if (speedOn && !players.isEmpty() && now - lastSpeedMs >= 1000L) {
+        if (speedOn && !players.isEmpty() && now - lastSpeedMs >= 240000L) {
             lastSpeedMs = now;
             for (Player player : players) {
                 try {
@@ -349,7 +362,18 @@ public final class CheatApi {
             }
         }
 
-        if (skillReady && !players.isEmpty() && now - lastSkillMs >= 500L) {
+        if (skillClearReq && !players.isEmpty()) {
+            skillClearReq = false;
+            for (Player player : players) {
+                try {
+                    owner.pingSkillReady(player);
+                    owner.resetSkillCd(player);
+                } catch (Throwable ignored) {
+                }
+            }
+        }
+
+        if (skillReady && !skillOnDemand && !players.isEmpty() && now - lastSkillMs >= 500L) {
             lastSkillMs = now;
             for (Player player : players) {
                 try {
@@ -715,6 +739,87 @@ public final class CheatApi {
                 owner.getLogger().info("itemscan [" + match2 + "] total=" + t2 + " hits=" + c2 + "\n" + hb);
                 lastAction = "itemscan " + match2 + ": " + c2 + " hit(s) of " + t2;
             }
+            case "energy" -> {
+                StringBuilder sb9 = new StringBuilder("energy:\n");
+                try {
+                    for (var e9 : actor.getTeamManager().getActiveTeam()) {
+                        if (e9 == null || e9.getAvatar() == null) continue;
+                        var av9 = e9.getAvatar();
+                        var fp9 = av9.getFightProperties();
+                        sb9.append("  guid=").append(av9.getGuid())
+                            .append(" ele=").append(av9.getSkillDepot() == null ? "?" : av9.getSkillDepot().getId())
+                            .append(" usage=").append(actor.getEnergyManager().isEnergyUsage())
+                            .append("\n");
+                        for (var en9 : fp9.entrySet()) {
+                            String kn9 = String.valueOf(en9.getKey());
+                            if (kn9.contains("ENERGY"))
+                                sb9.append("     ").append(kn9).append('=').append(en9.getValue()).append('\n');
+                        }
+                    }
+                } catch (Throwable t9) {
+                    sb9.append("  err=").append(t9).append('\n');
+                }
+                owner.getLogger().info(sb9.toString());
+                lastAction = "energy dumped";
+            }
+            case "sots" -> {
+                int pid = (int) fl(q.getOrDefault("point", "4"), 4);
+                int scn = actor.getSceneId();
+                StringBuilder sb = new StringBuilder("sots scene=" + scn + " point=" + pid + "\n");
+                try { actor.getForceLockedScenePoints(scn).remove(pid); } catch (Throwable t) { }
+                boolean okTp = false;
+                try { okTp = actor.getProgressManager().unlockTransPoint(scn, pid, true); }
+                catch (Throwable t) { sb.append("  unlockTransPoint err=").append(t).append('\n'); }
+                if (!okTp) {
+                    try {
+                        actor.getUnlockedScenePoints(scn).add(pid);
+                        actor.sendPacket(new emu.grasscutter.server.packet.send.PacketScenePointUnlockNotify(scn, pid));
+                        actor.sendPacket(new emu.grasscutter.server.packet.send.PacketGetScenePointRsp(actor, scn));
+                        sb.append("  fallback unlock packets sent\n");
+                    } catch (Throwable t) { sb.append("  packet err=").append(t).append('\n'); }
+                }
+                try {
+                    actor.getSotsManager().handleEnterTransPointRegionNotify();
+                    sb.append("  handleEnterTransPointRegionNotify ok\n");
+                } catch (Throwable t) { sb.append("  enter err=").append(t).append('\n'); }
+                try { actor.save(); } catch (Throwable t) { }
+                boolean un = false;
+                try { un = actor.getUnlockedScenePoints(scn).contains(pid); } catch (Throwable t) { }
+                sb.append("  unlocked=").append(un);
+                owner.getLogger().info(sb.toString());
+                lastAction = "sots point=" + pid + " unlocked=" + un;
+            }
+            case "buff" -> {
+                int bid = (int) fl(q.getOrDefault("id", "0"), 0);
+                float dur = fl(q.getOrDefault("dur", "600"), 600f);
+                var avv = actor.getTeamManager().getCurrentAvatarEntity();
+                if (avv == null) lastAction = "buff: no avatar";
+                else {
+                    actor.getBuffManager().addBuff(bid, dur, avv.getAvatar());
+                    lastAction = "buff " + bid + " dur=" + Math.round(dur);
+                }
+            }
+            case "buffscan" -> {
+                String mu2 = q.getOrDefault("match", "MoveSpeed").toUpperCase(java.util.Locale.ROOT);
+                var bmap = GameData.getBuffDataMap();
+                StringBuilder sb2 = new StringBuilder("buffscan [" + mu2 + "]\n");
+                int nb = 0;
+                if (bmap != null) {
+                    for (var en2 : bmap.entrySet()) {
+                        var bd = en2.getValue();
+                        if (bd == null) continue;
+                        String ab = bd.getAbilityName() == null ? "" : bd.getAbilityName();
+                        String mo = bd.getModifierName() == null ? "" : bd.getModifierName();
+                        String hay = (ab + " " + mo).toUpperCase(java.util.Locale.ROOT);
+                        if (!hay.contains(mu2)) continue;
+                        sb2.append("  ").append(en2.getKey()).append("  ab=").append(ab)
+                            .append("  mo=").append(mo).append('\n');
+                        if (++nb >= 40) break;
+                    }
+                }
+                owner.getLogger().info(sb2.toString());
+                lastAction = "buffscan " + mu2 + ": " + nb;
+            }
             case "gadscan" -> {
                 String match = q.getOrDefault("match", "Oculus");
                 String mu = match.toUpperCase(java.util.Locale.ROOT);
@@ -996,6 +1101,8 @@ public final class CheatApi {
                 case "mobvarr" -> mobVacRadius = Math.max(5f, Math.min(80f, fl(v, mobVacRadius)));
                 case "burst" -> burst = b(v);
                 case "skillready" -> skillReady = b(v);
+                case "skillondemand" -> skillOnDemand = b(v);
+                case "skillclear" -> { skillClearReq = true; lastAction = "skillclear"; }
                 case "mult" -> {
                     if (owner != null) owner.mult = Math.max(0.1f, Math.min(10000f, fl(v, owner.mult)));
                 }

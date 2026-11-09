@@ -1,11 +1,47 @@
 # 原神 7.1 私服 + 游戏内作弊菜单
 
-**版本 1.9.3**
+**版本 1.9.4**
 
 基于 [AstaPS](https://github.com/MeChen618/AstaPS)（Grasscutter 的 7.1.0 分支）搭的一套 Windows 单机环境，
 外加一个自己写的游戏内菜单。作弊在服务端执行，客户端只负责发指令。
 
 > 研究和个人存档用途，与米哈游 / HoYoverse 无关，不可商用。
+
+## 1.9.4 修正（无限大招 / 移速 buff / 神像解锁）
+
+### 无限大招：两个独立 bug
+
+1. **能量不涨**：旧代码发的是 `PacketAvatarFightPropUpdateNotify`（战斗属性），客户端不认。
+   改成 `EnergyManager.refillTeamEnergy(..., PropChangeReason_PROP_CHANGE_ENERGY_BALL, true)`。
+2. **放完就没了**：服务端在大招释放后会**扣能量**。
+   开启无限大招时调 `EnergyManager.setEnergyUsage(false)`（不扣），关闭时恢复 `true`。
+3. **大招 CD**：`resetSkillCd` 原来只清当前出战角色，现在**遍历整个出战队伍**逐个发
+   `AvatarSkillInfoNotify`（`passCdTime=0` + `fullCdTimeList=[0]`），切人后也没 CD。
+
+实测：`c=energy` 显示四个角色 `usage=false`，连按 Q 可连续开大招。
+
+### 移速：改成真的食物 buff
+
+扫全部 buff 数据只有两个移速 buff：
+
+```
+170201  ab=MoveSpeed_lv2_1      mo=SERVER_MoveSpeed_Modifier_lv2_1
+701018  ab=MoveSpeed_Dungeon    mo=SERVER_MoveSpeed_Dungeon_1
+```
+
+旧实现走的 `Animator_MoveSpeedRatio` + `AbilityMetaModifierChange` 客户端不认（实测 1.0×）。
+现在直接 `addBuff(170201)`，**实测 +25~40%（基线 8.2m/1.5s → 10.6m/1.5s）**，每 240 秒续一次。
+
+### 新增 GM/调试端点
+
+| 命令 | 作用 |
+|---|---|
+| `c=sots&point=N` | 解锁就近七天神像点位（并发解锁包 + 触发神像区域进入） |
+| `c=buff&id=N&dur=S` | 直接给出战角色挂 buff |
+| `c=buffscan&match=XXX` | 按 ability/modifier 名搜 buff，用来找移速/攻速类 buff id |
+| `c=energy` | dump 全队能量与 `EnergyManager` 的 `usage` 开关 |
+
+实例：站在神像旁输 `c=sots` → `sots scene=3 point=4 … unlocked=true`，重登后游戏里出现「F 七天神像」交互。
 
 ## 1.9.3 新增（飞行稳定性 + 可绑定快捷键）
 

@@ -400,47 +400,17 @@ public final class CheatMenu extends Plugin {
         EntityAvatar avatar = player.getTeamManager().getCurrentAvatarEntity();
         if (avatar == null) return false;
         try {
-            // 1) 原生 buff（groupId 21 = 移速增加药品）
-            if (!player.getBuffManager().hasBuff(21)) {
-                player.getBuffManager().addBuff(170201, 600f, avatar.getAvatar());
-            }
-            // 第二个原生移速 buff（爬塔用的 MoveSpeed_Dungeon，数据上也是 +30%），
-            // 两个 groupId 不同可以叠加，实测能到 +50~60%
-            try {
-                player.getBuffManager().addBuff(701018, 600f, avatar.getAvatar());
-            } catch (Throwable ignored) {
-            }
-            // 2) 用真实 ability 名覆盖属性值
-            var key = AbilityString.newBuilder().setStr("Animator_MoveSpeedRatio").build();
-            var prop = ModifierProperty.newBuilder().setKey(key).setValue(ratio).build();
-            var change = AbilityMetaModifierChange.newBuilder()
-                    .setParentAbilityName(AbilityString.newBuilder().setStr("MoveSpeed_lv2_1"))
-                    .setModifierLocalId(0)
-                    .setServerBuffUid(170201)
-                    .addProperties(prop)
-                    .build();
-            var head = AbilityInvokeEntryHead.newBuilder().setInstancedAbilityId(0).build();
-            var entry = AbilityInvokeEntry.newBuilder()
-                    .setEntityId(avatar.getId())
-                    .setArgumentType(
-                            AbilityInvokeArgument.AbilityInvokeArgument_ABILITY_META_MODIFIER_CHANGE)
-                    .setForwardType(ForwardType.ForwardType_FORWARD_TO_ALL)
-                    .setHead(head)
-                    .setAbilityData(change.toByteString())
-                    .build();
-            player.sendPacket(new PacketAbilityInvocationsNotify(entry));
-            this.lastSpeedSent = ratio;
+            // 食物移速 buff 170201 = MoveSpeed_lv2_1，直接加就有效（实测 +25~40%）
+            player.getBuffManager().addBuff(170201, 900f, avatar.getAvatar());
             return true;
         } catch (Throwable t) {
-            this.getLogger().debug("[CheatMenu] speed failed: {}", t.toString());
             return false;
         }
     }
 
-    /** 关掉加速：把移速药 buff 移除（groupId 21）。 */
     public boolean clearMoveSpeed(Player player) {
         try {
-            player.getBuffManager().removeBuff(21);
+            player.getBuffManager().removeBuff(170201);
             this.lastSpeedSent = 0f;
             return true;
         } catch (Throwable t) {
@@ -854,52 +824,67 @@ public final class CheatMenu extends Plugin {
     /** 把出战队伍的元素能量拉满，客户端就能一直放大招。 */
     public int refillBurst(Player player) {
         int n = 0;
-        for (EntityAvatar entity : player.getTeamManager().getActiveTeam()) {
-            try {
+        try {
+            for (EntityAvatar entity : player.getTeamManager().getActiveTeam()) {
                 if (entity == null || entity.getAvatar() == null) continue;
-                var avatar = entity.getAvatar();
-                avatar.setCurrentEnergy(99999f);   // 内部会按角色上限裁剪
-                player.sendPacket(new PacketAvatarFightPropUpdateNotify(avatar, avatar.getFightProperties()));
-                n++;
-            } catch (Throwable t) {
-                this.getLogger().debug("[CheatMenu] burst skip: {}", t.toString());
+                entity.getAvatar().setCurrentEnergy(99999f);   // 按角色上限裁剪
+                ++n;
             }
+        } catch (Throwable t) {
+            this.getLogger().debug("[CheatMenu] burst fill skip: {}", t.toString());
+        }
+        try {
+            // 关键 1：告诉服务端"放大招不扣能量"，否则每次放完就没了
+            player.getEnergyManager().setEnergyUsage(false);
+        } catch (Throwable t) { }
+        try {
+            // 关键 2：用 EnergyManager 发能量变化包，客户端才会真的亮大招
+            player.getEnergyManager()
+                    .refillTeamEnergy(
+                            emu.grasscutter.net.proto.PropChangeReasonOuterClass.PropChangeReason
+                                    .PropChangeReason_PROP_CHANGE_ENERGY_BALL,
+                            true);
+        } catch (Throwable t) {
+            this.getLogger().info("[CheatMenu] burst refill err: {}", t.toString());
         }
         return n;
     }
 
     /** 告诉客户端"技能可以用"，用来顶掉战技冷却的表现。 */
     /**
-     * 无限技能：直接把每个技能的冷却时间清零并通知客户端。
+     * 无限技能 / 无限大招：把全队每个角色的技能（含元素爆发）CD 清零并通知客户端。
      *
-     * <p>CD 是客户端本地计时的，光发 "CanUseSkill" 不会重置。服务端有 AvatarSkillInfoNotify，
-     * 里面带 passCdTime / fullCdTimeList —— 发 0 就等于告诉客户端"这个技能已经好了"。
+     * <p>CD 是客户端计时的，光发 "CanUseSkill" 不会重置。AvatarSkillInfoNotify 里带
+     * passCdTime / fullCdTimeList，发 0 就等于告诉客户端"这个技能已经好了"。
      */
     public int resetSkillCd(Player player) {
-        EntityAvatar entity = player.getTeamManager().getCurrentAvatarEntity();
-        if (entity == null) return 0;
-        var avatar = entity.getAvatar();
-        if (avatar == null) return 0;
-        var depot = avatar.getSkillDepot();
-        if (depot == null) return 0;
-
-        var notify = AvatarSkillInfoNotify.newBuilder().setGuid(avatar.getGuid());
         int count = 0;
         try {
-            for (int skillId : depot.getSkillsAndEnergySkill().toArray()) {
-                if (skillId <= 0) continue;
-                notify.putSkillMap(
-                        skillId,
-                        AvatarSkillInfo.newBuilder()
-                                .setPassCdTime(0)
-                                .addFullCdTimeList(0)
-                                .setMaxChargeCount(1)
-                                .build());
-                count++;
+            for (EntityAvatar entity : player.getTeamManager().getActiveTeam()) {
+                if (entity == null || entity.getAvatar() == null) continue;
+                var avatar = entity.getAvatar();
+                var depot = avatar.getSkillDepot();
+                if (depot == null) continue;
+                var notify = AvatarSkillInfoNotify.newBuilder().setGuid(avatar.getGuid());
+                int n = 0;
+                for (int skillId : depot.getSkillsAndEnergySkill().toArray()) {
+                    if (skillId <= 0) continue;
+                    notify.putSkillMap(
+                            skillId,
+                            AvatarSkillInfo.newBuilder()
+                                    .setPassCdTime(0)
+                                    .addFullCdTimeList(0)
+                                    .setMaxChargeCount(1)
+                                    .build());
+                    n++;
+                }
+                if (n > 0) {
+                    BasePacket packet = new BasePacket(PacketOpcodes.AvatarSkillInfoNotify);
+                    packet.setData(notify.build());
+                    player.sendPacket(packet);
+                    count += n;
+                }
             }
-            BasePacket packet = new BasePacket(PacketOpcodes.AvatarSkillInfoNotify);
-            packet.setData(notify.build());
-            player.sendPacket(packet);
         } catch (Throwable t) {
             this.getLogger().debug("[CheatMenu] resetCd failed: {}", t.toString());
         }
