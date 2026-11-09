@@ -402,20 +402,6 @@ void tabPlayer(const Snapshot& s) {
         ImGui::TextDisabled("已敲 %d 次", Gs71AutoTalkCount());
     }
 
-    sectionHeader("移动速度（原生移速药）");
-    if (ImGui::Checkbox("开启移动加速", &g_speedOn)) {
-        if (g_speedOn) action("c=speed&r=%.2f", g_speedRatio);
-        else action("c=speed&on=0");
-    }
-    if (g_speedOn) {
-        ImGui::SetNextItemWidth(240);
-        if (ImGui::SliderFloat("加速倍数##speedr", &g_speedRatio, 1.1f, 2.5f, "x%.2f"))
-            action("c=speed&r=%.2f", g_speedRatio);
-        ImGui::TextDisabled("服务端下发 Animator_MoveSpeedRatio + 移速 buff，约 0.5 秒生效");
-    }
-    ImGui::TextDisabled("走游戏原生 buff（170201 移速增加药品），客户端只认数据里的 0.3；");
-
-    ImGui::Spacing();
     sectionHeader("飞行（客户端，实验）");
     {
         static float flySpeed = 6.f;
@@ -1151,6 +1137,20 @@ static void akPlayer(const Snapshot& s) {
     toggleRow("无限体力 Infinite Stamina", &g_st.stamina, "stamina");
     toggleRow("无摔落 Fall Control", &g_st.fall, "fall");
     toggleRow("自动回血 Auto Heal", &g_st.autoheal, "autoheal");
+
+    ImGui::Spacing();
+    sectionHeader("移动加速（食物 buff +40%）");
+    if (ImGui::Checkbox("开启移动加速", &g_speedOn)) {
+        if (g_speedOn) action("c=speed&r=%.2f", g_speedRatio);
+        else action("c=speed&on=0");
+    }
+    if (g_speedOn) {
+        ImGui::SetNextItemWidth(240);
+        if (ImGui::SliderFloat("加速倍数##speedr", &g_speedRatio, 1.1f, 2.5f, "x%.2f"))
+            action("c=speed&r=%.2f", g_speedRatio);
+        ImGui::TextDisabled("直接给角色挂食物移速 buff 170201（实测 +25~40%），约 1 秒生效");
+    }
+    ImGui::TextDisabled("直接挂食物移速 buff 170201（MoveSpeed_lv2_1），实测 +25~40%，约 1 秒生效");
 
     ImGui::Spacing();
     sectionHeader("No Clip · 自由移动");

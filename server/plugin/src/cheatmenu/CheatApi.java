@@ -763,7 +763,12 @@ public final class CheatApi {
                 lastAction = "energy dumped";
             }
             case "sots" -> {
-                int pid = (int) fl(q.getOrDefault("point", "4"), 4);
+                int pid = (int) fl(q.getOrDefault("point", "0"), 0);
+                if (pid <= 0) pid = nearestStatuePoint(actor);
+                if (pid <= 0) {
+                    lastAction = "sots: no statue point in this scene";
+                    return;
+                }
                 int scn = actor.getSceneId();
                 StringBuilder sb = new StringBuilder("sots scene=" + scn + " point=" + pid + "\n");
                 try { actor.getForceLockedScenePoints(scn).remove(pid); } catch (Throwable t) { }
@@ -1336,4 +1341,57 @@ public final class CheatApi {
         if (s == null) return "-";
         return s.replace('\n', ' ').replace('\r', ' ').replace(' ', '_');
     }
+
+    // ---------------------------------------------------------------- 七天神像点位
+    private static final java.util.Set<Integer> STATUE_GADGET_IDS =
+            java.util.Set.of(70130009, 70130010, 70130011, 73176017);
+
+    private static boolean isStatuePoint(emu.grasscutter.data.common.PointData data) {
+        if (data == null) return false;
+        try {
+            if (data.getMaxSpringVolume() > 0) return true;
+        } catch (Throwable ignored) {
+        }
+        try {
+            if (STATUE_GADGET_IDS.contains(data.getGadgetId())) return true;
+        } catch (Throwable ignored) {
+        }
+        try {
+            String type = data.getType();
+            return type != null && type.contains("KDEHKECBDBO");
+        } catch (Throwable ignored) {
+        }
+        return false;
+    }
+
+    /** 找玩家当前场景里最近的七天神像点位。 */
+    private static int nearestStatuePoint(Player player) {
+        try {
+            int sceneId = player.getSceneId();
+            var pointIds = GameData.getScenePointsPerScene().get(sceneId);
+            if (pointIds == null || pointIds.isEmpty()) return -1;
+            var position = player.getPosition();
+            int best = -1;
+            double bestDist = Double.MAX_VALUE;
+            for (int pointId : pointIds) {
+                var entry = GameData.getScenePointEntryById(sceneId, pointId);
+                if (entry == null || entry.getPointData() == null) continue;
+                var data = entry.getPointData();
+                if (!isStatuePoint(data) || data.getPos() == null) continue;
+                var pos = data.getPos();
+                double dx = pos.getX() - position.getX();
+                double dy = pos.getY() - position.getY();
+                double dz = pos.getZ() - position.getZ();
+                double d = dx * dx + dy * dy + dz * dz;
+                if (d < bestDist) {
+                    bestDist = d;
+                    best = pointId;
+                }
+            }
+            return best;
+        } catch (Throwable t) {
+            return -1;
+        }
+    }
+
 }
